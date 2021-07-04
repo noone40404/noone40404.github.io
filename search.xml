@@ -1,22 +1,1256 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>helloworld</title>
-    <url>/2021/07/04/helloworld/</url>
-    <content><![CDATA[]]></content>
+    <title>CF的dp题</title>
+    <url>/2021/07/01/CF%E7%9A%84dp%E9%A2%98/</url>
+    <content><![CDATA[<h2 id="CF1515E-Phoenix-and-Computers"><a href="#CF1515E-Phoenix-and-Computers" class="headerlink" title="CF1515E Phoenix and Computers"></a>CF1515E Phoenix and Computers</h2><details>
+    <summary>我们始终不知道EI是怎么写的</summary>
+        <pre><code>
+        #include<bits/stdc++.h>
+        #define R(X,Y) X=(X+Y)%P;
+        int64_t g[410],n,P,k,a,f;int main()&#123;std::cin>>n>>P;g[0]=f=k=1;for(--n;n>=0;n-=2,++k)&#123;for(int i=1;i<=n;++i)R(g[i],g[i-1]*k*2)f=f*k%P;R(a,g[n]*f)&#125;printf("%d\n",a);&#125;
+        </code></pre>
+</details>
+
+
+<h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><p>要开启 $n$ 台电脑，若第 $i-1,i+1$ 台被开启，第 $i$ 台自动开，询问打开所有电脑的方案数</p>
+<h3 id="解"><a href="#解" class="headerlink" title="解"></a>解</h3><p>题解里有一个吊打标算的 $O(n^2)$ 做法</p>
+<p><del>上面EI的代码好像也是 $\sout{O(n^2)}$</del></p>
+<p>设 $dp_{i,j}$ 表示已开机 $i$ 台，形成 $j$ 个连续段，每段距离 $&gt;1$ 且不确定</p>
+<p>考虑转移：</p>
+<ul>
+<li><p>新建段</p>
+<ul>
+<li>$dp_{i+1,j+1}=\sum dp_{i,j}*(j+1)$ ，即在 $j+1$ 个间隔中选择一个打开</li>
+</ul>
+</li>
+<li><p>扩展段</p>
+<ul>
+<li>$dp_{i+1,j}=\sum dp_{i,j}<em>j</em>2$ ，即在一段的边界+1处开</li>
+<li>$dp_{i+2,j}=\sum dp_{i,j}<em>j</em>2$ ，即在一段的边界+2处开</li>
+</ul>
+</li>
+<li><p>合并段（仅当 $j\geq 2$ 时）</p>
+<ul>
+<li>$dp_{i+2,j-1}=\sum dp_{i,j}<em>(j-1)</em>2$ ，即当两边距离为 $2$ 时有两种开法</li>
+<li>$dp_{i+3,j-1}=\sum dp_{i,j}*(j-1)$ ，即两边距离为 $3$ 时开中间</li>
+</ul>
+</li>
+</ul>
+<h2 id="CF1516D-Cut"><a href="#CF1516D-Cut" class="headerlink" title="CF1516D Cut"></a>CF1516D Cut</h2><h3 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h3><p>给定长度为 $n$ 的序列，$q$ 次询问，对于 $[l,r]$ 区间最少能分成多少个子序列满足，子序列中数的乘积等于它们的 $\text{lcm}$</p>
+<h3 id="解-1"><a href="#解-1" class="headerlink" title="解"></a>解</h3><p>很显然子序列中所有数互质，有贪心：从左往右尽可能多的选取直至会加入与原区间不互质的数</p>
+<p>设 $Next_i$ 代表从 $i$ 开始的序列停止的位置，即向以 $i$ 开始的子序列中加入 $Next_i$ 会使序列中的数不再互质</p>
+<p>$dp_{i,l}$ 表示从 $l$ 开始，跳 $Next_i$ $2^i$ 次到达的位置</p>
+<h2 id="CF1516E-Baby-Ehab-Plays-with-Permutations"><a href="#CF1516E-Baby-Ehab-Plays-with-Permutations" class="headerlink" title="CF1516E Baby Ehab Plays with Permutations"></a>CF1516E Baby Ehab Plays with Permutations</h2><h3 id="前置芝士"><a href="#前置芝士" class="headerlink" title="前置芝士"></a>前置芝士</h3><ul>
+<li><p>置换</p>
+<p>简单来说是对一个序列进行重排列，</p>
+<script type="math/tex; mode=display">\begin{pmatrix}
+1 & 2 & 3 & \dotsb & i & \dotsb & n \\
+a_1 & a_2 & a_3 & \dotsb & a_i & \dotsb & a_n\\
+\end{pmatrix}</script><p>即 $[1,n]$ 到 $[1,n]$ 的一一映射</p>
+<ul>
+<li><p>$1.$</p>
+<p>置换可以分解为若干循环，具体为连边：$1\rightarrow a_1 \ ,\ 2\rightarrow a_2 \ ,\ \dotsb \ ,\ i\rightarrow a_i \ ,\ \dotsb \ ,\ n\rightarrow a_n$</p>
+<p>形成的图中会有若干个环，即，置换可以被分解成不相交循环的积</p>
+<p>一个循环可以被拆成 $环长-1$ 个对换，所以通过 $环长-1$ 步可以还原该循环</p>
+</li>
+</ul>
+</li>
+<li><p>关于第一类斯特林数的计算</p>
+<p><a href="https://mathworld.wolfram.com/StirlingNumberoftheFirstKind.html">$\displaystyle{s(n,m)=\sum_{k=0}^NaN \  (-1)^ k\ \binom{k+n-1}{k+n-m} \binom{2n-m}{n-k-m} S(k-m+n,k)}$</a></p>
+<p>变形得</p>
+<script type="math/tex; mode=display">(-1)^{n-m} s(n,m)=\sum_{k=0}^{n-m} (-1)^k \binom{n-1+k}{m-1} \binom{(n-m)+n}{(n-m)-k} S((n-m+k),k)</script><p>即</p>
+<script type="math/tex; mode=display">(-1)^{n-m} \begin{bmatrix} n \\ m \end{bmatrix}=\sum_{k=0}^{n-m} (-1)^k \binom{n-1+k}{m-1} \binom{(n-m)+n}{(n-m)-k} \begin{Bmatrix} (n-m)+k \\ k \end{Bmatrix}</script></li>
+</ul>
+<h3 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h3><p>给出长为 $n$ 的序列 $p$ 满足 $p_i=i$，进行 $k$ 次操作，每次可以选取序列中两个位置并交换，对于 $1\sim k$ 的每个值，输出最终可能有几个序列</p>
+<h3 id="解-2"><a href="#解-2" class="headerlink" title="解"></a>解</h3><p>$dp$ 方程难以表达，不能直接求出总排列数</p>
+<p>反向思考，求经过 $k$ 次交换后恰好能排好序的排列数</p>
+<p>由置换与群可知，若该排列 $p$ 中有 $c$ 个循环，需要 $n-c$ 步来还原</p>
+<p>$\therefore$ 需要 $k$ 来还原的排列中存在 $n-k$ 个循环</p>
+<p>由第一类斯特林数定义可知，满足条件的排列数就是 $\begin{bmatrix}n \\ n-k\end{bmatrix}$</p>
+<p>$\therefore$ 对于 $1\sim k$ 的询问，答案依次为</p>
+<script type="math/tex; mode=display">\begin{bmatrix}n\\n-1\end{bmatrix} ,\begin{bmatrix}n\\n\end{bmatrix}+\begin{bmatrix}n\\n-2\end{bmatrix} , \begin{bmatrix}n\\n-1\end{bmatrix}+\begin{bmatrix}n\\n-3\end{bmatrix}\dotsb</script><p>然而由于递推求斯特林数 $O(n^2)$，由于 $k\leq 200$，当 $n-m$ 较小时，利用上方的求值公式 $O(k^2)$ 求第二类斯特林数，再 $O(n^3)$ 求第一类</p>
+<h2 id="CF1521D-Nastia-Plays-with-a-Tree"><a href="#CF1521D-Nastia-Plays-with-a-Tree" class="headerlink" title="CF1521D Nastia Plays with a Tree"></a>CF1521D Nastia Plays with a Tree</h2><h3 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h3><p>给定一颗树，每次操作删去任意一条边并加上任意一条边，求多少次操作后会形成一条链，输出次数及任一方案</p>
+<h3 id="解-3"><a href="#解-3" class="headerlink" title="解"></a>解</h3><p>设答案为 $x$</p>
+<p>则删去树上的 $x$ 条边并加上新的 $x$ 条边会构成链</p>
+<p>把删去与添加分开看，在删去 $x$ 条边后会形成一个 $x+1$ 棵树的森林，若添加 $x$ 条边能合并为链，则森林由 $x+1$ 条链构成</p>
+<p>转化为找到最少分割次数使这棵树形成全为链的森林</p>
+<p>设当前在处理点 $i$ ，其有 $c_i$ 个儿子，父节点为 $fa_i$</p>
+<ul>
+<li>若 $c_i\leq 1$ ，不需任何操作</li>
+<li>若 $1\leq c_i \leq2$ ，断开 $i$ 与 $fa_i$ 的关系</li>
+<li>若 $c_i &gt;2$ ，不仅断开 $i$ 与 $fa_i$ ，且断开 $i$ 的任意儿子直至 $c_i\leq 2$</li>
+</ul>
+<p>实现的时候注意边的存储</p>
+<h2 id="CF1523D-Love-Hate"><a href="#CF1523D-Love-Hate" class="headerlink" title="CF1523D Love-Hate"></a>CF1523D Love-Hate</h2><h3 id="题意-4"><a href="#题意-4" class="headerlink" title="题意"></a>题意</h3><p>有 $n$ 个人，$m$ 种货币，每个人只喜欢其中不超过 $p$ 种货币，求一种选货币的方案，使选的每一种货币都喜欢的人数不小于 $\lceil\frac{n}{2}\rceil$</p>
+<h3 id="解-4"><a href="#解-4" class="headerlink" title="解"></a>解</h3><p>先去除喜欢人数 $&lt;\lceil\frac{n}{2}\rceil$ 的货币，将枚举的货币状态降至 $2^30$，用 $\text{bitset}$ 存喜欢每一种货币的人的状态，暴力搜索并减去不合法的即可</p>
+<h2 id="CF1525E-Assimilation-IV"><a href="#CF1525E-Assimilation-IV" class="headerlink" title="CF1525E Assimilation IV"></a>CF1525E Assimilation IV</h2><h3 id="题意-5"><a href="#题意-5" class="headerlink" title="题意"></a>题意</h3><p>给定一些城市与点两两之间距离</p>
+<p>每回合随机选择一个城市设立纪念碑，辐射范围随回合数增加而增加，即第 $1$ 回合设立的，在第 $2$ 回合可以辐射到与之距离 $\leq 2$ 的所有点</p>
+<p>求所有城市设立纪念碑后所有被辐射到的点的期望值</p>
+<h3 id="解-5"><a href="#解-5" class="headerlink" title="解"></a>解</h3><p>分开算每个点的期望值</p>
+<p>若直接求能辐射到该点的城市则情况不易讨论，考虑求补集</p>
+<p>对于每个点，不被辐射到需要满足：对于第 $1$ 回合选择距离在 $n+1$ 以外的点，其余回合同理</p>
+<p>那么把城市选择顺序视为一个排列，求出不能到达的方案数，最后 $1-$ 并 $\div n!$ 求期望即可</p>
+<h2 id="CF1527E-Partition-Game"><a href="#CF1527E-Partition-Game" class="headerlink" title="CF1527E Partition Game"></a>CF1527E Partition Game</h2><h3 id="题意-6"><a href="#题意-6" class="headerlink" title="题意"></a>题意</h3><p>定义连续子序列 $t$ 的代价是</p>
+<script type="math/tex; mode=display">cost(t)=\sum_{t\in set(t)} last(x)-first(x)</script><p>$set$ 表示子序列的元素集合，$last,first$ 表示 $x$ 在子序列中最后/第一次出现的位置</p>
+<p>给定长度 $n$ 的序列，分成 $k$ 个<strong>连续的</strong>子序列，求 $\min cost$</p>
+<h3 id="解-6"><a href="#解-6" class="headerlink" title="解"></a>解</h3><p>显然有 $O(kn^2\log n)$ 的朴素转移：</p>
+<script type="math/tex; mode=display">dp_{i,j}=\min \limits_{k<j}(dp_{i-1,k}+c_{k+1,j})</script><p>含义明显</p>
+<p>考虑优化 $cost$ 的计算过程</p>
+<p>首先，$cost$ 具有决策单调性，即 $cost(i,j)+cost(i+1,j+1) \leq cost(i+1,j)+cost(i,j+1)$</p>
+<p>证明不是太会，可以枚举一下最优情况分别位于 $(i,j),(i,j+1),(i+1,j),(i+1,j+1)$ 时，能得出结论：右边的总会优于左边</p>
+<p>得到决策单调性后考虑分治，枚举 $dp_{mid}$ 的最优决策点</p>
+<p>即用 $\text{solve}(l,r,x,y)$ 计算区间 $[l,r]$ ，最优决策点在 $[x,y]$ 间的所有 $dp_i$</p>
+<p>对于 $\text{calc}$ 每次调用的时候左端点单增 $\Rightarrow$ 考虑移动双指针指向队首队尾，每次 $O(1)$ 暴力转移</p>
+<p><del>也可以用deque当懒狗</del></p>
+<h2 id="CF1535E-Gold-Transfer"><a href="#CF1535E-Gold-Transfer" class="headerlink" title="CF1535E Gold Transfer"></a>CF1535E Gold Transfer</h2><p>十分显然的题</p>
+<p>题面中 $It’s \ guaranteed \ that \ p_i \ exists \ and \ c_i&gt;c_{p_i}.$ 表明从越靠近根节点开始买值越小</p>
+<p>倍增跳 $anc$ 时检查是否有值即可</p>
+<h2 id="CF1539E-Game-with-Cards"><a href="#CF1539E-Game-with-Cards" class="headerlink" title="CF1539E Game with Cards"></a>CF1539E Game with Cards</h2><h3 id="题意-7"><a href="#题意-7" class="headerlink" title="题意"></a>题意</h3><p>两个数 $a,b$ 初始为 $0$</p>
+<p>进行 $n$ 次操作，每次用 $k$ 去替换 $a,b$ 中任意一个，要求操作后满足 $a_{l,i} \leq a \leq b_{l,i} , a_{r,i} \leq b \leq b_{r,i}$</p>
+<p>输出是否可以完成所以操作，若可以，输出任一方案</p>
+<h3 id="解-7"><a href="#解-7" class="headerlink" title="解"></a>解</h3><p>先考虑朴素做法</p>
+<p>设 $dp_{L,i,j}=1$ 表示第 $i$ 张牌替换左手，第 $j$ 张是上一张用来替换右手的牌</p>
+<p>$dp{R,i,j}=1$表示第 $i$ 张牌替换右手，第 $j$ 张是上一张用来替换左手的牌</p>
+<p>由于只判断可行性，所以不需要存下所有的 $dp$ 状态，用 $集合f_0 = <k[j],j>$ 存下 $dp_{L,i,j}=1$ 的情况，$f_1$ 同理</p>
+<p>考虑 $f_0 [i]$ 与 $f_1 [i]$ 的计算 $\Rightarrow$ 先考虑 $f_0 [i+1]$ , $f_1 [i+1]$ 同理</p>
+<p>先假设第 $i+1$ 张卡可以给左手（确保 $f_0 [i+1]$ 不空） ，且第 $i+1$ 回合右手可以替换为任意卡（稍后再处理）</p>
+<p>若 $f_1 [i]$ 不空，可以将 $<k[i],i>$ 添加到 $f_0 [i+1]$ 中，即左手拿第 $i+1$ 张使状态 $(j(上一次改变的),i) \Rightarrow (i+1,i)$</p>
+<p>同时 $f_0 [i+1]$ 会继承 $f_0 [i]$ 的状态，即 $(i,j) \Rightarrow (i+1,j)$</p>
+<p>转移后处理那些无法被成功转移的，由于 $set$ 结构，分别从 $\min$ 和 $\max$ 来 $erase$ 那些 $\leq l$ 或 $\geq r$ 的 $pair$</p>
+<h2 id="CF1540B-Tree-Array"><a href="#CF1540B-Tree-Array" class="headerlink" title="CF1540B Tree Array"></a>CF1540B Tree Array</h2><h3 id="题意简述"><a href="#题意简述" class="headerlink" title="题意简述"></a>题意简述</h3><ul>
+<li><p>一颗树，开始时从中等概率选择一点，随后每次等概率选择一点不与选择过的点重复且与任一选择的点相连。</p>
+</li>
+<li><p>点编号按选择的先后顺序排序，求期望逆序对数</p>
+</li>
+</ul>
+<hr>
+<h3 id="解-8"><a href="#解-8" class="headerlink" title="解"></a>解</h3><p>考虑开始时随机选点，显然可以枚举每一点作为根，求出期望值后 $\div n$ 得到</p>
+<p>求每个序列中的期望逆序对数，并不需要知道每个序列，即考虑每一对逆序对</p>
+<p>设逆序点对为 $(x,y)$ ，其中 $y&gt;x$，当沿树向下进行时，直到 $x,y$ 的 $lca$ 之前概率相等，所以只需要考虑从 $lca$ 到 $x,y$ 两点的概率，即从 $lca$ 先到 $x$ 的概率</p>
+<p>参照官方题解，转化成以下模型</p>
+<p>存在两个栈，每次有 $p$ 概率弹出 $栈1$ 中的一个，$p$ 的概率弹出 $栈2$ 中的一个，还有 $1-2*p$ 的概率不做任何操作</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/tozqrh74.png" alt=""></p>
+<p>既然满足到 $x,y$ 的概率相等，则可以由上方的值 $\div 2$ 推出</p>
+<p>所以可以写出式子</p>
+<script type="math/tex; mode=display">dp_{i,j}=\frac{dp_{i-1,j}+dp_{i,j-1}}{2}</script><p>其中 $i,j$ 表示逆序点对与 $lca$ 的距离</p>
+<p>$dp_{0,j}=1$ ，即 $i$ 位置代表的点先被到达时会形成逆序点对</p>
+<p>至此，流程为：预处理 $dp_{i,j}$ $\Rightarrow$ 枚举根 $\Rightarrow$ 枚举逆序点对并统计 $dp$ 值 $\Rightarrow$ 总值 $\div n$ 得到概率（期望，这里说不清了）</p>
+]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>dp</tag>
+      </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2021/07/04/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+    <title>min-max容斥</title>
+    <url>/2020/12/04/minmax%E5%AE%B9%E6%96%A5/</url>
+    <content><![CDATA[<h2 id="minmax容斥"><a href="#minmax容斥" class="headerlink" title="minmax容斥"></a>minmax容斥</h2><ul>
+<li><p>用途</p>
+<p>已知集合的最小值 (<strong>期望</strong>) 求最大值</p>
+<p>$eg:$ $n$ 个元素，每个元素出现概率 $p_i$，求每个元素都出现的期望时间</p>
+</li>
+<li><p>结论</p>
+<script type="math/tex; mode=display">\max\{S\}=\sum_{T\subset S}(-1)^{|T|+1} \min\{T\}</script><p>即</p>
+<script type="math/tex; mode=display">E\left(\max\{S\}\right)=\sum_{T\subset S}(-1)^{|T|+1} E\left(\min\{T\}\right)</script></li>
+<li><p>证明</p>
+<p>设容斥系数 $g\left(|T|\right)$</p>
+<p>即 $\displaystyle{\max\{S\}=\sum_{T\subset S}g\left(|T|\right) \min\{T\}}$</p>
+<p>考虑当排名为 $k$ 的数作为集合 $T$ 的最小值时，集合 $T$ 中所有值都 $\geq k$</p>
+<p>所以对于第$k$大数 ， 在大小为 $|T|$ 的集合中， $\max$ 的选取方案为 $\displaystyle{\binom{k-1}{|T|-1}}$</p>
+<p>考虑集合大小为 $1\sim k$ ，则第 $k$ 数的总贡献为</p>
+<p>$\displaystyle{\sum_{i=1}^k \binom{k-1}{i-1}} * g(i)=[k=1] \qquad \text{即只有最大值对 max 有贡献}$</p>
+<p>由二项式反演得</p>
+<script type="math/tex; mode=display">\begin{aligned}
+g(k)&=\sum_{i=1}^k (-1)^{k-i} \binom{k-1}{i-1} [i=1] \\
+&=(-1)^{k+1} \\
+\end{aligned}</script><span id="more"></span>
+</li>
+<li><p>变式</p>
+<ul>
+<li><p>由 $\max \Rightarrow \max$</p>
+<script type="math/tex; mode=display">\min(S)=\sum_{T\subseteq S,\ T \neq \varnothing} (-1)^{|T|-1} \max(T)</script></li>
+<li><p>扩展 $\min\max容斥$</p>
+<script type="math/tex; mode=display">\text{kthmax}\{S\}=\sum_{T\subseteq S}(-1)^{|T|-k} \binom{|T|-1}{k-1} \min\{T\}</script><ul>
+<li><p>证明</p>
+<p>目的是找到容斥系数满足 $\text{kthmax}\{S\}=\sum_{T\subseteq S} f(|T|) \min\{T\}$</p>
+<p>考虑第 $x$ 大元素，受原式启发得到</p>
+<script type="math/tex; mode=display">\sum_{i=1}^t \binom{t-1}{i-1} f(i)=[t=k]</script><script type="math/tex; mode=display">\therefore 经反演易得 f(n)=(-1)^{n-k} \binom{n-1}{k-1}</script><p><a href="https://oi-wiki.org/math/inclusion-exclusion-principle/#min-max"><del>并不会用到的扩展minmax容斥</del></a></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><ul>
+<li><p><a href="https://www.luogu.com.cn/problem/P3175">P3175 [HAOI2015]按位或</a></p>
+<ul>
+<li><p>题意</p>
+<p>设 $\min\{S\}$ 表示二进制数 $S$ 中，第一个元素变为 $1$ 所需时间，$\max\{S\}$ 表示最后一个元素变为 $1$ 所需时间</p>
+<p>题为求 $E(\max\{U\})$ ,其中 $U$ 为全集，$U=2^n-1$</p>
+</li>
+<li><p>解</p>
+<p>由公式易知 $\displaystyle{E(\max\{U\})=\sum_{S\subseteq U}(-1)^{|S|-1} \ \sum E(\min\{S\})}$</p>
+<p>$\therefore$ 求 $\min$</p>
+</li>
+</ul>
+</li>
+</ul>
 ]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>minmax</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>博弈论</title>
+    <url>/2021/02/04/%E5%8D%9A%E5%BC%88%E8%AE%BA/</url>
+    <content><![CDATA[<h1 id="博弈论游戏及其的变形"><a href="#博弈论游戏及其的变形" class="headerlink" title="博弈论游戏及其的变形"></a>博弈论游戏及其的变形</h1><h2 id="请熟背以下结论（因为没看懂推导）"><a href="#请熟背以下结论（因为没看懂推导）" class="headerlink" title="请熟背以下结论（因为没看懂推导）"></a>请熟背以下结论（因为没看懂推导）</h2><hr>
+<h2 id="巴什博弈"><a href="#巴什博弈" class="headerlink" title="巴什博弈"></a>巴什博弈</h2><h3 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h3><ul>
+<li>只有一堆 $n$ 个物品，两个人轮流取</li>
+<li>每次至少取一个，最多取 $m$ 个。</li>
+<li>最后取光者得胜</li>
+</ul>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>$n \mod (m+1)$ 为 $0$ 先手必败否则必胜</p>
+<hr>
+<h2 id="威佐夫博弈"><a href="#威佐夫博弈" class="headerlink" title="威佐夫博弈"></a>威佐夫博弈</h2><h3 id="规则-1"><a href="#规则-1" class="headerlink" title="规则"></a>规则</h3><ul>
+<li>有两堆各若干个物品</li>
+<li>两个人轮流从某一堆取至少一个或同时从两堆中取同样多的物品</li>
+<li>最后取光者得胜</li>
+</ul>
+<h3 id="结论-1"><a href="#结论-1" class="headerlink" title="结论"></a>结论</h3><p>先手必败态的两堆石子之差依次递增，且每个自然数仅出现一次</p>
+<p>如果局势为 $(a,b)$，记 $k=(a−b)$，</p>
+<p>若 $a=\frac{1+\sqrt{5}}{2}*k$ （这里是等于符号）</p>
+<p>则为必胜局势</p>
+<hr>
+<h2 id="尼姆博弈"><a href="#尼姆博弈" class="headerlink" title="尼姆博弈"></a>尼姆博弈</h2><h3 id="规-则"><a href="#规-则" class="headerlink" title="规 则"></a>规 则</h3><ul>
+<li>$n$ 堆石子</li>
+<li>两人轮流在任意一堆中取任意石子，不能不取，最多取完，</li>
+<li>取到最后一颗石子者胜</li>
+</ul>
+<h3 id="结论-2"><a href="#结论-2" class="headerlink" title="结论"></a>结论</h3><p>$n$ 堆石子数量异或和为 $0$ 则先手必败,否则必胜</p>
+<hr>
+<h2 id="anti-SG与SJ（贾志豪）定理"><a href="#anti-SG与SJ（贾志豪）定理" class="headerlink" title="anti-SG与SJ（贾志豪）定理"></a>anti-SG与SJ（贾志豪）定理</h2><h3 id="规则-2"><a href="#规则-2" class="headerlink" title="规则"></a>规则</h3><ul>
+<li><p>桌子上有 $n$ 堆石子，游戏者轮流取石子。</p>
+</li>
+<li><p>每次只能从一堆中取出任意数目的石子，但不能不取。</p>
+</li>
+<li><p>取走最后一个石子者败。</p>
+</li>
+</ul>
+<h3 id="结论-3"><a href="#结论-3" class="headerlink" title="结论"></a>结论</h3><p>先手必胜当且仅当：</p>
+<ol>
+<li><p>所有堆的石子数都为 $1$ 且游戏的 SG 值为 $0$；</p>
+</li>
+<li><p>有些堆的石子数大于 $1$ 且游戏的 SG 值不为 $0$。</p>
+</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line"><span class="keyword">while</span>(n--)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;tmp);</span><br><span class="line">        <span class="keyword">if</span>(tmp&gt;=<span class="number">2</span>) flag=<span class="number">1</span>;</span><br><span class="line">        ans^=tmp;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">if</span>((ans&amp;&amp;flag) || (!ans&amp;&amp;!flag))</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;John&quot;</span>);</span><br><span class="line"><span class="keyword">else</span> <span class="built_in">puts</span>(<span class="string">&quot;Brother&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><p>P4279 [SHOI2008]小约翰的游戏</p>
+<p>UVA1566 John(双倍经验)</p>
+<hr>
+<h2 id="multi-SG"><a href="#multi-SG" class="headerlink" title="multi-SG"></a>multi-SG</h2><h3 id="规则-3"><a href="#规则-3" class="headerlink" title="规则"></a>规则</h3><ul>
+<li>有 $n$ 堆石子</li>
+<li>可以从任意一堆石子中拿任意石子(不能不拿)</li>
+<li>或者把一堆数量不少于 $2$ 石子分为两堆不为空的石子。</li>
+</ul>
+<h3 id="结论-4"><a href="#结论-4" class="headerlink" title="结论"></a>结论</h3><p>$SG\left(x\right) =<br>\begin{cases}<br>x-1 &amp; ( x \mod 4=0)<br>\\ x &amp; ( x \mod 4=1 \lor 2)<br>\\ x+1 &amp; ( x \mod 4=3)<br>\end{cases}$</p>
+<p>注：$1 \lor 2$ -&gt; $1$ || $2$</p>
+<p><del>对这个结论我有绝佳的证明，但我要去玩DDLC了</del></p>
+<p><del>Update:更好看且对齐的Latex</del></p>
+<h3 id="例题-1"><a href="#例题-1" class="headerlink" title="例题"></a>例题</h3><p>P3185 [HNOI2007]分裂游戏 <del>(关系并不大的样子)</del></p>
+<p>P3235 [HNOI2014]江南乐 (未做qwq) (现在做过了qwq)</p>
+<hr>
+<h2 id="阶梯SG"><a href="#阶梯SG" class="headerlink" title="阶梯SG"></a>阶梯SG</h2><h3 id="规则-4"><a href="#规则-4" class="headerlink" title="规则"></a>规则</h3><ul>
+<li>有若干级阶梯，每级阶梯上有一个单个游戏</li>
+<li>每次可以对一个阶梯操作并将操作中失去的东西丢到下一级阶梯上。</li>
+</ul>
+<h3 id="应用范围"><a href="#应用范围" class="headerlink" title="应用范围"></a>应用范围</h3><p>对于单个游戏状态，若操作集合可逆（即上一级丢给这级的东西在这级可以再丢掉），则可以应用。</p>
+<h3 id="结论-5"><a href="#结论-5" class="headerlink" title="结论"></a>结论</h3><p>令最低级阶梯为第 $0$ 级，对奇数级阶梯上的游戏 SG 值取异或和，为 $0$ 先手必败，否则先手必胜。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">rei sg=<span class="number">0</span><span class="comment">/*本行sg值*/</span>,tot=<span class="number">0</span><span class="comment">/*连续石头的个数*/</span>;</span><br><span class="line"><span class="built_in">memset</span>(st,<span class="number">0</span>,<span class="keyword">sizeof</span> st);</span><br><span class="line"></span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;m);</span><br><span class="line">rei C=<span class="number">20</span>-m+<span class="number">1</span>;<span class="comment">//空格个数</span></span><br><span class="line"><span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=m;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;x),st[x]=<span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=<span class="number">20</span>;++i)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!st[i])&#123;<span class="comment">//石头不再连续</span></span><br><span class="line">            <span class="keyword">if</span>((--C)&amp;<span class="number">1</span>) sg^=tot;<span class="comment">//奇数行</span></span><br><span class="line">            tot=<span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            ++tot;</span><br><span class="line">&#125;</span><br><span class="line">ans^=sg;</span><br></pre></td></tr></table></figure>
+<h3 id="例题-2"><a href="#例题-2" class="headerlink" title="例题"></a>例题</h3><p>P2575 高手过招</p>
+<p>P3480 [POI2009]KAM-Pebbles 需要一些转化技巧</p>
+<hr>
+<h2 id="k-SG"><a href="#k-SG" class="headerlink" title="k-SG"></a>k-SG</h2><h3 id="规则-5"><a href="#规则-5" class="headerlink" title="规则"></a>规则</h3><ul>
+<li>有 $n$ 堆石子</li>
+<li>每次可以从不超过 $k$ 堆中按规定规则各取一些石子</li>
+<li>不能操作者败。</li>
+</ul>
+<h3 id="结论-6"><a href="#结论-6" class="headerlink" title="结论"></a>结论</h3><p>将每堆石子的 SG 值设为 $s_i$ 。</p>
+<p>将所有 $s_i$ 二进制第 $j$ 位上的数相加得到 $r_1,r_2,\dots,r_J$（ $J$ 为所有 $s_i$ 二进制最高位的位数）</p>
+<p>如果 $\forall i \in [1,J]$ 有 $r_i \equiv 0\pmod{k+1}$ ，那么先手必败；否则先手必胜。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;=<span class="number">16</span>;++i)</span><br><span class="line">    <span class="keyword">for</span>(rei j=<span class="number">0</span>;j&lt;=n-k;++j)<span class="comment">//能使用的最多石子</span></span><br><span class="line">        <span class="keyword">for</span>(rei x=<span class="number">0</span>; (<span class="number">1ll</span>&lt;&lt;i)*x*(d+<span class="number">1</span>) &lt;= n-k <span class="comment">/*所取的石子不多于题目限制*/</span>&amp;&amp;<span class="comment">/*所取的石子不多于总堆数 -&gt; 每堆每次只能减1*/</span> x*(d+<span class="number">1</span>) &lt;= k/<span class="number">2</span>; ++x)</span><br><span class="line">        <span class="comment">//从k/2个堆中选出x*(d+1)个，使其石子数二进制在i位为1</span></span><br><span class="line">        <span class="comment">//贡献的方案数为C[k/2][x*(d+1)]</span></span><br><span class="line">            dp[i+<span class="number">1</span>][ j+ (<span class="number">1ll</span>&lt;&lt;i)*x*(d+<span class="number">1</span>) ] = (dp[i+<span class="number">1</span>][ j+ (<span class="number">1ll</span>&lt;&lt;i)*x*(d+<span class="number">1</span>) ] + <span class="number">1ll</span>*dp[i][j]*C[k/<span class="number">2</span>][x*(d+<span class="number">1</span>)]%mod )%mod;</span><br></pre></td></tr></table></figure>
+<h3 id="例题-3"><a href="#例题-3" class="headerlink" title="例题"></a>例题</h3><p>P2490 [SDOI2011]黑白棋</p>
+<hr>
+<h2 id="翻棋子游戏"><a href="#翻棋子游戏" class="headerlink" title="翻棋子游戏"></a>翻棋子游戏</h2><h3 id="规则-6"><a href="#规则-6" class="headerlink" title="规则"></a>规则</h3><ul>
+<li>在一些棋子中，有的正面朝上，有的反面朝上</li>
+<li>每次操作可以翻其中一颗正面朝上的棋子，会带动一些其他棋子的组合翻面。</li>
+</ul>
+<h3 id="结论-7"><a href="#结论-7" class="headerlink" title="结论"></a>结论</h3><p>局面的 SG 值为局面中每个正面朝上的棋子单一存在时的 SG 值的异或和。</p>
+<p>具体问题具体分析吧qwq</p>
+<p>将 每颗棋子翻面后可能影响的棋子组成的游戏 作为一个后继状态，<br>对每颗棋子求 SG 值，然后求所有正面朝上的棋子 SG 值的异或和，为 $0$ 先手必败，否则先手必胜</p>
+<h3 id="例题-4"><a href="#例题-4" class="headerlink" title="例题"></a>例题</h3><p>P3179 [HAOI2015]数组游戏 （需要数论芝士，未做qwq）</p>
+<p>P4077 [SDOI2016]硬币游戏</p>
+<p>未完停更</p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>博弈论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>学不会的生成函数</title>
+    <url>/2021/05/05/%E5%AD%A6%E4%B8%8D%E4%BC%9A%E7%9A%84%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<h2 id="不知道怎么开始"><a href="#不知道怎么开始" class="headerlink" title="不知道怎么开始"></a>不知道怎么开始</h2><ul>
+<li><p>$a=\langle1,1,1,1,1…\rangle$的生成函数是</p>
+<script type="math/tex; mode=display">f(x)=x+x^2+x^3+x^4+...</script><p>限定 $x\in(-1,1)$</p>
+<script type="math/tex; mode=display">f(x)=\lim_{n\to \infty} \frac{1-x^n}{1-x} = \frac{1}{1-x}</script><p>同理得,函数</p>
+<script type="math/tex; mode=display">f(x)=1+x^2+x^4+x^6...=\frac{1}{1-x^2}</script><script type="math/tex; mode=display">f(x)=1+2x+3x^2+4x^3...=\frac{1}{\left(1-x \right)^2}</script><script type="math/tex; mode=display">f(x)=1+3x+6x^2+10x^3+15x^4...=\frac{1}{\left(1-x\right)^3}</script><p>推广有：</p>
+<script type="math/tex; mode=display">\frac{1}{\left(1-x\right)^k} 的生成数列是 \sum_i^\infty C_{i+k-1}^{k-1} x^i</script></li>
+</ul>
+<p>设 $F(z) , G(z)$ 是数列 $\langle \ f_n \ \rangle , \langle \ g_i \ \rangle$ 的生成函数</p>
+<ul>
+<li><p>相加</p>
+<script type="math/tex; mode=display">\begin{aligned}
+\alpha F(z)+ \beta G(z)
+&= \alpha \sum_n f_nz^n + \beta \sum_ng_nz^n \\
+&=\sum_n (\alpha f_n + \beta g_n) z^n\\
+\end{aligned}</script><p>得到数列 $\langle \ \alpha f_n+\beta g_n \  \rangle$ 的生成函数</p>
+</li>
+<li><p>平移生成函数</p>
+<ul>
+<li><p>向右 $m$ 位</p>
+<p>即，构造前面有 $m$ 个 $0$ 的数列 $\langle \ \underbrace{0,\cdots}_{m个},g_0,g_1,\cdots \ \rangle = \langle \ g_{n-m} \ \rangle$ 的生成函数</p>
+<p>直接用 $z_m$ 乘</p>
+<script type="math/tex; mode=display">z_m \cdot G(z) = \sum_n g_nz^{n+m} = \sum_n g_{n-m}z^n</script></li>
+<li><p>向左 $m$ 位</p>
+<p>即，构造前面 $m$ 个元素被删除的数列 $\langle \ g_m,g_{m+1},g_{m+2},\cdots \ \rangle$ 的生成函数</p>
+<p>减去前 $m$ 项，并用 $z_m$ 来除</p>
+<script type="math/tex; mode=display">\frac{G(z)-g_0-g_1z-\cdots -g_{m-1}z^{m-1}}{z^m} = \sum_{n\geq m} g_nz^{n-m} = \sum_{n\geq 0} g_{n+m}g^z</script></li>
+</ul>
+</li>
+<li><p>常数倍的 $z$</p>
+<script type="math/tex; mode=display">G(cz) = \sum_ng_n(cz)^n = \sum_n g_nz^n</script><p>即，数列 $\langle \ c^ng_n  \ \rangle$ 的生成函数</p>
+<p>当 $c=-1$ 时特别有用</p>
+</li>
+<li><p>相乘</p>
+<script type="math/tex; mode=display">\begin{aligned}
+F(z)G(z)
+&=(f_0+f_1z+f_2z^2+\cdots ) \cdot (g_0+g_0z+g_0z^2+\cdots) \\
+&=(f_0 \cdot g_0) + (f_0\cdot g_1 + f_1 \cdot g_0)z + (f_0\cdot g_2 + f_1\cdot g_1 + f_2 \cdot g_0) z^2 + \cdots \\
+&=\sum_n \left(\sum f_k \cdot g_{n-k} \right) z^n \\
+\end{aligned}</script><p>求得数列 $\langle \ h_n \ \rangle$ 的生成函数，即数列 $\langle \ f_n \ \rangle , \langle \ g_i \ \rangle$ 的卷积的生成函数</p>
+<p>和式 $\displaystyle{h_n=\sum_{k=0}^n f_k \cdot g_{n-k}}$</p>
+</li>
+</ul>
+<p><strong>具体参见具体数学P280 , 表7-1，7-2</strong></p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>生成函数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树链剖分</title>
+    <url>/2021/07/01/%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86/</url>
+    <content><![CDATA[<h2 id="关于长链剖分中指针的理解"><a href="#关于长链剖分中指针的理解" class="headerlink" title="关于长链剖分中指针的理解"></a>关于长链剖分中指针的理解</h2><p>与指针有关的变量：$<em>dp[N],tmp[N],</em>pos$</p>
+<hr>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">pos=tmp;<span class="comment">//将pos指向tmp空间</span></span><br><span class="line">dp[<span class="number">1</span>]=pos, pos+=height[<span class="number">1</span>];</span><br><span class="line">   <span class="comment">//改变后pos加上dp[1]所需的长度，防止内存冲突</span></span><br></pre></td></tr></table></figure>
+<p>可以把 $*dp[1]$ 看成指向 $tmp$ 上一段长为 $height[1]$ 的指针</p>
+<p>那么指针 $dp[1]$ 与 $tmp[\ 0,…height[1]-1 \ ]$ 共同构成了 $dp[1][\ 0,…,height[1]-1\ ]$</p>
+<hr>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">dp[to]=pos, pos+=len;</span><br></pre></td></tr></table></figure>
+<p>与上面相同，在进入 $dfs2$ 前开好 $dp[to]$ 所需的空间，即以 $to$ 为起点的链，其长度为 $len$</p>
+<p>而对于链上其他点(即点 $to$ 的长儿子，其长儿子的长儿子，…)，不会进入当前行，即不需开新空间</p>
+<hr>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">dp[son[cur]] = dp[cur] + <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<p>即继承长儿子的答案: $dp[i][j]=dp[lson][j-1]$</p>
+<p>数组指针形式：$dp[\ i\ ]=dp[\ lson[\ i\ ]\ ]-1$</p>
+<hr>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">dp[cur][j+<span class="number">1</span>] += dp[to][j];</span><br></pre></td></tr></table></figure>
+<p>暴力合并轻儿子的值</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/utbnpeqk.png" alt=""></p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>树链剖分</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>确实不会的多项式</title>
+    <url>/2021/05/05/%E7%A1%AE%E5%AE%9E%E4%B8%8D%E4%BC%9A%E7%9A%84%E5%A4%9A%E9%A1%B9%E5%BC%8F/</url>
+    <content><![CDATA[<h2 id="写总结的地方"><a href="#写总结的地方" class="headerlink" title="写总结的地方"></a>写总结的地方</h2><ul>
+<li>将式子转化为卷积形式: $\displaystyle{\sum_{i=1}^n A_i B_{n-i}}$</li>
+</ul>
+<h3 id="P3338-ZJOI2014-力"><a href="#P3338-ZJOI2014-力" class="headerlink" title="P3338 [ZJOI2014]力"></a><a href="https://www.luogu.com.cn/problem/P3338">P3338 [ZJOI2014]力</a></h3><ul>
+<li><p>题意：<br>求 $E_j=\displaystyle{\sum_{i=1}^{j-1}\frac{q_j}{\left(i-j\right)^2} - \sum_{i=j+1}^n \frac{q_j}{\left(i-j\right)^2}}$</p>
+<p>$q_i被消掉了qwq$</p>
+</li>
+<li><p>解：</p>
+<ul>
+<li><p>先简化数据范围</p>
+<script type="math/tex; mode=display">\sum_{i=1}^{j-1} \Rightarrow \sum_{i=0}^{j}</script></li>
+<li><p>化成能算的样子</p>
+<p>设 $f[i]=q_j \ , f’[i]=f[n-i] \ , \ g[i]=\frac{1}{i^2}$</p>
+<script type="math/tex; mode=display">\begin{aligned}
+原式
+&=\underbrace{\sum_{i=1}^j f[i] \cdot g[j-i]}_{\rm 已经是卷积形式} - \sum_{i=j}^n f[i] \cdot g[i-j] \\
+&=\sum_{i=1}^j f[i] \cdot g[j-i] - \underbrace{\sum_{i=0}^{n-j} f[i+j] \cdot g[i]}_{\rm 然而还不能算} \\
+&设 t=n-j \\
+&=\sum_{i=1}^j f[i] \cdot g[j-i] - \sum_{i=0}^t f'[t-i] \cdot g[i] \\
+\end{aligned}</script></li>
+</ul>
+<p>$\bf{Trick:}$ <strong>翻转数列</strong> </p>
+<p>&amp;&amp; 把函数设成数组以看起来更好算</p>
+</li>
+</ul>
+<h3 id="P3723-AH2017-HNOI2017-礼物"><a href="#P3723-AH2017-HNOI2017-礼物" class="headerlink" title="P3723 [AH2017/HNOI2017]礼物"></a><a href="https://www.luogu.com.cn/problem/P3723">P3723 [AH2017/HNOI2017]礼物</a></h3><ul>
+<li><p>题意：</p>
+<p>给定两个序列 $a,b$ ，顺序可以移动，求 $\displaystyle{\sum_{i=1}^n \left(a_i-b_i+c \right)^2}$ 最小值</p>
+</li>
+<li><p>解：</p>
+<script type="math/tex; mode=display">原式=\underbrace{\sum_{i=1}^n a_i^2+\sum_{i=1}^n b_i^2}_{\rm [一]可以预处理} - \underbrace{\sum_{i=1}^n a_ib_i}_{\rm [二]见下面} + \underbrace{nc^2 + 2c\left(\sum_{i=1}^na_i - \sum_{i=1}^nb_i \right)}_{\rm [三]关于 c 的二次函数}</script><p>由题：要取 $\displaystyle{\sum_{i=1}^n a_ib_i}$ 的最大值</p>
+<p>考虑移动 $k$ 位时：</p>
+<p>先把环 $b$ 变为链 $\Rightarrow$ $b[i+n]=b[i]$</p>
+<p>转化为考虑 $\displaystyle{\sum_{i=1}^n a_ib_{i+k} }$</p>
+<p>翻转 $a$ 得 $\displaystyle{\sum_{i=1}^n b_{i+k} \cdot a_{n-i+1}}$ ， 符合卷积形式</p>
+<p>$\therefore \tt{FFT}\left(a_{reserved}\right),\tt{FFT}(b)$</p>
+<p>$\bf{Trick:}$ 由于 $c$ 是整数，用二次函数对称轴来算 [式三],比枚举 $-100\leq c \geq 100$ 更好</p>
+<p>算出$\left\lfloor -\frac{a}{b} \right\rfloor$ 和 $\left\lceil -\frac{a}{b} \right\rceil$ ， 取 $\min$</p>
+</li>
+</ul>
+<h3 id="P5488-差分与前缀和"><a href="#P5488-差分与前缀和" class="headerlink" title="P5488 差分与前缀和"></a><a href="https://www.luogu.com.cn/problem/P5488">P5488 差分与前缀和</a></h3><ul>
+<li><p>题意：</p>
+<p>求数列 $a$ 的 $k$ 维前缀和或差分</p>
+</li>
+<li><p>解：</p>
+<p>设 $\displaystyle{F(x)=\sum_{i=0}^\infty a_ix^i }$</p>
+<ul>
+<li><p>前缀和</p>
+<p>比较前缀和与卷积</p>
+<p>$\displaystyle{a_i=\sum_{j=1}^i a_j \qquad \And\And \qquad S_i=\sum_{j=1}^i A_j B_{i-j}}$</p>
+<p>发现需要卷一个系数都为 $1$ 的多项式 $G(x)$</p>
+<p>以样例为例：</p>
+<script type="math/tex; mode=display">\begin{aligned}
+&F(x)*G(x) \\
+&=(1+9x+2x^2+6x^3+0x^4+8x^6+7x^7) \cdot (1+x+x^2+x^3+x^4+ \cdots +x^{\infty}) \\
+&=1+\underbrace{9x^1 + \underbrace{2x^2 + \underbrace{6x^3 + \underbrace{0x^4 + \underbrace{8x^6 + \underbrace{7x^7}_{\rm 系数+8}}_{\rm 系数+0}}_{\rm 系数+6}}_{\rm 系数+2}}_{\rm 系数+9}}_{\rm 系数+1}
+\end{aligned}</script><script type="math/tex; mode=display">
+发现 $F(x)\cdot G(x)$ 所得多项式就是 $F$ 的一阶前缀和
+
+$\displaystyle{\therefore 显然有 G(x)=\frac{1}{1-x}}$
+
+$\displaystyle{\therefore k阶前缀和 \Rightarrow
+ F(x) \cdot \frac{1}{\left(1-x \right)^k}}$
+
+$\displaystyle{\frac{1}{\left(1-x \right)^k} 的第 n 项系数就是 \dbinom{n+k-1}{k-1} }$
+
+$\displaystyle{\therefore a_i=\sum_{j=1}^{i-1}\dbinom{j+k-1}{k-1} \cdot a_{i-j} }$
+
+设组合数递推式 $g_i=\dbinom{i+k-1}{k-1}$
+
+$$\begin{aligned}
+\therefore
+g_i
+&=\frac{g_{i-1}\times (k+i-1)}{i}\%p &\text{只会在计算中用到这个}\\
+&=\left(\frac{g_{i-1} }{i}\%p \right)\times ((k+i-1)\%p) \\
+&=\left(\frac{g_{i-1} }{i}\%p \right)\times ((k\%p+i-1)\%p) &\text{只是为了推 $k$ 可以取模}\\
+\end{aligned}</script><p>$\therefore$ 可以对 $k$ 取模</p>
+</li>
+<li><p>差分</p>
+<p>易得 $F(x) * (1-x)$ 所得的多项式就是差分后</p>
+<p>同理得 $\left(1-x\right)^k$</p>
+<script type="math/tex; mode=display">\begin{aligned}
+B
+&=F(x) \cdot \left(1-x\right)^k \\
+&=F(x) \cdot \sum_{i=0}^{\infty} \dbinom{k}{i} \left(-x \right)^i \\
+&=F(x) \cdot \sum_{i=0}^{\infty} \left(-1 \right)^i \cdot \dbinom{k}{i} x^i \\
+\end{aligned}</script><p>看组合数递推式: $\dbinom{k}{i}$</p>
+<script type="math/tex; mode=display">\dbinom{k}{0}=1</script><script type="math/tex; mode=display">\dbinom{k}{1}=\frac{k!}{(k-1)!}=k</script><script type="math/tex; mode=display">\dbinom{k}{2}=\frac{k!}{2!(k-2)!}=\frac{k(k-1)}{2}</script><script type="math/tex; mode=display">\dbinom{k}{3}=\frac{k!}{3!(k-3)!}=\frac{k(k-1)(k-2)}{2\times 3}</script><script type="math/tex; mode=display">\dbinom{k}{i}=\dbinom{k}{i-1} \cdot \frac{k-i+1}{i} \qquad\text{用这个递推}</script></li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>多项式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>背包问题</title>
+    <url>/2021/01/04/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h1 id="背包9讲（大概"><a href="#背包9讲（大概" class="headerlink" title="背包9讲（大概"></a>背包9讲（大概</h1><h2 id="0-1背包"><a href="#0-1背包" class="headerlink" title="0/1背包"></a>0/1背包</h2><ul>
+<li><p>模型</p>
+<p>多种物品,每种物品只有一个.求能获得的最大总价值.</p>
+</li>
+<li><p>思路</p>
+<p>不选择第 $i$ 件物品,就相当用 $i-1$ 件物品,填充了体积为 $v$ 的背包.</p>
+<p>选择第 $i$ 件物品，相当于对 $i-1$ 件物品填充得到的体积为  $v-c[i]$ 的背包,再填充第 $i$ 个物品得到体积为 $v$ 的背包.</p>
+</li>
+<li><p>转移方程</p>
+<script type="math/tex; mode=display">f[i][v]=\max(f[i-1][v],f[i-1][v-c[i]]+w[i])</script><p>$f[i][v]$ 代表用 $i$ 件物品填充为体积为 $v$ 的背包得到的最大价值.</p>
+</li>
+<li><p>注</p>
+<p>一般考虑倒序枚举</p>
+<p>这样 $f_i$ 不会被 $i$ 以前的状态影响,更新也不会影响其他位置的状态.</p>
+</li>
+</ul>
+<p>-代码</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;i++)<span class="comment">//枚举物品</span></span><br><span class="line">	<span class="keyword">for</span>(rei j=V;j&gt;=c[i];j--)<span class="comment">//枚举体积</span></span><br><span class="line">		f[j]=<span class="built_in">max</span>(f[j],f[j-c[i]]+w[i]);<span class="comment">//状态转移方程.</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="完全背包"><a href="#完全背包" class="headerlink" title="完全背包"></a>完全背包</h2><ul>
+<li><p>模型</p>
+<p>每种物品有无限多个,可重复选取.</p>
+</li>
+</ul>
+<p><del>- 思路没有了（与0/1类似（逃</del></p>
+<ul>
+<li><p>转移方程</p>
+<script type="math/tex; mode=display">f[i][v]=\max(f[i-1][v],f[i-1][j-k*c[i]]+k*w[i])</script></li>
+<li><p>注</p>
+<p>顺序枚举</p>
+<p><a href="https://www.luogu.com.cn/blog/RPdreamer/post-01-bei-bao-yu-wan-quan-bei-bao-di-mei-ju-shun-xu-di-fou-tong-chu">01背包与完全背包的枚举顺序的不同处</a></p>
+</li>
+<li><p>代码</p>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;i++)<span class="comment">//枚举物品</span></span><br><span class="line">	<span class="keyword">for</span>(rei j=c[i];j&lt;=V;j++)<span class="comment">//枚举体积</span></span><br><span class="line">		f[j]=<span class="built_in">max</span>(f[j,f[j-c[i]]]+w[i]);<span class="comment">//状态转移.</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="多重背包"><a href="#多重背包" class="headerlink" title="多重背包"></a>多重背包</h2><ul>
+<li><p>模型</p>
+<p>有了个数的限制</p>
+</li>
+</ul>
+<p><del>- 思路不想写了</del></p>
+<pre><code>朴素做法就是把每种物品都拆成 size 个物品跑0/1背包
+</code></pre><h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><ul>
+<li><p>二进制拆分</p>
+<p>易知 $size_i=2^0+2^1+2^2+2^3…+2^x+y$</p>
+<p>其 $k$ 是任意数，$y$ 是一个不为2的整数次幂的数</p>
+<p>所以在多重背包中，可以将个数的限制如此分解</p>
+<p>每个分解看成一个物品</p>
+<p>(如： $2^2$ 看成 $1$ 个物品，该物品 $val=4<em>val_i \space, \space w=4</em>w_i$)</p>
+<p>如此进行后就是 $\log (size)$</p>
+<ul>
+<li><p>代码</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Good</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> v,w;</span><br><span class="line">&#125;;</span><br><span class="line">vector&lt;Good&gt; g;</span><br><span class="line"></span><br><span class="line">···</span><br><span class="line"><span class="comment">//对每个读入的v,w,s</span></span><br><span class="line"><span class="keyword">for</span>(rei k=<span class="number">1</span>;k&lt;=s;k*=<span class="number">2</span>)&#123;</span><br><span class="line">    s-=k;</span><br><span class="line">    g.<span class="built_in">push_back</span>(&#123;v*k,w*k&#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(s) g.<span class="built_in">push_back</span>(&#123;v*s,w*s&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//总dp</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> good:g)&#123;</span><br><span class="line">    <span class="keyword">for</span>(rei j=m;j&gt;=good.v;--j)&#123;</span><br><span class="line">        f[j]=<span class="built_in">max</span>(f[j],f[j-good.v]+good.w);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>单调队列优化</p>
+<p>这是一个最基本的转移式子</p>
+<script type="math/tex; mode=display">f[i][j]=max(f[i−1][j],f[i−1][j−k∗c[i]]+k∗w[i])$$　
+
+其中$k \in [1,min(\left\lfloor\frac{V}{c[i]}\right\rfloor,num[i])]$
+
+下面用 $lim$ 表示 $min(\left\lfloor\frac{V}{c[i]}\right\rfloor,num[i])$
+
+易得 $f[i][j−k∗c[i]]$ 会被 $f[i][j−(k+1)∗c[i]]$ 影响
+
+(体积为 $c[i]$ 的物品填充体积为 $j−(k+1)∗c[i]$ 的背包,会得到体积为 $j−k∗c[i]$ 的背包)
+
+$f[i][j]$ 将会影响 $f[i][j+k∗c[i]]　(j+k∗c[i]\leq V)$
+
+注意这里影响的传导，往取模上想
+
+所以我们可以根据对 $c[i]$ 取模得到的余数进行分组.
+
+即可分为 $0,1,2,3…c[i]−1$ 共 $c[i]$ 组
+
+每组之间的状态互相没有影响
+
+且每组中位置靠后的受前面的影响
+
+- 进行一些推导
+
+  注： $\frac{j}{c[i]}即是全选状态下的物品个数$
+
+  $$\because j=\frac{j}{c[i]} \ *\ c[i] \ +\ j\% c[i]</script><script type="math/tex; mode=display">\therefore j−k∗c[i]=\frac{j}{c[i]}∗c[i] \ +\ j\% c[i] \ −\ k∗c[i]</script><script type="math/tex; mode=display">\space \space \space \space \space \space \space \space \space =(\frac{j}{c[i]} \ −\ k)∗c[i]+j \% c[i]</script><p>  令 $(\frac{j}{c[i]}−k)=k^{‘}$</p>
+<p>  最原始的状态转移方程中第二状态 :</p>
+<p>  $f[i][j−k∗c[i]\ ]+k∗w[i]$ 代表选择 $k$ 个当前 $i$ 物品</p>
+<p>  根据单步容斥 ：全选−不选=选</p>
+<p>  因此 $\frac{j}{c[i]} \ −\ (\frac{j}{c[i]}−k)=k$</p>
+<script type="math/tex; mode=display">\because (\frac{j}{c[i]}−k)=k^{'}</script><script type="math/tex; mode=display">\therefore f[i][j]=\max( \ f[i−1][\ k^{'}∗c[i]+j \% c[i] \ ] \ + \ \frac{j}{c[i]}∗w[i]−k^{'}∗w[i])</script><p>  而其中 $\frac{j}{c[i]}∗w[i]$ 为一个常量(因为 $\frac{j}{c[i]}$ 已知)</p>
+<p>  要求的状态变为</p>
+<script type="math/tex; mode=display">f[i][j]=\max(f[i−1][ \ k^{'}∗c[i]+j\% c[i] \ ]−k^{'}∗w[i])+\frac{j}{c[i]}∗w[i]</script><script type="math/tex; mode=display">\because k \in [1,lim]</script><script type="math/tex; mode=display">\therefore k^{'} \in [\frac{j}{c[i]}−k,\frac{j}{c[i]}]</script><p>  当前的 $f[i][j]$ 求解的就是为 $lim+1$ 个数对应的 $f[i−1][k^{‘}∗c[i]+j\% c[i] \ ]−k^{‘}∗w[i]$ 的最大值.</p>
+<p>  (之所以为 $lim+1$ 个数,是包括当前这个 $j$ ,还有前面的物品数量)</p>
+<p>  将 $f[i][j]$ 前面所有的 $f[i−1][k^{‘}∗c[i]+j\% c[i]\ ]−k^{‘}∗w[i]$ 放入一个队列.</p>
+<p>  问题转化为求这个最长为 $lim+1$ 的队列的最大值 $+\frac{j}{c[i]}∗w[i]$</p>
+<ul>
+<li><p>代码</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;i++)&#123;<span class="comment">//枚举物品种类</span></span><br><span class="line">    cin&gt;&gt;c[i]&gt;&gt;w[i]&gt;&gt;num[i];<span class="comment">//c,w,num分别对应 体积,价值,个数</span></span><br><span class="line">    <span class="keyword">if</span>(V/c[i] &lt; num[i]) num[i]=V/c[i];<span class="comment">//求lim</span></span><br><span class="line">    <span class="keyword">for</span>(rei p=<span class="number">0</span>;p&lt;c[i];p++)&#123;<span class="comment">//枚举余数</span></span><br><span class="line">        head=tail=<span class="number">0</span>;<span class="comment">//队列初始化</span></span><br><span class="line">        <span class="keyword">for</span>(rei k=<span class="number">0</span>;k&lt;=(V-p)/c[i];k++)&#123;</span><br><span class="line">            rei x=k;</span><br><span class="line">            rei y=f[k*c[i]+p]-k*w[i];</span><br><span class="line">            <span class="keyword">while</span>(head&lt;tail &amp;&amp; q[head].pos&lt;k-num) ++head;<span class="comment">//限制长度</span></span><br><span class="line">            <span class="keyword">while</span>(head&lt;tail &amp;&amp; q[tail<span class="number">-1</span>].value&lt;=y) --tail;</span><br><span class="line">            q[tail].value=y,q[tail].pos=x;</span><br><span class="line">            ++tail;</span><br><span class="line">            f[k*c[i]+p]=q[head].value+k*w[i];</span><br><span class="line">            <span class="comment">//单调队列维护的是前i-1种的状态最大值.</span></span><br><span class="line">            <span class="comment">//因此这里加上k*w[i].</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="混合背包"><a href="#混合背包" class="headerlink" title="混合背包"></a>混合背包</h2><ul>
+<li><p>思路</p>
+<p>拆开分别算即可</p>
+</li>
+<li><p>代码</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;n;++i)&#123;</span><br><span class="line">    rei v,w,s;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>,&amp;v,&amp;w,&amp;s);</span><br><span class="line">    <span class="keyword">if</span>(s&lt;<span class="number">0</span>) things.<span class="built_in">push_back</span>(&#123;<span class="number">-1</span>,v,w&#125;);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(!s) things.<span class="built_in">push_back</span>(&#123;<span class="number">0</span>,v,w&#125;);</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(rei k=<span class="number">1</span>;k&lt;=s;k*=<span class="number">2</span>)&#123;</span><br><span class="line">            s-=k;</span><br><span class="line">            things.<span class="built_in">push_back</span>(&#123;<span class="number">-1</span>,v*k,w*k&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(s&gt;<span class="number">0</span>) things.<span class="built_in">push_back</span>(&#123;<span class="number">-1</span>,v*s,w*s&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> thing : things)&#123;</span><br><span class="line">    <span class="keyword">if</span>(thing.kind&lt;<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">for</span>(rei j=m;j&gt;=thing.v;--j)</span><br><span class="line">            f[j]=<span class="built_in">max</span>(f[j],f[j-thing.v]+thing.w);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(rei j=thing.v;j&lt;=m;++j)</span><br><span class="line">            f[j]=<span class="built_in">max</span>(f[j],f[j-thing.v]+thing.w);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h2 id="二维费用背包"><a href="#二维费用背包" class="headerlink" title="二维费用背包"></a>二维费用背包</h2><ul>
+<li><p>模型</p>
+<p>有容量 $v$ 与重量 $w$ 两个限制</p>
+</li>
+<li><p>思路</p>
+<p>限制扩展到二维即可</p>
+</li>
+<li><p>代码</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;n;++i)&#123;</span><br><span class="line">    rei a,b,c;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>,&amp;a,&amp;b,&amp;c);</span><br><span class="line">    <span class="keyword">for</span>(rei j=v;j&gt;=a;--j)</span><br><span class="line">        <span class="keyword">for</span>(rei k=m;k&gt;=b;--k)</span><br><span class="line">            f[j][k]=<span class="built_in">max</span>(f[j][k],f[j-a][k-b]+c);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h2 id="分组背包"><a href="#分组背包" class="headerlink" title="分组背包"></a>分组背包</h2><ul>
+<li><p>模型</p>
+<p>每组若干个物品，每个物品组内的物品互斥（只能选一个）</p>
+</li>
+<li><p>转移方程</p>
+<script type="math/tex; mode=display">f[k][v]=\max(f[k-1][v],f[k-1][v-c[i]]+w[i])</script></li>
+<li><p>代码</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;n;++i)&#123;<span class="comment">//每一组</span></span><br><span class="line">    rei s;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;s);</span><br><span class="line">    <span class="keyword">for</span>(rei j=<span class="number">0</span>;j&lt;s;++j) <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;v[j],&amp;w[j]);</span><br><span class="line">    <span class="keyword">for</span>(rei j=m;j&gt;=<span class="number">0</span>;--j)<span class="comment">//枚举体积</span></span><br><span class="line">        <span class="keyword">for</span>(rei k=<span class="number">0</span>;k&lt;s;++k)<span class="comment">//枚举物品</span></span><br><span class="line">            <span class="keyword">if</span>(j&gt;=v[k])</span><br><span class="line">                f[j]=<span class="built_in">max</span>(f[j],f[j-v[k]]+w[k]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h2 id="有依赖的背包"><a href="#有依赖的背包" class="headerlink" title="有依赖的背包"></a>有依赖的背包</h2><ul>
+<li><p>模型</p>
+<p>物品间有依赖关系，且依赖关系组成一棵树</p>
+<p>为选取某节点，必须选取该节点的父节点</p>
+<p>eg:<strong>选课问题</strong></p>
+</li>
+<li><p>思路</p>
+<p>对每个点，dfs其子节点再dp</p>
+<p>特别注意子节点dp体积时要给父节点留下空间</p>
+<p>详见代码</p>
+</li>
+<li><p>代码</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(rei i=head[u];i!=<span class="number">-1</span>;i=Next[i])&#123;</span><br><span class="line">        rei son=ver[i];</span><br><span class="line">        <span class="built_in">dfs</span>(son);</span><br><span class="line">        <span class="keyword">for</span>(rei j=m-v[u];j&gt;=<span class="number">0</span>;--j)<span class="comment">//注意，这里要留出当前点的体积再去dp其子节点</span></span><br><span class="line">            <span class="keyword">for</span>(rei k=<span class="number">0</span>;k&lt;=j;++k)</span><br><span class="line">                f[u][j]=<span class="built_in">max</span>(f[u][j],f[u][j-k]+f[son][k]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(rei i=m;i&gt;=v[u];--i) f[u][i]=f[u][i-v[u]]+w[u];<span class="comment">//加上当前点</span></span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;v[u];++i) f[u][i]=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>背包</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>莫比乌斯反演</title>
+    <url>/2021/01/06/%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94/</url>
+    <content><![CDATA[<p>暂停更新，遇见再更</p>
+<p>闲下来取写题单</p>
+<h2 id="某些前置知识"><a href="#某些前置知识" class="headerlink" title="某些前置知识"></a>某些前置知识</h2><hr>
+<h3 id="整除分块"><a href="#整除分块" class="headerlink" title="整除分块"></a>整除分块</h3><ul>
+<li><p><strong>qwq</strong></p>
+<p><del>众所周知</del></p>
+<p>$a\%b=a-b*\left\lfloor \frac{a}{b} \right\rfloor$</p>
+</li>
+<li><p>规定：</p>
+<p>当前块的左端点 $l$，块值 $k$，右端点 $r$</p>
+</li>
+<li><p>用途：</p>
+<p>快速处理形如</p>
+<script type="math/tex; mode=display">\sum ^n_{i=1} \left\lfloor\frac{n}{i}\right\rfloor</script><p>的式子</p>
+</li>
+<li><p>用法：</p>
+<p>代入一个 $n$ 可发现某些 $\left\lfloor \frac{n}{i} \right\rfloor$ 的值相同且呈块状分布</p>
+<p>对于一个起始下标为 $l$ 的块，其终止下标为 $\left\lfloor \frac{n}{\left\lfloor \frac{n}{l} \right\rfloor} \right\rfloor$</p>
+</li>
+<li><p>证明：</p>
+<p>对于该块中的每个数 $i$，有 $k=\left\lfloor \frac{n}{i} \right\rfloor=\left\lfloor \frac{n}{l} \right\rfloor$</p>
+<p>即 $ik \leq n$</p>
+<p>所以要找到使 $ik \leq n$ 成立的最大值</p>
+<p>所以得到：</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+k=\left\lfloor \frac{n}{l} \right\rfloor \\
+r=\max(i) , ik \leq n\\
+\end{cases}</script><p>推导得 $r=\left\lfloor \frac{n}{k} \right\rfloor = \left\lfloor \frac{n}{\left\lfloor \frac{n}{l} \right\rfloor} \right\rfloor$</p>
+</li>
+<li><p>例题</p>
+<p><a href="https://www.luogu.com.cn/problem/P2261">P2261 [CQOI2007]余数求和</a></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">ans=n*k;</span><br><span class="line"><span class="keyword">for</span>(ll l=<span class="number">1</span>,r;l&lt;=n;l=r+<span class="number">1</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(k/l)</span><br><span class="line">        r=<span class="built_in">min</span>(n,k/(k/l));</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        r=n;</span><br><span class="line">    ans-=( (r-l+<span class="number">1</span>)*(l+r)/<span class="number">2</span> <span class="comment">/*等差数列*/</span>) *(k/l)<span class="comment">/*块值*/</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><a href="https://blog.csdn.net/weixin_43627118/article/details/104024380">拓展</a></p>
+<ul>
+<li><p>例1</p>
+<script type="math/tex; mode=display">求 \sum^n_{i=1} \left\lfloor \frac{n}{ai+b} \right\rfloor</script><ul>
+<li><p>[一]</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+k=\left\lfloor \frac{n}{al+b} \right\rfloor \\
+r=\max(i) , (ai+b)k \leq n\\
+\end{cases}</script><script type="math/tex; mode=display">\because (ai+b)k \leq n</script><script type="math/tex; mode=display">\therefore i \leq \frac{n-bk}{ak}</script><script type="math/tex; mode=display">\therefore r=\max(i)=\left\lfloor \frac{n-bk}{ak} \right\rfloor</script></li>
+<li><p>[二]通法</p>
+<script type="math/tex; mode=display">令 r^*=ai+b</script><script type="math/tex; mode=display">\therefore r^*=\left\lfloor \frac{n}{k} \right\rfloor \ , \ k=\left\lfloor \frac{n}{al+b} \right\rfloor</script><script type="math/tex; mode=display">\therefore r^*=\left\lfloor \frac{n}{\left\lfloor \frac{n}{al+b} \right\rfloor} \right\rfloor</script><script type="math/tex; mode=display">
+\begin{cases}
+r^*=ai+b \\
+r=\max(i)\\
+i=\frac{r^*-b}{a}\\
+\end{cases}</script><script type="math/tex; mode=display">\therefore r=\left\lfloor \frac{r^*-b}{a} \right\rfloor</script><script type="math/tex; mode=display">\therefore r=\left\lfloor \frac { \left\lfloor \frac{n}{ \left\lfloor \frac{n}{al+b} \right\rfloor } \right\rfloor -b} {a} \right\rfloor</script></li>
+</ul>
+</li>
+<li><p>例2</p>
+<p>$求\sum^n_{i=1} \left\lfloor \frac{n}{i^2} \right\rfloor$</p>
+<ul>
+<li><p>按通法推导</p>
+<p>令$r^*=r^2$</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+k=\left\lfloor \frac{n}{l^2} \right\rfloor \\
+r^*=\left\lfloor \frac{n}{k} \right\rfloor \\
+\end{cases}</script><script type="math/tex; mode=display">
+\begin{cases}
+r^*=\left\lfloor \frac{n}{ \left\lfloor \frac{n}{l^2} \right\rfloor } \right\rfloor \\
+i=\sqrt{i^*} \\
+r=\max(i) \\
+\end{cases}</script><script type="math/tex; mode=display">\therefore r=\left\lfloor \sqrt{ \frac{n}{ \left\lfloor \frac{n}{l^2} \right\rfloor } } \right\rfloor</script></li>
+</ul>
+</li>
+<li><p>例3</p>
+<ul>
+<li><p>求 $\sum^n_{i=1} \left\lceil \frac{n}{i} \right\rceil$</p>
+<p><strong>转化</strong>：加上 $\frac{i-1}{i}$ 即可</p>
+<p>问题转化为</p>
+<script type="math/tex; mode=display">求\sum^n_{i=1} \left\lfloor \frac{n+i-1}{i} \right\rfloor</script><script type="math/tex; mode=display">\because
+\begin{cases}
+k=\left\lfloor \frac{n+l-1 }{l} \right\rfloor \\
+r=\max(i) \ ,\ ik \leq n+i-1 \\
+\end{cases}</script><script type="math/tex; mode=display">\therefore r=\left\lfloor \frac{n-1 }{k-1} \right\rfloor = \left\lfloor \frac{n-1}{ \left\lfloor \frac{ n+l-1 }{l} \right\rfloor -1} \right\rfloor</script></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>例题</p>
+<ul>
+<li><p><a href="https://www.luogu.com.cn/problem/CF830C">CF830C Bamboo Partition</a></p>
+<p>求：$\sum^n_{i=1} d-((a_i-1)\%d+1) \leq k$</p>
+<p>解：</p>
+<script type="math/tex; mode=display">原式 =\sum^n_{i=1} d-\left(a_i-1 \ -\ d*\left\lfloor \frac{a_i-1}{d} \right\rfloor+1\right)</script><script type="math/tex; mode=display">\therefore nd+d*\sum^n_{i=1}\left\lfloor \frac{a_i-1}{d} \right\rfloor \leq k+\sum^n_{i=1} a_i</script><p>$\therefore$ 右边定值，枚举左边</p>
+<script type="math/tex; mode=display">\therefore d\leq k+\sum^n_{i=1} a_i-\left(n+\sum^n_{i=1}\left\lfloor \frac{a_i-1}{d} \right\rfloor\right)</script></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(rei ll l=<span class="number">1</span>,r;l&lt;=MAX;l=r+<span class="number">1</span>)&#123;<span class="comment">//暴力试每一个块</span></span><br><span class="line"><span class="comment">//把l看成是d</span></span><br><span class="line">    r=<span class="number">1e18</span>;</span><br><span class="line">    ll sum=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i)</span><br><span class="line">        <span class="keyword">if</span>(a[i]<span class="number">-1</span>&gt;=l)&#123;<span class="comment">//每一个 ⌊a[i]-1/d⌋ 有值</span></span><br><span class="line">            sum+=(a[i]<span class="number">-1</span>)/l;</span><br><span class="line">            r=<span class="built_in">min</span>(r,(a[i]<span class="number">-1</span>)/((a[i]<span class="number">-1</span>)/l));</span><br><span class="line">        &#125;</span><br><span class="line">    ll tmp=k/(sum+n);<span class="comment">//见blog的式子推导</span></span><br><span class="line">    <span class="keyword">if</span>(l&lt;=tmp) ans=<span class="built_in">max</span>(ans,<span class="built_in">min</span>(tmp,r));</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(MAX &lt; k/n) ans=<span class="built_in">max</span>(ans,(ll)k/n);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><a href="https://www.luogu.com.cn/problem/P2260">P2260 [清华集训2012]模积和</a></p>
+<script type="math/tex; mode=display">求：\sum_{i=1}^n\sum_{j=1}^m (n\mod i) \cdot (m\mod j) [\ i\not=j \ ]  \mod 19940417</script><p>考虑一个容斥：$原式=(忽略i\not=j 条件时的值)-(i=j时原式的值)$</p>
+<ul>
+<li><p>忽略 $i\not=j$时：</p>
+<script type="math/tex; mode=display">原式=\left(n^2-\sum_{i=1}^n i*\left\lfloor \frac{n}{i} \right\rfloor\right) \cdot \left(m^2-\sum_{j=1}^m j*\left\lfloor \frac{m}{j} \right\rfloor \right) \text{(1)}</script><p>这与[余数求和]相似</p>
+</li>
+<li><p>$i=j$</p>
+<script type="math/tex; mode=display">\begin{aligned}
+原式&=\sum_{i=1}^n \left(n-i*\left\lfloor \frac{n}{i} \right\rfloor \right) \cdot \left(m-i*\left\lfloor \frac{m}{i} \right\rfloor \right) \\
+&=n^2m \ -\ \left(\sum_{i=1}^n n*i*\left\lfloor \frac{m}{i} \right\rfloor \right) - \left(\sum_{j=1}^n m*i*\left\lfloor \frac{n}{i} \right\rfloor \right)\ + \ \left(\sum_{i=1}^n i^2*\left\lfloor \frac{m}{i} \right\rfloor * \left\lfloor \frac{n}{i} \right\rfloor \right) &\text{(2)}\\
+\end{aligned}</script></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="积性函数"><a href="#积性函数" class="headerlink" title="积性函数"></a>积性函数</h3><ul>
+<li><p>定义</p>
+<p>积性函数 $f(x)$ 满足 $f(1)=1$ 且 $\forall x,y\in \mathbb{N}_{+},\gcd(x,y)=1$ 都有 $f(xy)=f(x)f(y)$</p>
+</li>
+<li><p>常见形式</p>
+<ul>
+<li><p>单位元 $\epsilon(n)=[n=1]$</p>
+</li>
+<li><p>恒等函数 $I(n)=1$</p>
+</li>
+<li><p>单位函数 $id(n)=n$</p>
+</li>
+</ul>
+</li>
+<li><p>性质</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+h(x) &=f(x^p) \\
+h(x) &=f^p(x) \\
+h(x) &=f(x)g(x) \\
+h(x) &=\sum_{d\mid x} f(d)g\left( \frac{x}{d} \right)
+\end{aligned}</script></li>
+</ul>
+<h3 id="迪利克雷卷积"><a href="#迪利克雷卷积" class="headerlink" title="迪利克雷卷积"></a>迪利克雷卷积</h3><ul>
+<li><p>注：</p>
+<p>$\sum_{d \mid n}$ 表示对 $n$ 的所有正因子求和</p>
+</li>
+<li><p>定义</p>
+<p>定义数论函数的迪利克雷卷积为 $h=f \circ g$ ,其中</p>
+<p>注：定义卷积符号为 $\circ$</p>
+<details>
+    <summary>原因戳我</summary>
+    好看
+</details>
+
+
+</li>
+</ul>
+<script type="math/tex; mode=display">h(n)=\sum_{d \mid n} f(d)g\left( \frac{n}{d} \right)</script><ul>
+<li><p>性质</p>
+<ul>
+<li><p>迪利克雷卷积拥有交换律，分配律，结合律</p>
+</li>
+<li><p><strong>单位元</strong> (也记作 $\varepsilon$ )</p>
+<p>函数 $I(n)=[n=1]$</p>
+<p>易知:</p>
+<script type="math/tex; mode=display">f \circ I=I \circ f=f</script></li>
+<li><p><strong>逆元</strong> (当且仅当 $f(1) \neq 0$)</p>
+<p>若 $f \circ g=I$，则称 $g(x)$ 是 $f(x)$ 的逆元</p>
+<p>可以构造：</p>
+<script type="math/tex; mode=display">\sum_{d\mid n}g(d)f\left( \frac{n}{d} \right)=[n=1]</script><script type="math/tex; mode=display">\therefore g(n)=\frac{1}{f(1)}\left( [n=1]-\sum_{d\mid n,d<n}g(d)f\left( \frac{n}{d} \right)  \right)</script></li>
+</ul>
+</li>
+</ul>
+<h3 id="欧拉函数"><a href="#欧拉函数" class="headerlink" title="欧拉函数"></a>欧拉函数</h3><ul>
+<li><p>定义</p>
+<p>$\varphi(n) \ =\ n*\prod^n_{i=1} \left( 1-\frac{1}{p_i}\right)$</p>
+<p>其中 $p_i$ 是 $n$ 的质因数</p>
+<p>即小于等于 $n$ 且与 $n$ 互素的数的个数</p>
+</li>
+<li><p>性质</p>
+<ul>
+<li><p>$1.$ 是积性函数</p>
+</li>
+<li><p>$2.$</p>
+<p>对于质数 $p$</p>
+<p>$\varphi(p)=p-1$</p>
+</li>
+<li><p>$3.$</p>
+<p>若 $n=p^k$ ,其中 $p$ 是质数</p>
+<p>$\varphi(n)\ =\ p^k-p^{k-1}\ =\ (p-1)p^{k-1}$</p>
+<p>证：$1$ 到 $n$ 中除了 $p$ 的倍数，都与 $p^k$ 互质，且 $1$ 到 $n$ 中 $p$ 的倍数的个数为 $\displaystyle{\frac{p^k}{p}}=p^{k-1}$</p>
+</li>
+<li><p>$4.$</p>
+<p>所有<strong>小于等于</strong> $n$ 且与 $n$ 互质的数的个数和 $sum=n*\displaystyle{\frac{\varphi(n)}{2}}$</p>
+<p>证：用反证法可知：</p>
+<p>若 $\gcd(n,i)=1$，则 $\gcd(n,n-i)=1$ $\Rightarrow$ 更相减损术</p>
+<p>所以每个与 $n$ 互质的数都是成对的</p>
+<p>$i$ 与 $n-i$ 成对</p>
+</li>
+<li><p>$5.$</p>
+<p>若 $i\mid p$，其中 $p$ 是质数</p>
+<p>则 $\varphi(i<em>p)=p</em>\varphi(i)$</p>
+<p>否则 $\varphi(i*p)=(p-1)\varphi(i)$</p>
+<p>即</p>
+<script type="math/tex; mode=display">\varphi(np)=\begin{cases}
+(p-1)*\varphi(n) & n\perp p \\
+p*\varphi(n) & n\not\perp p \\
+\end{cases}</script><p>证明咕咕咕</p>
+</li>
+<li><p>$6.欧拉反演$</p>
+<p>$\displaystyle{\sum_{d\mid n}\varphi(d)=n}$</p>
+<ul>
+<li><p>证：</p>
+<script type="math/tex; mode=display">\because n=\prod_{i=1}^{m}p_i^{a_i}</script><script type="math/tex; mode=display">又\because \varphi(n) 是积性函数</script><script type="math/tex; mode=display">\therefore \sum_{d|n}=\sum_{d|n}\prod_{i=1}^{m}\varphi(p_i^{j})\times[p_i^j\ |\ d]</script><script type="math/tex; mode=display">
+\begin{aligned} 对上式因式分解可得 \\
+右边&=\prod_{i=1}^{m}\left(\sum_{j=0}^{a_i}\varphi\left(p_i^j\right)\right)\\
+&=\prod_{i=1}^{m}\left(\sum_{j=1}^{a_i}\left(p_i^j-p_i^{j-1}\right)+1\right)\\
+&=\prod_{i=1}^{m}p_i^{a_i}\\
+&=n \end{aligned}</script></li>
+<li><p>扩展：</p>
+<script type="math/tex; mode=display">\gcd(i,j)=\sum_{d\mid i,d\mid j} \varphi(d)</script></li>
+</ul>
+</li>
+<li><p>$7. \varphi 与 \mu$</p>
+<p>$\displaystyle{\frac{\varphi(n)}{n}=\sum_{d\mid n}\frac{\mu(d)}{d}}$</p>
+<ul>
+<li><p>证：</p>
+<script type="math/tex; mode=display">\because \sum_{d\mid n}\varphi(d)=n</script><script type="math/tex; mode=display">\therefore \sum_{d\mid n}\varphi(d) \cdot 1=n</script><script type="math/tex; mode=display">\therefore \varphi \circ I=id \qquad \text{变成卷积形式}</script><script type="math/tex; mode=display">\therefore \varphi \circ I \circ \mu = id \circ \mu \qquad \text{迪利克雷卷积性质}</script><script type="math/tex; mode=display">\therefore \varphi \circ \epsilon =id\circ \mu</script><script type="math/tex; mode=display">
+\begin{aligned}
+\therefore \varphi
+&=id \circ \mu \\
+&=\sum_{d\mid n} \mu(d) \cdot \frac{n}{d} \\
+\end{aligned}</script><p>同除 $n$得：</p>
+<script type="math/tex; mode=display">\displaystyle{\frac{\varphi(n)}{n}=\sum_{d\mid n}\frac{\mu(d)}{d}}</script></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="写在前面的总结"><a href="#写在前面的总结" class="headerlink" title="写在前面的总结"></a>写在前面的总结</h2><p><strong>遇到艾弗森方程，转化为$\sum_{d\mid n} \mu(d)$</strong></p>
+<p><strong>遇到具体的值，考虑欧拉函数 ————by CTime_Pup_314</strong></p>
+<ul>
+<li><p>当遇到迪利克雷卷积形式的式子($\sum_{d\mid n}···$)时</p>
+<p>看标准分解式 $p_1^{a_1}p_2^{a_2}…p_n^{a_n}$</p>
+<p>并分析其中一个 $p_i^{a_i}$</p>
+</li>
+<li><p>再尝试转化出 $F(n)=\sum_{d\mid n}\mu(\frac{n}{d}) f(d)$ 的形式</p>
+<p>再考虑加入 $p$ 的影响:</p>
+<p>分为 $n \perp p$ 和 $n\not\perp p$两种讨论</p>
+<ul>
+<li><p>$n \perp p$ 时，$\sum_{d\mid n}\mu\left(\frac{np}{d}\right) f(d) + \sum_{d\mid n}\mu\left(\frac{np}{dp}\right)f(dp)\ =\ -F(n)+\mu(n)$</p>
+</li>
+<li><p>$n \not\perp p$ 时，$\sum_{d\mid n}\mu\left(\frac{np}{d}\right) f(d) + \sum_{d\mid n}\mu\left(\frac{np}{dp}\right) f(dp)\ =\ \mu(n)$</p>
+</li>
+</ul>
+</li>
+<li><p>若问题类似与 $\displaystyle{\sum_{i=1}^n\sum_{j=1}^mf\left(gcd(i,\ j)\right )}$</p>
+<p>则转化为 $\displaystyle{\sum_{T=1}^n\left\lfloor \frac{n}{T} \right\rfloor \left\lfloor \frac{m}{T} \right\rfloor \sum_{d\mid T}\mu\left(\frac{T}{d}\right)f(d)}$</p>
+</li>
+</ul>
+<h2 id="莫比乌斯函数"><a href="#莫比乌斯函数" class="headerlink" title="莫比乌斯函数"></a>莫比乌斯函数</h2><ul>
+<li><p>定义</p>
+<p>设 $n=\prod_{i=1}^k p_i^{c_i}$，其中 $p_i$ 为质因子, $c_i$ 为个数</p>
+<script type="math/tex; mode=display">
+\mu(n)=
+\begin{cases}
+1 &n=1 \\
+0 &\exist n\in [1,k],\ \text{使} \ c_i>1 \\
+(-1)^k &\forall i \in [1,k] \ \ \   c_i=1 \\
+\end{cases}</script></li>
+<li><p>性质</p>
+<script type="math/tex; mode=display">\sum_{d \mid n} \mu(d)=
+\begin{cases}
+1 &n=1 \\
+0 &n\neq 1
+\end{cases}
+\ \ =[n==1]</script><ul>
+<li><p>证明</p>
+<p>显然不用考虑使 $\mu(d)=0$ 的那些 $d$</p>
+<p>设 $n$ 有 $k$ 个互异质因数</p>
+<p>$\therefore$ 由 $r$ 个质因数乘起来的因数 $d$ 有   $C_k^r$ 个</p>
+<script type="math/tex; mode=display">\therefore \sum_{d \mid n} \mu(d)=\sum_{i=0}^k (-1)^i \cdot C^i_k</script><p>由二项式定理：</p>
+<script type="math/tex; mode=display">(x+y)^k=\sum_{i=0}^k\cdot C_k^i \cdot x^i y^{k-i}</script><p>可知</p>
+<p>取 $x=-1,y=1$</p>
+<script type="math/tex; mode=display">\therefore 原式=(1+(-1))^k=0^k=0</script><p>同时，这也证明了$\sum_{d \mid n} \mu(d)=[n=1]= \varepsilon(n)$</p>
+<p>以及 $\mu \circ 1=\varepsilon$</p>
+</li>
+<li><p>性质2</p>
+<script type="math/tex; mode=display">[\gcd(i,j)=1]=\sum_{d\mid \gcd(i,j)} \mu(d)</script><p><del>和上面的一模一样。。。</del></p>
+</li>
+</ul>
+</li>
+<li><p>线性筛求法</p>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> p[N];<span class="comment">//第tot个质因数值</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">    mu[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">2</span>;i&lt;=n;++i)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!flg[i])<span class="comment">/*之前没有用过该质因数*/</span> p[++tot]=i,mu[i]=<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span>(rei j=<span class="number">1</span>;j&lt;=tot &amp;&amp; i*p[j]&lt;=n ;++j)&#123;</span><br><span class="line">            flg[ i*p[j] ]=<span class="number">1</span>;<span class="comment">//每个质因数的倍数打上标记</span></span><br><span class="line">            <span class="keyword">if</span>(!(i%p[j]))&#123;<span class="comment">//有平方因子</span></span><br><span class="line">                mu[ i*p[j] ]=<span class="number">0</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            mu[ i*p[j] ]=-mu[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="莫比乌斯反演"><a href="#莫比乌斯反演" class="headerlink" title="莫比乌斯反演"></a>莫比乌斯反演</h2><ul>
+<li><p>公式</p>
+<script type="math/tex; mode=display">若 \operatorname{F}(n)=\sum_{d\mid n} f(d)，那么 f(n)=\sum_{d\mid n} \mu(d)\operatorname{F}\left(\frac{n}{d}\right)</script><script type="math/tex; mode=display">若 \operatorname{F}(n)=\sum_{n\mid d} f(d)，那么 f(n)=\sum_{n\mid d} \mu\left(\frac{d}{n}\right)\operatorname{F}(d)</script></li>
+<li><p>略证</p>
+<script type="math/tex; mode=display">\sum_{d\mid n}\mu(d)=[n=1] \Rightarrow \mu \circ 1= \varepsilon</script><script type="math/tex; mode=display">\operatorname{F}(n)=\sum_{d\mid n}f(d) \Rightarrow \operatorname{F}=f \circ 1</script><script type="math/tex; mode=display">\therefore \operatorname{F} \circ \mu = f \circ 1 \circ \mu</script><script type="math/tex; mode=display">\therefore \operatorname{F} \circ \mu=f \circ \varepsilon</script><script type="math/tex; mode=display">\therefore f=\operatorname{F} \circ \mu</script><script type="math/tex; mode=display">\therefore f(n)=\sum_{d\mid n}\mu(d) \cdot \operatorname{F}\left(\frac{n}{d}\right)</script></li>
+</ul>
+<p><del>好吧我不怎么会证</del></p>
+<p>用莫比乌斯函数就可以解决大部分莫反问题——by CTime_Pup_314</p>
+<h3 id="需要带脑子推式子的例题"><a href="#需要带脑子推式子的例题" class="headerlink" title="需要带脑子推式子的例题"></a>需要带脑子推式子的例题</h3><ul>
+<li><p><del>k倍经验</del></p>
+<p><del>UVA11417 GCD垃圾红题</del>，UVA11424 GCD - Extreme (I)，P1390 公约数的和，P2398 GCD SUM，P2568 GCD，SP3871 GCDEX - GCD Extreme，UVA11426 拿行李（极限版），SP3871 GCDEX - GCD Extreme,[SP19985]GCDEX2 - GCD Extreme (hard)（要用杜教筛）， [SDOI2008] 仪仗队</p>
+</li>
+</ul>
+<p><strong>请仔细留意如何筛出所需函数</strong></p>
+<ul>
+<li><p>附线性筛板子  <del>不压行显得多一点</del></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//f是你想要的函数</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">    mu[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">    varphi[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">    f[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei d=<span class="number">2</span>;d&lt;N;++d)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!flag[d])&#123;</span><br><span class="line">            prime[++tot]=d;</span><br><span class="line">            varphi[d]=d<span class="number">-1</span>;</span><br><span class="line">            mu[i]=<span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        f[d]=它该等于的式子</span><br><span class="line">        <span class="keyword">for</span>(rei j=<span class="number">1</span>;j&lt;=tot &amp;&amp; d*prime[j]&lt;N;++j)&#123;</span><br><span class="line">            rei tmp=d*prime[j];</span><br><span class="line">            flag[tmp]=<span class="number">1</span>;</span><br><span class="line">            varphi[tmp]=varphi[d] * (d%prime[j]<span class="comment">/*是否互素*/</span> ? prime[j]<span class="number">-1</span> : prime[j]);</span><br><span class="line">            <span class="keyword">if</span>(!(d%p[j]))</span><br><span class="line">                mu[d*p[j]]=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">else</span> mu[d*p[j]]=-mu[i];</span><br><span class="line">        &#125;</span><br><span class="line">        这里可能需要进一步处理<span class="built_in">f</span>(n)</span><br><span class="line">    &#125;</span><br><span class="line">    这里也有可能</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>注：规定所有的 $n&lt;m$ , 所有出现的 $p$ 为质数</p>
+<ul>
+<li><p>$1$</p>
+<p><a href="https://www.luogu.com.cn/problem/P4450">P4450 双亲数</a></p>
+<script type="math/tex; mode=display">求 \sum^n_{i=1}\sum^m_{j=1} [\ \gcd(i,j)=1\ ]</script><p>解：</p>
+<script type="math/tex; mode=display">\begin{aligned}
+原式
+&= \sum^n_{i=1}\sum^m_{j=1}\sum_{d\mid \gcd(i,j)} \mu(d) &\text{莫比乌斯函数的性质2}\\
+&= \sum^n_{i=1}\sum^m_{j=1}\sum_{d\mid i \ , \ d\mid j} \mu(d) &\text{拆开}\\
+&= \sum^n_{i=1}\sum^m_{j=1}\sum^n_{d=1} \mu(d) [ \ d \mid i \ ] [ \ d \mid j \ ] &\text{条件转移到右边} \\
+&= \sum^n_{d=1} \mu(d) \sum^n_{i=1} [d\mid i] \sum^m_{j=1} [d\mid j] &\text{调整顺序} \\
+&= \sum^n_{d=1} \mu(d) \left\lfloor \frac{n}{d} \right\rfloor \left\lfloor \frac{m}{d} \right\rfloor &\text{...} \\
+\end{aligned}</script></li>
+<li><p>$2$</p>
+<p><a href="https://www.luogu.com.cn/problem/P2522">P2522 [HAOI2011]Problem b</a></p>
+<script type="math/tex; mode=display">求 \sum^n_{i=1}\sum^m_{j=1} [\gcd(i,j)=k]</script><p>解：</p>
+<p>将范围缩小 $k$ 就可以</p>
+<p>即</p>
+<script type="math/tex; mode=display">\begin{aligned}
+原式
+&=\sum^{ \left\lfloor \frac{n}{k} \right\rfloor }_{i=1} \sum^{ \left\lfloor \frac{m}{k} \right\rfloor  }_{j=1} [\gcd(i,j)=1] \\
+&=\sum^{ \left\lfloor \frac{n}{k} \right\rfloor }_{d=1} \mu(d) \left\lfloor \frac{n}{kd} \right\rfloor \left\lfloor \frac{m}{kd} \right\rfloor
+\end{aligned}</script></li>
+<li><p>$3$</p>
+<script type="math/tex; mode=display">求\sum^n_{i=1}\sum^m_{j=1} i*j*[\ \gcd(i,j)=k\ ]</script><script type="math/tex; mode=display">\begin{aligned}
+原式
+&=k^2*\sum^{\left\lfloor \frac{n}{k} \right\rfloor}_{i=1} \sum^{\left\lfloor \frac{m}{k} \right\rfloor}_{j=1} i*j*[ \ \gcd(i,j)=1 \ ] &\text{ $i$ 缩小成 $\frac{i}{k}$，$j$ 同理} \\
+&=k^2* \sum^{\left\lfloor \frac{n}{k} \right\rfloor}_{d=1}\mu(d) \sum^{\left\lfloor \frac{n}{k} \right\rfloor}_{i=1} \sum^{\left\lfloor \frac{m}{k} \right\rfloor}_{j=1} i*j*[d\mid i][d\mid j] \\
+&=k^2 \sum^{\left\lfloor \frac{n}{k} \right\rfloor}_{d=1}\mu(d) * d^2 \sum^{\left\lfloor \frac{n}{kd} \right\rfloor}_{i=1}i\sum^{\left\lfloor \frac{m}{kd} \right\rfloor}_{j=1}j &\text{ $i$ 缩小为 $\frac{i}{d}$ ，$j$ 同理} \\
+&\text{变成等差数列了qwq}
+\end{aligned}</script></li>
+<li><p>$4$</p>
+<script type="math/tex; mode=display">求\sum_{i=1}^n\sum_{j=1}^m \gcd(i,\ j)</script><p><a href="https://www.luogu.com.cn/problem/P1447">P1447 [NOI2010] 能量采集</a></p>
+<p>由题，没有被遮挡的植物坐标 $(x,y)$ 满足 $n\perp m$，而一条线 $(0,0)-(x,y)$ 上被挡住的植物有 $\gcd(x,y)-1$ 个</p>
+<script type="math/tex; mode=display">\therefore 求\sum^n_{i=1}\sum^m_{j=1}((2*\gcd(i,j)-1) \ +1 \ )</script><script type="math/tex; mode=display">\therefore 求2*\sum^n_{i=1}\sum^m_{j=1}(\gcd(i,j)) \ - \ nm</script><script type="math/tex; mode=display">\therefore 求\sum_{i=1}^n\sum_{j=1}^m \gcd(i,\ j)</script><p>先进行简单化简</p>
+<script type="math/tex; mode=display">\sum_{d=1}^nd\sum_{i=1}^n\sum_{j=1}^m[ \ \gcd(i,j)=d \ ]</script><script type="math/tex; mode=display">\sum_{d=1}^nd\sum_{k=1}^{\lfloor \frac{n}{d} \rfloor}\mu(k) \left\lfloor \frac{n}{kd} \right\rfloor \left\lfloor \frac{m}{kd} \right\rfloor</script><p>设 $T=kd$</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\therefore
+原式
+&= \sum_{d=1}^nd\sum_{T=1}^n\mu\left(\frac{T}{d}\right) \left\lfloor \frac{n}{T} \right\rfloor \left\lfloor \frac{m}{T} \right\rfloor [d\mid T]\ \\
+&= \sum_{T=1}^n \left\lfloor \frac{n}{T} \right\rfloor \left\lfloor \frac{m}{T} \right\rfloor \sum_{d\mid T}\mu \left( \frac{T}{d} \right)d \\
+\end{aligned}</script><p>设 $\operatorname{F}(n)=\sum_{d\mid n}\mu \left( \frac{n}{d} \right)d$</p>
+<p>根据上面的总结可知</p>
+<script type="math/tex; mode=display">\operatorname{F}(np)=\sum_{d\mid n} \mu\left(\frac{np}{d} \right)d \ + \ \sum_{d\mid n}\mu\left(\frac{np}{dp} \right) dp</script><p>当 $n\perp p$ 时，</p>
+<script type="math/tex; mode=display">\operatorname{F}(np)=-\operatorname{F}(n)+p\operatorname{}{F}(n)</script><p>当 $n\not\perp p$ 时，</p>
+<script type="math/tex; mode=display">\operatorname{F}(np)=p\operatorname{}{F}(n)</script><p>$\therefore 显然F(n)符合欧拉函数的性质$</p>
+<ul>
+<li><p>变式</p>
+<p><a href="https://www.luogu.com.cn/problem/P4449">P4449 于神之怒加强版</a></p>
+<script type="math/tex; mode=display">求\sum_{i=1}^n\sum_{j=1}^m \gcd(i,\ j)^k \mod p</script><p>先把 $k$ 提出来得</p>
+<script type="math/tex; mode=display">\begin{aligned}
+原式
+&=\sum_{d=1}^n d^k \sum_{i=1}^{\left\lfloor \frac{n}{d} \right\rfloor}\sum_{i=1}^{\left\lfloor \frac{m}{d} \right\rfloor} [ \ \gcd(i,j)=1 \ ] \\
+&=\sum_{d=1}^n d^k \sum_{x=1}^{\left\lfloor \frac{n}{d} \right\rfloor} \left\lfloor \frac{n}{dx} \right\rfloor\left\lfloor \frac{m}{dx} \right\rfloor \mu(x) \\
+&设\  T=dx \\
+&=\sum_{T=1}^n \sum_{d\mid T}d^k \left\lfloor \frac{n}{T} \right\rfloor \left\lfloor \frac{m}{T} \right\rfloor \mu\left(\frac{T}{d} \right) &\text{总是忘记可以这么化} \\
+&=\sum_{T=1}^n \left\lfloor \frac{n}{T} \right\rfloor \left\lfloor \frac{m}{T} \right\rfloor \sum_{d\mid T}\mu \left( \frac{T}{d} \right)d^k &\text{剩余做法参照上面} \\
+\end{aligned}</script><p>处理 $\sum_{d\mid T}\mu \left( \frac{T}{d} \right)d^k$</p>
+<p>设积性函数 $f(T)=id^k \circ \mu$</p>
+<script type="math/tex; mode=display">\because 积性函数满足 f(nm)=f(n)f(m) , T=\prod_{i=1}^k p_i^{c_i}</script><script type="math/tex; mode=display">\therefore 研究 T\mid P^x , x\in \text{N+} , p\in \text{primes}</script><p>当 $x=1$</p>
+<script type="math/tex; mode=display">d^k \mu\left(\frac{T}{d} \right)=\begin{cases}
+    -1 &(d=1) \\
+    T^k &(d==T) \\
+\end{cases}</script><script type="math/tex; mode=display">\therefore f(T)=T^k-1</script><p>当 $x&gt;1$</p>
+<script type="math/tex; mode=display">d^k\mu\left(\frac{T^x}{d} \right)=\begin{cases}
+    -\left(T^{x-1} \right)^k &\left(d=T^{x-1}\right) \\
+    \left(T^x \right)^k &\left(T^x\right) \\
+\end{cases}</script><p>$\therefore$ 筛法为</p>
+<script type="math/tex; mode=display">f_{i*p_j}=\begin{cases}
+    f_i * f_{p_j} &\left( \ \gcd(p_j,i)=1 \ \right) \\
+    f_i * p_j^k &( \ p_j\mid i \ ) \\
+\end{cases}</script></li>
+<li><p>变式</p>
+<p><a href="https://www.luogu.com.cn/problem/UVA11424">UVA11424 GCD - Extreme (I)</a></p>
+<script type="math/tex; mode=display">求\sum_{i=1}^n\sum_{j=i+1}^n \gcd(i,j)</script><p>有一个比莫反更好的方法</p>
+<p>设 $f(n)=\gcd(1,n)+\gcd(2,n)+…+\gcd(n-1,n)$</p>
+<p>$\therefore ans=f(2)+f(3)+…+f(n)$</p>
+<p>设 $g(n,x)$ 表示 $\gcd(x,n)=i$ 的小于 $n$ 的正整数个数</p>
+<script type="math/tex; mode=display">\therefore f(n)=\sum_{i\mid n}i*g(n,i)</script><p>考虑 $\varphi$ 即可</p>
+<p><del>精神不稳就这吧</del></p>
+<p>我的精神是正常的只是懒得写</p>
+</li>
+</ul>
+</li>
+<li><p>$5$</p>
+<p><a href="https://www.luogu.com.cn/problem/P2257">P2257 YY的GCD</a></p>
+<script type="math/tex; mode=display">求\sum_{i=1}^n\sum_{j=1}^m[\ \gcd(i,j)=p \ ]\ ，\ 其中 \ p\ 是质数</script><script type="math/tex; mode=display">设\operatorname{F}(n)=[\ n=p\ ]</script><script type="math/tex; mode=display">原式=\sum_{i=1}^n\sum_{j=1}^mf(\gcd(i,j))</script><script type="math/tex; mode=display">设T=kd</script><p>推导与上一题类似，略(<del>懒</del>)</p>
+<script type="math/tex; mode=display">\therefore \sum_{T=1}^n \left\lfloor \frac{n}{T} \right\rfloor \left\lfloor \frac{m}{T} \right\rfloor \sum_{d\mid T}\mu \left( \frac{T}{d} \right) f(d)</script></li>
+<li><p>$6$</p>
+<p><a href="https://www.luogu.com.cn/problem/SP5971">SP5971 LCMSUM - LCM Sum</a></p>
+<script type="math/tex; mode=display">求\sum^n_{i=1}\text{lcm}(i,n)</script><ul>
+<li><p>[ 法一 ]</p>
+<script type="math/tex; mode=display">\begin{aligned}
+  原式
+  &=\sum^n_{i=1} \frac{i \cdot n}{\gcd(i,n)} \\
+  &=\frac{1}{2} \cdot \left(\sum^{n-1}_{i=1} \frac{i\cdot n}{\gcd(i,n)}\ + \ \sum^1_{i=n-1} \frac{i\cdot n}{\gcd(n-i,n)} \right)+n &\text{复制原式并颠倒，并提出第 $n$ 项}\\
+  &=\frac{1}{2}\cdot \sum^{n-1}_{i=1} \frac{n^2}{\gcd(i,n)} \ + \ n &\text{ $\gcd(i,n)$ 转化为 $\gcd(n-i,n)$ ,并合并分母}\\
+  &=\frac{1}{2}\cdot \sum^{n}_{i=1} \frac{n^2}{\gcd(i,n)} \ + \ \frac{n}{2} \\
+  \end{aligned}</script><p>  $\gcd(i,n)$ 值相同的放在一起 $\Rightarrow$ 统计 $\gcd(i,n)=d$ 的个数</p>
+<p>  当 $\gcd(i,n)=d$ , $\gcd(\frac{i}{d},\frac{i}{n})=1$</p>
+<p>  所以 $\gcd(i,n)=d$ 的个数有 $\varphi\left(\frac{n}{d}\right)$</p>
+<script type="math/tex; mode=display">\therefore 原式=\frac{1}{2} \sum_{d\mid n}\frac{ n^2\cdot\varphi(\frac{n}{d}) }{d} \ + \ \frac{n}{2}</script></li>
+<li><p>[ 法二 ]</p>
+<script type="math/tex; mode=display">\begin{aligned}
+  原式
+  &=\sum_{i=1}^n \frac{i\cdot n}{\gcd(i,n)} \\
+  &=\sum_{d\mid n}\sum_{i=1}^n \ [\ \gcd(i,n)=d \ ] \ \frac{i\cdot n}{d} &\text{枚举 $\gcd(i,n)=d$ }\\
+  &=n \cdot \sum_{d\mid n}\sum_{i=1}^{\left\lfloor \frac{n}{d} \right\rfloor} [ \ \gcd(i,\frac{n}{d})=1 \ ] \cdot i \\
+  \end{aligned}</script><p>  提出式子 $\displaystyle{\sum_{i=1}^n [\ \gcd(i,n)=1\ ]\cdot i}$</p>
+<p>  式子的含义是求小于等于 $n$ 的数中与 $n$ 互质的数的和</p>
+<p>  这与上文推导的欧拉函数性质 $4$ 一样</p>
+<p>  即 $sum=n*\displaystyle{\frac{\varphi(n)}{2}}$</p>
+<script type="math/tex; mode=display">\therefore 原式=n\cdot \sum_{d\mid n} d*\frac{\varphi(d)}{2}</script></li>
+</ul>
+</li>
+<li><p>$7$</p>
+<p>设 $\operatorname{d}(i)$ 为 $i$ 的约数个数 ，注意仍有 $n&lt;m$</p>
+<script type="math/tex; mode=display">求：\sum_{i=1}^n\sum_{j=1}^m \operatorname{d}(ij)</script><p><strong>有一个显然的结论</strong>:$\displaystyle{\operatorname{d}(n)=\sum_{x\mid n,y\mid n}[ \ \gcd(x,y)=1 \ ]}$</p>
+<script type="math/tex; mode=display">\begin{aligned}
+原式
+&=\sum_{i=1}^n \sum_{j=1}^m \sum_{x\mid i} \sum_{y\mid j} \sum_{d\mid \gcd(x,y)} \mu(d) &\text{(1)}\\
+&=\sum_{d=1}^n\mu(d) \sum_{i=1}^n \sum_{j=1}^m \left\lfloor \frac{i}{d}  \right\rfloor \cdot \left\lfloor \frac{j}{d}  \right\rfloor &\text{莫反套路，前置 $\mu$ 函数，在 $i$ 内能被 $d$ 整除的有 $\frac{i}{d}$ 个}\\
+\end{aligned}</script><p>然而 $d$ 在分母上，不易打表，无法数论分块 $\Rightarrow$ 重新考虑 $(1)$ 式</p>
+<p>$(1)$ 中对每组 $(d,i,j)$ ，先考虑 $\displaystyle{\sum_{i=1}^n \sum_{j=1}^m \sum_{x\mid i} \sum_{y\mid j}}$ $(2)$</p>
+<p>其贡献为 $\left(i的因数(x)的个数 \left(即\sum_{x\mid i} \right) \right) \cdot \left(j的因数的个数 \left(即\sum_{y\mid j} \right) \right)$</p>
+<p>再提前 $\displaystyle{\sum_{d\mid \gcd(x,y)}\mu(d)}$ ，转化为从 $1$ 到 $n$ 枚举 $d$ ，同时缩小 $(2)$ 式的数据范围</p>
+<p>若使 $[\ d\mid \gcd(x,y) \ ]=1$ ，那么 $x,y$ 都为 $d$ 的倍数 ，所以数据范围应为枚举 $d,2d,3d,4d…$ 直至 $kd&gt;n$</p>
+<script type="math/tex; mode=display">原式=\sum_{d=1}^n\mu(d) \cdot \sum_{s=1}^{\left\lfloor \frac{n}{d} \right\rfloor} \left\lfloor \frac{n}{sd} \right\rfloor \cdot \sum_{t=1}^{\left\lfloor \frac{m}{d} \right\rfloor} \left\lfloor \frac{m}{td} \right\rfloor</script><p>式子含义明显</p>
+<p>设 $\displaystyle{\operatorname{f}(i)=\sum_{i=1}^n \left\lfloor \frac{n}{i} \right\rfloor}$ ，考虑对 $\operatorname{f}(i)$ 分块</p>
+<p>显然有 $\displaystyle{\operatorname{f}(i)=\sum_{i=1}^n} \operatorname{d}(x)$</p>
+<script type="math/tex; mode=display">原式=\sum_{d=1}^n\mu(d) \cdot \operatorname{f} \left(\left\lfloor \frac{n}{d} \right\rfloor \right) \cdot \operatorname{f} \left(\left\lfloor \frac{m}{d} \right\rfloor \right)</script></li>
+<li><p>$8$</p>
+<p><a href="https://www.luogu.com.cn/problem/P1829">P1829 【[国家集训队]Crash的数字表格 / JZPTAB】</a></p>
+<script type="math/tex; mode=display">求 \sum_{i=1}^n\sum_{j=1}^m \text{lcm}(i,j)</script><script type="math/tex; mode=display">\begin{aligned}
+原式
+&=\sum_{d=1}^n \frac{1}{d} * \sum_{i=1}^n\sum_{j=1}^mi*j*[ \ \gcd(i,j)=d \ ] &\text{用前面的$\frac{1}{d}$抵消了原有的 $\frac{1}{\gcd}$}\\
+&=\sum_{d=1}^n d\sum_{i=1}^{\left\lfloor \frac{n}{d}  \right\rfloor}\sum_{j=1}^{\left\lfloor \frac{m}{d}  \right\rfloor}i*j*[ \ \gcd(i,j)=1 \ ] &\text{缩小数据范围，恰好可以用前面的 $\sum d$ 抵消造成的影响} \\
+&=\sum_{d=1}^n d \sum_{k=1}^{\left\lfloor \frac{n}{d}  \right\rfloor} \mu(k) * k^2 * \sum_{i=1}^{\left\lfloor \frac{n}{dk}  \right\rfloor} \sum_{j=1}^{\left\lfloor \frac{m}{dk}  \right\rfloor} i j &\text{后面的两个 $\sum$ 的数据范围均被缩小了 $k$ ，所以前面乘上 $k^2$ } \\
+\end{aligned}</script><p>设 $S(n)=\sum_{i=1}^n=\frac{n(n+1)}{2}$</p>
+<script type="math/tex; mode=display">\therefore 原式=\sum_{d=1}^n d \sum_{k=1}^{\left\lfloor \frac{n}{d}  \right\rfloor} \mu(k) * k^2 *S\left(\frac{n}{kd} \right) * S\left(\frac{m}{kd} \right)</script><p>再设 $T=kd$</p>
+<script type="math/tex; mode=display">\begin{aligned}
+\therefore 原式
+&=\sum_{T=1}^n * S\left(\frac{n}{T} \right)S\left(\frac{m}{T} \right) * \sum_{d\mid T}\mu\left(\frac{T}{d} \right) * \left(\frac{T}{d}\right)^2 \\
+&=\sum_{T=1}^n * S\left(\frac{n}{T} \right)S\left(\frac{m}{T} \right) * \sum_{d\mid T}Td\mu(d) &\text{如果看到提醒我去问人} \\
+\end{aligned}</script><p>$\therefore$ 只需预处理 $\sum_{d\mid T}Td\mu(d)$ 即可</p>
+<p><a href="https://www.luogu.com.cn/blog/qwaszx/solution-p1829">传送门</a></p>
+</li>
+<li><p>$9.$</p>
+<p><a href="https://www.luogu.com.cn/problem/P3911">P3911 最小公倍数之和</a></p>
+<script type="math/tex; mode=display">求\displaystyle{\sum_{i=1}^n \sum_{j=1}^n \text{lcm} \left(A_i,A_j \right)}</script><p>考虑转化该式：</p>
+<p>设 $\displaystyle{M=\max_{1&lt;=i&lt;=n}A_i \quad,\quad C_i=\sum_{d=1}^n [A_d=i] }$</p>
+<script type="math/tex; mode=display">\therefore 原式=\sum_{i=1}^M\sum_{j=1}^M \text{lcm}(i,j) * C_i * C_j \quad \text{枚举所有 $A_i$ 的值，$C_i$表达是否存在该值以及该值的数量 $\Rightarrow$ 避免重复运算 }</script><p>其余按套路来</p>
+<script type="math/tex; mode=display">\begin{aligned}
+原式
+&=\sum_{d=1}^M\sum_{i=1}^{\left\lfloor \frac{M}{d} \right\rfloor}\sum_{j=1}^{\left\lfloor \frac{M}{d} \right\rfloor} [\gcd(i,j)=1]*d * ij *C_{id}C_{jd} \\
+&=\sum_{d=1}^M d \sum_{k=1}^{\left\lfloor \frac{M}{d} \right\rfloor} k^2\mu(k) \sum_{i=1}^{\left\lfloor \frac{M}{kd} \right\rfloor}\sum_{j=1}^{\left\lfloor \frac{M}{kd} \right\rfloor} ij * C_{idk}C_{jdk} &\text{过程略}\\
+\end{aligned}</script><p>考虑后面部分的 $C$ 如何快速处理</p>
+<p>设 $T=dk$</p>
+<script type="math/tex; mode=display">\begin{aligned}
+原式
+&=\sum_{T=1}^n T \cdot \sum_{k\mid T} k\mu(k) \cdot \sum_{i=1}^{\left\lfloor \frac{n}{T} \right\rfloor}\sum_{j=1}^{\left\lfloor \frac{n}{T} \right\rfloor} A_{i\cdot T}A_{j\cdot T} \cdot ij \\
+&设s_i=i*\sum_{k\mid i}k\cdot \mu(k) \\
+&=\sum_{T=1}^ns_T \cdot \sum_{i=1}^{\left\lfloor \frac{n}{T} \right\rfloor}\sum_{j=1}^{\left\lfloor \frac{n}{T} \right\rfloor}A_{iT}A_{jT}\cdot ij \\
+&=\sum_{T=1}^n s_T \cdot \left(\sum_{i=1}^{\left\lfloor \frac{n}{T} \right\rfloor} i\cdot A_{iT}\right) \left(\sum_{j=1}^{\left\lfloor \frac{n}{T} \right\rfloor} A_{jT} \cdot j\right) \\
+&=\sum_{T=1}^n s_T \cdot \left(\sum_{i=1}^{\left\lfloor \frac{n}{T} \right\rfloor} i\cdot A_{iT}\right)^2 &\text{后面两项一样}\\
+\end{aligned}</script><p>简单的变式<a href="https://www.luogu.com.cn/problem/AT5200">AT5200 [AGC038C] LCMs</a></p>
+<p>求 $\displaystyle{\sum_{i=0}^{n}\sum_{j=i+1}^{n}\text{lcm}(A_i,A_j)} \quad \mod p$</p>
+<script type="math/tex; mode=display">原式=\frac{\sum_{i=1}^n \sum_{j=1}^n \text{lcm}(A_i,A_j)-\sum_{i=1}^n A_i}{2}</script><p>注意及时取模即可</p>
+</li>
+<li><p>$10.$</p>
+<p><a href="https://www.luogu.com.cn/problem/P3768">P3768 简单的数学题</a></p>
+<script type="math/tex; mode=display">求\displaystyle{\left(\sum_{i=1}^n\sum_{j=1}^n ij\gcd(i,j) \right) \pmod p}</script><script type="math/tex; mode=display">\begin{aligned}
+原式
+&=\sum_{i=1}^n\sum_{j=1}^n ij * id\left( \ \gcd(i,j) \ \right) \\
+&=\sum_{i=1}^n\sum_{j=1}^n ij \sum_{d\mid i,d\mid j} \varphi(d) &\text{欧拉函数性质 $6$} \\
+&=\sum_{d=1}^n \varphi(d) *d^2 \left(\sum_{i=1}^{\left\lfloor \frac{n}{d} \right\rfloor} i \right)^2 &\text{两个 $i$ 可以合并} \\
+\end{aligned}</script><ul>
+<li><p>前半部分</p>
+<p>  杜教筛 $\Rightarrow$ 设 $S(n)=\sum_{d=1}^n \varphi(d) * d^2$</p>
+<p>  若使 $f\circ g$ 结果只有 $n$ $\Rightarrow$ 取 $g=id$</p>
+<script type="math/tex; mode=display">\therefore f\circ g=\sum_{d\mid n} \varphi(d)*d^2 * \left(\frac{n}{d} \right)^2 = n^3 \quad \text{同理}</script><script type="math/tex; mode=display">\therefore S(n)=\frac{\sum_{i=1}^n\left(f\circ g \right) - \sum_{i=2}^n g\left(i\right)S\left(\left\lfloor \frac{n}{i} \right\rfloor \right) }{g(1)}</script><script type="math/tex; mode=display">1.\sum_{i=1}^n\left(f\circ g \right)=\sum_{i=1}^n i^3=\frac{n^2\left(n+1\right)^2}{4}</script><script type="math/tex; mode=display">2.\sum_{i=1}^ng(i)=\sum_{i=1}^ni^2=\frac{n(n+1)(2n+1)}{6}</script></li>
+<li><p>右半部分</p>
+<p>  求 $\displaystyle{\left(\sum_{i=1}^ni\right)^2}$</p>
+<p>  然而我只会<a href="https://math.stackexchange.com/questions/1423948/trying-to-prove-sum-i-1n-i3-sum-i-1n-i2">证明$\displaystyle{\left(\sum_{i=1}^ni\right)^2=\sum_{i=1}^n i^3 }$</a></p>
+<p>  最快的方法是差分</p>
+<p>  设 $\displaystyle{A_n=\sum_{i=1}^n i^3 \ , \ B_n=\sum_{i=1}^n i}$</p>
+<p>  一).</p>
+<script type="math/tex; mode=display">显然有 A_1=B_1^2</script><p>  二).</p>
+<script type="math/tex; mode=display">转化为求 \quad \Delta A_n=A_{n+1}-A_n=\Delta B_n^2</script><script type="math/tex; mode=display">\begin{aligned}
+  \Delta B_n^2
+  &=B_{n+1}^2-B_n^2 \\
+  &=(B_{n+1}-B_n) * (B_{n+1}+B_n) \\
+  &=(n+1) * \left(\frac{(n+1)(n+2)}{2} + \frac{n(n+1)}{2} \right) \\
+  &=\frac{(n+1)^2}{2} (2n+2) \\
+  &=(n+1)^3 \\
+  &=\Delta A_n \\
+  \end{aligned}</script><script type="math/tex; mode=display">\therefore \left(\sum_{i=1}^ni\right)^2=\sum_{i=1}^n i^3=\frac{n^2(n+1)^2}{4}</script></li>
+</ul>
+</li>
+<li><p>11.</p>
+<p><a href="https://www.luogu.com.cn/problem/P1587">P1587 [NOI2016] 循环之美</a></p>
+<script type="math/tex; mode=display">求k进制下 ， \sum_{i=1}^n\sum_{j=1}^m \left[\frac{i}{j}是纯循环小数\right]</script><p>一个神仙转化如下</p>
+<p>设该纯循环小数的循环节长度为 $times$，$\left\{\frac{x}{y}\right\}$ 表示 $\frac{x}{y}$ 的小数部分</p>
+<p>在 $k$ 进制下，总有 $\displaystyle{\left\{\frac{x}{y} \right\} = \left\{\frac{x \cdot k^{times}}{y} \right\} }$</p>
+<p>即</p>
+<script type="math/tex; mode=display">\frac{x}{y}-\left\lfloor \frac{x}{y} \right\rfloor = \frac{x\cdot k^{times}}{y}-\left\lfloor \frac{x\cdot k^{times}}{y} \right\rfloor</script><script type="math/tex; mode=display">x-\left\lfloor \frac{x}{y} \right\rfloor \cdot y =x\cdot k^{times} - \left\lfloor \frac{x\cdot k^{times}}{y} \right\rfloor \cdot y</script><p>考虑到最简分数，即 $\gcd(x,y)=1$</p>
+<script type="math/tex; mode=display">x \equiv x\cdot k^{times}\pmod y</script><script type="math/tex; mode=display">k^{times}\equiv 1\pmod y</script><script type="math/tex; mode=display">k\equiv 1\pmod y</script><p>$\therefore$ 问题转化为</p>
+<script type="math/tex; mode=display">求\sum_{i=1}^n\sum_{j=1}^m [\gcd(i,j)=1] [\gcd(j,k)=1]</script><script type="math/tex; mode=display">\begin{aligned}
+原式&=f(n,m,k)\\
+&=\sum_{i=1}^n\sum_{jd=1}^m[\gcd(i,jd)=1] \sum_{d\mid dj,d\mid k} \mu(d) \\
+&=\sum_{d\mid k} \mu(d) \sum_{i=1}^n\sum_{j=1}^{\left\lfloor \frac{m}{d} \right\rfloor} [\gcd(i,jd)=1] \\
+&=\sum_{d\mid k}\mu(d) \cdot f\left(\frac{m}{d},n,d \right) \\
+\end{aligned}</script><p>最后对 $k=1$ 的情况直接算即可</p>
+</li>
+<li><p>12.</p>
+<p><a href="https://www.luogu.com.cn/problem/P3704">P3704 [SDOI2017]数字表格</a></p>
+<script type="math/tex; mode=display">求\prod_{i=1}^n\prod_{j=1}^mf[\gcd(i,j)]</script><p>设 $n&lt;m$</p>
+<script type="math/tex; mode=display">\begin{aligned}
+原式&=\prod_{d=1}^{n}\prod_{i=1}^n\prod_{j=1}^m \ [\ \gcd(i,j)=d\ ] \ \cdot \ f[d] \\
+&= \prod_{d=1}^{n}f[d]^{\left( \sum\limits_{i=1}^{n} \sum\limits_{j=1}^{m} [\ \gcd(i,j)=d\ ]\right) } \quad \text{乘积形式化为幂次} \\
+\end{aligned}</script><p>看指数项<del>发现是HAOI2011</del></p>
+<script type="math/tex; mode=display">\begin{aligned}
+\sum\limits_{i=1}^{n} \sum\limits_{j=1}^{m} [\ \gcd(i,j)=d\ ]&=\sum^{ \left\lfloor \frac{n}{d} \right\rfloor }_{k=1} \mu(k) \left\lfloor \frac{n}{kd} \right\rfloor \left\lfloor \frac{m}{kd} \right\rfloor
+\end{aligned}</script><p>$\sout{好了可以O(nT)了}$</p>
+<p>用能量采集的 $\text{trick}$ 提出 $T=kd$ ,即</p>
+<script type="math/tex; mode=display">\sum\limits_{T=1}^n\mu\left(\frac{T}{d}\right) \left\lfloor \frac{n}{T} \right\rfloor \left\lfloor \frac{m}{T} \right\rfloor [\ d\mid T \ ]</script><p>$T$ 对 $d$ 取值做出了限制条件 $\Rightarrow$ 考虑把 $T$ 提到式子最前面,即</p>
+<script type="math/tex; mode=display">\prod_{T=1}^n\prod_{d\mid T} f[d]^{\left(\mu\left(\frac{T}{d} \right) \left\lfloor \frac{n}{T} \right\rfloor \left\lfloor \frac{m}{T} \right\rfloor \right)}</script><p>即</p>
+<script type="math/tex; mode=display">\prod_{T=1}^n \left(\prod_{d\mid T} f[d]^{\mu\left(\frac{T}{d} \right) } \right)^{\left\lfloor \frac{n}{T} \right\rfloor \left\lfloor \frac{m}{T} \right\rfloor}</script></li>
+</ul>
+<hr>
+<h3 id="要带更多的脑子"><a href="#要带更多的脑子" class="headerlink" title="要带更多的脑子"></a>要带更多的脑子</h3><h4 id="数据结构"><a href="#数据结构" class="headerlink" title="+数据结构"></a>+数据结构</h4><ul>
+<li><p>$1.$</p>
+<p><a href="https://www.luogu.com.cn/problem/P3312">P3312 [SDOI2014]数表</a></p>
+<p>给定 $A$ , 求 $\displaystyle{\sum_{i=1}^n \sum_{j=1}^m d( \ \gcd(i,j) \ ) [ \ d( \ (\gcd(i,j) \ ) \leq A \ ]}$</p>
+<p><del>众所周知 $d(n)$ 代表约数的和</del></p>
+<script type="math/tex; mode=display">原式=\sum_{T=1}^n \left\lfloor \frac{n}{kd} \right\rfloor \left\lfloor \frac{m}{kd} \right\rfloor \sum_{x\mid T}\mu(x) * d\left(\frac{T}{x} \right) \left[ d\left(\frac{T}{x} \right) \leq A \right]</script><p>$设 \displaystyle{f(i)=\sum_{x\mid T}\mu(x) * d\left( \frac{T}{x} \right) \left[ d\left(\frac{T}{x} \right) \leq A \right]}$</p>
+<p>看起来是关于 $(T,A)$</p>
+<p>将询问按 $A$ 升序排列并提前处理 $d(x)$</p>
+<p>当 $A$ 增大时，该函数值也以一定规律增大 $\Rightarrow$ 看成插入</p>
+<p>$\therefore$ 需要支持插入与查询的数据结构 $\Rightarrow$ 树状数组</p>
+<p>每次暴力加入所有 $d(x) \leq A$ 的 $x$</p>
+<p>即对所有 $kx\leq n$ 都有 $f(kx)+=d(xyt4)\mu(k)$</p>
+</li>
+</ul>
+<hr>
+<h2 id="杜教筛"><a href="#杜教筛" class="headerlink" title="杜教筛"></a>杜教筛</h2><ul>
+<li><p>用途：求积性函数 $\operatorname{f}(n)$ 的前缀和，即 $\sum_{i=1}^n f(i)$，其时间复杂度低于线性</p>
+</li>
+<li><p>方法：</p>
+<p>$f(i)$ 为已知的函数</p>
+<p>设 $S(n)=\sum f(i)$</p>
+<p>出于前缀和的考虑，自行选取函数 $g(n)$ ，最好使 $f\circ g$ 的式子中没有除 $n$ 以外的变量</p>
+<p>带入公式</p>
+</li>
+<li><p>推导</p>
+<p>设函数 $S(n)=\sum_{i=1}^n f(i)$</p>
+<p>要计算出 $S(n)$ 关于 $S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)$ 的递推式才能使复杂度低于线性</p>
+<p>设 $S(n)=\sum_{i=1}^n f(i)$</p>
+<p>任取一数论函数 $\operatorname{g}$ 均有:</p>
+<script type="math/tex; mode=display">\begin{aligned}
+\sum_{i=1}^n \sum_{d\mid i} f(d)\cdot g\left(\frac{i}{d}\right)
+&=\sum_{i=1}^n f\circ g \\
+&=\sum_{i=1}^n g\circ f &\text{迪利克雷卷积性质}\\
+&=\sum_{d=1}^n \sum_{k=1}^{\left\lfloor \frac{n}{d} \right\rfloor} g(d)f(k) &\text{改为枚举d，d的倍数k} \\
+&=\sum_{d=1}^n g(d) S\left(\left\lfloor \frac{n}{d} \right\rfloor \right) \\
+&=\sum_{i=1}^n (f\circ g) &\text{直接由原式得}\\
+\end{aligned}</script><p>提取出 $i=1$ 时的 $g(1)S(n)$</p>
+<pre><code>注：如果g是积性函数，g(1)=1
+</code></pre><script type="math/tex; mode=display">\therefore g(1)S(n)=\sum_{i=1}^n (f\circ g) \ - \ \sum_{d=2}^n g(d) S\left(\left\lfloor \frac{n}{d} \right\rfloor \right)</script></li>
+<li><p>$\mu$ 的前缀和</p>
+<p>$设\operatorname{g}=I$</p>
+<pre><code>I是恒等函数, 见积性函数
+</code></pre><script type="math/tex; mode=display">\because \sum_{d\mid n} \mu \circ I=\epsilon(n)</script><script type="math/tex; mode=display">又\because g(1)S(n)=\sum_{i=1}^n \sum_{d\mid i} f(d)\cdot g\left(\frac{i}{d}\right) \ - \ \sum_{d=2}^n g(d) S\left(\left\lfloor \frac{n}{d} \right\rfloor \right)</script><script type="math/tex; mode=display">\therefore S(n)=\sum_{i=1}^n\epsilon(i) \ - \ \sum_{d=2}^n S\left(\left\lfloor \frac{n}{d} \right\rfloor \right)</script><script type="math/tex; mode=display">\therefore S(n)=1 \ - \ \sum_{d=2}^n S\left(\left\lfloor \frac{n}{d} \right\rfloor \right)</script><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">ll <span class="title">get_mu</span><span class="params">(ll x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x&lt;MAX) <span class="keyword">return</span> sum_mu[x];<span class="comment">//直接线性筛</span></span><br><span class="line">    <span class="keyword">if</span>(mp_mu[x]) <span class="keyword">return</span> mp_mu[x];</span><br><span class="line">    ll ans=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(ll l=<span class="number">1</span>,r;l&lt;=x;l=r+<span class="number">1</span>)&#123;</span><br><span class="line">        r=x/(x/l);</span><br><span class="line">        ans-=<span class="built_in">get_mu</span>(x/l)*(r-l+<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> mp_mu[x]=ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>$\varphi$ 的前缀和</p>
+<script type="math/tex; mode=display">由\varphi 性质得 n=\sum_{d\mid n}\varphi(d)</script><script type="math/tex; mode=display">\therefore id=\varphi \circ I</script><p>直接套到杜教筛公式得：</p>
+<script type="math/tex; mode=display">\begin{aligned}
+S(n)
+&=\sum_{i=1}^ni-\sum_{i=2}^nS\left(\left\lfloor \frac{n}{i} \right\rfloor\right) \\
+&=\frac{n(n+1)}{2} -\sum_{i=2}^nS\left(\left\lfloor \frac{n}{i} \right\rfloor\right)
+\end{aligned}</script><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">    vis[<span class="number">0</span>]=vis[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">    mu[<span class="number">1</span>]=phi[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">2</span>;i&lt;N;++i)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!vis[i])&#123;</span><br><span class="line">            p[++tot]=i;</span><br><span class="line">            mu[i]=<span class="number">-1</span>;</span><br><span class="line">            phi[i]=i<span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(ll j=<span class="number">1</span>;j&lt;=tot &amp;&amp; i*p[j]&lt;N;++j)&#123;</span><br><span class="line">            rei tmp=i*p[j];</span><br><span class="line">            vis[tmp]=<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(i%p[j])&#123;</span><br><span class="line">                mu[tmp]=-mu[i];</span><br><span class="line">                phi[tmp]=phi[i]*phi[ p[j] ];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                mu[tmp]=<span class="number">0</span>;</span><br><span class="line">                phi[tmp]=phi[i]*p[j];</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;N;++i)&#123;</span><br><span class="line">        mu[i]+=mu[i<span class="number">-1</span>];</span><br><span class="line">        phi[i]+=phi[i<span class="number">-1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">getmu</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x&lt;N) <span class="keyword">return</span> mu[x];</span><br><span class="line">    <span class="keyword">if</span>(summu[x]) <span class="keyword">return</span> summu[x];</span><br><span class="line">    ll ans=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(ll l=<span class="number">2</span>,r;l&lt;=(ll)x;l=r+<span class="number">1</span>)&#123;</span><br><span class="line">        r=x/(x/l);</span><br><span class="line">        ans-=<span class="number">1ll</span>*(r-l+<span class="number">1</span>)*<span class="built_in">getmu</span>(x/l);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> summu[x]=ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">getphi</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x&lt;N) <span class="keyword">return</span> phi[x];</span><br><span class="line">    <span class="keyword">if</span>(sumphi[x]) <span class="keyword">return</span> sumphi[x];</span><br><span class="line">    ll ans=<span class="number">1ll</span>*x*(x+<span class="number">1</span>)/<span class="number">2</span>;</span><br><span class="line">    <span class="keyword">for</span>(ll l=<span class="number">2</span>,r;l&lt;=(ll)x;l=r+<span class="number">1</span>)&#123;</span><br><span class="line">        r=x/(x/l);</span><br><span class="line">        ans-=<span class="number">1ll</span>*(r-l+<span class="number">1</span>)*<span class="built_in">getphi</span>(x/l);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sumphi[x]=ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>莫比乌斯反演</tag>
+      </tags>
   </entry>
 </search>

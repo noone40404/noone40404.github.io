@@ -19,19 +19,20 @@
     var CONFIG = {"hostname":"noone40404.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="对不起，您所访问的页面不存在或者已删除。      您可以点击此处返回首页。    noone40404">
-<meta property="og:type" content="website">
-<meta property="og:title" content="404 Not Found">
-<meta property="og:url" content="http://noone40404.github.io/404.html">
+  <meta name="description" content="写总结的地方 将式子转化为卷积形式: $\displaystyle{\sum_{i&#x3D;1}^n A_i B_{n-i}}$  P3338 [ZJOI2014]力 题意：求 $E_j&#x3D;\displaystyle{\sum_{i&#x3D;1}^{j-1}\frac{q_j}{\left(i-j\right)^2} - \sum_{i&#x3D;j+1}^n \frac{q_j}{\left(i-j\right)^2}}$">
+<meta property="og:type" content="article">
+<meta property="og:title" content="确实不会的多项式">
+<meta property="og:url" content="http://noone40404.github.io/2021/05/05/%E7%A1%AE%E5%AE%9E%E4%B8%8D%E4%BC%9A%E7%9A%84%E5%A4%9A%E9%A1%B9%E5%BC%8F/index.html">
 <meta property="og:site_name" content="noone___&#39;s blog">
-<meta property="og:description" content="对不起，您所访问的页面不存在或者已删除。      您可以点击此处返回首页。    noone40404">
+<meta property="og:description" content="写总结的地方 将式子转化为卷积形式: $\displaystyle{\sum_{i&#x3D;1}^n A_i B_{n-i}}$  P3338 [ZJOI2014]力 题意：求 $E_j&#x3D;\displaystyle{\sum_{i&#x3D;1}^{j-1}\frac{q_j}{\left(i-j\right)^2} - \sum_{i&#x3D;j+1}^n \frac{q_j}{\left(i-j\right)^2}}$">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2019-09-27T04:21:37.000Z">
-<meta property="article:modified_time" content="2021-07-04T08:51:03.620Z">
+<meta property="article:published_time" content="2021-05-05T11:15:48.000Z">
+<meta property="article:modified_time" content="2021-07-04T11:16:35.667Z">
 <meta property="article:author" content="noone___">
+<meta property="article:tag" content="多项式">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://noone40404.github.io/404">
+<link rel="canonical" href="http://noone40404.github.io/2021/05/05/%E7%A1%AE%E5%AE%9E%E4%B8%8D%E4%BC%9A%E7%9A%84%E5%A4%9A%E9%A1%B9%E5%BC%8F/">
 
 
 <script id="page-configurations">
@@ -39,13 +40,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>404 Not Found | noone___'s blog
-</title>
+  <title>确实不会的多项式 | noone___'s blog</title>
   
 
 
@@ -190,49 +190,216 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
-          <div class="content page posts-expand">
+          <div class="content post posts-expand">
             
 
     
-    
-    
-    <div class="post-block" lang="zh-CN">
-      <header class="post-header">
-
-<h1 class="post-title" itemprop="name headline">404 Not Found
-</h1>
-
-<div class="post-meta">
   
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2021/05/05/%E7%A1%AE%E5%AE%9E%E4%B8%8D%E4%BC%9A%E7%9A%84%E5%A4%9A%E9%A1%B9%E5%BC%8F/">
 
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="noone___">
+      <meta itemprop="description" content="自闭中">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="noone___'s blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          确实不会的多项式
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-05-05 19:15:48" itemprop="dateCreated datePublished" datetime="2021-05-05T19:15:48+08:00">2021-05-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-07-04 19:16:35" itemprop="dateModified" datetime="2021-07-04T19:16:35+08:00">2021-07-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="写总结的地方"><a href="#写总结的地方" class="headerlink" title="写总结的地方"></a>写总结的地方</h2><ul>
+<li>将式子转化为卷积形式: $\displaystyle{\sum_{i=1}^n A_i B_{n-i}}$</li>
+</ul>
+<h3 id="P3338-ZJOI2014-力"><a href="#P3338-ZJOI2014-力" class="headerlink" title="P3338 [ZJOI2014]力"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3338">P3338 [ZJOI2014]力</a></h3><ul>
+<li><p>题意：<br>求 $E_j=\displaystyle{\sum_{i=1}^{j-1}\frac{q_j}{\left(i-j\right)^2} - \sum_{i=j+1}^n \frac{q_j}{\left(i-j\right)^2}}$</p>
+<p>$q_i被消掉了qwq$</p>
+</li>
+<li><p>解：</p>
+<ul>
+<li><p>先简化数据范围</p>
+<script type="math/tex; mode=display">\sum_{i=1}^{j-1} \Rightarrow \sum_{i=0}^{j}</script></li>
+<li><p>化成能算的样子</p>
+<p>设 $f[i]=q_j \ , f’[i]=f[n-i] \ , \ g[i]=\frac{1}{i^2}$</p>
+<script type="math/tex; mode=display">\begin{aligned}
+原式
+&=\underbrace{\sum_{i=1}^j f[i] \cdot g[j-i]}_{\rm 已经是卷积形式} - \sum_{i=j}^n f[i] \cdot g[i-j] \\
+&=\sum_{i=1}^j f[i] \cdot g[j-i] - \underbrace{\sum_{i=0}^{n-j} f[i+j] \cdot g[i]}_{\rm 然而还不能算} \\
+&设 t=n-j \\
+&=\sum_{i=1}^j f[i] \cdot g[j-i] - \sum_{i=0}^t f'[t-i] \cdot g[i] \\
+\end{aligned}</script></li>
+</ul>
+<p>$\bf{Trick:}$ <strong>翻转数列</strong> </p>
+<p>&amp;&amp; 把函数设成数组以看起来更好算</p>
+</li>
+</ul>
+<h3 id="P3723-AH2017-HNOI2017-礼物"><a href="#P3723-AH2017-HNOI2017-礼物" class="headerlink" title="P3723 [AH2017/HNOI2017]礼物"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3723">P3723 [AH2017/HNOI2017]礼物</a></h3><ul>
+<li><p>题意：</p>
+<p>给定两个序列 $a,b$ ，顺序可以移动，求 $\displaystyle{\sum_{i=1}^n \left(a_i-b_i+c \right)^2}$ 最小值</p>
+</li>
+<li><p>解：</p>
+<script type="math/tex; mode=display">原式=\underbrace{\sum_{i=1}^n a_i^2+\sum_{i=1}^n b_i^2}_{\rm [一]可以预处理} - \underbrace{\sum_{i=1}^n a_ib_i}_{\rm [二]见下面} + \underbrace{nc^2 + 2c\left(\sum_{i=1}^na_i - \sum_{i=1}^nb_i \right)}_{\rm [三]关于 c 的二次函数}</script><p>由题：要取 $\displaystyle{\sum_{i=1}^n a_ib_i}$ 的最大值</p>
+<p>考虑移动 $k$ 位时：</p>
+<p>先把环 $b$ 变为链 $\Rightarrow$ $b[i+n]=b[i]$</p>
+<p>转化为考虑 $\displaystyle{\sum_{i=1}^n a_ib_{i+k} }$</p>
+<p>翻转 $a$ 得 $\displaystyle{\sum_{i=1}^n b_{i+k} \cdot a_{n-i+1}}$ ， 符合卷积形式</p>
+<p>$\therefore \tt{FFT}\left(a_{reserved}\right),\tt{FFT}(b)$</p>
+<p>$\bf{Trick:}$ 由于 $c$ 是整数，用二次函数对称轴来算 [式三],比枚举 $-100\leq c \geq 100$ 更好</p>
+<p>算出$\left\lfloor -\frac{a}{b} \right\rfloor$ 和 $\left\lceil -\frac{a}{b} \right\rceil$ ， 取 $\min$</p>
+</li>
+</ul>
+<h3 id="P5488-差分与前缀和"><a href="#P5488-差分与前缀和" class="headerlink" title="P5488 差分与前缀和"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5488">P5488 差分与前缀和</a></h3><ul>
+<li><p>题意：</p>
+<p>求数列 $a$ 的 $k$ 维前缀和或差分</p>
+</li>
+<li><p>解：</p>
+<p>设 $\displaystyle{F(x)=\sum_{i=0}^\infty a_ix^i }$</p>
+<ul>
+<li><p>前缀和</p>
+<p>比较前缀和与卷积</p>
+<p>$\displaystyle{a_i=\sum_{j=1}^i a_j \qquad \And\And \qquad S_i=\sum_{j=1}^i A_j B_{i-j}}$</p>
+<p>发现需要卷一个系数都为 $1$ 的多项式 $G(x)$</p>
+<p>以样例为例：</p>
+<script type="math/tex; mode=display">\begin{aligned}
+&F(x)*G(x) \\
+&=(1+9x+2x^2+6x^3+0x^4+8x^6+7x^7) \cdot (1+x+x^2+x^3+x^4+ \cdots +x^{\infty}) \\
+&=1+\underbrace{9x^1 + \underbrace{2x^2 + \underbrace{6x^3 + \underbrace{0x^4 + \underbrace{8x^6 + \underbrace{7x^7}_{\rm 系数+8}}_{\rm 系数+0}}_{\rm 系数+6}}_{\rm 系数+2}}_{\rm 系数+9}}_{\rm 系数+1}
+\end{aligned}</script><script type="math/tex; mode=display">
+发现 $F(x)\cdot G(x)$ 所得多项式就是 $F$ 的一阶前缀和
+
+$\displaystyle{\therefore 显然有 G(x)=\frac{1}{1-x}}$
+
+$\displaystyle{\therefore k阶前缀和 \Rightarrow
+ F(x) \cdot \frac{1}{\left(1-x \right)^k}}$
+
+$\displaystyle{\frac{1}{\left(1-x \right)^k} 的第 n 项系数就是 \dbinom{n+k-1}{k-1} }$
+
+$\displaystyle{\therefore a_i=\sum_{j=1}^{i-1}\dbinom{j+k-1}{k-1} \cdot a_{i-j} }$
+
+设组合数递推式 $g_i=\dbinom{i+k-1}{k-1}$
+
+$$\begin{aligned}
+\therefore
+g_i
+&=\frac{g_{i-1}\times (k+i-1)}{i}\%p &\text{只会在计算中用到这个}\\
+&=\left(\frac{g_{i-1} }{i}\%p \right)\times ((k+i-1)\%p) \\
+&=\left(\frac{g_{i-1} }{i}\%p \right)\times ((k\%p+i-1)\%p) &\text{只是为了推 $k$ 可以取模}\\
+\end{aligned}</script><p>$\therefore$ 可以对 $k$ 取模</p>
+</li>
+<li><p>差分</p>
+<p>易得 $F(x) * (1-x)$ 所得的多项式就是差分后</p>
+<p>同理得 $\left(1-x\right)^k$</p>
+<script type="math/tex; mode=display">\begin{aligned}
+B
+&=F(x) \cdot \left(1-x\right)^k \\
+&=F(x) \cdot \sum_{i=0}^{\infty} \dbinom{k}{i} \left(-x \right)^i \\
+&=F(x) \cdot \sum_{i=0}^{\infty} \left(-1 \right)^i \cdot \dbinom{k}{i} x^i \\
+\end{aligned}</script><p>看组合数递推式: $\dbinom{k}{i}$</p>
+<script type="math/tex; mode=display">\dbinom{k}{0}=1</script><script type="math/tex; mode=display">\dbinom{k}{1}=\frac{k!}{(k-1)!}=k</script><script type="math/tex; mode=display">\dbinom{k}{2}=\frac{k!}{2!(k-2)!}=\frac{k(k-1)}{2}</script><script type="math/tex; mode=display">\dbinom{k}{3}=\frac{k!}{3!(k-3)!}=\frac{k(k-1)(k-2)}{2\times 3}</script><script type="math/tex; mode=display">\dbinom{k}{i}=\dbinom{k}{i-1} \cdot \frac{k-i+1}{i} \qquad\text{用这个递推}</script></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>noone___
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://noone40404.github.io/2021/05/05/%E7%A1%AE%E5%AE%9E%E4%B8%8D%E4%BC%9A%E7%9A%84%E5%A4%9A%E9%A1%B9%E5%BC%8F/" title="确实不会的多项式">http://noone40404.github.io/2021/05/05/确实不会的多项式/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
 </div>
 
-</header>
 
-      
-      
-      
-      <div class="post-body">
-          <p><center> 
-    对不起，您所访问的页面不存在或者已删除。 
-    您可以<a href="https://noone40404.github.io>">点击此处</a>返回首页。
-</center></p>
-<blockquote class="blockquote-center">  noone40404 </blockquote>
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E5%A4%9A%E9%A1%B9%E5%BC%8F/" rel="tag"><i class="fa fa-tag"></i> 多项式</a>
+          </div>
+
+        
 
 
-      </div>
-      
-      
-      
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/05/05/%E5%AD%A6%E4%B8%8D%E4%BC%9A%E7%9A%84%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/" rel="prev" title="学不会的生成函数">
+      <i class="fa fa-chevron-left"></i> 学不会的生成函数
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/07/01/%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86/" rel="next" title="树链剖分">
+      树链剖分 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
+      </footer>
     
+  </article>
+  
+  
+  
 
-    
-    
-    
 
 
           </div>
@@ -284,6 +451,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99%E6%80%BB%E7%BB%93%E7%9A%84%E5%9C%B0%E6%96%B9"><span class="nav-number">1.</span> <span class="nav-text">写总结的地方</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#P3338-ZJOI2014-%E5%8A%9B"><span class="nav-number">1.1.</span> <span class="nav-text">P3338 [ZJOI2014]力</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P3723-AH2017-HNOI2017-%E7%A4%BC%E7%89%A9"><span class="nav-number">1.2.</span> <span class="nav-text">P3723 [AH2017&#x2F;HNOI2017]礼物</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P5488-%E5%B7%AE%E5%88%86%E4%B8%8E%E5%89%8D%E7%BC%80%E5%92%8C"><span class="nav-number">1.3.</span> <span class="nav-text">P5488 差分与前缀和</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -501,6 +669,61 @@ window.addEventListener('pjax:success', () => {
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
@@ -515,7 +738,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'noone40404.github.io',
       owner       : 'noone40404',
       admin       : ['noone40404'],
-      id          : '516a35d265e49707e113184afbcbb8c8',
+      id          : '8c013181a64d2396be6d48e4b705fb89',
         language: 'zn-CN',
       distractionFreeMode: true
     });
