@@ -6,7 +6,7 @@
   <link href="http://noone40404.github.io/atom.xml" rel="self"/>
   
   <link href="http://noone40404.github.io/"/>
-  <updated>2021-07-04T11:25:19.856Z</updated>
+  <updated>2021-07-04T11:41:04.465Z</updated>
   <id>http://noone40404.github.io/</id>
   
   <author>
@@ -21,13 +21,42 @@
     <link href="http://noone40404.github.io/2021/07/01/CF%E7%9A%84dp%E9%A2%98/"/>
     <id>http://noone40404.github.io/2021/07/01/CF%E7%9A%84dp%E9%A2%98/</id>
     <published>2021-07-01T11:20:02.000Z</published>
-    <updated>2021-07-04T11:25:19.856Z</updated>
+    <updated>2021-07-04T11:41:04.465Z</updated>
     
     
-      
-      
-    <summary type="html">&lt;h2 id=&quot;CF1515E-Phoenix-and-Computers&quot;&gt;&lt;a href=&quot;#CF1515E-Phoenix-and-Computers&quot; class=&quot;headerlink&quot; title=&quot;CF1515E Phoenix and Computers&quot;&gt;&lt;/a</summary>
-      
+    <summary type="html">&lt;h2 id=&quot;CF1515E-Phoenix-and-Computers&quot;&gt;&lt;a href=&quot;#CF1515E-Phoenix-and-Computers&quot; class=&quot;headerlink&quot; title=&quot;CF1515E Phoenix and Computers&quot;&gt;&lt;/a&gt;CF1515E Phoenix and Computers&lt;/h2&gt;&lt;details&gt;
+    &lt;summary&gt;我们始终不知道EI是怎么写的&lt;/summary&gt;
+        &lt;pre&gt;&lt;code&gt;
+        #include&lt;bits stdc++.h&gt;
+        #define R(X,Y) X=(X+Y)%P;
+        int64_t g[410],n,P,k,a,f;int main()&amp;#123;std::cin&gt;&gt;n&gt;&gt;P;g[0]=f=k=1;for(--n;n&gt;=0;n-=2,++k)&amp;#123;for(int i=1;i&lt;=n;++i)r(g[i],g[i-1]*k*2)f=f*k%p;r(a,g[n]*f)&amp;#125;printf(&quot;%d\n&quot;,a);&amp;#125; &lt; code&gt;&lt;/=n;++i)r(g[i],g[i-1]*k*2)f=f*k%p;r(a,g[n]*f)&amp;#125;printf(&quot;%d\n&quot;,a);&amp;#125;&gt;&lt;/bits&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/details&gt;
+
+
+&lt;h3 id=&quot;题意&quot;&gt;&lt;a href=&quot;#题意&quot; class=&quot;headerlink&quot; title=&quot;题意&quot;&gt;&lt;/a&gt;题意&lt;/h3&gt;&lt;p&gt;要开启 $n$ 台电脑，若第 $i-1,i+1$ 台被开启，第 $i$ 台自动开，询问打开所有电脑的方案数&lt;/p&gt;
+&lt;h3 id=&quot;解&quot;&gt;&lt;a href=&quot;#解&quot; class=&quot;headerlink&quot; title=&quot;解&quot;&gt;&lt;/a&gt;解&lt;/h3&gt;&lt;p&gt;题解里有一个吊打标算的 $O(n^2)$ 做法&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;上面EI的代码好像也是 $O(n^2)$&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;设 $dp_{i,j}$ 表示已开机 $i$ 台，形成 $j$ 个连续段，每段距离 $&amp;gt;1$ 且不确定&lt;/p&gt;
+&lt;p&gt;考虑转移：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;新建段&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$dp_{i+1,j+1}=\sum dp_{i,j}*(j+1)$ ，即在 $j+1$ 个间隔中选择一个打开&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;扩展段&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$dp_{i+1,j}=\sum dp_{i,j}&lt;em&gt;j&lt;/em&gt;2$ ，即在一段的边界+1处开&lt;/li&gt;
+&lt;li&gt;$dp_{i+2,j}=\sum dp_{i,j}&lt;em&gt;j&lt;/em&gt;2$ ，即在一段的边界+2处开&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;合并段（仅当 $j\geq 2$ 时）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$dp_{i+2,j-1}=\sum dp_{i,j}&lt;em&gt;(j-1)&lt;/em&gt;2$ ，即当两边距离为 $2$ 时有两种开法&lt;/li&gt;
+&lt;li&gt;$dp_{i+3,j-1}=\sum dp_{i,j}*(j-1)$ ，即两边距离为 $3$ 时开中间&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</summary>
     
     
     
@@ -46,10 +75,15 @@
     <updated>2021-07-04T11:10:29.750Z</updated>
     
     
-      
-      
-    <summary type="html">&lt;h2 id=&quot;关于长链剖分中指针的理解&quot;&gt;&lt;a href=&quot;#关于长链剖分中指针的理解&quot; class=&quot;headerlink&quot; title=&quot;关于长链剖分中指针的理解&quot;&gt;&lt;/a&gt;关于长链剖分中指针的理解&lt;/h2&gt;&lt;p&gt;与指针有关的变量：$&lt;em&gt;dp[N],tmp[N],&lt;/e</summary>
-      
+    <summary type="html">&lt;h2 id=&quot;关于长链剖分中指针的理解&quot;&gt;&lt;a href=&quot;#关于长链剖分中指针的理解&quot; class=&quot;headerlink&quot; title=&quot;关于长链剖分中指针的理解&quot;&gt;&lt;/a&gt;关于长链剖分中指针的理解&lt;/h2&gt;&lt;p&gt;与指针有关的变量：$&lt;em&gt;dp[N],tmp[N],&lt;/em&gt;pos$&lt;/p&gt;
+&lt;hr&gt;
+&lt;figure class=&quot;highlight cpp&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;pos=tmp;&lt;span class=&quot;comment&quot;&gt;//将pos指向tmp空间&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;dp[&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;]=pos, pos+=height[&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &lt;span class=&quot;comment&quot;&gt;//改变后pos加上dp[1]所需的长度，防止内存冲突&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;可以把 $*dp[1]$ 看成指向 $tmp$ 上一段长为 $height[1]$ 的指针&lt;/p&gt;
+&lt;p&gt;那么指针 $dp[1]$ 与 $tmp[\ 0,…height[1]-1 \ ]$ 共同构成了 $dp[1][\ 0,…,height[1]-1\ ]$&lt;/p&gt;
+&lt;hr&gt;
+&lt;figure class=&quot;highlight cpp&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;dp[to]=pos, pos+=len;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;与上面相同，在进入 $dfs2$ 前开好 $dp[to]$ 所需的空间，即以 $to$ 为起点的链，其长度为 $len$&lt;/p&gt;
+&lt;p&gt;而对于链上其他点(即点 $to$ 的长儿子，其长儿子的长儿子，…)，不会进入当前行，即不需开新空间&lt;/p&gt;</summary>
     
     
     
@@ -68,11 +102,98 @@
     <updated>2021-07-04T11:16:35.667Z</updated>
     
     
-      
-      
     <summary type="html">&lt;h2 id=&quot;写总结的地方&quot;&gt;&lt;a href=&quot;#写总结的地方&quot; class=&quot;headerlink&quot; title=&quot;写总结的地方&quot;&gt;&lt;/a&gt;写总结的地方&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;将式子转化为卷积形式: $\displaystyle{\sum_{i=1}^n A_i B_{n</summary>
-      
+&lt;li&gt;将式子转化为卷积形式: $\displaystyle{\sum_{i=1}^n A_i B_{n-i}}$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;P3338-ZJOI2014-力&quot;&gt;&lt;a href=&quot;#P3338-ZJOI2014-力&quot; class=&quot;headerlink&quot; title=&quot;P3338 [ZJOI2014]力&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://www.luogu.com.cn/problem/P3338&quot;&gt;P3338 [ZJOI2014]力&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;题意：&lt;br&gt;求 $E_j=\displaystyle{\sum_{i=1}^{j-1}\frac{q_j}{\left(i-j\right)^2} - \sum_{i=j+1}^n \frac{q_j}{\left(i-j\right)^2}}$&lt;/p&gt;
+&lt;p&gt;$q_i被消掉了qwq$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;解：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;先简化数据范围&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\sum_{i=1}^{j-1} \Rightarrow \sum_{i=0}^{j}&lt;/script&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;化成能算的样子&lt;/p&gt;
+&lt;p&gt;设 $f[i]=q_j \ , f’[i]=f[n-i] \ , \ g[i]=\frac{1}{i^2}$&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{aligned}
+原式
+&amp;=\underbrace{\sum_{i=1}^j f[i] \cdot g[j-i]}_{\rm 已经是卷积形式} - \sum_{i=j}^n f[i] \cdot g[i-j] \\
+&amp;=\sum_{i=1}^j f[i] \cdot g[j-i] - \underbrace{\sum_{i=0}^{n-j} f[i+j] \cdot g[i]}_{\rm 然而还不能算} \\
+&amp;设 t=n-j \\
+&amp;=\sum_{i=1}^j f[i] \cdot g[j-i] - \sum_{i=0}^t f&#39;[t-i] \cdot g[i] \\
+\end{aligned}&lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;$\bf{Trick:}$ &lt;strong&gt;翻转数列&lt;/strong&gt; &lt;/p&gt;
+&lt;p&gt;&amp;amp;&amp;amp; 把函数设成数组以看起来更好算&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;P3723-AH2017-HNOI2017-礼物&quot;&gt;&lt;a href=&quot;#P3723-AH2017-HNOI2017-礼物&quot; class=&quot;headerlink&quot; title=&quot;P3723 [AH2017/HNOI2017]礼物&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://www.luogu.com.cn/problem/P3723&quot;&gt;P3723 [AH2017/HNOI2017]礼物&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;题意：&lt;/p&gt;
+&lt;p&gt;给定两个序列 $a,b$ ，顺序可以移动，求 $\displaystyle{\sum_{i=1}^n \left(a_i-b_i+c \right)^2}$ 最小值&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;解：&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;原式=\underbrace{\sum_{i=1}^n a_i^2+\sum_{i=1}^n b_i^2}_{\rm [一]可以预处理} - \underbrace{\sum_{i=1}^n a_ib_i}_{\rm [二]见下面} + \underbrace{nc^2 + 2c\left(\sum_{i=1}^na_i - \sum_{i=1}^nb_i \right)}_{\rm [三]关于 c 的二次函数}&lt;/script&gt;&lt;p&gt;由题：要取 $\displaystyle{\sum_{i=1}^n a_ib_i}$ 的最大值&lt;/p&gt;
+&lt;p&gt;考虑移动 $k$ 位时：&lt;/p&gt;
+&lt;p&gt;先把环 $b$ 变为链 $\Rightarrow$ $b[i+n]=b[i]$&lt;/p&gt;
+&lt;p&gt;转化为考虑 $\displaystyle{\sum_{i=1}^n a_ib_{i+k} }$&lt;/p&gt;
+&lt;p&gt;翻转 $a$ 得 $\displaystyle{\sum_{i=1}^n b_{i+k} \cdot a_{n-i+1}}$ ， 符合卷积形式&lt;/p&gt;
+&lt;p&gt;$\therefore \tt{FFT}\left(a_{reserved}\right),\tt{FFT}(b)$&lt;/p&gt;
+&lt;p&gt;$\bf{Trick:}$ 由于 $c$ 是整数，用二次函数对称轴来算 [式三],比枚举 $-100\leq c \geq 100$ 更好&lt;/p&gt;
+&lt;p&gt;算出$\left\lfloor -\frac{a}{b} \right\rfloor$ 和 $\left\lceil -\frac{a}{b} \right\rceil$ ， 取 $\min$&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;P5488-差分与前缀和&quot;&gt;&lt;a href=&quot;#P5488-差分与前缀和&quot; class=&quot;headerlink&quot; title=&quot;P5488 差分与前缀和&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://www.luogu.com.cn/problem/P5488&quot;&gt;P5488 差分与前缀和&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;题意：&lt;/p&gt;
+&lt;p&gt;求数列 $a$ 的 $k$ 维前缀和或差分&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;解：&lt;/p&gt;
+&lt;p&gt;设 $\displaystyle{F(x)=\sum_{i=0}^\infty a_ix^i }$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;前缀和&lt;/p&gt;
+&lt;p&gt;比较前缀和与卷积&lt;/p&gt;
+&lt;p&gt;$\displaystyle{a_i=\sum_{j=1}^i a_j \qquad \And\And \qquad S_i=\sum_{j=1}^i A_j B_{i-j}}$&lt;/p&gt;
+&lt;p&gt;发现需要卷一个系数都为 $1$ 的多项式 $G(x)$&lt;/p&gt;
+&lt;p&gt;以样例为例：&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{aligned}
+&amp;F(x)*G(x) \\
+&amp;=(1+9x+2x^2+6x^3+0x^4+8x^6+7x^7) \cdot (1+x+x^2+x^3+x^4+ \cdots +x^{\infty}) \\
+&amp;=1+\underbrace{9x^1 + \underbrace{2x^2 + \underbrace{6x^3 + \underbrace{0x^4 + \underbrace{8x^6 + \underbrace{7x^7}_{\rm 系数+8}}_{\rm 系数+0}}_{\rm 系数+6}}_{\rm 系数+2}}_{\rm 系数+9}}_{\rm 系数+1}
+\end{aligned}&lt;/script&gt;&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+发现 $F(x)\cdot G(x)$ 所得多项式就是 $F$ 的一阶前缀和
+
+$\displaystyle{\therefore 显然有 G(x)=\frac{1}{1-x}}$
+
+$\displaystyle{\therefore k阶前缀和 \Rightarrow
+ F(x) \cdot \frac{1}{\left(1-x \right)^k}}$
+
+$\displaystyle{\frac{1}{\left(1-x \right)^k} 的第 n 项系数就是 \dbinom{n+k-1}{k-1} }$
+
+$\displaystyle{\therefore a_i=\sum_{j=1}^{i-1}\dbinom{j+k-1}{k-1} \cdot a_{i-j} }$
+
+设组合数递推式 $g_i=\dbinom{i+k-1}{k-1}$
+
+$$\begin{aligned}
+\therefore
+g_i
+&amp;=\frac{g_{i-1}\times (k+i-1)}{i}\%p &amp;\text{只会在计算中用到这个}\\
+&amp;=\left(\frac{g_{i-1} }{i}\%p \right)\times ((k+i-1)\%p) \\
+&amp;=\left(\frac{g_{i-1} }{i}\%p \right)\times ((k\%p+i-1)\%p) &amp;\text{只是为了推 $k$ 可以取模}\\
+\end{aligned}&lt;/script&gt;&lt;p&gt;$\therefore$ 可以对 $k$ 取模&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;差分&lt;/p&gt;
+&lt;p&gt;易得 $F(x) * (1-x)$ 所得的多项式就是差分后&lt;/p&gt;
+&lt;p&gt;同理得 $\left(1-x\right)^k$&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{aligned}
+B
+&amp;=F(x) \cdot \left(1-x\right)^k \\
+&amp;=F(x) \cdot \sum_{i=0}^{\infty} \dbinom{k}{i} \left(-x \right)^i \\
+&amp;=F(x) \cdot \sum_{i=0}^{\infty} \left(-1 \right)^i \cdot \dbinom{k}{i} x^i \\
+\end{aligned}&lt;/script&gt;&lt;p&gt;看组合数递推式: $\dbinom{k}{i}$&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\dbinom{k}{0}=1&lt;/script&gt;&lt;script type=&quot;math/tex; mode=display&quot;&gt;\dbinom{k}{1}=\frac{k!}{(k-1)!}=k&lt;/script&gt;&lt;script type=&quot;math/tex; mode=display&quot;&gt;\dbinom{k}{2}=\frac{k!}{2!(k-2)!}=\frac{k(k-1)}{2}&lt;/script&gt;&lt;script type=&quot;math/tex; mode=display&quot;&gt;\dbinom{k}{3}=\frac{k!}{3!(k-3)!}=\frac{k(k-1)(k-2)}{2\times 3}&lt;/script&gt;&lt;script type=&quot;math/tex; mode=display&quot;&gt;\dbinom{k}{i}=\dbinom{k}{i-1} \cdot \frac{k-i+1}{i} \qquad\text{用这个递推}&lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</summary>
     
     
     
@@ -91,12 +212,50 @@
     <updated>2021-07-04T11:15:26.216Z</updated>
     
     
-      
-      
     <summary type="html">&lt;h2 id=&quot;不知道怎么开始&quot;&gt;&lt;a href=&quot;#不知道怎么开始&quot; class=&quot;headerlink&quot; title=&quot;不知道怎么开始&quot;&gt;&lt;/a&gt;不知道怎么开始&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;&lt;p&gt;$a=\langle1,1,1,1,1…\rangle$的生成函数是&lt;/p&gt;
-&lt;s</summary>
-      
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f(x)=x+x^2+x^3+x^4+...&lt;/script&gt;&lt;p&gt;限定 $x\in(-1,1)$&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f(x)=\lim_{n\to \infty} \frac{1-x^n}{1-x} = \frac{1}{1-x}&lt;/script&gt;&lt;p&gt;同理得,函数&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f(x)=1+x^2+x^4+x^6...=\frac{1}{1-x^2}&lt;/script&gt;&lt;script type=&quot;math/tex; mode=display&quot;&gt;f(x)=1+2x+3x^2+4x^3...=\frac{1}{\left(1-x \right)^2}&lt;/script&gt;&lt;script type=&quot;math/tex; mode=display&quot;&gt;f(x)=1+3x+6x^2+10x^3+15x^4...=\frac{1}{\left(1-x\right)^3}&lt;/script&gt;&lt;p&gt;推广有：&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{1}{\left(1-x\right)^k} 的生成数列是 \sum_i^\infty C_{i+k-1}^{k-1} x^i&lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;设 $F(z) , G(z)$ 是数列 $\langle \ f_n \ \rangle , \langle \ g_i \ \rangle$ 的生成函数&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;相加&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{aligned}
+\alpha F(z)+ \beta G(z)
+&amp;= \alpha \sum_n f_nz^n + \beta \sum_ng_nz^n \\
+&amp;=\sum_n (\alpha f_n + \beta g_n) z^n\\
+\end{aligned}&lt;/script&gt;&lt;p&gt;得到数列 $\langle \ \alpha f_n+\beta g_n \  \rangle$ 的生成函数&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;平移生成函数&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;向右 $m$ 位&lt;/p&gt;
+&lt;p&gt;即，构造前面有 $m$ 个 $0$ 的数列 $\langle \ \underbrace{0,\cdots}_{m个},g_0,g_1,\cdots \ \rangle = \langle \ g_{n-m} \ \rangle$ 的生成函数&lt;/p&gt;
+&lt;p&gt;直接用 $z_m$ 乘&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;z_m \cdot G(z) = \sum_n g_nz^{n+m} = \sum_n g_{n-m}z^n&lt;/script&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;向左 $m$ 位&lt;/p&gt;
+&lt;p&gt;即，构造前面 $m$ 个元素被删除的数列 $\langle \ g_m,g_{m+1},g_{m+2},\cdots \ \rangle$ 的生成函数&lt;/p&gt;
+&lt;p&gt;减去前 $m$ 项，并用 $z_m$ 来除&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{G(z)-g_0-g_1z-\cdots -g_{m-1}z^{m-1}}{z^m} = \sum_{n\geq m} g_nz^{n-m} = \sum_{n\geq 0} g_{n+m}g^z&lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;常数倍的 $z$&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;G(cz) = \sum_ng_n(cz)^n = \sum_n g_nz^n&lt;/script&gt;&lt;p&gt;即，数列 $\langle \ c^ng_n  \ \rangle$ 的生成函数&lt;/p&gt;
+&lt;p&gt;当 $c=-1$ 时特别有用&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;相乘&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{aligned}
+F(z)G(z)
+&amp;=(f_0+f_1z+f_2z^2+\cdots ) \cdot (g_0+g_0z+g_0z^2+\cdots) \\
+&amp;=(f_0 \cdot g_0) + (f_0\cdot g_1 + f_1 \cdot g_0)z + (f_0\cdot g_2 + f_1\cdot g_1 + f_2 \cdot g_0) z^2 + \cdots \\
+&amp;=\sum_n \left(\sum f_k \cdot g_{n-k} \right) z^n \\
+\end{aligned}&lt;/script&gt;&lt;p&gt;求得数列 $\langle \ h_n \ \rangle$ 的生成函数，即数列 $\langle \ f_n \ \rangle , \langle \ g_i \ \rangle$ 的卷积的生成函数&lt;/p&gt;
+&lt;p&gt;和式 $\displaystyle{h_n=\sum_{k=0}^n f_k \cdot g_{n-k}}$&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;具体参见具体数学P280 , 表7-1，7-2&lt;/strong&gt;&lt;/p&gt;
+</summary>
     
     
     
@@ -115,10 +274,15 @@
     <updated>2021-07-04T11:18:58.384Z</updated>
     
     
-      
-      
-    <summary type="html">&lt;h1 id=&quot;博弈论游戏及其的变形&quot;&gt;&lt;a href=&quot;#博弈论游戏及其的变形&quot; class=&quot;headerlink&quot; title=&quot;博弈论游戏及其的变形&quot;&gt;&lt;/a&gt;博弈论游戏及其的变形&lt;/h1&gt;&lt;h2 id=&quot;请熟背以下结论（因为没看懂推导）&quot;&gt;&lt;a href=&quot;#请熟背以下</summary>
-      
+    <summary type="html">&lt;h1 id=&quot;博弈论游戏及其的变形&quot;&gt;&lt;a href=&quot;#博弈论游戏及其的变形&quot; class=&quot;headerlink&quot; title=&quot;博弈论游戏及其的变形&quot;&gt;&lt;/a&gt;博弈论游戏及其的变形&lt;/h1&gt;&lt;h2 id=&quot;请熟背以下结论（因为没看懂推导）&quot;&gt;&lt;a href=&quot;#请熟背以下结论（因为没看懂推导）&quot; class=&quot;headerlink&quot; title=&quot;请熟背以下结论（因为没看懂推导）&quot;&gt;&lt;/a&gt;请熟背以下结论（因为没看懂推导）&lt;/h2&gt;&lt;hr&gt;
+&lt;h2 id=&quot;巴什博弈&quot;&gt;&lt;a href=&quot;#巴什博弈&quot; class=&quot;headerlink&quot; title=&quot;巴什博弈&quot;&gt;&lt;/a&gt;巴什博弈&lt;/h2&gt;&lt;h3 id=&quot;规则&quot;&gt;&lt;a href=&quot;#规则&quot; class=&quot;headerlink&quot; title=&quot;规则&quot;&gt;&lt;/a&gt;规则&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;只有一堆 $n$ 个物品，两个人轮流取&lt;/li&gt;
+&lt;li&gt;每次至少取一个，最多取 $m$ 个。&lt;/li&gt;
+&lt;li&gt;最后取光者得胜&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;结论&quot;&gt;&lt;a href=&quot;#结论&quot; class=&quot;headerlink&quot; title=&quot;结论&quot;&gt;&lt;/a&gt;结论&lt;/h3&gt;&lt;p&gt;$n \mod (m+1)$ 为 $0$ 先手必败否则必胜&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;威佐夫博弈&quot;&gt;&lt;a href=&quot;#威佐夫博弈&quot; class=&quot;headerlink&quot; title=&quot;威佐夫博弈&quot;&gt;&lt;/a&gt;威佐夫博弈&lt;/h2&gt;</summary>
     
     
     
@@ -137,13 +301,154 @@
     <updated>2021-07-04T11:09:09.145Z</updated>
     
     
-      
-      
     <summary type="html">&lt;p&gt;暂停更新，遇见再更&lt;/p&gt;
 &lt;p&gt;闲下来取写题单&lt;/p&gt;
 &lt;h2 id=&quot;某些前置知识&quot;&gt;&lt;a href=&quot;#某些前置知识&quot; class=&quot;headerlink&quot; title=&quot;某些前置知识&quot;&gt;&lt;/a&gt;某些前置知识&lt;/h2&gt;&lt;hr&gt;
-&lt;h3 id=&quot;整除分块&quot;&gt;&lt;a hre</summary>
-      
+&lt;h3 id=&quot;整除分块&quot;&gt;&lt;a href=&quot;#整除分块&quot; class=&quot;headerlink&quot; title=&quot;整除分块&quot;&gt;&lt;/a&gt;整除分块&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;qwq&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;众所周知&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;$a\%b=a-b*\left\lfloor \frac{a}{b} \right\rfloor$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;规定：&lt;/p&gt;
+&lt;p&gt;当前块的左端点 $l$，块值 $k$，右端点 $r$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;用途：&lt;/p&gt;
+&lt;p&gt;快速处理形如&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\sum ^n_{i=1} \left\lfloor\frac{n}{i}\right\rfloor&lt;/script&gt;&lt;p&gt;的式子&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;用法：&lt;/p&gt;
+&lt;p&gt;代入一个 $n$ 可发现某些 $\left\lfloor \frac{n}{i} \right\rfloor$ 的值相同且呈块状分布&lt;/p&gt;
+&lt;p&gt;对于一个起始下标为 $l$ 的块，其终止下标为 $\left\lfloor \frac{n}{\left\lfloor \frac{n}{l} \right\rfloor} \right\rfloor$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;证明：&lt;/p&gt;
+&lt;p&gt;对于该块中的每个数 $i$，有 $k=\left\lfloor \frac{n}{i} \right\rfloor=\left\lfloor \frac{n}{l} \right\rfloor$&lt;/p&gt;
+&lt;p&gt;即 $ik \leq n$&lt;/p&gt;
+&lt;p&gt;所以要找到使 $ik \leq n$ 成立的最大值&lt;/p&gt;
+&lt;p&gt;所以得到：&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+\begin{cases}
+k=\left\lfloor \frac{n}{l} \right\rfloor \\
+r=\max(i) , ik \leq n\\
+\end{cases}&lt;/script&gt;&lt;p&gt;推导得 $r=\left\lfloor \frac{n}{k} \right\rfloor = \left\lfloor \frac{n}{\left\lfloor \frac{n}{l} \right\rfloor} \right\rfloor$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;例题&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.luogu.com.cn/problem/P2261&quot;&gt;P2261 [CQOI2007]余数求和&lt;/a&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight cpp&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;ans=n*k;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;(ll l=&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;,r;l&amp;lt;=n;l=r+&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(k/l)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        r=&lt;span class=&quot;built_in&quot;&gt;min&lt;/span&gt;(n,k/(k/l));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        r=n;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ans-=( (r-l+&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;)*(l+r)/&lt;span class=&quot;number&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;/*等差数列*/&lt;/span&gt;) *(k/l)&lt;span class=&quot;comment&quot;&gt;/*块值*/&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://blog.csdn.net/weixin_43627118/article/details/104024380&quot;&gt;拓展&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;例1&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;求 \sum^n_{i=1} \left\lfloor \frac{n}{ai+b} \right\rfloor&lt;/script&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;[一]&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+\begin{cases}
+k=\left\lfloor \frac{n}{al+b} \right\rfloor \\
+r=\max(i) , (ai+b)k \leq n\\
+\end{cases}&lt;/script&gt;&lt;script type=&quot;math/tex; mode=display&quot;&gt;\because (ai+b)k \leq n&lt;/script&gt;&lt;script type=&quot;math/tex; mode=display&quot;&gt;\therefore i \leq \frac{n-bk}{ak}&lt;/script&gt;&lt;script type=&quot;math/tex; mode=display&quot;&gt;\therefore r=\max(i)=\left\lfloor \frac{n-bk}{ak} \right\rfloor&lt;/script&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;[二]通法&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;令 r^*=ai+b&lt;/script&gt;&lt;script type=&quot;math/tex; mode=display&quot;&gt;\therefore r^*=\left\lfloor \frac{n}{k} \right\rfloor \ , \ k=\left\lfloor \frac{n}{al+b} \right\rfloor&lt;/script&gt;&lt;script type=&quot;math/tex; mode=display&quot;&gt;\therefore r^*=\left\lfloor \frac{n}{\left\lfloor \frac{n}{al+b} \right\rfloor} \right\rfloor&lt;/script&gt;&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+\begin{cases}
+r^*=ai+b \\
+r=\max(i)\\
+i=\frac{r^*-b}{a}\\
+\end{cases}&lt;/script&gt;&lt;script type=&quot;math/tex; mode=display&quot;&gt;\therefore r=\left\lfloor \frac{r^*-b}{a} \right\rfloor&lt;/script&gt;&lt;script type=&quot;math/tex; mode=display&quot;&gt;\therefore r=\left\lfloor \frac { \left\lfloor \frac{n}{ \left\lfloor \frac{n}{al+b} \right\rfloor } \right\rfloor -b} {a} \right\rfloor&lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;例2&lt;/p&gt;
+&lt;p&gt;$求\sum^n_{i=1} \left\lfloor \frac{n}{i^2} \right\rfloor$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;按通法推导&lt;/p&gt;
+&lt;p&gt;令$r^*=r^2$&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+\begin{cases}
+k=\left\lfloor \frac{n}{l^2} \right\rfloor \\
+r^*=\left\lfloor \frac{n}{k} \right\rfloor \\
+\end{cases}&lt;/script&gt;&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+\begin{cases}
+r^*=\left\lfloor \frac{n}{ \left\lfloor \frac{n}{l^2} \right\rfloor } \right\rfloor \\
+i=\sqrt{i^*} \\
+r=\max(i) \\
+\end{cases}&lt;/script&gt;&lt;script type=&quot;math/tex; mode=display&quot;&gt;\therefore r=\left\lfloor \sqrt{ \frac{n}{ \left\lfloor \frac{n}{l^2} \right\rfloor } } \right\rfloor&lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;例3&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;求 $\sum^n_{i=1} \left\lceil \frac{n}{i} \right\rceil$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;转化&lt;/strong&gt;：加上 $\frac{i-1}{i}$ 即可&lt;/p&gt;
+&lt;p&gt;问题转化为&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;求\sum^n_{i=1} \left\lfloor \frac{n+i-1}{i} \right\rfloor&lt;/script&gt;&lt;script type=&quot;math/tex; mode=display&quot;&gt;\because
+\begin{cases}
+k=\left\lfloor \frac{n+l-1 }{l} \right\rfloor \\
+r=\max(i) \ ,\ ik \leq n+i-1 \\
+\end{cases}&lt;/script&gt;&lt;script type=&quot;math/tex; mode=display&quot;&gt;\therefore r=\left\lfloor \frac{n-1 }{k-1} \right\rfloor = \left\lfloor \frac{n-1}{ \left\lfloor \frac{ n+l-1 }{l} \right\rfloor -1} \right\rfloor&lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;例题&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://www.luogu.com.cn/problem/CF830C&quot;&gt;CF830C Bamboo Partition&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;求：$\sum^n_{i=1} d-((a_i-1)\%d+1) \leq k$&lt;/p&gt;
+&lt;p&gt;解：&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;原式 =\sum^n_{i=1} d-\left(a_i-1 \ -\ d*\left\lfloor \frac{a_i-1}{d} \right\rfloor+1\right)&lt;/script&gt;&lt;script type=&quot;math/tex; mode=display&quot;&gt;\therefore nd+d*\sum^n_{i=1}\left\lfloor \frac{a_i-1}{d} \right\rfloor \leq k+\sum^n_{i=1} a_i&lt;/script&gt;&lt;p&gt;$\therefore$ 右边定值，枚举左边&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\therefore d\leq k+\sum^n_{i=1} a_i-\left(n+\sum^n_{i=1}\left\lfloor \frac{a_i-1}{d} \right\rfloor\right)&lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight cpp&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;(rei ll l=&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;,r;l&amp;lt;=MAX;l=r+&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;)&amp;#123;&lt;span class=&quot;comment&quot;&gt;//暴力试每一个块&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//把l看成是d&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    r=&lt;span class=&quot;number&quot;&gt;1e18&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ll sum=&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;(rei i=&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;;i&amp;lt;=n;++i)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(a[i]&lt;span class=&quot;number&quot;&gt;-1&lt;/span&gt;&amp;gt;=l)&amp;#123;&lt;span class=&quot;comment&quot;&gt;//每一个 ⌊a[i]-1/d⌋ 有值&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            sum+=(a[i]&lt;span class=&quot;number&quot;&gt;-1&lt;/span&gt;)/l;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            r=&lt;span class=&quot;built_in&quot;&gt;min&lt;/span&gt;(r,(a[i]&lt;span class=&quot;number&quot;&gt;-1&lt;/span&gt;)/((a[i]&lt;span class=&quot;number&quot;&gt;-1&lt;/span&gt;)/l));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ll tmp=k/(sum+n);&lt;span class=&quot;comment&quot;&gt;//见blog的式子推导&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(l&amp;lt;=tmp) ans=&lt;span class=&quot;built_in&quot;&gt;max&lt;/span&gt;(ans,&lt;span class=&quot;built_in&quot;&gt;min&lt;/span&gt;(tmp,r));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(MAX &amp;lt; k/n) ans=&lt;span class=&quot;built_in&quot;&gt;max&lt;/span&gt;(ans,(ll)k/n);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://www.luogu.com.cn/problem/P2260&quot;&gt;P2260 [清华集训2012]模积和&lt;/a&gt;&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;求：\sum_{i=1}^n\sum_{j=1}^m (n\mod i) \cdot (m\mod j) [\ i\not=j \ ]  \mod 19940417&lt;/script&gt;&lt;p&gt;考虑一个容斥：$原式=(忽略i\not=j 条件时的值)-(i=j时原式的值)$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;忽略 $i\not=j$时：&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;原式=\left(n^2-\sum_{i=1}^n i*\left\lfloor \frac{n}{i} \right\rfloor\right) \cdot \left(m^2-\sum_{j=1}^m j*\left\lfloor \frac{m}{j} \right\rfloor \right) \text{(1)}&lt;/script&gt;&lt;p&gt;这与[余数求和]相似&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;$i=j$&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{aligned}
+原式&amp;=\sum_{i=1}^n \left(n-i*\left\lfloor \frac{n}{i} \right\rfloor \right) \cdot \left(m-i*\left\lfloor \frac{m}{i} \right\rfloor \right) \\
+&amp;=n^2m \ -\ \left(\sum_{i=1}^n n*i*\left\lfloor \frac{m}{i} \right\rfloor \right) - \left(\sum_{j=1}^n m*i*\left\lfloor \frac{n}{i} \right\rfloor \right)\ + \ \left(\sum_{i=1}^n i^2*\left\lfloor \frac{m}{i} \right\rfloor * \left\lfloor \frac{n}{i} \right\rfloor \right) &amp;\text{(2)}\\
+\end{aligned}&lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;积性函数&quot;&gt;&lt;a href=&quot;#积性函数&quot; class=&quot;headerlink&quot; title=&quot;积性函数&quot;&gt;&lt;/a&gt;积性函数&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;定义&lt;/p&gt;
+&lt;p&gt;积性函数 $f(x)$ 满足 $f(1)=1$ 且 $\forall x,y\in \mathbb{N}_{+},\gcd(x,y)=1$ 都有 $f(xy)=f(x)f(y)$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;常见形式&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;单位元 $\epsilon(n)=[n=1]$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;恒等函数 $I(n)=1$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;单位函数 $id(n)=n$&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;性质&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+\begin{aligned}
+h(x) &amp;=f(x^p) \\
+h(x) &amp;=f^p(x) \\
+h(x) &amp;=f(x)g(x) \\
+h(x) &amp;=\sum_{d\mid x} f(d)g\left( \frac{x}{d} \right)
+\end{aligned}&lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;迪利克雷卷积&quot;&gt;&lt;a href=&quot;#迪利克雷卷积&quot; class=&quot;headerlink&quot; title=&quot;迪利克雷卷积&quot;&gt;&lt;/a&gt;迪利克雷卷积&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;注：&lt;/p&gt;
+&lt;p&gt;$\sum_{d \mid n}$ 表示对 $n$ 的所有正因子求和&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;定义&lt;/p&gt;
+&lt;p&gt;定义数论函数的迪利克雷卷积为 $h=f \circ g$ ,其中&lt;/p&gt;
+&lt;p&gt;注：定义卷积符号为 $\circ$&lt;/p&gt;
+&lt;details&gt;
+    &lt;summary&gt;原因戳我&lt;/summary&gt;
+    好看
+&lt;/details&gt;
+
+
+&lt;/li&gt;
+&lt;/ul&gt;</summary>
     
     
     
@@ -162,10 +467,41 @@
     <updated>2021-07-04T11:17:27.099Z</updated>
     
     
-      
-      
-    <summary type="html">&lt;h1 id=&quot;背包9讲（大概&quot;&gt;&lt;a href=&quot;#背包9讲（大概&quot; class=&quot;headerlink&quot; title=&quot;背包9讲（大概&quot;&gt;&lt;/a&gt;背包9讲（大概&lt;/h1&gt;&lt;h2 id=&quot;0-1背包&quot;&gt;&lt;a href=&quot;#0-1背包&quot; class=&quot;headerlink&quot; ti</summary>
-      
+    <summary type="html">&lt;h1 id=&quot;背包9讲（大概&quot;&gt;&lt;a href=&quot;#背包9讲（大概&quot; class=&quot;headerlink&quot; title=&quot;背包9讲（大概&quot;&gt;&lt;/a&gt;背包9讲（大概&lt;/h1&gt;&lt;h2 id=&quot;0-1背包&quot;&gt;&lt;a href=&quot;#0-1背包&quot; class=&quot;headerlink&quot; title=&quot;0/1背包&quot;&gt;&lt;/a&gt;0/1背包&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;模型&lt;/p&gt;
+&lt;p&gt;多种物品,每种物品只有一个.求能获得的最大总价值.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;思路&lt;/p&gt;
+&lt;p&gt;不选择第 $i$ 件物品,就相当用 $i-1$ 件物品,填充了体积为 $v$ 的背包.&lt;/p&gt;
+&lt;p&gt;选择第 $i$ 件物品，相当于对 $i-1$ 件物品填充得到的体积为  $v-c[i]$ 的背包,再填充第 $i$ 个物品得到体积为 $v$ 的背包.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;转移方程&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f[i][v]=\max(f[i-1][v],f[i-1][v-c[i]]+w[i])&lt;/script&gt;&lt;p&gt;$f[i][v]$ 代表用 $i$ 件物品填充为体积为 $v$ 的背包得到的最大价值.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;注&lt;/p&gt;
+&lt;p&gt;一般考虑倒序枚举&lt;/p&gt;
+&lt;p&gt;这样 $f_i$ 不会被 $i$ 以前的状态影响,更新也不会影响其他位置的状态.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;-代码&lt;/p&gt;
+&lt;figure class=&quot;highlight cpp&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;(rei i=&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;;i&amp;lt;=n;i++)&lt;span class=&quot;comment&quot;&gt;//枚举物品&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;(rei j=V;j&amp;gt;=c[i];j--)&lt;span class=&quot;comment&quot;&gt;//枚举体积&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		f[j]=&lt;span class=&quot;built_in&quot;&gt;max&lt;/span&gt;(f[j],f[j-c[i]]+w[i]);&lt;span class=&quot;comment&quot;&gt;//状态转移方程.&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;完全背包&quot;&gt;&lt;a href=&quot;#完全背包&quot; class=&quot;headerlink&quot; title=&quot;完全背包&quot;&gt;&lt;/a&gt;完全背包&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;模型&lt;/p&gt;
+&lt;p&gt;每种物品有无限多个,可重复选取.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;del&gt;- 思路没有了（与0/1类似（逃&lt;/del&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;转移方程&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f[i][v]=\max(f[i-1][v],f[i-1][j-k*c[i]]+k*w[i])&lt;/script&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;注&lt;/p&gt;
+&lt;p&gt;顺序枚举&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.luogu.com.cn/blog/RPdreamer/post-01-bei-bao-yu-wan-quan-bei-bao-di-mei-ju-shun-xu-di-fou-tong-chu&quot;&gt;01背包与完全背包的枚举顺序的不同处&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;代码&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</summary>
     
     
     
@@ -203,7 +539,39 @@
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{aligned}
 g(k)&amp;=\sum_{i=1}^k (-1)^{k-i} \binom{k-1}{i-1} [i=1] \\
 &amp;=(-1)^{k+1} \\
-\end{aligned}&lt;/script&gt;</summary>
+\end{aligned}&lt;/script&gt;&lt;span id=&quot;more&quot;&gt;&lt;/span&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;变式&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;由 $\max \Rightarrow \max$&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\min(S)=\sum_{T\subseteq S,\ T \neq \varnothing} (-1)^{|T|-1} \max(T)&lt;/script&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;扩展 $\min\max容斥$&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\text{kthmax}\{S\}=\sum_{T\subseteq S}(-1)^{|T|-k} \binom{|T|-1}{k-1} \min\{T\}&lt;/script&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;证明&lt;/p&gt;
+&lt;p&gt;目的是找到容斥系数满足 $\text{kthmax}\{S\}=\sum_{T\subseteq S} f(|T|) \min\{T\}$&lt;/p&gt;
+&lt;p&gt;考虑第 $x$ 大元素，受原式启发得到&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\sum_{i=1}^t \binom{t-1}{i-1} f(i)=[t=k]&lt;/script&gt;&lt;script type=&quot;math/tex; mode=display&quot;&gt;\therefore 经反演易得 f(n)=(-1)^{n-k} \binom{n-1}{k-1}&lt;/script&gt;&lt;p&gt;&lt;a href=&quot;https://oi-wiki.org/math/inclusion-exclusion-principle/#min-max&quot;&gt;&lt;del&gt;并不会用到的扩展minmax容斥&lt;/del&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;例题&quot;&gt;&lt;a href=&quot;#例题&quot; class=&quot;headerlink&quot; title=&quot;例题&quot;&gt;&lt;/a&gt;例题&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://www.luogu.com.cn/problem/P3175&quot;&gt;P3175 [HAOI2015]按位或&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;题意&lt;/p&gt;
+&lt;p&gt;设 $\min\{S\}$ 表示二进制数 $S$ 中，第一个元素变为 $1$ 所需时间，$\max\{S\}$ 表示最后一个元素变为 $1$ 所需时间&lt;/p&gt;
+&lt;p&gt;题为求 $E(\max\{U\})$ ,其中 $U$ 为全集，$U=2^n-1$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;解&lt;/p&gt;
+&lt;p&gt;由公式易知 $\displaystyle{E(\max\{U\})=\sum_{S\subseteq U}(-1)^{|S|-1} \ \sum E(\min\{S\})}$&lt;/p&gt;
+&lt;p&gt;$\therefore$ 求 $\min$&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</summary>
     
     
     
