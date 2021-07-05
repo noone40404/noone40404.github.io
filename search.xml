@@ -1,68 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>min-max容斥</title>
-    <url>/2020/12/04/minmax%E5%AE%B9%E6%96%A5/</url>
-    <content><![CDATA[<h2 id="minmax容斥"><a href="#minmax容斥" class="headerlink" title="minmax容斥"></a>minmax容斥</h2><ul>
-<li><p>用途</p>
-<p>已知集合的最小值 (<strong>期望</strong>) 求最大值</p>
-<p>$eg:$ $n$ 个元素，每个元素出现概率 $p_i$，求每个元素都出现的期望时间</p>
-</li>
-<li><p>结论</p>
-<script type="math/tex; mode=display">\max\{S\}=\sum_{T\subset S}(-1)^{|T|+1} \min\{T\}</script><p>即</p>
-<script type="math/tex; mode=display">E\left(\max\{S\}\right)=\sum_{T\subset S}(-1)^{|T|+1} E\left(\min\{T\}\right)</script></li>
-<li><p>证明</p>
-<p>设容斥系数 $g\left(|T|\right)$</p>
-<p>即 $\displaystyle{\max\{S\}=\sum_{T\subset S}g\left(|T|\right) \min\{T\}}$</p>
-<p>考虑当排名为 $k$ 的数作为集合 $T$ 的最小值时，集合 $T$ 中所有值都 $\geq k$</p>
-<p>所以对于第$k$大数 ， 在大小为 $|T|$ 的集合中， $\max$ 的选取方案为 $\displaystyle{\binom{k-1}{|T|-1}}$</p>
-<p>考虑集合大小为 $1\sim k$ ，则第 $k$ 数的总贡献为</p>
-<p>$\displaystyle{\sum_{i=1}^k \binom{k-1}{i-1}} * g(i)=[k=1] \qquad \text{即只有最大值对 max 有贡献}$</p>
-<p>由二项式反演得</p>
-<script type="math/tex; mode=display">\begin{aligned}
-g(k)&=\sum_{i=1}^k (-1)^{k-i} \binom{k-1}{i-1} [i=1] \\
-&=(-1)^{k+1} \\
-\end{aligned}</script><span id="more"></span>
-</li>
-<li><p>变式</p>
-<ul>
-<li><p>由 $\max \Rightarrow \max$</p>
-<script type="math/tex; mode=display">\min(S)=\sum_{T\subseteq S,\ T \neq \varnothing} (-1)^{|T|-1} \max(T)</script></li>
-<li><p>扩展 $\min\max容斥$</p>
-<script type="math/tex; mode=display">\text{kthmax}\{S\}=\sum_{T\subseteq S}(-1)^{|T|-k} \binom{|T|-1}{k-1} \min\{T\}</script><ul>
-<li><p>证明</p>
-<p>目的是找到容斥系数满足 $\text{kthmax}\{S\}=\sum_{T\subseteq S} f(|T|) \min\{T\}$</p>
-<p>考虑第 $x$ 大元素，受原式启发得到</p>
-<script type="math/tex; mode=display">\sum_{i=1}^t \binom{t-1}{i-1} f(i)=[t=k]</script><script type="math/tex; mode=display">\therefore 经反演易得 f(n)=(-1)^{n-k} \binom{n-1}{k-1}</script><p><a href="https://oi-wiki.org/math/inclusion-exclusion-principle/#min-max"><del>并不会用到的扩展minmax容斥</del></a></p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><ul>
-<li><p><a href="https://www.luogu.com.cn/problem/P3175">P3175 [HAOI2015]按位或</a></p>
-<ul>
-<li><p>题意</p>
-<p>设 $\min\{S\}$ 表示二进制数 $S$ 中，第一个元素变为 $1$ 所需时间，$\max\{S\}$ 表示最后一个元素变为 $1$ 所需时间</p>
-<p>题为求 $E(\max\{U\})$ ,其中 $U$ 为全集，$U=2^n-1$</p>
-</li>
-<li><p>解</p>
-<p>由公式易知 $\displaystyle{E(\max\{U\})=\sum_{S\subseteq U}(-1)^{|S|-1} \ \sum E(\min\{S\})}$</p>
-<p>$\therefore$ 求 $\min$</p>
-</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>minmax</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CF的dp题</title>
     <url>/2021/07/01/CF%E7%9A%84dp%E9%A2%98/</url>
     <content><![CDATA[<h2 id="CF1515E-Phoenix-and-Computers"><a href="#CF1515E-Phoenix-and-Computers" class="headerlink" title="CF1515E Phoenix and Computers"></a>CF1515E Phoenix and Computers</h2><details>
@@ -305,6 +243,68 @@ a_1 & a_2 & a_3 & \dotsb & a_i & \dotsb & a_n\\
       </tags>
   </entry>
   <entry>
+    <title>min-max容斥</title>
+    <url>/2020/12/04/minmax%E5%AE%B9%E6%96%A5/</url>
+    <content><![CDATA[<h2 id="minmax容斥"><a href="#minmax容斥" class="headerlink" title="minmax容斥"></a>minmax容斥</h2><ul>
+<li><p>用途</p>
+<p>已知集合的最小值 (<strong>期望</strong>) 求最大值</p>
+<p>$eg:$ $n$ 个元素，每个元素出现概率 $p_i$，求每个元素都出现的期望时间</p>
+</li>
+<li><p>结论</p>
+<script type="math/tex; mode=display">\max\{S\}=\sum_{T\subset S}(-1)^{|T|+1} \min\{T\}</script><p>即</p>
+<script type="math/tex; mode=display">E\left(\max\{S\}\right)=\sum_{T\subset S}(-1)^{|T|+1} E\left(\min\{T\}\right)</script></li>
+<li><p>证明</p>
+<p>设容斥系数 $g\left(|T|\right)$</p>
+<p>即 $\displaystyle{\max\{S\}=\sum_{T\subset S}g\left(|T|\right) \min\{T\}}$</p>
+<p>考虑当排名为 $k$ 的数作为集合 $T$ 的最小值时，集合 $T$ 中所有值都 $\geq k$</p>
+<p>所以对于第$k$大数 ， 在大小为 $|T|$ 的集合中， $\max$ 的选取方案为 $\displaystyle{\binom{k-1}{|T|-1}}$</p>
+<p>考虑集合大小为 $1\sim k$ ，则第 $k$ 数的总贡献为</p>
+<p>$\displaystyle{\sum_{i=1}^k \binom{k-1}{i-1}} * g(i)=[k=1] \qquad \text{即只有最大值对 max 有贡献}$</p>
+<p>由二项式反演得</p>
+<script type="math/tex; mode=display">\begin{aligned}
+g(k)&=\sum_{i=1}^k (-1)^{k-i} \binom{k-1}{i-1} [i=1] \\
+&=(-1)^{k+1} \\
+\end{aligned}</script><span id="more"></span>
+</li>
+<li><p>变式</p>
+<ul>
+<li><p>由 $\max \Rightarrow \max$</p>
+<script type="math/tex; mode=display">\min(S)=\sum_{T\subseteq S,\ T \neq \varnothing} (-1)^{|T|-1} \max(T)</script></li>
+<li><p>扩展 $\min\max容斥$</p>
+<script type="math/tex; mode=display">\text{kthmax}\{S\}=\sum_{T\subseteq S}(-1)^{|T|-k} \binom{|T|-1}{k-1} \min\{T\}</script><ul>
+<li><p>证明</p>
+<p>目的是找到容斥系数满足 $\text{kthmax}\{S\}=\sum_{T\subseteq S} f(|T|) \min\{T\}$</p>
+<p>考虑第 $x$ 大元素，受原式启发得到</p>
+<script type="math/tex; mode=display">\sum_{i=1}^t \binom{t-1}{i-1} f(i)=[t=k]</script><script type="math/tex; mode=display">\therefore 经反演易得 f(n)=(-1)^{n-k} \binom{n-1}{k-1}</script><p><a href="https://oi-wiki.org/math/inclusion-exclusion-principle/#min-max"><del>并不会用到的扩展minmax容斥</del></a></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><ul>
+<li><p><a href="https://www.luogu.com.cn/problem/P3175">P3175 [HAOI2015]按位或</a></p>
+<ul>
+<li><p>题意</p>
+<p>设 $\min\{S\}$ 表示二进制数 $S$ 中，第一个元素变为 $1$ 所需时间，$\max\{S\}$ 表示最后一个元素变为 $1$ 所需时间</p>
+<p>题为求 $E(\max\{U\})$ ,其中 $U$ 为全集，$U=2^n-1$</p>
+</li>
+<li><p>解</p>
+<p>由公式易知 $\displaystyle{E(\max\{U\})=\sum_{S\subseteq U}(-1)^{|S|-1} \ \sum E(\min\{S\})}$</p>
+<p>$\therefore$ 求 $\min$</p>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>minmax</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>树链剖分</title>
     <url>/2021/07/01/%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86/</url>
     <content><![CDATA[<h2 id="关于长链剖分中指针的理解"><a href="#关于长链剖分中指针的理解" class="headerlink" title="关于长链剖分中指针的理解"></a>关于长链剖分中指针的理解</h2><p>与指针有关的变量：$<em>dp[N],tmp[N],</em>pos$</p>
@@ -489,93 +489,6 @@ B
       </tags>
   </entry>
   <entry>
-    <title>迭代加深</title>
-    <url>/2021/04/07/%E8%BF%AD%E4%BB%A3%E5%8A%A0%E6%B7%B1/</url>
-    <content><![CDATA[<h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3><ul>
-<li><p>答案求最小步数</p>
-</li>
-<li><p>在某步数内一定可以完成 或 超出某步数认为无解</p>
-</li>
-</ul>
-<hr>
-<h3 id="随便写点注意事项"><a href="#随便写点注意事项" class="headerlink" title="随便写点注意事项"></a>随便写点注意事项</h3><ul>
-<li><p>注意估值函数的选取</p>
-<p>一般为 <strong>当前状态到最终状态的最短步数+已走的步数</strong>  是否大于 <strong>枚举的深度</strong></p>
-<ul>
-<li>在[ $flood \ it$ ] 中：定义了专门的求估值函数（好像就变成IDA*了</li>
-</ul>
-</li>
-<li><p>$\text{dfs}(now+1)$ 失败后及时回复现场</p>
-<ul>
-<li><p>$eg$ : [ $八数码难题$ ] 中：<strong>通过两数交换</strong></p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">swap</span>(sta[nx][ny],sta[x][y]);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">test</span>(step)) <span class="built_in">A</span>(step+<span class="number">1</span>,nx,ny,i);</span><br><span class="line"></span><br><span class="line"><span class="built_in">swap</span>(sta[nx][ny],sta[x][y]);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>$eg$ : [ $骑士精神$ ] 中：<strong>毫无可读性的两数交换</strong></p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">a[x][y]^=a[xx][yy],a[xx][yy]^=a[x][y],a[x][y]^=a[xx][yy];<span class="comment">//什么是swap</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">bool</span> flag=<span class="built_in">dfs</span>(step+<span class="number">1</span>,maxstep,tmp,xx,yy,i);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(flag) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">a[x][y]^=a[xx][yy],a[xx][yy]^=a[x][y],a[x][y]^=a[xx][yy];<span class="comment">//回复现场</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>$eg$ : [ $flood \ it$ ] 中：<strong>通过对数组的交换</strong></p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">memcpy</span>(tmp,vis,<span class="keyword">sizeof</span> vis);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">fill</span>(i) &amp;&amp; <span class="built_in">dfs</span>(now+<span class="number">1</span>)) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">memcpy</span>(vis,tmp,<span class="keyword">sizeof</span> vis);<span class="comment">//还原</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>在枚举每次状态改变时，注意及时的剪枝，即使是看起来并不重要的</p>
-<ul>
-<li><p>栗子 $1$：出界</p>
-<p>好容易忘qwq（写总结的时候也忘了</p>
-</li>
-<li><p>栗子 $2$：当前移动恰与上一步相反</p>
-<ul>
-<li><p>剪枝方法：</p>
-<p>仔细选取 $dx[ \ ],dy[ \ ]$</p>
-<p>判断两次移动的方向和 $i+pre$</p>
-</li>
-<li><p>$eg$ : [ $骑士精神$ ] 中：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> dx[<span class="number">8</span>]=&#123;<span class="number">-1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">-2</span>,<span class="number">-2</span>,<span class="number">-1</span>,<span class="number">1</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> dy[<span class="number">8</span>]=&#123;<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">-1</span>,<span class="number">1</span>,<span class="number">-1</span>,<span class="number">-2</span>,<span class="number">-2</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//如此保证两个相反的方向加和为7</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>栗子 $3$：当前步恰好完成,或通过估价函数得到当前步可行</p>
-<ul>
-<li><p>$eg$ : [$Power \ Calculus$] 中：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(now==n || now&lt;&lt;(MAX-step)==n<span class="comment">/*题目背景可推断*/</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>$eg$ : [$flood \ it$] 中：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">rei g=<span class="built_in">get_val</span>();</span><br><span class="line">···</span><br><span class="line"><span class="keyword">if</span>(!g) <span class="keyword">return</span> <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>栗子 $4$：针对当前块的扩展问题，要得到周围与之相邻的块的编号（我不知道我在写什么</p>
-<ul>
-<li><p>剪枝方法：</p>
-<p>开 $vis[ \ ]$ 数组并及时维护</p>
-</li>
-<li><p>$eg$ : [ $flood \ it$ ] 中：</p>
-<p><del>自行读代码</del></p>
-</li>
-</ul>
-</li>
-<li><p>栗子 $5$：考虑答案的单调性</p>
-<ul>
-<li><p>$eg$ : [$Addition \ Chains$] 中：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;now;++i)</span><br><span class="line">    <span class="keyword">for</span>(rei j=i;j&lt;now;++j)&#123;<span class="comment">//从i开始啊qwq</span></span><br><span class="line">        rei tmp=ans[i]+ans[j];</span><br><span class="line">        <span class="keyword">if</span>(tmp&gt;n) <span class="keyword">break</span>;<span class="comment">//ans单增</span></span><br><span class="line">        <span class="keyword">if</span>(tmp&lt;=ans[now<span class="number">-1</span>]) <span class="keyword">continue</span>;</span><br><span class="line">        ans[now]=tmp;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">dfs</span>(now+<span class="number">1</span>,MAX)) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>注意一下开始 $\text{dfs}$ 的深度为 $0/1$</p>
-<p>关系到答案输出是 $MAX$ 还是 $MAX-1$</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>迭代加深</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>背包问题</title>
     <url>/2021/01/04/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<h1 id="背包9讲（大概"><a href="#背包9讲（大概" class="headerlink" title="背包9讲（大概"></a>背包9讲（大概</h1><h2 id="0-1背包"><a href="#0-1背包" class="headerlink" title="0/1背包"></a>0/1背包</h2><ul>
@@ -736,6 +649,93 @@ $f[i][j]$ 将会影响 $f[i][j+k∗c[i]]　(j+k∗c[i]\leq V)$
       </categories>
       <tags>
         <tag>背包</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>迭代加深</title>
+    <url>/2021/04/07/%E8%BF%AD%E4%BB%A3%E5%8A%A0%E6%B7%B1/</url>
+    <content><![CDATA[<h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3><ul>
+<li><p>答案求最小步数</p>
+</li>
+<li><p>在某步数内一定可以完成 或 超出某步数认为无解</p>
+</li>
+</ul>
+<hr>
+<h3 id="随便写点注意事项"><a href="#随便写点注意事项" class="headerlink" title="随便写点注意事项"></a>随便写点注意事项</h3><ul>
+<li><p>注意估值函数的选取</p>
+<p>一般为 <strong>当前状态到最终状态的最短步数+已走的步数</strong>  是否大于 <strong>枚举的深度</strong></p>
+<ul>
+<li>在[ $flood \ it$ ] 中：定义了专门的求估值函数（好像就变成IDA*了</li>
+</ul>
+</li>
+<li><p>$\text{dfs}(now+1)$ 失败后及时回复现场</p>
+<ul>
+<li><p>$eg$ : [ $八数码难题$ ] 中：<strong>通过两数交换</strong></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">swap</span>(sta[nx][ny],sta[x][y]);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">test</span>(step)) <span class="built_in">A</span>(step+<span class="number">1</span>,nx,ny,i);</span><br><span class="line"></span><br><span class="line"><span class="built_in">swap</span>(sta[nx][ny],sta[x][y]);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>$eg$ : [ $骑士精神$ ] 中：<strong>毫无可读性的两数交换</strong></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">a[x][y]^=a[xx][yy],a[xx][yy]^=a[x][y],a[x][y]^=a[xx][yy];<span class="comment">//什么是swap</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">bool</span> flag=<span class="built_in">dfs</span>(step+<span class="number">1</span>,maxstep,tmp,xx,yy,i);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(flag) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">a[x][y]^=a[xx][yy],a[xx][yy]^=a[x][y],a[x][y]^=a[xx][yy];<span class="comment">//回复现场</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>$eg$ : [ $flood \ it$ ] 中：<strong>通过对数组的交换</strong></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">memcpy</span>(tmp,vis,<span class="keyword">sizeof</span> vis);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">fill</span>(i) &amp;&amp; <span class="built_in">dfs</span>(now+<span class="number">1</span>)) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">memcpy</span>(vis,tmp,<span class="keyword">sizeof</span> vis);<span class="comment">//还原</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>在枚举每次状态改变时，注意及时的剪枝，即使是看起来并不重要的</p>
+<ul>
+<li><p>栗子 $1$：出界</p>
+<p>好容易忘qwq（写总结的时候也忘了</p>
+</li>
+<li><p>栗子 $2$：当前移动恰与上一步相反</p>
+<ul>
+<li><p>剪枝方法：</p>
+<p>仔细选取 $dx[ \ ],dy[ \ ]$</p>
+<p>判断两次移动的方向和 $i+pre$</p>
+</li>
+<li><p>$eg$ : [ $骑士精神$ ] 中：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> dx[<span class="number">8</span>]=&#123;<span class="number">-1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">-2</span>,<span class="number">-2</span>,<span class="number">-1</span>,<span class="number">1</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> dy[<span class="number">8</span>]=&#123;<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">-1</span>,<span class="number">1</span>,<span class="number">-1</span>,<span class="number">-2</span>,<span class="number">-2</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//如此保证两个相反的方向加和为7</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>栗子 $3$：当前步恰好完成,或通过估价函数得到当前步可行</p>
+<ul>
+<li><p>$eg$ : [$Power \ Calculus$] 中：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(now==n || now&lt;&lt;(MAX-step)==n<span class="comment">/*题目背景可推断*/</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>$eg$ : [$flood \ it$] 中：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">rei g=<span class="built_in">get_val</span>();</span><br><span class="line">···</span><br><span class="line"><span class="keyword">if</span>(!g) <span class="keyword">return</span> <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>栗子 $4$：针对当前块的扩展问题，要得到周围与之相邻的块的编号（我不知道我在写什么</p>
+<ul>
+<li><p>剪枝方法：</p>
+<p>开 $vis[ \ ]$ 数组并及时维护</p>
+</li>
+<li><p>$eg$ : [ $flood \ it$ ] 中：</p>
+<p><del>自行读代码</del></p>
+</li>
+</ul>
+</li>
+<li><p>栗子 $5$：考虑答案的单调性</p>
+<ul>
+<li><p>$eg$ : [$Addition \ Chains$] 中：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;now;++i)</span><br><span class="line">    <span class="keyword">for</span>(rei j=i;j&lt;now;++j)&#123;<span class="comment">//从i开始啊qwq</span></span><br><span class="line">        rei tmp=ans[i]+ans[j];</span><br><span class="line">        <span class="keyword">if</span>(tmp&gt;n) <span class="keyword">break</span>;<span class="comment">//ans单增</span></span><br><span class="line">        <span class="keyword">if</span>(tmp&lt;=ans[now<span class="number">-1</span>]) <span class="keyword">continue</span>;</span><br><span class="line">        ans[now]=tmp;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">dfs</span>(now+<span class="number">1</span>,MAX)) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>注意一下开始 $\text{dfs}$ 的深度为 $0/1$</p>
+<p>关系到答案输出是 $MAX$ 还是 $MAX-1$</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>迭代加深</tag>
       </tags>
   </entry>
   <entry>
