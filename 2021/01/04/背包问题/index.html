@@ -29,7 +29,7 @@
 <meta property="og:description" content="背包9讲及acwing的背包题">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-01-04T11:16:57.000Z">
-<meta property="article:modified_time" content="2021-07-04T12:00:12.795Z">
+<meta property="article:modified_time" content="2021-07-05T10:30:16.090Z">
 <meta property="article:author" content="noone___">
 <meta property="article:tag" content="背包">
 <meta name="twitter:card" content="summary">
@@ -208,7 +208,7 @@
     <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2021/01/04/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="noone___">
       <meta itemprop="description" content="自闭中">
     </span>
@@ -235,7 +235,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-04 20:00:12" itemprop="dateModified" datetime="2021-07-04T20:00:12+08:00">2021-07-04</time>
+                <time title="修改时间：2021-07-05 18:30:16" itemprop="dateModified" datetime="2021-07-05T18:30:16+08:00">2021-07-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -316,7 +316,7 @@
 <p>其 $k$ 是任意数，$y$ 是一个不为2的整数次幂的数</p>
 <p>所以在多重背包中，可以将个数的限制如此分解</p>
 <p>每个分解看成一个物品</p>
-<p>(如： $2^2$ 看成 $1$ 个物品，该物品 $val=4<em>val_i \space, \space w=4</em>w_i$)</p>
+<p>(如： $2^2$ 看成 $1$ 个物品，该物品 $val=4\cdot val_i \space, \space w=4\cdot w_i$)</p>
 <p>如此进行后就是 $\log (size)$</p>
 <ul>
 <li><p>代码</p>
@@ -326,17 +326,17 @@
 </li>
 <li><p>单调队列优化</p>
 <p>这是一个最基本的转移式子</p>
-<script type="math/tex; mode=display">f[i][j]=max(f[i−1][j],f[i−1][j−k∗c[i]]+k∗w[i])$$　
+<script type="math/tex; mode=display">f[i][j]=max(f[i−1][j],f[i−1][j−k\cdot c[i]]+k\cdot w[i])$$　
 
 其中$k \in [1,min(\left\lfloor\frac{V}{c[i]}\right\rfloor,num[i])]$
 
 下面用 $lim$ 表示 $min(\left\lfloor\frac{V}{c[i]}\right\rfloor,num[i])$
 
-易得 $f[i][j−k∗c[i]]$ 会被 $f[i][j−(k+1)∗c[i]]$ 影响
+易得 $f[i][j−k\cdot c[i]]$ 会被 $f[i][j−(k+1)\cdot c[i]]$ 影响
 
-(体积为 $c[i]$ 的物品填充体积为 $j−(k+1)∗c[i]$ 的背包,会得到体积为 $j−k∗c[i]$ 的背包)
+(体积为 $c[i]$ 的物品填充体积为 $j−(k+1)\cdot c[i]$ 的背包,会得到体积为 $j−k\cdot c[i]$ 的背包)
 
-$f[i][j]$ 将会影响 $f[i][j+k∗c[i]]　(j+k∗c[i]\leq V)$
+$f[i][j]$ 将会影响 $f[i][j+k\cdot c[i]]　(j+k\cdot c[i]\leq V)$
 
 注意这里影响的传导，往取模上想
 
@@ -352,17 +352,17 @@ $f[i][j]$ 将会影响 $f[i][j+k∗c[i]]　(j+k∗c[i]\leq V)$
 
   注： $\frac{j}{c[i]}即是全选状态下的物品个数$
 
-  $$\because j=\frac{j}{c[i]} \ *\ c[i] \ +\ j\% c[i]</script><script type="math/tex; mode=display">\therefore j−k∗c[i]=\frac{j}{c[i]}∗c[i] \ +\ j\% c[i] \ −\ k∗c[i]</script><script type="math/tex; mode=display">\space \space \space \space \space \space \space \space \space =(\frac{j}{c[i]} \ −\ k)∗c[i]+j \% c[i]</script><p>  令 $(\frac{j}{c[i]}−k)=k^{‘}$</p>
+  $$\because j=\frac{j}{c[i]} \ \cdot \ c[i] \ +\ j\% c[i]</script><script type="math/tex; mode=display">\therefore j−k∗c[i]=\frac{j}{c[i]}\cdot c[i] \ +\ j\% c[i] \ −\ k\cdot c[i]</script><script type="math/tex; mode=display">\space \space \space \space \space \space \space \space \space =(\frac{j}{c[i]} \ −\ k)\cdot c[i]+j \% c[i]</script><p>  令 $(\frac{j}{c[i]}−k)=k^{‘}$</p>
 <p>  最原始的状态转移方程中第二状态 :</p>
-<p>  $f[i][j−k∗c[i]\ ]+k∗w[i]$ 代表选择 $k$ 个当前 $i$ 物品</p>
+<p>  $f[i][j−k\cdot c[i]\ ]+k\cdot w[i]$ 代表选择 $k$ 个当前 $i$ 物品</p>
 <p>  根据单步容斥 ：全选−不选=选</p>
 <p>  因此 $\frac{j}{c[i]} \ −\ (\frac{j}{c[i]}−k)=k$</p>
-<script type="math/tex; mode=display">\because (\frac{j}{c[i]}−k)=k^{'}</script><script type="math/tex; mode=display">\therefore f[i][j]=\max( \ f[i−1][\ k^{'}∗c[i]+j \% c[i] \ ] \ + \ \frac{j}{c[i]}∗w[i]−k^{'}∗w[i])</script><p>  而其中 $\frac{j}{c[i]}∗w[i]$ 为一个常量(因为 $\frac{j}{c[i]}$ 已知)</p>
+<script type="math/tex; mode=display">\because (\frac{j}{c[i]}−k)=k^{'}</script><script type="math/tex; mode=display">\therefore f[i][j]=\max( \ f[i−1][\ k^{'}\cdot c[i]+j \% c[i] \ ] \ + \ \frac{j}{c[i]}\cdot w[i]−k^{'}\cdot w[i])</script><p>  而其中 $\frac{j}{c[i]}\cdot w[i]$ 为一个常量(因为 $\frac{j}{c[i]}$ 已知)</p>
 <p>  要求的状态变为</p>
-<script type="math/tex; mode=display">f[i][j]=\max(f[i−1][ \ k^{'}∗c[i]+j\% c[i] \ ]−k^{'}∗w[i])+\frac{j}{c[i]}∗w[i]</script><script type="math/tex; mode=display">\because k \in [1,lim]</script><script type="math/tex; mode=display">\therefore k^{'} \in [\frac{j}{c[i]}−k,\frac{j}{c[i]}]</script><p>  当前的 $f[i][j]$ 求解的就是为 $lim+1$ 个数对应的 $f[i−1][k^{‘}∗c[i]+j\% c[i] \ ]−k^{‘}∗w[i]$ 的最大值.</p>
+<script type="math/tex; mode=display">f[i][j]=\max(f[i−1][ \ k^{'}\cdot c[i]+j\% c[i] \ ]−k^{'}\cdot w[i])+\frac{j}{c[i]}\cdot w[i]</script><script type="math/tex; mode=display">\because k \in [1,lim]</script><script type="math/tex; mode=display">\therefore k^{'} \in [\frac{j}{c[i]}−k,\frac{j}{c[i]}]</script><p>  当前的 $f[i][j]$ 求解的就是为 $lim+1$ 个数对应的 $f[i−1][k^{‘}\cdot c[i]+j\% c[i] \ ]−k^{‘}\cdot w[i]$ 的最大值.</p>
 <p>  (之所以为 $lim+1$ 个数,是包括当前这个 $j$ ,还有前面的物品数量)</p>
-<p>  将 $f[i][j]$ 前面所有的 $f[i−1][k^{‘}∗c[i]+j\% c[i]\ ]−k^{‘}∗w[i]$ 放入一个队列.</p>
-<p>  问题转化为求这个最长为 $lim+1$ 的队列的最大值 $+\frac{j}{c[i]}∗w[i]$</p>
+<p>  将 $f[i][j]$ 前面所有的 $f[i−1][k^{‘}\cdot c[i]+j\% c[i]\ ]−k^{‘}\cdot w[i]$ 放入一个队列.</p>
+<p>  问题转化为求这个最长为 $lim+1$ 的队列的最大值 $+\frac{j}{c[i]}\cdot w[i]$</p>
 <ul>
 <li><p>代码</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;i++)&#123;<span class="comment">//枚举物品种类</span></span><br><span class="line">    cin&gt;&gt;c[i]&gt;&gt;w[i]&gt;&gt;num[i];<span class="comment">//c,w,num分别对应 体积,价值,个数</span></span><br><span class="line">    <span class="keyword">if</span>(V/c[i] &lt; num[i]) num[i]=V/c[i];<span class="comment">//求lim</span></span><br><span class="line">    <span class="keyword">for</span>(rei p=<span class="number">0</span>;p&lt;c[i];p++)&#123;<span class="comment">//枚举余数</span></span><br><span class="line">        head=tail=<span class="number">0</span>;<span class="comment">//队列初始化</span></span><br><span class="line">        <span class="keyword">for</span>(rei k=<span class="number">0</span>;k&lt;=(V-p)/c[i];k++)&#123;</span><br><span class="line">            rei x=k;</span><br><span class="line">            rei y=f[k*c[i]+p]-k*w[i];</span><br><span class="line">            <span class="keyword">while</span>(head&lt;tail &amp;&amp; q[head].pos&lt;k-num) ++head;<span class="comment">//限制长度</span></span><br><span class="line">            <span class="keyword">while</span>(head&lt;tail &amp;&amp; q[tail<span class="number">-1</span>].value&lt;=y) --tail;</span><br><span class="line">            q[tail].value=y,q[tail].pos=x;</span><br><span class="line">            ++tail;</span><br><span class="line">            f[k*c[i]+p]=q[head].value+k*w[i];</span><br><span class="line">            <span class="comment">//单调队列维护的是前i-1种的状态最大值.</span></span><br><span class="line">            <span class="comment">//因此这里加上k*w[i].</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -526,6 +526,8 @@ $f[i][j]$ 将会影响 $f[i][j+k∗c[i]]　(j+k∗c[i]\leq V)$
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="noone___"
+      src="/images/avatar.jpg">
   <p class="site-author-name" itemprop="name">noone___</p>
   <div class="site-description" itemprop="description">自闭中</div>
 </div>
@@ -565,7 +567,7 @@ $f[i][j]$ 将会影响 $f[i][j+k∗c[i]]　(j+k∗c[i]\leq V)$
     </div>
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
-          <a href="https://www.cnblogs.com/guanlexiangfan" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;guanlexiangfan" rel="noopener" target="_blank">Evitagen</a>
+          <a href="https://evitagen.blog.luogu.org/" title="https:&#x2F;&#x2F;evitagen.blog.luogu.org&#x2F;" rel="noopener" target="_blank">Evitagen</a>
         </li>
         <li class="links-of-blogroll-item">
           <a href="https://ctp314.github.io/" title="https:&#x2F;&#x2F;ctp314.github.io&#x2F;" rel="noopener" target="_blank">CTime_Pup_314</a>

@@ -9,4 +9,4 @@ Disallow: /css/
 Disallow: /fonts/
 Disallow: /vendors/
 Disallow: /lib/
-Sitemap: https://noone40404.github.io/sitemap.xml
+Sitemap: https://noone40404.github.io/sitemap_1.xml

@@ -1,60 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>学不会的生成函数</title>
-    <url>/2021/05/05/%E5%AD%A6%E4%B8%8D%E4%BC%9A%E7%9A%84%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<h2 id="不知道怎么开始"><a href="#不知道怎么开始" class="headerlink" title="不知道怎么开始"></a>不知道怎么开始</h2><ul>
-<li><p>$a=\langle1,1,1,1,1…\rangle$的生成函数是</p>
-<script type="math/tex; mode=display">f(x)=x+x^2+x^3+x^4+...</script><p>限定 $x\in(-1,1)$</p>
-<script type="math/tex; mode=display">f(x)=\lim_{n\to \infty} \frac{1-x^n}{1-x} = \frac{1}{1-x}</script><p>同理得,函数</p>
-<script type="math/tex; mode=display">f(x)=1+x^2+x^4+x^6...=\frac{1}{1-x^2}</script><script type="math/tex; mode=display">f(x)=1+2x+3x^2+4x^3...=\frac{1}{\left(1-x \right)^2}</script><script type="math/tex; mode=display">f(x)=1+3x+6x^2+10x^3+15x^4...=\frac{1}{\left(1-x\right)^3}</script><p>推广有：</p>
-<script type="math/tex; mode=display">\frac{1}{\left(1-x\right)^k} 的生成数列是 \sum_i^\infty C_{i+k-1}^{k-1} x^i</script></li>
-</ul>
-<p>设 $F(z) , G(z)$ 是数列 $\langle \ f_n \ \rangle , \langle \ g_i \ \rangle$ 的生成函数</p>
-<ul>
-<li><p>相加</p>
-<script type="math/tex; mode=display">\begin{aligned}
-\alpha F(z)+ \beta G(z)
-&= \alpha \sum_n f_nz^n + \beta \sum_ng_nz^n \\
-&=\sum_n (\alpha f_n + \beta g_n) z^n\\
-\end{aligned}</script><p>得到数列 $\langle \ \alpha f_n+\beta g_n \  \rangle$ 的生成函数</p>
-</li>
-<li><p>平移生成函数</p>
-<ul>
-<li><p>向右 $m$ 位</p>
-<p>即，构造前面有 $m$ 个 $0$ 的数列 $\langle \ \underbrace{0,\cdots}_{m个},g_0,g_1,\cdots \ \rangle = \langle \ g_{n-m} \ \rangle$ 的生成函数</p>
-<p>直接用 $z_m$ 乘</p>
-<script type="math/tex; mode=display">z_m \cdot G(z) = \sum_n g_nz^{n+m} = \sum_n g_{n-m}z^n</script></li>
-<li><p>向左 $m$ 位</p>
-<p>即，构造前面 $m$ 个元素被删除的数列 $\langle \ g_m,g_{m+1},g_{m+2},\cdots \ \rangle$ 的生成函数</p>
-<p>减去前 $m$ 项，并用 $z_m$ 来除</p>
-<script type="math/tex; mode=display">\frac{G(z)-g_0-g_1z-\cdots -g_{m-1}z^{m-1}}{z^m} = \sum_{n\geq m} g_nz^{n-m} = \sum_{n\geq 0} g_{n+m}g^z</script></li>
-</ul>
-</li>
-<li><p>常数倍的 $z$</p>
-<script type="math/tex; mode=display">G(cz) = \sum_ng_n(cz)^n = \sum_n g_nz^n</script><p>即，数列 $\langle \ c^ng_n  \ \rangle$ 的生成函数</p>
-<p>当 $c=-1$ 时特别有用</p>
-</li>
-<li><p>相乘</p>
-<script type="math/tex; mode=display">\begin{aligned}
-F(z)G(z)
-&=(f_0+f_1z+f_2z^2+\cdots ) \cdot (g_0+g_0z+g_0z^2+\cdots) \\
-&=(f_0 \cdot g_0) + (f_0\cdot g_1 + f_1 \cdot g_0)z + (f_0\cdot g_2 + f_1\cdot g_1 + f_2 \cdot g_0) z^2 + \cdots \\
-&=\sum_n \left(\sum f_k \cdot g_{n-k} \right) z^n \\
-\end{aligned}</script><p>求得数列 $\langle \ h_n \ \rangle$ 的生成函数，即数列 $\langle \ f_n \ \rangle , \langle \ g_i \ \rangle$ 的卷积的生成函数</p>
-<p>和式 $\displaystyle{h_n=\sum_{k=0}^n f_k \cdot g_{n-k}}$</p>
-</li>
-</ul>
-<p><strong>具体参见具体数学P280 , 表7-1，7-2</strong></p>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>生成函数</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>博弈论</title>
     <url>/2021/02/04/%E5%8D%9A%E5%BC%88%E8%AE%BA/</url>
     <content><![CDATA[<h1 id="博弈论游戏及其的变形"><a href="#博弈论游戏及其的变形" class="headerlink" title="博弈论游戏及其的变形"></a>博弈论游戏及其的变形</h1><h2 id="请熟背以下结论（因为没看懂推导）"><a href="#请熟背以下结论（因为没看懂推导）" class="headerlink" title="请熟背以下结论（因为没看懂推导）"></a>请熟背以下结论（因为没看懂推导）</h2><hr>
@@ -178,14 +124,14 @@ F(z)G(z)
 </li>
 <li><p>扩展段</p>
 <ul>
-<li>$dp_{i+1,j}=\sum dp_{i,j}<em>j</em>2$ ，即在一段的边界+1处开</li>
-<li>$dp_{i+2,j}=\sum dp_{i,j}<em>j</em>2$ ，即在一段的边界+2处开</li>
+<li>$dp_{i+1,j}=\sum dp_{i,j}\cdot j\cdot2$ ，即在一段的边界+1处开</li>
+<li>$dp_{i+2,j}=\sum dp_{i,j}\cdot j\cdot2$ ，即在一段的边界+2处开</li>
 </ul>
 </li>
 <li><p>合并段（仅当 $j\geq 2$ 时）</p>
 <ul>
-<li>$dp_{i+2,j-1}=\sum dp_{i,j}<em>(j-1)</em>2$ ，即当两边距离为 $2$ 时有两种开法</li>
-<li>$dp_{i+3,j-1}=\sum dp_{i,j}*(j-1)$ ，即两边距离为 $3$ 时开中间</li>
+<li>$dp_{i+2,j-1}=\sum dp_{i,j}\cdot(j-1)\cdot2$ ，即当两边距离为 $2$ 时有两种开法</li>
+<li>$dp_{i+3,j-1}=\sum dp_{i,j}\cdot (j-1)$ ，即两边距离为 $3$ 时开中间</li>
 </ul>
 </li>
 </ul>
@@ -264,10 +210,10 @@ a_1 & a_2 & a_3 & \dotsb & a_i & \dotsb & a_n\\
 <h3 id="解-7"><a href="#解-7" class="headerlink" title="解"></a>解</h3><p>先考虑朴素做法</p>
 <p>设 $dp_{L,i,j}=1$ 表示第 $i$ 张牌替换左手，第 $j$ 张是上一张用来替换右手的牌</p>
 <p>$dp{R,i,j}=1$表示第 $i$ 张牌替换右手，第 $j$ 张是上一张用来替换左手的牌</p>
-<p>由于只判断可行性，所以不需要存下所有的 $dp$ 状态，用 $集合f_0 = <k[j],j>$ 存下 $dp_{L,i,j}=1$ 的情况，$f_1$ 同理</p>
+<p>由于只判断可行性，所以不需要存下所有的 $dp$ 状态，用 $集合f_0 = \left\langle k[j],j\right\rangle$存下 $dp_{L,i,j}=1$ 的情况，$f_1$ 同理</p>
 <p>考虑 $f_0 [i]$ 与 $f_1 [i]$ 的计算 $\Rightarrow$ 先考虑 $f_0 [i+1]$ , $f_1 [i+1]$ 同理</p>
 <p>先假设第 $i+1$ 张卡可以给左手（确保 $f_0 [i+1]$ 不空） ，且第 $i+1$ 回合右手可以替换为任意卡（稍后再处理）</p>
-<p>若 $f_1 [i]$ 不空，可以将 $<k[i],i>$ 添加到 $f_0 [i+1]$ 中，即左手拿第 $i+1$ 张使状态 $(j(上一次改变的),i) \Rightarrow (i+1,i)$</p>
+<p>若 $f_1 [i]$ 不空，可以将 $\langle k[i],i\rangle$ 添加到 $f_0 [i+1]$ 中，即左手拿第 $i+1$ 张使状态 $(j(上一次改变的),i) \Rightarrow (i+1,i)$</p>
 <p>同时 $f_0 [i+1]$ 会继承 $f_0 [i]$ 的状态，即 $(i,j) \Rightarrow (i+1,j)$</p>
 <p>转移后处理那些无法被成功转移的，由于 $set$ 结构，分别从 $\min$ 和 $\max$ 来 $erase$ 那些 $\leq l$ 或 $\geq r$ 的 $pair$</p>
 <h2 id="CF1540B-Tree-Array"><a href="#CF1540B-Tree-Array" class="headerlink" title="CF1540B Tree Array"></a>CF1540B Tree Array</h2><h3 id="题意简述"><a href="#题意简述" class="headerlink" title="题意简述"></a>题意简述</h3><ul>
@@ -294,6 +240,223 @@ a_1 & a_2 & a_3 & \dotsb & a_i & \dotsb & a_n\\
       </categories>
       <tags>
         <tag>dp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>背包问题</title>
+    <url>/2021/01/04/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h1 id="背包9讲（大概"><a href="#背包9讲（大概" class="headerlink" title="背包9讲（大概"></a>背包9讲（大概</h1><h2 id="0-1背包"><a href="#0-1背包" class="headerlink" title="0/1背包"></a>0/1背包</h2><ul>
+<li><p>模型</p>
+<p>多种物品,每种物品只有一个.求能获得的最大总价值.</p>
+</li>
+<li><p>思路</p>
+<p>不选择第 $i$ 件物品,就相当用 $i-1$ 件物品,填充了体积为 $v$ 的背包.</p>
+<p>选择第 $i$ 件物品，相当于对 $i-1$ 件物品填充得到的体积为  $v-c[i]$ 的背包,再填充第 $i$ 个物品得到体积为 $v$ 的背包.</p>
+</li>
+<li><p>转移方程</p>
+<script type="math/tex; mode=display">f[i][v]=\max(f[i-1][v],f[i-1][v-c[i]]+w[i])</script><p>$f[i][v]$ 代表用 $i$ 件物品填充为体积为 $v$ 的背包得到的最大价值.</p>
+</li>
+<li><p>注</p>
+<p>一般考虑倒序枚举</p>
+<p>这样 $f_i$ 不会被 $i$ 以前的状态影响,更新也不会影响其他位置的状态.</p>
+</li>
+</ul>
+<p>-代码</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;i++)<span class="comment">//枚举物品</span></span><br><span class="line">	<span class="keyword">for</span>(rei j=V;j&gt;=c[i];j--)<span class="comment">//枚举体积</span></span><br><span class="line">		f[j]=<span class="built_in">max</span>(f[j],f[j-c[i]]+w[i]);<span class="comment">//状态转移方程.</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="完全背包"><a href="#完全背包" class="headerlink" title="完全背包"></a>完全背包</h2><ul>
+<li><p>模型</p>
+<p>每种物品有无限多个,可重复选取.</p>
+</li>
+</ul>
+<p><del>- 思路没有了（与0/1类似（逃</del></p>
+<ul>
+<li><p>转移方程</p>
+<script type="math/tex; mode=display">f[i][v]=\max(f[i-1][v],f[i-1][j-k*c[i]]+k*w[i])</script></li>
+<li><p>注</p>
+<p>顺序枚举</p>
+<p><a href="https://www.luogu.com.cn/blog/RPdreamer/post-01-bei-bao-yu-wan-quan-bei-bao-di-mei-ju-shun-xu-di-fou-tong-chu">01背包与完全背包的枚举顺序的不同处</a></p>
+</li>
+<li><p>代码</p>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;i++)<span class="comment">//枚举物品</span></span><br><span class="line">	<span class="keyword">for</span>(rei j=c[i];j&lt;=V;j++)<span class="comment">//枚举体积</span></span><br><span class="line">		f[j]=<span class="built_in">max</span>(f[j,f[j-c[i]]]+w[i]);<span class="comment">//状态转移.</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="多重背包"><a href="#多重背包" class="headerlink" title="多重背包"></a>多重背包</h2><ul>
+<li><p>模型</p>
+<p>有了个数的限制</p>
+</li>
+</ul>
+<p><del>- 思路不想写了</del></p>
+<pre><code>朴素做法就是把每种物品都拆成 size 个物品跑0/1背包
+</code></pre><h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><ul>
+<li><p>二进制拆分</p>
+<p>易知 $size_i=2^0+2^1+2^2+2^3…+2^x+y$</p>
+<p>其 $k$ 是任意数，$y$ 是一个不为2的整数次幂的数</p>
+<p>所以在多重背包中，可以将个数的限制如此分解</p>
+<p>每个分解看成一个物品</p>
+<p>(如： $2^2$ 看成 $1$ 个物品，该物品 $val=4\cdot val_i \space, \space w=4\cdot w_i$)</p>
+<p>如此进行后就是 $\log (size)$</p>
+<ul>
+<li><p>代码</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Good</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> v,w;</span><br><span class="line">&#125;;</span><br><span class="line">vector&lt;Good&gt; g;</span><br><span class="line"></span><br><span class="line">···</span><br><span class="line"><span class="comment">//对每个读入的v,w,s</span></span><br><span class="line"><span class="keyword">for</span>(rei k=<span class="number">1</span>;k&lt;=s;k*=<span class="number">2</span>)&#123;</span><br><span class="line">    s-=k;</span><br><span class="line">    g.<span class="built_in">push_back</span>(&#123;v*k,w*k&#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(s) g.<span class="built_in">push_back</span>(&#123;v*s,w*s&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//总dp</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> good:g)&#123;</span><br><span class="line">    <span class="keyword">for</span>(rei j=m;j&gt;=good.v;--j)&#123;</span><br><span class="line">        f[j]=<span class="built_in">max</span>(f[j],f[j-good.v]+good.w);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>单调队列优化</p>
+<p>这是一个最基本的转移式子</p>
+<script type="math/tex; mode=display">f[i][j]=max(f[i−1][j],f[i−1][j−k\cdot c[i]]+k\cdot w[i])$$　
+
+其中$k \in [1,min(\left\lfloor\frac{V}{c[i]}\right\rfloor,num[i])]$
+
+下面用 $lim$ 表示 $min(\left\lfloor\frac{V}{c[i]}\right\rfloor,num[i])$
+
+易得 $f[i][j−k\cdot c[i]]$ 会被 $f[i][j−(k+1)\cdot c[i]]$ 影响
+
+(体积为 $c[i]$ 的物品填充体积为 $j−(k+1)\cdot c[i]$ 的背包,会得到体积为 $j−k\cdot c[i]$ 的背包)
+
+$f[i][j]$ 将会影响 $f[i][j+k\cdot c[i]]　(j+k\cdot c[i]\leq V)$
+
+注意这里影响的传导，往取模上想
+
+所以我们可以根据对 $c[i]$ 取模得到的余数进行分组.
+
+即可分为 $0,1,2,3…c[i]−1$ 共 $c[i]$ 组
+
+每组之间的状态互相没有影响
+
+且每组中位置靠后的受前面的影响
+
+- 进行一些推导
+
+  注： $\frac{j}{c[i]}即是全选状态下的物品个数$
+
+  $$\because j=\frac{j}{c[i]} \ \cdot \ c[i] \ +\ j\% c[i]</script><script type="math/tex; mode=display">\therefore j−k∗c[i]=\frac{j}{c[i]}\cdot c[i] \ +\ j\% c[i] \ −\ k\cdot c[i]</script><script type="math/tex; mode=display">\space \space \space \space \space \space \space \space \space =(\frac{j}{c[i]} \ −\ k)\cdot c[i]+j \% c[i]</script><p>  令 $(\frac{j}{c[i]}−k)=k^{‘}$</p>
+<p>  最原始的状态转移方程中第二状态 :</p>
+<p>  $f[i][j−k\cdot c[i]\ ]+k\cdot w[i]$ 代表选择 $k$ 个当前 $i$ 物品</p>
+<p>  根据单步容斥 ：全选−不选=选</p>
+<p>  因此 $\frac{j}{c[i]} \ −\ (\frac{j}{c[i]}−k)=k$</p>
+<script type="math/tex; mode=display">\because (\frac{j}{c[i]}−k)=k^{'}</script><script type="math/tex; mode=display">\therefore f[i][j]=\max( \ f[i−1][\ k^{'}\cdot c[i]+j \% c[i] \ ] \ + \ \frac{j}{c[i]}\cdot w[i]−k^{'}\cdot w[i])</script><p>  而其中 $\frac{j}{c[i]}\cdot w[i]$ 为一个常量(因为 $\frac{j}{c[i]}$ 已知)</p>
+<p>  要求的状态变为</p>
+<script type="math/tex; mode=display">f[i][j]=\max(f[i−1][ \ k^{'}\cdot c[i]+j\% c[i] \ ]−k^{'}\cdot w[i])+\frac{j}{c[i]}\cdot w[i]</script><script type="math/tex; mode=display">\because k \in [1,lim]</script><script type="math/tex; mode=display">\therefore k^{'} \in [\frac{j}{c[i]}−k,\frac{j}{c[i]}]</script><p>  当前的 $f[i][j]$ 求解的就是为 $lim+1$ 个数对应的 $f[i−1][k^{‘}\cdot c[i]+j\% c[i] \ ]−k^{‘}\cdot w[i]$ 的最大值.</p>
+<p>  (之所以为 $lim+1$ 个数,是包括当前这个 $j$ ,还有前面的物品数量)</p>
+<p>  将 $f[i][j]$ 前面所有的 $f[i−1][k^{‘}\cdot c[i]+j\% c[i]\ ]−k^{‘}\cdot w[i]$ 放入一个队列.</p>
+<p>  问题转化为求这个最长为 $lim+1$ 的队列的最大值 $+\frac{j}{c[i]}\cdot w[i]$</p>
+<ul>
+<li><p>代码</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;i++)&#123;<span class="comment">//枚举物品种类</span></span><br><span class="line">    cin&gt;&gt;c[i]&gt;&gt;w[i]&gt;&gt;num[i];<span class="comment">//c,w,num分别对应 体积,价值,个数</span></span><br><span class="line">    <span class="keyword">if</span>(V/c[i] &lt; num[i]) num[i]=V/c[i];<span class="comment">//求lim</span></span><br><span class="line">    <span class="keyword">for</span>(rei p=<span class="number">0</span>;p&lt;c[i];p++)&#123;<span class="comment">//枚举余数</span></span><br><span class="line">        head=tail=<span class="number">0</span>;<span class="comment">//队列初始化</span></span><br><span class="line">        <span class="keyword">for</span>(rei k=<span class="number">0</span>;k&lt;=(V-p)/c[i];k++)&#123;</span><br><span class="line">            rei x=k;</span><br><span class="line">            rei y=f[k*c[i]+p]-k*w[i];</span><br><span class="line">            <span class="keyword">while</span>(head&lt;tail &amp;&amp; q[head].pos&lt;k-num) ++head;<span class="comment">//限制长度</span></span><br><span class="line">            <span class="keyword">while</span>(head&lt;tail &amp;&amp; q[tail<span class="number">-1</span>].value&lt;=y) --tail;</span><br><span class="line">            q[tail].value=y,q[tail].pos=x;</span><br><span class="line">            ++tail;</span><br><span class="line">            f[k*c[i]+p]=q[head].value+k*w[i];</span><br><span class="line">            <span class="comment">//单调队列维护的是前i-1种的状态最大值.</span></span><br><span class="line">            <span class="comment">//因此这里加上k*w[i].</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="混合背包"><a href="#混合背包" class="headerlink" title="混合背包"></a>混合背包</h2><ul>
+<li><p>思路</p>
+<p>拆开分别算即可</p>
+</li>
+<li><p>代码</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;n;++i)&#123;</span><br><span class="line">    rei v,w,s;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>,&amp;v,&amp;w,&amp;s);</span><br><span class="line">    <span class="keyword">if</span>(s&lt;<span class="number">0</span>) things.<span class="built_in">push_back</span>(&#123;<span class="number">-1</span>,v,w&#125;);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(!s) things.<span class="built_in">push_back</span>(&#123;<span class="number">0</span>,v,w&#125;);</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(rei k=<span class="number">1</span>;k&lt;=s;k*=<span class="number">2</span>)&#123;</span><br><span class="line">            s-=k;</span><br><span class="line">            things.<span class="built_in">push_back</span>(&#123;<span class="number">-1</span>,v*k,w*k&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(s&gt;<span class="number">0</span>) things.<span class="built_in">push_back</span>(&#123;<span class="number">-1</span>,v*s,w*s&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> thing : things)&#123;</span><br><span class="line">    <span class="keyword">if</span>(thing.kind&lt;<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">for</span>(rei j=m;j&gt;=thing.v;--j)</span><br><span class="line">            f[j]=<span class="built_in">max</span>(f[j],f[j-thing.v]+thing.w);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(rei j=thing.v;j&lt;=m;++j)</span><br><span class="line">            f[j]=<span class="built_in">max</span>(f[j],f[j-thing.v]+thing.w);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h2 id="二维费用背包"><a href="#二维费用背包" class="headerlink" title="二维费用背包"></a>二维费用背包</h2><ul>
+<li><p>模型</p>
+<p>有容量 $v$ 与重量 $w$ 两个限制</p>
+</li>
+<li><p>思路</p>
+<p>限制扩展到二维即可</p>
+</li>
+<li><p>代码</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;n;++i)&#123;</span><br><span class="line">    rei a,b,c;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>,&amp;a,&amp;b,&amp;c);</span><br><span class="line">    <span class="keyword">for</span>(rei j=v;j&gt;=a;--j)</span><br><span class="line">        <span class="keyword">for</span>(rei k=m;k&gt;=b;--k)</span><br><span class="line">            f[j][k]=<span class="built_in">max</span>(f[j][k],f[j-a][k-b]+c);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h2 id="分组背包"><a href="#分组背包" class="headerlink" title="分组背包"></a>分组背包</h2><ul>
+<li><p>模型</p>
+<p>每组若干个物品，每个物品组内的物品互斥（只能选一个）</p>
+</li>
+<li><p>转移方程</p>
+<script type="math/tex; mode=display">f[k][v]=\max(f[k-1][v],f[k-1][v-c[i]]+w[i])</script></li>
+<li><p>代码</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;n;++i)&#123;<span class="comment">//每一组</span></span><br><span class="line">    rei s;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;s);</span><br><span class="line">    <span class="keyword">for</span>(rei j=<span class="number">0</span>;j&lt;s;++j) <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;v[j],&amp;w[j]);</span><br><span class="line">    <span class="keyword">for</span>(rei j=m;j&gt;=<span class="number">0</span>;--j)<span class="comment">//枚举体积</span></span><br><span class="line">        <span class="keyword">for</span>(rei k=<span class="number">0</span>;k&lt;s;++k)<span class="comment">//枚举物品</span></span><br><span class="line">            <span class="keyword">if</span>(j&gt;=v[k])</span><br><span class="line">                f[j]=<span class="built_in">max</span>(f[j],f[j-v[k]]+w[k]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h2 id="有依赖的背包"><a href="#有依赖的背包" class="headerlink" title="有依赖的背包"></a>有依赖的背包</h2><ul>
+<li><p>模型</p>
+<p>物品间有依赖关系，且依赖关系组成一棵树</p>
+<p>为选取某节点，必须选取该节点的父节点</p>
+<p>eg:<strong>选课问题</strong></p>
+</li>
+<li><p>思路</p>
+<p>对每个点，dfs其子节点再dp</p>
+<p>特别注意子节点dp体积时要给父节点留下空间</p>
+<p>详见代码</p>
+</li>
+<li><p>代码</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(rei i=head[u];i!=<span class="number">-1</span>;i=Next[i])&#123;</span><br><span class="line">        rei son=ver[i];</span><br><span class="line">        <span class="built_in">dfs</span>(son);</span><br><span class="line">        <span class="keyword">for</span>(rei j=m-v[u];j&gt;=<span class="number">0</span>;--j)<span class="comment">//注意，这里要留出当前点的体积再去dp其子节点</span></span><br><span class="line">            <span class="keyword">for</span>(rei k=<span class="number">0</span>;k&lt;=j;++k)</span><br><span class="line">                f[u][j]=<span class="built_in">max</span>(f[u][j],f[u][j-k]+f[son][k]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(rei i=m;i&gt;=v[u];--i) f[u][i]=f[u][i-v[u]]+w[u];<span class="comment">//加上当前点</span></span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;v[u];++i) f[u][i]=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>背包</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>学不会的生成函数</title>
+    <url>/2021/05/05/%E5%AD%A6%E4%B8%8D%E4%BC%9A%E7%9A%84%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<h2 id="不知道怎么开始"><a href="#不知道怎么开始" class="headerlink" title="不知道怎么开始"></a>不知道怎么开始</h2><ul>
+<li><p>$a=\langle1,1,1,1,1…\rangle$的生成函数是</p>
+<script type="math/tex; mode=display">f(x)=x+x^2+x^3+x^4+...</script><p>限定 $x\in(-1,1)$</p>
+<script type="math/tex; mode=display">f(x)=\lim_{n\to \infty} \frac{1-x^n}{1-x} = \frac{1}{1-x}</script><p>同理得,函数</p>
+<script type="math/tex; mode=display">f(x)=1+x^2+x^4+x^6...=\frac{1}{1-x^2}</script><script type="math/tex; mode=display">f(x)=1+2x+3x^2+4x^3...=\frac{1}{\left(1-x \right)^2}</script><script type="math/tex; mode=display">f(x)=1+3x+6x^2+10x^3+15x^4...=\frac{1}{\left(1-x\right)^3}</script><p>推广有：</p>
+<script type="math/tex; mode=display">\frac{1}{\left(1-x\right)^k} 的生成数列是 \sum_i^\infty C_{i+k-1}^{k-1} x^i</script></li>
+</ul>
+<p>设 $F(z) , G(z)$ 是数列 $\langle \ f_n \ \rangle , \langle \ g_i \ \rangle$ 的生成函数</p>
+<ul>
+<li><p>相加</p>
+<script type="math/tex; mode=display">\begin{aligned}
+\alpha F(z)+ \beta G(z)
+&= \alpha \sum_n f_nz^n + \beta \sum_ng_nz^n \\
+&=\sum_n (\alpha f_n + \beta g_n) z^n\\
+\end{aligned}</script><p>得到数列 $\langle \ \alpha f_n+\beta g_n \  \rangle$ 的生成函数</p>
+</li>
+<li><p>平移生成函数</p>
+<ul>
+<li><p>向右 $m$ 位</p>
+<p>即，构造前面有 $m$ 个 $0$ 的数列 $\langle \ \underbrace{0,\cdots}_{m个},g_0,g_1,\cdots \ \rangle = \langle \ g_{n-m} \ \rangle$ 的生成函数</p>
+<p>直接用 $z_m$ 乘</p>
+<script type="math/tex; mode=display">z_m \cdot G(z) = \sum_n g_nz^{n+m} = \sum_n g_{n-m}z^n</script></li>
+<li><p>向左 $m$ 位</p>
+<p>即，构造前面 $m$ 个元素被删除的数列 $\langle \ g_m,g_{m+1},g_{m+2},\cdots \ \rangle$ 的生成函数</p>
+<p>减去前 $m$ 项，并用 $z_m$ 来除</p>
+<script type="math/tex; mode=display">\frac{G(z)-g_0-g_1z-\cdots -g_{m-1}z^{m-1}}{z^m} = \sum_{n\geq m} g_nz^{n-m} = \sum_{n\geq 0} g_{n+m}g^z</script></li>
+</ul>
+</li>
+<li><p>常数倍的 $z$</p>
+<script type="math/tex; mode=display">G(cz) = \sum_ng_n(cz)^n = \sum_n g_nz^n</script><p>即，数列 $\langle \ c^ng_n  \ \rangle$ 的生成函数</p>
+<p>当 $c=-1$ 时特别有用</p>
+</li>
+<li><p>相乘</p>
+<script type="math/tex; mode=display">\begin{aligned}
+F(z)G(z)
+&=(f_0+f_1z+f_2z^2+\cdots ) \cdot (g_0+g_0z+g_0z^2+\cdots) \\
+&=(f_0 \cdot g_0) + (f_0\cdot g_1 + f_1 \cdot g_0)z + (f_0\cdot g_2 + f_1\cdot g_1 + f_2 \cdot g_0) z^2 + \cdots \\
+&=\sum_n \left(\sum f_k \cdot g_{n-k} \right) z^n \\
+\end{aligned}</script><p>求得数列 $\langle \ h_n \ \rangle$ 的生成函数，即数列 $\langle \ f_n \ \rangle , \langle \ g_i \ \rangle$ 的卷积的生成函数</p>
+<p>和式 $\displaystyle{h_n=\sum_{k=0}^n f_k \cdot g_{n-k}}$</p>
+</li>
+</ul>
+<p><strong>具体参见具体数学P280 , 表7-1，7-2</strong></p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>生成函数</tag>
       </tags>
   </entry>
   <entry>
@@ -361,7 +524,7 @@ g(k)&=\sum_{i=1}^k (-1)^{k-i} \binom{k-1}{i-1} [i=1] \\
   <entry>
     <title>树链剖分</title>
     <url>/2021/07/01/%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86/</url>
-    <content><![CDATA[<h2 id="关于长链剖分中指针的理解"><a href="#关于长链剖分中指针的理解" class="headerlink" title="关于长链剖分中指针的理解"></a>关于长链剖分中指针的理解</h2><p>与指针有关的变量：$<em>dp[N],tmp[N],</em>pos$</p>
+    <content><![CDATA[<h2 id="关于长链剖分中指针的理解"><a href="#关于长链剖分中指针的理解" class="headerlink" title="关于长链剖分中指针的理解"></a>关于长链剖分中指针的理解</h2><p>与指针有关的变量：$<em>dp[N],tmp[N]$,$</em>pos$</p>
 <hr>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">pos=tmp;<span class="comment">//将pos指向tmp空间</span></span><br><span class="line">dp[<span class="number">1</span>]=pos, pos+=height[<span class="number">1</span>];</span><br><span class="line">   <span class="comment">//改变后pos加上dp[1]所需的长度，防止内存冲突</span></span><br></pre></td></tr></table></figure>
 <p>可以把 $*dp[1]$ 看成指向 $tmp$ 上一段长为 $height[1]$ 的指针</p>
@@ -445,40 +608,42 @@ g(k)&=\sum_{i=1}^k (-1)^{k-i} \binom{k-1}{i-1} [i=1] \\
 &F(x)*G(x) \\
 &=(1+9x+2x^2+6x^3+0x^4+8x^6+7x^7) \cdot (1+x+x^2+x^3+x^4+ \cdots +x^{\infty}) \\
 &=1+\underbrace{9x^1 + \underbrace{2x^2 + \underbrace{6x^3 + \underbrace{0x^4 + \underbrace{8x^6 + \underbrace{7x^7}_{\rm 系数+8}}_{\rm 系数+0}}_{\rm 系数+6}}_{\rm 系数+2}}_{\rm 系数+9}}_{\rm 系数+1}
-\end{aligned}</script><script type="math/tex; mode=display">
-发现 $F(x)\cdot G(x)$ 所得多项式就是 $F$ 的一阶前缀和
-
-$\displaystyle{\therefore 显然有 G(x)=\frac{1}{1-x}}$
-
-$\displaystyle{\therefore k阶前缀和 \Rightarrow
- F(x) \cdot \frac{1}{\left(1-x \right)^k}}$
-
-$\displaystyle{\frac{1}{\left(1-x \right)^k} 的第 n 项系数就是 \dbinom{n+k-1}{k-1} }$
-
-$\displaystyle{\therefore a_i=\sum_{j=1}^{i-1}\dbinom{j+k-1}{k-1} \cdot a_{i-j} }$
-
-设组合数递推式 $g_i=\dbinom{i+k-1}{k-1}$
-
-$$\begin{aligned}
-\therefore
-g_i
-&=\frac{g_{i-1}\times (k+i-1)}{i}\%p &\text{只会在计算中用到这个}\\
-&=\left(\frac{g_{i-1} }{i}\%p \right)\times ((k+i-1)\%p) \\
-&=\left(\frac{g_{i-1} }{i}\%p \right)\times ((k\%p+i-1)\%p) &\text{只是为了推 $k$ 可以取模}\\
-\end{aligned}</script><p>$\therefore$ 可以对 $k$ 取模</p>
-</li>
-<li><p>差分</p>
-<p>易得 $F(x) * (1-x)$ 所得的多项式就是差分后</p>
-<p>同理得 $\left(1-x\right)^k$</p>
-<script type="math/tex; mode=display">\begin{aligned}
-B
-&=F(x) \cdot \left(1-x\right)^k \\
-&=F(x) \cdot \sum_{i=0}^{\infty} \dbinom{k}{i} \left(-x \right)^i \\
-&=F(x) \cdot \sum_{i=0}^{\infty} \left(-1 \right)^i \cdot \dbinom{k}{i} x^i \\
-\end{aligned}</script><p>看组合数递推式: $\dbinom{k}{i}$</p>
-<script type="math/tex; mode=display">\dbinom{k}{0}=1</script><script type="math/tex; mode=display">\dbinom{k}{1}=\frac{k!}{(k-1)!}=k</script><script type="math/tex; mode=display">\dbinom{k}{2}=\frac{k!}{2!(k-2)!}=\frac{k(k-1)}{2}</script><script type="math/tex; mode=display">\dbinom{k}{3}=\frac{k!}{3!(k-3)!}=\frac{k(k-1)(k-2)}{2\times 3}</script><script type="math/tex; mode=display">\dbinom{k}{i}=\dbinom{k}{i-1} \cdot \frac{k-i+1}{i} \qquad\text{用这个递推}</script></li>
+\end{aligned}</script></li>
 </ul>
 </li>
+</ul>
+<pre><code>发现 $F(x)\cdot G(x)$ 所得多项式就是 $F$ 的一阶前缀和
+
+$\displaystyle&#123;\therefore 显然有 G(x)=\frac&#123;1&#125;&#123;1-x&#125;&#125;$
+
+$\displaystyle&#123;\therefore k阶前缀和 \Rightarrow
+ F(x) \cdot \frac&#123;1&#125;&#123;\left(1-x \right)^k&#125;&#125;$
+
+$\displaystyle&#123;\frac&#123;1&#125;&#123;\left(1-x \right)^k&#125; 的第 n 项系数就是 \dbinom&#123;n+k-1&#125;&#123;k-1&#125; &#125;$
+
+$\displaystyle&#123;\therefore a_i=\sum_&#123;j=1&#125;^&#123;i-1&#125;\dbinom&#123;j+k-1&#125;&#123;k-1&#125; \cdot a_&#123;i-j&#125; &#125;$
+
+设组合数递推式 $g_i=\dbinom&#123;i+k-1&#125;&#123;k-1&#125;$
+
+$$\begin&#123;aligned&#125;
+\therefore
+g_i
+&amp;=\frac&#123;g_&#123;i-1&#125;\times (k+i-1)&#125;&#123;i&#125;\%p &amp;\text&#123;只会在计算中用到这个&#125;\\
+&amp;=\left(\frac&#123;g_&#123;i-1&#125; &#125;&#123;i&#125;\%p \right)\times ((k+i-1)\%p) \\
+&amp;=\left(\frac&#123;g_&#123;i-1&#125; &#125;&#123;i&#125;\%p \right)\times ((k\%p+i-1)\%p) \\ &amp;\text&#123;只是为了推 $k$ 可以取模&#125; \\
+</code></pre><p>  \end{aligned}$$</p>
+<p>  $\therefore$ 可以对 $k$ 取模</p>
+<ul>
+<li><p>差分</p>
+<p>易得 $F(x) * (1-x)$ 所得的多项式就是差分后</p>
+<p>  同理得 $\left(1-x\right)^k$</p>
+<script type="math/tex; mode=display">\begin{aligned}
+  B
+  &=F(x) \cdot \left(1-x\right)^k \\
+  &=F(x) \cdot \sum_{i=0}^{\infty} \dbinom{k}{i} \left(-x \right)^i \\
+&=F(x) \cdot \sum_{i=0}^{\infty} \left(-1 \right)^i \cdot \dbinom{k}{i} x^i \\
+  \end{aligned}</script><p>  看组合数递推式: $\dbinom{k}{i}$</p>
+<script type="math/tex; mode=display">\dbinom{k}{0}=1</script><script type="math/tex; mode=display">\dbinom{k}{1}=\frac{k!}{(k-1)!}=k</script><script type="math/tex; mode=display">\dbinom{k}{2}=\frac{k!}{2!(k-2)!}=\frac{k(k-1)}{2}</script><script type="math/tex; mode=display">\dbinom{k}{3}=\frac{k!}{3!(k-3)!}=\frac{k(k-1)(k-2)}{2\times 3}</script><script type="math/tex; mode=display">\dbinom{k}{i}=\dbinom{k}{i-1} \cdot \frac{k-i+1}{i} \qquad\text{用这个递推}</script></li>
 </ul>
 ]]></content>
       <categories>
@@ -486,169 +651,6 @@ B
       </categories>
       <tags>
         <tag>多项式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>背包问题</title>
-    <url>/2021/01/04/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<h1 id="背包9讲（大概"><a href="#背包9讲（大概" class="headerlink" title="背包9讲（大概"></a>背包9讲（大概</h1><h2 id="0-1背包"><a href="#0-1背包" class="headerlink" title="0/1背包"></a>0/1背包</h2><ul>
-<li><p>模型</p>
-<p>多种物品,每种物品只有一个.求能获得的最大总价值.</p>
-</li>
-<li><p>思路</p>
-<p>不选择第 $i$ 件物品,就相当用 $i-1$ 件物品,填充了体积为 $v$ 的背包.</p>
-<p>选择第 $i$ 件物品，相当于对 $i-1$ 件物品填充得到的体积为  $v-c[i]$ 的背包,再填充第 $i$ 个物品得到体积为 $v$ 的背包.</p>
-</li>
-<li><p>转移方程</p>
-<script type="math/tex; mode=display">f[i][v]=\max(f[i-1][v],f[i-1][v-c[i]]+w[i])</script><p>$f[i][v]$ 代表用 $i$ 件物品填充为体积为 $v$ 的背包得到的最大价值.</p>
-</li>
-<li><p>注</p>
-<p>一般考虑倒序枚举</p>
-<p>这样 $f_i$ 不会被 $i$ 以前的状态影响,更新也不会影响其他位置的状态.</p>
-</li>
-</ul>
-<p>-代码</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;i++)<span class="comment">//枚举物品</span></span><br><span class="line">	<span class="keyword">for</span>(rei j=V;j&gt;=c[i];j--)<span class="comment">//枚举体积</span></span><br><span class="line">		f[j]=<span class="built_in">max</span>(f[j],f[j-c[i]]+w[i]);<span class="comment">//状态转移方程.</span></span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="完全背包"><a href="#完全背包" class="headerlink" title="完全背包"></a>完全背包</h2><ul>
-<li><p>模型</p>
-<p>每种物品有无限多个,可重复选取.</p>
-</li>
-</ul>
-<p><del>- 思路没有了（与0/1类似（逃</del></p>
-<ul>
-<li><p>转移方程</p>
-<script type="math/tex; mode=display">f[i][v]=\max(f[i-1][v],f[i-1][j-k*c[i]]+k*w[i])</script></li>
-<li><p>注</p>
-<p>顺序枚举</p>
-<p><a href="https://www.luogu.com.cn/blog/RPdreamer/post-01-bei-bao-yu-wan-quan-bei-bao-di-mei-ju-shun-xu-di-fou-tong-chu">01背包与完全背包的枚举顺序的不同处</a></p>
-</li>
-<li><p>代码</p>
-</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;i++)<span class="comment">//枚举物品</span></span><br><span class="line">	<span class="keyword">for</span>(rei j=c[i];j&lt;=V;j++)<span class="comment">//枚举体积</span></span><br><span class="line">		f[j]=<span class="built_in">max</span>(f[j,f[j-c[i]]]+w[i]);<span class="comment">//状态转移.</span></span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="多重背包"><a href="#多重背包" class="headerlink" title="多重背包"></a>多重背包</h2><ul>
-<li><p>模型</p>
-<p>有了个数的限制</p>
-</li>
-</ul>
-<p><del>- 思路不想写了</del></p>
-<pre><code>朴素做法就是把每种物品都拆成 size 个物品跑0/1背包
-</code></pre><h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><ul>
-<li><p>二进制拆分</p>
-<p>易知 $size_i=2^0+2^1+2^2+2^3…+2^x+y$</p>
-<p>其 $k$ 是任意数，$y$ 是一个不为2的整数次幂的数</p>
-<p>所以在多重背包中，可以将个数的限制如此分解</p>
-<p>每个分解看成一个物品</p>
-<p>(如： $2^2$ 看成 $1$ 个物品，该物品 $val=4<em>val_i \space, \space w=4</em>w_i$)</p>
-<p>如此进行后就是 $\log (size)$</p>
-<ul>
-<li><p>代码</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Good</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> v,w;</span><br><span class="line">&#125;;</span><br><span class="line">vector&lt;Good&gt; g;</span><br><span class="line"></span><br><span class="line">···</span><br><span class="line"><span class="comment">//对每个读入的v,w,s</span></span><br><span class="line"><span class="keyword">for</span>(rei k=<span class="number">1</span>;k&lt;=s;k*=<span class="number">2</span>)&#123;</span><br><span class="line">    s-=k;</span><br><span class="line">    g.<span class="built_in">push_back</span>(&#123;v*k,w*k&#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(s) g.<span class="built_in">push_back</span>(&#123;v*s,w*s&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//总dp</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> good:g)&#123;</span><br><span class="line">    <span class="keyword">for</span>(rei j=m;j&gt;=good.v;--j)&#123;</span><br><span class="line">        f[j]=<span class="built_in">max</span>(f[j],f[j-good.v]+good.w);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>单调队列优化</p>
-<p>这是一个最基本的转移式子</p>
-<script type="math/tex; mode=display">f[i][j]=max(f[i−1][j],f[i−1][j−k∗c[i]]+k∗w[i])$$　
-
-其中$k \in [1,min(\left\lfloor\frac{V}{c[i]}\right\rfloor,num[i])]$
-
-下面用 $lim$ 表示 $min(\left\lfloor\frac{V}{c[i]}\right\rfloor,num[i])$
-
-易得 $f[i][j−k∗c[i]]$ 会被 $f[i][j−(k+1)∗c[i]]$ 影响
-
-(体积为 $c[i]$ 的物品填充体积为 $j−(k+1)∗c[i]$ 的背包,会得到体积为 $j−k∗c[i]$ 的背包)
-
-$f[i][j]$ 将会影响 $f[i][j+k∗c[i]]　(j+k∗c[i]\leq V)$
-
-注意这里影响的传导，往取模上想
-
-所以我们可以根据对 $c[i]$ 取模得到的余数进行分组.
-
-即可分为 $0,1,2,3…c[i]−1$ 共 $c[i]$ 组
-
-每组之间的状态互相没有影响
-
-且每组中位置靠后的受前面的影响
-
-- 进行一些推导
-
-  注： $\frac{j}{c[i]}即是全选状态下的物品个数$
-
-  $$\because j=\frac{j}{c[i]} \ *\ c[i] \ +\ j\% c[i]</script><script type="math/tex; mode=display">\therefore j−k∗c[i]=\frac{j}{c[i]}∗c[i] \ +\ j\% c[i] \ −\ k∗c[i]</script><script type="math/tex; mode=display">\space \space \space \space \space \space \space \space \space =(\frac{j}{c[i]} \ −\ k)∗c[i]+j \% c[i]</script><p>  令 $(\frac{j}{c[i]}−k)=k^{‘}$</p>
-<p>  最原始的状态转移方程中第二状态 :</p>
-<p>  $f[i][j−k∗c[i]\ ]+k∗w[i]$ 代表选择 $k$ 个当前 $i$ 物品</p>
-<p>  根据单步容斥 ：全选−不选=选</p>
-<p>  因此 $\frac{j}{c[i]} \ −\ (\frac{j}{c[i]}−k)=k$</p>
-<script type="math/tex; mode=display">\because (\frac{j}{c[i]}−k)=k^{'}</script><script type="math/tex; mode=display">\therefore f[i][j]=\max( \ f[i−1][\ k^{'}∗c[i]+j \% c[i] \ ] \ + \ \frac{j}{c[i]}∗w[i]−k^{'}∗w[i])</script><p>  而其中 $\frac{j}{c[i]}∗w[i]$ 为一个常量(因为 $\frac{j}{c[i]}$ 已知)</p>
-<p>  要求的状态变为</p>
-<script type="math/tex; mode=display">f[i][j]=\max(f[i−1][ \ k^{'}∗c[i]+j\% c[i] \ ]−k^{'}∗w[i])+\frac{j}{c[i]}∗w[i]</script><script type="math/tex; mode=display">\because k \in [1,lim]</script><script type="math/tex; mode=display">\therefore k^{'} \in [\frac{j}{c[i]}−k,\frac{j}{c[i]}]</script><p>  当前的 $f[i][j]$ 求解的就是为 $lim+1$ 个数对应的 $f[i−1][k^{‘}∗c[i]+j\% c[i] \ ]−k^{‘}∗w[i]$ 的最大值.</p>
-<p>  (之所以为 $lim+1$ 个数,是包括当前这个 $j$ ,还有前面的物品数量)</p>
-<p>  将 $f[i][j]$ 前面所有的 $f[i−1][k^{‘}∗c[i]+j\% c[i]\ ]−k^{‘}∗w[i]$ 放入一个队列.</p>
-<p>  问题转化为求这个最长为 $lim+1$ 的队列的最大值 $+\frac{j}{c[i]}∗w[i]$</p>
-<ul>
-<li><p>代码</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;i++)&#123;<span class="comment">//枚举物品种类</span></span><br><span class="line">    cin&gt;&gt;c[i]&gt;&gt;w[i]&gt;&gt;num[i];<span class="comment">//c,w,num分别对应 体积,价值,个数</span></span><br><span class="line">    <span class="keyword">if</span>(V/c[i] &lt; num[i]) num[i]=V/c[i];<span class="comment">//求lim</span></span><br><span class="line">    <span class="keyword">for</span>(rei p=<span class="number">0</span>;p&lt;c[i];p++)&#123;<span class="comment">//枚举余数</span></span><br><span class="line">        head=tail=<span class="number">0</span>;<span class="comment">//队列初始化</span></span><br><span class="line">        <span class="keyword">for</span>(rei k=<span class="number">0</span>;k&lt;=(V-p)/c[i];k++)&#123;</span><br><span class="line">            rei x=k;</span><br><span class="line">            rei y=f[k*c[i]+p]-k*w[i];</span><br><span class="line">            <span class="keyword">while</span>(head&lt;tail &amp;&amp; q[head].pos&lt;k-num) ++head;<span class="comment">//限制长度</span></span><br><span class="line">            <span class="keyword">while</span>(head&lt;tail &amp;&amp; q[tail<span class="number">-1</span>].value&lt;=y) --tail;</span><br><span class="line">            q[tail].value=y,q[tail].pos=x;</span><br><span class="line">            ++tail;</span><br><span class="line">            f[k*c[i]+p]=q[head].value+k*w[i];</span><br><span class="line">            <span class="comment">//单调队列维护的是前i-1种的状态最大值.</span></span><br><span class="line">            <span class="comment">//因此这里加上k*w[i].</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="混合背包"><a href="#混合背包" class="headerlink" title="混合背包"></a>混合背包</h2><ul>
-<li><p>思路</p>
-<p>拆开分别算即可</p>
-</li>
-<li><p>代码</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;n;++i)&#123;</span><br><span class="line">    rei v,w,s;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>,&amp;v,&amp;w,&amp;s);</span><br><span class="line">    <span class="keyword">if</span>(s&lt;<span class="number">0</span>) things.<span class="built_in">push_back</span>(&#123;<span class="number">-1</span>,v,w&#125;);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(!s) things.<span class="built_in">push_back</span>(&#123;<span class="number">0</span>,v,w&#125;);</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(rei k=<span class="number">1</span>;k&lt;=s;k*=<span class="number">2</span>)&#123;</span><br><span class="line">            s-=k;</span><br><span class="line">            things.<span class="built_in">push_back</span>(&#123;<span class="number">-1</span>,v*k,w*k&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(s&gt;<span class="number">0</span>) things.<span class="built_in">push_back</span>(&#123;<span class="number">-1</span>,v*s,w*s&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> thing : things)&#123;</span><br><span class="line">    <span class="keyword">if</span>(thing.kind&lt;<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">for</span>(rei j=m;j&gt;=thing.v;--j)</span><br><span class="line">            f[j]=<span class="built_in">max</span>(f[j],f[j-thing.v]+thing.w);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(rei j=thing.v;j&lt;=m;++j)</span><br><span class="line">            f[j]=<span class="built_in">max</span>(f[j],f[j-thing.v]+thing.w);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<hr>
-<h2 id="二维费用背包"><a href="#二维费用背包" class="headerlink" title="二维费用背包"></a>二维费用背包</h2><ul>
-<li><p>模型</p>
-<p>有容量 $v$ 与重量 $w$ 两个限制</p>
-</li>
-<li><p>思路</p>
-<p>限制扩展到二维即可</p>
-</li>
-<li><p>代码</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;n;++i)&#123;</span><br><span class="line">    rei a,b,c;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>,&amp;a,&amp;b,&amp;c);</span><br><span class="line">    <span class="keyword">for</span>(rei j=v;j&gt;=a;--j)</span><br><span class="line">        <span class="keyword">for</span>(rei k=m;k&gt;=b;--k)</span><br><span class="line">            f[j][k]=<span class="built_in">max</span>(f[j][k],f[j-a][k-b]+c);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<hr>
-<h2 id="分组背包"><a href="#分组背包" class="headerlink" title="分组背包"></a>分组背包</h2><ul>
-<li><p>模型</p>
-<p>每组若干个物品，每个物品组内的物品互斥（只能选一个）</p>
-</li>
-<li><p>转移方程</p>
-<script type="math/tex; mode=display">f[k][v]=\max(f[k-1][v],f[k-1][v-c[i]]+w[i])</script></li>
-<li><p>代码</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;n;++i)&#123;<span class="comment">//每一组</span></span><br><span class="line">    rei s;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;s);</span><br><span class="line">    <span class="keyword">for</span>(rei j=<span class="number">0</span>;j&lt;s;++j) <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;v[j],&amp;w[j]);</span><br><span class="line">    <span class="keyword">for</span>(rei j=m;j&gt;=<span class="number">0</span>;--j)<span class="comment">//枚举体积</span></span><br><span class="line">        <span class="keyword">for</span>(rei k=<span class="number">0</span>;k&lt;s;++k)<span class="comment">//枚举物品</span></span><br><span class="line">            <span class="keyword">if</span>(j&gt;=v[k])</span><br><span class="line">                f[j]=<span class="built_in">max</span>(f[j],f[j-v[k]]+w[k]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<hr>
-<h2 id="有依赖的背包"><a href="#有依赖的背包" class="headerlink" title="有依赖的背包"></a>有依赖的背包</h2><ul>
-<li><p>模型</p>
-<p>物品间有依赖关系，且依赖关系组成一棵树</p>
-<p>为选取某节点，必须选取该节点的父节点</p>
-<p>eg:<strong>选课问题</strong></p>
-</li>
-<li><p>思路</p>
-<p>对每个点，dfs其子节点再dp</p>
-<p>特别注意子节点dp体积时要给父节点留下空间</p>
-<p>详见代码</p>
-</li>
-<li><p>代码</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(rei i=head[u];i!=<span class="number">-1</span>;i=Next[i])&#123;</span><br><span class="line">        rei son=ver[i];</span><br><span class="line">        <span class="built_in">dfs</span>(son);</span><br><span class="line">        <span class="keyword">for</span>(rei j=m-v[u];j&gt;=<span class="number">0</span>;--j)<span class="comment">//注意，这里要留出当前点的体积再去dp其子节点</span></span><br><span class="line">            <span class="keyword">for</span>(rei k=<span class="number">0</span>;k&lt;=j;++k)</span><br><span class="line">                f[u][j]=<span class="built_in">max</span>(f[u][j],f[u][j-k]+f[son][k]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(rei i=m;i&gt;=v[u];--i) f[u][i]=f[u][i-v[u]]+w[u];<span class="comment">//加上当前点</span></span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;v[u];++i) f[u][i]=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>背包</tag>
       </tags>
   </entry>
   <entry>
@@ -933,7 +935,7 @@ h(x) &=\sum_{d\mid x} f(d)g\left( \frac{x}{d} \right)
 </li>
 <li><p>$5.$</p>
 <p>若 $i\mid p$，其中 $p$ 是质数</p>
-<p>则 $\varphi(i<em>p)=p</em>\varphi(i)$</p>
+<p>则 $\varphi(i\cdot p)=p\cdot \varphi(i)$</p>
 <p>否则 $\varphi(i*p)=(p-1)\varphi(i)$</p>
 <p>即</p>
 <script type="math/tex; mode=display">\varphi(np)=\begin{cases}
