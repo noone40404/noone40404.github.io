@@ -19,20 +19,20 @@
     var CONFIG = {"hostname":"noone40404.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="min-max容斥及其例题">
+  <meta name="description" content="答案求最小步数,- 在某步数内一定可以完成 或 超出某步数认为无解">
 <meta property="og:type" content="article">
-<meta property="og:title" content="min-max容斥">
-<meta property="og:url" content="http://noone40404.github.io/2020/12/04/minmax%E5%AE%B9%E6%96%A5/index.html">
+<meta property="og:title" content="迭代加深">
+<meta property="og:url" content="http://noone40404.github.io/2021/04/07/%E8%BF%AD%E4%BB%A3%E5%8A%A0%E6%B7%B1/index.html">
 <meta property="og:site_name" content="noone___&#39;s blog">
-<meta property="og:description" content="min-max容斥及其例题">
+<meta property="og:description" content="答案求最小步数,- 在某步数内一定可以完成 或 超出某步数认为无解">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-12-04T10:05:37.000Z">
-<meta property="article:modified_time" content="2021-07-04T11:59:34.765Z">
+<meta property="article:published_time" content="2021-04-07T08:17:39.000Z">
+<meta property="article:modified_time" content="2021-07-05T08:18:59.825Z">
 <meta property="article:author" content="noone___">
-<meta property="article:tag" content="minmax">
+<meta property="article:tag" content="迭代加深">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://noone40404.github.io/2020/12/04/minmax%E5%AE%B9%E6%96%A5/">
+<link rel="canonical" href="http://noone40404.github.io/2021/04/07/%E8%BF%AD%E4%BB%A3%E5%8A%A0%E6%B7%B1/">
 
 
 <script id="page-configurations">
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>min-max容斥 | noone___'s blog</title>
+  <title>迭代加深 | noone___'s blog</title>
   
 
 
@@ -198,7 +198,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2020/12/04/minmax%E5%AE%B9%E6%96%A5/">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2021/04/07/%E8%BF%AD%E4%BB%A3%E5%8A%A0%E6%B7%B1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -211,7 +211,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          min-max容斥
+          迭代加深
         </h1>
 
         <div class="post-meta">
@@ -221,14 +221,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-12-04 18:05:37" itemprop="dateCreated datePublished" datetime="2020-12-04T18:05:37+08:00">2020-12-04</time>
+              <time title="创建时间：2021-04-07 16:17:39" itemprop="dateCreated datePublished" datetime="2021-04-07T16:17:39+08:00">2021-04-07</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-04 19:59:34" itemprop="dateModified" datetime="2021-07-04T19:59:34+08:00">2021-07-04</time>
+                <time title="修改时间：2021-07-05 16:18:59" itemprop="dateModified" datetime="2021-07-05T16:18:59+08:00">2021-07-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -248,7 +248,7 @@
               <span class="post-meta-item-text">阅读次数：</span>
               <span id="busuanzi_value_page_pv"></span>
             </span>
-            <div class="post-description">min-max容斥及其例题</div>
+            <div class="post-description">答案求最小步数,- 在某步数内一定可以完成 或 超出某步数认为无解</div>
 
         </div>
       </header>
@@ -259,55 +259,80 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="minmax容斥"><a href="#minmax容斥" class="headerlink" title="minmax容斥"></a>minmax容斥</h2><ul>
-<li><p>用途</p>
-<p>已知集合的最小值 (<strong>期望</strong>) 求最大值</p>
-<p>$eg:$ $n$ 个元素，每个元素出现概率 $p_i$，求每个元素都出现的期望时间</p>
+        <h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3><ul>
+<li><p>答案求最小步数</p>
 </li>
-<li><p>结论</p>
-<script type="math/tex; mode=display">\max\{S\}=\sum_{T\subset S}(-1)^{|T|+1} \min\{T\}</script><p>即</p>
-<script type="math/tex; mode=display">E\left(\max\{S\}\right)=\sum_{T\subset S}(-1)^{|T|+1} E\left(\min\{T\}\right)</script></li>
-<li><p>证明</p>
-<p>设容斥系数 $g\left(|T|\right)$</p>
-<p>即 $\displaystyle{\max\{S\}=\sum_{T\subset S}g\left(|T|\right) \min\{T\}}$</p>
-<p>考虑当排名为 $k$ 的数作为集合 $T$ 的最小值时，集合 $T$ 中所有值都 $\geq k$</p>
-<p>所以对于第$k$大数 ， 在大小为 $|T|$ 的集合中， $\max$ 的选取方案为 $\displaystyle{\binom{k-1}{|T|-1}}$</p>
-<p>考虑集合大小为 $1\sim k$ ，则第 $k$ 数的总贡献为</p>
-<p>$\displaystyle{\sum_{i=1}^k \binom{k-1}{i-1}} * g(i)=[k=1] \qquad \text{即只有最大值对 max 有贡献}$</p>
-<p>由二项式反演得</p>
-<script type="math/tex; mode=display">\begin{aligned}
-g(k)&=\sum_{i=1}^k (-1)^{k-i} \binom{k-1}{i-1} [i=1] \\
-&=(-1)^{k+1} \\
-\end{aligned}</script><span id="more"></span>
+<li><p>在某步数内一定可以完成 或 超出某步数认为无解</p>
 </li>
-<li><p>变式</p>
+</ul>
+<hr>
+<h3 id="随便写点注意事项"><a href="#随便写点注意事项" class="headerlink" title="随便写点注意事项"></a>随便写点注意事项</h3><ul>
+<li><p>注意估值函数的选取</p>
+<p>一般为 <strong>当前状态到最终状态的最短步数+已走的步数</strong>  是否大于 <strong>枚举的深度</strong></p>
 <ul>
-<li><p>由 $\max \Rightarrow \max$</p>
-<script type="math/tex; mode=display">\min(S)=\sum_{T\subseteq S,\ T \neq \varnothing} (-1)^{|T|-1} \max(T)</script></li>
-<li><p>扩展 $\min\max容斥$</p>
-<script type="math/tex; mode=display">\text{kthmax}\{S\}=\sum_{T\subseteq S}(-1)^{|T|-k} \binom{|T|-1}{k-1} \min\{T\}</script><ul>
-<li><p>证明</p>
-<p>目的是找到容斥系数满足 $\text{kthmax}\{S\}=\sum_{T\subseteq S} f(|T|) \min\{T\}$</p>
-<p>考虑第 $x$ 大元素，受原式启发得到</p>
-<script type="math/tex; mode=display">\sum_{i=1}^t \binom{t-1}{i-1} f(i)=[t=k]</script><script type="math/tex; mode=display">\therefore 经反演易得 f(n)=(-1)^{n-k} \binom{n-1}{k-1}</script><p><a target="_blank" rel="noopener" href="https://oi-wiki.org/math/inclusion-exclusion-principle/#min-max"><del>并不会用到的扩展minmax容斥</del></a></p>
-</li>
+<li>在[ $flood \ it$ ] 中：定义了专门的求估值函数（好像就变成IDA*了</li>
 </ul>
 </li>
-</ul>
-</li>
-</ul>
-<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><ul>
-<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3175">P3175 [HAOI2015]按位或</a></p>
+<li><p>$\text{dfs}(now+1)$ 失败后及时回复现场</p>
 <ul>
-<li><p>题意</p>
-<p>设 $\min\{S\}$ 表示二进制数 $S$ 中，第一个元素变为 $1$ 所需时间，$\max\{S\}$ 表示最后一个元素变为 $1$ 所需时间</p>
-<p>题为求 $E(\max\{U\})$ ,其中 $U$ 为全集，$U=2^n-1$</p>
+<li><p>$eg$ : [ $八数码难题$ ] 中：<strong>通过两数交换</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">swap</span>(sta[nx][ny],sta[x][y]);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">test</span>(step)) <span class="built_in">A</span>(step+<span class="number">1</span>,nx,ny,i);</span><br><span class="line"></span><br><span class="line"><span class="built_in">swap</span>(sta[nx][ny],sta[x][y]);</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>解</p>
-<p>由公式易知 $\displaystyle{E(\max\{U\})=\sum_{S\subseteq U}(-1)^{|S|-1} \ \sum E(\min\{S\})}$</p>
-<p>$\therefore$ 求 $\min$</p>
+<li><p>$eg$ : [ $骑士精神$ ] 中：<strong>毫无可读性的两数交换</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a[x][y]^=a[xx][yy],a[xx][yy]^=a[x][y],a[x][y]^=a[xx][yy];<span class="comment">//什么是swap</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">bool</span> flag=<span class="built_in">dfs</span>(step+<span class="number">1</span>,maxstep,tmp,xx,yy,i);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(flag) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">a[x][y]^=a[xx][yy],a[xx][yy]^=a[x][y],a[x][y]^=a[xx][yy];<span class="comment">//回复现场</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>$eg$ : [ $flood \ it$ ] 中：<strong>通过对数组的交换</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">memcpy</span>(tmp,vis,<span class="keyword">sizeof</span> vis);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">fill</span>(i) &amp;&amp; <span class="built_in">dfs</span>(now+<span class="number">1</span>)) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">memcpy</span>(vis,tmp,<span class="keyword">sizeof</span> vis);<span class="comment">//还原</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
+</li>
+<li><p>在枚举每次状态改变时，注意及时的剪枝，即使是看起来并不重要的</p>
+<ul>
+<li><p>栗子 $1$：出界</p>
+<p>好容易忘qwq（写总结的时候也忘了</p>
+</li>
+<li><p>栗子 $2$：当前移动恰与上一步相反</p>
+<ul>
+<li><p>剪枝方法：</p>
+<p>仔细选取 $dx[ \ ],dy[ \ ]$</p>
+<p>判断两次移动的方向和 $i+pre$</p>
+</li>
+<li><p>$eg$ : [ $骑士精神$ ] 中：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> dx[<span class="number">8</span>]=&#123;<span class="number">-1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">-2</span>,<span class="number">-2</span>,<span class="number">-1</span>,<span class="number">1</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> dy[<span class="number">8</span>]=&#123;<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">-1</span>,<span class="number">1</span>,<span class="number">-1</span>,<span class="number">-2</span>,<span class="number">-2</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//如此保证两个相反的方向加和为7</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>栗子 $3$：当前步恰好完成,或通过估价函数得到当前步可行</p>
+<ul>
+<li><p>$eg$ : [$Power \ Calculus$] 中：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(now==n || now&lt;&lt;(MAX-step)==n<span class="comment">/*题目背景可推断*/</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>$eg$ : [$flood \ it$] 中：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rei g=<span class="built_in">get_val</span>();</span><br><span class="line">···</span><br><span class="line"><span class="keyword">if</span>(!g) <span class="keyword">return</span> <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>栗子 $4$：针对当前块的扩展问题，要得到周围与之相邻的块的编号（我不知道我在写什么</p>
+<ul>
+<li><p>剪枝方法：</p>
+<p>开 $vis[ \ ]$ 数组并及时维护</p>
+</li>
+<li><p>$eg$ : [ $flood \ it$ ] 中：</p>
+<p><del>自行读代码</del></p>
+</li>
+</ul>
+</li>
+<li><p>栗子 $5$：考虑答案的单调性</p>
+<ul>
+<li><p>$eg$ : [$Addition \ Chains$] 中：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;now;++i)</span><br><span class="line">    <span class="keyword">for</span>(rei j=i;j&lt;now;++j)&#123;<span class="comment">//从i开始啊qwq</span></span><br><span class="line">        rei tmp=ans[i]+ans[j];</span><br><span class="line">        <span class="keyword">if</span>(tmp&gt;n) <span class="keyword">break</span>;<span class="comment">//ans单增</span></span><br><span class="line">        <span class="keyword">if</span>(tmp&lt;=ans[now<span class="number">-1</span>]) <span class="keyword">continue</span>;</span><br><span class="line">        ans[now]=tmp;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">dfs</span>(now+<span class="number">1</span>,MAX)) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>注意一下开始 $\text{dfs}$ 的深度为 $0/1$</p>
+<p>关系到答案输出是 $MAX$ 还是 $MAX-1$</p>
 </li>
 </ul>
 
@@ -325,7 +350,7 @@ g(k)&=\sum_{i=1}^k (-1)^{k-i} \binom{k-1}{i-1} [i=1] \\
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://noone40404.github.io/2020/12/04/minmax%E5%AE%B9%E6%96%A5/" title="min-max容斥">http://noone40404.github.io/2020/12/04/minmax容斥/</a>
+    <a href="http://noone40404.github.io/2021/04/07/%E8%BF%AD%E4%BB%A3%E5%8A%A0%E6%B7%B1/" title="迭代加深">http://noone40404.github.io/2021/04/07/迭代加深/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -337,7 +362,7 @@ g(k)&=\sum_{i=1}^k (-1)^{k-i} \binom{k-1}{i-1} [i=1] \\
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/minmax/" rel="tag"><i class="fa fa-tag"></i> minmax</a>
+              <a href="/tags/%E8%BF%AD%E4%BB%A3%E5%8A%A0%E6%B7%B1/" rel="tag"><i class="fa fa-tag"></i> 迭代加深</a>
           </div>
 
         
@@ -345,10 +370,13 @@ g(k)&=\sum_{i=1}^k (-1)^{k-i} \binom{k-1}{i-1} [i=1] \\
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2021/01/04/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" rel="next" title="背包问题">
-      背包问题 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/02/04/%E5%8D%9A%E5%BC%88%E8%AE%BA/" rel="prev" title="博弈论">
+      <i class="fa fa-chevron-left"></i> 博弈论
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/05/05/%E5%AD%A6%E4%B8%8D%E4%BC%9A%E7%9A%84%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/" rel="next" title="学不会的生成函数">
+      学不会的生成函数 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -409,7 +437,7 @@ g(k)&=\sum_{i=1}^k (-1)^{k-i} \binom{k-1}{i-1} [i=1] \\
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#minmax%E5%AE%B9%E6%96%A5"><span class="nav-number">1.</span> <span class="nav-text">minmax容斥</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">1.1.</span> <span class="nav-text">例题</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%8F%E4%BE%BF%E5%86%99%E7%82%B9%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">2.</span> <span class="nav-text">随便写点注意事项</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -696,7 +724,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'noone40404.github.io',
       owner       : 'noone40404',
       admin       : ['noone40404'],
-      id          : 'd850227131a090bf22c88d85b4c2edd9',
+      id          : '688b9c10b53a3d1a3faa8dd746505269',
         language: 'zn-CN',
       distractionFreeMode: true
     });
