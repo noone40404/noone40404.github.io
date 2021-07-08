@@ -29,7 +29,7 @@
 <meta property="og:description" content="关于与运算的分析：较小的方案集合是较大的方案集合的子集">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-07-08T12:15:18.000Z">
-<meta property="article:modified_time" content="2021-07-08T12:20:51.991Z">
+<meta property="article:modified_time" content="2021-07-08T12:58:31.695Z">
 <meta property="article:author" content="noone___">
 <meta property="article:tag" content="题解">
 <meta name="twitter:card" content="summary">
@@ -229,7 +229,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-07-08 20:15:18 / 修改时间：20:20:51" itemprop="dateCreated datePublished" datetime="2021-07-08T20:15:18+08:00">2021-07-08</time>
+              <time title="创建时间：2021-07-08 20:15:18 / 修改时间：20:58:31" itemprop="dateCreated datePublished" datetime="2021-07-08T20:15:18+08:00">2021-07-08</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -260,17 +260,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="重点说一下与运算中的转移"><a href="#重点说一下与运算中的转移" class="headerlink" title="重点说一下与运算中的转移"></a>重点说一下与运算中的转移</h3><p>考虑在当前位两数分别为 $\lang 1,0 \rang$ 或 $\lang 0,1 \rang$</p>
+        <h3 id="重点说一下与运算中的转移"><a href="#重点说一下与运算中的转移" class="headerlink" title="重点说一下与运算中的转移"></a>重点说一下与运算中的转移</h3><p>考虑在当前位两数分别为 $\langle 1,0 \rangle$ 或 $ \langle 0,1 \rangle$</p>
 <p>显然这两种选择的 $\And$ 与 $|$ 操作所得结果相同，由此可知会不同选择中有包含关系</p>
-<p>从 $\lang 1,0 \rang$ 与 $\lang 0,1 \rang$ 所得情况等价入手</p>
-<p>记 $\lang 1,0 \rang$ 为情况 $S_1$ , 其中 $1$ 是第一个数的选择，$0$ 是第二个数字的选择 ,</p>
-<p>$\lang 0,1 \rang$ 为情况 $S_2$</p>
+<p>从 $\langle 1,0 \rangle$ 与 $\langle 0,1 \rangle$ 所得情况等价入手</p>
+<p>记 $\langle 1,0 \rangle$ 为情况 $S_1$ , 其中 $1$ 是第一个数的选择，$0$ 是第二个数字的选择 ,</p>
+<p>$\langle 0,1 \rangle$ 为情况 $S_2$</p>
 <p>由于 $S_2$ 中的 $0$ 可知，$S_1$ 选择 $1$ 取不到 $\max$，即无论后面的位如何取都取不到上界</p>
 <p>同理，由于 $S_1$ 中的 $1$，$S_2$ 选择 $0$ 取不到 $\min$，即无法取到下界</p>
 <ul>
-<li><p>假设后面会有情况选择 $\lang 1,1 \rang$，考虑到第二个数字取不到 $\max$ ，所以等同于选择了 $\lang 1,0 \rang$</p>
+<li><p>假设后面会有情况选择 $\langle 1,1 \rangle$，考虑到第二个数字取不到 $\max$ ，所以等同于选择了 $\langle 1,0 \rangle$</p>
 </li>
-<li><p>假设后面会有情况选择 $\lang 0,1 \rang$，考虑到第二个数字取不到 $\min$ ，所以等同于选择了 $\lang 1,1 \rang$</p>
+<li><p>假设后面会有情况选择 $\langle 0,1 \rangle$，考虑到第二个数字取不到 $\min$ ，所以等同于选择了 $\langle 1,1 \rangle$</p>
 </li>
 </ul>
 <p>所以对于与结果为 $0$ 的合法情况，取其结果的最大值即可</p>
