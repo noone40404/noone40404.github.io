@@ -6,7 +6,7 @@
   <link href="http://noone40404.github.io/atom.xml" rel="self"/>
   
   <link href="http://noone40404.github.io/"/>
-  <updated>2021-07-05T10:20:47.483Z</updated>
+  <updated>2021-07-08T12:20:51.991Z</updated>
   <id>http://noone40404.github.io/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>loj#6274.数字</title>
+    <link href="http://noone40404.github.io/2021/07/08/loj/"/>
+    <id>http://noone40404.github.io/2021/07/08/loj/</id>
+    <published>2021-07-08T12:15:18.000Z</published>
+    <updated>2021-07-08T12:20:51.991Z</updated>
+    
+    
+    <summary type="html">关于与运算的分析：较小的方案集合是较大的方案集合的子集</summary>
+    
+    
+    
+    <category term="数位dp" scheme="http://noone40404.github.io/categories/%E6%95%B0%E4%BD%8Ddp/"/>
+    
+    
+    <category term="题解" scheme="http://noone40404.github.io/tags/%E9%A2%98%E8%A7%A3/"/>
+    
+  </entry>
   
   <entry>
     <title>CF的dp题</title>
