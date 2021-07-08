@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/efbuhkq9.png">
 <meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/43lz9r7u.png">
 <meta property="article:published_time" content="2021-05-14T07:27:13.000Z">
-<meta property="article:modified_time" content="2021-07-08T22:53:40.459Z">
+<meta property="article:modified_time" content="2021-07-08T23:05:02.186Z">
 <meta property="article:author" content="noone___">
 <meta property="article:tag" content="杂题">
 <meta name="twitter:card" content="summary">
@@ -239,7 +239,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-09 06:53:40" itemprop="dateModified" datetime="2021-07-09T06:53:40+08:00">2021-07-09</time>
+                <time title="修改时间：2021-07-09 07:05:02" itemprop="dateModified" datetime="2021-07-09T07:05:02+08:00">2021-07-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -388,14 +388,8 @@ V(F)^{\prime}
 <p>$\displaystyle{\because \lim_{n \to \infty}\frac{f(n)}{C \cdot n^k}=1 \And \lim_{n \to \infin} \frac{n^{\underline{k}}}{n^k}=1}$</p>
 <p>那么 $C=\frac{N}{k!}$</p>
 <p>最后用状压求拓扑序个数</p>
-<p><details><br>    <summary>注意事项</summary></p>
-<pre><code>    当cin&gt;&gt;string 时，会因为[space]而停止，但不会因为最前面的space停止
-
-    eg: 输入:I
-        输出:I
-        输入:I qwq
-        输出:I当cin&gt;&gt;string 时，会因为[space]而停止，但不会因为最前面的space停止
-</code></pre><hr>
+<p>注:   输入: <code>I</code><br>        输出:  <code>I</code><br>        输入: <code>I qwq</code><br>       输出: <code>I</code><br>即，当 <code>cin&gt;&gt;string</code> 时，会因为 <code>[space]</code> 而停止，但不会因为最前面的 <code>space</code> 停止</p>
+<hr>
 <h2 id="P7016-CERC2013-Captain-Obvious-and-the-Rabbit-Man"><a href="#P7016-CERC2013-Captain-Obvious-and-the-Rabbit-Man" class="headerlink" title="P7016 [CERC2013]Captain Obvious and the Rabbit-Man"></a>P7016 [CERC2013]Captain Obvious and the Rabbit-Man</h2><p>这是人做的？</p>
 <p><del>并不会<a target="_blank" rel="noopener" href="https://www.cnblogs.com/Winniechen/p/10246295.html">特征多项式与常系数线性齐次递推</a></del></p>
 <p>GG</p>
@@ -487,10 +481,10 @@ V(F)^{\prime}
 <li><p>先考虑最简单的链情况</p>
 <p>  $blood$ 的变化为 $w_1,w_1+w_2,w_1+w_2+w_3+\cdots ,w_1+w_2+\cdots+w_n$，只有当所有数均 $\geq 0$ 时游戏胜利</p>
 <p>  做一条折线图反映血量变化</p>
-<p>  <img src="https://cdn.luogu.com.cn/upload/image_hosting/efbuhkq9.png" width="200px"/></p>
+<p>  <img src="https://cdn.luogu.com.cn/upload/image_hosting/efbuhkq9.png" style="zoom: 33%;" /></p>
 <p>  可以发现中间的部分对我们没有用，有用的是最低值(决定了是否可行)，以及最终能得到的最高值(中间的加减可忽略掉)</p>
 <p>  所以可以处理得到</p>
-<p>  <img src="https://cdn.luogu.com.cn/upload/image_hosting/43lz9r7u.png" width="200px" /></p>
+<p>  <img src="https://cdn.luogu.com.cn/upload/image_hosting/43lz9r7u.png" style="zoom:33%;" /></p>
 <p>  所以维护这个链上所能得到的最大前缀和以及最小前缀和即可</p>
 <p>  所以可以把一条链简化成一个 $pair$ 数组 $[(a_1,b_1),(a_2,b_2),\cdots]$</p>
 <p>  注意：这里 $a_1,b_1$ 等<strong>都是正数</strong></p>
@@ -517,12 +511,12 @@ V(F)^{\prime}
     A:无限循环>A赢>B赢 \\
     B:B赢>A赢>无限循环 \\
 \end{cases}</script><p>设 $v_A$ 表示在节点 $v$ 且 $A$ 先手，$v_B$ 同理</p>
-<p>用 $\N^+(v)$ 表示 $v$ 通过一条边可到达的所有点集合</p>
-<p>定义 $\N^+(v_A)$ 中的点表示下一轮轮到 $B$</p>
+<p>用 $\N+(v)$ 表示 $v$ 通过一条边可到达的所有点集合</p>
+<p>定义 $\N+(v_A)$ 中的点表示下一轮轮到 $B$</p>
 <ul>
 <li><p>先考虑无限循环</p>
-<p>对点 $v_A$ 来说，无限循环需要满足 $\exist v_B\in \N^+(v_A)$ 使 $v_B$ 无限进行</p>
-<p>对点 $v_B$ 来说，需要满足 $\N^+(v_B) \not ={\empty} \And\And \forall v_A\in \N^+(v_B)$ 都有 $v_A$ 满足无限循环</p>
+<p>对点 $v_A$ 来说，无限循环需要满足 $\exist v_B\in \N+(v_A)$ 使 $v_B$ 无限进行</p>
+<p>对点 $v_B$ 来说，需要满足 $\N+(v_B) \not =\empty \And\And \forall v_A\in \N+(v_B)$ 都有 $v_A$ 满足无限循环</p>
 <p>出度为 $0$ 的点可以在刚开始时分出胜负，那么不断迭代即可</p>
 <p><a target="_blank" rel="noopener" href="https://yhx-12243.github.io/OI-transit/records/lg6970%3Bgym101190G.html">可以剩余的点一定为无限循环点</a></p>
 </li>
@@ -548,7 +542,7 @@ V(F)^{\prime}
 \end{cases}</script><p>易得若有一个 $A$ 点与所有 $B$ 点围成的矩形都为 $-\infty$ 则根据单调性，其余点也只能围成 $-\infty$ 的矩形，故此时答案为 $0$</p>
 </li>
 <li><p>考虑决策单调性</p>
-<p>设 $(x_B,y_B)$ 是与 $A$ 类点 $(x_A,y_A)$ 配对的矩阵面积最大的 $B$ 类点，则对于 $x^{\prime}<x_A \ , \ y^{\prime}>y_A \ ; \ a^{\prime}&gt;x_B \ , \ b^{\prime}&lt;y_B$ ，有 $\displaystyle{\left(a^{\prime}-x^{\prime}\right) \cdot \left(b^{\prime}-y^{\prime}\right) &lt; \left(x_B-x^{\prime}\right) \cdot \left(y_B-y^{\prime}\right)}$</p>
+<p>设 $(x_B,y_B)$ 是与 $A$ 类点 $(x_A,y_A)$ 配对的矩阵面积最大的 $B$ 类点，则对于 $x^{\prime}<x_A , y^{\prime}>y_A ;  a^{\prime}&gt;x_B , b^{\prime}&lt;y_B$ ，有 $\displaystyle{\left(a^{\prime}-x^{\prime}\right) \cdot \left(b^{\prime}-y^{\prime}\right) &lt; \left(x_B-x^{\prime}\right) \cdot \left(y_B-y^{\prime}\right)}$</p>
 </li>
 </ul>
 <p>所以可以考虑整体二分</p>
