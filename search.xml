@@ -1,31 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>loj#6274.数字</title>
-    <url>/2021/07/08/loj/</url>
-    <content><![CDATA[<h3 id="重点说一下与运算中的转移"><a href="#重点说一下与运算中的转移" class="headerlink" title="重点说一下与运算中的转移"></a>重点说一下与运算中的转移</h3><p>考虑在当前位两数分别为 $\lang 1,0 \rang$ 或 $\lang 0,1 \rang$</p>
-<p>显然这两种选择的 $\And$ 与 $|$ 操作所得结果相同，由此可知会不同选择中有包含关系</p>
-<p>从 $\lang 1,0 \rang$ 与 $\lang 0,1 \rang$ 所得情况等价入手</p>
-<p>记 $\lang 1,0 \rang$ 为情况 $S_1$ , 其中 $1$ 是第一个数的选择，$0$ 是第二个数字的选择 ,</p>
-<p>$\lang 0,1 \rang$ 为情况 $S_2$</p>
-<p>由于 $S_2$ 中的 $0$ 可知，$S_1$ 选择 $1$ 取不到 $\max$，即无论后面的位如何取都取不到上界</p>
-<p>同理，由于 $S_1$ 中的 $1$，$S_2$ 选择 $0$ 取不到 $\min$，即无法取到下界</p>
-<ul>
-<li><p>假设后面会有情况选择 $\lang 1,1 \rang$，考虑到第二个数字取不到 $\max$ ，所以等同于选择了 $\lang 1,0 \rang$</p>
-</li>
-<li><p>假设后面会有情况选择 $\lang 0,1 \rang$，考虑到第二个数字取不到 $\min$ ，所以等同于选择了 $\lang 1,1 \rang$</p>
-</li>
-</ul>
-<p>所以对于与结果为 $0$ 的合法情况，取其结果的最大值即可</p>
-]]></content>
-      <categories>
-        <category>数位dp</category>
-      </categories>
-      <tags>
-        <tag>题解</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CF的dp题</title>
     <url>/2021/07/01/CF%E7%9A%84dp%E9%A2%98/</url>
     <content><![CDATA[<h2 id="CF1515E-Phoenix-and-Computers"><a href="#CF1515E-Phoenix-and-Computers" class="headerlink" title="CF1515E Phoenix and Computers"></a>CF1515E Phoenix and Computers</h2><details>
@@ -229,6 +204,31 @@ g(k)&=\sum_{i=1}^k (-1)^{k-i} \binom{k-1}{i-1} [i=1] \\
       </categories>
       <tags>
         <tag>minmax</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>loj#6274.数字</title>
+    <url>/2021/07/08/loj/</url>
+    <content><![CDATA[<h3 id="重点说一下与运算中的转移"><a href="#重点说一下与运算中的转移" class="headerlink" title="重点说一下与运算中的转移"></a>重点说一下与运算中的转移</h3><p>考虑在当前位两数分别为 $\lang 1,0 \rang$ 或 $\lang 0,1 \rang$</p>
+<p>显然这两种选择的 $\And$ 与 $|$ 操作所得结果相同，由此可知会不同选择中有包含关系</p>
+<p>从 $\lang 1,0 \rang$ 与 $\lang 0,1 \rang$ 所得情况等价入手</p>
+<p>记 $\lang 1,0 \rang$ 为情况 $S_1$ , 其中 $1$ 是第一个数的选择，$0$ 是第二个数字的选择 ,</p>
+<p>$\lang 0,1 \rang$ 为情况 $S_2$</p>
+<p>由于 $S_2$ 中的 $0$ 可知，$S_1$ 选择 $1$ 取不到 $\max$，即无论后面的位如何取都取不到上界</p>
+<p>同理，由于 $S_1$ 中的 $1$，$S_2$ 选择 $0$ 取不到 $\min$，即无法取到下界</p>
+<ul>
+<li><p>假设后面会有情况选择 $\lang 1,1 \rang$，考虑到第二个数字取不到 $\max$ ，所以等同于选择了 $\lang 1,0 \rang$</p>
+</li>
+<li><p>假设后面会有情况选择 $\lang 0,1 \rang$，考虑到第二个数字取不到 $\min$ ，所以等同于选择了 $\lang 1,1 \rang$</p>
+</li>
+</ul>
+<p>所以对于与结果为 $0$ 的合法情况，取其结果的最大值即可</p>
+]]></content>
+      <categories>
+        <category>数位dp</category>
+      </categories>
+      <tags>
+        <tag>题解</tag>
       </tags>
   </entry>
   <entry>
