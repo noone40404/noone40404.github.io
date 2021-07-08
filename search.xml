@@ -145,6 +145,361 @@ a_1 & a_2 & a_3 & \dotsb & a_i & \dotsb & a_n\\
       </tags>
   </entry>
   <entry>
+    <title>min-max容斥</title>
+    <url>/2020/12/04/minmax%E5%AE%B9%E6%96%A5/</url>
+    <content><![CDATA[<h2 id="minmax容斥"><a href="#minmax容斥" class="headerlink" title="minmax容斥"></a>minmax容斥</h2><ul>
+<li><p>用途</p>
+<p>已知集合的最小值 (<strong>期望</strong>) 求最大值</p>
+<p>$eg:$ $n$ 个元素，每个元素出现概率 $p_i$，求每个元素都出现的期望时间</p>
+</li>
+<li><p>结论</p>
+<script type="math/tex; mode=display">\max\{S\}=\sum_{T\subset S}(-1)^{|T|+1} \min\{T\}</script><p>即</p>
+<script type="math/tex; mode=display">E\left(\max\{S\}\right)=\sum_{T\subset S}(-1)^{|T|+1} E\left(\min\{T\}\right)</script></li>
+<li><p>证明</p>
+<p>设容斥系数 $g\left(|T|\right)$</p>
+<p>即 $\displaystyle{\max\{S\}=\sum_{T\subset S}g\left(|T|\right) \min\{T\}}$</p>
+<p>考虑当排名为 $k$ 的数作为集合 $T$ 的最小值时，集合 $T$ 中所有值都 $\geq k$</p>
+<p>所以对于第$k$大数 ， 在大小为 $|T|$ 的集合中， $\max$ 的选取方案为 $\displaystyle{\binom{k-1}{|T|-1}}$</p>
+<p>考虑集合大小为 $1\sim k$ ，则第 $k$ 数的总贡献为</p>
+<p>$\displaystyle{\sum_{i=1}^k \binom{k-1}{i-1}} * g(i)=[k=1] \qquad \text{即只有最大值对 max 有贡献}$</p>
+<p>由二项式反演得</p>
+<script type="math/tex; mode=display">\begin{aligned}
+g(k)&=\sum_{i=1}^k (-1)^{k-i} \binom{k-1}{i-1} [i=1] \\
+&=(-1)^{k+1} \\
+\end{aligned}</script><span id="more"></span>
+</li>
+<li><p>变式</p>
+<ul>
+<li><p>由 $\max \Rightarrow \max$</p>
+<script type="math/tex; mode=display">\min(S)=\sum_{T\subseteq S,\ T \neq \varnothing} (-1)^{|T|-1} \max(T)</script></li>
+<li><p>扩展 $\min\max容斥$</p>
+<script type="math/tex; mode=display">\text{kthmax}\{S\}=\sum_{T\subseteq S}(-1)^{|T|-k} \binom{|T|-1}{k-1} \min\{T\}</script><ul>
+<li><p>证明</p>
+<p>目的是找到容斥系数满足 $\text{kthmax}\{S\}=\sum_{T\subseteq S} f(|T|) \min\{T\}$</p>
+<p>考虑第 $x$ 大元素，受原式启发得到</p>
+<script type="math/tex; mode=display">\sum_{i=1}^t \binom{t-1}{i-1} f(i)=[t=k]</script><script type="math/tex; mode=display">\therefore 经反演易得 f(n)=(-1)^{n-k} \binom{n-1}{k-1}</script><p><a href="https://oi-wiki.org/math/inclusion-exclusion-principle/#min-max"><del>并不会用到的扩展minmax容斥</del></a></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><ul>
+<li><p><a href="https://www.luogu.com.cn/problem/P3175">P3175 [HAOI2015]按位或</a></p>
+<ul>
+<li><p>题意</p>
+<p>设 $\min\{S\}$ 表示二进制数 $S$ 中，第一个元素变为 $1$ 所需时间，$\max\{S\}$ 表示最后一个元素变为 $1$ 所需时间</p>
+<p>题为求 $E(\max\{U\})$ ,其中 $U$ 为全集，$U=2^n-1$</p>
+</li>
+<li><p>解</p>
+<p>由公式易知 $\displaystyle{E(\max\{U\})=\sum_{S\subseteq U}(-1)^{|S|-1} \ \sum E(\min\{S\})}$</p>
+<p>$\therefore$ 求 $\min$</p>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>minmax</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>卢神的神题选讲</title>
+    <url>/2021/05/14/%E5%8D%A2%E7%A5%9E%E7%9A%84%E6%9D%82%E9%A2%98%E9%80%89%E8%AE%B2/</url>
+    <content><![CDATA[<h2 id="P6962-NEERC2017-Knapsack-Cryptosystem"><a href="#P6962-NEERC2017-Knapsack-Cryptosystem" class="headerlink" title="P6962 [NEERC2017]Knapsack Cryptosystem"></a>P6962 [NEERC2017]Knapsack Cryptosystem</h2><p>依据数据范围分成两部分</p>
+<ul>
+<li><p>折半算法 $O(2^{\frac{n}{2}})$</p>
+<p>将 $n$ 个数分为 $\left\lfloor \frac{n}{2} \right\rfloor$ 和 $\left\lceil \frac{n}{2} \right\rceil$ 两组，对每组中的每个子集计算和</p>
+<p>再枚举其中一组，判断另一组</p>
+</li>
+<li><p>$O(2^{64-n} \cdot n)$</p>
+<p>发现$b_i$ 与 $a_i$ 对应，枚举 $a_1$ 取值并以此解出 $r$ , 再解出 $a_2’,a_3’ \cdots a_n’$</p>
+<p>从大到小贪心枚举，判断 $a’$ 是否满足条件</p>
+<ul>
+<li><p>注：</p>
+<p>求解 $r$ 时，根据 $a_1\cdot r\equiv b_1\pmod{2^{64}} \quad \text{式1}$</p>
+<p>设 $k=\text{__builtin_ctz}(b_1)$ (即，$b_1$ 二进制下末尾 $0$ 的个数)</p>
+<p>$\displaystyle{\because r 是奇数 \qquad \text{注：r,q 互质}}$</p>
+<p>$\therefore \text{__builtin_ctz}(a_1)=k$</p>
+<p>式 $1$ 两边同除以 $2^k$ 得： $a_1 \cdot r \cdot 2^{-k} = b_1 \cdot 2^{-k} \pmod{2^{64}-k}$</p>
+<p>$\therefore 得到的 r 只能保证前 64-k 位正确$</p>
+<p>$\therefore 再继续枚举后 k 位$</p>
+<p>注意到 $a_1$ 末尾恰好有 $k$ 个 $0$，所以枚举的时候每次加上 $2^{k+1}即可$</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="P6938-ICPC2017-WF-Son-of-Pipe-Stream"><a href="#P6938-ICPC2017-WF-Son-of-Pipe-Stream" class="headerlink" title="P6938 [ICPC2017 WF]Son of Pipe Stream"></a>P6938 [ICPC2017 WF]Son of Pipe Stream</h2><p>先忽略 $v$ , 因为当 $v\not ={1}$ 时，将 $v=1$ 的答案 $\cdot v^{-\alpha}$ 即可</p>
+<ul>
+<li><p>证：</p>
+<p>$\because v\cdot f_i+w_i \leq c_i,\\ \therefore把 v 看成 1 相当于 f_i少算了 \frac{1}{v}$</p>
+<p>$\because F^{\alpha}\\ \therefore \cdot v^{-\alpha}$</p>
+</li>
+</ul>
+<p>易知若流 $(F,W)$ 合法，当且仅当 $F\leq F_{max},W\leq W_{max},F+W\leq S$</p>
+<p>有解 $(F_{max},S-F_{max})$ 和 $(S-W_{max},W_{max})$</p>
+<blockquote>
+<p>看成增广时优先增广其中一边</p>
+</blockquote>
+<p>设函数 $V(F)=F^{\alpha} \cdot (S-W)^{\alpha}$ , V的最大值就是所求答案</p>
+<p>当 $F=\alpha S$ 时 $V$ 有最大值</p>
+<ul>
+<li><p>证明 （%%%@神仙ljr</p>
+<p>对 $V$ 求导</p>
+<script type="math/tex; mode=display">\begin{aligned}
+V(F)^{\prime}
+&= (F^\alpha)^{\prime} \cdot (C-F)^{1-\alpha} + \left((C-F)^{1-\alpha} \right)^{\prime} \cdot F^{\alpha} \\
+&=\alpha F^{\alpha-1} \cdot \left(\frac{1}{C-F}\right)^{\alpha-1} +  (-(1-\alpha))(C-F)^{-\alpha} \cdot x^{\alpha} \\
+&=\alpha \cdot \left(\frac{F}{C-F} \right)^{\alpha-1} + (\alpha-1) \cdot \left(\frac{F}{C-F} \right)^{\alpha} \\
+&=\left(\frac{F}{C-F} \right)^{\alpha-1} \cdot \left(\alpha + (\alpha-1) \cdot \frac{F}{C-F} \right) \\
+\end{aligned}</script><p>当 $V(F)^{\prime}=0$ 时，V有 $\max$</p>
+<p>$\therefore F=0 或 F=\alpha C$</p>
+</li>
+</ul>
+<p>所以构造出流 $(F_0,S-F_0)$ ，其中 $F_0$ 是与 $\alpha \cdot S$ 最接近的</p>
+<ul>
+<li><p>实现</p>
+<ol>
+<li><p>分别以 $1,2$ 为源跑一次最大流，得 $Flubber$ 和 $Water$ 的最大流量 $F_{max},W_{max}$</p>
+</li>
+<li><p>再新建源连向 $1,2$ ，跑一次 $Flubber+Water$ 的最大混合流量 $S$ ，最优的 $F$ 就是在 $[S−W_{max},F_{max}]$ 里最贴近 $\alpha \cdot S$ 的值，于是得到新的 $F^{\prime}$ ，然后 $W^{\prime}=S−F^{\prime}$ ，可以证明这两个流量是一定可以得到且一定是最优的</p>
+</li>
+<li><p>然后考虑构造解，新建源连向 $1,2$ 容量分别为 $F^{\prime},W^{\prime}$ ，跑一次最大流，然后根据这次结果新建图，新图中每条边的方向就是这次流的方向，容量就是这次的流量</p>
+</li>
+<li><p>超级源点只连 $1$ 容量 $F^{\prime}$ 跑一次得到每条边 $Flubber$ 的流量，只连 $2$ 容量 $W^{\prime}$ 跑一次得到每条边 $Water$ 的流量</p>
+</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h2 id="P6944-ICPC2018-WF-Gem-Island"><a href="#P6944-ICPC2018-WF-Gem-Island" class="headerlink" title="P6944 [ICPC2018 WF]Gem Island"></a>P6944 [ICPC2018 WF]Gem Island</h2><p>最终状态出现次数相等，均为 $d!$ 次</p>
+<p>不同操作方案有 $n\cdot (n+1)\cdot \cdots (n+1-1)=\frac{(n+d-1)!}{(n-1)!}$</p>
+<p>先求出不同的最终状态，再进行处理</p>
+<p>$\therefore$ 转化为求和为 $n+d$ 的 $n$ 个数，且满足每个数 $\geq$ $1$ 的所有方案的前 $r$ 个数的和</p>
+<p>起初每个人都为 $1$ 个，和为 $n$</p>
+<p>选 $s_1$ 个人变成 $2$ 个，和为 $n+s_1$，方案数 $\ast$= $\dbinom{n}{s_1}$</p>
+<p>在 $s_1$ 个人中选 $s_2$ 个，和为 $n+s_1+s_2$ ，方案数 $\ast$= $\dbinom{s_1}{s_2}$</p>
+<p>$\cdots$</p>
+<p>每一次对前 $r$ 大的贡献为 $\min(r,s_x)$ ，其中 $s_x$ 为当前加入的个数</p>
+<hr>
+<h2 id="P6922-ICPC2016-WF-Longest-Rivers"><a href="#P6922-ICPC2016-WF-Longest-Rivers" class="headerlink" title="P6922 [ICPC2016 WF]Longest Rivers"></a>P6922 [ICPC2016 WF]Longest Rivers</h2><p>对于叶子节点 $i$ ，一定有从其到根的一条路径,距离为 $d_i$</p>
+<p>要满足剖分 $D$ 中叶子节点 $j$ 所在链长 $l_{D,j} &gt; d_i$ 的链 $l$ 的数量最小</p>
+<p>对于每个节点 $i$ ，如果存在一条河流比 $d_i$ 长，那么让它延伸会使答案最小，否则要选择一条最短的河流来进行延伸。</p>
+<p>设 $f_i$ 表示每个节点往外延伸的河流的长度的最小值，通过树形DP求。</p>
+<p>将 $d$ 升序，临界点自下向上收束，对每个 $d_i$ ，所有超过了上一个 $d$ 的限制，但是满足当前的 $d$ 限制的临界点，这些点将不再是临界点。</p>
+<p>若一个点所有的儿子都不是临界点，则它变为临界点。</p>
+<p>用堆按 $f$ 从小到大维护临界点，答案就是临界点个数+1，也就是堆中元素个数+1。</p>
+<hr>
+<h2 id="P4348-CERC2015-Cow-Conﬁnement"><a href="#P4348-CERC2015-Cow-Conﬁnement" class="headerlink" title="P4348 [CERC2015]Cow Conﬁnement"></a>P4348 [CERC2015]Cow Conﬁnement</h2><p>扫描线 <del>显然</del></p>
+<p>考虑从右往左扫，维护 $f_y$：</p>
+<ul>
+<li><p>当 $y+1$ 处是栅栏，$(x,y)$ 处的答案就是 $f_y$</p>
+</li>
+<li><p>若不是，$f_y$ 是 $(x,y)$ 比 $(x,y+1)$ 多出来的值</p>
+</li>
+<li><p>看成差分</p>
+<p>向下累加 $y$ 直到栅栏</p>
+<ul>
+<li><p>牛 $\Rightarrow$ 查询</p>
+</li>
+<li><p>花 $\Rightarrow$ $+1$</p>
+</li>
+<li><p>栅栏 $(x_l,y_l,x_r,y_r)$</p>
+<p>在 $x_r$ 处清空 $[y_l,y_r]$ , $y_l-1$ 处加上 $y_l$ 的值,记录 $y_r+1$ 的值</p>
+<p>在 $x_l-1$ 处清空 $[y_l,y_r]$ , $y_l-1$ 减去在 $x_r$ 处记录的 $y_r+1$ 的值，防止没有栅栏阻挡而重复计算</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="P7024-NWRRC2017-Fygon-2-0"><a href="#P7024-NWRRC2017-Fygon-2-0" class="headerlink" title="P7024 [NWRRC2017]Fygon 2.0"></a>P7024 [NWRRC2017]Fygon 2.0</h2><p>神仙图论题</p>
+<p>考虑语句<code>for i in range(a,b):</code></p>
+<p>它创建了变量 $i,a,b$ 并给出它们的大小关系 $a\leq i \ , \ i\leq b$</p>
+<p>对于条件 $x\leq y$ ，由 $x$ 向 $y$ 连出有向边</p>
+<p>在整张图上，若出现强连通分量就必须满足其中的每个点取值相同(即 $a\leq b\leq c \cdots \leq a$) $\Rightarrow$ 考虑缩点</p>
+<p>缩点后得到一个DAG，考虑到有向无环且每个点的值都可以在 $1\to n$ 中取，那么DAG的顶点数即为 $k$</p>
+<p>而DAG的一个拓扑序 (即DAG上点的一种大小关系) 对应一个合法的 $k$ 元组</p>
+<p>设拓扑序有 $N$，则 $f(n)\geq N \cdot \dbinom{n}{k}$</p>
+<p>$\displaystyle{\because \lim_{n \to \infty}\frac{f(n)}{C \cdot n^k}=1 \And \lim_{n \to \infin} \frac{n^{\underline{k}}}{n^k}=1}$</p>
+<p>那么 $C=\frac{N}{k!}$</p>
+<p>最后用状压求拓扑序个数</p>
+<p><details><br>    <summary>注意事项</summary></p>
+<pre><code>    当cin&gt;&gt;string 时，会因为[space]而停止，但不会因为最前面的space停止
+
+    eg: 输入:I
+        输出:I
+        输入:I qwq
+        输出:I当cin&gt;&gt;string 时，会因为[space]而停止，但不会因为最前面的space停止
+</code></pre><hr>
+<h2 id="P7016-CERC2013-Captain-Obvious-and-the-Rabbit-Man"><a href="#P7016-CERC2013-Captain-Obvious-and-the-Rabbit-Man" class="headerlink" title="P7016 [CERC2013]Captain Obvious and the Rabbit-Man"></a>P7016 [CERC2013]Captain Obvious and the Rabbit-Man</h2><p>这是人做的？</p>
+<p><del>并不会<a href="https://www.cnblogs.com/Winniechen/p/10246295.html">特征多项式与常系数线性齐次递推</a></del></p>
+<p>GG</p>
+<p>$f_2,f_3,\cdots ,f_{k+1}$ 互不相同，$\therefore \{a_n\}_{n\geq 1}$ 是一个 $n$ 阶的常系数线性齐次递推数列</p>
+<p>特征多项式为 $\displaystyle{P(x)=(x-f_2)\cdot(x-f_3)\cdots(x-f_{k+1})}$</p>
+<p>设 $\displaystyle{P(x)=x^k-b_1x^{k-1}-b_2x^{k-2}-\cdots -b_{k-1}x-b_k}$</p>
+<p>则 $a_{k+1}=b^1a_k+b_2a_{k-1}+\cdots +b^ka_1$</p>
+<p>所以计算出 $P(x)$ 系数再带入即可</p>
+<hr>
+<h2 id="P4354-CERC2015-Ice-Igloos"><a href="#P4354-CERC2015-Ice-Igloos" class="headerlink" title="P4354 [CERC2015]Ice Igloos"></a>P4354 [CERC2015]Ice Igloos</h2><p>对每个圆，与之相交的直线只会在其周围的4个方格中出现</p>
+<p>那么对每个线段，枚举其经过的方格，查看在当前单元格中出现的圆是否与该直线相交</p>
+<p>垃圾暴力复杂度 $\Theta(m\ast 4\ast 1000)$ <del>但够过了</del></p>
+<p><del>实现好烦</del></p>
+<hr>
+<h2 id="P7054-NWRRC2015-Graph"><a href="#P7054-NWRRC2015-Graph" class="headerlink" title="P7054 [NWRRC2015]Graph"></a>P7054 [NWRRC2015]Graph</h2><p>神仙图论题</p>
+<p>贪心，从开头到末尾依次贪心，让第一个位置的字典序最大，再让第二个最大</p>
+<p>对某个拓扑层来说，需要对该点中最小节点加边</p>
+<p>用一个最大堆存暂时无法连边的节点，之后无法拓扑时从中取出顶，将拓扑序的结尾点连向该顶</p>
+<hr>
+<h2 id="P4351-CERC2015-Frightful-Formula"><a href="#P4351-CERC2015-Frightful-Formula" class="headerlink" title="P4351 [CERC2015]Frightful Formula"></a>P4351 [CERC2015]Frightful Formula</h2><ul>
+<li><p>题意</p>
+<script type="math/tex; mode=display">f_{i , j} = \begin{cases} l_i & j = 1 \\ t_j & i = 1 \\ a \cdot f_{i, j - 1} + b \cdot f_{i - 1, j} + c & \text{otherwise} \end{cases}</script><p>求 $f_{n,n}$</p>
+<p>取模 $1e6+3$</p>
+</li>
+<li><p>解</p>
+<ul>
+<li><p>先考虑 $c=0$</p>
+<p>该情况是典型的<a href="https://www.cnblogs.com/p-b-p-b/p/14184761.html">格路计数</a></p>
+<p>从 $(1,1)$ 到 $(n,m)$ 的路径数为 $\displaystyle{C_{n+m-2}^{n-1}}$</p>
+<ul>
+<li><p>证：</p>
+<p>一条 $(1,1)$ 到 $(n,m)$ 的自由路可以唯一对应到一个含有 $n-1$ 个右步 $L$ 和 $m-1$ 个下步 $U$ 的序列</p>
+<p>每个这种序列也可唯一对应一条自由路</p>
+<p>$\therefore$ $(n,m)$ 自由路的条数等于从 $n+m-2$ 个位置中选出 $n-1$ 个 $L$ 的方案数</p>
+</li>
+</ul>
+<p>考虑右步贡献 $\ast a$ , 下步贡献 $\ast b$</p>
+<p>$\therefore$ 总贡献是 $C_{n+m-2}^{n-1}\cdot a^{n-1}\cdot b^{m-1}$</p>
+<p>由于第一行/列初始贡献不同，所以对每个起点都要计算</p>
+</li>
+<li><p>考虑 $c\not ={0}$</p>
+<p>考虑消掉常数 $c$</p>
+<p>找到 $x$ 满足 $x=ax+bx+c$ , 则设 $g_{i,j}=f_{i,j}-x=a\cdot (f_{i,j-1}-x)+b\cdot (f_{i-1,j}-x)$</p>
+<p>将 $g_{n,n}$ 用上面的方法求出再加上 $x=\frac{c}{1-a-b}$ 即可</p>
+</li>
+<li><p>观察 $x$ 的值，仅当 $a+b \not\equiv 1\pmod {10^6+3}$</p>
+<p>式子转化为 $f_{i,j}=a\cdot f_{i,j-1}+(1-a)f_{i-1,j}+c$</p>
+<p>此时两项系数和相等，下标和相等，所以考虑一个与 $i+j$ 有关的函数 $h_{i,j}$</p>
+<p>易得 $h_{i,j}=k\cdot (i+j)=k\cdot (i+j-1)+c$ , $\therefore k=c$</p>
+<p>$\therefore (f_{i,j}-h_{i,j})=a\cdot(f_{i,j-1}-h_{i,j-1})+(1-a)\cdot(f_{i-1,j}-h_{i-1,j})$</p>
+<p>令 $g_{i,j}=f_{i,j}-h_{i,j}$ ，用最上面的方法求 $g_{n,n}$ ，最后加上 $2n\cdot c$</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="P6943-ICPC2018-WF-Conquer-The-World"><a href="#P6943-ICPC2018-WF-Conquer-The-World" class="headerlink" title="P6943 [ICPC2018 WF]Conquer The World"></a>P6943 [ICPC2018 WF]Conquer The World</h2><p>具体思想可参考 $\text{WC}2019$ 论文</p>
+<p>把<strong>需要军队的地方</strong>称为老鼠，<strong>军队</strong>为洞，转化为使所有老鼠进洞的总代价最小</p>
+<p>为每一个老鼠设一个额外代价 $-\infty$ ，其中 $-\infty$ 是一个足够小的数，表示该老鼠和某个洞匹配后的代价。</p>
+<p>因为会最小化总代价，可以保证所有老鼠进洞</p>
+<p>只需要最后把答案加上 $-\infty \cdot M$ 即可，其中 $M$ 是老鼠个数</p>
+<p>记节点 $i$ 到根的距离为 $depth_i$ ，树上 $Lca$ 为 $z$ 的点 $x,y$ 之间的路径长度为 $depth_x+depth_y-2\times depth_z$</p>
+<p>考虑在 $z$ 子树中的所有老鼠和洞，仅需要数值，而不关心具体位置</p>
+<p>上述额外代价 $-\infty$ 可与 $depth_x$ 或 $depth_y$ 累加，看做固有属性，记为 $value_x,value_y$</p>
+<p>每当我们找到可以使当前总代价减小的匹配，即 $value_x+value_y-2\times depth_z&lt;0$ 的匹配，选取，答案将会变优</p>
+<p>但这样找到的匹配可能不是最终答案 $\Rightarrow$ 需要一个反悔</p>
+<p>考虑撤销本次匹配的代价，我们可以重新计算得到新的 $value’_x=2\times depth_z-value’_y,value’_y=2\times depth_z-value_x$</p>
+<p>所以解法：即从叶子结点出发，向上进行贪心</p>
+<p>用两个小根堆来维护子树内 $value_x,value_y$ 的集合，在合并两棵子树的同时合并它们对应的堆。当堆顶元素满足 $value_x+value_y-2\times depth_z&lt;0$ 时更新答案，并删除堆顶元素，加入 $value’_x,value’_y$</p>
+<p>可以发现，若一对已经在 $z$ 处匹配的老鼠和洞同时反悔，那么 $z$ 的父边将会被老鼠正反经过两次，因此不反悔是更优的，从而<strong>不可能出现同时反悔的情况</strong></p>
+<hr>
+<h2 id="P6899-ICPC2014-WF-Pachinko"><a href="#P6899-ICPC2014-WF-Pachinko" class="headerlink" title="P6899 [ICPC2014 WF]Pachinko"></a>P6899 [ICPC2014 WF]Pachinko</h2><p>模型是网格图的随机游走</p>
+<p>考虑高斯消元，有 $w\cdot h$ 个未知数，对网格 $(i,j)$ 可以设值为 $X_{i\ast w+j}$</p>
+<p>则有公式 $X_{i\ast w+j}=u\cdot X_{w\ast (i-1)+j} + l\cdot X_{w\ast i+(j-1)} + r\cdot X_{w\ast i-(j+1)} + d\cdot X_{w\ast (i+1)+j} + P_{直接选到该格子}$</p>
+<p>其中</p>
+<script type="math/tex; mode=display">P=\begin{cases}
+    \frac{1}{满足该条件的格子数} &i==0 \And \And mp_{i,j}==\text{'.'} \\
+    0 &\text{otherwise} \\
+\end{cases}</script><p>考虑高斯消元</p>
+<p>每个方程只有 $5$ 个未知数，则有值的位置形成了一个带状矩阵</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/fz1t6hbc.png" alt=""></p>
+<blockquote>
+<p>偷一张<a href="https://ctp314.github.io/2020/10/14/WF2014H-Pachinko/">卢神的图</a></p>
+</blockquote>
+<p>$\therefore$ 一个未知数只有上 $w$ 行与下 $w$ 行之间的系数不为 $0$</p>
+<hr>
+<h2 id="P7011-CERC2013-Escape"><a href="#P7011-CERC2013-Escape" class="headerlink" title="P7011 [CERC2013]Escape"></a>P7011 [CERC2013]Escape</h2><p>神仙题</p>
+<ul>
+<li><p>先考虑最简单的链情况</p>
+<p>  $blood$ 的变化为 $w_1,w_1+w_2,w_1+w_2+w_3+\cdots ,w_1+w_2+\cdots+w_n$，只有当所有数均 $\geq 0$ 时游戏胜利</p>
+<p>  做一条折线图反映血量变化</p>
+<p>  <img src="https://cdn.luogu.com.cn/upload/image_hosting/efbuhkq9.png" width="200px"/></p>
+<p>  可以发现中间的部分对我们没有用，有用的是最低值(决定了是否可行)，以及最终能得到的最高值(中间的加减可忽略掉)</p>
+<p>  所以可以处理得到</p>
+<p>  <img src="https://cdn.luogu.com.cn/upload/image_hosting/43lz9r7u.png" width="200px" /></p>
+<p>  所以维护这个链上所能得到的最大前缀和以及最小前缀和即可</p>
+<p>  所以可以把一条链简化成一个 $pair$ 数组 $[(a_1,b_1),(a_2,b_2),\cdots]$</p>
+<p>  注意：这里 $a_1,b_1$ 等<strong>都是正数</strong></p>
+<p>  表示折线方向为 $-a_1+b_1-a_2+b_2\cdots$ ，为统一，规定 $a_1$ 一定向下</p>
+</li>
+<li><p>再考虑树上</p>
+<p>  每棵树总可分成多条链来考虑，只考虑两条链即可</p>
+<p>  设两条链分别为 $[(a_1,b_1),(a_2,b_2),\cdots]$ 和 $[(c_1,d_1),(c_2,d_2),\cdots]$ ，<del>显然</del>第一步走 $\min(a_1,c_1)$ 是一个不劣的选择</p>
+<p>  考虑向 $[(a_1,b_1),(a_2,b_2),\cdots]$ 中插入一个 $pair (x,y)$</p>
+<p>  <strong>应该放到最后一个满足 $a_i &lt; x$ 的位置的后面，原因是靠前会影响前缀最小值，使无法继续向下走；靠后则不能充分利用走该处所带来的 $-x+y$ 的优势</strong></p>
+</li>
+<li><p>具体实现</p>
+</li>
+</ul>
+<ol>
+<li>使最终能到 $t$ 点，则设 $t$ 点权值 $\text{INF}$<ol>
+<li>显然 $t$ 的子树不需要考虑</li>
+<li>选用了 $\text{map}$ 存放 $\text{pair}$ ，即 $mp[a_i]=b_i$</li>
+</ol>
+</li>
+</ol>
+<h2 id="P6970-NEERC2016-Game-on-Graph"><a href="#P6970-NEERC2016-Game-on-Graph" class="headerlink" title="P6970 [NEERC2016]Game on Graph"></a>P6970 [NEERC2016]Game on Graph</h2><p>概括题意：</p>
+<script type="math/tex; mode=display">\begin{cases}
+    A:无限循环>A赢>B赢 \\
+    B:B赢>A赢>无限循环 \\
+\end{cases}</script><p>设 $v_A$ 表示在节点 $v$ 且 $A$ 先手，$v_B$ 同理</p>
+<p>用 $\N^+(v)$ 表示 $v$ 通过一条边可到达的所有点集合</p>
+<p>定义 $\N^+(v_A)$ 中的点表示下一轮轮到 $B$</p>
+<ul>
+<li><p>先考虑无限循环</p>
+<p>对点 $v_A$ 来说，无限循环需要满足 $\exist v_B\in \N^+(v_A)$ 使 $v_B$ 无限进行</p>
+<p>对点 $v_B$ 来说，需要满足 $\N^+(v_B) \not ={\empty} \And\And \forall v_A\in \N^+(v_B)$ 都有 $v_A$ 满足无限循环</p>
+<p>出度为 $0$ 的点可以在刚开始时分出胜负，那么不断迭代即可</p>
+<p><a href="https://yhx-12243.github.io/OI-transit/records/lg6970%3Bgym101190G.html">可以剩余的点一定为无限循环点</a></p>
+</li>
+<li><p>考虑胜负</p>
+<p>将所有无限进行的状态从图中删去，得到新图，若一个点存在先负的后继状态，则它一定是先胜；若一个点的所有后继状态都是先胜 (含没有后继状态)，则它是先负。</p>
+<p>如果遇到圈则一定为 $A$ 赢</p>
+</li>
+</ul>
+<hr>
+<h2 id="P6932-ICPC2017-WF-Money-for-Nothing"><a href="#P6932-ICPC2017-WF-Money-for-Nothing" class="headerlink" title="P6932 [ICPC2017 WF]Money for Nothing"></a>P6932 [ICPC2017 WF]Money for Nothing</h2><ul>
+<li><p>题意</p>
+<p>这道题有个很妙的题意转化</p>
+<p>即给定 $m$ 个 $A$ 点的坐标(表示生产商)， $n$ 个 $B$ 点的坐标(消费商)，求一个边与坐标轴平行的矩形，其以 $A$ 类点为右上角， $B$ 类点为左下角，且其面积最大</p>
+</li>
+<li><p>先考虑显然的单调性</p>
+<p>对 $A$ 来说，若存在 $\{x_1,y_1\} , \{x_2,y_2\}$ 满足 $x_2\geq x_1 , y_2\geq y_1$，则只保留 $\{x_2,y_2\}$， $B$ 同理</p>
+<p>只维护 $A$ 的左上单调集和 $B$ 的右下单调集</p>
+<p>设 $A$ 点 $(x_A,y_A)$，$B$ 点 $(x_B,y_B)$，其形成的矩形面积</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+-\infty & x_b\leq x_r \wedge y_b\leq y_r \\
+(x_b-x_r) \cdot (y_b-y_r) & \text{otherwise}
+\end{cases}</script><p>易得若有一个 $A$ 点与所有 $B$ 点围成的矩形都为 $-\infty$ 则根据单调性，其余点也只能围成 $-\infty$ 的矩形，故此时答案为 $0$</p>
+</li>
+<li><p>考虑决策单调性</p>
+<p>设 $(x_B,y_B)$ 是与 $A$ 类点 $(x_A,y_A)$ 配对的矩阵面积最大的 $B$ 类点，则对于 $x^{\prime}<x_A \ , \ y^{\prime}>y_A \ ; \ a^{\prime}&gt;x_B \ , \ b^{\prime}&lt;y_B$ ，有 $\displaystyle{\left(a^{\prime}-x^{\prime}\right) \cdot \left(b^{\prime}-y^{\prime}\right) &lt; \left(x_B-x^{\prime}\right) \cdot \left(y_B-y^{\prime}\right)}$</p>
+</li>
+</ul>
+<p>所以可以考虑整体二分</p>
+]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>杂题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>博弈论</title>
     <url>/2021/02/04/%E5%8D%9A%E5%BC%88%E8%AE%BA/</url>
     <content><![CDATA[<h1 id="博弈论游戏及其的变形"><a href="#博弈论游戏及其的变形" class="headerlink" title="博弈论游戏及其的变形"></a>博弈论游戏及其的变形</h1><h2 id="请熟背以下结论（因为没看懂推导）"><a href="#请熟背以下结论（因为没看懂推导）" class="headerlink" title="请熟背以下结论（因为没看懂推导）"></a>请熟背以下结论（因为没看懂推导）</h2><hr>
@@ -265,68 +620,6 @@ a_1 & a_2 & a_3 & \dotsb & a_i & \dotsb & a_n\\
       </categories>
       <tags>
         <tag>题解</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>min-max容斥</title>
-    <url>/2020/12/04/minmax%E5%AE%B9%E6%96%A5/</url>
-    <content><![CDATA[<h2 id="minmax容斥"><a href="#minmax容斥" class="headerlink" title="minmax容斥"></a>minmax容斥</h2><ul>
-<li><p>用途</p>
-<p>已知集合的最小值 (<strong>期望</strong>) 求最大值</p>
-<p>$eg:$ $n$ 个元素，每个元素出现概率 $p_i$，求每个元素都出现的期望时间</p>
-</li>
-<li><p>结论</p>
-<script type="math/tex; mode=display">\max\{S\}=\sum_{T\subset S}(-1)^{|T|+1} \min\{T\}</script><p>即</p>
-<script type="math/tex; mode=display">E\left(\max\{S\}\right)=\sum_{T\subset S}(-1)^{|T|+1} E\left(\min\{T\}\right)</script></li>
-<li><p>证明</p>
-<p>设容斥系数 $g\left(|T|\right)$</p>
-<p>即 $\displaystyle{\max\{S\}=\sum_{T\subset S}g\left(|T|\right) \min\{T\}}$</p>
-<p>考虑当排名为 $k$ 的数作为集合 $T$ 的最小值时，集合 $T$ 中所有值都 $\geq k$</p>
-<p>所以对于第$k$大数 ， 在大小为 $|T|$ 的集合中， $\max$ 的选取方案为 $\displaystyle{\binom{k-1}{|T|-1}}$</p>
-<p>考虑集合大小为 $1\sim k$ ，则第 $k$ 数的总贡献为</p>
-<p>$\displaystyle{\sum_{i=1}^k \binom{k-1}{i-1}} * g(i)=[k=1] \qquad \text{即只有最大值对 max 有贡献}$</p>
-<p>由二项式反演得</p>
-<script type="math/tex; mode=display">\begin{aligned}
-g(k)&=\sum_{i=1}^k (-1)^{k-i} \binom{k-1}{i-1} [i=1] \\
-&=(-1)^{k+1} \\
-\end{aligned}</script><span id="more"></span>
-</li>
-<li><p>变式</p>
-<ul>
-<li><p>由 $\max \Rightarrow \max$</p>
-<script type="math/tex; mode=display">\min(S)=\sum_{T\subseteq S,\ T \neq \varnothing} (-1)^{|T|-1} \max(T)</script></li>
-<li><p>扩展 $\min\max容斥$</p>
-<script type="math/tex; mode=display">\text{kthmax}\{S\}=\sum_{T\subseteq S}(-1)^{|T|-k} \binom{|T|-1}{k-1} \min\{T\}</script><ul>
-<li><p>证明</p>
-<p>目的是找到容斥系数满足 $\text{kthmax}\{S\}=\sum_{T\subseteq S} f(|T|) \min\{T\}$</p>
-<p>考虑第 $x$ 大元素，受原式启发得到</p>
-<script type="math/tex; mode=display">\sum_{i=1}^t \binom{t-1}{i-1} f(i)=[t=k]</script><script type="math/tex; mode=display">\therefore 经反演易得 f(n)=(-1)^{n-k} \binom{n-1}{k-1}</script><p><a href="https://oi-wiki.org/math/inclusion-exclusion-principle/#min-max"><del>并不会用到的扩展minmax容斥</del></a></p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><ul>
-<li><p><a href="https://www.luogu.com.cn/problem/P3175">P3175 [HAOI2015]按位或</a></p>
-<ul>
-<li><p>题意</p>
-<p>设 $\min\{S\}$ 表示二进制数 $S$ 中，第一个元素变为 $1$ 所需时间，$\max\{S\}$ 表示最后一个元素变为 $1$ 所需时间</p>
-<p>题为求 $E(\max\{U\})$ ,其中 $U$ 为全集，$U=2^n-1$</p>
-</li>
-<li><p>解</p>
-<p>由公式易知 $\displaystyle{E(\max\{U\})=\sum_{S\subseteq U}(-1)^{|S|-1} \ \sum E(\min\{S\})}$</p>
-<p>$\therefore$ 求 $\min$</p>
-</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>minmax</tag>
       </tags>
   </entry>
   <entry>
