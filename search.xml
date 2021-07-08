@@ -330,34 +330,6 @@ g(k)&=\sum_{i=1}^k (-1)^{k-i} \binom{k-1}{i-1} [i=1] \\
       </tags>
   </entry>
   <entry>
-    <title>树链剖分</title>
-    <url>/2021/07/01/%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86/</url>
-    <content><![CDATA[<h2 id="关于长链剖分中指针的理解"><a href="#关于长链剖分中指针的理解" class="headerlink" title="关于长链剖分中指针的理解"></a>关于长链剖分中指针的理解</h2><p>与指针有关的变量：$\ast dp[N],tmp[N]$,$\ast pos$</p>
-<hr>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">pos=tmp;<span class="comment">//将pos指向tmp空间</span></span><br><span class="line">dp[<span class="number">1</span>]=pos, pos+=height[<span class="number">1</span>];</span><br><span class="line">   <span class="comment">//改变后pos加上dp[1]所需的长度，防止内存冲突</span></span><br></pre></td></tr></table></figure>
-<p>可以把 $*dp[1]$ 看成指向 $tmp$ 上一段长为 $height[1]$ 的指针</p>
-<p>那么指针 $dp[1]$ 与 $tmp[\ 0,…height[1]-1 \ ]$ 共同构成了 $dp[1][\ 0,…,height[1]-1\ ]$</p>
-<hr>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">dp[to]=pos, pos+=len;</span><br></pre></td></tr></table></figure>
-<p>与上面相同，在进入 $dfs2$ 前开好 $dp[to]$ 所需的空间，即以 $to$ 为起点的链，其长度为 $len$</p>
-<p>而对于链上其他点(即点 $to$ 的长儿子，其长儿子的长儿子，…)，不会进入当前行，即不需开新空间</p>
-<hr>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">dp[son[cur]] = dp[cur] + <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-<p>即继承长儿子的答案: $dp[i][j]=dp[lson][j-1]$</p>
-<p>数组指针形式：$dp[\ i\ ]=dp[\ lson[\ i\ ]\ ]-1$</p>
-<hr>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">dp[cur][j+<span class="number">1</span>] += dp[to][j];</span><br></pre></td></tr></table></figure>
-<p>暴力合并轻儿子的值</p>
-<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/utbnpeqk.png" alt=""></p>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>树链剖分</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>学不会的生成函数</title>
     <url>/2021/05/05/%E5%AD%A6%E4%B8%8D%E4%BC%9A%E7%9A%84%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/</url>
     <content><![CDATA[<h2 id="不知道怎么开始"><a href="#不知道怎么开始" class="headerlink" title="不知道怎么开始"></a>不知道怎么开始</h2><ul>
@@ -409,6 +381,34 @@ F(z)G(z)
       </categories>
       <tags>
         <tag>生成函数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树链剖分</title>
+    <url>/2021/07/01/%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86/</url>
+    <content><![CDATA[<h2 id="关于长链剖分中指针的理解"><a href="#关于长链剖分中指针的理解" class="headerlink" title="关于长链剖分中指针的理解"></a>关于长链剖分中指针的理解</h2><p>与指针有关的变量：$\ast dp[N],tmp[N]$,$\ast pos$</p>
+<hr>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">pos=tmp;<span class="comment">//将pos指向tmp空间</span></span><br><span class="line">dp[<span class="number">1</span>]=pos, pos+=height[<span class="number">1</span>];</span><br><span class="line">   <span class="comment">//改变后pos加上dp[1]所需的长度，防止内存冲突</span></span><br></pre></td></tr></table></figure>
+<p>可以把 $*dp[1]$ 看成指向 $tmp$ 上一段长为 $height[1]$ 的指针</p>
+<p>那么指针 $dp[1]$ 与 $tmp[\ 0,…height[1]-1 \ ]$ 共同构成了 $dp[1][\ 0,…,height[1]-1\ ]$</p>
+<hr>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">dp[to]=pos, pos+=len;</span><br></pre></td></tr></table></figure>
+<p>与上面相同，在进入 $dfs2$ 前开好 $dp[to]$ 所需的空间，即以 $to$ 为起点的链，其长度为 $len$</p>
+<p>而对于链上其他点(即点 $to$ 的长儿子，其长儿子的长儿子，…)，不会进入当前行，即不需开新空间</p>
+<hr>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">dp[son[cur]] = dp[cur] + <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<p>即继承长儿子的答案: $dp[i][j]=dp[lson][j-1]$</p>
+<p>数组指针形式：$dp[\ i\ ]=dp[\ lson[\ i\ ]\ ]-1$</p>
+<hr>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">dp[cur][j+<span class="number">1</span>] += dp[to][j];</span><br></pre></td></tr></table></figure>
+<p>暴力合并轻儿子的值</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/utbnpeqk.png" alt=""></p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>树链剖分</tag>
       </tags>
   </entry>
   <entry>
