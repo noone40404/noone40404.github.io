@@ -145,65 +145,28 @@ a_1 & a_2 & a_3 & \dotsb & a_i & \dotsb & a_n\\
       </tags>
   </entry>
   <entry>
-    <title>min-max容斥</title>
-    <url>/2020/12/04/minmax%E5%AE%B9%E6%96%A5/</url>
-    <content><![CDATA[<h2 id="minmax容斥"><a href="#minmax容斥" class="headerlink" title="minmax容斥"></a>minmax容斥</h2><ul>
-<li><p>用途</p>
-<p>已知集合的最小值 (<strong>期望</strong>) 求最大值</p>
-<p>$eg:$ $n$ 个元素，每个元素出现概率 $p_i$，求每个元素都出现的期望时间</p>
-</li>
-<li><p>结论</p>
-<script type="math/tex; mode=display">\max\{S\}=\sum_{T\subset S}(-1)^{|T|+1} \min\{T\}</script><p>即</p>
-<script type="math/tex; mode=display">E\left(\max\{S\}\right)=\sum_{T\subset S}(-1)^{|T|+1} E\left(\min\{T\}\right)</script></li>
-<li><p>证明</p>
-<p>设容斥系数 $g\left(|T|\right)$</p>
-<p>即 $\displaystyle{\max\{S\}=\sum_{T\subset S}g\left(|T|\right) \min\{T\}}$</p>
-<p>考虑当排名为 $k$ 的数作为集合 $T$ 的最小值时，集合 $T$ 中所有值都 $\geq k$</p>
-<p>所以对于第$k$大数 ， 在大小为 $|T|$ 的集合中， $\max$ 的选取方案为 $\displaystyle{\binom{k-1}{|T|-1}}$</p>
-<p>考虑集合大小为 $1\sim k$ ，则第 $k$ 数的总贡献为</p>
-<p>$\displaystyle{\sum_{i=1}^k \binom{k-1}{i-1}} * g(i)=[k=1] \qquad \text{即只有最大值对 max 有贡献}$</p>
-<p>由二项式反演得</p>
-<script type="math/tex; mode=display">\begin{aligned}
-g(k)&=\sum_{i=1}^k (-1)^{k-i} \binom{k-1}{i-1} [i=1] \\
-&=(-1)^{k+1} \\
-\end{aligned}</script><span id="more"></span>
-</li>
-<li><p>变式</p>
+    <title>loj#6274.数字</title>
+    <url>/2021/07/08/loj/</url>
+    <content><![CDATA[<h3 id="重点说一下与运算中的转移"><a href="#重点说一下与运算中的转移" class="headerlink" title="重点说一下与运算中的转移"></a>重点说一下与运算中的转移</h3><p>考虑在当前位两数分别为 $\langle 1,0 \rangle$ 或 $ \langle 0,1 \rangle$</p>
+<p>显然这两种选择的 $\And$ 与 $|$ 操作所得结果相同，由此可知会不同选择中有包含关系</p>
+<p>从 $\langle 1,0 \rangle$ 与 $\langle 0,1 \rangle$ 所得情况等价入手</p>
+<p>记 $\langle 1,0 \rangle$ 为情况 $S_1$ , 其中 $1$ 是第一个数的选择，$0$ 是第二个数字的选择 ,</p>
+<p>$\langle 0,1 \rangle$ 为情况 $S_2$</p>
+<p>由于 $S_2$ 中的 $0$ 可知，$S_1$ 选择 $1$ 取不到 $\max$，即无论后面的位如何取都取不到上界</p>
+<p>同理，由于 $S_1$ 中的 $1$，$S_2$ 选择 $0$ 取不到 $\min$，即无法取到下界</p>
 <ul>
-<li><p>由 $\max \Rightarrow \max$</p>
-<script type="math/tex; mode=display">\min(S)=\sum_{T\subseteq S,\ T \neq \varnothing} (-1)^{|T|-1} \max(T)</script></li>
-<li><p>扩展 $\min\max容斥$</p>
-<script type="math/tex; mode=display">\text{kthmax}\{S\}=\sum_{T\subseteq S}(-1)^{|T|-k} \binom{|T|-1}{k-1} \min\{T\}</script><ul>
-<li><p>证明</p>
-<p>目的是找到容斥系数满足 $\text{kthmax}\{S\}=\sum_{T\subseteq S} f(|T|) \min\{T\}$</p>
-<p>考虑第 $x$ 大元素，受原式启发得到</p>
-<script type="math/tex; mode=display">\sum_{i=1}^t \binom{t-1}{i-1} f(i)=[t=k]</script><script type="math/tex; mode=display">\therefore 经反演易得 f(n)=(-1)^{n-k} \binom{n-1}{k-1}</script><p><a href="https://oi-wiki.org/math/inclusion-exclusion-principle/#min-max"><del>并不会用到的扩展minmax容斥</del></a></p>
+<li><p>假设后面会有情况选择 $\langle 1,1 \rangle$，考虑到第二个数字取不到 $\max$ ，所以等同于选择了 $\langle 1,0 \rangle$</p>
+</li>
+<li><p>假设后面会有情况选择 $\langle 0,1 \rangle$，考虑到第二个数字取不到 $\min$ ，所以等同于选择了 $\langle 1,1 \rangle$</p>
 </li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><ul>
-<li><p><a href="https://www.luogu.com.cn/problem/P3175">P3175 [HAOI2015]按位或</a></p>
-<ul>
-<li><p>题意</p>
-<p>设 $\min\{S\}$ 表示二进制数 $S$ 中，第一个元素变为 $1$ 所需时间，$\max\{S\}$ 表示最后一个元素变为 $1$ 所需时间</p>
-<p>题为求 $E(\max\{U\})$ ,其中 $U$ 为全集，$U=2^n-1$</p>
-</li>
-<li><p>解</p>
-<p>由公式易知 $\displaystyle{E(\max\{U\})=\sum_{S\subseteq U}(-1)^{|S|-1} \ \sum E(\min\{S\})}$</p>
-<p>$\therefore$ 求 $\min$</p>
-</li>
-</ul>
-</li>
-</ul>
+<p>所以对于与结果为 $0$ 的合法情况，取其结果的最大值即可</p>
 ]]></content>
       <categories>
-        <category>笔记</category>
+        <category>题解</category>
       </categories>
       <tags>
-        <tag>minmax</tag>
+        <tag>dp</tag>
       </tags>
   </entry>
   <entry>
@@ -305,82 +268,65 @@ g(k)&=\sum_{i=1}^k (-1)^{k-i} \binom{k-1}{i-1} [i=1] \\
       </tags>
   </entry>
   <entry>
-    <title>loj#6274.数字</title>
-    <url>/2021/07/08/loj/</url>
-    <content><![CDATA[<h3 id="重点说一下与运算中的转移"><a href="#重点说一下与运算中的转移" class="headerlink" title="重点说一下与运算中的转移"></a>重点说一下与运算中的转移</h3><p>考虑在当前位两数分别为 $\langle 1,0 \rangle$ 或 $ \langle 0,1 \rangle$</p>
-<p>显然这两种选择的 $\And$ 与 $|$ 操作所得结果相同，由此可知会不同选择中有包含关系</p>
-<p>从 $\langle 1,0 \rangle$ 与 $\langle 0,1 \rangle$ 所得情况等价入手</p>
-<p>记 $\langle 1,0 \rangle$ 为情况 $S_1$ , 其中 $1$ 是第一个数的选择，$0$ 是第二个数字的选择 ,</p>
-<p>$\langle 0,1 \rangle$ 为情况 $S_2$</p>
-<p>由于 $S_2$ 中的 $0$ 可知，$S_1$ 选择 $1$ 取不到 $\max$，即无论后面的位如何取都取不到上界</p>
-<p>同理，由于 $S_1$ 中的 $1$，$S_2$ 选择 $0$ 取不到 $\min$，即无法取到下界</p>
-<ul>
-<li><p>假设后面会有情况选择 $\langle 1,1 \rangle$，考虑到第二个数字取不到 $\max$ ，所以等同于选择了 $\langle 1,0 \rangle$</p>
+    <title>min-max容斥</title>
+    <url>/2020/12/04/minmax%E5%AE%B9%E6%96%A5/</url>
+    <content><![CDATA[<h2 id="minmax容斥"><a href="#minmax容斥" class="headerlink" title="minmax容斥"></a>minmax容斥</h2><ul>
+<li><p>用途</p>
+<p>已知集合的最小值 (<strong>期望</strong>) 求最大值</p>
+<p>$eg:$ $n$ 个元素，每个元素出现概率 $p_i$，求每个元素都出现的期望时间</p>
 </li>
-<li><p>假设后面会有情况选择 $\langle 0,1 \rangle$，考虑到第二个数字取不到 $\min$ ，所以等同于选择了 $\langle 1,1 \rangle$</p>
-</li>
-</ul>
-<p>所以对于与结果为 $0$ 的合法情况，取其结果的最大值即可</p>
-]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>dp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>学不会的生成函数</title>
-    <url>/2021/05/05/%E5%AD%A6%E4%B8%8D%E4%BC%9A%E7%9A%84%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<h2 id="不知道怎么开始"><a href="#不知道怎么开始" class="headerlink" title="不知道怎么开始"></a>不知道怎么开始</h2><ul>
-<li><p>$a=\langle1,1,1,1,1…\rangle$的生成函数是</p>
-<script type="math/tex; mode=display">f(x)=x+x^2+x^3+x^4+...</script><p>限定 $x\in(-1,1)$</p>
-<script type="math/tex; mode=display">f(x)=\lim_{n\to \infty} \frac{1-x^n}{1-x} = \frac{1}{1-x}</script><p>同理得,函数</p>
-<script type="math/tex; mode=display">f(x)=1+x^2+x^4+x^6...=\frac{1}{1-x^2}</script><script type="math/tex; mode=display">f(x)=1+2x+3x^2+4x^3...=\frac{1}{\left(1-x \right)^2}</script><script type="math/tex; mode=display">f(x)=1+3x+6x^2+10x^3+15x^4...=\frac{1}{\left(1-x\right)^3}</script><p>推广有：</p>
-<script type="math/tex; mode=display">\frac{1}{\left(1-x\right)^k} 的生成数列是 \sum_i^\infty C_{i+k-1}^{k-1} x^i</script></li>
-</ul>
-<p>设 $F(z) , G(z)$ 是数列 $\langle \ f_n \ \rangle , \langle \ g_i \ \rangle$ 的生成函数</p>
-<ul>
-<li><p>相加</p>
+<li><p>结论</p>
+<script type="math/tex; mode=display">\max\{S\}=\sum_{T\subset S}(-1)^{|T|+1} \min\{T\}</script><p>即</p>
+<script type="math/tex; mode=display">E\left(\max\{S\}\right)=\sum_{T\subset S}(-1)^{|T|+1} E\left(\min\{T\}\right)</script></li>
+<li><p>证明</p>
+<p>设容斥系数 $g\left(|T|\right)$</p>
+<p>即 $\displaystyle{\max\{S\}=\sum_{T\subset S}g\left(|T|\right) \min\{T\}}$</p>
+<p>考虑当排名为 $k$ 的数作为集合 $T$ 的最小值时，集合 $T$ 中所有值都 $\geq k$</p>
+<p>所以对于第$k$大数 ， 在大小为 $|T|$ 的集合中， $\max$ 的选取方案为 $\displaystyle{\binom{k-1}{|T|-1}}$</p>
+<p>考虑集合大小为 $1\sim k$ ，则第 $k$ 数的总贡献为</p>
+<p>$\displaystyle{\sum_{i=1}^k \binom{k-1}{i-1}} * g(i)=[k=1] \qquad \text{即只有最大值对 max 有贡献}$</p>
+<p>由二项式反演得</p>
 <script type="math/tex; mode=display">\begin{aligned}
-\alpha F(z)+ \beta G(z)
-&= \alpha \sum_n f_nz^n + \beta \sum_ng_nz^n \\
-&=\sum_n (\alpha f_n + \beta g_n) z^n\\
-\end{aligned}</script><p>得到数列 $\langle \ \alpha f_n+\beta g_n \  \rangle$ 的生成函数</p>
+g(k)&=\sum_{i=1}^k (-1)^{k-i} \binom{k-1}{i-1} [i=1] \\
+&=(-1)^{k+1} \\
+\end{aligned}</script><span id="more"></span>
 </li>
-<li><p>平移生成函数</p>
+<li><p>变式</p>
 <ul>
-<li><p>向右 $m$ 位</p>
-<p>即，构造前面有 $m$ 个 $0$ 的数列 $\langle \ \underbrace{0,\cdots}_{m个},g_0,g_1,\cdots \ \rangle = \langle \ g_{n-m} \ \rangle$ 的生成函数</p>
-<p>直接用 $z_m$ 乘</p>
-<script type="math/tex; mode=display">z_m \cdot G(z) = \sum_n g_nz^{n+m} = \sum_n g_{n-m}z^n</script></li>
-<li><p>向左 $m$ 位</p>
-<p>即，构造前面 $m$ 个元素被删除的数列 $\langle \ g_m,g_{m+1},g_{m+2},\cdots \ \rangle$ 的生成函数</p>
-<p>减去前 $m$ 项，并用 $z_m$ 来除</p>
-<script type="math/tex; mode=display">\frac{G(z)-g_0-g_1z-\cdots -g_{m-1}z^{m-1}}{z^m} = \sum_{n\geq m} g_nz^{n-m} = \sum_{n\geq 0} g_{n+m}g^z</script></li>
-</ul>
-</li>
-<li><p>常数倍的 $z$</p>
-<script type="math/tex; mode=display">G(cz) = \sum_ng_n(cz)^n = \sum_n g_nz^n</script><p>即，数列 $\langle \ c^ng_n  \ \rangle$ 的生成函数</p>
-<p>当 $c=-1$ 时特别有用</p>
-</li>
-<li><p>相乘</p>
-<script type="math/tex; mode=display">\begin{aligned}
-F(z)G(z)
-&=(f_0+f_1z+f_2z^2+\cdots ) \cdot (g_0+g_0z+g_0z^2+\cdots) \\
-&=(f_0 \cdot g_0) + (f_0\cdot g_1 + f_1 \cdot g_0)z + (f_0\cdot g_2 + f_1\cdot g_1 + f_2 \cdot g_0) z^2 + \cdots \\
-&=\sum_n \left(\sum f_k \cdot g_{n-k} \right) z^n \\
-\end{aligned}</script><p>求得数列 $\langle \ h_n \ \rangle$ 的生成函数，即数列 $\langle \ f_n \ \rangle , \langle \ g_i \ \rangle$ 的卷积的生成函数</p>
-<p>和式 $\displaystyle{h_n=\sum_{k=0}^n f_k \cdot g_{n-k}}$</p>
+<li><p>由 $\max \Rightarrow \max$</p>
+<script type="math/tex; mode=display">\min(S)=\sum_{T\subseteq S,\ T \neq \varnothing} (-1)^{|T|-1} \max(T)</script></li>
+<li><p>扩展 $\min\max容斥$</p>
+<script type="math/tex; mode=display">\text{kthmax}\{S\}=\sum_{T\subseteq S}(-1)^{|T|-k} \binom{|T|-1}{k-1} \min\{T\}</script><ul>
+<li><p>证明</p>
+<p>目的是找到容斥系数满足 $\text{kthmax}\{S\}=\sum_{T\subseteq S} f(|T|) \min\{T\}$</p>
+<p>考虑第 $x$ 大元素，受原式启发得到</p>
+<script type="math/tex; mode=display">\sum_{i=1}^t \binom{t-1}{i-1} f(i)=[t=k]</script><script type="math/tex; mode=display">\therefore 经反演易得 f(n)=(-1)^{n-k} \binom{n-1}{k-1}</script><p><a href="https://oi-wiki.org/math/inclusion-exclusion-principle/#min-max"><del>并不会用到的扩展minmax容斥</del></a></p>
 </li>
 </ul>
-<p><strong>具体参见具体数学P280 , 表7-1，7-2</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><ul>
+<li><p><a href="https://www.luogu.com.cn/problem/P3175">P3175 [HAOI2015]按位或</a></p>
+<ul>
+<li><p>题意</p>
+<p>设 $\min\{S\}$ 表示二进制数 $S$ 中，第一个元素变为 $1$ 所需时间，$\max\{S\}$ 表示最后一个元素变为 $1$ 所需时间</p>
+<p>题为求 $E(\max\{U\})$ ,其中 $U$ 为全集，$U=2^n-1$</p>
+</li>
+<li><p>解</p>
+<p>由公式易知 $\displaystyle{E(\max\{U\})=\sum_{S\subseteq U}(-1)^{|S|-1} \ \sum E(\min\{S\})}$</p>
+<p>$\therefore$ 求 $\min$</p>
+</li>
+</ul>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>笔记</category>
       </categories>
       <tags>
-        <tag>生成函数</tag>
+        <tag>minmax</tag>
       </tags>
   </entry>
   <entry>
@@ -671,6 +617,88 @@ V(F)^{\prime}
       </tags>
   </entry>
   <entry>
+    <title>树链剖分</title>
+    <url>/2021/07/01/%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86/</url>
+    <content><![CDATA[<h2 id="关于长链剖分中指针的理解"><a href="#关于长链剖分中指针的理解" class="headerlink" title="关于长链剖分中指针的理解"></a>关于长链剖分中指针的理解</h2><p>与指针有关的变量：$\ast dp[N],tmp[N]$,$\ast pos$</p>
+<hr>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">pos=tmp;<span class="comment">//将pos指向tmp空间</span></span><br><span class="line">dp[<span class="number">1</span>]=pos, pos+=height[<span class="number">1</span>];</span><br><span class="line">   <span class="comment">//改变后pos加上dp[1]所需的长度，防止内存冲突</span></span><br></pre></td></tr></table></figure>
+<p>可以把 $*dp[1]$ 看成指向 $tmp$ 上一段长为 $height[1]$ 的指针</p>
+<p>那么指针 $dp[1]$ 与 $tmp[\ 0,…height[1]-1 \ ]$ 共同构成了 $dp[1][\ 0,…,height[1]-1\ ]$</p>
+<hr>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">dp[to]=pos, pos+=len;</span><br></pre></td></tr></table></figure>
+<p>与上面相同，在进入 $dfs2$ 前开好 $dp[to]$ 所需的空间，即以 $to$ 为起点的链，其长度为 $len$</p>
+<p>而对于链上其他点(即点 $to$ 的长儿子，其长儿子的长儿子，…)，不会进入当前行，即不需开新空间</p>
+<hr>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">dp[son[cur]] = dp[cur] + <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<p>即继承长儿子的答案: $dp[i][j]=dp[lson][j-1]$</p>
+<p>数组指针形式：$dp[\ i\ ]=dp[\ lson[\ i\ ]\ ]-1$</p>
+<hr>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">dp[cur][j+<span class="number">1</span>] += dp[to][j];</span><br></pre></td></tr></table></figure>
+<p>暴力合并轻儿子的值</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/utbnpeqk.png" alt=""></p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>树链剖分</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>学不会的生成函数</title>
+    <url>/2021/05/05/%E5%AD%A6%E4%B8%8D%E4%BC%9A%E7%9A%84%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<h2 id="不知道怎么开始"><a href="#不知道怎么开始" class="headerlink" title="不知道怎么开始"></a>不知道怎么开始</h2><ul>
+<li><p>$a=\langle1,1,1,1,1…\rangle$的生成函数是</p>
+<script type="math/tex; mode=display">f(x)=x+x^2+x^3+x^4+...</script><p>限定 $x\in(-1,1)$</p>
+<script type="math/tex; mode=display">f(x)=\lim_{n\to \infty} \frac{1-x^n}{1-x} = \frac{1}{1-x}</script><p>同理得,函数</p>
+<script type="math/tex; mode=display">f(x)=1+x^2+x^4+x^6...=\frac{1}{1-x^2}</script><script type="math/tex; mode=display">f(x)=1+2x+3x^2+4x^3...=\frac{1}{\left(1-x \right)^2}</script><script type="math/tex; mode=display">f(x)=1+3x+6x^2+10x^3+15x^4...=\frac{1}{\left(1-x\right)^3}</script><p>推广有：</p>
+<script type="math/tex; mode=display">\frac{1}{\left(1-x\right)^k} 的生成数列是 \sum_i^\infty C_{i+k-1}^{k-1} x^i</script></li>
+</ul>
+<p>设 $F(z) , G(z)$ 是数列 $\langle \ f_n \ \rangle , \langle \ g_i \ \rangle$ 的生成函数</p>
+<ul>
+<li><p>相加</p>
+<script type="math/tex; mode=display">\begin{aligned}
+\alpha F(z)+ \beta G(z)
+&= \alpha \sum_n f_nz^n + \beta \sum_ng_nz^n \\
+&=\sum_n (\alpha f_n + \beta g_n) z^n\\
+\end{aligned}</script><p>得到数列 $\langle \ \alpha f_n+\beta g_n \  \rangle$ 的生成函数</p>
+</li>
+<li><p>平移生成函数</p>
+<ul>
+<li><p>向右 $m$ 位</p>
+<p>即，构造前面有 $m$ 个 $0$ 的数列 $\langle \ \underbrace{0,\cdots}_{m个},g_0,g_1,\cdots \ \rangle = \langle \ g_{n-m} \ \rangle$ 的生成函数</p>
+<p>直接用 $z_m$ 乘</p>
+<script type="math/tex; mode=display">z_m \cdot G(z) = \sum_n g_nz^{n+m} = \sum_n g_{n-m}z^n</script></li>
+<li><p>向左 $m$ 位</p>
+<p>即，构造前面 $m$ 个元素被删除的数列 $\langle \ g_m,g_{m+1},g_{m+2},\cdots \ \rangle$ 的生成函数</p>
+<p>减去前 $m$ 项，并用 $z_m$ 来除</p>
+<script type="math/tex; mode=display">\frac{G(z)-g_0-g_1z-\cdots -g_{m-1}z^{m-1}}{z^m} = \sum_{n\geq m} g_nz^{n-m} = \sum_{n\geq 0} g_{n+m}g^z</script></li>
+</ul>
+</li>
+<li><p>常数倍的 $z$</p>
+<script type="math/tex; mode=display">G(cz) = \sum_ng_n(cz)^n = \sum_n g_nz^n</script><p>即，数列 $\langle \ c^ng_n  \ \rangle$ 的生成函数</p>
+<p>当 $c=-1$ 时特别有用</p>
+</li>
+<li><p>相乘</p>
+<script type="math/tex; mode=display">\begin{aligned}
+F(z)G(z)
+&=(f_0+f_1z+f_2z^2+\cdots ) \cdot (g_0+g_0z+g_0z^2+\cdots) \\
+&=(f_0 \cdot g_0) + (f_0\cdot g_1 + f_1 \cdot g_0)z + (f_0\cdot g_2 + f_1\cdot g_1 + f_2 \cdot g_0) z^2 + \cdots \\
+&=\sum_n \left(\sum f_k \cdot g_{n-k} \right) z^n \\
+\end{aligned}</script><p>求得数列 $\langle \ h_n \ \rangle$ 的生成函数，即数列 $\langle \ f_n \ \rangle , \langle \ g_i \ \rangle$ 的卷积的生成函数</p>
+<p>和式 $\displaystyle{h_n=\sum_{k=0}^n f_k \cdot g_{n-k}}$</p>
+</li>
+</ul>
+<p><strong>具体参见具体数学P280 , 表7-1，7-2</strong></p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>生成函数</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>确实不会的多项式</title>
     <url>/2021/05/05/%E7%A1%AE%E5%AE%9E%E4%B8%8D%E4%BC%9A%E7%9A%84%E5%A4%9A%E9%A1%B9%E5%BC%8F/</url>
     <content><![CDATA[<h2 id="写总结的地方"><a href="#写总结的地方" class="headerlink" title="写总结的地方"></a>写总结的地方</h2><ul>
@@ -772,34 +800,6 @@ g_i
       </categories>
       <tags>
         <tag>多项式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>树链剖分</title>
-    <url>/2021/07/01/%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86/</url>
-    <content><![CDATA[<h2 id="关于长链剖分中指针的理解"><a href="#关于长链剖分中指针的理解" class="headerlink" title="关于长链剖分中指针的理解"></a>关于长链剖分中指针的理解</h2><p>与指针有关的变量：$\ast dp[N],tmp[N]$,$\ast pos$</p>
-<hr>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">pos=tmp;<span class="comment">//将pos指向tmp空间</span></span><br><span class="line">dp[<span class="number">1</span>]=pos, pos+=height[<span class="number">1</span>];</span><br><span class="line">   <span class="comment">//改变后pos加上dp[1]所需的长度，防止内存冲突</span></span><br></pre></td></tr></table></figure>
-<p>可以把 $*dp[1]$ 看成指向 $tmp$ 上一段长为 $height[1]$ 的指针</p>
-<p>那么指针 $dp[1]$ 与 $tmp[\ 0,…height[1]-1 \ ]$ 共同构成了 $dp[1][\ 0,…,height[1]-1\ ]$</p>
-<hr>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">dp[to]=pos, pos+=len;</span><br></pre></td></tr></table></figure>
-<p>与上面相同，在进入 $dfs2$ 前开好 $dp[to]$ 所需的空间，即以 $to$ 为起点的链，其长度为 $len$</p>
-<p>而对于链上其他点(即点 $to$ 的长儿子，其长儿子的长儿子，…)，不会进入当前行，即不需开新空间</p>
-<hr>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">dp[son[cur]] = dp[cur] + <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-<p>即继承长儿子的答案: $dp[i][j]=dp[lson][j-1]$</p>
-<p>数组指针形式：$dp[\ i\ ]=dp[\ lson[\ i\ ]\ ]-1$</p>
-<hr>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">dp[cur][j+<span class="number">1</span>] += dp[to][j];</span><br></pre></td></tr></table></figure>
-<p>暴力合并轻儿子的值</p>
-<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/utbnpeqk.png" alt=""></p>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>树链剖分</tag>
       </tags>
   </entry>
   <entry>
