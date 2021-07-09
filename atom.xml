@@ -6,7 +6,7 @@
   <link href="http://noone40404.github.io/atom.xml" rel="self"/>
   
   <link href="http://noone40404.github.io/"/>
-  <updated>2021-07-08T12:58:31.695Z</updated>
+  <updated>2021-07-09T09:05:33.384Z</updated>
   <id>http://noone40404.github.io/</id>
   
   <author>
@@ -21,17 +21,17 @@
     <link href="http://noone40404.github.io/2021/07/08/loj/"/>
     <id>http://noone40404.github.io/2021/07/08/loj/</id>
     <published>2021-07-08T12:15:18.000Z</published>
-    <updated>2021-07-08T12:58:31.695Z</updated>
+    <updated>2021-07-09T09:05:33.384Z</updated>
     
     
     <summary type="html">关于与运算的分析：较小的方案集合是较大的方案集合的子集</summary>
     
     
     
-    <category term="数位dp" scheme="http://noone40404.github.io/categories/%E6%95%B0%E4%BD%8Ddp/"/>
+    <category term="题解" scheme="http://noone40404.github.io/categories/%E9%A2%98%E8%A7%A3/"/>
     
     
-    <category term="题解" scheme="http://noone40404.github.io/tags/%E9%A2%98%E8%A7%A3/"/>
+    <category term="dp" scheme="http://noone40404.github.io/tags/dp/"/>
     
   </entry>
   
@@ -192,7 +192,7 @@
     <link href="http://noone40404.github.io/2021/01/04/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/"/>
     <id>http://noone40404.github.io/2021/01/04/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/</id>
     <published>2021-01-04T11:16:57.000Z</published>
-    <updated>2021-07-09T00:24:37.238Z</updated>
+    <updated>2021-07-09T09:05:44.777Z</updated>
     
     
     <summary type="html">背包9讲及acwing的背包题</summary>
@@ -202,7 +202,7 @@
     <category term="笔记" scheme="http://noone40404.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="背包" scheme="http://noone40404.github.io/tags/%E8%83%8C%E5%8C%85/"/>
+    <category term="dp" scheme="http://noone40404.github.io/tags/dp/"/>
     
   </entry>
   
