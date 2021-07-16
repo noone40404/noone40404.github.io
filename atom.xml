@@ -18,8 +18,8 @@
   
   <entry>
     <title>loj#6274.数字</title>
-    <link href="http://noone40404.github.io/2021/07/08/loj/"/>
-    <id>http://noone40404.github.io/2021/07/08/loj/</id>
+    <link href="http://noone40404.github.io/2021/07/08/loj#6274.%E6%95%B0%E5%AD%97/"/>
+    <id>http://noone40404.github.io/2021/07/08/loj#6274.%E6%95%B0%E5%AD%97/</id>
     <published>2021-07-08T12:15:18.000Z</published>
     <updated>2021-07-09T09:05:33.384Z</updated>
     
@@ -40,7 +40,7 @@
     <link href="http://noone40404.github.io/2021/07/01/CF%E7%9A%84dp%E9%A2%98/"/>
     <id>http://noone40404.github.io/2021/07/01/CF%E7%9A%84dp%E9%A2%98/</id>
     <published>2021-07-01T11:20:02.000Z</published>
-    <updated>2021-07-05T10:20:47.483Z</updated>
+    <updated>2021-07-16T02:01:51.854Z</updated>
     
     
     <summary type="html">CF2000~2500的dp题</summary>
@@ -89,6 +89,31 @@
     
     
     <category term="杂题" scheme="http://noone40404.github.io/tags/%E6%9D%82%E9%A2%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>wjq的代办</title>
+    <link href="http://noone40404.github.io/2021/05/10/wjq%E7%9A%84%E4%BB%A3%E5%8A%9E/"/>
+    <id>http://noone40404.github.io/2021/05/10/wjq%E7%9A%84%E4%BB%A3%E5%8A%9E/</id>
+    <published>2021-05-10T13:33:01.000Z</published>
+    <updated>2021-07-16T02:03:57.437Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;del&gt;越来越多就离谱&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;暑假前写完就离谱&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;裂开&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;现在已经暑假了，但是更多了&lt;/del&gt;&lt;/p&gt;
+&lt;h2 id=&quot;知识漏洞&quot;&gt;&lt;a href=&quot;#知识漏洞&quot; class=&quot;headerlink&quot; title=&quot;知识漏洞&quot;&gt;&lt;/a&gt;知识漏洞&lt;/h2&gt;&lt;p&gt;差分约数&lt;/p&gt;
+&lt;p&gt;析和树&lt;/p&gt;
+&lt;p&gt;斯坦纳树&lt;/p&gt;
+&lt;p&gt;凸包优化&lt;/p&gt;
+&lt;p&gt;2-SA&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="代办" scheme="http://noone40404.github.io/categories/%E4%BB%A3%E5%8A%9E/"/>
+    
     
   </entry>
   
@@ -192,7 +217,7 @@
     <link href="http://noone40404.github.io/2021/01/04/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/"/>
     <id>http://noone40404.github.io/2021/01/04/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/</id>
     <published>2021-01-04T11:16:57.000Z</published>
-    <updated>2021-07-09T09:05:44.777Z</updated>
+    <updated>2021-07-16T02:02:24.999Z</updated>
     
     
     <summary type="html">背包9讲及acwing的背包题</summary>
@@ -203,6 +228,8 @@
     
     
     <category term="dp" scheme="http://noone40404.github.io/tags/dp/"/>
+    
+    <category term="背包" scheme="http://noone40404.github.io/tags/%E8%83%8C%E5%8C%85/"/>
     
   </entry>
   
