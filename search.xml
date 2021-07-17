@@ -1,150 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>CF的dp题</title>
-    <url>/2021/07/01/CF%E7%9A%84dp%E9%A2%98/</url>
-    <content><![CDATA[<h2 id="CF1515E-Phoenix-and-Computers"><a href="#CF1515E-Phoenix-and-Computers" class="headerlink" title="CF1515E Phoenix and Computers"></a>CF1515E Phoenix and Computers</h2><details>
-    <summary>我们始终不知道EI是怎么写的</summary>
-        <pre><code>
-        #include<bits/stdc++.h>
-        #define R(X,Y) X=(X+Y)%P;
-        int64_t g[410],n,P,k,a,f;int main()&#123;std::cin>>n>>P;g[0]=f=k=1;for(--n;n>=0;n-=2,++k)&#123;for(int i=1;i<=n;++i)R(g[i],g[i-1]*k*2)f=f*k%P;R(a,g[n]*f)&#125;printf("%d\n",a);&#125;
-        </code></pre>
-</details>
-
-
-<h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><p>要开启 $n$ 台电脑，若第 $i-1,i+1$ 台被开启，第 $i$ 台自动开，询问打开所有电脑的方案数</p>
-<h3 id="解"><a href="#解" class="headerlink" title="解"></a>解</h3><p>题解里有一个吊打标算的 $O(n^2)$ 做法</p>
-<p><del>上面EI的代码好像也是 $O(n^2)$</del></p>
-<p>设 $dp_{i,j}$ 表示已开机 $i$ 台，形成 $j$ 个连续段，每段距离 $&gt;1$ 且不确定</p>
-<p>考虑转移：</p>
-<ul>
-<li><p>新建段</p>
-<ul>
-<li>$dp_{i+1,j+1}=\sum dp_{i,j}*(j+1)$ ，即在 $j+1$ 个间隔中选择一个打开</li>
-</ul>
-</li>
-<li><p>扩展段</p>
-<ul>
-<li>$dp_{i+1,j}=\sum dp_{i,j}\cdot j\cdot2$ ，即在一段的边界+1处开</li>
-<li>$dp_{i+2,j}=\sum dp_{i,j}\cdot j\cdot2$ ，即在一段的边界+2处开</li>
-</ul>
-</li>
-<li><p>合并段（仅当 $j\geq 2$ 时）</p>
-<ul>
-<li>$dp_{i+2,j-1}=\sum dp_{i,j}\cdot(j-1)\cdot2$ ，即当两边距离为 $2$ 时有两种开法</li>
-<li>$dp_{i+3,j-1}=\sum dp_{i,j}\cdot (j-1)$ ，即两边距离为 $3$ 时开中间</li>
-</ul>
-</li>
-</ul>
-<h2 id="CF1516D-Cut"><a href="#CF1516D-Cut" class="headerlink" title="CF1516D Cut"></a>CF1516D Cut</h2><h3 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h3><p>给定长度为 $n$ 的序列，$q$ 次询问，对于 $[l,r]$ 区间最少能分成多少个子序列满足，子序列中数的乘积等于它们的 $\text{lcm}$</p>
-<h3 id="解-1"><a href="#解-1" class="headerlink" title="解"></a>解</h3><p>很显然子序列中所有数互质，有贪心：从左往右尽可能多的选取直至会加入与原区间不互质的数</p>
-<p>设 $Next_i$ 代表从 $i$ 开始的序列停止的位置，即向以 $i$ 开始的子序列中加入 $Next_i$ 会使序列中的数不再互质</p>
-<p>$dp_{i,l}$ 表示从 $l$ 开始，跳 $Next_i$ $2^i$ 次到达的位置</p>
-<h2 id="CF1516E-Baby-Ehab-Plays-with-Permutations"><a href="#CF1516E-Baby-Ehab-Plays-with-Permutations" class="headerlink" title="CF1516E Baby Ehab Plays with Permutations"></a>CF1516E Baby Ehab Plays with Permutations</h2><h3 id="前置芝士"><a href="#前置芝士" class="headerlink" title="前置芝士"></a>前置芝士</h3><ul>
-<li><p>置换</p>
-<p>简单来说是对一个序列进行重排列，</p>
-<script type="math/tex; mode=display">\begin{pmatrix}
-1 & 2 & 3 & \dotsb & i & \dotsb & n \\
-a_1 & a_2 & a_3 & \dotsb & a_i & \dotsb & a_n\\
-\end{pmatrix}</script><p>即 $[1,n]$ 到 $[1,n]$ 的一一映射</p>
-<ul>
-<li><p>$1.$</p>
-<p>置换可以分解为若干循环，具体为连边：$1\rightarrow a_1 \ ,\ 2\rightarrow a_2 \ ,\ \dotsb \ ,\ i\rightarrow a_i \ ,\ \dotsb \ ,\ n\rightarrow a_n$</p>
-<p>形成的图中会有若干个环，即，置换可以被分解成不相交循环的积</p>
-<p>一个循环可以被拆成 $环长-1$ 个对换，所以通过 $环长-1$ 步可以还原该循环</p>
-</li>
-</ul>
-</li>
-<li><p>关于第一类斯特林数的计算</p>
-<p><a href="https://mathworld.wolfram.com/StirlingNumberoftheFirstKind.html">$\displaystyle{s(n,m)=\sum_{k=0}^NaN \  (-1)^ k\ \binom{k+n-1}{k+n-m} \binom{2n-m}{n-k-m} S(k-m+n,k)}$</a></p>
-<p>变形得</p>
-<script type="math/tex; mode=display">(-1)^{n-m} s(n,m)=\sum_{k=0}^{n-m} (-1)^k \binom{n-1+k}{m-1} \binom{(n-m)+n}{(n-m)-k} S((n-m+k),k)</script><p>即</p>
-<script type="math/tex; mode=display">(-1)^{n-m} \begin{bmatrix} n \\ m \end{bmatrix}=\sum_{k=0}^{n-m} (-1)^k \binom{n-1+k}{m-1} \binom{(n-m)+n}{(n-m)-k} \begin{Bmatrix} (n-m)+k \\ k \end{Bmatrix}</script></li>
-</ul>
-<h3 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h3><p>给出长为 $n$ 的序列 $p$ 满足 $p_i=i$，进行 $k$ 次操作，每次可以选取序列中两个位置并交换，对于 $1\sim k$ 的每个值，输出最终可能有几个序列</p>
-<h3 id="解-2"><a href="#解-2" class="headerlink" title="解"></a>解</h3><p>$dp$ 方程难以表达，不能直接求出总排列数</p>
-<p>反向思考，求经过 $k$ 次交换后恰好能排好序的排列数</p>
-<p>由置换与群可知，若该排列 $p$ 中有 $c$ 个循环，需要 $n-c$ 步来还原</p>
-<p>$\therefore$ 需要 $k$ 来还原的排列中存在 $n-k$ 个循环</p>
-<p>由第一类斯特林数定义可知，满足条件的排列数就是 $\begin{bmatrix}n \\ n-k\end{bmatrix}$</p>
-<p>$\therefore$ 对于 $1\sim k$ 的询问，答案依次为</p>
-<script type="math/tex; mode=display">\begin{bmatrix}n\\n-1\end{bmatrix} ,\begin{bmatrix}n\\n\end{bmatrix}+\begin{bmatrix}n\\n-2\end{bmatrix} , \begin{bmatrix}n\\n-1\end{bmatrix}+\begin{bmatrix}n\\n-3\end{bmatrix}\dotsb</script><p>然而由于递推求斯特林数 $O(n^2)$，由于 $k\leq 200$，当 $n-m$ 较小时，利用上方的求值公式 $O(k^2)$ 求第二类斯特林数，再 $O(n^3)$ 求第一类</p>
-<h2 id="CF1521D-Nastia-Plays-with-a-Tree"><a href="#CF1521D-Nastia-Plays-with-a-Tree" class="headerlink" title="CF1521D Nastia Plays with a Tree"></a>CF1521D Nastia Plays with a Tree</h2><h3 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h3><p>给定一颗树，每次操作删去任意一条边并加上任意一条边，求多少次操作后会形成一条链，输出次数及任一方案</p>
-<h3 id="解-3"><a href="#解-3" class="headerlink" title="解"></a>解</h3><p>设答案为 $x$</p>
-<p>则删去树上的 $x$ 条边并加上新的 $x$ 条边会构成链</p>
-<p>把删去与添加分开看，在删去 $x$ 条边后会形成一个 $x+1$ 棵树的森林，若添加 $x$ 条边能合并为链，则森林由 $x+1$ 条链构成</p>
-<p>转化为找到最少分割次数使这棵树形成全为链的森林</p>
-<p>设当前在处理点 $i$ ，其有 $c_i$ 个儿子，父节点为 $fa_i$</p>
-<ul>
-<li>若 $c_i\leq 1$ ，不需任何操作</li>
-<li>若 $1\leq c_i \leq2$ ，断开 $i$ 与 $fa_i$ 的关系</li>
-<li>若 $c_i &gt;2$ ，不仅断开 $i$ 与 $fa_i$ ，且断开 $i$ 的任意儿子直至 $c_i\leq 2$</li>
-</ul>
-<p>实现的时候注意边的存储</p>
-<h2 id="CF1523D-Love-Hate"><a href="#CF1523D-Love-Hate" class="headerlink" title="CF1523D Love-Hate"></a>CF1523D Love-Hate</h2><h3 id="题意-4"><a href="#题意-4" class="headerlink" title="题意"></a>题意</h3><p>有 $n$ 个人，$m$ 种货币，每个人只喜欢其中不超过 $p$ 种货币，求一种选货币的方案，使选的每一种货币都喜欢的人数不小于 $\lceil\frac{n}{2}\rceil$</p>
-<h3 id="解-4"><a href="#解-4" class="headerlink" title="解"></a>解</h3><p>先去除喜欢人数 $&lt;\lceil\frac{n}{2}\rceil$ 的货币，将枚举的货币状态降至 $2^30$，用 $\text{bitset}$ 存喜欢每一种货币的人的状态，暴力搜索并减去不合法的即可</p>
-<h2 id="CF1525E-Assimilation-IV"><a href="#CF1525E-Assimilation-IV" class="headerlink" title="CF1525E Assimilation IV"></a>CF1525E Assimilation IV</h2><h3 id="题意-5"><a href="#题意-5" class="headerlink" title="题意"></a>题意</h3><p>给定一些城市与点两两之间距离</p>
-<p>每回合随机选择一个城市设立纪念碑，辐射范围随回合数增加而增加，即第 $1$ 回合设立的，在第 $2$ 回合可以辐射到与之距离 $\leq 2$ 的所有点</p>
-<p>求所有城市设立纪念碑后所有被辐射到的点的期望值</p>
-<h3 id="解-5"><a href="#解-5" class="headerlink" title="解"></a>解</h3><p>分开算每个点的期望值</p>
-<p>若直接求能辐射到该点的城市则情况不易讨论，考虑求补集</p>
-<p>对于每个点，不被辐射到需要满足：对于第 $1$ 回合选择距离在 $n+1$ 以外的点，其余回合同理</p>
-<p>那么把城市选择顺序视为一个排列，求出不能到达的方案数，最后 $1-$ 并 $\div n!$ 求期望即可</p>
-<h2 id="CF1527E-Partition-Game"><a href="#CF1527E-Partition-Game" class="headerlink" title="CF1527E Partition Game"></a>CF1527E Partition Game</h2><h3 id="题意-6"><a href="#题意-6" class="headerlink" title="题意"></a>题意</h3><p>定义连续子序列 $t$ 的代价是</p>
-<script type="math/tex; mode=display">cost(t)=\sum_{t\in set(t)} last(x)-first(x)</script><p>$set$ 表示子序列的元素集合，$last,first$ 表示 $x$ 在子序列中最后/第一次出现的位置</p>
-<p>给定长度 $n$ 的序列，分成 $k$ 个<strong>连续的</strong>子序列，求 $\min cost$</p>
-<h3 id="解-6"><a href="#解-6" class="headerlink" title="解"></a>解</h3><p>显然有 $O(kn^2\log n)$ 的朴素转移：</p>
-<script type="math/tex; mode=display">dp_{i,j}=\min \limits_{k<j}(dp_{i-1,k}+c_{k+1,j})</script><p>含义明显</p>
-<p>考虑优化 $cost$ 的计算过程</p>
-<p>首先，$cost$ 具有决策单调性，即 $cost(i,j)+cost(i+1,j+1) \leq cost(i+1,j)+cost(i,j+1)$</p>
-<p>证明不是太会，可以枚举一下最优情况分别位于 $(i,j),(i,j+1),(i+1,j),(i+1,j+1)$ 时，能得出结论：右边的总会优于左边</p>
-<p>得到决策单调性后考虑分治，枚举 $dp_{mid}$ 的最优决策点</p>
-<p>即用 $\text{solve}(l,r,x,y)$ 计算区间 $[l,r]$ ，最优决策点在 $[x,y]$ 间的所有 $dp_i$</p>
-<p>对于 $\text{calc}$ 每次调用的时候左端点单增 $\Rightarrow$ 考虑移动双指针指向队首队尾，每次 $O(1)$ 暴力转移</p>
-<p><del>也可以用deque当懒狗</del></p>
-<h2 id="CF1535E-Gold-Transfer"><a href="#CF1535E-Gold-Transfer" class="headerlink" title="CF1535E Gold Transfer"></a>CF1535E Gold Transfer</h2><p>十分显然的题</p>
-<p>题面中 $It’s \ guaranteed \ that \ p_i \ exists \ and \ c_i&gt;c_{p_i}.$ 表明从越靠近根节点开始买值越小</p>
-<p>倍增跳 $anc$ 时检查是否有值即可</p>
-<h2 id="CF1539E-Game-with-Cards"><a href="#CF1539E-Game-with-Cards" class="headerlink" title="CF1539E Game with Cards"></a>CF1539E Game with Cards</h2><h3 id="题意-7"><a href="#题意-7" class="headerlink" title="题意"></a>题意</h3><p>两个数 $a,b$ 初始为 $0$</p>
-<p>进行 $n$ 次操作，每次用 $k$ 去替换 $a,b$ 中任意一个，要求操作后满足 $a_{l,i} \leq a \leq b_{l,i} , a_{r,i} \leq b \leq b_{r,i}$</p>
-<p>输出是否可以完成所以操作，若可以，输出任一方案</p>
-<h3 id="解-7"><a href="#解-7" class="headerlink" title="解"></a>解</h3><p>先考虑朴素做法</p>
-<p>设 $dp_{L,i,j}=1$ 表示第 $i$ 张牌替换左手，第 $j$ 张是上一张用来替换右手的牌</p>
-<p>$dp{R,i,j}=1$表示第 $i$ 张牌替换右手，第 $j$ 张是上一张用来替换左手的牌</p>
-<p>由于只判断可行性，所以不需要存下所有的 $dp$ 状态，用 $集合f_0 = \left\langle k[j],j\right\rangle$存下 $dp_{L,i,j}=1$ 的情况，$f_1$ 同理</p>
-<p>考虑 $f_0 [i]$ 与 $f_1 [i]$ 的计算 $\Rightarrow$ 先考虑 $f_0 [i+1]$ , $f_1 [i+1]$ 同理</p>
-<p>先假设第 $i+1$ 张卡可以给左手（确保 $f_0 [i+1]$ 不空） ，且第 $i+1$ 回合右手可以替换为任意卡（稍后再处理）</p>
-<p>若 $f_1 [i]$ 不空，可以将 $\langle k[i],i\rangle$ 添加到 $f_0 [i+1]$ 中，即左手拿第 $i+1$ 张使状态 $(j(上一次改变的),i) \Rightarrow (i+1,i)$</p>
-<p>同时 $f_0 [i+1]$ 会继承 $f_0 [i]$ 的状态，即 $(i,j) \Rightarrow (i+1,j)$</p>
-<p>转移后处理那些无法被成功转移的，由于 $set$ 结构，分别从 $\min$ 和 $\max$ 来 $erase$ 那些 $\leq l$ 或 $\geq r$ 的 $pair$</p>
-<h2 id="CF1540B-Tree-Array"><a href="#CF1540B-Tree-Array" class="headerlink" title="CF1540B Tree Array"></a>CF1540B Tree Array</h2><h3 id="题意简述"><a href="#题意简述" class="headerlink" title="题意简述"></a>题意简述</h3><ul>
-<li><p>一颗树，开始时从中等概率选择一点，随后每次等概率选择一点不与选择过的点重复且与任一选择的点相连。</p>
-</li>
-<li><p>点编号按选择的先后顺序排序，求期望逆序对数</p>
-</li>
-</ul>
-<hr>
-<h3 id="解-8"><a href="#解-8" class="headerlink" title="解"></a>解</h3><p>考虑开始时随机选点，显然可以枚举每一点作为根，求出期望值后 $\div n$ 得到</p>
-<p>求每个序列中的期望逆序对数，并不需要知道每个序列，即考虑每一对逆序对</p>
-<p>设逆序点对为 $(x,y)$ ，其中 $y&gt;x$，当沿树向下进行时，直到 $x,y$ 的 $lca$ 之前概率相等，所以只需要考虑从 $lca$ 到 $x,y$ 两点的概率，即从 $lca$ 先到 $x$ 的概率</p>
-<p>参照官方题解，转化成以下模型</p>
-<p>存在两个栈，每次有 $p$ 概率弹出 $栈1$ 中的一个，$p$ 的概率弹出 $栈2$ 中的一个，还有 $1-2*p$ 的概率不做任何操作</p>
-<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/tozqrh74.png" alt=""></p>
-<p>既然满足到 $x,y$ 的概率相等，则可以由上方的值 $\div 2$ 推出</p>
-<p>所以可以写出式子</p>
-<script type="math/tex; mode=display">dp_{i,j}=\frac{dp_{i-1,j}+dp_{i,j-1}}{2}</script><p>其中 $i,j$ 表示逆序点对与 $lca$ 的距离</p>
-<p>$dp_{0,j}=1$ ，即 $i$ 位置代表的点先被到达时会形成逆序点对</p>
-<p>至此，流程为：预处理 $dp_{i,j}$ $\Rightarrow$ 枚举根 $\Rightarrow$ 枚举逆序点对并统计 $dp$ 值 $\Rightarrow$ 总值 $\div n$ 得到概率（期望，这里说不清了）</p>
-]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>dp</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>min-max容斥</title>
     <url>/2020/12/04/minmax%E5%AE%B9%E6%96%A5/</url>
     <content><![CDATA[<h2 id="minmax容斥"><a href="#minmax容斥" class="headerlink" title="minmax容斥"></a>minmax容斥</h2><ul>
@@ -330,96 +186,230 @@ g(k)&=\sum_{i=1}^k (-1)^{k-i} \binom{k-1}{i-1} [i=1] \\
       </tags>
   </entry>
   <entry>
-    <title>wjq的代办</title>
-    <url>/2021/05/10/wjq%E7%9A%84%E4%BB%A3%E5%8A%9E/</url>
-    <content><![CDATA[<p><del>越来越多就离谱</del></p>
-<p><del>暑假前写完就离谱</del></p>
-<p><del>裂开</del></p>
-<p><del>现在已经暑假了，但是更多了</del></p>
-<h2 id="知识漏洞"><a href="#知识漏洞" class="headerlink" title="知识漏洞"></a>知识漏洞</h2><p>差分约束</p>
-<p>析和树</p>
-<p>斯坦纳树</p>
-<p>凸包优化</p>
-<p>2-SA</p>
-<p>tarjan</p>
-<h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><p><del>卢神的杂题选讲</del></p>
-<p>卢神的数位dp</p>
-<p>卢神的图的计数</p>
-<p>卢神的凸包题单</p>
-<p>焦作一中Day1~2 数据结构 17/29</p>
-<p>焦作一中Day3~4 DP 8/41</p>
-<p>焦作一中Day5~7 图论</p>
-<p><a href="https://immortalco.blog.uoj.ac/blog/1955">immortalCO的仙人掌</a></p>
-<p>AGC</p>
-<h2 id="DP"><a href="#DP" class="headerlink" title="DP"></a>DP</h2><p>数位dp的提高</p>
-<p>计数dp的提高</p>
-<p><del>插头dp</del> - 基础题打完了</p>
-<p>斜率优化</p>
-<p><a href="https://www.cnblogs.com/Xing-Ling/p/11210179.html">https://www.cnblogs.com/Xing-Ling/p/11210179.html</a></p>
-<p>四边形优化</p>
-<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><p>后缀(字符串)-(福建集训PPT)</p>
-<p>回文数</p>
-<p><del>Manacher</del></p>
-<p><a href="https://blog.csdn.net/element_hero/article/details/113036427#comments_14754315">扩展KMP</a></p>
+    <title>CF的dp题</title>
+    <url>/2021/07/01/CF%E7%9A%84dp%E9%A2%98/</url>
+    <content><![CDATA[<h2 id="CF1515E-Phoenix-and-Computers"><a href="#CF1515E-Phoenix-and-Computers" class="headerlink" title="CF1515E Phoenix and Computers"></a>CF1515E Phoenix and Computers</h2><details>
+    <summary>我们始终不知道EI是怎么写的</summary>
+        <pre><code>
+        #include<bits/stdc++.h>
+        #define R(X,Y) X=(X+Y)%P;
+        int64_t g[410],n,P,k,a,f;int main()&#123;std::cin>>n>>P;g[0]=f=k=1;for(--n;n>=0;n-=2,++k)&#123;for(int i=1;i<=n;++i)R(g[i],g[i-1]*k*2)f=f*k%P;R(a,g[n]*f)&#125;printf("%d\n",a);&#125;
+        </code></pre>
+</details>
+
+
+<h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><p>要开启 $n$ 台电脑，若第 $i-1,i+1$ 台被开启，第 $i$ 台自动开，询问打开所有电脑的方案数</p>
+<h3 id="解"><a href="#解" class="headerlink" title="解"></a>解</h3><p>题解里有一个吊打标算的 $O(n^2)$ 做法</p>
+<p><del>上面EI的代码好像也是 $O(n^2)$</del></p>
+<p>设 $dp_{i,j}$ 表示已开机 $i$ 台，形成 $j$ 个连续段，每段距离 $&gt;1$ 且不确定</p>
+<p>考虑转移：</p>
+<ul>
+<li><p>新建段</p>
+<ul>
+<li>$dp_{i+1,j+1}=\sum dp_{i,j}*(j+1)$ ，即在 $j+1$ 个间隔中选择一个打开</li>
+</ul>
+</li>
+<li><p>扩展段</p>
+<ul>
+<li>$dp_{i+1,j}=\sum dp_{i,j}\cdot j\cdot2$ ，即在一段的边界+1处开</li>
+<li>$dp_{i+2,j}=\sum dp_{i,j}\cdot j\cdot2$ ，即在一段的边界+2处开</li>
+</ul>
+</li>
+<li><p>合并段（仅当 $j\geq 2$ 时）</p>
+<ul>
+<li>$dp_{i+2,j-1}=\sum dp_{i,j}\cdot(j-1)\cdot2$ ，即当两边距离为 $2$ 时有两种开法</li>
+<li>$dp_{i+3,j-1}=\sum dp_{i,j}\cdot (j-1)$ ，即两边距离为 $3$ 时开中间</li>
+</ul>
+</li>
+</ul>
+<h2 id="CF1516D-Cut"><a href="#CF1516D-Cut" class="headerlink" title="CF1516D Cut"></a>CF1516D Cut</h2><h3 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h3><p>给定长度为 $n$ 的序列，$q$ 次询问，对于 $[l,r]$ 区间最少能分成多少个子序列满足，子序列中数的乘积等于它们的 $\text{lcm}$</p>
+<h3 id="解-1"><a href="#解-1" class="headerlink" title="解"></a>解</h3><p>很显然子序列中所有数互质，有贪心：从左往右尽可能多的选取直至会加入与原区间不互质的数</p>
+<p>设 $Next_i$ 代表从 $i$ 开始的序列停止的位置，即向以 $i$ 开始的子序列中加入 $Next_i$ 会使序列中的数不再互质</p>
+<p>$dp_{i,l}$ 表示从 $l$ 开始，跳 $Next_i$ $2^i$ 次到达的位置</p>
+<h2 id="CF1516E-Baby-Ehab-Plays-with-Permutations"><a href="#CF1516E-Baby-Ehab-Plays-with-Permutations" class="headerlink" title="CF1516E Baby Ehab Plays with Permutations"></a>CF1516E Baby Ehab Plays with Permutations</h2><h3 id="前置芝士"><a href="#前置芝士" class="headerlink" title="前置芝士"></a>前置芝士</h3><ul>
+<li><p>置换</p>
+<p>简单来说是对一个序列进行重排列，</p>
+<script type="math/tex; mode=display">\begin{pmatrix}
+1 & 2 & 3 & \dotsb & i & \dotsb & n \\
+a_1 & a_2 & a_3 & \dotsb & a_i & \dotsb & a_n\\
+\end{pmatrix}</script><p>即 $[1,n]$ 到 $[1,n]$ 的一一映射</p>
+<ul>
+<li><p>$1.$</p>
+<p>置换可以分解为若干循环，具体为连边：$1\rightarrow a_1 \ ,\ 2\rightarrow a_2 \ ,\ \dotsb \ ,\ i\rightarrow a_i \ ,\ \dotsb \ ,\ n\rightarrow a_n$</p>
+<p>形成的图中会有若干个环，即，置换可以被分解成不相交循环的积</p>
+<p>一个循环可以被拆成 $环长-1$ 个对换，所以通过 $环长-1$ 步可以还原该循环</p>
+</li>
+</ul>
+</li>
+<li><p>关于第一类斯特林数的计算</p>
+<p><a href="https://mathworld.wolfram.com/StirlingNumberoftheFirstKind.html">$\displaystyle{s(n,m)=\sum_{k=0}^NaN \  (-1)^ k\ \binom{k+n-1}{k+n-m} \binom{2n-m}{n-k-m} S(k-m+n,k)}$</a></p>
+<p>变形得</p>
+<script type="math/tex; mode=display">(-1)^{n-m} s(n,m)=\sum_{k=0}^{n-m} (-1)^k \binom{n-1+k}{m-1} \binom{(n-m)+n}{(n-m)-k} S((n-m+k),k)</script><p>即</p>
+<script type="math/tex; mode=display">(-1)^{n-m} \begin{bmatrix} n \\ m \end{bmatrix}=\sum_{k=0}^{n-m} (-1)^k \binom{n-1+k}{m-1} \binom{(n-m)+n}{(n-m)-k} \begin{Bmatrix} (n-m)+k \\ k \end{Bmatrix}</script></li>
+</ul>
+<h3 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a>题意</h3><p>给出长为 $n$ 的序列 $p$ 满足 $p_i=i$，进行 $k$ 次操作，每次可以选取序列中两个位置并交换，对于 $1\sim k$ 的每个值，输出最终可能有几个序列</p>
+<h3 id="解-2"><a href="#解-2" class="headerlink" title="解"></a>解</h3><p>$dp$ 方程难以表达，不能直接求出总排列数</p>
+<p>反向思考，求经过 $k$ 次交换后恰好能排好序的排列数</p>
+<p>由置换与群可知，若该排列 $p$ 中有 $c$ 个循环，需要 $n-c$ 步来还原</p>
+<p>$\therefore$ 需要 $k$ 来还原的排列中存在 $n-k$ 个循环</p>
+<p>由第一类斯特林数定义可知，满足条件的排列数就是 $\begin{bmatrix}n \\ n-k\end{bmatrix}$</p>
+<p>$\therefore$ 对于 $1\sim k$ 的询问，答案依次为</p>
+<script type="math/tex; mode=display">\begin{bmatrix}n\\n-1\end{bmatrix} ,\begin{bmatrix}n\\n\end{bmatrix}+\begin{bmatrix}n\\n-2\end{bmatrix} , \begin{bmatrix}n\\n-1\end{bmatrix}+\begin{bmatrix}n\\n-3\end{bmatrix}\dotsb</script><p>然而由于递推求斯特林数 $O(n^2)$，由于 $k\leq 200$，当 $n-m$ 较小时，利用上方的求值公式 $O(k^2)$ 求第二类斯特林数，再 $O(n^3)$ 求第一类</p>
+<h2 id="CF1521D-Nastia-Plays-with-a-Tree"><a href="#CF1521D-Nastia-Plays-with-a-Tree" class="headerlink" title="CF1521D Nastia Plays with a Tree"></a>CF1521D Nastia Plays with a Tree</h2><h3 id="题意-3"><a href="#题意-3" class="headerlink" title="题意"></a>题意</h3><p>给定一颗树，每次操作删去任意一条边并加上任意一条边，求多少次操作后会形成一条链，输出次数及任一方案</p>
+<h3 id="解-3"><a href="#解-3" class="headerlink" title="解"></a>解</h3><p>设答案为 $x$</p>
+<p>则删去树上的 $x$ 条边并加上新的 $x$ 条边会构成链</p>
+<p>把删去与添加分开看，在删去 $x$ 条边后会形成一个 $x+1$ 棵树的森林，若添加 $x$ 条边能合并为链，则森林由 $x+1$ 条链构成</p>
+<p>转化为找到最少分割次数使这棵树形成全为链的森林</p>
+<p>设当前在处理点 $i$ ，其有 $c_i$ 个儿子，父节点为 $fa_i$</p>
+<ul>
+<li>若 $c_i\leq 1$ ，不需任何操作</li>
+<li>若 $1\leq c_i \leq2$ ，断开 $i$ 与 $fa_i$ 的关系</li>
+<li>若 $c_i &gt;2$ ，不仅断开 $i$ 与 $fa_i$ ，且断开 $i$ 的任意儿子直至 $c_i\leq 2$</li>
+</ul>
+<p>实现的时候注意边的存储</p>
+<h2 id="CF1523D-Love-Hate"><a href="#CF1523D-Love-Hate" class="headerlink" title="CF1523D Love-Hate"></a>CF1523D Love-Hate</h2><h3 id="题意-4"><a href="#题意-4" class="headerlink" title="题意"></a>题意</h3><p>有 $n$ 个人，$m$ 种货币，每个人只喜欢其中不超过 $p$ 种货币，求一种选货币的方案，使选的每一种货币都喜欢的人数不小于 $\lceil\frac{n}{2}\rceil$</p>
+<h3 id="解-4"><a href="#解-4" class="headerlink" title="解"></a>解</h3><p>先去除喜欢人数 $&lt;\lceil\frac{n}{2}\rceil$ 的货币，将枚举的货币状态降至 $2^30$，用 $\text{bitset}$ 存喜欢每一种货币的人的状态，暴力搜索并减去不合法的即可</p>
+<h2 id="CF1525E-Assimilation-IV"><a href="#CF1525E-Assimilation-IV" class="headerlink" title="CF1525E Assimilation IV"></a>CF1525E Assimilation IV</h2><h3 id="题意-5"><a href="#题意-5" class="headerlink" title="题意"></a>题意</h3><p>给定一些城市与点两两之间距离</p>
+<p>每回合随机选择一个城市设立纪念碑，辐射范围随回合数增加而增加，即第 $1$ 回合设立的，在第 $2$ 回合可以辐射到与之距离 $\leq 2$ 的所有点</p>
+<p>求所有城市设立纪念碑后所有被辐射到的点的期望值</p>
+<h3 id="解-5"><a href="#解-5" class="headerlink" title="解"></a>解</h3><p>分开算每个点的期望值</p>
+<p>若直接求能辐射到该点的城市则情况不易讨论，考虑求补集</p>
+<p>对于每个点，不被辐射到需要满足：对于第 $1$ 回合选择距离在 $n+1$ 以外的点，其余回合同理</p>
+<p>那么把城市选择顺序视为一个排列，求出不能到达的方案数，最后 $1-$ 并 $\div n!$ 求期望即可</p>
+<h2 id="CF1527E-Partition-Game"><a href="#CF1527E-Partition-Game" class="headerlink" title="CF1527E Partition Game"></a>CF1527E Partition Game</h2><h3 id="题意-6"><a href="#题意-6" class="headerlink" title="题意"></a>题意</h3><p>定义连续子序列 $t$ 的代价是</p>
+<script type="math/tex; mode=display">cost(t)=\sum_{t\in set(t)} last(x)-first(x)</script><p>$set$ 表示子序列的元素集合，$last,first$ 表示 $x$ 在子序列中最后/第一次出现的位置</p>
+<p>给定长度 $n$ 的序列，分成 $k$ 个<strong>连续的</strong>子序列，求 $\min cost$</p>
+<h3 id="解-6"><a href="#解-6" class="headerlink" title="解"></a>解</h3><p>显然有 $O(kn^2\log n)$ 的朴素转移：</p>
+<script type="math/tex; mode=display">dp_{i,j}=\min \limits_{k<j}(dp_{i-1,k}+c_{k+1,j})</script><p>含义明显</p>
+<p>考虑优化 $cost$ 的计算过程</p>
+<p>首先，$cost$ 具有决策单调性，即 $cost(i,j)+cost(i+1,j+1) \leq cost(i+1,j)+cost(i,j+1)$</p>
+<p>证明不是太会，可以枚举一下最优情况分别位于 $(i,j),(i,j+1),(i+1,j),(i+1,j+1)$ 时，能得出结论：右边的总会优于左边</p>
+<p>得到决策单调性后考虑分治，枚举 $dp_{mid}$ 的最优决策点</p>
+<p>即用 $\text{solve}(l,r,x,y)$ 计算区间 $[l,r]$ ，最优决策点在 $[x,y]$ 间的所有 $dp_i$</p>
+<p>对于 $\text{calc}$ 每次调用的时候左端点单增 $\Rightarrow$ 考虑移动双指针指向队首队尾，每次 $O(1)$ 暴力转移</p>
+<p><del>也可以用deque当懒狗</del></p>
+<h2 id="CF1535E-Gold-Transfer"><a href="#CF1535E-Gold-Transfer" class="headerlink" title="CF1535E Gold Transfer"></a>CF1535E Gold Transfer</h2><p>十分显然的题</p>
+<p>题面中 $It’s \ guaranteed \ that \ p_i \ exists \ and \ c_i&gt;c_{p_i}.$ 表明从越靠近根节点开始买值越小</p>
+<p>倍增跳 $anc$ 时检查是否有值即可</p>
+<h2 id="CF1539E-Game-with-Cards"><a href="#CF1539E-Game-with-Cards" class="headerlink" title="CF1539E Game with Cards"></a>CF1539E Game with Cards</h2><h3 id="题意-7"><a href="#题意-7" class="headerlink" title="题意"></a>题意</h3><p>两个数 $a,b$ 初始为 $0$</p>
+<p>进行 $n$ 次操作，每次用 $k$ 去替换 $a,b$ 中任意一个，要求操作后满足 $a_{l,i} \leq a \leq b_{l,i} , a_{r,i} \leq b \leq b_{r,i}$</p>
+<p>输出是否可以完成所以操作，若可以，输出任一方案</p>
+<h3 id="解-7"><a href="#解-7" class="headerlink" title="解"></a>解</h3><p>先考虑朴素做法</p>
+<p>设 $dp_{L,i,j}=1$ 表示第 $i$ 张牌替换左手，第 $j$ 张是上一张用来替换右手的牌</p>
+<p>$dp{R,i,j}=1$表示第 $i$ 张牌替换右手，第 $j$ 张是上一张用来替换左手的牌</p>
+<p>由于只判断可行性，所以不需要存下所有的 $dp$ 状态，用 $集合f_0 = \left\langle k[j],j\right\rangle$存下 $dp_{L,i,j}=1$ 的情况，$f_1$ 同理</p>
+<p>考虑 $f_0 [i]$ 与 $f_1 [i]$ 的计算 $\Rightarrow$ 先考虑 $f_0 [i+1]$ , $f_1 [i+1]$ 同理</p>
+<p>先假设第 $i+1$ 张卡可以给左手（确保 $f_0 [i+1]$ 不空） ，且第 $i+1$ 回合右手可以替换为任意卡（稍后再处理）</p>
+<p>若 $f_1 [i]$ 不空，可以将 $\langle k[i],i\rangle$ 添加到 $f_0 [i+1]$ 中，即左手拿第 $i+1$ 张使状态 $(j(上一次改变的),i) \Rightarrow (i+1,i)$</p>
+<p>同时 $f_0 [i+1]$ 会继承 $f_0 [i]$ 的状态，即 $(i,j) \Rightarrow (i+1,j)$</p>
+<p>转移后处理那些无法被成功转移的，由于 $set$ 结构，分别从 $\min$ 和 $\max$ 来 $erase$ 那些 $\leq l$ 或 $\geq r$ 的 $pair$</p>
+<h2 id="CF1540B-Tree-Array"><a href="#CF1540B-Tree-Array" class="headerlink" title="CF1540B Tree Array"></a>CF1540B Tree Array</h2><h3 id="题意简述"><a href="#题意简述" class="headerlink" title="题意简述"></a>题意简述</h3><ul>
+<li><p>一颗树，开始时从中等概率选择一点，随后每次等概率选择一点不与选择过的点重复且与任一选择的点相连。</p>
+</li>
+<li><p>点编号按选择的先后顺序排序，求期望逆序对数</p>
+</li>
+</ul>
 <hr>
-<h3 id="被跳过的"><a href="#被跳过的" class="headerlink" title="被跳过的"></a>被跳过的</h3><p>Z函数，最小表示法，</p>
-<hr>
-<h2 id="数学-NOI导刊"><a href="#数学-NOI导刊" class="headerlink" title="数学 -NOI导刊"></a>数学 -NOI导刊</h2><p>数论忘了</p>
-<p>原根</p>
-<p>min_25,洲阁筛</p>
-<p>数论倒数两个先放</p>
-<p><del>拉格朗日插值</del></p>
-<p><a href="https://www.luogu.com.cn/blog/s-r-f/oi-bi-ji-li-yong-la-ge-lang-ri-sheng-shuo-fa-qiu-han-shuo-di-zui-zhi">拉格朗日乘数法(不会求导qwq)</a></p>
-<p><del>生成函数</del></p>
-<p>高级生成函数</p>
-<p><del>多项式基本操作</del></p>
-<p><a href="https://www.luogu.com.cn/training/1008#problems">更多的多项式题单</a></p>
-<p>组合数学</p>
-<p>置换与群</p>
-<hr>
-<h3 id="被跳过的-1"><a href="#被跳过的-1" class="headerlink" title="被跳过的"></a>被跳过的</h3><p>倒数三个</p>
-<hr>
-<h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><p>高级分块</p>
-<p>左偏树</p>
-<p>配对堆</p>
-<p><del>李超线段树</del></p>
-<p><del>非旋treap</del></p>
-<p><del>可持久</del></p>
-<p><del>树套树</del></p>
-<p>K-D tree</p>
-<p>动态树看LCT</p>
-<hr>
-<h3 id="被跳过的-2"><a href="#被跳过的-2" class="headerlink" title="被跳过的"></a>被跳过的</h3><p><del>析和树</del> 然而还是不咋会</p>
-<p>跳表</p>
-<p>划分树</p>
-<p>猫树</p>
-<hr>
-<h2 id="图论"><a href="#图论" class="headerlink" title="图论"></a>图论</h2><p><a href="https://www.luogu.com.cn/blog/221955/post-2-sat">2-SAT欠着好多题</a></p>
-<p>树：</p>
-<p><del>树链剖分</del></p>
-<p><del>虚树</del></p>
-<p><del>树分治</del></p>
-<p>动态树分治</p>
-<p>矩阵树定理</p>
-<p>连通性：</p>
-<p>圆方树，</p>
-<p>支配树</p>
-<p>网络流需要大量练题，有时间再说</p>
-<hr>
-<h3 id="被跳过的-3"><a href="#被跳过的-3" class="headerlink" title="被跳过的"></a>被跳过的</h3><p>LGV，弦图—-</p>
-<hr>
-<h2 id="计算几何-洛谷日报"><a href="#计算几何-洛谷日报" class="headerlink" title="计算几何 -洛谷日报"></a>计算几何 -洛谷日报</h2><p><a href="https://www.cnblogs.com/Xing-Ling/p/12102489.html">https://www.cnblogs.com/Xing-Ling/p/12102489.html</a></p>
-<p>重点：凸包，扫描线（数据结构）,旋转卡壳，半平面交</p>
-<p>随机化是垃圾（雾</p>
-<p><del>cdq分治</del></p>
-<p>莫队</p>
-<p>交互题</p>
-<p><strong><em>\</em>悬线法**</strong></p>
-<p>近几年其他省的联赛题全部写完</p>
-<h2 id="暑假写AGC"><a href="#暑假写AGC" class="headerlink" title="暑假写AGC"></a>暑假写AGC</h2><h2 id="联赛后打模拟赛和AGC"><a href="#联赛后打模拟赛和AGC" class="headerlink" title="联赛后打模拟赛和AGC"></a>联赛后打模拟赛和AGC</h2>]]></content>
+<h3 id="解-8"><a href="#解-8" class="headerlink" title="解"></a>解</h3><p>考虑开始时随机选点，显然可以枚举每一点作为根，求出期望值后 $\div n$ 得到</p>
+<p>求每个序列中的期望逆序对数，并不需要知道每个序列，即考虑每一对逆序对</p>
+<p>设逆序点对为 $(x,y)$ ，其中 $y&gt;x$，当沿树向下进行时，直到 $x,y$ 的 $lca$ 之前概率相等，所以只需要考虑从 $lca$ 到 $x,y$ 两点的概率，即从 $lca$ 先到 $x$ 的概率</p>
+<p>参照官方题解，转化成以下模型</p>
+<p>存在两个栈，每次有 $p$ 概率弹出 $栈1$ 中的一个，$p$ 的概率弹出 $栈2$ 中的一个，还有 $1-2*p$ 的概率不做任何操作</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/tozqrh74.png" alt=""></p>
+<p>既然满足到 $x,y$ 的概率相等，则可以由上方的值 $\div 2$ 推出</p>
+<p>所以可以写出式子</p>
+<script type="math/tex; mode=display">dp_{i,j}=\frac{dp_{i-1,j}+dp_{i,j-1}}{2}</script><p>其中 $i,j$ 表示逆序点对与 $lca$ 的距离</p>
+<p>$dp_{0,j}=1$ ，即 $i$ 位置代表的点先被到达时会形成逆序点对</p>
+<p>至此，流程为：预处理 $dp_{i,j}$ $\Rightarrow$ 枚举根 $\Rightarrow$ 枚举逆序点对并统计 $dp$ 值 $\Rightarrow$ 总值 $\div n$ 得到概率（期望，这里说不清了）</p>
+]]></content>
       <categories>
-        <category>代办</category>
+        <category>题解</category>
       </categories>
+      <tags>
+        <tag>dp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树链剖分</title>
+    <url>/2021/07/01/%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86/</url>
+    <content><![CDATA[<h2 id="关于长链剖分中指针的理解"><a href="#关于长链剖分中指针的理解" class="headerlink" title="关于长链剖分中指针的理解"></a>关于长链剖分中指针的理解</h2><p>与指针有关的变量：$\ast dp[N],tmp[N]$,$\ast pos$</p>
+<hr>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">pos=tmp;<span class="comment">//将pos指向tmp空间</span></span><br><span class="line">dp[<span class="number">1</span>]=pos, pos+=height[<span class="number">1</span>];</span><br><span class="line">   <span class="comment">//改变后pos加上dp[1]所需的长度，防止内存冲突</span></span><br></pre></td></tr></table></figure>
+<p>可以把 $*dp[1]$ 看成指向 $tmp$ 上一段长为 $height[1]$ 的指针</p>
+<p>那么指针 $dp[1]$ 与 $tmp[\ 0,…height[1]-1 \ ]$ 共同构成了 $dp[1][\ 0,…,height[1]-1\ ]$</p>
+<hr>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">dp[to]=pos, pos+=len;</span><br></pre></td></tr></table></figure>
+<p>与上面相同，在进入 $dfs2$ 前开好 $dp[to]$ 所需的空间，即以 $to$ 为起点的链，其长度为 $len$</p>
+<p>而对于链上其他点(即点 $to$ 的长儿子，其长儿子的长儿子，…)，不会进入当前行，即不需开新空间</p>
+<hr>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">dp[son[cur]] = dp[cur] + <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<p>即继承长儿子的答案: $dp[i][j]=dp[lson][j-1]$</p>
+<p>数组指针形式：$dp[\ i\ ]=dp[\ lson[\ i\ ]\ ]-1$</p>
+<hr>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">dp[cur][j+<span class="number">1</span>] += dp[to][j];</span><br></pre></td></tr></table></figure>
+<p>暴力合并轻儿子的值</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/utbnpeqk.png" alt=""></p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>树链剖分</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>学不会的生成函数</title>
+    <url>/2021/05/05/%E5%AD%A6%E4%B8%8D%E4%BC%9A%E7%9A%84%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<h2 id="不知道怎么开始"><a href="#不知道怎么开始" class="headerlink" title="不知道怎么开始"></a>不知道怎么开始</h2><ul>
+<li><p>$a=\langle1,1,1,1,1…\rangle$的生成函数是</p>
+<script type="math/tex; mode=display">f(x)=x+x^2+x^3+x^4+...</script><p>限定 $x\in(-1,1)$</p>
+<script type="math/tex; mode=display">f(x)=\lim_{n\to \infty} \frac{1-x^n}{1-x} = \frac{1}{1-x}</script><p>同理得,函数</p>
+<script type="math/tex; mode=display">f(x)=1+x^2+x^4+x^6...=\frac{1}{1-x^2}</script><script type="math/tex; mode=display">f(x)=1+2x+3x^2+4x^3...=\frac{1}{\left(1-x \right)^2}</script><script type="math/tex; mode=display">f(x)=1+3x+6x^2+10x^3+15x^4...=\frac{1}{\left(1-x\right)^3}</script><p>推广有：</p>
+<script type="math/tex; mode=display">\frac{1}{\left(1-x\right)^k} 的生成数列是 \sum_i^\infty C_{i+k-1}^{k-1} x^i</script></li>
+</ul>
+<p>设 $F(z) , G(z)$ 是数列 $\langle \ f_n \ \rangle , \langle \ g_i \ \rangle$ 的生成函数</p>
+<ul>
+<li><p>相加</p>
+<script type="math/tex; mode=display">\begin{aligned}
+\alpha F(z)+ \beta G(z)
+&= \alpha \sum_n f_nz^n + \beta \sum_ng_nz^n \\
+&=\sum_n (\alpha f_n + \beta g_n) z^n\\
+\end{aligned}</script><p>得到数列 $\langle \ \alpha f_n+\beta g_n \  \rangle$ 的生成函数</p>
+</li>
+<li><p>平移生成函数</p>
+<ul>
+<li><p>向右 $m$ 位</p>
+<p>即，构造前面有 $m$ 个 $0$ 的数列 $\langle \ \underbrace{0,\cdots}_{m个},g_0,g_1,\cdots \ \rangle = \langle \ g_{n-m} \ \rangle$ 的生成函数</p>
+<p>直接用 $z_m$ 乘</p>
+<script type="math/tex; mode=display">z_m \cdot G(z) = \sum_n g_nz^{n+m} = \sum_n g_{n-m}z^n</script></li>
+<li><p>向左 $m$ 位</p>
+<p>即，构造前面 $m$ 个元素被删除的数列 $\langle \ g_m,g_{m+1},g_{m+2},\cdots \ \rangle$ 的生成函数</p>
+<p>减去前 $m$ 项，并用 $z_m$ 来除</p>
+<script type="math/tex; mode=display">\frac{G(z)-g_0-g_1z-\cdots -g_{m-1}z^{m-1}}{z^m} = \sum_{n\geq m} g_nz^{n-m} = \sum_{n\geq 0} g_{n+m}g^z</script></li>
+</ul>
+</li>
+<li><p>常数倍的 $z$</p>
+<script type="math/tex; mode=display">G(cz) = \sum_ng_n(cz)^n = \sum_n g_nz^n</script><p>即，数列 $\langle \ c^ng_n  \ \rangle$ 的生成函数</p>
+<p>当 $c=-1$ 时特别有用</p>
+</li>
+<li><p>相乘</p>
+<script type="math/tex; mode=display">\begin{aligned}
+F(z)G(z)
+&=(f_0+f_1z+f_2z^2+\cdots ) \cdot (g_0+g_0z+g_0z^2+\cdots) \\
+&=(f_0 \cdot g_0) + (f_0\cdot g_1 + f_1 \cdot g_0)z + (f_0\cdot g_2 + f_1\cdot g_1 + f_2 \cdot g_0) z^2 + \cdots \\
+&=\sum_n \left(\sum f_k \cdot g_{n-k} \right) z^n \\
+\end{aligned}</script><p>求得数列 $\langle \ h_n \ \rangle$ 的生成函数，即数列 $\langle \ f_n \ \rangle , \langle \ g_i \ \rangle$ 的卷积的生成函数</p>
+<p>和式 $\displaystyle{h_n=\sum_{k=0}^n f_k \cdot g_{n-k}}$</p>
+</li>
+</ul>
+<p><strong>具体参见具体数学P280 , 表7-1，7-2</strong></p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>生成函数</tag>
+      </tags>
   </entry>
   <entry>
     <title>卢神的神题选讲</title>
@@ -709,57 +699,90 @@ V(F)^{\prime}
       </tags>
   </entry>
   <entry>
-    <title>学不会的生成函数</title>
-    <url>/2021/05/05/%E5%AD%A6%E4%B8%8D%E4%BC%9A%E7%9A%84%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<h2 id="不知道怎么开始"><a href="#不知道怎么开始" class="headerlink" title="不知道怎么开始"></a>不知道怎么开始</h2><ul>
-<li><p>$a=\langle1,1,1,1,1…\rangle$的生成函数是</p>
-<script type="math/tex; mode=display">f(x)=x+x^2+x^3+x^4+...</script><p>限定 $x\in(-1,1)$</p>
-<script type="math/tex; mode=display">f(x)=\lim_{n\to \infty} \frac{1-x^n}{1-x} = \frac{1}{1-x}</script><p>同理得,函数</p>
-<script type="math/tex; mode=display">f(x)=1+x^2+x^4+x^6...=\frac{1}{1-x^2}</script><script type="math/tex; mode=display">f(x)=1+2x+3x^2+4x^3...=\frac{1}{\left(1-x \right)^2}</script><script type="math/tex; mode=display">f(x)=1+3x+6x^2+10x^3+15x^4...=\frac{1}{\left(1-x\right)^3}</script><p>推广有：</p>
-<script type="math/tex; mode=display">\frac{1}{\left(1-x\right)^k} 的生成数列是 \sum_i^\infty C_{i+k-1}^{k-1} x^i</script></li>
+    <title>迭代加深</title>
+    <url>/2021/04/07/%E8%BF%AD%E4%BB%A3%E5%8A%A0%E6%B7%B1/</url>
+    <content><![CDATA[<h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3><ul>
+<li><p>答案求最小步数</p>
+</li>
+<li><p>在某步数内一定可以完成 或 超出某步数认为无解</p>
+</li>
 </ul>
-<p>设 $F(z) , G(z)$ 是数列 $\langle \ f_n \ \rangle , \langle \ g_i \ \rangle$ 的生成函数</p>
+<hr>
+<h3 id="随便写点注意事项"><a href="#随便写点注意事项" class="headerlink" title="随便写点注意事项"></a>随便写点注意事项</h3><ul>
+<li><p>注意估值函数的选取</p>
+<p>一般为 <strong>当前状态到最终状态的最短步数+已走的步数</strong>  是否大于 <strong>枚举的深度</strong></p>
 <ul>
-<li><p>相加</p>
-<script type="math/tex; mode=display">\begin{aligned}
-\alpha F(z)+ \beta G(z)
-&= \alpha \sum_n f_nz^n + \beta \sum_ng_nz^n \\
-&=\sum_n (\alpha f_n + \beta g_n) z^n\\
-\end{aligned}</script><p>得到数列 $\langle \ \alpha f_n+\beta g_n \  \rangle$ 的生成函数</p>
+<li>在[ $flood \ it$ ] 中：定义了专门的求估值函数（好像就变成IDA*了</li>
+</ul>
 </li>
-<li><p>平移生成函数</p>
+<li><p>$\text{dfs}(now+1)$ 失败后及时回复现场</p>
 <ul>
-<li><p>向右 $m$ 位</p>
-<p>即，构造前面有 $m$ 个 $0$ 的数列 $\langle \ \underbrace{0,\cdots}_{m个},g_0,g_1,\cdots \ \rangle = \langle \ g_{n-m} \ \rangle$ 的生成函数</p>
-<p>直接用 $z_m$ 乘</p>
-<script type="math/tex; mode=display">z_m \cdot G(z) = \sum_n g_nz^{n+m} = \sum_n g_{n-m}z^n</script></li>
-<li><p>向左 $m$ 位</p>
-<p>即，构造前面 $m$ 个元素被删除的数列 $\langle \ g_m,g_{m+1},g_{m+2},\cdots \ \rangle$ 的生成函数</p>
-<p>减去前 $m$ 项，并用 $z_m$ 来除</p>
-<script type="math/tex; mode=display">\frac{G(z)-g_0-g_1z-\cdots -g_{m-1}z^{m-1}}{z^m} = \sum_{n\geq m} g_nz^{n-m} = \sum_{n\geq 0} g_{n+m}g^z</script></li>
-</ul>
+<li><p>$eg$ : [ $八数码难题$ ] 中：<strong>通过两数交换</strong></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">swap</span>(sta[nx][ny],sta[x][y]);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">test</span>(step)) <span class="built_in">A</span>(step+<span class="number">1</span>,nx,ny,i);</span><br><span class="line"></span><br><span class="line"><span class="built_in">swap</span>(sta[nx][ny],sta[x][y]);</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>常数倍的 $z$</p>
-<script type="math/tex; mode=display">G(cz) = \sum_ng_n(cz)^n = \sum_n g_nz^n</script><p>即，数列 $\langle \ c^ng_n  \ \rangle$ 的生成函数</p>
-<p>当 $c=-1$ 时特别有用</p>
+<li><p>$eg$ : [ $骑士精神$ ] 中：<strong>毫无可读性的两数交换</strong></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">a[x][y]^=a[xx][yy],a[xx][yy]^=a[x][y],a[x][y]^=a[xx][yy];<span class="comment">//什么是swap</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">bool</span> flag=<span class="built_in">dfs</span>(step+<span class="number">1</span>,maxstep,tmp,xx,yy,i);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(flag) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">a[x][y]^=a[xx][yy],a[xx][yy]^=a[x][y],a[x][y]^=a[xx][yy];<span class="comment">//回复现场</span></span><br></pre></td></tr></table></figure>
 </li>
-<li><p>相乘</p>
-<script type="math/tex; mode=display">\begin{aligned}
-F(z)G(z)
-&=(f_0+f_1z+f_2z^2+\cdots ) \cdot (g_0+g_0z+g_0z^2+\cdots) \\
-&=(f_0 \cdot g_0) + (f_0\cdot g_1 + f_1 \cdot g_0)z + (f_0\cdot g_2 + f_1\cdot g_1 + f_2 \cdot g_0) z^2 + \cdots \\
-&=\sum_n \left(\sum f_k \cdot g_{n-k} \right) z^n \\
-\end{aligned}</script><p>求得数列 $\langle \ h_n \ \rangle$ 的生成函数，即数列 $\langle \ f_n \ \rangle , \langle \ g_i \ \rangle$ 的卷积的生成函数</p>
-<p>和式 $\displaystyle{h_n=\sum_{k=0}^n f_k \cdot g_{n-k}}$</p>
+<li><p>$eg$ : [ $flood \ it$ ] 中：<strong>通过对数组的交换</strong></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">memcpy</span>(tmp,vis,<span class="keyword">sizeof</span> vis);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">fill</span>(i) &amp;&amp; <span class="built_in">dfs</span>(now+<span class="number">1</span>)) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">memcpy</span>(vis,tmp,<span class="keyword">sizeof</span> vis);<span class="comment">//还原</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<p><strong>具体参见具体数学P280 , 表7-1，7-2</strong></p>
+</li>
+<li><p>在枚举每次状态改变时，注意及时的剪枝，即使是看起来并不重要的</p>
+<ul>
+<li><p>栗子 $1$：出界</p>
+<p>好容易忘qwq（写总结的时候也忘了</p>
+</li>
+<li><p>栗子 $2$：当前移动恰与上一步相反</p>
+<ul>
+<li><p>剪枝方法：</p>
+<p>仔细选取 $dx[ \ ],dy[ \ ]$</p>
+<p>判断两次移动的方向和 $i+pre$</p>
+</li>
+<li><p>$eg$ : [ $骑士精神$ ] 中：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> dx[<span class="number">8</span>]=&#123;<span class="number">-1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">-2</span>,<span class="number">-2</span>,<span class="number">-1</span>,<span class="number">1</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> dy[<span class="number">8</span>]=&#123;<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">-1</span>,<span class="number">1</span>,<span class="number">-1</span>,<span class="number">-2</span>,<span class="number">-2</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//如此保证两个相反的方向加和为7</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>栗子 $3$：当前步恰好完成,或通过估价函数得到当前步可行</p>
+<ul>
+<li><p>$eg$ : [$Power \ Calculus$] 中：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(now==n || now&lt;&lt;(MAX-step)==n<span class="comment">/*题目背景可推断*/</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>$eg$ : [$flood \ it$] 中：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">rei g=<span class="built_in">get_val</span>();</span><br><span class="line">···</span><br><span class="line"><span class="keyword">if</span>(!g) <span class="keyword">return</span> <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>栗子 $4$：针对当前块的扩展问题，要得到周围与之相邻的块的编号（我不知道我在写什么</p>
+<ul>
+<li><p>剪枝方法：</p>
+<p>开 $vis[ \ ]$ 数组并及时维护</p>
+</li>
+<li><p>$eg$ : [ $flood \ it$ ] 中：</p>
+<p><del>自行读代码</del></p>
+</li>
+</ul>
+</li>
+<li><p>栗子 $5$：考虑答案的单调性</p>
+<ul>
+<li><p>$eg$ : [$Addition \ Chains$] 中：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;now;++i)</span><br><span class="line">    <span class="keyword">for</span>(rei j=i;j&lt;now;++j)&#123;<span class="comment">//从i开始啊qwq</span></span><br><span class="line">        rei tmp=ans[i]+ans[j];</span><br><span class="line">        <span class="keyword">if</span>(tmp&gt;n) <span class="keyword">break</span>;<span class="comment">//ans单增</span></span><br><span class="line">        <span class="keyword">if</span>(tmp&lt;=ans[now<span class="number">-1</span>]) <span class="keyword">continue</span>;</span><br><span class="line">        ans[now]=tmp;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">dfs</span>(now+<span class="number">1</span>,MAX)) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>注意一下开始 $\text{dfs}$ 的深度为 $0/1$</p>
+<p>关系到答案输出是 $MAX$ 还是 $MAX-1$</p>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>笔记</category>
       </categories>
       <tags>
-        <tag>生成函数</tag>
+        <tag>迭代加深</tag>
       </tags>
   </entry>
   <entry>
@@ -864,121 +887,6 @@ g_i
       </categories>
       <tags>
         <tag>多项式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>树链剖分</title>
-    <url>/2021/07/01/%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86/</url>
-    <content><![CDATA[<h2 id="关于长链剖分中指针的理解"><a href="#关于长链剖分中指针的理解" class="headerlink" title="关于长链剖分中指针的理解"></a>关于长链剖分中指针的理解</h2><p>与指针有关的变量：$\ast dp[N],tmp[N]$,$\ast pos$</p>
-<hr>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">pos=tmp;<span class="comment">//将pos指向tmp空间</span></span><br><span class="line">dp[<span class="number">1</span>]=pos, pos+=height[<span class="number">1</span>];</span><br><span class="line">   <span class="comment">//改变后pos加上dp[1]所需的长度，防止内存冲突</span></span><br></pre></td></tr></table></figure>
-<p>可以把 $*dp[1]$ 看成指向 $tmp$ 上一段长为 $height[1]$ 的指针</p>
-<p>那么指针 $dp[1]$ 与 $tmp[\ 0,…height[1]-1 \ ]$ 共同构成了 $dp[1][\ 0,…,height[1]-1\ ]$</p>
-<hr>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">dp[to]=pos, pos+=len;</span><br></pre></td></tr></table></figure>
-<p>与上面相同，在进入 $dfs2$ 前开好 $dp[to]$ 所需的空间，即以 $to$ 为起点的链，其长度为 $len$</p>
-<p>而对于链上其他点(即点 $to$ 的长儿子，其长儿子的长儿子，…)，不会进入当前行，即不需开新空间</p>
-<hr>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">dp[son[cur]] = dp[cur] + <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-<p>即继承长儿子的答案: $dp[i][j]=dp[lson][j-1]$</p>
-<p>数组指针形式：$dp[\ i\ ]=dp[\ lson[\ i\ ]\ ]-1$</p>
-<hr>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">dp[cur][j+<span class="number">1</span>] += dp[to][j];</span><br></pre></td></tr></table></figure>
-<p>暴力合并轻儿子的值</p>
-<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/utbnpeqk.png" alt=""></p>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>树链剖分</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>迭代加深</title>
-    <url>/2021/04/07/%E8%BF%AD%E4%BB%A3%E5%8A%A0%E6%B7%B1/</url>
-    <content><![CDATA[<h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3><ul>
-<li><p>答案求最小步数</p>
-</li>
-<li><p>在某步数内一定可以完成 或 超出某步数认为无解</p>
-</li>
-</ul>
-<hr>
-<h3 id="随便写点注意事项"><a href="#随便写点注意事项" class="headerlink" title="随便写点注意事项"></a>随便写点注意事项</h3><ul>
-<li><p>注意估值函数的选取</p>
-<p>一般为 <strong>当前状态到最终状态的最短步数+已走的步数</strong>  是否大于 <strong>枚举的深度</strong></p>
-<ul>
-<li>在[ $flood \ it$ ] 中：定义了专门的求估值函数（好像就变成IDA*了</li>
-</ul>
-</li>
-<li><p>$\text{dfs}(now+1)$ 失败后及时回复现场</p>
-<ul>
-<li><p>$eg$ : [ $八数码难题$ ] 中：<strong>通过两数交换</strong></p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">swap</span>(sta[nx][ny],sta[x][y]);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">test</span>(step)) <span class="built_in">A</span>(step+<span class="number">1</span>,nx,ny,i);</span><br><span class="line"></span><br><span class="line"><span class="built_in">swap</span>(sta[nx][ny],sta[x][y]);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>$eg$ : [ $骑士精神$ ] 中：<strong>毫无可读性的两数交换</strong></p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">a[x][y]^=a[xx][yy],a[xx][yy]^=a[x][y],a[x][y]^=a[xx][yy];<span class="comment">//什么是swap</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">bool</span> flag=<span class="built_in">dfs</span>(step+<span class="number">1</span>,maxstep,tmp,xx,yy,i);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(flag) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">a[x][y]^=a[xx][yy],a[xx][yy]^=a[x][y],a[x][y]^=a[xx][yy];<span class="comment">//回复现场</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>$eg$ : [ $flood \ it$ ] 中：<strong>通过对数组的交换</strong></p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">memcpy</span>(tmp,vis,<span class="keyword">sizeof</span> vis);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">fill</span>(i) &amp;&amp; <span class="built_in">dfs</span>(now+<span class="number">1</span>)) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">memcpy</span>(vis,tmp,<span class="keyword">sizeof</span> vis);<span class="comment">//还原</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>在枚举每次状态改变时，注意及时的剪枝，即使是看起来并不重要的</p>
-<ul>
-<li><p>栗子 $1$：出界</p>
-<p>好容易忘qwq（写总结的时候也忘了</p>
-</li>
-<li><p>栗子 $2$：当前移动恰与上一步相反</p>
-<ul>
-<li><p>剪枝方法：</p>
-<p>仔细选取 $dx[ \ ],dy[ \ ]$</p>
-<p>判断两次移动的方向和 $i+pre$</p>
-</li>
-<li><p>$eg$ : [ $骑士精神$ ] 中：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> dx[<span class="number">8</span>]=&#123;<span class="number">-1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">-2</span>,<span class="number">-2</span>,<span class="number">-1</span>,<span class="number">1</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> dy[<span class="number">8</span>]=&#123;<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">-1</span>,<span class="number">1</span>,<span class="number">-1</span>,<span class="number">-2</span>,<span class="number">-2</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//如此保证两个相反的方向加和为7</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>栗子 $3$：当前步恰好完成,或通过估价函数得到当前步可行</p>
-<ul>
-<li><p>$eg$ : [$Power \ Calculus$] 中：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(now==n || now&lt;&lt;(MAX-step)==n<span class="comment">/*题目背景可推断*/</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>$eg$ : [$flood \ it$] 中：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">rei g=<span class="built_in">get_val</span>();</span><br><span class="line">···</span><br><span class="line"><span class="keyword">if</span>(!g) <span class="keyword">return</span> <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>栗子 $4$：针对当前块的扩展问题，要得到周围与之相邻的块的编号（我不知道我在写什么</p>
-<ul>
-<li><p>剪枝方法：</p>
-<p>开 $vis[ \ ]$ 数组并及时维护</p>
-</li>
-<li><p>$eg$ : [ $flood \ it$ ] 中：</p>
-<p><del>自行读代码</del></p>
-</li>
-</ul>
-</li>
-<li><p>栗子 $5$：考虑答案的单调性</p>
-<ul>
-<li><p>$eg$ : [$Addition \ Chains$] 中：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;now;++i)</span><br><span class="line">    <span class="keyword">for</span>(rei j=i;j&lt;now;++j)&#123;<span class="comment">//从i开始啊qwq</span></span><br><span class="line">        rei tmp=ans[i]+ans[j];</span><br><span class="line">        <span class="keyword">if</span>(tmp&gt;n) <span class="keyword">break</span>;<span class="comment">//ans单增</span></span><br><span class="line">        <span class="keyword">if</span>(tmp&lt;=ans[now<span class="number">-1</span>]) <span class="keyword">continue</span>;</span><br><span class="line">        ans[now]=tmp;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">dfs</span>(now+<span class="number">1</span>,MAX)) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>注意一下开始 $\text{dfs}$ 的深度为 $0/1$</p>
-<p>关系到答案输出是 $MAX$ 还是 $MAX-1$</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>迭代加深</tag>
       </tags>
   </entry>
   <entry>
