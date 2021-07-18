@@ -25,17 +25,21 @@
     var CONFIG = {"hostname":"noone40404.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="不能逃避，不能逃避，不能逃避，不能逃避⋯⋯">
-<meta property="og:type" content="website">
-<meta property="og:title" content="noone___&#39;s blog">
-<meta property="og:url" content="http://noone40404.github.io/categories/%E7%AC%94%E8%AE%B0/index.html">
+  <meta name="description" content="由 GreenDay 的期望课件所延伸的，即课上他没证的（逃">
+<meta property="og:type" content="article">
+<meta property="og:title" content="超几何分布中的期望">
+<meta property="og:url" content="http://noone40404.github.io/2021/07/18/%E8%B6%85%E5%87%A0%E4%BD%95%E5%88%86%E5%B8%83%E4%B8%AD%E7%9A%84%E6%9C%9F%E6%9C%9B/index.html">
 <meta property="og:site_name" content="noone___&#39;s blog">
-<meta property="og:description" content="不能逃避，不能逃避，不能逃避，不能逃避⋯⋯">
+<meta property="og:description" content="由 GreenDay 的期望课件所延伸的，即课上他没证的（逃">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-07-18T01:31:45.000Z">
+<meta property="article:modified_time" content="2021-07-18T01:35:45.306Z">
 <meta property="article:author" content="noone___">
+<meta property="article:tag" content="组合数学">
+<meta property="article:tag" content="期望">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://noone40404.github.io/categories/%E7%AC%94%E8%AE%B0/">
+<link rel="canonical" href="http://noone40404.github.io/2021/07/18/%E8%B6%85%E5%87%A0%E4%BD%95%E5%88%86%E5%B8%83%E4%B8%AD%E7%9A%84%E6%9C%9F%E6%9C%9B/">
 
 
 <script id="page-configurations">
@@ -43,12 +47,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>分类: 笔记 | noone___'s blog</title>
+  <title>超几何分布中的期望 | noone___'s blog</title>
   
 
 
@@ -199,220 +203,140 @@
         <div class="content-wrap">
           
 
-          <div class="content category">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">笔记
-          <small>分类</small>
-        </h2>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2021/07/18/%E8%B6%85%E5%87%A0%E4%BD%95%E5%88%86%E5%B8%83%E4%B8%AD%E7%9A%84%E6%9C%9F%E6%9C%9B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="noone___">
+      <meta itemprop="description" content="不能逃避，不能逃避，不能逃避，不能逃避⋯⋯">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="noone___'s blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          超几何分布中的期望
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-07-18 09:31:45 / 修改时间：09:35:45" itemprop="dateCreated datePublished" datetime="2021-07-18T09:31:45+08:00">2021-07-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+            <div class="post-description">由 GreenDay 的期望课件所延伸的，即课上他没证的（逃</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2021</span>
+        <h2 id="超几何分布"><a href="#超几何分布" class="headerlink" title="超几何分布"></a>超几何分布</h2><h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3><p>对于 $N=N_1+N_2$ 个外表相同的物品，从中抽取 $n$ 个物品，每个物品抽取等概率随机</p>
+<hr>
+<h3 id="n-个中有-x-个-N-1-类物品的概率"><a href="#n-个中有-x-个-N-1-类物品的概率" class="headerlink" title="$n$ 个中有 $x$ 个 $N_1$ 类物品的概率"></a>$n$ 个中有 $x$ 个 $N_1$ 类物品的概率</h3><p>首先，若 $x&gt;N_1$ 概率为 $0$ ，故不需考虑</p>
+<p>对于所取的 $n$ 个数，若满足条件：</p>
+<p>- 从 $N_1$ 个中抽 $x$ 个 ， 有 $\displaystyle{\binom{N_1}{x}}$ 种</p>
+<p>- 从 $N_2$ 个中抽 $n-x$ 个 ， 有 $\displaystyle{\binom{N_2}{n-x}}$ 种</p>
+<p>所以总合法取法有 $\displaystyle{\binom{N_1}{x} \binom{N_2}{n-x}}$ 种 ， 而总取法有 $\displaystyle{\binom{N}{n}}$</p>
+<script type="math/tex; mode=display">\therefore P(X=x)= \frac{\binom{N_1}{x} \binom{N_2}{n-x}}{\binom{N}{n}}</script><h3 id="抽出-x-个-N-1-的期望"><a href="#抽出-x-个-N-1-的期望" class="headerlink" title="抽出 $x$ 个 $N_1$ 的期望"></a>抽出 $x$ 个 $N_1$ 的期望</h3><script type="math/tex; mode=display">E(x)=\sum_{x=0}^{N_1} x\times P(X=x) =\sum_{x=1}^{N_1} x\times P(X=x)</script><p>由组合数公式 $\displaystyle{\binom{N}{n}=\frac{N}{n} \binom{N-1}{n-1}}$ 得</p>
+<script type="math/tex; mode=display">\begin{aligned}原式
+
+&=\sum_{x=1}^{N_1} x\times \frac{ \frac{N_1}{x} \binom{N_1-1}{x-1} \binom{N_2}{n-x} }{ \frac{N}{n} \binom{N-1}{n-1}} \\
+
+&=\frac{n\times N_1}{N} \sum_{x=1}^{N_1} \frac{ \binom{N_1-1}{x-1} \binom{N_2}{n-x}}{ \binom{N-1}{n-1}} \\
+
+&=\frac{n\times N_1}{N} \sum_{x=1}^{N_1} \frac{ \binom{N_1-1}{x-1} \binom{N_2}{(n-1)-(x-1)}}{ \binom{N-1}{n-1}} \\
+
+&=\frac{n\times N_1}{N} \sum_{x=1}^{N_1} P(X=x-1)
+
+\end{aligned}</script><script type="math/tex; mode=display">\because \sum_{x=1}^{N_1} P(X=x-1) 的含义为：n 中有 x-1 个 N_1 的概率和</script><script type="math/tex; mode=display">\therefore \sum_{x=1}^{N_1} P(X=x-1)=1</script><script type="math/tex; mode=display">\therefore 原式=\frac{n\times N_1}{N}</script>
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
+        
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-07-18T09:31:45+08:00"
-              content="2021-07-18">
-          07-18
-        </time>
-      </div>
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>noone___
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://noone40404.github.io/2021/07/18/%E8%B6%85%E5%87%A0%E4%BD%95%E5%88%86%E5%B8%83%E4%B8%AD%E7%9A%84%E6%9C%9F%E6%9C%9B/" title="超几何分布中的期望">http://noone40404.github.io/2021/07/18/超几何分布中的期望/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/07/18/%E8%B6%85%E5%87%A0%E4%BD%95%E5%88%86%E5%B8%83%E4%B8%AD%E7%9A%84%E6%9C%9F%E6%9C%9B/" itemprop="url">
-            <span itemprop="name">超几何分布中的期望</span>
-          </a>
-      </div>
 
-    </header>
-  </article>
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6/" rel="tag"><i class="fa fa-tag"></i> 组合数学</a>
+              <a href="/tags/%E6%9C%9F%E6%9C%9B/" rel="tag"><i class="fa fa-tag"></i> 期望</a>
+          </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+        
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-07-01T19:09:51+08:00"
-              content="2021-07-01">
-          07-01
-        </time>
-      </div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/07/01/%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86/" itemprop="url">
-            <span itemprop="name">树链剖分</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-05-05T19:15:48+08:00"
-              content="2021-05-05">
-          05-05
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/05/05/%E7%A1%AE%E5%AE%9E%E4%B8%8D%E4%BC%9A%E7%9A%84%E5%A4%9A%E9%A1%B9%E5%BC%8F/" itemprop="url">
-            <span itemprop="name">确实不会的多项式</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-05-05T19:14:16+08:00"
-              content="2021-05-05">
-          05-05
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/05/05/%E5%AD%A6%E4%B8%8D%E4%BC%9A%E7%9A%84%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/" itemprop="url">
-            <span itemprop="name">学不会的生成函数</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-04-07T16:17:39+08:00"
-              content="2021-04-07">
-          04-07
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/04/07/%E8%BF%AD%E4%BB%A3%E5%8A%A0%E6%B7%B1/" itemprop="url">
-            <span itemprop="name">迭代加深</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-02-04T19:18:17+08:00"
-              content="2021-02-04">
-          02-04
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/02/04/%E5%8D%9A%E5%BC%88%E8%AE%BA/" itemprop="url">
-            <span itemprop="name">博弈论</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-01-06T19:07:34+08:00"
-              content="2021-01-06">
-          01-06
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/01/06/%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94/" itemprop="url">
-            <span itemprop="name">莫比乌斯反演</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-01-04T19:16:57+08:00"
-              content="2021-01-04">
-          01-04
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/01/04/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" itemprop="url">
-            <span itemprop="name">背包问题</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-    <div class="collection-year">
-      <span class="collection-header">2020</span>
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/07/08/loj-6274%E6%95%B0%E5%AD%97/" rel="prev" title="loj#6274.数字">
+      <i class="fa fa-chevron-left"></i> loj#6274.数字
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-12-04T18:05:37+08:00"
-              content="2020-12-04">
-          12-04
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/12/04/minmax%E5%AE%B9%E6%96%A5/" itemprop="url">
-            <span itemprop="name">min-max容斥</span>
-          </a>
-      </div>
-
-    </header>
+      </footer>
+    
   </article>
-
-    </div>
-  </div>
   
   
-  
-
   
 
 
 
           </div>
           
+    <div class="comments" id="gitalk-container"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -459,6 +383,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B6%85%E5%87%A0%E4%BD%95%E5%88%86%E5%B8%83"><span class="nav-number">1.</span> <span class="nav-text">超几何分布</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.1.</span> <span class="nav-text">模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#n-%E4%B8%AA%E4%B8%AD%E6%9C%89-x-%E4%B8%AA-N-1-%E7%B1%BB%E7%89%A9%E5%93%81%E7%9A%84%E6%A6%82%E7%8E%87"><span class="nav-number">1.2.</span> <span class="nav-text">$n$ 个中有 $x$ 个 $N_1$ 类物品的概率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%BD%E5%87%BA-x-%E4%B8%AA-N-1-%E7%9A%84%E6%9C%9F%E6%9C%9B"><span class="nav-number">1.3.</span> <span class="nav-text">抽出 $x$ 个 $N_1$ 的期望</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -703,9 +628,83 @@ window.addEventListener('pjax:success', () => {
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'ebdb5b537395179b4514',
+      clientSecret: 'd0843e5853efe963ca9983db6cac3a1f9d736856',
+      repo        : 'noone40404.github.io',
+      owner       : 'noone40404',
+      admin       : ['noone40404'],
+      id          : 'a4f954c46e88e31d272a66906c766b11',
+        language: 'zn-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
 
     </div>
 </body>
