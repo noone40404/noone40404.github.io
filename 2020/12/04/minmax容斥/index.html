@@ -33,7 +33,7 @@
 <meta property="og:description" content="min-max容斥及其例题">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-12-04T10:05:37.000Z">
-<meta property="article:modified_time" content="2021-07-04T11:59:34.765Z">
+<meta property="article:modified_time" content="2021-08-01T08:32:36.944Z">
 <meta property="article:author" content="noone___">
 <meta property="article:tag" content="minmax">
 <meta name="twitter:card" content="summary">
@@ -239,7 +239,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-04 19:59:34" itemprop="dateModified" datetime="2021-07-04T19:59:34+08:00">2021-07-04</time>
+                <time title="修改时间：2021-08-01 16:32:36" itemprop="dateModified" datetime="2021-08-01T16:32:36+08:00">2021-08-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -317,6 +317,43 @@ g(k)&=\sum_{i=1}^k (-1)^{k-i} \binom{k-1}{i-1} [i=1] \\
 <li><p>解</p>
 <p>由公式易知 $\displaystyle{E(\max\{U\})=\sum_{S\subseteq U}(-1)^{|S|-1} \ \sum E(\min\{S\})}$</p>
 <p>$\therefore$ 求 $\min$</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5643">P5643 [PKUWC2018]随机游走</a></p>
+<ul>
+<li><p>题意:</p>
+<p>给出一棵树，从根节点出发每次等概率选择并走向一条相邻边</p>
+<p>多次询问中，每次给定点集 $S$ ,求从根出发直到 $S$ 中所有点至少经过一次的期望步数</p>
+</li>
+<li><p>解:</p>
+<p>由 $\min-\max$ 容斥得：$\displaystyle{E[ \max(S’) ]=\sum_{T’\in S’}(-1)^{|T’|+1}E[ \min(T’) ]}$</p>
+<p>易知 $E[ \max(S’) ]$ 表示走完集合 $S$ 期望步数， $E[ \min(S’) ]$ 表示第一次走到集合 $S$ 的期望步数</p>
+<p>设 $f_{S,x}$ 表示从 $x$ 出发，第一次访问到集合 $S$ 的期望步数</p>
+<ul>
+<li><p>考虑预处理所有 $f_{S,x}$</p>
+<p>设 $f_x$ 为点 $x$ 到 $S$ 的最早期望时间</p>
+<p>对于 $x\in S$ 有 $f_x=0$</p>
+<p>对于 $x\not\in S$ 有 $\displaystyle{f_x=1+\frac{1}{\deg x}\sum_{(x,y)\in E} f_y }$</p>
+<p>这里需要 $O(n^3)$ 的高斯消元，考虑到特殊的树形结构，以起点 $root$ 为根，用一次函数分离父子关系</p>
+<p>即设 $\displaystyle{f_x=f_{fa_x} \times A_x + B_x }$</p>
+<p>$\therefore$ 对于 $x \not\in S$ 有 $\displaystyle{f_x=1+\frac{1}{\deg x} \left(f_{fa_x} + \sum_{y\in son_x}(A_y\times f_x + B_y) \right) }$</p>
+<p>化简得</p>
+<script type="math/tex; mode=display">\begin{aligned}
+
+​      A_x&=\frac{1}{\deg x-\sum_{y\in son_x}A_x} \\\
+
+​      B_x&=\frac{\deg x+\sum_{y\in son_x}B_x}{\deg x-\sum_{y\in son_x}A_x} \\
+
+ \end{aligned}</script><p>由此，对于给定的询问点集 $S$ ,答案就是 $\sum_{T\in S} (-1)^{|T|+1} f_{T,root}$</p>
+</li>
+<li><p>再考虑优化询问</p>
+<p>由 $n\leq 18$ 提示可以状压点集，并预处理对于每个点集 $S$ 的 $\sum_{T\in S}(-1) ^{|T|+1} f_{T,root}$</p>
+<p>那么预处理高维前缀和即可</p>
+</li>
+</ul>
 </li>
 </ul>
 </li>
