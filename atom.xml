@@ -6,7 +6,7 @@
   <link href="http://noone40404.github.io/atom.xml" rel="self"/>
   
   <link href="http://noone40404.github.io/"/>
-  <updated>2021-07-18T01:38:02.471Z</updated>
+  <updated>2021-08-03T13:56:15.193Z</updated>
   <id>http://noone40404.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>30801202-AGC001</title>
+    <link href="http://noone40404.github.io/2021/08/03/AGC001/"/>
+    <id>http://noone40404.github.io/2021/08/03/AGC001/</id>
+    <published>2021-08-03T13:46:09.000Z</published>
+    <updated>2021-08-03T13:56:15.193Z</updated>
+    
+    
+    <summary type="html">AGC001</summary>
+    
+    
+    
+    <category term="题解" scheme="http://noone40404.github.io/categories/%E9%A2%98%E8%A7%A3/"/>
+    
+    
+    <category term="dp" scheme="http://noone40404.github.io/tags/dp/"/>
+    
+    <category term="构造" scheme="http://noone40404.github.io/tags/%E6%9E%84%E9%80%A0/"/>
+    
+    <category term="思维" scheme="http://noone40404.github.io/tags/%E6%80%9D%E7%BB%B4/"/>
+    
+  </entry>
   
   <entry>
     <title>超几何分布中的期望</title>
