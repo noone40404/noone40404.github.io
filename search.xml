@@ -1,40 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>40801202-AGC002</title>
-    <url>/2021/08/04/AGC002/</url>
-    <content><![CDATA[<h2 id="D"><a href="#D" class="headerlink" title="D"></a>D</h2><blockquote>
-<p>给一张图，多次询问，每次 $u\leftarrow v$ 中经过的不重复点数量 $=z$ ，求经过边最大编号最小值</p>
-</blockquote>
-<p>边权问题想到 $Kruskal$ 重构树</p>
-<p>重构树上倍增二分即可</p>
-<p><del>这道题还有一种整体二分+并查集做法，但我不会</del></p>
-<h2 id="E"><a href="#E" class="headerlink" title="E"></a>E</h2><blockquote>
-<p>博弈论 每次操作将当前最大堆的糖果全部吃完或将每堆糖果吃掉一个，吃完的人输</p>
-</blockquote>
-<p>GreenDay学长之前讲过</p>
-<p>将每堆小石子的数量看成柱状图并排序，问题转化为从 $(1,1)$ 出发，每次只能向上或向右走一格，到边界者输</p>
-<p>显然棱角处均为必败点，且<del>打表得</del> $y=-k\times x$ 直线上的格子性质相同</p>
-<p>找最大的 $(i,i)$ 再简单判断即可</p>
-<h2 id="F"><a href="#F" class="headerlink" title="F"></a>F</h2><blockquote>
-<p>给你 $n$ 种不含白色颜色的球，每个球有 $m$ 个，把这 $n\times m$ 个球排成一排，把每一种颜色的最左边出现的球涂成白色，求有多少种不同的颜色序列</p>
-</blockquote>
-<p>有 $m$ 个白球，$n$ 种其他颜色的球各 $m-1$ 个 只有任意前缀中白球的个数均大于其他颜色种类数时合法</p>
-<p>考虑序列计数 $dp$: 枚举位置或元素，这里枚举元素</p>
-<p>设状态 $f_{i,j}$ 表示在 $n\times m$ 个位置上填了 $i$ 个白球和 $j$ 个其他球</p>
-<p>考虑合法序列的从左到右的第一个格子如何转移</p>
-<script type="math/tex; mode=display">\therefore f_{i,j}=\underbrace{f_{i-1,j}}_{放白球} \ + \ \underbrace{f_{i,j-1}}_{放其他颜色} \times \underbrace{\left(n-j+1\right)}_{没有使用过的颜色}\times \underbrace{\binom{n\times m-i-(m-1)\times (j-1)-1}{m-2}}_{还有 m-2 个该颜色的球没有放}</script>]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>思维</tag>
-        <tag>dp</tag>
-        <tag>博弈论</tag>
-        <tag>Kruskal重构树</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>30801202-AGC001</title>
     <url>/2021/08/03/AGC001/</url>
     <content><![CDATA[<h2 id="B"><a href="#B" class="headerlink" title="B"></a>B</h2><blockquote>
@@ -100,142 +66,10 @@ a &a=b \\
         <category>题解</category>
       </categories>
       <tags>
-        <tag>思维</tag>
-        <tag>dp</tag>
         <tag>构造</tag>
+        <tag>思维</tag>
         <tag>贪心</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>博弈论</title>
-    <url>/2021/02/04/%E5%8D%9A%E5%BC%88%E8%AE%BA/</url>
-    <content><![CDATA[<h1 id="博弈论游戏及其的变形"><a href="#博弈论游戏及其的变形" class="headerlink" title="博弈论游戏及其的变形"></a>博弈论游戏及其的变形</h1><h2 id="请熟背以下结论（因为没看懂推导）"><a href="#请熟背以下结论（因为没看懂推导）" class="headerlink" title="请熟背以下结论（因为没看懂推导）"></a>请熟背以下结论（因为没看懂推导）</h2><hr>
-<h2 id="巴什博弈"><a href="#巴什博弈" class="headerlink" title="巴什博弈"></a>巴什博弈</h2><h3 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h3><ul>
-<li>只有一堆 $n$ 个物品，两个人轮流取</li>
-<li>每次至少取一个，最多取 $m$ 个。</li>
-<li>最后取光者得胜</li>
-</ul>
-<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>$n \mod (m+1)$ 为 $0$ 先手必败否则必胜</p>
-<hr>
-<h2 id="威佐夫博弈"><a href="#威佐夫博弈" class="headerlink" title="威佐夫博弈"></a>威佐夫博弈</h2><h3 id="规则-1"><a href="#规则-1" class="headerlink" title="规则"></a>规则</h3><ul>
-<li>有两堆各若干个物品</li>
-<li>两个人轮流从某一堆取至少一个或同时从两堆中取同样多的物品</li>
-<li>最后取光者得胜</li>
-</ul>
-<h3 id="结论-1"><a href="#结论-1" class="headerlink" title="结论"></a>结论</h3><p>先手必败态的两堆石子之差依次递增，且每个自然数仅出现一次</p>
-<p>如果局势为 $(a,b)$，记 $k=(a−b)$，</p>
-<p>若 $a=\frac{1+\sqrt{5}}{2}*k$ （这里是等于符号）</p>
-<p>则为必胜局势</p>
-<hr>
-<h2 id="尼姆博弈"><a href="#尼姆博弈" class="headerlink" title="尼姆博弈"></a>尼姆博弈</h2><h3 id="规-则"><a href="#规-则" class="headerlink" title="规 则"></a>规 则</h3><ul>
-<li>$n$ 堆石子</li>
-<li>两人轮流在任意一堆中取任意石子，不能不取，最多取完，</li>
-<li>取到最后一颗石子者胜</li>
-</ul>
-<h3 id="结论-2"><a href="#结论-2" class="headerlink" title="结论"></a>结论</h3><p>$n$ 堆石子数量异或和为 $0$ 则先手必败,否则必胜</p>
-<hr>
-<h2 id="anti-SG与SJ（贾志豪）定理"><a href="#anti-SG与SJ（贾志豪）定理" class="headerlink" title="anti-SG与SJ（贾志豪）定理"></a>anti-SG与SJ（贾志豪）定理</h2><h3 id="规则-2"><a href="#规则-2" class="headerlink" title="规则"></a>规则</h3><ul>
-<li><p>桌子上有 $n$ 堆石子，游戏者轮流取石子。</p>
-</li>
-<li><p>每次只能从一堆中取出任意数目的石子，但不能不取。</p>
-</li>
-<li><p>取走最后一个石子者败。</p>
-</li>
-</ul>
-<h3 id="结论-3"><a href="#结论-3" class="headerlink" title="结论"></a>结论</h3><p>先手必胜当且仅当：</p>
-<ol>
-<li><p>所有堆的石子数都为 $1$ 且游戏的 SG 值为 $0$；</p>
-</li>
-<li><p>有些堆的石子数大于 $1$ 且游戏的 SG 值不为 $0$。</p>
-</li>
-</ol>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line"><span class="keyword">while</span>(n--)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;tmp);</span><br><span class="line">        <span class="keyword">if</span>(tmp&gt;=<span class="number">2</span>) flag=<span class="number">1</span>;</span><br><span class="line">        ans^=tmp;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">if</span>((ans&amp;&amp;flag) || (!ans&amp;&amp;!flag))</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;John&quot;</span>);</span><br><span class="line"><span class="keyword">else</span> <span class="built_in">puts</span>(<span class="string">&quot;Brother&quot;</span>);</span><br></pre></td></tr></table></figure>
-<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><p>P4279 [SHOI2008]小约翰的游戏</p>
-<p>UVA1566 John(双倍经验)</p>
-<hr>
-<h2 id="multi-SG"><a href="#multi-SG" class="headerlink" title="multi-SG"></a>multi-SG</h2><h3 id="规则-3"><a href="#规则-3" class="headerlink" title="规则"></a>规则</h3><ul>
-<li>有 $n$ 堆石子</li>
-<li>可以从任意一堆石子中拿任意石子(不能不拿)</li>
-<li>或者把一堆数量不少于 $2$ 石子分为两堆不为空的石子。</li>
-</ul>
-<h3 id="结论-4"><a href="#结论-4" class="headerlink" title="结论"></a>结论</h3><p>$SG\left(x\right) =<br>\begin{cases}<br>x-1 &amp; ( x \mod 4=0)<br>\\ x &amp; ( x \mod 4=1 \lor 2)<br>\\ x+1 &amp; ( x \mod 4=3)<br>\end{cases}$</p>
-<p>注：$1 \lor 2$ -&gt; $1$ || $2$</p>
-<p><del>对这个结论我有绝佳的证明，但我要去玩DDLC了</del></p>
-<p><del>Update:更好看且对齐的Latex</del></p>
-<h3 id="例题-1"><a href="#例题-1" class="headerlink" title="例题"></a>例题</h3><p>P3185 [HNOI2007]分裂游戏 <del>(关系并不大的样子)</del></p>
-<p>P3235 [HNOI2014]江南乐 (未做qwq) (现在做过了qwq)</p>
-<hr>
-<h2 id="阶梯SG"><a href="#阶梯SG" class="headerlink" title="阶梯SG"></a>阶梯SG</h2><h3 id="规则-4"><a href="#规则-4" class="headerlink" title="规则"></a>规则</h3><ul>
-<li>有若干级阶梯，每级阶梯上有一个单个游戏</li>
-<li>每次可以对一个阶梯操作并将操作中失去的东西丢到下一级阶梯上。</li>
-</ul>
-<h3 id="应用范围"><a href="#应用范围" class="headerlink" title="应用范围"></a>应用范围</h3><p>对于单个游戏状态，若操作集合可逆（即上一级丢给这级的东西在这级可以再丢掉），则可以应用。</p>
-<h3 id="结论-5"><a href="#结论-5" class="headerlink" title="结论"></a>结论</h3><p>令最低级阶梯为第 $0$ 级，对奇数级阶梯上的游戏 SG 值取异或和，为 $0$ 先手必败，否则先手必胜。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">rei sg=<span class="number">0</span><span class="comment">/*本行sg值*/</span>,tot=<span class="number">0</span><span class="comment">/*连续石头的个数*/</span>;</span><br><span class="line"><span class="built_in">memset</span>(st,<span class="number">0</span>,<span class="keyword">sizeof</span> st);</span><br><span class="line"></span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;m);</span><br><span class="line">rei C=<span class="number">20</span>-m+<span class="number">1</span>;<span class="comment">//空格个数</span></span><br><span class="line"><span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=m;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;x),st[x]=<span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=<span class="number">20</span>;++i)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!st[i])&#123;<span class="comment">//石头不再连续</span></span><br><span class="line">            <span class="keyword">if</span>((--C)&amp;<span class="number">1</span>) sg^=tot;<span class="comment">//奇数行</span></span><br><span class="line">            tot=<span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            ++tot;</span><br><span class="line">&#125;</span><br><span class="line">ans^=sg;</span><br></pre></td></tr></table></figure>
-<h3 id="例题-2"><a href="#例题-2" class="headerlink" title="例题"></a>例题</h3><p>P2575 高手过招</p>
-<p>P3480 [POI2009]KAM-Pebbles 需要一些转化技巧</p>
-<hr>
-<h2 id="k-SG"><a href="#k-SG" class="headerlink" title="k-SG"></a>k-SG</h2><h3 id="规则-5"><a href="#规则-5" class="headerlink" title="规则"></a>规则</h3><ul>
-<li>有 $n$ 堆石子</li>
-<li>每次可以从不超过 $k$ 堆中按规定规则各取一些石子</li>
-<li>不能操作者败。</li>
-</ul>
-<h3 id="结论-6"><a href="#结论-6" class="headerlink" title="结论"></a>结论</h3><p>将每堆石子的 SG 值设为 $s_i$ 。</p>
-<p>将所有 $s_i$ 二进制第 $j$ 位上的数相加得到 $r_1,r_2,\dots,r_J$（ $J$ 为所有 $s_i$ 二进制最高位的位数）</p>
-<p>如果 $\forall i \in [1,J]$ 有 $r_i \equiv 0\pmod{k+1}$ ，那么先手必败；否则先手必胜。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;=<span class="number">16</span>;++i)</span><br><span class="line">    <span class="keyword">for</span>(rei j=<span class="number">0</span>;j&lt;=n-k;++j)<span class="comment">//能使用的最多石子</span></span><br><span class="line">        <span class="keyword">for</span>(rei x=<span class="number">0</span>; (<span class="number">1ll</span>&lt;&lt;i)*x*(d+<span class="number">1</span>) &lt;= n-k <span class="comment">/*所取的石子不多于题目限制*/</span>&amp;&amp;<span class="comment">/*所取的石子不多于总堆数 -&gt; 每堆每次只能减1*/</span> x*(d+<span class="number">1</span>) &lt;= k/<span class="number">2</span>; ++x)</span><br><span class="line">        <span class="comment">//从k/2个堆中选出x*(d+1)个，使其石子数二进制在i位为1</span></span><br><span class="line">        <span class="comment">//贡献的方案数为C[k/2][x*(d+1)]</span></span><br><span class="line">            dp[i+<span class="number">1</span>][ j+ (<span class="number">1ll</span>&lt;&lt;i)*x*(d+<span class="number">1</span>) ] = (dp[i+<span class="number">1</span>][ j+ (<span class="number">1ll</span>&lt;&lt;i)*x*(d+<span class="number">1</span>) ] + <span class="number">1ll</span>*dp[i][j]*C[k/<span class="number">2</span>][x*(d+<span class="number">1</span>)]%mod )%mod;</span><br></pre></td></tr></table></figure>
-<h3 id="例题-3"><a href="#例题-3" class="headerlink" title="例题"></a>例题</h3><p>P2490 [SDOI2011]黑白棋</p>
-<hr>
-<h2 id="翻棋子游戏"><a href="#翻棋子游戏" class="headerlink" title="翻棋子游戏"></a>翻棋子游戏</h2><h3 id="规则-6"><a href="#规则-6" class="headerlink" title="规则"></a>规则</h3><ul>
-<li>在一些棋子中，有的正面朝上，有的反面朝上</li>
-<li>每次操作可以翻其中一颗正面朝上的棋子，会带动一些其他棋子的组合翻面。</li>
-</ul>
-<h3 id="结论-7"><a href="#结论-7" class="headerlink" title="结论"></a>结论</h3><p>局面的 SG 值为局面中每个正面朝上的棋子单一存在时的 SG 值的异或和。</p>
-<p>具体问题具体分析吧qwq</p>
-<p>将 每颗棋子翻面后可能影响的棋子组成的游戏 作为一个后继状态，<br>对每颗棋子求 SG 值，然后求所有正面朝上的棋子 SG 值的异或和，为 $0$ 先手必败，否则先手必胜</p>
-<h3 id="例题-4"><a href="#例题-4" class="headerlink" title="例题"></a>例题</h3><p>P3179 [HAOI2015]数组游戏 （需要数论芝士，未做qwq）</p>
-<p>P4077 [SDOI2016]硬币游戏</p>
-<hr>
-<h2 id="斐波那契博弈"><a href="#斐波那契博弈" class="headerlink" title="斐波那契博弈"></a>斐波那契博弈</h2><h3 id="规则-7"><a href="#规则-7" class="headerlink" title="规则"></a>规则</h3><ul>
-<li><p>两人互相取一堆石子，取完者胜</p>
-</li>
-<li><p>第一次不能取完,至少取 $1$ 颗</p>
-</li>
-<li><p>从第二次开始,每个人取的石子数至少为1,至多为对手刚取的石子数的 $2$ 倍。</p>
-</li>
-</ul>
-<h3 id="结论-8"><a href="#结论-8" class="headerlink" title="结论"></a>结论</h3><p>当 $n$ 为 $\text{fibonacci}$ 数时，先手必败</p>
-<h3 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h3><ul>
-<li><p>先考虑 $n$ 为斐波那契数 $f_i$</p>
-<ul>
-<li><p>当 $i=2,n=2$ 显然有 先手必败</p>
-</li>
-<li><p>设当 $i&lt;=k$ 时结论成立</p>
-<p>当 $i=k+1 , f_i=f_k+f_{k-1}$ ,一定可以将这堆石子看成两堆：$k-1,k$，因为 $2\times f_{k-1}&gt;f_k$ ,若 $\geq f_{k-1}$ 则后手可以直接取完 $f_k$ ； 若先手第一次取得石子 $&lt;f_{k-1}$，则后手一定最后取，考虑后手最多取石子 $x$ 个：</p>
-<p>那么先手应取尽可能多的石子，来使后手取更多的石子，再在后手取完 $堆k-1$ 后，能使先手取完 $堆k$</p>
-<p>那么让先手取 $y\geq \frac{f_{k-1}}{3}$，此时后手可以直接取完 $堆k-1$，$\therefore x=f_{k-1}-y\leq \frac{2}{3}\times f_{k-1}$</p>
-<p>易知 $\frac{2}{3}\times f_{k-1}&lt;\frac{1}{2}\times f_k$ ,即，后手取完 $堆k-1$ 后，先手不能一次取完 $堆k$，则 $i=k+1$ 时，结论仍成立</p>
-</li>
-</ul>
-</li>
-<li><p>再考虑 $n$ 不为斐波那契数</p>
-<ul>
-<li><p>齐肯多夫定理：</p>
-<p>任何正整数可以表示为若干个<strong><em>\</em>不连续**</strong>的 $\text{fibonacci}$ 数之和 <strong><em>\</em>（优先选取最大的）**</strong></p>
-</li>
-</ul>
-<p>由于对每次取石子的最少数量没有限制，所以可以将 $n$ 按照以上定理拆成多组，每组是一个斐波那契数，并把该拿的一堆石子转化为拿多组石子</p>
-<p>由于所取的数不连续，所以有 $f_{i}&gt;2\times f_{i-1}$</p>
-</li>
-</ul>
-<p>​      令先手先取完 $i$ 最小的 $f_i$ ,此时后手不能取完 $f_{i+1} 这一堆$，相当于面临子游戏，且为必败态(有 $f_{i+1}$ 个，且后手先取)，则先手必胜</p>
-<p>​       以此类推，先手必胜</p>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>博弈论</tag>
+        <tag>dp</tag>
       </tags>
   </entry>
   <entry>
@@ -380,109 +214,71 @@ a_1 & a_2 & a_3 & \dotsb & a_i & \dotsb & a_n\\
       </categories>
       <tags>
         <tag>思维</tag>
-        <tag>dp</tag>
         <tag>贪心</tag>
+        <tag>dp</tag>
         <tag>数论</tag>
         <tag>期望</tag>
       </tags>
   </entry>
   <entry>
-    <title>min-max容斥</title>
-    <url>/2020/12/04/minmax%E5%AE%B9%E6%96%A5/</url>
-    <content><![CDATA[<h2 id="minmax容斥"><a href="#minmax容斥" class="headerlink" title="minmax容斥"></a>minmax容斥</h2><ul>
-<li><p>用途</p>
-<p>已知集合的最小值 (<strong>期望</strong>) 求最大值</p>
-<p>$eg:$ $n$ 个元素，每个元素出现概率 $p_i$，求每个元素都出现的期望时间</p>
-</li>
-<li><p>结论</p>
-<script type="math/tex; mode=display">\max\{S\}=\sum_{T\subset S}(-1)^{|T|+1} \min\{T\}</script><p>即</p>
-<script type="math/tex; mode=display">E\left(\max\{S\}\right)=\sum_{T\subset S}(-1)^{|T|+1} E\left(\min\{T\}\right)</script></li>
-<li><p>证明</p>
-<p>设容斥系数 $g\left(|T|\right)$</p>
-<p>即 $\displaystyle{\max\{S\}=\sum_{T\subset S}g\left(|T|\right) \min\{T\}}$</p>
-<p>考虑当排名为 $k$ 的数作为集合 $T$ 的最小值时，集合 $T$ 中所有值都 $\geq k$</p>
-<p>所以对于第$k$大数 ， 在大小为 $|T|$ 的集合中， $\max$ 的选取方案为 $\displaystyle{\binom{k-1}{|T|-1}}$</p>
-<p>考虑集合大小为 $1\sim k$ ，则第 $k$ 数的总贡献为</p>
-<p>$\displaystyle{\sum_{i=1}^k \binom{k-1}{i-1}} * g(i)=[k=1] \qquad \text{即只有最大值对 max 有贡献}$</p>
-<p>由二项式反演得</p>
-<script type="math/tex; mode=display">\begin{aligned}
-g(k)&=\sum_{i=1}^k (-1)^{k-i} \binom{k-1}{i-1} [i=1] \\
-&=(-1)^{k+1} \\
-\end{aligned}</script><span id="more"></span>
-</li>
-<li><p>变式</p>
-<ul>
-<li><p>由 $\max \Rightarrow \max$</p>
-<script type="math/tex; mode=display">\min(S)=\sum_{T\subseteq S,\ T \neq \varnothing} (-1)^{|T|-1} \max(T)</script></li>
-<li><p>扩展 $\min\max容斥$</p>
-<script type="math/tex; mode=display">\text{kthmax}\{S\}=\sum_{T\subseteq S}(-1)^{|T|-k} \binom{|T|-1}{k-1} \min\{T\}</script><ul>
-<li><p>证明</p>
-<p>目的是找到容斥系数满足 $\text{kthmax}\{S\}=\sum_{T\subseteq S} f(|T|) \min\{T\}$</p>
-<p>考虑第 $x$ 大元素，受原式启发得到</p>
-<script type="math/tex; mode=display">\sum_{i=1}^t \binom{t-1}{i-1} f(i)=[t=k]</script><script type="math/tex; mode=display">\therefore 经反演易得 f(n)=(-1)^{n-k} \binom{n-1}{k-1}</script><p><a href="https://oi-wiki.org/math/inclusion-exclusion-principle/#min-max"><del>并不会用到的扩展minmax容斥</del></a></p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><ul>
-<li><p><a href="https://www.luogu.com.cn/problem/P3175">P3175 [HAOI2015]按位或</a></p>
-<ul>
-<li><p>题意</p>
-<p>设 $\min\{S\}$ 表示二进制数 $S$ 中，第一个元素变为 $1$ 所需时间，$\max\{S\}$ 表示最后一个元素变为 $1$ 所需时间</p>
-<p>题为求 $E(\max\{U\})$ ,其中 $U$ 为全集，$U=2^n-1$</p>
-</li>
-<li><p>解</p>
-<p>由公式易知 $\displaystyle{E(\max\{U\})=\sum_{S\subseteq U}(-1)^{|S|-1} \ \sum E(\min\{S\})}$</p>
-<p>$\therefore$ 求 $\min$</p>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p><a href="https://www.luogu.com.cn/problem/P5643">P5643 [PKUWC2018]随机游走</a></p>
-<ul>
-<li><p>题意:</p>
-<p>给出一棵树，从根节点出发每次等概率选择并走向一条相邻边</p>
-<p>多次询问中，每次给定点集 $S$ ,求从根出发直到 $S$ 中所有点至少经过一次的期望步数</p>
-</li>
-<li><p>解:</p>
-<p>由 $\min-\max$ 容斥得：$\displaystyle{E[ \max(S’) ]=\sum_{T’\in S’}(-1)^{|T’|+1}E[ \min(T’) ]}$</p>
-<p>易知 $E[ \max(S’) ]$ 表示走完集合 $S$ 期望步数， $E[ \min(S’) ]$ 表示第一次走到集合 $S$ 的期望步数</p>
-<p>设 $f_{S,x}$ 表示从 $x$ 出发，第一次访问到集合 $S$ 的期望步数</p>
-<ul>
-<li><p>考虑预处理所有 $f_{S,x}$</p>
-<p>设 $f_x$ 为点 $x$ 到 $S$ 的最早期望时间</p>
-<p>对于 $x\in S$ 有 $f_x=0$</p>
-<p>对于 $x\not\in S$ 有 $\displaystyle{f_x=1+\frac{1}{\deg x}\sum_{(x,y)\in E} f_y }$</p>
-<p>这里需要 $O(n^3)$ 的高斯消元，考虑到特殊的树形结构，以起点 $root$ 为根，用一次函数分离父子关系</p>
-<p>即设 $\displaystyle{f_x=f_{fa_x} \times A_x + B_x }$</p>
-<p>$\therefore$ 对于 $x \not\in S$ 有 $\displaystyle{f_x=1+\frac{1}{\deg x} \left(f_{fa_x} + \sum_{y\in son_x}(A_y\times f_x + B_y) \right) }$</p>
-<p>化简得</p>
-<script type="math/tex; mode=display">\begin{aligned}
-
-​      A_x&=\frac{1}{\deg x-\sum_{y\in son_x}A_x} \\\
-
-​      B_x&=\frac{\deg x+\sum_{y\in son_x}B_x}{\deg x-\sum_{y\in son_x}A_x} \\
-
- \end{aligned}</script><p>由此，对于给定的询问点集 $S$ ,答案就是 $\sum_{T\in S} (-1)^{|T|+1} f_{T,root}$</p>
-</li>
-<li><p>再考虑优化询问</p>
-<p>由 $n\leq 18$ 提示可以状压点集，并预处理对于每个点集 $S$ 的 $\sum_{T\in S}(-1) ^{|T|+1} f_{T,root}$</p>
-<p>那么预处理高维前缀和即可</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-]]></content>
+    <title>40801202-AGC002</title>
+    <url>/2021/08/04/AGC002/</url>
+    <content><![CDATA[<h2 id="D"><a href="#D" class="headerlink" title="D"></a>D</h2><blockquote>
+<p>给一张图，多次询问，每次 $u\leftarrow v$ 中经过的不重复点数量 $=z$ ，求经过边最大编号最小值</p>
+</blockquote>
+<p>边权问题想到 $Kruskal$ 重构树</p>
+<p>重构树上倍增二分即可</p>
+<p><del>这道题还有一种整体二分+并查集做法，但我不会</del></p>
+<h2 id="E"><a href="#E" class="headerlink" title="E"></a>E</h2><blockquote>
+<p>博弈论 每次操作将当前最大堆的糖果全部吃完或将每堆糖果吃掉一个，吃完的人输</p>
+</blockquote>
+<p>GreenDay学长之前讲过</p>
+<p>将每堆小石子的数量看成柱状图并排序，问题转化为从 $(1,1)$ 出发，每次只能向上或向右走一格，到边界者输</p>
+<p>显然棱角处均为必败点，且<del>打表得</del> $y=-k\times x$ 直线上的格子性质相同</p>
+<p>找最大的 $(i,i)$ 再简单判断即可</p>
+<h2 id="F"><a href="#F" class="headerlink" title="F"></a>F</h2><blockquote>
+<p>给你 $n$ 种不含白色颜色的球，每个球有 $m$ 个，把这 $n\times m$ 个球排成一排，把每一种颜色的最左边出现的球涂成白色，求有多少种不同的颜色序列</p>
+</blockquote>
+<p>有 $m$ 个白球，$n$ 种其他颜色的球各 $m-1$ 个 只有任意前缀中白球的个数均大于其他颜色种类数时合法</p>
+<p>考虑序列计数 $dp$: 枚举位置或元素，这里枚举元素</p>
+<p>设状态 $f_{i,j}$ 表示在 $n\times m$ 个位置上填了 $i$ 个白球和 $j$ 个其他球</p>
+<p>考虑合法序列的从左到右的第一个格子如何转移</p>
+<script type="math/tex; mode=display">\therefore f_{i,j}=\underbrace{f_{i-1,j}}_{放白球} \ + \ \underbrace{f_{i,j-1}}_{放其他颜色} \times \underbrace{\left(n-j+1\right)}_{没有使用过的颜色}\times \underbrace{\binom{n\times m-i-(m-1)\times (j-1)-1}{m-2}}_{还有 m-2 个该颜色的球没有放}</script>]]></content>
       <categories>
-        <category>笔记</category>
+        <category>题解</category>
       </categories>
       <tags>
-        <tag>minmax</tag>
+        <tag>构造</tag>
+        <tag>思维</tag>
+        <tag>dp</tag>
+        <tag>博弈论</tag>
+        <tag>Kruskal重构树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>loj#6274.数字</title>
+    <url>/2021/07/08/loj-6274%E6%95%B0%E5%AD%97/</url>
+    <content><![CDATA[<h3 id="重点说一下与运算中的转移"><a href="#重点说一下与运算中的转移" class="headerlink" title="重点说一下与运算中的转移"></a>重点说一下与运算中的转移</h3><p>考虑在当前位两数分别为 $\langle 1,0 \rangle$ 或 $ \langle 0,1 \rangle$</p>
+<p>显然这两种选择的 $\And$ 与 $|$ 操作所得结果相同，由此可知会不同选择中有包含关系</p>
+<p>从 $\langle 1,0 \rangle$ 与 $\langle 0,1 \rangle$ 所得情况等价入手</p>
+<p>记 $\langle 1,0 \rangle$ 为情况 $S_1$ , 其中 $1$ 是第一个数的选择，$0$ 是第二个数字的选择 ,</p>
+<p>$\langle 0,1 \rangle$ 为情况 $S_2$</p>
+<p>由于 $S_2$ 中的 $0$ 可知，$S_1$ 选择 $1$ 取不到 $\max$，即无论后面的位如何取都取不到上界</p>
+<p>同理，由于 $S_1$ 中的 $1$，$S_2$ 选择 $0$ 取不到 $\min$，即无法取到下界</p>
+<ul>
+<li><p>假设后面会有情况选择 $\langle 1,1 \rangle$，考虑到第二个数字取不到 $\max$ ，所以等同于选择了 $\langle 1,0 \rangle$</p>
+</li>
+<li><p>假设后面会有情况选择 $\langle 0,1 \rangle$，考虑到第二个数字取不到 $\min$ ，所以等同于选择了 $\langle 1,1 \rangle$</p>
+</li>
+</ul>
+<p>所以对于与结果为 $0$ 的合法情况，取其结果的最大值即可</p>
+]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>思维</tag>
+        <tag>dp</tag>
       </tags>
   </entry>
   <entry>
@@ -773,161 +569,234 @@ V(F)^{\prime}
       </tags>
   </entry>
   <entry>
-    <title>树链剖分</title>
-    <url>/2021/07/01/%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86/</url>
-    <content><![CDATA[<h2 id="关于长链剖分中指针的理解"><a href="#关于长链剖分中指针的理解" class="headerlink" title="关于长链剖分中指针的理解"></a>关于长链剖分中指针的理解</h2><p>与指针有关的变量：$\ast dp[N],tmp[N]$,$\ast pos$</p>
-<hr>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">pos=tmp;<span class="comment">//将pos指向tmp空间</span></span><br><span class="line">dp[<span class="number">1</span>]=pos, pos+=height[<span class="number">1</span>];</span><br><span class="line">   <span class="comment">//改变后pos加上dp[1]所需的长度，防止内存冲突</span></span><br></pre></td></tr></table></figure>
-<p>可以把 $*dp[1]$ 看成指向 $tmp$ 上一段长为 $height[1]$ 的指针</p>
-<p>那么指针 $dp[1]$ 与 $tmp[\ 0,…height[1]-1 \ ]$ 共同构成了 $dp[1][\ 0,…,height[1]-1\ ]$</p>
-<hr>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">dp[to]=pos, pos+=len;</span><br></pre></td></tr></table></figure>
-<p>与上面相同，在进入 $dfs2$ 前开好 $dp[to]$ 所需的空间，即以 $to$ 为起点的链，其长度为 $len$</p>
-<p>而对于链上其他点(即点 $to$ 的长儿子，其长儿子的长儿子，…)，不会进入当前行，即不需开新空间</p>
-<hr>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">dp[son[cur]] = dp[cur] + <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-<p>即继承长儿子的答案: $dp[i][j]=dp[lson][j-1]$</p>
-<p>数组指针形式：$dp[\ i\ ]=dp[\ lson[\ i\ ]\ ]-1$</p>
-<hr>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">dp[cur][j+<span class="number">1</span>] += dp[to][j];</span><br></pre></td></tr></table></figure>
-<p>暴力合并轻儿子的值</p>
-<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/utbnpeqk.png" alt=""></p>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>树链剖分</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>loj#6274.数字</title>
-    <url>/2021/07/08/loj-6274%E6%95%B0%E5%AD%97/</url>
-    <content><![CDATA[<h3 id="重点说一下与运算中的转移"><a href="#重点说一下与运算中的转移" class="headerlink" title="重点说一下与运算中的转移"></a>重点说一下与运算中的转移</h3><p>考虑在当前位两数分别为 $\langle 1,0 \rangle$ 或 $ \langle 0,1 \rangle$</p>
-<p>显然这两种选择的 $\And$ 与 $|$ 操作所得结果相同，由此可知会不同选择中有包含关系</p>
-<p>从 $\langle 1,0 \rangle$ 与 $\langle 0,1 \rangle$ 所得情况等价入手</p>
-<p>记 $\langle 1,0 \rangle$ 为情况 $S_1$ , 其中 $1$ 是第一个数的选择，$0$ 是第二个数字的选择 ,</p>
-<p>$\langle 0,1 \rangle$ 为情况 $S_2$</p>
-<p>由于 $S_2$ 中的 $0$ 可知，$S_1$ 选择 $1$ 取不到 $\max$，即无论后面的位如何取都取不到上界</p>
-<p>同理，由于 $S_1$ 中的 $1$，$S_2$ 选择 $0$ 取不到 $\min$，即无法取到下界</p>
-<ul>
-<li><p>假设后面会有情况选择 $\langle 1,1 \rangle$，考虑到第二个数字取不到 $\max$ ，所以等同于选择了 $\langle 1,0 \rangle$</p>
+    <title>min-max容斥</title>
+    <url>/2020/12/04/minmax%E5%AE%B9%E6%96%A5/</url>
+    <content><![CDATA[<h2 id="minmax容斥"><a href="#minmax容斥" class="headerlink" title="minmax容斥"></a>minmax容斥</h2><ul>
+<li><p>用途</p>
+<p>已知集合的最小值 (<strong>期望</strong>) 求最大值</p>
+<p>$eg:$ $n$ 个元素，每个元素出现概率 $p_i$，求每个元素都出现的期望时间</p>
 </li>
-<li><p>假设后面会有情况选择 $\langle 0,1 \rangle$，考虑到第二个数字取不到 $\min$ ，所以等同于选择了 $\langle 1,1 \rangle$</p>
-</li>
-</ul>
-<p>所以对于与结果为 $0$ 的合法情况，取其结果的最大值即可</p>
-]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>思维</tag>
-        <tag>dp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>确实不会的多项式</title>
-    <url>/2021/05/05/%E7%A1%AE%E5%AE%9E%E4%B8%8D%E4%BC%9A%E7%9A%84%E5%A4%9A%E9%A1%B9%E5%BC%8F/</url>
-    <content><![CDATA[<h2 id="写总结的地方"><a href="#写总结的地方" class="headerlink" title="写总结的地方"></a>写总结的地方</h2><ul>
-<li>将式子转化为卷积形式: $\displaystyle{\sum_{i=1}^n A_i B_{n-i}}$</li>
-</ul>
-<h3 id="P3338-ZJOI2014-力"><a href="#P3338-ZJOI2014-力" class="headerlink" title="P3338 [ZJOI2014]力"></a><a href="https://www.luogu.com.cn/problem/P3338">P3338 [ZJOI2014]力</a></h3><ul>
-<li><p>题意：<br>求 $E_j=\displaystyle{\sum_{i=1}^{j-1}\frac{q_j}{\left(i-j\right)^2} - \sum_{i=j+1}^n \frac{q_j}{\left(i-j\right)^2}}$</p>
-<p>$q_i被消掉了qwq$</p>
-</li>
-<li><p>解：</p>
-<ul>
-<li><p>先简化数据范围</p>
-<script type="math/tex; mode=display">\sum_{i=1}^{j-1} \Rightarrow \sum_{i=0}^{j}</script></li>
-<li><p>化成能算的样子</p>
-<p>设 $f[i]=q_j \ , f’[i]=f[n-i] \ , \ g[i]=\frac{1}{i^2}$</p>
+<li><p>结论</p>
+<script type="math/tex; mode=display">\max\{S\}=\sum_{T\subset S}(-1)^{|T|+1} \min\{T\}</script><p>即</p>
+<script type="math/tex; mode=display">E\left(\max\{S\}\right)=\sum_{T\subset S}(-1)^{|T|+1} E\left(\min\{T\}\right)</script></li>
+<li><p>证明</p>
+<p>设容斥系数 $g\left(|T|\right)$</p>
+<p>即 $\displaystyle{\max\{S\}=\sum_{T\subset S}g\left(|T|\right) \min\{T\}}$</p>
+<p>考虑当排名为 $k$ 的数作为集合 $T$ 的最小值时，集合 $T$ 中所有值都 $\geq k$</p>
+<p>所以对于第$k$大数 ， 在大小为 $|T|$ 的集合中， $\max$ 的选取方案为 $\displaystyle{\binom{k-1}{|T|-1}}$</p>
+<p>考虑集合大小为 $1\sim k$ ，则第 $k$ 数的总贡献为</p>
+<p>$\displaystyle{\sum_{i=1}^k \binom{k-1}{i-1}} * g(i)=[k=1] \qquad \text{即只有最大值对 max 有贡献}$</p>
+<p>由二项式反演得</p>
 <script type="math/tex; mode=display">\begin{aligned}
-原式
-&=\underbrace{\sum_{i=1}^j f[i] \cdot g[j-i]}_{\rm 已经是卷积形式} - \sum_{i=j}^n f[i] \cdot g[i-j] \\
-&=\sum_{i=1}^j f[i] \cdot g[j-i] - \underbrace{\sum_{i=0}^{n-j} f[i+j] \cdot g[i]}_{\rm 然而还不能算} \\
-&设 t=n-j \\
-&=\sum_{i=1}^j f[i] \cdot g[j-i] - \sum_{i=0}^t f'[t-i] \cdot g[i] \\
-\end{aligned}</script></li>
-</ul>
-<p>$\bf{Trick:}$ <strong>翻转数列</strong> </p>
-<p>&amp;&amp; 把函数设成数组以看起来更好算</p>
+g(k)&=\sum_{i=1}^k (-1)^{k-i} \binom{k-1}{i-1} [i=1] \\
+&=(-1)^{k+1} \\
+\end{aligned}</script><span id="more"></span>
 </li>
-</ul>
-<h3 id="P3723-AH2017-HNOI2017-礼物"><a href="#P3723-AH2017-HNOI2017-礼物" class="headerlink" title="P3723 [AH2017/HNOI2017]礼物"></a><a href="https://www.luogu.com.cn/problem/P3723">P3723 [AH2017/HNOI2017]礼物</a></h3><ul>
-<li><p>题意：</p>
-<p>给定两个序列 $a,b$ ，顺序可以移动，求 $\displaystyle{\sum_{i=1}^n \left(a_i-b_i+c \right)^2}$ 最小值</p>
-</li>
-<li><p>解：</p>
-<script type="math/tex; mode=display">原式=\underbrace{\sum_{i=1}^n a_i^2+\sum_{i=1}^n b_i^2}_{\rm [一]可以预处理} - \underbrace{\sum_{i=1}^n a_ib_i}_{\rm [二]见下面} + \underbrace{nc^2 + 2c\left(\sum_{i=1}^na_i - \sum_{i=1}^nb_i \right)}_{\rm [三]关于 c 的二次函数}</script><p>由题：要取 $\displaystyle{\sum_{i=1}^n a_ib_i}$ 的最大值</p>
-<p>考虑移动 $k$ 位时：</p>
-<p>先把环 $b$ 变为链 $\Rightarrow$ $b[i+n]=b[i]$</p>
-<p>转化为考虑 $\displaystyle{\sum_{i=1}^n a_ib_{i+k} }$</p>
-<p>翻转 $a$ 得 $\displaystyle{\sum_{i=1}^n b_{i+k} \cdot a_{n-i+1}}$ ， 符合卷积形式</p>
-<p>$\therefore \tt{FFT}\left(a_{reserved}\right),\tt{FFT}(b)$</p>
-<p>$\bf{Trick:}$ 由于 $c$ 是整数，用二次函数对称轴来算 [式三],比枚举 $-100\leq c \geq 100$ 更好</p>
-<p>算出$\left\lfloor -\frac{a}{b} \right\rfloor$ 和 $\left\lceil -\frac{a}{b} \right\rceil$ ， 取 $\min$</p>
-</li>
-</ul>
-<h3 id="P5488-差分与前缀和"><a href="#P5488-差分与前缀和" class="headerlink" title="P5488 差分与前缀和"></a><a href="https://www.luogu.com.cn/problem/P5488">P5488 差分与前缀和</a></h3><ul>
-<li><p>题意：</p>
-<p>求数列 $a$ 的 $k$ 维前缀和或差分</p>
-</li>
-<li><p>解：</p>
-<p>设 $\displaystyle{F(x)=\sum_{i=0}^\infty a_ix^i }$</p>
+<li><p>变式</p>
 <ul>
-<li><p>前缀和</p>
-<p>比较前缀和与卷积</p>
-<p>$\displaystyle{a_i=\sum_{j=1}^i a_j \qquad \And\And \qquad S_i=\sum_{j=1}^i A_j B_{i-j}}$</p>
-<p>发现需要卷一个系数都为 $1$ 的多项式 $G(x)$</p>
-<p>以样例为例：</p>
-<script type="math/tex; mode=display">\begin{aligned}
-&F(x)*G(x) \\
-&=(1+9x+2x^2+6x^3+0x^4+8x^6+7x^7) \cdot (1+x+x^2+x^3+x^4+ \cdots +x^{\infty}) \\
-&=1+\underbrace{9x^1 + \underbrace{2x^2 + \underbrace{6x^3 + \underbrace{0x^4 + \underbrace{8x^6 + \underbrace{7x^7}_{\rm 系数+8}}_{\rm 系数+0}}_{\rm 系数+6}}_{\rm 系数+2}}_{\rm 系数+9}}_{\rm 系数+1}
-\end{aligned}</script></li>
+<li><p>由 $\max \Rightarrow \max$</p>
+<script type="math/tex; mode=display">\min(S)=\sum_{T\subseteq S,\ T \neq \varnothing} (-1)^{|T|-1} \max(T)</script></li>
+<li><p>扩展 $\min\max容斥$</p>
+<script type="math/tex; mode=display">\text{kthmax}\{S\}=\sum_{T\subseteq S}(-1)^{|T|-k} \binom{|T|-1}{k-1} \min\{T\}</script><ul>
+<li><p>证明</p>
+<p>目的是找到容斥系数满足 $\text{kthmax}\{S\}=\sum_{T\subseteq S} f(|T|) \min\{T\}$</p>
+<p>考虑第 $x$ 大元素，受原式启发得到</p>
+<script type="math/tex; mode=display">\sum_{i=1}^t \binom{t-1}{i-1} f(i)=[t=k]</script><script type="math/tex; mode=display">\therefore 经反演易得 f(n)=(-1)^{n-k} \binom{n-1}{k-1}</script><p><a href="https://oi-wiki.org/math/inclusion-exclusion-principle/#min-max"><del>并不会用到的扩展minmax容斥</del></a></p>
+</li>
 </ul>
 </li>
 </ul>
-<pre><code>发现 $F(x)\cdot G(x)$ 所得多项式就是 $F$ 的一阶前缀和
-
-$\displaystyle&#123;\therefore 显然有 G(x)=\frac&#123;1&#125;&#123;1-x&#125;&#125;$
-
-$\displaystyle&#123;\therefore k阶前缀和 \Rightarrow
- F(x) \cdot \frac&#123;1&#125;&#123;\left(1-x \right)^k&#125;&#125;$
-
-$\displaystyle&#123;\frac&#123;1&#125;&#123;\left(1-x \right)^k&#125; 的第 n 项系数就是 \dbinom&#123;n+k-1&#125;&#123;k-1&#125; &#125;$
-
-$\displaystyle&#123;\therefore a_i=\sum_&#123;j=1&#125;^&#123;i-1&#125;\dbinom&#123;j+k-1&#125;&#123;k-1&#125; \cdot a_&#123;i-j&#125; &#125;$
-
-设组合数递推式 $g_i=\dbinom&#123;i+k-1&#125;&#123;k-1&#125;$
-
-$$\begin&#123;aligned&#125;
-\therefore
-g_i
-&amp;=\frac&#123;g_&#123;i-1&#125;\times (k+i-1)&#125;&#123;i&#125;\%p &amp;\text&#123;只会在计算中用到这个&#125;\\
-&amp;=\left(\frac&#123;g_&#123;i-1&#125; &#125;&#123;i&#125;\%p \right)\times ((k+i-1)\%p) \\
-&amp;=\left(\frac&#123;g_&#123;i-1&#125; &#125;&#123;i&#125;\%p \right)\times ((k\%p+i-1)\%p) \\ &amp;\text&#123;只是为了推 $k$ 可以取模&#125; \\
-\end&#123;aligned&#125;$$
-</code></pre><p>  $\therefore$ 可以对 $k$ 取模</p>
+</li>
+</ul>
+<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><ul>
+<li><p><a href="https://www.luogu.com.cn/problem/P3175">P3175 [HAOI2015]按位或</a></p>
 <ul>
-<li><p>差分</p>
-<p>易得 $F(x) \times (1-x)$ 所得的多项式就是差分后</p>
-<p>  同理得 $\left(1-x\right)^k$</p>
+<li><p>题意</p>
+<p>设 $\min\{S\}$ 表示二进制数 $S$ 中，第一个元素变为 $1$ 所需时间，$\max\{S\}$ 表示最后一个元素变为 $1$ 所需时间</p>
+<p>题为求 $E(\max\{U\})$ ,其中 $U$ 为全集，$U=2^n-1$</p>
+</li>
+<li><p>解</p>
+<p>由公式易知 $\displaystyle{E(\max\{U\})=\sum_{S\subseteq U}(-1)^{|S|-1} \ \sum E(\min\{S\})}$</p>
+<p>$\therefore$ 求 $\min$</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><a href="https://www.luogu.com.cn/problem/P5643">P5643 [PKUWC2018]随机游走</a></p>
+<ul>
+<li><p>题意:</p>
+<p>给出一棵树，从根节点出发每次等概率选择并走向一条相邻边</p>
+<p>多次询问中，每次给定点集 $S$ ,求从根出发直到 $S$ 中所有点至少经过一次的期望步数</p>
+</li>
+<li><p>解:</p>
+<p>由 $\min-\max$ 容斥得：$\displaystyle{E[ \max(S’) ]=\sum_{T’\in S’}(-1)^{|T’|+1}E[ \min(T’) ]}$</p>
+<p>易知 $E[ \max(S’) ]$ 表示走完集合 $S$ 期望步数， $E[ \min(S’) ]$ 表示第一次走到集合 $S$ 的期望步数</p>
+<p>设 $f_{S,x}$ 表示从 $x$ 出发，第一次访问到集合 $S$ 的期望步数</p>
+<ul>
+<li><p>考虑预处理所有 $f_{S,x}$</p>
+<p>设 $f_x$ 为点 $x$ 到 $S$ 的最早期望时间</p>
+<p>对于 $x\in S$ 有 $f_x=0$</p>
+<p>对于 $x\not\in S$ 有 $\displaystyle{f_x=1+\frac{1}{\deg x}\sum_{(x,y)\in E} f_y }$</p>
+<p>这里需要 $O(n^3)$ 的高斯消元，考虑到特殊的树形结构，以起点 $root$ 为根，用一次函数分离父子关系</p>
+<p>即设 $\displaystyle{f_x=f_{fa_x} \times A_x + B_x }$</p>
+<p>$\therefore$ 对于 $x \not\in S$ 有 $\displaystyle{f_x=1+\frac{1}{\deg x} \left(f_{fa_x} + \sum_{y\in son_x}(A_y\times f_x + B_y) \right) }$</p>
+<p>化简得</p>
 <script type="math/tex; mode=display">\begin{aligned}
-  B
-  &=F(x) \cdot \left(1-x\right)^k \\
-  &=F(x) \cdot \sum_{i=0}^{\infty} \dbinom{k}{i} \left(-x \right)^i \\
-&=F(x) \cdot \sum_{i=0}^{\infty} \left(-1 \right)^i \cdot \dbinom{k}{i} x^i \\
-  \end{aligned}</script><p>  看组合数递推式: $\dbinom{k}{i}$</p>
-<script type="math/tex; mode=display">\dbinom{k}{0}=1</script><script type="math/tex; mode=display">\dbinom{k}{1}=\frac{k!}{(k-1)!}=k</script><script type="math/tex; mode=display">\dbinom{k}{2}=\frac{k!}{2!(k-2)!}=\frac{k(k-1)}{2}</script><script type="math/tex; mode=display">\dbinom{k}{3}=\frac{k!}{3!(k-3)!}=\frac{k(k-1)(k-2)}{2\times 3}</script><script type="math/tex; mode=display">\dbinom{k}{i}=\dbinom{k}{i-1} \cdot \frac{k-i+1}{i} \qquad\text{用这个递推}</script></li>
+
+​      A_x&=\frac{1}{\deg x-\sum_{y\in son_x}A_x} \\\
+
+​      B_x&=\frac{\deg x+\sum_{y\in son_x}B_x}{\deg x-\sum_{y\in son_x}A_x} \\
+
+ \end{aligned}</script><p>由此，对于给定的询问点集 $S$ ,答案就是 $\sum_{T\in S} (-1)^{|T|+1} f_{T,root}$</p>
+</li>
+<li><p>再考虑优化询问</p>
+<p>由 $n\leq 18$ 提示可以状压点集，并预处理对于每个点集 $S$ 的 $\sum_{T\in S}(-1) ^{|T|+1} f_{T,root}$</p>
+<p>那么预处理高维前缀和即可</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 ]]></content>
       <categories>
         <category>笔记</category>
       </categories>
       <tags>
-        <tag>多项式</tag>
+        <tag>minmax</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>博弈论</title>
+    <url>/2021/02/04/%E5%8D%9A%E5%BC%88%E8%AE%BA/</url>
+    <content><![CDATA[<h1 id="博弈论游戏及其的变形"><a href="#博弈论游戏及其的变形" class="headerlink" title="博弈论游戏及其的变形"></a>博弈论游戏及其的变形</h1><h2 id="请熟背以下结论（因为没看懂推导）"><a href="#请熟背以下结论（因为没看懂推导）" class="headerlink" title="请熟背以下结论（因为没看懂推导）"></a>请熟背以下结论（因为没看懂推导）</h2><hr>
+<h2 id="巴什博弈"><a href="#巴什博弈" class="headerlink" title="巴什博弈"></a>巴什博弈</h2><h3 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h3><ul>
+<li>只有一堆 $n$ 个物品，两个人轮流取</li>
+<li>每次至少取一个，最多取 $m$ 个。</li>
+<li>最后取光者得胜</li>
+</ul>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>$n \mod (m+1)$ 为 $0$ 先手必败否则必胜</p>
+<hr>
+<h2 id="威佐夫博弈"><a href="#威佐夫博弈" class="headerlink" title="威佐夫博弈"></a>威佐夫博弈</h2><h3 id="规则-1"><a href="#规则-1" class="headerlink" title="规则"></a>规则</h3><ul>
+<li>有两堆各若干个物品</li>
+<li>两个人轮流从某一堆取至少一个或同时从两堆中取同样多的物品</li>
+<li>最后取光者得胜</li>
+</ul>
+<h3 id="结论-1"><a href="#结论-1" class="headerlink" title="结论"></a>结论</h3><p>先手必败态的两堆石子之差依次递增，且每个自然数仅出现一次</p>
+<p>如果局势为 $(a,b)$，记 $k=(a−b)$，</p>
+<p>若 $a=\frac{1+\sqrt{5}}{2}*k$ （这里是等于符号）</p>
+<p>则为必胜局势</p>
+<hr>
+<h2 id="尼姆博弈"><a href="#尼姆博弈" class="headerlink" title="尼姆博弈"></a>尼姆博弈</h2><h3 id="规-则"><a href="#规-则" class="headerlink" title="规 则"></a>规 则</h3><ul>
+<li>$n$ 堆石子</li>
+<li>两人轮流在任意一堆中取任意石子，不能不取，最多取完，</li>
+<li>取到最后一颗石子者胜</li>
+</ul>
+<h3 id="结论-2"><a href="#结论-2" class="headerlink" title="结论"></a>结论</h3><p>$n$ 堆石子数量异或和为 $0$ 则先手必败,否则必胜</p>
+<hr>
+<h2 id="anti-SG与SJ（贾志豪）定理"><a href="#anti-SG与SJ（贾志豪）定理" class="headerlink" title="anti-SG与SJ（贾志豪）定理"></a>anti-SG与SJ（贾志豪）定理</h2><h3 id="规则-2"><a href="#规则-2" class="headerlink" title="规则"></a>规则</h3><ul>
+<li><p>桌子上有 $n$ 堆石子，游戏者轮流取石子。</p>
+</li>
+<li><p>每次只能从一堆中取出任意数目的石子，但不能不取。</p>
+</li>
+<li><p>取走最后一个石子者败。</p>
+</li>
+</ul>
+<h3 id="结论-3"><a href="#结论-3" class="headerlink" title="结论"></a>结论</h3><p>先手必胜当且仅当：</p>
+<ol>
+<li><p>所有堆的石子数都为 $1$ 且游戏的 SG 值为 $0$；</p>
+</li>
+<li><p>有些堆的石子数大于 $1$ 且游戏的 SG 值不为 $0$。</p>
+</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line"><span class="keyword">while</span>(n--)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;tmp);</span><br><span class="line">        <span class="keyword">if</span>(tmp&gt;=<span class="number">2</span>) flag=<span class="number">1</span>;</span><br><span class="line">        ans^=tmp;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">if</span>((ans&amp;&amp;flag) || (!ans&amp;&amp;!flag))</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;John&quot;</span>);</span><br><span class="line"><span class="keyword">else</span> <span class="built_in">puts</span>(<span class="string">&quot;Brother&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><p>P4279 [SHOI2008]小约翰的游戏</p>
+<p>UVA1566 John(双倍经验)</p>
+<hr>
+<h2 id="multi-SG"><a href="#multi-SG" class="headerlink" title="multi-SG"></a>multi-SG</h2><h3 id="规则-3"><a href="#规则-3" class="headerlink" title="规则"></a>规则</h3><ul>
+<li>有 $n$ 堆石子</li>
+<li>可以从任意一堆石子中拿任意石子(不能不拿)</li>
+<li>或者把一堆数量不少于 $2$ 石子分为两堆不为空的石子。</li>
+</ul>
+<h3 id="结论-4"><a href="#结论-4" class="headerlink" title="结论"></a>结论</h3><p>$SG\left(x\right) =<br>\begin{cases}<br>x-1 &amp; ( x \mod 4=0)<br>\\ x &amp; ( x \mod 4=1 \lor 2)<br>\\ x+1 &amp; ( x \mod 4=3)<br>\end{cases}$</p>
+<p>注：$1 \lor 2$ -&gt; $1$ || $2$</p>
+<p><del>对这个结论我有绝佳的证明，但我要去玩DDLC了</del></p>
+<p><del>Update:更好看且对齐的Latex</del></p>
+<h3 id="例题-1"><a href="#例题-1" class="headerlink" title="例题"></a>例题</h3><p>P3185 [HNOI2007]分裂游戏 <del>(关系并不大的样子)</del></p>
+<p>P3235 [HNOI2014]江南乐 (未做qwq) (现在做过了qwq)</p>
+<hr>
+<h2 id="阶梯SG"><a href="#阶梯SG" class="headerlink" title="阶梯SG"></a>阶梯SG</h2><h3 id="规则-4"><a href="#规则-4" class="headerlink" title="规则"></a>规则</h3><ul>
+<li>有若干级阶梯，每级阶梯上有一个单个游戏</li>
+<li>每次可以对一个阶梯操作并将操作中失去的东西丢到下一级阶梯上。</li>
+</ul>
+<h3 id="应用范围"><a href="#应用范围" class="headerlink" title="应用范围"></a>应用范围</h3><p>对于单个游戏状态，若操作集合可逆（即上一级丢给这级的东西在这级可以再丢掉），则可以应用。</p>
+<h3 id="结论-5"><a href="#结论-5" class="headerlink" title="结论"></a>结论</h3><p>令最低级阶梯为第 $0$ 级，对奇数级阶梯上的游戏 SG 值取异或和，为 $0$ 先手必败，否则先手必胜。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">rei sg=<span class="number">0</span><span class="comment">/*本行sg值*/</span>,tot=<span class="number">0</span><span class="comment">/*连续石头的个数*/</span>;</span><br><span class="line"><span class="built_in">memset</span>(st,<span class="number">0</span>,<span class="keyword">sizeof</span> st);</span><br><span class="line"></span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;m);</span><br><span class="line">rei C=<span class="number">20</span>-m+<span class="number">1</span>;<span class="comment">//空格个数</span></span><br><span class="line"><span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=m;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;x),st[x]=<span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=<span class="number">20</span>;++i)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!st[i])&#123;<span class="comment">//石头不再连续</span></span><br><span class="line">            <span class="keyword">if</span>((--C)&amp;<span class="number">1</span>) sg^=tot;<span class="comment">//奇数行</span></span><br><span class="line">            tot=<span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            ++tot;</span><br><span class="line">&#125;</span><br><span class="line">ans^=sg;</span><br></pre></td></tr></table></figure>
+<h3 id="例题-2"><a href="#例题-2" class="headerlink" title="例题"></a>例题</h3><p>P2575 高手过招</p>
+<p>P3480 [POI2009]KAM-Pebbles 需要一些转化技巧</p>
+<hr>
+<h2 id="k-SG"><a href="#k-SG" class="headerlink" title="k-SG"></a>k-SG</h2><h3 id="规则-5"><a href="#规则-5" class="headerlink" title="规则"></a>规则</h3><ul>
+<li>有 $n$ 堆石子</li>
+<li>每次可以从不超过 $k$ 堆中按规定规则各取一些石子</li>
+<li>不能操作者败。</li>
+</ul>
+<h3 id="结论-6"><a href="#结论-6" class="headerlink" title="结论"></a>结论</h3><p>将每堆石子的 SG 值设为 $s_i$ 。</p>
+<p>将所有 $s_i$ 二进制第 $j$ 位上的数相加得到 $r_1,r_2,\dots,r_J$（ $J$ 为所有 $s_i$ 二进制最高位的位数）</p>
+<p>如果 $\forall i \in [1,J]$ 有 $r_i \equiv 0\pmod{k+1}$ ，那么先手必败；否则先手必胜。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;=<span class="number">16</span>;++i)</span><br><span class="line">    <span class="keyword">for</span>(rei j=<span class="number">0</span>;j&lt;=n-k;++j)<span class="comment">//能使用的最多石子</span></span><br><span class="line">        <span class="keyword">for</span>(rei x=<span class="number">0</span>; (<span class="number">1ll</span>&lt;&lt;i)*x*(d+<span class="number">1</span>) &lt;= n-k <span class="comment">/*所取的石子不多于题目限制*/</span>&amp;&amp;<span class="comment">/*所取的石子不多于总堆数 -&gt; 每堆每次只能减1*/</span> x*(d+<span class="number">1</span>) &lt;= k/<span class="number">2</span>; ++x)</span><br><span class="line">        <span class="comment">//从k/2个堆中选出x*(d+1)个，使其石子数二进制在i位为1</span></span><br><span class="line">        <span class="comment">//贡献的方案数为C[k/2][x*(d+1)]</span></span><br><span class="line">            dp[i+<span class="number">1</span>][ j+ (<span class="number">1ll</span>&lt;&lt;i)*x*(d+<span class="number">1</span>) ] = (dp[i+<span class="number">1</span>][ j+ (<span class="number">1ll</span>&lt;&lt;i)*x*(d+<span class="number">1</span>) ] + <span class="number">1ll</span>*dp[i][j]*C[k/<span class="number">2</span>][x*(d+<span class="number">1</span>)]%mod )%mod;</span><br></pre></td></tr></table></figure>
+<h3 id="例题-3"><a href="#例题-3" class="headerlink" title="例题"></a>例题</h3><p>P2490 [SDOI2011]黑白棋</p>
+<hr>
+<h2 id="翻棋子游戏"><a href="#翻棋子游戏" class="headerlink" title="翻棋子游戏"></a>翻棋子游戏</h2><h3 id="规则-6"><a href="#规则-6" class="headerlink" title="规则"></a>规则</h3><ul>
+<li>在一些棋子中，有的正面朝上，有的反面朝上</li>
+<li>每次操作可以翻其中一颗正面朝上的棋子，会带动一些其他棋子的组合翻面。</li>
+</ul>
+<h3 id="结论-7"><a href="#结论-7" class="headerlink" title="结论"></a>结论</h3><p>局面的 SG 值为局面中每个正面朝上的棋子单一存在时的 SG 值的异或和。</p>
+<p>具体问题具体分析吧qwq</p>
+<p>将 每颗棋子翻面后可能影响的棋子组成的游戏 作为一个后继状态，<br>对每颗棋子求 SG 值，然后求所有正面朝上的棋子 SG 值的异或和，为 $0$ 先手必败，否则先手必胜</p>
+<h3 id="例题-4"><a href="#例题-4" class="headerlink" title="例题"></a>例题</h3><p>P3179 [HAOI2015]数组游戏 （需要数论芝士，未做qwq）</p>
+<p>P4077 [SDOI2016]硬币游戏</p>
+<hr>
+<h2 id="斐波那契博弈"><a href="#斐波那契博弈" class="headerlink" title="斐波那契博弈"></a>斐波那契博弈</h2><h3 id="规则-7"><a href="#规则-7" class="headerlink" title="规则"></a>规则</h3><ul>
+<li><p>两人互相取一堆石子，取完者胜</p>
+</li>
+<li><p>第一次不能取完,至少取 $1$ 颗</p>
+</li>
+<li><p>从第二次开始,每个人取的石子数至少为1,至多为对手刚取的石子数的 $2$ 倍。</p>
+</li>
+</ul>
+<h3 id="结论-8"><a href="#结论-8" class="headerlink" title="结论"></a>结论</h3><p>当 $n$ 为 $\text{fibonacci}$ 数时，先手必败</p>
+<h3 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h3><ul>
+<li><p>先考虑 $n$ 为斐波那契数 $f_i$</p>
+<ul>
+<li><p>当 $i=2,n=2$ 显然有 先手必败</p>
+</li>
+<li><p>设当 $i&lt;=k$ 时结论成立</p>
+<p>当 $i=k+1 , f_i=f_k+f_{k-1}$ ,一定可以将这堆石子看成两堆：$k-1,k$，因为 $2\times f_{k-1}&gt;f_k$ ,若 $\geq f_{k-1}$ 则后手可以直接取完 $f_k$ ； 若先手第一次取得石子 $&lt;f_{k-1}$，则后手一定最后取，考虑后手最多取石子 $x$ 个：</p>
+<p>那么先手应取尽可能多的石子，来使后手取更多的石子，再在后手取完 $堆k-1$ 后，能使先手取完 $堆k$</p>
+<p>那么让先手取 $y\geq \frac{f_{k-1}}{3}$，此时后手可以直接取完 $堆k-1$，$\therefore x=f_{k-1}-y\leq \frac{2}{3}\times f_{k-1}$</p>
+<p>易知 $\frac{2}{3}\times f_{k-1}&lt;\frac{1}{2}\times f_k$ ,即，后手取完 $堆k-1$ 后，先手不能一次取完 $堆k$，则 $i=k+1$ 时，结论仍成立</p>
+</li>
+</ul>
+</li>
+<li><p>再考虑 $n$ 不为斐波那契数</p>
+<ul>
+<li><p>齐肯多夫定理：</p>
+<p>任何正整数可以表示为若干个<strong><em>\</em>不连续**</strong>的 $\text{fibonacci}$ 数之和 <strong><em>\</em>（优先选取最大的）**</strong></p>
+</li>
+</ul>
+<p>由于对每次取石子的最少数量没有限制，所以可以将 $n$ 按照以上定理拆成多组，每组是一个斐波那契数，并把该拿的一堆石子转化为拿多组石子</p>
+<p>由于所取的数不连续，所以有 $f_{i}&gt;2\times f_{i-1}$</p>
+</li>
+</ul>
+<p>​      令先手先取完 $i$ 最小的 $f_i$ ,此时后手不能取完 $f_{i+1} 这一堆$，相当于面临子游戏，且为必败态(有 $f_{i+1}$ 个，且后手先取)，则先手必胜</p>
+<p>​       以此类推，先手必胜</p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>博弈论</tag>
       </tags>
   </entry>
   <entry>
@@ -982,6 +851,34 @@ F(z)G(z)
       </categories>
       <tags>
         <tag>生成函数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树链剖分</title>
+    <url>/2021/07/01/%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86/</url>
+    <content><![CDATA[<h2 id="关于长链剖分中指针的理解"><a href="#关于长链剖分中指针的理解" class="headerlink" title="关于长链剖分中指针的理解"></a>关于长链剖分中指针的理解</h2><p>与指针有关的变量：$\ast dp[N],tmp[N]$,$\ast pos$</p>
+<hr>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">pos=tmp;<span class="comment">//将pos指向tmp空间</span></span><br><span class="line">dp[<span class="number">1</span>]=pos, pos+=height[<span class="number">1</span>];</span><br><span class="line">   <span class="comment">//改变后pos加上dp[1]所需的长度，防止内存冲突</span></span><br></pre></td></tr></table></figure>
+<p>可以把 $*dp[1]$ 看成指向 $tmp$ 上一段长为 $height[1]$ 的指针</p>
+<p>那么指针 $dp[1]$ 与 $tmp[\ 0,…height[1]-1 \ ]$ 共同构成了 $dp[1][\ 0,…,height[1]-1\ ]$</p>
+<hr>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">dp[to]=pos, pos+=len;</span><br></pre></td></tr></table></figure>
+<p>与上面相同，在进入 $dfs2$ 前开好 $dp[to]$ 所需的空间，即以 $to$ 为起点的链，其长度为 $len$</p>
+<p>而对于链上其他点(即点 $to$ 的长儿子，其长儿子的长儿子，…)，不会进入当前行，即不需开新空间</p>
+<hr>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">dp[son[cur]] = dp[cur] + <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<p>即继承长儿子的答案: $dp[i][j]=dp[lson][j-1]$</p>
+<p>数组指针形式：$dp[\ i\ ]=dp[\ lson[\ i\ ]\ ]-1$</p>
+<hr>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">dp[cur][j+<span class="number">1</span>] += dp[to][j];</span><br></pre></td></tr></table></figure>
+<p>暴力合并轻儿子的值</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/utbnpeqk.png" alt=""></p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>树链剖分</tag>
       </tags>
   </entry>
   <entry>
@@ -1137,6 +1034,141 @@ F(z)G(z)
       </tags>
   </entry>
   <entry>
+    <title>确实不会的多项式</title>
+    <url>/2021/05/05/%E7%A1%AE%E5%AE%9E%E4%B8%8D%E4%BC%9A%E7%9A%84%E5%A4%9A%E9%A1%B9%E5%BC%8F/</url>
+    <content><![CDATA[<h2 id="写总结的地方"><a href="#写总结的地方" class="headerlink" title="写总结的地方"></a>写总结的地方</h2><ul>
+<li>将式子转化为卷积形式: $\displaystyle{\sum_{i=1}^n A_i B_{n-i}}$</li>
+</ul>
+<h3 id="P3338-ZJOI2014-力"><a href="#P3338-ZJOI2014-力" class="headerlink" title="P3338 [ZJOI2014]力"></a><a href="https://www.luogu.com.cn/problem/P3338">P3338 [ZJOI2014]力</a></h3><ul>
+<li><p>题意：<br>求 $E_j=\displaystyle{\sum_{i=1}^{j-1}\frac{q_j}{\left(i-j\right)^2} - \sum_{i=j+1}^n \frac{q_j}{\left(i-j\right)^2}}$</p>
+<p>$q_i被消掉了qwq$</p>
+</li>
+<li><p>解：</p>
+<ul>
+<li><p>先简化数据范围</p>
+<script type="math/tex; mode=display">\sum_{i=1}^{j-1} \Rightarrow \sum_{i=0}^{j}</script></li>
+<li><p>化成能算的样子</p>
+<p>设 $f[i]=q_j \ , f’[i]=f[n-i] \ , \ g[i]=\frac{1}{i^2}$</p>
+<script type="math/tex; mode=display">\begin{aligned}
+原式
+&=\underbrace{\sum_{i=1}^j f[i] \cdot g[j-i]}_{\rm 已经是卷积形式} - \sum_{i=j}^n f[i] \cdot g[i-j] \\
+&=\sum_{i=1}^j f[i] \cdot g[j-i] - \underbrace{\sum_{i=0}^{n-j} f[i+j] \cdot g[i]}_{\rm 然而还不能算} \\
+&设 t=n-j \\
+&=\sum_{i=1}^j f[i] \cdot g[j-i] - \sum_{i=0}^t f'[t-i] \cdot g[i] \\
+\end{aligned}</script></li>
+</ul>
+<p>$\bf{Trick:}$ <strong>翻转数列</strong> </p>
+<p>&amp;&amp; 把函数设成数组以看起来更好算</p>
+</li>
+</ul>
+<h3 id="P3723-AH2017-HNOI2017-礼物"><a href="#P3723-AH2017-HNOI2017-礼物" class="headerlink" title="P3723 [AH2017/HNOI2017]礼物"></a><a href="https://www.luogu.com.cn/problem/P3723">P3723 [AH2017/HNOI2017]礼物</a></h3><ul>
+<li><p>题意：</p>
+<p>给定两个序列 $a,b$ ，顺序可以移动，求 $\displaystyle{\sum_{i=1}^n \left(a_i-b_i+c \right)^2}$ 最小值</p>
+</li>
+<li><p>解：</p>
+<script type="math/tex; mode=display">原式=\underbrace{\sum_{i=1}^n a_i^2+\sum_{i=1}^n b_i^2}_{\rm [一]可以预处理} - \underbrace{\sum_{i=1}^n a_ib_i}_{\rm [二]见下面} + \underbrace{nc^2 + 2c\left(\sum_{i=1}^na_i - \sum_{i=1}^nb_i \right)}_{\rm [三]关于 c 的二次函数}</script><p>由题：要取 $\displaystyle{\sum_{i=1}^n a_ib_i}$ 的最大值</p>
+<p>考虑移动 $k$ 位时：</p>
+<p>先把环 $b$ 变为链 $\Rightarrow$ $b[i+n]=b[i]$</p>
+<p>转化为考虑 $\displaystyle{\sum_{i=1}^n a_ib_{i+k} }$</p>
+<p>翻转 $a$ 得 $\displaystyle{\sum_{i=1}^n b_{i+k} \cdot a_{n-i+1}}$ ， 符合卷积形式</p>
+<p>$\therefore \tt{FFT}\left(a_{reserved}\right),\tt{FFT}(b)$</p>
+<p>$\bf{Trick:}$ 由于 $c$ 是整数，用二次函数对称轴来算 [式三],比枚举 $-100\leq c \geq 100$ 更好</p>
+<p>算出$\left\lfloor -\frac{a}{b} \right\rfloor$ 和 $\left\lceil -\frac{a}{b} \right\rceil$ ， 取 $\min$</p>
+</li>
+</ul>
+<h3 id="P5488-差分与前缀和"><a href="#P5488-差分与前缀和" class="headerlink" title="P5488 差分与前缀和"></a><a href="https://www.luogu.com.cn/problem/P5488">P5488 差分与前缀和</a></h3><ul>
+<li><p>题意：</p>
+<p>求数列 $a$ 的 $k$ 维前缀和或差分</p>
+</li>
+<li><p>解：</p>
+<p>设 $\displaystyle{F(x)=\sum_{i=0}^\infty a_ix^i }$</p>
+<ul>
+<li><p>前缀和</p>
+<p>比较前缀和与卷积</p>
+<p>$\displaystyle{a_i=\sum_{j=1}^i a_j \qquad \And\And \qquad S_i=\sum_{j=1}^i A_j B_{i-j}}$</p>
+<p>发现需要卷一个系数都为 $1$ 的多项式 $G(x)$</p>
+<p>以样例为例：</p>
+<script type="math/tex; mode=display">\begin{aligned}
+&F(x)*G(x) \\
+&=(1+9x+2x^2+6x^3+0x^4+8x^6+7x^7) \cdot (1+x+x^2+x^3+x^4+ \cdots +x^{\infty}) \\
+&=1+\underbrace{9x^1 + \underbrace{2x^2 + \underbrace{6x^3 + \underbrace{0x^4 + \underbrace{8x^6 + \underbrace{7x^7}_{\rm 系数+8}}_{\rm 系数+0}}_{\rm 系数+6}}_{\rm 系数+2}}_{\rm 系数+9}}_{\rm 系数+1}
+\end{aligned}</script></li>
+</ul>
+</li>
+</ul>
+<pre><code>发现 $F(x)\cdot G(x)$ 所得多项式就是 $F$ 的一阶前缀和
+
+$\displaystyle&#123;\therefore 显然有 G(x)=\frac&#123;1&#125;&#123;1-x&#125;&#125;$
+
+$\displaystyle&#123;\therefore k阶前缀和 \Rightarrow
+ F(x) \cdot \frac&#123;1&#125;&#123;\left(1-x \right)^k&#125;&#125;$
+
+$\displaystyle&#123;\frac&#123;1&#125;&#123;\left(1-x \right)^k&#125; 的第 n 项系数就是 \dbinom&#123;n+k-1&#125;&#123;k-1&#125; &#125;$
+
+$\displaystyle&#123;\therefore a_i=\sum_&#123;j=1&#125;^&#123;i-1&#125;\dbinom&#123;j+k-1&#125;&#123;k-1&#125; \cdot a_&#123;i-j&#125; &#125;$
+
+设组合数递推式 $g_i=\dbinom&#123;i+k-1&#125;&#123;k-1&#125;$
+
+$$\begin&#123;aligned&#125;
+\therefore
+g_i
+&amp;=\frac&#123;g_&#123;i-1&#125;\times (k+i-1)&#125;&#123;i&#125;\%p &amp;\text&#123;只会在计算中用到这个&#125;\\
+&amp;=\left(\frac&#123;g_&#123;i-1&#125; &#125;&#123;i&#125;\%p \right)\times ((k+i-1)\%p) \\
+&amp;=\left(\frac&#123;g_&#123;i-1&#125; &#125;&#123;i&#125;\%p \right)\times ((k\%p+i-1)\%p) \\ &amp;\text&#123;只是为了推 $k$ 可以取模&#125; \\
+\end&#123;aligned&#125;$$
+</code></pre><p>  $\therefore$ 可以对 $k$ 取模</p>
+<ul>
+<li><p>差分</p>
+<p>易得 $F(x) \times (1-x)$ 所得的多项式就是差分后</p>
+<p>  同理得 $\left(1-x\right)^k$</p>
+<script type="math/tex; mode=display">\begin{aligned}
+  B
+  &=F(x) \cdot \left(1-x\right)^k \\
+  &=F(x) \cdot \sum_{i=0}^{\infty} \dbinom{k}{i} \left(-x \right)^i \\
+&=F(x) \cdot \sum_{i=0}^{\infty} \left(-1 \right)^i \cdot \dbinom{k}{i} x^i \\
+  \end{aligned}</script><p>  看组合数递推式: $\dbinom{k}{i}$</p>
+<script type="math/tex; mode=display">\dbinom{k}{0}=1</script><script type="math/tex; mode=display">\dbinom{k}{1}=\frac{k!}{(k-1)!}=k</script><script type="math/tex; mode=display">\dbinom{k}{2}=\frac{k!}{2!(k-2)!}=\frac{k(k-1)}{2}</script><script type="math/tex; mode=display">\dbinom{k}{3}=\frac{k!}{3!(k-3)!}=\frac{k(k-1)(k-2)}{2\times 3}</script><script type="math/tex; mode=display">\dbinom{k}{i}=\dbinom{k}{i-1} \cdot \frac{k-i+1}{i} \qquad\text{用这个递推}</script></li>
+</ul>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>多项式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>超几何分布中的期望</title>
+    <url>/2021/07/18/%E8%B6%85%E5%87%A0%E4%BD%95%E5%88%86%E5%B8%83%E4%B8%AD%E7%9A%84%E6%9C%9F%E6%9C%9B/</url>
+    <content><![CDATA[<h2 id="超几何分布"><a href="#超几何分布" class="headerlink" title="超几何分布"></a>超几何分布</h2><h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3><p>对于 $N=N_1+N_2$ 个外表相同的物品，从中抽取 $n$ 个物品，每个物品抽取等概率随机</p>
+<hr>
+<h3 id="n-个中有-x-个-N-1-类物品的概率"><a href="#n-个中有-x-个-N-1-类物品的概率" class="headerlink" title="$n$ 个中有 $x$ 个 $N_1$ 类物品的概率"></a>$n$ 个中有 $x$ 个 $N_1$ 类物品的概率</h3><p>首先，若 $x&gt;N_1$ 概率为 $0$ ，故不需考虑</p>
+<p>对于所取的 $n$ 个数，若满足条件：</p>
+<p>- 从 $N_1$ 个中抽 $x$ 个 ， 有 $\displaystyle{\binom{N_1}{x}}$ 种</p>
+<p>- 从 $N_2$ 个中抽 $n-x$ 个 ， 有 $\displaystyle{\binom{N_2}{n-x}}$ 种</p>
+<p>所以总合法取法有 $\displaystyle{\binom{N_1}{x} \binom{N_2}{n-x}}$ 种 ， 而总取法有 $\displaystyle{\binom{N}{n}}$</p>
+<script type="math/tex; mode=display">\therefore P(X=x)= \frac{\binom{N_1}{x} \binom{N_2}{n-x}}{\binom{N}{n}}</script><hr>
+<h3 id="抽出-x-个-N-1-的期望"><a href="#抽出-x-个-N-1-的期望" class="headerlink" title="抽出 $x$ 个 $N_1$ 的期望"></a>抽出 $x$ 个 $N_1$ 的期望</h3><script type="math/tex; mode=display">E(x)=\sum_{x=0}^{N_1} x\times P(X=x) =\sum_{x=1}^{N_1} x\times P(X=x)</script><p>由组合数公式 $\displaystyle{\binom{N}{n}=\frac{N}{n} \binom{N-1}{n-1}}$ 得</p>
+<script type="math/tex; mode=display">\begin{aligned}原式
+
+&=\sum_{x=1}^{N_1} x\times \frac{ \frac{N_1}{x} \binom{N_1-1}{x-1} \binom{N_2}{n-x} }{ \frac{N}{n} \binom{N-1}{n-1}} \\
+
+&=\frac{n\times N_1}{N} \sum_{x=1}^{N_1} \frac{ \binom{N_1-1}{x-1} \binom{N_2}{n-x}}{ \binom{N-1}{n-1}} \\
+
+&=\frac{n\times N_1}{N} \sum_{x=1}^{N_1} \frac{ \binom{N_1-1}{x-1} \binom{N_2}{(n-1)-(x-1)}}{ \binom{N-1}{n-1}} \\
+
+&=\frac{n\times N_1}{N} \sum_{x=1}^{N_1} P(X=x-1)
+
+\end{aligned}</script><script type="math/tex; mode=display">\because \sum_{x=1}^{N_1} P(X=x-1) 的含义为：n 中有 x-1 个 N_1 的概率和</script><script type="math/tex; mode=display">\therefore \sum_{x=1}^{N_1} P(X=x-1)=1</script><script type="math/tex; mode=display">\therefore 原式=\frac{n\times N_1}{N}</script>]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>期望</tag>
+        <tag>组合数学</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>迭代加深</title>
     <url>/2021/04/07/%E8%BF%AD%E4%BB%A3%E5%8A%A0%E6%B7%B1/</url>
     <content><![CDATA[<h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3><ul>
@@ -1221,37 +1253,6 @@ F(z)G(z)
       </categories>
       <tags>
         <tag>迭代加深</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>超几何分布中的期望</title>
-    <url>/2021/07/18/%E8%B6%85%E5%87%A0%E4%BD%95%E5%88%86%E5%B8%83%E4%B8%AD%E7%9A%84%E6%9C%9F%E6%9C%9B/</url>
-    <content><![CDATA[<h2 id="超几何分布"><a href="#超几何分布" class="headerlink" title="超几何分布"></a>超几何分布</h2><h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3><p>对于 $N=N_1+N_2$ 个外表相同的物品，从中抽取 $n$ 个物品，每个物品抽取等概率随机</p>
-<hr>
-<h3 id="n-个中有-x-个-N-1-类物品的概率"><a href="#n-个中有-x-个-N-1-类物品的概率" class="headerlink" title="$n$ 个中有 $x$ 个 $N_1$ 类物品的概率"></a>$n$ 个中有 $x$ 个 $N_1$ 类物品的概率</h3><p>首先，若 $x&gt;N_1$ 概率为 $0$ ，故不需考虑</p>
-<p>对于所取的 $n$ 个数，若满足条件：</p>
-<p>- 从 $N_1$ 个中抽 $x$ 个 ， 有 $\displaystyle{\binom{N_1}{x}}$ 种</p>
-<p>- 从 $N_2$ 个中抽 $n-x$ 个 ， 有 $\displaystyle{\binom{N_2}{n-x}}$ 种</p>
-<p>所以总合法取法有 $\displaystyle{\binom{N_1}{x} \binom{N_2}{n-x}}$ 种 ， 而总取法有 $\displaystyle{\binom{N}{n}}$</p>
-<script type="math/tex; mode=display">\therefore P(X=x)= \frac{\binom{N_1}{x} \binom{N_2}{n-x}}{\binom{N}{n}}</script><hr>
-<h3 id="抽出-x-个-N-1-的期望"><a href="#抽出-x-个-N-1-的期望" class="headerlink" title="抽出 $x$ 个 $N_1$ 的期望"></a>抽出 $x$ 个 $N_1$ 的期望</h3><script type="math/tex; mode=display">E(x)=\sum_{x=0}^{N_1} x\times P(X=x) =\sum_{x=1}^{N_1} x\times P(X=x)</script><p>由组合数公式 $\displaystyle{\binom{N}{n}=\frac{N}{n} \binom{N-1}{n-1}}$ 得</p>
-<script type="math/tex; mode=display">\begin{aligned}原式
-
-&=\sum_{x=1}^{N_1} x\times \frac{ \frac{N_1}{x} \binom{N_1-1}{x-1} \binom{N_2}{n-x} }{ \frac{N}{n} \binom{N-1}{n-1}} \\
-
-&=\frac{n\times N_1}{N} \sum_{x=1}^{N_1} \frac{ \binom{N_1-1}{x-1} \binom{N_2}{n-x}}{ \binom{N-1}{n-1}} \\
-
-&=\frac{n\times N_1}{N} \sum_{x=1}^{N_1} \frac{ \binom{N_1-1}{x-1} \binom{N_2}{(n-1)-(x-1)}}{ \binom{N-1}{n-1}} \\
-
-&=\frac{n\times N_1}{N} \sum_{x=1}^{N_1} P(X=x-1)
-
-\end{aligned}</script><script type="math/tex; mode=display">\because \sum_{x=1}^{N_1} P(X=x-1) 的含义为：n 中有 x-1 个 N_1 的概率和</script><script type="math/tex; mode=display">\therefore \sum_{x=1}^{N_1} P(X=x-1)=1</script><script type="math/tex; mode=display">\therefore 原式=\frac{n\times N_1}{N}</script>]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>期望</tag>
-        <tag>组合数学</tag>
       </tags>
   </entry>
   <entry>
