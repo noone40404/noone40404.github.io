@@ -6,7 +6,7 @@
   <link href="http://noone40404.github.io/atom.xml" rel="self"/>
   
   <link href="http://noone40404.github.io/"/>
-  <updated>2021-08-04T12:53:19.540Z</updated>
+  <updated>2021-08-05T12:46:28.634Z</updated>
   <id>http://noone40404.github.io/</id>
   
   <author>
@@ -17,11 +17,34 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>50801202-AGC003</title>
+    <link href="http://noone40404.github.io/2021/08/05/AGC003/"/>
+    <id>http://noone40404.github.io/2021/08/05/AGC003/</id>
+    <published>2021-08-05T12:39:54.000Z</published>
+    <updated>2021-08-05T12:46:28.634Z</updated>
+    
+    
+    <summary type="html">AGC003</summary>
+    
+    
+    
+    <category term="题解" scheme="http://noone40404.github.io/categories/%E9%A2%98%E8%A7%A3/"/>
+    
+    
+    <category term="思维" scheme="http://noone40404.github.io/tags/%E6%80%9D%E7%BB%B4/"/>
+    
+    <category term="贪心" scheme="http://noone40404.github.io/tags/%E8%B4%AA%E5%BF%83/"/>
+    
+    <category term="数论" scheme="http://noone40404.github.io/tags/%E6%95%B0%E8%AE%BA/"/>
+    
+  </entry>
+  
+  <entry>
     <title>40801202-AGC002</title>
     <link href="http://noone40404.github.io/2021/08/04/AGC002/"/>
     <id>http://noone40404.github.io/2021/08/04/AGC002/</id>
     <published>2021-08-04T12:46:54.000Z</published>
-    <updated>2021-08-04T12:53:19.540Z</updated>
+    <updated>2021-08-05T09:17:33.977Z</updated>
     
     
     <summary type="html">AGC002</summary>
