@@ -77,62 +77,6 @@ a &a=b \\
       </tags>
   </entry>
   <entry>
-    <title>50801202-AGC003</title>
-    <url>/2021/08/05/AGC003/</url>
-    <content><![CDATA[<h2 id="D"><a href="#D" class="headerlink" title="D"></a>D</h2><blockquote>
-<p>给定 $n$ 个数 ，要求从中选出最多的数，满足任意两个数之积都不是完全立方数</p>
-</blockquote>
-<p>考虑对数 $x$ 进行唯一分解，即将其每个质因子的指数对 $3$ 取模得到数 $a$ , 在对 $a$ 的每个质因子的指数的相反数对 $3$ 取模得到 $a$ 的补数 $b$ ,满足 $a\times b$ 是完全立方数</p>
-<p>对于数列中的分解数集与其补数集，贪心选取较大的内个，注意特判最简数与其补数相等时（即 $x$ 是完全平方数）只能选一个</p>
-<p>重点求如何分解数与分解数的补数</p>
-<p>筛出 $10^{\frac{10}{3}}$ 内的质数，求出该范围内的分解数与补数，对于剩余的数分解质因数最多 $2$ 项，特判是否为完全平方数</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> p[]=&#123;<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">11</span>,<span class="number">13</span>,<span class="number">17</span>,<span class="number">19</span>,<span class="number">23</span>,<span class="number">29</span>,<span class="number">31</span>,<span class="number">37</span>&#125;,S=<span class="number">127</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e5</span>+<span class="number">5</span>;</span><br><span class="line">vector&lt;ll&gt; pd;</span><br><span class="line"><span class="keyword">int</span> n,c[N],ans;</span><br><span class="line">ll a[N],b[N];</span><br><span class="line">map&lt;ll,<span class="keyword">int</span>&gt; h,vis;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">qpow</span><span class="params">(ll a,ll b,ll n)</span></span>&#123; ll ret=<span class="number">1</span>; <span class="keyword">for</span>(;b;b&gt;&gt;=<span class="number">1</span>,a=a*a%n) <span class="keyword">if</span>(b&amp;<span class="number">1</span>) ret=a*ret%n; <span class="keyword">return</span> ret;&#125;</span><br><span class="line"><span class="function">ll <span class="title">gcd</span><span class="params">(ll a,ll b)</span></span>&#123; <span class="keyword">return</span> b ? <span class="built_in">gcd</span>(b,a%b) : a;&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">miller_rabin</span><span class="params">(ll n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n==<span class="number">1</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;<span class="number">12</span>;++i) <span class="keyword">if</span>(n%p[i]==<span class="number">0</span>) <span class="keyword">return</span> n==p[i];</span><br><span class="line">    ll r; rei t;</span><br><span class="line">    <span class="keyword">for</span>(r=n<span class="number">-1</span>,t=<span class="number">0</span>;~r&amp;<span class="number">1</span>;r&gt;&gt;=<span class="number">1</span>,++t);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;<span class="number">12</span>;++i)&#123;</span><br><span class="line">        ll x=<span class="built_in">qpow</span>(p[i],r,n),xs;</span><br><span class="line">        <span class="keyword">for</span>(rei j=<span class="number">1</span>;j&lt;=t;++j)&#123;</span><br><span class="line">            xs=x*x%n;</span><br><span class="line">            <span class="keyword">if</span>(xs==<span class="number">1</span> &amp;&amp; x!=<span class="number">1</span> &amp;&amp; x!=n<span class="number">-1</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            x=xs;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(x!=<span class="number">1</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=<span class="number">2200</span>;++i) <span class="keyword">if</span>(<span class="built_in">miller_rabin</span>(i)) pd.<span class="built_in">push_back</span>(i);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i)&#123;</span><br><span class="line">        ll x,t; <span class="built_in">scanf</span>(<span class="string">&quot;%lld&quot;</span>,&amp;x); a[i]=b[i]=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(rei k=<span class="number">0</span>;k&lt;pd.<span class="built_in">size</span>();++k)&#123;</span><br><span class="line">            c[k]=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span>(x%pd[k]==<span class="number">0</span>) ++c[k],x/=pd[k];</span><br><span class="line">            c[k]%=<span class="number">3</span>;</span><br><span class="line">            <span class="keyword">if</span>(c[k]==<span class="number">2</span>) a[i]*=pd[k]*pd[k],b[i]*=pd[k];</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(c[k]==<span class="number">1</span>) a[i]*=pd[k],b[i]*=pd[k]*pd[k];</span><br><span class="line">        &#125;</span><br><span class="line">        t=<span class="built_in">sqrt</span>(x);</span><br><span class="line">        <span class="keyword">if</span>(t*t==x) a[i]*=t*t,b[i]*=t;</span><br><span class="line">        <span class="keyword">else</span> a[i]*=x,b[i]*=x*x;</span><br><span class="line">        ++h[ a[i] ];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i)&#123;</span><br><span class="line">        <span class="keyword">if</span>(vis[ a[i] ]||vis[ b[i] ]||a[i]==<span class="number">1</span>) <span class="keyword">continue</span>;</span><br><span class="line">        vis[ a[i] ]=<span class="number">1</span>; ans+=<span class="built_in">max</span>(h[ a[i] ],h[ b[i] ]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,ans+(h[<span class="number">1</span>]!=<span class="number">0</span>));</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="E"><a href="#E" class="headerlink" title="E"></a>E</h2><blockquote>
-<p>初始为 $1$ 到 $n$ 的数列，每次操作把数组长度变为 $q_i$ ，新增的数为上一个操作后的数组的重复，求最终每个数出现的次数</p>
-</blockquote>
-<p><del>这个题作为 $E$ 题好像有点水（逃</del></p>
-<p>首先容易发现，对于每次操作，只有长度单调递增的操作对答案有贡献</p>
-<p>考虑每次操作 $q$ 对数组 $A={a_1,a_2…a_n}$ 的影响：</p>
-<script type="math/tex; mode=display">A\Rightarrow \underbrace{AAA...A}_{k=\left\lfloor \frac{q}{len_A} \right\rfloor} \ + \ a_1 \ + \ a_2 \ + \ ... \ + a_{q\%len_A}</script><p>题目要求维护 $ans[N]$，那么倒序维护系数 $k$ ，对于剩下的一部分递归继续分解</p>
-<p>最后的答案用差分维护</p>
-<p><del>经典不会表述，经典看不懂赛时代码</del></p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e5</span>+<span class="number">100</span>;</span><br><span class="line">ll k[N],delta[N],sta[N],top;</span><br><span class="line"><span class="keyword">int</span> n,q;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">decompose</span><span class="params">(ll lenth,ll k_add)</span></span>&#123;</span><br><span class="line">    rei it=<span class="built_in">upper_bound</span>(sta+<span class="number">1</span>,sta+<span class="number">1</span>+top,lenth)-sta<span class="number">-1</span>;<span class="comment">//注意这里要找剩下的</span></span><br><span class="line">    <span class="keyword">if</span>(!it) <span class="keyword">return</span> delta[<span class="number">1</span>]+=k_add,delta[lenth+<span class="number">1</span>]-=k_add,<span class="built_in"><span class="keyword">void</span></span>();</span><br><span class="line">    k[it]+=(ll) (lenth/sta[it])*k_add;</span><br><span class="line">    <span class="built_in">decompose</span>(lenth%sta[it],k_add);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;q),sta[++top]=(ll) n;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=q;++i)&#123;</span><br><span class="line">        ll x; <span class="built_in">scanf</span>(<span class="string">&quot;%lld&quot;</span>,&amp;x);</span><br><span class="line">        <span class="keyword">while</span>(top &amp;&amp; x&lt;=sta[top]) --top;</span><br><span class="line">        sta[++top]=x;</span><br><span class="line">    &#125;</span><br><span class="line">    k[top]=<span class="number">1ll</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=top;i&gt;=<span class="number">2</span>;--i)&#123;</span><br><span class="line">        k[i<span class="number">-1</span>]+=(sta[i]/sta[i<span class="number">-1</span>])*k[i];</span><br><span class="line">        <span class="built_in">decompose</span>(sta[i]%sta[i<span class="number">-1</span>],k[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    delta[<span class="number">1</span>]+=k[<span class="number">1</span>],delta[ sta[<span class="number">1</span>]+<span class="number">1</span> ]-=k[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,delta[i]+=delta[i<span class="number">-1</span>]);</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="F"><a href="#F" class="headerlink" title="F"></a>F</h2><blockquote>
-<p>给定一个 $n\times m$ 的黑白网格，保证黑格四连通且至少有一个黑格，定义分形如下：$0$ 级分形是一个 $1\times 1$ 的黑色单元格。$k+1$ 级分形由 $n$ 行 $m$ 列较小一级的分形按网格的样式拼成：与黑色单元格对应的位置是一个 $k$ 级分形；与白色单元格对应的位置是一个全部为白色，尺寸与 $k$ 级分形相同的网格。求 $k$ 级分形的四联通数量</p>
-</blockquote>
-<p>看个图直观一点</p>
-<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/ihi8a16b.png" alt="https://cdn.luogu.com.cn/upload/image_hosting/ihi8a16b.png"></p>
-<p>考虑无向图 $G$ ，其中的点与 $1$ 级分形一一对应，将对应至少一个位置的黑发四联通的点连边</p>
-<p>求$k$ 级分形对应的 $G$ 的连通分量数</p>
-<p>显然 $G$ 的连边情况与网格的上下，左右的黑格位置是否重复有关，设 $lr,ud$ 分别表示上下，左右的黑格位置重复的个数，$v$ 表示原网格中黑格的个数，$ev,eh$ ：垂直/水平方向的相邻黑格的个数</p>
-<ul>
-<li><p>若 $lr&gt;0 \wedge ud&gt;0$，归纳可得 $G$ 任意两点均连通，故答案为 $1$。</p>
-</li>
-<li><p>若 $lr=0 \wedge ud=0$，归纳可得 $G$ 任意两点均不连通，故答案为 $v^{k-1}$。</p>
-</li>
-<li><p>若 $lr&gt;0 \wedge ud=0$，将网格逆时针旋转 $\frac{1}{4}$ 周变为情况 $4$。</p>
-</li>
-<li><p>若 $lr=0 \wedge ud&gt;0$，我们可以发现所有边都是垂直方向的，故 $G$ 一定是若干条垂直方向的链组成的。</p>
-</li>
-</ul>
-<p>链是树，我们可以用 $C=V-E$ 来计算连通分量数。</p>
-<p>有性质: $k$ 级分形等于把 $k-1$ 级分形的每个黑格替换成一个 $1$ 级分形。可以归纳证明。</p>
-<p>那么考虑计算 $k$ 级分形对应的图 $G_k$ 中的点数 $V_k$ 和边数 $E_k$ ，有递推式：</p>
-<p>$V_k=V_{k-1}\times v ,V_1=1$</p>
-<p>$E_k=E_{k-1}\times ud + V_{k-1}\times ev ,E_1=0$</p>
-<p>所以矩阵乘法计算 $V,E$ 线性递推</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e3</span>+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod=<span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line">ll k;</span><br><span class="line"><span class="keyword">char</span> s[N][N];</span><br><span class="line"><span class="keyword">int</span> n,m,p,q,a,b,c;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Matrix</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> Mat[<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line">    <span class="built_in">Matrix</span>()&#123; <span class="built_in">memset</span>(Mat,<span class="number">0</span>,<span class="built_in"><span class="keyword">sizeof</span></span>(Mat));&#125;</span><br><span class="line">    <span class="keyword">int</span>* <span class="keyword">operator</span> [](<span class="keyword">const</span> <span class="keyword">int</span> i)&#123; <span class="keyword">return</span> Mat[i];&#125;</span><br><span class="line">    Matrix <span class="keyword">operator</span>*(Matrix &amp;mat)<span class="keyword">const</span>&#123;</span><br><span class="line">        Matrix ret;</span><br><span class="line">        <span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;<span class="number">2</span>;++i) <span class="keyword">for</span>(rei j=<span class="number">0</span>;j&lt;<span class="number">2</span>;++j) <span class="keyword">for</span>(rei k=<span class="number">0</span>;k&lt;<span class="number">2</span>;++k)</span><br><span class="line">            ret[i][j]=(ret[i][j]+(ll) Mat[i][k]*mat[k][j]%mod)%mod;</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">set</span><span class="params">()</span></span>&#123; <span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;<span class="number">2</span>;++i) Mat[i][i]=<span class="number">1</span>;&#125;</span><br><span class="line">&#125;f;</span><br><span class="line"><span class="function">Matrix <span class="title">qpow</span><span class="params">(Matrix a,ll b)</span></span>&#123; Matrix ret;ret.<span class="built_in">set</span>(); <span class="keyword">for</span>(;b;b&gt;&gt;=<span class="number">1</span>,a=a*a) <span class="keyword">if</span>(b&amp;<span class="number">1</span>) ret=ret*a; <span class="keyword">return</span> ret;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d%d%lld&quot;</span>,&amp;n,&amp;m,&amp;k);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,s[i]+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) p+=s[i][<span class="number">1</span>]==<span class="string">&#x27;#&#x27;</span>&amp;&amp;s[i][m]==<span class="string">&#x27;#&#x27;</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=m;++i) q+=s[<span class="number">1</span>][i]==<span class="string">&#x27;#&#x27;</span>&amp;&amp;s[n][i]==<span class="string">&#x27;#&#x27;</span>;</span><br><span class="line">    <span class="keyword">if</span>((p&amp;&amp;q) || k&lt;<span class="number">2</span>) <span class="keyword">return</span> <span class="built_in">puts</span>(<span class="string">&quot;1&quot;</span>),<span class="number">0</span>;</span><br><span class="line">	b=p|q;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="keyword">for</span>(rei j=<span class="number">1</span>;j&lt;=m;++j)&#123;</span><br><span class="line">            c+=s[i][j]==<span class="string">&#x27;#&#x27;</span>;</span><br><span class="line">            a+=s[i][j]==<span class="string">&#x27;#&#x27;</span> &amp;&amp; s[i][j+<span class="number">1</span>]==<span class="string">&#x27;#&#x27;</span> &amp;&amp; p;</span><br><span class="line">            a+=s[i][j]==<span class="string">&#x27;#&#x27;</span> &amp;&amp; s[i+<span class="number">1</span>][j]==<span class="string">&#x27;#&#x27;</span> &amp;&amp; q;</span><br><span class="line">        &#125;</span><br><span class="line">    f[<span class="number">0</span>][<span class="number">0</span>]=c,f[<span class="number">1</span>][<span class="number">0</span>]=a,f[<span class="number">1</span>][<span class="number">1</span>]=b;</span><br><span class="line">	f=<span class="built_in">qpow</span>(f,k<span class="number">-1</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,(f[<span class="number">0</span>][<span class="number">0</span>]-f[<span class="number">1</span>][<span class="number">0</span>]+mod)%mod);</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>思维</tag>
-        <tag>贪心</tag>
-        <tag>数论</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>60801202-AGC004</title>
     <url>/2021/08/06/AGC004/</url>
     <content><![CDATA[<p><del>这场好难qwq</del> 我好菜</p>
@@ -212,6 +156,43 @@ a &a=b \\
       </tags>
   </entry>
   <entry>
+    <title>40801202-AGC002</title>
+    <url>/2021/08/04/AGC002/</url>
+    <content><![CDATA[<h2 id="D"><a href="#D" class="headerlink" title="D"></a>D</h2><blockquote>
+<p>给一张图，多次询问，每次 $u\leftarrow v$ 中经过的不重复点数量 $=z$ ，求经过边最大编号最小值</p>
+</blockquote>
+<p>边权问题想到 $Kruskal$ 重构树</p>
+<p>重构树上倍增二分即可</p>
+<p><del>这道题还有一种整体二分+并查集做法，但我不会</del></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e5</span>+<span class="number">100</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> x,y,w;</span><br><span class="line">    <span class="keyword">friend</span> <span class="keyword">bool</span> <span class="keyword">operator</span> &lt;(<span class="keyword">const</span> node &amp;a,<span class="keyword">const</span> node &amp;b)&#123; <span class="keyword">return</span> a.w&lt;b.w;&#125;</span><br><span class="line">&#125;edge[N&lt;&lt;<span class="number">1</span>];</span><br><span class="line"><span class="keyword">int</span> anc[<span class="number">20</span>][N&lt;&lt;<span class="number">1</span>],fa[N&lt;&lt;<span class="number">1</span>],Size[N&lt;&lt;<span class="number">1</span>],edge_val[N&lt;&lt;<span class="number">1</span>];</span><br><span class="line"><span class="keyword">int</span> n,m,root;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find_fa</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123; <span class="keyword">return</span> x==fa[x] ? x : fa[x]=<span class="built_in">find_fa</span>(fa[x]);&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">find_anc</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> d)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">19</span>;~i;--i) <span class="keyword">if</span>(edge_val[ anc[i][x] ]&lt;=d) x=anc[i][x];</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y,<span class="keyword">int</span> z,<span class="keyword">int</span> d)</span></span>&#123;</span><br><span class="line">    x=<span class="built_in">find_anc</span>(x,d),y=<span class="built_in">find_anc</span>(y,d);</span><br><span class="line">    <span class="keyword">return</span> x==y ? Size[x]&gt;=z : Size[x]+Size[y]&gt;=z;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;m);</span><br><span class="line">    edge_val[<span class="number">0</span>]=m+<span class="number">1</span>; root=n;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) fa[i]=i,Size[i]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=m;++i)&#123;</span><br><span class="line">        rei u,v; <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;u,&amp;v);</span><br><span class="line">        u=<span class="built_in">find_fa</span>(u),v=<span class="built_in">find_fa</span>(v);</span><br><span class="line">        <span class="keyword">if</span>(u==v) <span class="keyword">continue</span>;</span><br><span class="line">        fa[u]=fa[v]=++root;Size[root]=Size[u]+Size[v];</span><br><span class="line">        fa[root]=root; anc[<span class="number">0</span>][u]=anc[<span class="number">0</span>][v]=root; edge_val[root]=i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(rei i=root;i;--i) <span class="keyword">for</span>(rei j=<span class="number">1</span>;j&lt;<span class="number">20</span>;++j) anc[j][i]=anc[j<span class="number">-1</span>][ anc[j<span class="number">-1</span>][i] ];</span><br><span class="line">    rei Q;<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;Q);</span><br><span class="line">    <span class="keyword">while</span>(Q--)&#123;</span><br><span class="line">        rei x,y,z; <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>,&amp;x,&amp;y,&amp;z);</span><br><span class="line">        rei l=<span class="number">1</span>,r=m,ans=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(l&lt;=r)&#123;</span><br><span class="line">            rei mid=l+r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">            <span class="built_in">check</span>(x,y,z,mid) ? ans=mid,r=mid<span class="number">-1</span> : l=mid+<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,ans);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="E"><a href="#E" class="headerlink" title="E"></a>E</h2><blockquote>
+<p>博弈论 每次操作将当前最大堆的糖果全部吃完或将每堆糖果吃掉一个，吃完的人输</p>
+</blockquote>
+<p>GreenDay学长之前讲过</p>
+<p>将每堆小石子的数量看成柱状图并排序，问题转化为从 $(1,1)$ 出发，每次只能向上或向右走一格，到边界者输</p>
+<p>显然棱角处均为必败点，且<del>打表得</del> $y=-k\times x$ 直线上的格子性质相同</p>
+<p>找最大的 $(i,i)$ 再简单判断即可</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e5</span>+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">int</span> a[N],n;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a[i]);</span><br><span class="line">	<span class="built_in">sort</span>(a+<span class="number">1</span>,a+<span class="number">1</span>+n,greater&lt;<span class="keyword">int</span>&gt;());</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i)</span><br><span class="line">		<span class="keyword">if</span>(i+<span class="number">1</span>&gt;a[i+<span class="number">1</span>])&#123;<span class="comment">//最大正方形</span></span><br><span class="line">			<span class="keyword">if</span>((a[i]-i)&amp;<span class="number">1</span>)&#123; <span class="built_in">puts</span>(<span class="string">&quot;First&quot;</span>); <span class="keyword">break</span>;&#125;</span><br><span class="line">			rei right=i;</span><br><span class="line">			<span class="keyword">while</span>(a[right+<span class="number">1</span>]==i) ++right;</span><br><span class="line">			<span class="keyword">if</span>((right-i)&amp;<span class="number">1</span>)&#123; <span class="built_in">puts</span>(<span class="string">&quot;First&quot;</span>); <span class="keyword">break</span>;&#125;</span><br><span class="line">			<span class="built_in">puts</span>(<span class="string">&quot;Second&quot;</span>); <span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="F"><a href="#F" class="headerlink" title="F"></a>F</h2><blockquote>
+<p>给你 $n$ 种不含白色颜色的球，每个球有 $m$ 个，把这 $n\times m$ 个球排成一排，把每一种颜色的最左边出现的球涂成白色，求有多少种不同的颜色序列</p>
+</blockquote>
+<p>有 $m$ 个白球，$n$ 种其他颜色的球各 $m-1$ 个 只有任意前缀中白球的个数均大于其他颜色种类数时合法</p>
+<p>考虑序列计数 $dp$: 枚举位置或元素，这里枚举元素</p>
+<p>设状态 $f_{i,j}$ 表示在 $n\times m$ 个位置上填了 $i$ 个白球和 $j$ 个其他球</p>
+<p>考虑合法序列的从左到右的第一个格子如何转移</p>
+<script type="math/tex; mode=display">\therefore f_{i,j}=\underbrace{f_{i-1,j}}_{放白球} \ + \ \underbrace{f_{i,j-1}}_{放其他颜色} \times \underbrace{\left(n-j+1\right)}_{没有使用过的颜色}\times \underbrace{\binom{n\times m-i-(m-1)\times (j-1)-1}{m-2}}_{还有 m-2 个该颜色的球没有放}</script><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">2e3</span>+<span class="number">5</span>,M=<span class="number">4e6</span>+<span class="number">5</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod=<span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"><span class="keyword">int</span> n,m,f[N][N],fac[M],ifac[M],inv[M],ans;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">C</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> m)</span></span>&#123; <span class="keyword">return</span> (ll) fac[n]*ifac[n-m]%mod*ifac[m]%mod;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;m); inv[<span class="number">1</span>]=ifac[<span class="number">0</span>]=fac[<span class="number">0</span>]=<span class="number">1</span>; f[<span class="number">0</span>][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">2</span>;i&lt;=n*m;++i) inv[i]=(ll) (mod-mod/i)*inv[mod%i]%mod;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n*m;++i) fac[i]=(ll) i*fac[i<span class="number">-1</span>]%mod,ifac[i]=(ll) inv[i]*ifac[i<span class="number">-1</span>]%mod;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="keyword">for</span>(rei j=<span class="number">0</span>;j&lt;=i;++j)&#123;</span><br><span class="line">            f[i][j]=f[i<span class="number">-1</span>][j];</span><br><span class="line">            <span class="keyword">if</span>(j) f[i][j]=(f[i][j]+(ll) f[i][j<span class="number">-1</span>]*(n-j+<span class="number">1</span>)%mod *<span class="built_in">C</span>(n*m-i-(j<span class="number">-1</span>)*(m<span class="number">-1</span>)<span class="number">-1</span>,m<span class="number">-2</span>)%mod)%mod;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,m==<span class="number">1</span> ? <span class="number">1</span> : f[n][n]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>构造</tag>
+        <tag>思维</tag>
+        <tag>dp</tag>
+        <tag>博弈论</tag>
+        <tag>Kruskal重构树</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>70801202-AGC005</title>
     <url>/2021/08/07/AGC005/</url>
     <content><![CDATA[<h2 id="D"><a href="#D" class="headerlink" title="D"></a>D</h2><blockquote>
@@ -264,9 +245,228 @@ f_i&=n\times \binom{n}{i}-\sum_{j=i}^n cnt_j\times \binom{j}{i} \\
         <tag>构造</tag>
         <tag>思维</tag>
         <tag>dp</tag>
+        <tag>博弈论</tag>
         <tag>多项式</tag>
         <tag>容斥</tag>
-        <tag>博弈论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>50801202-AGC003</title>
+    <url>/2021/08/05/AGC003/</url>
+    <content><![CDATA[<h2 id="D"><a href="#D" class="headerlink" title="D"></a>D</h2><blockquote>
+<p>给定 $n$ 个数 ，要求从中选出最多的数，满足任意两个数之积都不是完全立方数</p>
+</blockquote>
+<p>考虑对数 $x$ 进行唯一分解，即将其每个质因子的指数对 $3$ 取模得到数 $a$ , 在对 $a$ 的每个质因子的指数的相反数对 $3$ 取模得到 $a$ 的补数 $b$ ,满足 $a\times b$ 是完全立方数</p>
+<p>对于数列中的分解数集与其补数集，贪心选取较大的内个，注意特判最简数与其补数相等时（即 $x$ 是完全平方数）只能选一个</p>
+<p>重点求如何分解数与分解数的补数</p>
+<p>筛出 $10^{\frac{10}{3}}$ 内的质数，求出该范围内的分解数与补数，对于剩余的数分解质因数最多 $2$ 项，特判是否为完全平方数</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> p[]=&#123;<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">11</span>,<span class="number">13</span>,<span class="number">17</span>,<span class="number">19</span>,<span class="number">23</span>,<span class="number">29</span>,<span class="number">31</span>,<span class="number">37</span>&#125;,S=<span class="number">127</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e5</span>+<span class="number">5</span>;</span><br><span class="line">vector&lt;ll&gt; pd;</span><br><span class="line"><span class="keyword">int</span> n,c[N],ans;</span><br><span class="line">ll a[N],b[N];</span><br><span class="line">map&lt;ll,<span class="keyword">int</span>&gt; h,vis;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">qpow</span><span class="params">(ll a,ll b,ll n)</span></span>&#123; ll ret=<span class="number">1</span>; <span class="keyword">for</span>(;b;b&gt;&gt;=<span class="number">1</span>,a=a*a%n) <span class="keyword">if</span>(b&amp;<span class="number">1</span>) ret=a*ret%n; <span class="keyword">return</span> ret;&#125;</span><br><span class="line"><span class="function">ll <span class="title">gcd</span><span class="params">(ll a,ll b)</span></span>&#123; <span class="keyword">return</span> b ? <span class="built_in">gcd</span>(b,a%b) : a;&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">miller_rabin</span><span class="params">(ll n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n==<span class="number">1</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;<span class="number">12</span>;++i) <span class="keyword">if</span>(n%p[i]==<span class="number">0</span>) <span class="keyword">return</span> n==p[i];</span><br><span class="line">    ll r; rei t;</span><br><span class="line">    <span class="keyword">for</span>(r=n<span class="number">-1</span>,t=<span class="number">0</span>;~r&amp;<span class="number">1</span>;r&gt;&gt;=<span class="number">1</span>,++t);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;<span class="number">12</span>;++i)&#123;</span><br><span class="line">        ll x=<span class="built_in">qpow</span>(p[i],r,n),xs;</span><br><span class="line">        <span class="keyword">for</span>(rei j=<span class="number">1</span>;j&lt;=t;++j)&#123;</span><br><span class="line">            xs=x*x%n;</span><br><span class="line">            <span class="keyword">if</span>(xs==<span class="number">1</span> &amp;&amp; x!=<span class="number">1</span> &amp;&amp; x!=n<span class="number">-1</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            x=xs;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(x!=<span class="number">1</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=<span class="number">2200</span>;++i) <span class="keyword">if</span>(<span class="built_in">miller_rabin</span>(i)) pd.<span class="built_in">push_back</span>(i);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i)&#123;</span><br><span class="line">        ll x,t; <span class="built_in">scanf</span>(<span class="string">&quot;%lld&quot;</span>,&amp;x); a[i]=b[i]=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(rei k=<span class="number">0</span>;k&lt;pd.<span class="built_in">size</span>();++k)&#123;</span><br><span class="line">            c[k]=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span>(x%pd[k]==<span class="number">0</span>) ++c[k],x/=pd[k];</span><br><span class="line">            c[k]%=<span class="number">3</span>;</span><br><span class="line">            <span class="keyword">if</span>(c[k]==<span class="number">2</span>) a[i]*=pd[k]*pd[k],b[i]*=pd[k];</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(c[k]==<span class="number">1</span>) a[i]*=pd[k],b[i]*=pd[k]*pd[k];</span><br><span class="line">        &#125;</span><br><span class="line">        t=<span class="built_in">sqrt</span>(x);</span><br><span class="line">        <span class="keyword">if</span>(t*t==x) a[i]*=t*t,b[i]*=t;</span><br><span class="line">        <span class="keyword">else</span> a[i]*=x,b[i]*=x*x;</span><br><span class="line">        ++h[ a[i] ];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i)&#123;</span><br><span class="line">        <span class="keyword">if</span>(vis[ a[i] ]||vis[ b[i] ]||a[i]==<span class="number">1</span>) <span class="keyword">continue</span>;</span><br><span class="line">        vis[ a[i] ]=<span class="number">1</span>; ans+=<span class="built_in">max</span>(h[ a[i] ],h[ b[i] ]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,ans+(h[<span class="number">1</span>]!=<span class="number">0</span>));</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="E"><a href="#E" class="headerlink" title="E"></a>E</h2><blockquote>
+<p>初始为 $1$ 到 $n$ 的数列，每次操作把数组长度变为 $q_i$ ，新增的数为上一个操作后的数组的重复，求最终每个数出现的次数</p>
+</blockquote>
+<p><del>这个题作为 $E$ 题好像有点水（逃</del></p>
+<p>首先容易发现，对于每次操作，只有长度单调递增的操作对答案有贡献</p>
+<p>考虑每次操作 $q$ 对数组 $A={a_1,a_2…a_n}$ 的影响：</p>
+<script type="math/tex; mode=display">A\Rightarrow \underbrace{AAA...A}_{k=\left\lfloor \frac{q}{len_A} \right\rfloor} \ + \ a_1 \ + \ a_2 \ + \ ... \ + a_{q\%len_A}</script><p>题目要求维护 $ans[N]$，那么倒序维护系数 $k$ ，对于剩下的一部分递归继续分解</p>
+<p>最后的答案用差分维护</p>
+<p><del>经典不会表述，经典看不懂赛时代码</del></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e5</span>+<span class="number">100</span>;</span><br><span class="line">ll k[N],delta[N],sta[N],top;</span><br><span class="line"><span class="keyword">int</span> n,q;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">decompose</span><span class="params">(ll lenth,ll k_add)</span></span>&#123;</span><br><span class="line">    rei it=<span class="built_in">upper_bound</span>(sta+<span class="number">1</span>,sta+<span class="number">1</span>+top,lenth)-sta<span class="number">-1</span>;<span class="comment">//注意这里要找剩下的</span></span><br><span class="line">    <span class="keyword">if</span>(!it) <span class="keyword">return</span> delta[<span class="number">1</span>]+=k_add,delta[lenth+<span class="number">1</span>]-=k_add,<span class="built_in"><span class="keyword">void</span></span>();</span><br><span class="line">    k[it]+=(ll) (lenth/sta[it])*k_add;</span><br><span class="line">    <span class="built_in">decompose</span>(lenth%sta[it],k_add);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;q),sta[++top]=(ll) n;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=q;++i)&#123;</span><br><span class="line">        ll x; <span class="built_in">scanf</span>(<span class="string">&quot;%lld&quot;</span>,&amp;x);</span><br><span class="line">        <span class="keyword">while</span>(top &amp;&amp; x&lt;=sta[top]) --top;</span><br><span class="line">        sta[++top]=x;</span><br><span class="line">    &#125;</span><br><span class="line">    k[top]=<span class="number">1ll</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=top;i&gt;=<span class="number">2</span>;--i)&#123;</span><br><span class="line">        k[i<span class="number">-1</span>]+=(sta[i]/sta[i<span class="number">-1</span>])*k[i];</span><br><span class="line">        <span class="built_in">decompose</span>(sta[i]%sta[i<span class="number">-1</span>],k[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    delta[<span class="number">1</span>]+=k[<span class="number">1</span>],delta[ sta[<span class="number">1</span>]+<span class="number">1</span> ]-=k[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,delta[i]+=delta[i<span class="number">-1</span>]);</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="F"><a href="#F" class="headerlink" title="F"></a>F</h2><blockquote>
+<p>给定一个 $n\times m$ 的黑白网格，保证黑格四连通且至少有一个黑格，定义分形如下：$0$ 级分形是一个 $1\times 1$ 的黑色单元格。$k+1$ 级分形由 $n$ 行 $m$ 列较小一级的分形按网格的样式拼成：与黑色单元格对应的位置是一个 $k$ 级分形；与白色单元格对应的位置是一个全部为白色，尺寸与 $k$ 级分形相同的网格。求 $k$ 级分形的四联通数量</p>
+</blockquote>
+<p>看个图直观一点</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/ihi8a16b.png" alt="https://cdn.luogu.com.cn/upload/image_hosting/ihi8a16b.png"></p>
+<p>考虑无向图 $G$ ，其中的点与 $1$ 级分形一一对应，将对应至少一个位置的黑发四联通的点连边</p>
+<p>求$k$ 级分形对应的 $G$ 的连通分量数</p>
+<p>显然 $G$ 的连边情况与网格的上下，左右的黑格位置是否重复有关，设 $lr,ud$ 分别表示上下，左右的黑格位置重复的个数，$v$ 表示原网格中黑格的个数，$ev,eh$ ：垂直/水平方向的相邻黑格的个数</p>
+<ul>
+<li><p>若 $lr&gt;0 \wedge ud&gt;0$，归纳可得 $G$ 任意两点均连通，故答案为 $1$。</p>
+</li>
+<li><p>若 $lr=0 \wedge ud=0$，归纳可得 $G$ 任意两点均不连通，故答案为 $v^{k-1}$。</p>
+</li>
+<li><p>若 $lr&gt;0 \wedge ud=0$，将网格逆时针旋转 $\frac{1}{4}$ 周变为情况 $4$。</p>
+</li>
+<li><p>若 $lr=0 \wedge ud&gt;0$，我们可以发现所有边都是垂直方向的，故 $G$ 一定是若干条垂直方向的链组成的。</p>
+</li>
+</ul>
+<p>链是树，我们可以用 $C=V-E$ 来计算连通分量数。</p>
+<p>有性质: $k$ 级分形等于把 $k-1$ 级分形的每个黑格替换成一个 $1$ 级分形。可以归纳证明。</p>
+<p>那么考虑计算 $k$ 级分形对应的图 $G_k$ 中的点数 $V_k$ 和边数 $E_k$ ，有递推式：</p>
+<p>$V_k=V_{k-1}\times v ,V_1=1$</p>
+<p>$E_k=E_{k-1}\times ud + V_{k-1}\times ev ,E_1=0$</p>
+<p>所以矩阵乘法计算 $V,E$ 线性递推</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e3</span>+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod=<span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line">ll k;</span><br><span class="line"><span class="keyword">char</span> s[N][N];</span><br><span class="line"><span class="keyword">int</span> n,m,p,q,a,b,c;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Matrix</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> Mat[<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line">    <span class="built_in">Matrix</span>()&#123; <span class="built_in">memset</span>(Mat,<span class="number">0</span>,<span class="built_in"><span class="keyword">sizeof</span></span>(Mat));&#125;</span><br><span class="line">    <span class="keyword">int</span>* <span class="keyword">operator</span> [](<span class="keyword">const</span> <span class="keyword">int</span> i)&#123; <span class="keyword">return</span> Mat[i];&#125;</span><br><span class="line">    Matrix <span class="keyword">operator</span>*(Matrix &amp;mat)<span class="keyword">const</span>&#123;</span><br><span class="line">        Matrix ret;</span><br><span class="line">        <span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;<span class="number">2</span>;++i) <span class="keyword">for</span>(rei j=<span class="number">0</span>;j&lt;<span class="number">2</span>;++j) <span class="keyword">for</span>(rei k=<span class="number">0</span>;k&lt;<span class="number">2</span>;++k)</span><br><span class="line">            ret[i][j]=(ret[i][j]+(ll) Mat[i][k]*mat[k][j]%mod)%mod;</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">set</span><span class="params">()</span></span>&#123; <span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;<span class="number">2</span>;++i) Mat[i][i]=<span class="number">1</span>;&#125;</span><br><span class="line">&#125;f;</span><br><span class="line"><span class="function">Matrix <span class="title">qpow</span><span class="params">(Matrix a,ll b)</span></span>&#123; Matrix ret;ret.<span class="built_in">set</span>(); <span class="keyword">for</span>(;b;b&gt;&gt;=<span class="number">1</span>,a=a*a) <span class="keyword">if</span>(b&amp;<span class="number">1</span>) ret=ret*a; <span class="keyword">return</span> ret;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d%d%lld&quot;</span>,&amp;n,&amp;m,&amp;k);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,s[i]+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) p+=s[i][<span class="number">1</span>]==<span class="string">&#x27;#&#x27;</span>&amp;&amp;s[i][m]==<span class="string">&#x27;#&#x27;</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=m;++i) q+=s[<span class="number">1</span>][i]==<span class="string">&#x27;#&#x27;</span>&amp;&amp;s[n][i]==<span class="string">&#x27;#&#x27;</span>;</span><br><span class="line">    <span class="keyword">if</span>((p&amp;&amp;q) || k&lt;<span class="number">2</span>) <span class="keyword">return</span> <span class="built_in">puts</span>(<span class="string">&quot;1&quot;</span>),<span class="number">0</span>;</span><br><span class="line">	b=p|q;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="keyword">for</span>(rei j=<span class="number">1</span>;j&lt;=m;++j)&#123;</span><br><span class="line">            c+=s[i][j]==<span class="string">&#x27;#&#x27;</span>;</span><br><span class="line">            a+=s[i][j]==<span class="string">&#x27;#&#x27;</span> &amp;&amp; s[i][j+<span class="number">1</span>]==<span class="string">&#x27;#&#x27;</span> &amp;&amp; p;</span><br><span class="line">            a+=s[i][j]==<span class="string">&#x27;#&#x27;</span> &amp;&amp; s[i+<span class="number">1</span>][j]==<span class="string">&#x27;#&#x27;</span> &amp;&amp; q;</span><br><span class="line">        &#125;</span><br><span class="line">    f[<span class="number">0</span>][<span class="number">0</span>]=c,f[<span class="number">1</span>][<span class="number">0</span>]=a,f[<span class="number">1</span>][<span class="number">1</span>]=b;</span><br><span class="line">	f=<span class="built_in">qpow</span>(f,k<span class="number">-1</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,(f[<span class="number">0</span>][<span class="number">0</span>]-f[<span class="number">1</span>][<span class="number">0</span>]+mod)%mod);</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>思维</tag>
+        <tag>贪心</tag>
+        <tag>数论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>01801202-AGC007</title>
+    <url>/2021/08/10/AGC007/</url>
+    <content><![CDATA[<h2 id="C"><a href="#C" class="headerlink" title="C"></a>C</h2><blockquote>
+<p>一条直线上有 $N$ 个球， $N+1$ 个洞，每个球与相邻的洞距离 $d_i \ (1\leq i\leq N\times 2)$ 。随机选择一个球并向随机方向推，若洞中有球则继续滚，无球掉入。求每个球移动距离的期望</p>
+</blockquote>
+<p>这个阴间题有一下结论：第一个球滚入洞中后，新的距离序列的期望值仍是一个等差数列</p>
+<ul>
+<li><p>题解的证明：</p>
+<p>共 $2\times n$ 中可能，对于第 $i$ 段，考虑能对其期望长度做出贡献的行为</p>
+<ul>
+<li>原第 $i$ 段距离被滚过，重新编号后原第 $i+2$ 段成为现第 $i$ 段</li>
+<li>原第 $i+1$ 段被滚过，原第 $i,i+2,i+3$ 段成为第 $i$ 段</li>
+</ul>
+<script type="math/tex; mode=display">\therefore d_i'=d_i+\frac{i\times (d_{i+2}-d_i)+(d_{i+2}+d_{i+3})}{2\times n}=d_i+\frac{i\times 2x+2\times d+5\times x}{2\times n}</script></li>
+<li><p>口胡找规律的证明</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/dqj6ou7i.png" alt="https://cdn.luogu.com.cn/upload/image_hosting/dqj6ou7i.png"></p>
+<p>$4$ 个距离的期望分别是 $\frac{8\times d+5\times x}{6} \quad \frac{8\times d+15\times x}{6} \quad \frac{8\times d+25\times x}{6} \quad \frac{8\times d+35\times x}{6}$</p>
+<p>然后手推一推找规律得：$d’_1=d+\frac{2\times d+5\times x}{2\times n},x’=x+\frac{4\times x}{2\times n}$</p>
+<p>最后对于期望距离是 $d+\frac{2\times n-1}{2\times x}$ ，即，数列的中位数</p>
+</li>
+</ul>
+<p>$\therefore O(n)$ 递推数列即可</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">double</span> d,k,ans,n2;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%lf%lf&quot;</span>,&amp;n,&amp;d,&amp;k);</span><br><span class="line">    n2=n&lt;&lt;<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=n;i;--i)&#123;</span><br><span class="line">        ans+=d+k*(n2<span class="number">-1</span>)/<span class="number">2</span>;</span><br><span class="line">        d+=(<span class="number">2</span>*d+<span class="number">5</span>*k)/n2;</span><br><span class="line">        k+=<span class="number">4</span>*k/n2;</span><br><span class="line">        n2-=<span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%.10lf\n&quot;</span>,ans);</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="D"><a href="#D" class="headerlink" title="D"></a>D</h2><blockquote>
+<p>数列上有 $n$ 只位于 $x_i$ 熊，到达该熊位置后 $T$ 秒会在该熊的位置生成一个金币，从 $0$ 开始走，每走以一单位长度需要 $1$ 秒，求收集所有金币并到出口的最短时间</p>
+</blockquote>
+<p><del>经典C比D难</del></p>
+<p>显然有 $dp$ 式子：</p>
+<script type="math/tex; mode=display">f_i=\min_{j\leq i}\{f_{j}+a_i-a_j+\underbrace{\max\{2\times (a_i-a_{j+1}),T\}}_{返回又回到i后，若时间不够需要在原地等} \}</script><p>考虑优化这个 $O(n^2)$ 的式子</p>
+<p>首先注意 $\sum a_i-a_j=lenth$ ，所以提出这个式子并在结果中加上数列总长</p>
+<p>其次处理 $\max$ :对于 $(a_i-a_{j+1})$ 的大小分类讨论，其大小随 $a_i$ 单增，维护队列，当 $(a_i-a_{j+1})\leq \frac{T}{2}$ 留在队列中，队首转移时所有弹出的 $j$ 满足 $(a_i-a_{j+1})&gt;T$ ，记录最小值即可</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">2e5</span>+<span class="number">100</span>;</span><br><span class="line">ll n,T,x[N],f[N],ans,k=<span class="number">1e18</span>;</span><br><span class="line">ll head=<span class="number">1</span>,tail=<span class="number">1</span>,sta[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(f,<span class="number">0x3f</span>,<span class="keyword">sizeof</span> f);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%lld%d&quot;</span>,&amp;n,&amp;ans,&amp;T);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;x[i]);</span><br><span class="line">	f[<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i)&#123;</span><br><span class="line">        <span class="keyword">while</span>(head&lt;=tail &amp;&amp; (x[i]-x[ sta[head] ]+<span class="number">1</span>)&gt;(T&gt;&gt;<span class="number">1</span>))&#123;</span><br><span class="line">            k=<span class="built_in">min</span>(k,f[ sta[head] ]<span class="number">-2</span>*x[ sta[head]+<span class="number">1</span> ]);</span><br><span class="line">            ++head;</span><br><span class="line">        &#125;</span><br><span class="line">        f[i]=<span class="built_in">min</span>(f[i],<span class="built_in">min</span>(f[ sta[head] ]+T,k+<span class="number">2</span>*x[i]));</span><br><span class="line">        sta[++tail]=i;</span><br><span class="line">    &#125;</span><br><span class="line">    ans+=f[n];</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,ans);</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="E"><a href="#E" class="headerlink" title="E"></a>E</h2><blockquote>
+<p>给定一个严格二叉树，每条边有边权，找到一条 $\text{Euler}$ 环游路径(从根出发并回到根，期间每条边的两个方向恰被经过一次)，设该路径经过的叶节点按顺序依次为 $l_1,l_2,….$ ,最小化 $\max\{dis(l_1,l_2),dis(l_2,l_3),…,dis(l_{n-1},l_n)\}$</p>
+</blockquote>
+<p><strong>最小化最大值，自然想到二分答案，转化为判定性问题</strong></p>
+<p>二分答案为 $mid$ ，设二元组 $(a,b)_x$ 表示 $x$ 子树下第一次走的代价为 $a$ ,在最后一次走的代价为 $b$ ，中间过程都 $\leq mid$</p>
+<p>可以得到暴力做法：枚举当前点左右儿子的二元组 $(a,b)_{ls},(c,d)_{rs}$ ，左儿子边权为 $x$ ，右儿子边权 $y$ ，若满足 $b+c+x+y\leq mid$ ，则能得到一个新二元组 $(a+x,d+y)_x$</p>
+<p>考虑优化：</p>
+<p>对于两个有序对 $(a,b),(c,d)$ 若 $a\leq d 或 b\leq c$ ，即前者偏序与后者，显然前者优于后者</p>
+<p>那么只保留优等情况后， $a,b$ 是反向单调的，即， $a<c \Leftrightarrow b>d$</p>
+<p>对于 $(a,b) 和 (c,d)$ 的合并，假设固定 $b$ ，那么需要找 $c$ 满足 $d\leq v-b$</p>
+<p>显然希望剩下的 $d$ 尽可能小，有反向单调性可知，需要找尽可能大的 $c$</p>
+<p>可以按照单增的顺序枚举 $b$ ，所需的 $c$ 的上界则单减，双指针扫即可</p>
+<p>再考虑顶点 $i$ 的所有状态，注意到两子节点可交换，即要同时插入 $(l,r) , (r,l)$</p>
+<p>这里并不需要再次排序，由枚举的单调性可知内部有序，只需进行一次有序表合并</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">14e4</span>+<span class="number">100</span>,M=<span class="number">5e5</span>;</span><br><span class="line"><span class="keyword">int</span> n,fa[N],lc[N],rc[N];</span><br><span class="line">ll depth[N];</span><br><span class="line">PLL g[M],h[M],tmp[M];</span><br><span class="line">vector &lt;PLL&gt; f[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">link</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> fa)</span></span>&#123; (lc[fa] ? rc[fa] : lc[fa])=x;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">valid</span><span class="params">(ll v)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(rei x=n;x;--x)&#123;</span><br><span class="line">        f[x].<span class="built_in">clear</span>(); rei l=lc[x],r=rc[x];</span><br><span class="line">        <span class="keyword">if</span>(!(l || r))&#123; f[x].<span class="built_in">emplace_back</span>(depth[x],depth[x]); <span class="keyword">continue</span>;&#125;</span><br><span class="line">        rei L=f[l].<span class="built_in">size</span>(),R=f[r].<span class="built_in">size</span>(),cg,ch,i,j;</span><br><span class="line">        ll lim=v+<span class="number">2</span>*depth[x];</span><br><span class="line">        <span class="keyword">for</span>(cg=ch=j=i=<span class="number">0</span>;i&lt;L;++i)&#123;</span><br><span class="line">            <span class="keyword">for</span>(;j&lt;R &amp;&amp; f[l][i].first+f[r][j].second&gt;lim;++j);</span><br><span class="line">            <span class="keyword">if</span>(j==R) <span class="keyword">break</span>;</span><br><span class="line">            g[cg++]=<span class="built_in">mk</span>(f[l][i].second,f[r][j].first);</span><br><span class="line">            h[ch++]=<span class="built_in">mk</span>(f[r][j].first,f[l][i].second);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">reverse</span>(g,g+cg),j=<span class="built_in">merge</span>(g,g+cg,h,h+ch,tmp)-tmp;</span><br><span class="line">        <span class="keyword">if</span>(!j) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span>(f[x].<span class="built_in">emplace_back</span>(*tmp),i=<span class="number">1</span>;i&lt;j;++i)</span><br><span class="line">            <span class="keyword">if</span>(tmp[i].second&lt;f[x].<span class="built_in">back</span>().second) f[x].<span class="built_in">emplace_back</span>(tmp[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ll l=<span class="number">0</span>,r=<span class="number">0</span>,mid;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">2</span>;i&lt;=n;++i)</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d%lld&quot;</span>,&amp;fa[i],&amp;depth[i]),<span class="built_in">link</span>(i,fa[i]),r+=depth[i],depth[i]+=depth[ fa[i] ];</span><br><span class="line">    <span class="keyword">for</span>(;l&lt;r;<span class="built_in">valid</span>(mid=(l+r)/<span class="number">2</span>) ? r=mid : l=mid+<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,l);</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="F"><a href="#F" class="headerlink" title="F"></a>F</h2><blockquote>
+<p>给定初始串 $S_0$ 与目标串 $T$ ，第 $i$ 步将 $S_i$ 变为 $S_{i+1}$ ，其中：</p>
+<script type="math/tex; mode=display">S_{i+1}[j]=\begin{cases}S_i[1] &j=1 \\S_i[j] 或 S_{i+1}[j-1] &j>1 \\\end{cases}</script><p>求最少几次操作可以变为目标串</p>
+</blockquote>
+<p>考虑到 $T$ 中的每个字符来源于 $S_0$ ，有对应关系的边不会相交，且一个字符对应一个区间</p>
+<p>可以采取的最优策略是：先尽量右移，移动到需要覆盖的左边界处后向下到底线，再横向覆盖，让路径尽量靠右</p>
+<p>再考虑最优补数：从后往前考虑每个 $T$ 中须要匹配的左端点，让路径尽量靠右，若当前层数无法完成，则加一层</p>
+<p>具体地，用队列维护上一条路径所有右侧转折点，其横纵坐标单增</p>
+<p>当 $S_i\rightarrow T_j$ ，末端弹出所有横坐标在 $j$ 后面的所有转折点</p>
+<p>答案是所有转折点纵坐标的最大值 $+1$</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e6</span>+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">char</span> s[N],t[N];</span><br><span class="line"><span class="keyword">int</span> n,pre[N],p[<span class="number">255</span>],ans,ql,qr;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Data</span>&#123;</span><span class="keyword">int</span> i,j;&#125;q[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%s%s&quot;</span>,&amp;n,s+<span class="number">1</span>,t+<span class="number">1</span>); <span class="keyword">bool</span> flag=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="keyword">if</span>(s[i]!=t[i]) flag=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(flag) <span class="keyword">return</span> <span class="built_in">puts</span>(<span class="string">&quot;0&quot;</span>),<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) pre[i]=p[ s[i] ],p[ s[i] ]=i;</span><br><span class="line">    rei ql=<span class="number">1</span>,qr=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=n,las=n+<span class="number">1</span>,c=<span class="number">0</span>;i;--i)&#123;</span><br><span class="line">        <span class="keyword">if</span>(t[i]==t[i<span class="number">-1</span>]) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">while</span>(p[ t[i] ]&gt;<span class="built_in">min</span>(las,i)) p[ t[i] ]=pre[ p[ t[i] ] ];</span><br><span class="line">        <span class="keyword">if</span>(!p[ t[i] ]) <span class="keyword">return</span> <span class="built_in">puts</span>(<span class="string">&quot;-1&quot;</span>),<span class="number">0</span>;</span><br><span class="line">        rei u=p[ t[i] ],v=i;</span><br><span class="line">        <span class="keyword">while</span>(ql&lt;=qr &amp;&amp; v&lt;q[ql].i-c+<span class="number">1</span>) ++ql;</span><br><span class="line">        <span class="keyword">if</span>(las!=u &amp;&amp; u&lt;v) q[++qr]=((Data)&#123;u+c,<span class="number">1</span>-c&#125;);</span><br><span class="line">        <span class="keyword">if</span>(ql&lt;=qr) ans=<span class="built_in">max</span>(ans,q[ql].j+c);</span><br><span class="line">        ++c;las=u;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,ans+<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>构造</tag>
+        <tag>思维</tag>
+        <tag>贪心</tag>
+        <tag>dp</tag>
+        <tag>数列</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>90801202-AGC006</title>
+    <url>/2021/08/09/AGC006/</url>
+    <content><![CDATA[<h2 id="B"><a href="#B" class="headerlink" title="B"></a>B</h2><blockquote>
+<p>一个数字三角形，最下层的值是 $1\sim 2n-1$ 的排列，其余的值是正下，左下，右下方三个值的中位数，给定 $n,x$ ， 求能构造出顶端是 $x$ 的最下层排列</p>
+</blockquote>
+<p>先考虑无解：即 $x=1 或 x=2n-1$ 时无解</p>
+<p>其次可以发现，对于两个相邻的相同数字，该数字会一直向上延伸</p>
+<p>而 $x$ 就是离对称轴最近且满足条件的数</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">2e5</span>+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">int</span> n,x,p[N],vis[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;x);</span><br><span class="line">    <span class="keyword">if</span>(x==<span class="number">1</span> || x==<span class="number">2</span>*n<span class="number">-1</span>) <span class="keyword">return</span> <span class="built_in">puts</span>(<span class="string">&quot;No&quot;</span>),<span class="number">0</span>;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;Yes&quot;</span>);</span><br><span class="line">    p[n]=x;</span><br><span class="line">	p[n<span class="number">-1</span>]=x==<span class="number">2</span> ? x+<span class="number">1</span> : x<span class="number">-1</span>,p[n+<span class="number">1</span>]=x==<span class="number">2</span> ? x<span class="number">-1</span> : x+<span class="number">1</span>,p[n+<span class="number">2</span>]=x==<span class="number">2</span> ? x+<span class="number">2</span> : x<span class="number">-2</span>;</span><br><span class="line">    vis[x]=vis[x+<span class="number">1</span>]=vis[x<span class="number">-1</span>]=vis[x==<span class="number">2</span> ? x+<span class="number">2</span> : x<span class="number">-2</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>,j=<span class="number">1</span>;i&lt;=<span class="number">2</span>*n<span class="number">-1</span>;++i)&#123;</span><br><span class="line">        <span class="keyword">if</span>(p[i]) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">while</span>(vis[j]) ++j;</span><br><span class="line">        p[i]=j,vis[j]=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=<span class="number">2</span>*n<span class="number">-1</span>;++i) <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, p[i]);</span><br><span class="line">	<span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="C"><a href="#C" class="headerlink" title="C"></a>C</h2><blockquote>
+<p>数轴上有 $n$ 只兔子，第 $i$ 只位于 $a_i$ ，做 $k$ 次移动，每次由 $m$ 次跳跃，对于第 $j$ 次跳跃，第 $c_j$ 只兔子等概率选取 $c_{j-1}$ 或 $c_{j+1}$ 的兔子并跳到其对称点，求每一只兔子最终位置的期望</p>
+</blockquote>
+<p>对于兔子 $c_j$ ，跳跃后会转移到 $2\times c_{j-1}-c_j$ 或 $2\times c_{j+1}-c_j$</p>
+<p>所以有 $f’_{c_j}=\frac{2\times f_{c_{j-1}}-f_{c_j}+2\times f_{c_{j+1}}-f_{c_j}}{2}=f_{c_{j-1}}+f_{c_{j+1}}-f_{c_j}$</p>
+<p>而进行 $k\leq 10^{18}$ 轮，时间复杂度显然会爆</p>
+<p>$\text{ctp_314}$ 告诉我们，遇到转移问题难以转移就想一想差分，即， $d_i=f_i-f_{i-1}$</p>
+<p>差分的转移为:</p>
+<script type="math/tex; mode=display">d'_i=(f_{i-1}+f_{i+1}-f_i)-f_{i-1}=f_{i+1}-f_i=d_{i+1} \\
+d'_{i+1}=f_{i+1}-(f_{i-1}+f_{i+1}-f_i)=f_i-f_{i-1}=d_i \\</script><p>恰好是交换，那么求出循环节即可</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e5</span>+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">int</span> n,m,a[N],f[N],s[N],top,vis[N];</span><br><span class="line">ll ans[N],k;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a[i]);</span><br><span class="line">    <span class="keyword">for</span>(rei i=n;i;--i) a[i]-=a[i<span class="number">-1</span>],f[i]=i;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%lld&quot;</span>,&amp;m,&amp;k);</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>,p;i&lt;=m;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;p),<span class="built_in">swap</span>(f[p],f[p+<span class="number">1</span>]);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i,top=<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">if</span>(!vis[i])&#123;</span><br><span class="line">            <span class="keyword">for</span>(rei j=i;!vis[j];j=f[j]) vis[j]=<span class="number">1</span>,s[++top]=j;</span><br><span class="line">            <span class="keyword">for</span>(rei j=<span class="number">1</span>;j&lt;=top;++j) ans[ s[j] ]=a[ s[(j+k<span class="number">-1</span>)%top+<span class="number">1</span>] ];</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,ans[i]+=ans[i<span class="number">-1</span>]);</span><br><span class="line">	<span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="D"><a href="#D" class="headerlink" title="D"></a>D</h2><blockquote>
+<p>数字三角形，生成规则与 $B$ 相同，给定第 $n$ 行的数列，求第 $1$ 行的</p>
+</blockquote>
+<p>不会的二分贪心思维题</p>
+<p>二分顶端的数，由于用中位数生成，所以数列中只需要保留与顶端数的大小关系，即将原数列转化为 $01$ 串</p>
+<p>由 $B$ 推出的性质推广得：当存在两个相邻的 $0/1$，且不与边界相邻，那么可以一直向上走</p>
+<p>即，离对称轴最近且长度至少为 $2$ 的连续段就是顶端答案</p>
+<p>最后特判不存在该连续段的情况</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">2e5</span>+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">int</span> n,ans=<span class="number">2</span>,p[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">valid</span><span class="params">(<span class="keyword">int</span> mid)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;n<span class="number">-1</span>;++i)</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">max</span>(p[n-i],p[n-i<span class="number">-1</span>])&lt;=mid || <span class="built_in">max</span>(p[n+i],p[n+i+<span class="number">1</span>])&lt;=mid) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">min</span>(p[n-i],p[n-i<span class="number">-1</span>])&gt;mid || <span class="built_in">min</span>(p[n+i],p[n+i+<span class="number">1</span>])&gt;mid) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">return</span> p[<span class="number">1</span>]&lt;=mid;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n); <span class="keyword">for</span>(rei i=<span class="number">2</span>*n<span class="number">-1</span>;i;--i) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;p[i]);</span><br><span class="line">    rei l=<span class="number">2</span>,r=<span class="number">2</span>*n<span class="number">-2</span>;</span><br><span class="line">    <span class="keyword">while</span>(l&lt;=r)&#123;</span><br><span class="line">        rei mid=l+r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">        <span class="built_in">valid</span>(mid) ? r=mid<span class="number">-1</span>,ans=mid : l=mid+<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,ans);</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="E"><a href="#E" class="headerlink" title="E"></a>E</h2><blockquote>
+<p>给定 $3\times N$ 的矩阵，点 $(i,j)$ 的数为 $i+3j-3$ 。有操作：选择 $3\times 3$ 的矩阵，并将其旋转 $180^。$ 。给定目标矩阵，询问是否可以转化</p>
+</blockquote>
+<p>首先考虑无解：</p>
+<ul>
+<li>将每一列堪为一个整体，整体内部的元素组成不变</li>
+<li>所有模 $3$ 余 $2$ 的数一定在第二行</li>
+</ul>
+<p>再考虑性质：每次以 $(i,2)$ 为中心旋转实际是交换 $i-1,i+1$ 列，并将 $[i-1,i+1]$ 上下颠倒 —— 将上下颠倒看作奇偶性，奇数时要上下颠倒</p>
+<p>将每一列当成字母，小写为颠倒前，大写为颠倒后，设 $abcde$ 为原矩形的部分</p>
+<p>其次可以推出结论：</p>
+<ul>
+<li><p>可以将隔着一列的两列数同时颠倒</p>
+<script type="math/tex; mode=display">\underline{abc}de \Rightarrow CB\underline{Ade} \Rightarrow \underline{CBE}Da \Rightarrow eb\underline{cDa}\Rightarrow \underline{ebA}dC \Rightarrow aBcDe</script></li>
+<li><p>可以同时改变相邻 $4$ 列的奇偶性</p>
+<script type="math/tex; mode=display">\underline{abc}d \Rightarrow C\underline{BAd} \Rightarrow \underline{CDa}b \Rightarrow A\underline{dcb} \Rightarrow ABCD</script></li>
+</ul>
+<p>$\therefore$ 可以成对改变边的奇偶性，那么只需要考虑最终状态 奇数列 与 偶数列上下颠倒个数 的奇偶性，若都为偶则合法</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e5</span>+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">int</span> w[<span class="number">3</span>][N],f[N],h[<span class="number">2</span>],n;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;<span class="number">3</span>;++i) <span class="keyword">for</span>(rei j=<span class="number">1</span>;j&lt;=n;++j) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;w[i][j]);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i)&#123;</span><br><span class="line">        rei a=w[<span class="number">0</span>][i],b=w[<span class="number">1</span>][i],c=w[<span class="number">2</span>][i];</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">abs</span>(a-b)&gt;<span class="number">1</span> || <span class="built_in">abs</span>(b-c)&gt;<span class="number">1</span> || b%<span class="number">3</span>!=<span class="number">2</span> || (b%<span class="number">6</span> &amp; i&amp;<span class="number">1</span>)) <span class="keyword">return</span> <span class="built_in">puts</span>(<span class="string">&quot;No&quot;</span>),<span class="number">0</span>;</span><br><span class="line">        f[i]=b/<span class="number">3</span>+<span class="number">1</span>,h[i&amp;<span class="number">1</span>]^=a&gt;c;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="keyword">while</span>(f[i]!=i) h[ i&amp;<span class="number">1</span>^<span class="number">1</span> ]^=<span class="number">1</span>,<span class="built_in">swap</span>(f[i],f[ f[i] ]);</span><br><span class="line">    h[<span class="number">0</span>]||h[<span class="number">1</span>] ? <span class="built_in">puts</span>(<span class="string">&quot;No&quot;</span>) : <span class="built_in">puts</span>(<span class="string">&quot;Yes&quot;</span>);</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="F"><a href="#F" class="headerlink" title="F"></a>F</h2><blockquote>
+<p>给定 $n\times n$ 的网格，给定黑点坐标，其余白色，若存在 $(x,y)$ 和 $(y,z)$ 则会出现一个 $(z,x)$ 的黑点，求最终黑点数</p>
+</blockquote>
+<p>若 $(x,y)$ 为黑色，则连 $x\rightarrow y$ 的边，将题目等价于：若有 $x\rightarrow y 且 y\rightarrow z$ ，则有 $z\rightarrow x$</p>
+<p>如此连边不会影响连通性，只需考虑一个连通块内的情况并累加即可</p>
+<p><strong>由连边方式构成的三元环结构引导我们对图染色</strong></p>
+<p>连边方式自然定为：若 $x\rightarrow y$ , 则有 $col(x)+1\equiv col(y) \pmod 3$</p>
+<p>对染色情况分类：</p>
+<ul>
+<li><p>所有点只用 $\leq 2$ 中颜色且成功</p>
+<p>即没有出现新边，最终边数 $|E’|$ 等于原边数 $|E|$</p>
+</li>
+<li><p>所有点用 $3$ 种颜色且成功</p>
+<p>可以证明此时图 $G$ 具有完全三分图的结构</p>
+<p>在此情况下，总边数等于各个部分大小的两两乘积和</p>
+</li>
+<li><p>染色失败</p>
+<p>设加入边 $(u,v)$ 时失败，即，加入该边前 $u,v$ 已经连通，此时他们所在的连通分量是一个完全三分图</p>
+<p>考虑失败原因</p>
+<ul>
+<li><p>$1\rightarrow 0$</p>
+<p>即自环存在于 $0\rightarrow 1\rightarrow 0$</p>
+</li>
+<li><p>$0\rightarrow 0$</p>
+<p>即有 $0\rightarrow 0\rightarrow 1\rightarrow 0$</p>
+</li>
+</ul>
+<p>对于自环 $s\rightarrow s$ ,可以证明所有与 $s$ 相连的点 $u$ ,都有重边； 而对于 $\forall v,u$ 都有 $v\rightarrow s\rightarrow u \rightarrow v$</p>
+<p>即，图 $G$ 完全图</p>
+<p>该情况下总边数时连通分量大小的平方</p>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e5</span>+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">int</span> head[N],Next[N&lt;&lt;<span class="number">1</span>],ver[N&lt;&lt;<span class="number">1</span>],tot;</span><br><span class="line"><span class="keyword">int</span> col[N],c[<span class="number">3</span>],n,m,ce;</span><br><span class="line">ll ans;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v)</span></span>&#123; ver[++tot]=v,Next[tot]=head[u],head[u]=tot;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">bool</span> result=<span class="literal">true</span>; ++c[ col[x] ];</span><br><span class="line">    <span class="keyword">for</span>(rei i=head[x];i;i=Next[i])&#123;</span><br><span class="line">        rei y=ver[i];</span><br><span class="line">        rei c=(col[x]+<span class="number">2</span>-(i&amp;<span class="number">1</span>))%<span class="number">3</span>; ++ce;</span><br><span class="line">        result&amp;=(~col[y] ? col[y]==c : (col[y]=c,<span class="built_in">dfs</span>(y)));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;m);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>,u,v;i&lt;=m;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;u,&amp;v),<span class="built_in">add</span>(u,v),<span class="built_in">add</span>(v,u);</span><br><span class="line">    <span class="built_in">memset</span>(col,<span class="number">-1</span>,<span class="keyword">sizeof</span> col);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i)</span><br><span class="line">        <span class="keyword">if</span>(!~col[i])&#123;</span><br><span class="line">            c[<span class="number">0</span>]=c[<span class="number">1</span>]=c[<span class="number">2</span>]=ce=col[i]=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">if</span>(!<span class="built_in">dfs</span>(i)) ans+=(ll) (c[<span class="number">0</span>]+c[<span class="number">1</span>]+c[<span class="number">2</span>])*(c[<span class="number">0</span>]+c[<span class="number">1</span>]+c[<span class="number">2</span>]);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(c[<span class="number">0</span>] &amp;&amp; c[<span class="number">1</span>] &amp;&amp; c[<span class="number">2</span>]) ans+=(ll) c[<span class="number">0</span>]*c[<span class="number">1</span>]+(ll) (c[<span class="number">0</span>]+c[<span class="number">1</span>])*c[<span class="number">2</span>];</span><br><span class="line">            <span class="keyword">else</span> ans+=ce&gt;&gt;<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,ans);</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>构造</tag>
+        <tag>思维</tag>
+        <tag>染色</tag>
+        <tag>差分</tag>
       </tags>
   </entry>
   <entry>
@@ -426,95 +626,29 @@ a_1 & a_2 & a_3 & \dotsb & a_i & \dotsb & a_n\\
       </tags>
   </entry>
   <entry>
-    <title>90801202-AGC006</title>
-    <url>/2021/08/09/AGC006/</url>
-    <content><![CDATA[<h2 id="B"><a href="#B" class="headerlink" title="B"></a>B</h2><blockquote>
-<p>一个数字三角形，最下层的值是 $1\sim 2n-1$ 的排列，其余的值是正下，左下，右下方三个值的中位数，给定 $n,x$ ， 求能构造出顶端是 $x$ 的最下层排列</p>
-</blockquote>
-<p>先考虑无解：即 $x=1 或 x=2n-1$ 时无解</p>
-<p>其次可以发现，对于两个相邻的相同数字，该数字会一直向上延伸</p>
-<p>而 $x$ 就是离对称轴最近且满足条件的数</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">2e5</span>+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">int</span> n,x,p[N],vis[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;x);</span><br><span class="line">    <span class="keyword">if</span>(x==<span class="number">1</span> || x==<span class="number">2</span>*n<span class="number">-1</span>) <span class="keyword">return</span> <span class="built_in">puts</span>(<span class="string">&quot;No&quot;</span>),<span class="number">0</span>;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;Yes&quot;</span>);</span><br><span class="line">    p[n]=x;</span><br><span class="line">	p[n<span class="number">-1</span>]=x==<span class="number">2</span> ? x+<span class="number">1</span> : x<span class="number">-1</span>,p[n+<span class="number">1</span>]=x==<span class="number">2</span> ? x<span class="number">-1</span> : x+<span class="number">1</span>,p[n+<span class="number">2</span>]=x==<span class="number">2</span> ? x+<span class="number">2</span> : x<span class="number">-2</span>;</span><br><span class="line">    vis[x]=vis[x+<span class="number">1</span>]=vis[x<span class="number">-1</span>]=vis[x==<span class="number">2</span> ? x+<span class="number">2</span> : x<span class="number">-2</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>,j=<span class="number">1</span>;i&lt;=<span class="number">2</span>*n<span class="number">-1</span>;++i)&#123;</span><br><span class="line">        <span class="keyword">if</span>(p[i]) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">while</span>(vis[j]) ++j;</span><br><span class="line">        p[i]=j,vis[j]=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=<span class="number">2</span>*n<span class="number">-1</span>;++i) <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, p[i]);</span><br><span class="line">	<span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="C"><a href="#C" class="headerlink" title="C"></a>C</h2><blockquote>
-<p>数轴上有 $n$ 只兔子，第 $i$ 只位于 $a_i$ ，做 $k$ 次移动，每次由 $m$ 次跳跃，对于第 $j$ 次跳跃，第 $c_j$ 只兔子等概率选取 $c_{j-1}$ 或 $c_{j+1}$ 的兔子并跳到其对称点，求每一只兔子最终位置的期望</p>
-</blockquote>
-<p>对于兔子 $c_j$ ，跳跃后会转移到 $2\times c_{j-1}-c_j$ 或 $2\times c_{j+1}-c_j$</p>
-<p>所以有 $f’_{c_j}=\frac{2\times f_{c_{j-1}}-f_{c_j}+2\times f_{c_{j+1}}-f_{c_j}}{2}=f_{c_{j-1}}+f_{c_{j+1}}-f_{c_j}$</p>
-<p>而进行 $k\leq 10^{18}$ 轮，时间复杂度显然会爆</p>
-<p>$\text{ctp_314}$ 告诉我们，遇到转移问题难以转移就想一想差分，即， $d_i=f_i-f_{i-1}$</p>
-<p>差分的转移为:</p>
-<script type="math/tex; mode=display">d'_i=(f_{i-1}+f_{i+1}-f_i)-f_{i-1}=f_{i+1}-f_i=d_{i+1} \\
-d'_{i+1}=f_{i+1}-(f_{i-1}+f_{i+1}-f_i)=f_i-f_{i-1}=d_i \\</script><p>恰好是交换，那么求出循环节即可</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e5</span>+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">int</span> n,m,a[N],f[N],s[N],top,vis[N];</span><br><span class="line">ll ans[N],k;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a[i]);</span><br><span class="line">    <span class="keyword">for</span>(rei i=n;i;--i) a[i]-=a[i<span class="number">-1</span>],f[i]=i;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%lld&quot;</span>,&amp;m,&amp;k);</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>,p;i&lt;=m;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;p),<span class="built_in">swap</span>(f[p],f[p+<span class="number">1</span>]);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i,top=<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">if</span>(!vis[i])&#123;</span><br><span class="line">            <span class="keyword">for</span>(rei j=i;!vis[j];j=f[j]) vis[j]=<span class="number">1</span>,s[++top]=j;</span><br><span class="line">            <span class="keyword">for</span>(rei j=<span class="number">1</span>;j&lt;=top;++j) ans[ s[j] ]=a[ s[(j+k<span class="number">-1</span>)%top+<span class="number">1</span>] ];</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,ans[i]+=ans[i<span class="number">-1</span>]);</span><br><span class="line">	<span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="D"><a href="#D" class="headerlink" title="D"></a>D</h2><blockquote>
-<p>数字三角形，生成规则与 $B$ 相同，给定第 $n$ 行的数列，求第 $1$ 行的</p>
-</blockquote>
-<p>不会的二分贪心思维题</p>
-<p>二分顶端的数，由于用中位数生成，所以数列中只需要保留与顶端数的大小关系，即将原数列转化为 $01$ 串</p>
-<p>由 $B$ 推出的性质推广得：当存在两个相邻的 $0/1$，且不与边界相邻，那么可以一直向上走</p>
-<p>即，离对称轴最近且长度至少为 $2$ 的连续段就是顶端答案</p>
-<p>最后特判不存在该连续段的情况</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">2e5</span>+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">int</span> n,ans=<span class="number">2</span>,p[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">valid</span><span class="params">(<span class="keyword">int</span> mid)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;n<span class="number">-1</span>;++i)</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">max</span>(p[n-i],p[n-i<span class="number">-1</span>])&lt;=mid || <span class="built_in">max</span>(p[n+i],p[n+i+<span class="number">1</span>])&lt;=mid) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">min</span>(p[n-i],p[n-i<span class="number">-1</span>])&gt;mid || <span class="built_in">min</span>(p[n+i],p[n+i+<span class="number">1</span>])&gt;mid) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">return</span> p[<span class="number">1</span>]&lt;=mid;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n); <span class="keyword">for</span>(rei i=<span class="number">2</span>*n<span class="number">-1</span>;i;--i) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;p[i]);</span><br><span class="line">    rei l=<span class="number">2</span>,r=<span class="number">2</span>*n<span class="number">-2</span>;</span><br><span class="line">    <span class="keyword">while</span>(l&lt;=r)&#123;</span><br><span class="line">        rei mid=l+r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">        <span class="built_in">valid</span>(mid) ? r=mid<span class="number">-1</span>,ans=mid : l=mid+<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,ans);</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="E"><a href="#E" class="headerlink" title="E"></a>E</h2><blockquote>
-<p>给定 $3\times N$ 的矩阵，点 $(i,j)$ 的数为 $i+3j-3$ 。有操作：选择 $3\times 3$ 的矩阵，并将其旋转 $180^。$ 。给定目标矩阵，询问是否可以转化</p>
-</blockquote>
-<p>首先考虑无解：</p>
+    <title>loj#6274.数字</title>
+    <url>/2021/07/08/loj-6274%E6%95%B0%E5%AD%97/</url>
+    <content><![CDATA[<h3 id="重点说一下与运算中的转移"><a href="#重点说一下与运算中的转移" class="headerlink" title="重点说一下与运算中的转移"></a>重点说一下与运算中的转移</h3><p>考虑在当前位两数分别为 $\langle 1,0 \rangle$ 或 $ \langle 0,1 \rangle$</p>
+<p>显然这两种选择的 $\And$ 与 $|$ 操作所得结果相同，由此可知会不同选择中有包含关系</p>
+<p>从 $\langle 1,0 \rangle$ 与 $\langle 0,1 \rangle$ 所得情况等价入手</p>
+<p>记 $\langle 1,0 \rangle$ 为情况 $S_1$ , 其中 $1$ 是第一个数的选择，$0$ 是第二个数字的选择 ,</p>
+<p>$\langle 0,1 \rangle$ 为情况 $S_2$</p>
+<p>由于 $S_2$ 中的 $0$ 可知，$S_1$ 选择 $1$ 取不到 $\max$，即无论后面的位如何取都取不到上界</p>
+<p>同理，由于 $S_1$ 中的 $1$，$S_2$ 选择 $0$ 取不到 $\min$，即无法取到下界</p>
 <ul>
-<li>将每一列堪为一个整体，整体内部的元素组成不变</li>
-<li>所有模 $3$ 余 $2$ 的数一定在第二行</li>
-</ul>
-<p>再考虑性质：每次以 $(i,2)$ 为中心旋转实际是交换 $i-1,i+1$ 列，并将 $[i-1,i+1]$ 上下颠倒 —— 将上下颠倒看作奇偶性，奇数时要上下颠倒</p>
-<p>将每一列当成字母，小写为颠倒前，大写为颠倒后，设 $abcde$ 为原矩形的部分</p>
-<p>其次可以推出结论：</p>
-<ul>
-<li><p>可以将隔着一列的两列数同时颠倒</p>
-<script type="math/tex; mode=display">\underline{abc}de \Rightarrow CB\underline{Ade} \Rightarrow \underline{CBE}Da \Rightarrow eb\underline{cDa}\Rightarrow \underline{ebA}dC \Rightarrow aBcDe</script></li>
-<li><p>可以同时改变相邻 $4$ 列的奇偶性</p>
-<script type="math/tex; mode=display">\underline{abc}d \Rightarrow C\underline{BAd} \Rightarrow \underline{CDa}b \Rightarrow A\underline{dcb} \Rightarrow ABCD</script></li>
-</ul>
-<p>$\therefore$ 可以成对改变边的奇偶性，那么只需要考虑最终状态 奇数列 与 偶数列上下颠倒个数 的奇偶性，若都为偶则合法</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e5</span>+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">int</span> w[<span class="number">3</span>][N],f[N],h[<span class="number">2</span>],n;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;<span class="number">3</span>;++i) <span class="keyword">for</span>(rei j=<span class="number">1</span>;j&lt;=n;++j) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;w[i][j]);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i)&#123;</span><br><span class="line">        rei a=w[<span class="number">0</span>][i],b=w[<span class="number">1</span>][i],c=w[<span class="number">2</span>][i];</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">abs</span>(a-b)&gt;<span class="number">1</span> || <span class="built_in">abs</span>(b-c)&gt;<span class="number">1</span> || b%<span class="number">3</span>!=<span class="number">2</span> || (b%<span class="number">6</span> &amp; i&amp;<span class="number">1</span>)) <span class="keyword">return</span> <span class="built_in">puts</span>(<span class="string">&quot;No&quot;</span>),<span class="number">0</span>;</span><br><span class="line">        f[i]=b/<span class="number">3</span>+<span class="number">1</span>,h[i&amp;<span class="number">1</span>]^=a&gt;c;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="keyword">while</span>(f[i]!=i) h[ i&amp;<span class="number">1</span>^<span class="number">1</span> ]^=<span class="number">1</span>,<span class="built_in">swap</span>(f[i],f[ f[i] ]);</span><br><span class="line">    h[<span class="number">0</span>]||h[<span class="number">1</span>] ? <span class="built_in">puts</span>(<span class="string">&quot;No&quot;</span>) : <span class="built_in">puts</span>(<span class="string">&quot;Yes&quot;</span>);</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="F"><a href="#F" class="headerlink" title="F"></a>F</h2><blockquote>
-<p>给定 $n\times n$ 的网格，给定黑点坐标，其余白色，若存在 $(x,y)$ 和 $(y,z)$ 则会出现一个 $(z,x)$ 的黑点，求最终黑点数</p>
-</blockquote>
-<p>若 $(x,y)$ 为黑色，则连 $x\rightarrow y$ 的边，将题目等价于：若有 $x\rightarrow y 且 y\rightarrow z$ ，则有 $z\rightarrow x$</p>
-<p>如此连边不会影响连通性，只需考虑一个连通块内的情况并累加即可</p>
-<p><strong>由连边方式构成的三元环结构引导我们对图染色</strong></p>
-<p>连边方式自然定为：若 $x\rightarrow y$ , 则有 $col(x)+1\equiv col(y) \pmod 3$</p>
-<p>对染色情况分类：</p>
-<ul>
-<li><p>所有点只用 $\leq 2$ 中颜色且成功</p>
-<p>即没有出现新边，最终边数 $|E’|$ 等于原边数 $|E|$</p>
+<li><p>假设后面会有情况选择 $\langle 1,1 \rangle$，考虑到第二个数字取不到 $\max$ ，所以等同于选择了 $\langle 1,0 \rangle$</p>
 </li>
-<li><p>所有点用 $3$ 种颜色且成功</p>
-<p>可以证明此时图 $G$ 具有完全三分图的结构</p>
-<p>在此情况下，总边数等于各个部分大小的两两乘积和</p>
-</li>
-<li><p>染色失败</p>
-<p>设加入边 $(u,v)$ 时失败，即，加入该边前 $u,v$ 已经连通，此时他们所在的连通分量是一个完全三分图</p>
-<p>考虑失败原因</p>
-<ul>
-<li><p>$1\rightarrow 0$</p>
-<p>即自环存在于 $0\rightarrow 1\rightarrow 0$</p>
-</li>
-<li><p>$0\rightarrow 0$</p>
-<p>即有 $0\rightarrow 0\rightarrow 1\rightarrow 0$</p>
+<li><p>假设后面会有情况选择 $\langle 0,1 \rangle$，考虑到第二个数字取不到 $\min$ ，所以等同于选择了 $\langle 1,1 \rangle$</p>
 </li>
 </ul>
-<p>对于自环 $s\rightarrow s$ ,可以证明所有与 $s$ 相连的点 $u$ ,都有重边； 而对于 $\forall v,u$ 都有 $v\rightarrow s\rightarrow u \rightarrow v$</p>
-<p>即，图 $G$ 完全图</p>
-<p>该情况下总边数时连通分量大小的平方</p>
-</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e5</span>+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">int</span> head[N],Next[N&lt;&lt;<span class="number">1</span>],ver[N&lt;&lt;<span class="number">1</span>],tot;</span><br><span class="line"><span class="keyword">int</span> col[N],c[<span class="number">3</span>],n,m,ce;</span><br><span class="line">ll ans;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v)</span></span>&#123; ver[++tot]=v,Next[tot]=head[u],head[u]=tot;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">bool</span> result=<span class="literal">true</span>; ++c[ col[x] ];</span><br><span class="line">    <span class="keyword">for</span>(rei i=head[x];i;i=Next[i])&#123;</span><br><span class="line">        rei y=ver[i];</span><br><span class="line">        rei c=(col[x]+<span class="number">2</span>-(i&amp;<span class="number">1</span>))%<span class="number">3</span>; ++ce;</span><br><span class="line">        result&amp;=(~col[y] ? col[y]==c : (col[y]=c,<span class="built_in">dfs</span>(y)));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;m);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>,u,v;i&lt;=m;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;u,&amp;v),<span class="built_in">add</span>(u,v),<span class="built_in">add</span>(v,u);</span><br><span class="line">    <span class="built_in">memset</span>(col,<span class="number">-1</span>,<span class="keyword">sizeof</span> col);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i)</span><br><span class="line">        <span class="keyword">if</span>(!~col[i])&#123;</span><br><span class="line">            c[<span class="number">0</span>]=c[<span class="number">1</span>]=c[<span class="number">2</span>]=ce=col[i]=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">if</span>(!<span class="built_in">dfs</span>(i)) ans+=(ll) (c[<span class="number">0</span>]+c[<span class="number">1</span>]+c[<span class="number">2</span>])*(c[<span class="number">0</span>]+c[<span class="number">1</span>]+c[<span class="number">2</span>]);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(c[<span class="number">0</span>] &amp;&amp; c[<span class="number">1</span>] &amp;&amp; c[<span class="number">2</span>]) ans+=(ll) c[<span class="number">0</span>]*c[<span class="number">1</span>]+(ll) (c[<span class="number">0</span>]+c[<span class="number">1</span>])*c[<span class="number">2</span>];</span><br><span class="line">            <span class="keyword">else</span> ans+=ce&gt;&gt;<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,ans);</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+<p>所以对于与结果为 $0$ 的合法情况，取其结果的最大值即可</p>
+]]></content>
       <categories>
         <category>题解</category>
       </categories>
       <tags>
-        <tag>构造</tag>
         <tag>思维</tag>
-        <tag>染色</tag>
-        <tag>差分</tag>
+        <tag>dp</tag>
       </tags>
   </entry>
   <entry>
@@ -614,157 +748,6 @@ g(k)&=\sum_{i=1}^k (-1)^{k-i} \binom{k-1}{i-1} [i=1] \\
       </categories>
       <tags>
         <tag>minmax</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>01801202-AGC007</title>
-    <url>/2021/08/10/AGC007/</url>
-    <content><![CDATA[<h2 id="C"><a href="#C" class="headerlink" title="C"></a>C</h2><blockquote>
-<p>一条直线上有 $N$ 个球， $N+1$ 个洞，每个球与相邻的洞距离 $d_i \ (1\leq i\leq N\times 2)$ 。随机选择一个球并向随机方向推，若洞中有球则继续滚，无球掉入。求每个球移动距离的期望</p>
-</blockquote>
-<p>这个阴间题有一下结论：第一个球滚入洞中后，新的距离序列的期望值仍是一个等差数列</p>
-<ul>
-<li><p>题解的证明：</p>
-<p>共 $2\times n$ 中可能，对于第 $i$ 段，考虑能对其期望长度做出贡献的行为</p>
-<ul>
-<li>原第 $i$ 段距离被滚过，重新编号后原第 $i+2$ 段成为现第 $i$ 段</li>
-<li>原第 $i+1$ 段被滚过，原第 $i,i+2,i+3$ 段成为第 $i$ 段</li>
-</ul>
-<script type="math/tex; mode=display">\therefore d_i'=d_i+\frac{i\times (d_{i+2}-d_i)+(d_{i+2}+d_{i+3})}{2\times n}=d_i+\frac{i\times 2x+2\times d+5\times x}{2\times n}</script></li>
-<li><p>口胡找规律的证明</p>
-<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/dqj6ou7i.png" alt="https://cdn.luogu.com.cn/upload/image_hosting/dqj6ou7i.png"></p>
-<p>$4$ 个距离的期望分别是 $\frac{8\times d+5\times x}{6} \quad \frac{8\times d+15\times x}{6} \quad \frac{8\times d+25\times x}{6} \quad \frac{8\times d+35\times x}{6}$</p>
-<p>然后手推一推找规律得：$d’_1=d+\frac{2\times d+5\times x}{2\times n},x’=x+\frac{4\times x}{2\times n}$</p>
-<p>最后对于期望距离是 $d+\frac{2\times n-1}{2\times x}$ ，即，数列的中位数</p>
-</li>
-</ul>
-<p>$\therefore O(n)$ 递推数列即可</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">double</span> d,k,ans,n2;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%lf%lf&quot;</span>,&amp;n,&amp;d,&amp;k);</span><br><span class="line">    n2=n&lt;&lt;<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=n;i;--i)&#123;</span><br><span class="line">        ans+=d+k*(n2<span class="number">-1</span>)/<span class="number">2</span>;</span><br><span class="line">        d+=(<span class="number">2</span>*d+<span class="number">5</span>*k)/n2;</span><br><span class="line">        k+=<span class="number">4</span>*k/n2;</span><br><span class="line">        n2-=<span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%.10lf\n&quot;</span>,ans);</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="D"><a href="#D" class="headerlink" title="D"></a>D</h2><blockquote>
-<p>数列上有 $n$ 只位于 $x_i$ 熊，到达该熊位置后 $T$ 秒会在该熊的位置生成一个金币，从 $0$ 开始走，每走以一单位长度需要 $1$ 秒，求收集所有金币并到出口的最短时间</p>
-</blockquote>
-<p><del>经典C比D难</del></p>
-<p>显然有 $dp$ 式子：</p>
-<script type="math/tex; mode=display">f_i=\min_{j\leq i}\{f_{j}+a_i-a_j+\underbrace{\max\{2\times (a_i-a_{j+1}),T\}}_{返回又回到i后，若时间不够需要在原地等} \}</script><p>考虑优化这个 $O(n^2)$ 的式子</p>
-<p>首先注意 $\sum a_i-a_j=lenth$ ，所以提出这个式子并在结果中加上数列总长</p>
-<p>其次处理 $\max$ :对于 $(a_i-a_{j+1})$ 的大小分类讨论，其大小随 $a_i$ 单增，维护队列，当 $(a_i-a_{j+1})\leq \frac{T}{2}$ 留在队列中，队首转移时所有弹出的 $j$ 满足 $(a_i-a_{j+1})&gt;T$ ，记录最小值即可</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">2e5</span>+<span class="number">100</span>;</span><br><span class="line">ll n,T,x[N],f[N],ans,k=<span class="number">1e18</span>;</span><br><span class="line">ll head=<span class="number">1</span>,tail=<span class="number">1</span>,sta[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(f,<span class="number">0x3f</span>,<span class="keyword">sizeof</span> f);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%lld%d&quot;</span>,&amp;n,&amp;ans,&amp;T);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;x[i]);</span><br><span class="line">	f[<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i)&#123;</span><br><span class="line">        <span class="keyword">while</span>(head&lt;=tail &amp;&amp; (x[i]-x[ sta[head] ]+<span class="number">1</span>)&gt;(T&gt;&gt;<span class="number">1</span>))&#123;</span><br><span class="line">            k=<span class="built_in">min</span>(k,f[ sta[head] ]<span class="number">-2</span>*x[ sta[head]+<span class="number">1</span> ]);</span><br><span class="line">            ++head;</span><br><span class="line">        &#125;</span><br><span class="line">        f[i]=<span class="built_in">min</span>(f[i],<span class="built_in">min</span>(f[ sta[head] ]+T,k+<span class="number">2</span>*x[i]));</span><br><span class="line">        sta[++tail]=i;</span><br><span class="line">    &#125;</span><br><span class="line">    ans+=f[n];</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,ans);</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="E"><a href="#E" class="headerlink" title="E"></a>E</h2><blockquote>
-<p>给定一个严格二叉树，每条边有边权，找到一条 $\text{Euler}$ 环游路径(从根出发并回到根，期间每条边的两个方向恰被经过一次)，设该路径经过的叶节点按顺序依次为 $l_1,l_2,….$ ,最小化 $\max\{dis(l_1,l_2),dis(l_2,l_3),…,dis(l_{n-1},l_n)\}$</p>
-</blockquote>
-<p><strong>最小化最大值，自然想到二分答案，转化为判定性问题</strong></p>
-<p>二分答案为 $mid$ ，设二元组 $(a,b)_x$ 表示 $x$ 子树下第一次走的代价为 $a$ ,在最后一次走的代价为 $b$ ，中间过程都 $\leq mid$</p>
-<p>可以得到暴力做法：枚举当前点左右儿子的二元组 $(a,b)_{ls},(c,d)_{rs}$ ，左儿子边权为 $x$ ，右儿子边权 $y$ ，若满足 $b+c+x+y\leq mid$ ，则能得到一个新二元组 $(a+x,d+y)_x$</p>
-<p>考虑优化：</p>
-<p>对于两个有序对 $(a,b),(c,d)$ 若 $a\leq d 或 b\leq c$ ，即前者偏序与后者，显然前者优于后者</p>
-<p>那么只保留优等情况后， $a,b$ 是反向单调的，即， $a<c \Leftrightarrow b>d$</p>
-<p>对于 $(a,b) 和 (c,d)$ 的合并，假设固定 $b$ ，那么需要找 $c$ 满足 $d\leq v-b$</p>
-<p>显然希望剩下的 $d$ 尽可能小，有反向单调性可知，需要找尽可能大的 $c$</p>
-<p>可以按照单增的顺序枚举 $b$ ，所需的 $c$ 的上界则单减，双指针扫即可</p>
-<p>再考虑顶点 $i$ 的所有状态，注意到两子节点可交换，即要同时插入 $(l,r) , (r,l)$</p>
-<p>这里并不需要再次排序，由枚举的单调性可知内部有序，只需进行一次有序表合并</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">14e4</span>+<span class="number">100</span>,M=<span class="number">5e5</span>;</span><br><span class="line"><span class="keyword">int</span> n,fa[N],lc[N],rc[N];</span><br><span class="line">ll depth[N];</span><br><span class="line">PLL g[M],h[M],tmp[M];</span><br><span class="line">vector &lt;PLL&gt; f[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">link</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> fa)</span></span>&#123; (lc[fa] ? rc[fa] : lc[fa])=x;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">valid</span><span class="params">(ll v)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(rei x=n;x;--x)&#123;</span><br><span class="line">        f[x].<span class="built_in">clear</span>(); rei l=lc[x],r=rc[x];</span><br><span class="line">        <span class="keyword">if</span>(!(l || r))&#123; f[x].<span class="built_in">emplace_back</span>(depth[x],depth[x]); <span class="keyword">continue</span>;&#125;</span><br><span class="line">        rei L=f[l].<span class="built_in">size</span>(),R=f[r].<span class="built_in">size</span>(),cg,ch,i,j;</span><br><span class="line">        ll lim=v+<span class="number">2</span>*depth[x];</span><br><span class="line">        <span class="keyword">for</span>(cg=ch=j=i=<span class="number">0</span>;i&lt;L;++i)&#123;</span><br><span class="line">            <span class="keyword">for</span>(;j&lt;R &amp;&amp; f[l][i].first+f[r][j].second&gt;lim;++j);</span><br><span class="line">            <span class="keyword">if</span>(j==R) <span class="keyword">break</span>;</span><br><span class="line">            g[cg++]=<span class="built_in">mk</span>(f[l][i].second,f[r][j].first);</span><br><span class="line">            h[ch++]=<span class="built_in">mk</span>(f[r][j].first,f[l][i].second);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">reverse</span>(g,g+cg),j=<span class="built_in">merge</span>(g,g+cg,h,h+ch,tmp)-tmp;</span><br><span class="line">        <span class="keyword">if</span>(!j) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span>(f[x].<span class="built_in">emplace_back</span>(*tmp),i=<span class="number">1</span>;i&lt;j;++i)</span><br><span class="line">            <span class="keyword">if</span>(tmp[i].second&lt;f[x].<span class="built_in">back</span>().second) f[x].<span class="built_in">emplace_back</span>(tmp[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ll l=<span class="number">0</span>,r=<span class="number">0</span>,mid;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">2</span>;i&lt;=n;++i)</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d%lld&quot;</span>,&amp;fa[i],&amp;depth[i]),<span class="built_in">link</span>(i,fa[i]),r+=depth[i],depth[i]+=depth[ fa[i] ];</span><br><span class="line">    <span class="keyword">for</span>(;l&lt;r;<span class="built_in">valid</span>(mid=(l+r)/<span class="number">2</span>) ? r=mid : l=mid+<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,l);</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="F"><a href="#F" class="headerlink" title="F"></a>F</h2><blockquote>
-<p>给定初始串 $S_0$ 与目标串 $T$ ，第 $i$ 步将 $S_i$ 变为 $S_{i+1}$ ，其中：</p>
-<script type="math/tex; mode=display">S_{i+1}[j]=\begin{cases}S_i[1] &j=1 \\S_i[j] 或 S_{i+1}[j-1] &j>1 \\\end{cases}</script><p>求最少几次操作可以变为目标串</p>
-</blockquote>
-<p>考虑到 $T$ 中的每个字符来源于 $S_0$ ，有对应关系的边不会相交，且一个字符对应一个区间</p>
-<p>可以采取的最优策略是：先尽量右移，移动到需要覆盖的左边界处后向下到底线，再横向覆盖，让路径尽量靠右</p>
-<p>再考虑最优补数：从后往前考虑每个 $T$ 中须要匹配的左端点，让路径尽量靠右，若当前层数无法完成，则加一层</p>
-<p>具体地，用队列维护上一条路径所有右侧转折点，其横纵坐标单增</p>
-<p>当 $S_i\rightarrow T_j$ ，末端弹出所有横坐标在 $j$ 后面的所有转折点</p>
-<p>答案是所有转折点纵坐标的最大值 $+1$</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e6</span>+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">char</span> s[N],t[N];</span><br><span class="line"><span class="keyword">int</span> n,pre[N],p[<span class="number">255</span>],ans,ql,qr;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Data</span>&#123;</span><span class="keyword">int</span> i,j;&#125;q[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%s%s&quot;</span>,&amp;n,s+<span class="number">1</span>,t+<span class="number">1</span>); <span class="keyword">bool</span> flag=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="keyword">if</span>(s[i]!=t[i]) flag=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(flag) <span class="keyword">return</span> <span class="built_in">puts</span>(<span class="string">&quot;0&quot;</span>),<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) pre[i]=p[ s[i] ],p[ s[i] ]=i;</span><br><span class="line">    rei ql=<span class="number">1</span>,qr=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=n,las=n+<span class="number">1</span>,c=<span class="number">0</span>;i;--i)&#123;</span><br><span class="line">        <span class="keyword">if</span>(t[i]==t[i<span class="number">-1</span>]) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">while</span>(p[ t[i] ]&gt;<span class="built_in">min</span>(las,i)) p[ t[i] ]=pre[ p[ t[i] ] ];</span><br><span class="line">        <span class="keyword">if</span>(!p[ t[i] ]) <span class="keyword">return</span> <span class="built_in">puts</span>(<span class="string">&quot;-1&quot;</span>),<span class="number">0</span>;</span><br><span class="line">        rei u=p[ t[i] ],v=i;</span><br><span class="line">        <span class="keyword">while</span>(ql&lt;=qr &amp;&amp; v&lt;q[ql].i-c+<span class="number">1</span>) ++ql;</span><br><span class="line">        <span class="keyword">if</span>(las!=u &amp;&amp; u&lt;v) q[++qr]=((Data)&#123;u+c,<span class="number">1</span>-c&#125;);</span><br><span class="line">        <span class="keyword">if</span>(ql&lt;=qr) ans=<span class="built_in">max</span>(ans,q[ql].j+c);</span><br><span class="line">        ++c;las=u;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,ans+<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>构造</tag>
-        <tag>思维</tag>
-        <tag>贪心</tag>
-        <tag>dp</tag>
-        <tag>数列</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>loj#6274.数字</title>
-    <url>/2021/07/08/loj-6274%E6%95%B0%E5%AD%97/</url>
-    <content><![CDATA[<h3 id="重点说一下与运算中的转移"><a href="#重点说一下与运算中的转移" class="headerlink" title="重点说一下与运算中的转移"></a>重点说一下与运算中的转移</h3><p>考虑在当前位两数分别为 $\langle 1,0 \rangle$ 或 $ \langle 0,1 \rangle$</p>
-<p>显然这两种选择的 $\And$ 与 $|$ 操作所得结果相同，由此可知会不同选择中有包含关系</p>
-<p>从 $\langle 1,0 \rangle$ 与 $\langle 0,1 \rangle$ 所得情况等价入手</p>
-<p>记 $\langle 1,0 \rangle$ 为情况 $S_1$ , 其中 $1$ 是第一个数的选择，$0$ 是第二个数字的选择 ,</p>
-<p>$\langle 0,1 \rangle$ 为情况 $S_2$</p>
-<p>由于 $S_2$ 中的 $0$ 可知，$S_1$ 选择 $1$ 取不到 $\max$，即无论后面的位如何取都取不到上界</p>
-<p>同理，由于 $S_1$ 中的 $1$，$S_2$ 选择 $0$ 取不到 $\min$，即无法取到下界</p>
-<ul>
-<li><p>假设后面会有情况选择 $\langle 1,1 \rangle$，考虑到第二个数字取不到 $\max$ ，所以等同于选择了 $\langle 1,0 \rangle$</p>
-</li>
-<li><p>假设后面会有情况选择 $\langle 0,1 \rangle$，考虑到第二个数字取不到 $\min$ ，所以等同于选择了 $\langle 1,1 \rangle$</p>
-</li>
-</ul>
-<p>所以对于与结果为 $0$ 的合法情况，取其结果的最大值即可</p>
-]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>思维</tag>
-        <tag>dp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>学不会的生成函数</title>
-    <url>/2021/05/05/%E5%AD%A6%E4%B8%8D%E4%BC%9A%E7%9A%84%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<h2 id="不知道怎么开始"><a href="#不知道怎么开始" class="headerlink" title="不知道怎么开始"></a>不知道怎么开始</h2><ul>
-<li><p>$a=\langle1,1,1,1,1…\rangle$的生成函数是</p>
-<script type="math/tex; mode=display">f(x)=x+x^2+x^3+x^4+...</script><p>限定 $x\in(-1,1)$</p>
-<script type="math/tex; mode=display">f(x)=\lim_{n\to \infty} \frac{1-x^n}{1-x} = \frac{1}{1-x}</script><p>同理得,函数</p>
-<script type="math/tex; mode=display">f(x)=1+x^2+x^4+x^6...=\frac{1}{1-x^2}</script><script type="math/tex; mode=display">f(x)=1+2x+3x^2+4x^3...=\frac{1}{\left(1-x \right)^2}</script><script type="math/tex; mode=display">f(x)=1+3x+6x^2+10x^3+15x^4...=\frac{1}{\left(1-x\right)^3}</script><p>推广有：</p>
-<script type="math/tex; mode=display">\frac{1}{\left(1-x\right)^k} 的生成数列是 \sum_i^\infty C_{i+k-1}^{k-1} x^i</script></li>
-</ul>
-<p>设 $F(z) , G(z)$ 是数列 $\langle \ f_n \ \rangle , \langle \ g_i \ \rangle$ 的生成函数</p>
-<ul>
-<li><p>相加</p>
-<script type="math/tex; mode=display">\begin{aligned}
-\alpha F(z)+ \beta G(z)
-&= \alpha \sum_n f_nz^n + \beta \sum_ng_nz^n \\
-&=\sum_n (\alpha f_n + \beta g_n) z^n\\
-\end{aligned}</script><p>得到数列 $\langle \ \alpha f_n+\beta g_n \  \rangle$ 的生成函数</p>
-</li>
-<li><p>平移生成函数</p>
-<ul>
-<li><p>向右 $m$ 位</p>
-<p>即，构造前面有 $m$ 个 $0$ 的数列 $\langle \ \underbrace{0,\cdots}_{m个},g_0,g_1,\cdots \ \rangle = \langle \ g_{n-m} \ \rangle$ 的生成函数</p>
-<p>直接用 $z_m$ 乘</p>
-<script type="math/tex; mode=display">z_m \cdot G(z) = \sum_n g_nz^{n+m} = \sum_n g_{n-m}z^n</script></li>
-<li><p>向左 $m$ 位</p>
-<p>即，构造前面 $m$ 个元素被删除的数列 $\langle \ g_m,g_{m+1},g_{m+2},\cdots \ \rangle$ 的生成函数</p>
-<p>减去前 $m$ 项，并用 $z_m$ 来除</p>
-<script type="math/tex; mode=display">\frac{G(z)-g_0-g_1z-\cdots -g_{m-1}z^{m-1}}{z^m} = \sum_{n\geq m} g_nz^{n-m} = \sum_{n\geq 0} g_{n+m}g^z</script></li>
-</ul>
-</li>
-<li><p>常数倍的 $z$</p>
-<script type="math/tex; mode=display">G(cz) = \sum_ng_n(cz)^n = \sum_n g_nz^n</script><p>即，数列 $\langle \ c^ng_n  \ \rangle$ 的生成函数</p>
-<p>当 $c=-1$ 时特别有用</p>
-</li>
-<li><p>相乘</p>
-<script type="math/tex; mode=display">\begin{aligned}
-F(z)G(z)
-&=(f_0+f_1z+f_2z^2+\cdots ) \cdot (g_0+g_0z+g_0z^2+\cdots) \\
-&=(f_0 \cdot g_0) + (f_0\cdot g_1 + f_1 \cdot g_0)z + (f_0\cdot g_2 + f_1\cdot g_1 + f_2 \cdot g_0) z^2 + \cdots \\
-&=\sum_n \left(\sum f_k \cdot g_{n-k} \right) z^n \\
-\end{aligned}</script><p>求得数列 $\langle \ h_n \ \rangle$ 的生成函数，即数列 $\langle \ f_n \ \rangle , \langle \ g_i \ \rangle$ 的卷积的生成函数</p>
-<p>和式 $\displaystyle{h_n=\sum_{k=0}^n f_k \cdot g_{n-k}}$</p>
-</li>
-</ul>
-<p><strong>具体参见具体数学P280 , 表7-1，7-2</strong></p>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>生成函数</tag>
       </tags>
   </entry>
   <entry>
@@ -1187,6 +1170,60 @@ V(F)^{\prime}
       </tags>
   </entry>
   <entry>
+    <title>学不会的生成函数</title>
+    <url>/2021/05/05/%E5%AD%A6%E4%B8%8D%E4%BC%9A%E7%9A%84%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<h2 id="不知道怎么开始"><a href="#不知道怎么开始" class="headerlink" title="不知道怎么开始"></a>不知道怎么开始</h2><ul>
+<li><p>$a=\langle1,1,1,1,1…\rangle$的生成函数是</p>
+<script type="math/tex; mode=display">f(x)=x+x^2+x^3+x^4+...</script><p>限定 $x\in(-1,1)$</p>
+<script type="math/tex; mode=display">f(x)=\lim_{n\to \infty} \frac{1-x^n}{1-x} = \frac{1}{1-x}</script><p>同理得,函数</p>
+<script type="math/tex; mode=display">f(x)=1+x^2+x^4+x^6...=\frac{1}{1-x^2}</script><script type="math/tex; mode=display">f(x)=1+2x+3x^2+4x^3...=\frac{1}{\left(1-x \right)^2}</script><script type="math/tex; mode=display">f(x)=1+3x+6x^2+10x^3+15x^4...=\frac{1}{\left(1-x\right)^3}</script><p>推广有：</p>
+<script type="math/tex; mode=display">\frac{1}{\left(1-x\right)^k} 的生成数列是 \sum_i^\infty C_{i+k-1}^{k-1} x^i</script></li>
+</ul>
+<p>设 $F(z) , G(z)$ 是数列 $\langle \ f_n \ \rangle , \langle \ g_i \ \rangle$ 的生成函数</p>
+<ul>
+<li><p>相加</p>
+<script type="math/tex; mode=display">\begin{aligned}
+\alpha F(z)+ \beta G(z)
+&= \alpha \sum_n f_nz^n + \beta \sum_ng_nz^n \\
+&=\sum_n (\alpha f_n + \beta g_n) z^n\\
+\end{aligned}</script><p>得到数列 $\langle \ \alpha f_n+\beta g_n \  \rangle$ 的生成函数</p>
+</li>
+<li><p>平移生成函数</p>
+<ul>
+<li><p>向右 $m$ 位</p>
+<p>即，构造前面有 $m$ 个 $0$ 的数列 $\langle \ \underbrace{0,\cdots}_{m个},g_0,g_1,\cdots \ \rangle = \langle \ g_{n-m} \ \rangle$ 的生成函数</p>
+<p>直接用 $z_m$ 乘</p>
+<script type="math/tex; mode=display">z_m \cdot G(z) = \sum_n g_nz^{n+m} = \sum_n g_{n-m}z^n</script></li>
+<li><p>向左 $m$ 位</p>
+<p>即，构造前面 $m$ 个元素被删除的数列 $\langle \ g_m,g_{m+1},g_{m+2},\cdots \ \rangle$ 的生成函数</p>
+<p>减去前 $m$ 项，并用 $z_m$ 来除</p>
+<script type="math/tex; mode=display">\frac{G(z)-g_0-g_1z-\cdots -g_{m-1}z^{m-1}}{z^m} = \sum_{n\geq m} g_nz^{n-m} = \sum_{n\geq 0} g_{n+m}g^z</script></li>
+</ul>
+</li>
+<li><p>常数倍的 $z$</p>
+<script type="math/tex; mode=display">G(cz) = \sum_ng_n(cz)^n = \sum_n g_nz^n</script><p>即，数列 $\langle \ c^ng_n  \ \rangle$ 的生成函数</p>
+<p>当 $c=-1$ 时特别有用</p>
+</li>
+<li><p>相乘</p>
+<script type="math/tex; mode=display">\begin{aligned}
+F(z)G(z)
+&=(f_0+f_1z+f_2z^2+\cdots ) \cdot (g_0+g_0z+g_0z^2+\cdots) \\
+&=(f_0 \cdot g_0) + (f_0\cdot g_1 + f_1 \cdot g_0)z + (f_0\cdot g_2 + f_1\cdot g_1 + f_2 \cdot g_0) z^2 + \cdots \\
+&=\sum_n \left(\sum f_k \cdot g_{n-k} \right) z^n \\
+\end{aligned}</script><p>求得数列 $\langle \ h_n \ \rangle$ 的生成函数，即数列 $\langle \ f_n \ \rangle , \langle \ g_i \ \rangle$ 的卷积的生成函数</p>
+<p>和式 $\displaystyle{h_n=\sum_{k=0}^n f_k \cdot g_{n-k}}$</p>
+</li>
+</ul>
+<p><strong>具体参见具体数学P280 , 表7-1，7-2</strong></p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>生成函数</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>树链剖分</title>
     <url>/2021/07/01/%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86/</url>
     <content><![CDATA[<h2 id="关于长链剖分中指针的理解"><a href="#关于长链剖分中指针的理解" class="headerlink" title="关于长链剖分中指针的理解"></a>关于长链剖分中指针的理解</h2><p>与指针有关的变量：$\ast dp[N],tmp[N]$,$\ast pos$</p>
@@ -1471,74 +1508,6 @@ g_i
       </tags>
   </entry>
   <entry>
-    <title>40801202-AGC002</title>
-    <url>/2021/08/04/AGC002/</url>
-    <content><![CDATA[<h2 id="D"><a href="#D" class="headerlink" title="D"></a>D</h2><blockquote>
-<p>给一张图，多次询问，每次 $u\leftarrow v$ 中经过的不重复点数量 $=z$ ，求经过边最大编号最小值</p>
-</blockquote>
-<p>边权问题想到 $Kruskal$ 重构树</p>
-<p>重构树上倍增二分即可</p>
-<p><del>这道题还有一种整体二分+并查集做法，但我不会</del></p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e5</span>+<span class="number">100</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> x,y,w;</span><br><span class="line">    <span class="keyword">friend</span> <span class="keyword">bool</span> <span class="keyword">operator</span> &lt;(<span class="keyword">const</span> node &amp;a,<span class="keyword">const</span> node &amp;b)&#123; <span class="keyword">return</span> a.w&lt;b.w;&#125;</span><br><span class="line">&#125;edge[N&lt;&lt;<span class="number">1</span>];</span><br><span class="line"><span class="keyword">int</span> anc[<span class="number">20</span>][N&lt;&lt;<span class="number">1</span>],fa[N&lt;&lt;<span class="number">1</span>],Size[N&lt;&lt;<span class="number">1</span>],edge_val[N&lt;&lt;<span class="number">1</span>];</span><br><span class="line"><span class="keyword">int</span> n,m,root;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find_fa</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123; <span class="keyword">return</span> x==fa[x] ? x : fa[x]=<span class="built_in">find_fa</span>(fa[x]);&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">find_anc</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> d)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">19</span>;~i;--i) <span class="keyword">if</span>(edge_val[ anc[i][x] ]&lt;=d) x=anc[i][x];</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y,<span class="keyword">int</span> z,<span class="keyword">int</span> d)</span></span>&#123;</span><br><span class="line">    x=<span class="built_in">find_anc</span>(x,d),y=<span class="built_in">find_anc</span>(y,d);</span><br><span class="line">    <span class="keyword">return</span> x==y ? Size[x]&gt;=z : Size[x]+Size[y]&gt;=z;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;m);</span><br><span class="line">    edge_val[<span class="number">0</span>]=m+<span class="number">1</span>; root=n;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) fa[i]=i,Size[i]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=m;++i)&#123;</span><br><span class="line">        rei u,v; <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;u,&amp;v);</span><br><span class="line">        u=<span class="built_in">find_fa</span>(u),v=<span class="built_in">find_fa</span>(v);</span><br><span class="line">        <span class="keyword">if</span>(u==v) <span class="keyword">continue</span>;</span><br><span class="line">        fa[u]=fa[v]=++root;Size[root]=Size[u]+Size[v];</span><br><span class="line">        fa[root]=root; anc[<span class="number">0</span>][u]=anc[<span class="number">0</span>][v]=root; edge_val[root]=i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(rei i=root;i;--i) <span class="keyword">for</span>(rei j=<span class="number">1</span>;j&lt;<span class="number">20</span>;++j) anc[j][i]=anc[j<span class="number">-1</span>][ anc[j<span class="number">-1</span>][i] ];</span><br><span class="line">    rei Q;<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;Q);</span><br><span class="line">    <span class="keyword">while</span>(Q--)&#123;</span><br><span class="line">        rei x,y,z; <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>,&amp;x,&amp;y,&amp;z);</span><br><span class="line">        rei l=<span class="number">1</span>,r=m,ans=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(l&lt;=r)&#123;</span><br><span class="line">            rei mid=l+r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">            <span class="built_in">check</span>(x,y,z,mid) ? ans=mid,r=mid<span class="number">-1</span> : l=mid+<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,ans);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="E"><a href="#E" class="headerlink" title="E"></a>E</h2><blockquote>
-<p>博弈论 每次操作将当前最大堆的糖果全部吃完或将每堆糖果吃掉一个，吃完的人输</p>
-</blockquote>
-<p>GreenDay学长之前讲过</p>
-<p>将每堆小石子的数量看成柱状图并排序，问题转化为从 $(1,1)$ 出发，每次只能向上或向右走一格，到边界者输</p>
-<p>显然棱角处均为必败点，且<del>打表得</del> $y=-k\times x$ 直线上的格子性质相同</p>
-<p>找最大的 $(i,i)$ 再简单判断即可</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e5</span>+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">int</span> a[N],n;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a[i]);</span><br><span class="line">	<span class="built_in">sort</span>(a+<span class="number">1</span>,a+<span class="number">1</span>+n,greater&lt;<span class="keyword">int</span>&gt;());</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i)</span><br><span class="line">		<span class="keyword">if</span>(i+<span class="number">1</span>&gt;a[i+<span class="number">1</span>])&#123;<span class="comment">//最大正方形</span></span><br><span class="line">			<span class="keyword">if</span>((a[i]-i)&amp;<span class="number">1</span>)&#123; <span class="built_in">puts</span>(<span class="string">&quot;First&quot;</span>); <span class="keyword">break</span>;&#125;</span><br><span class="line">			rei right=i;</span><br><span class="line">			<span class="keyword">while</span>(a[right+<span class="number">1</span>]==i) ++right;</span><br><span class="line">			<span class="keyword">if</span>((right-i)&amp;<span class="number">1</span>)&#123; <span class="built_in">puts</span>(<span class="string">&quot;First&quot;</span>); <span class="keyword">break</span>;&#125;</span><br><span class="line">			<span class="built_in">puts</span>(<span class="string">&quot;Second&quot;</span>); <span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="F"><a href="#F" class="headerlink" title="F"></a>F</h2><blockquote>
-<p>给你 $n$ 种不含白色颜色的球，每个球有 $m$ 个，把这 $n\times m$ 个球排成一排，把每一种颜色的最左边出现的球涂成白色，求有多少种不同的颜色序列</p>
-</blockquote>
-<p>有 $m$ 个白球，$n$ 种其他颜色的球各 $m-1$ 个 只有任意前缀中白球的个数均大于其他颜色种类数时合法</p>
-<p>考虑序列计数 $dp$: 枚举位置或元素，这里枚举元素</p>
-<p>设状态 $f_{i,j}$ 表示在 $n\times m$ 个位置上填了 $i$ 个白球和 $j$ 个其他球</p>
-<p>考虑合法序列的从左到右的第一个格子如何转移</p>
-<script type="math/tex; mode=display">\therefore f_{i,j}=\underbrace{f_{i-1,j}}_{放白球} \ + \ \underbrace{f_{i,j-1}}_{放其他颜色} \times \underbrace{\left(n-j+1\right)}_{没有使用过的颜色}\times \underbrace{\binom{n\times m-i-(m-1)\times (j-1)-1}{m-2}}_{还有 m-2 个该颜色的球没有放}</script><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">2e3</span>+<span class="number">5</span>,M=<span class="number">4e6</span>+<span class="number">5</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod=<span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"><span class="keyword">int</span> n,m,f[N][N],fac[M],ifac[M],inv[M],ans;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">C</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> m)</span></span>&#123; <span class="keyword">return</span> (ll) fac[n]*ifac[n-m]%mod*ifac[m]%mod;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;m); inv[<span class="number">1</span>]=ifac[<span class="number">0</span>]=fac[<span class="number">0</span>]=<span class="number">1</span>; f[<span class="number">0</span>][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">2</span>;i&lt;=n*m;++i) inv[i]=(ll) (mod-mod/i)*inv[mod%i]%mod;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n*m;++i) fac[i]=(ll) i*fac[i<span class="number">-1</span>]%mod,ifac[i]=(ll) inv[i]*ifac[i<span class="number">-1</span>]%mod;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="keyword">for</span>(rei j=<span class="number">0</span>;j&lt;=i;++j)&#123;</span><br><span class="line">            f[i][j]=f[i<span class="number">-1</span>][j];</span><br><span class="line">            <span class="keyword">if</span>(j) f[i][j]=(f[i][j]+(ll) f[i][j<span class="number">-1</span>]*(n-j+<span class="number">1</span>)%mod *<span class="built_in">C</span>(n*m-i-(j<span class="number">-1</span>)*(m<span class="number">-1</span>)<span class="number">-1</span>,m<span class="number">-2</span>)%mod)%mod;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,m==<span class="number">1</span> ? <span class="number">1</span> : f[n][n]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>构造</tag>
-        <tag>思维</tag>
-        <tag>dp</tag>
-        <tag>博弈论</tag>
-        <tag>Kruskal重构树</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>超几何分布中的期望</title>
-    <url>/2021/07/18/%E8%B6%85%E5%87%A0%E4%BD%95%E5%88%86%E5%B8%83%E4%B8%AD%E7%9A%84%E6%9C%9F%E6%9C%9B/</url>
-    <content><![CDATA[<h2 id="超几何分布"><a href="#超几何分布" class="headerlink" title="超几何分布"></a>超几何分布</h2><h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3><p>对于 $N=N_1+N_2$ 个外表相同的物品，从中抽取 $n$ 个物品，每个物品抽取等概率随机</p>
-<hr>
-<h3 id="n-个中有-x-个-N-1-类物品的概率"><a href="#n-个中有-x-个-N-1-类物品的概率" class="headerlink" title="$n$ 个中有 $x$ 个 $N_1$ 类物品的概率"></a>$n$ 个中有 $x$ 个 $N_1$ 类物品的概率</h3><p>首先，若 $x&gt;N_1$ 概率为 $0$ ，故不需考虑</p>
-<p>对于所取的 $n$ 个数，若满足条件：</p>
-<p>- 从 $N_1$ 个中抽 $x$ 个 ， 有 $\displaystyle{\binom{N_1}{x}}$ 种</p>
-<p>- 从 $N_2$ 个中抽 $n-x$ 个 ， 有 $\displaystyle{\binom{N_2}{n-x}}$ 种</p>
-<p>所以总合法取法有 $\displaystyle{\binom{N_1}{x} \binom{N_2}{n-x}}$ 种 ， 而总取法有 $\displaystyle{\binom{N}{n}}$</p>
-<script type="math/tex; mode=display">\therefore P(X=x)= \frac{\binom{N_1}{x} \binom{N_2}{n-x}}{\binom{N}{n}}</script><hr>
-<h3 id="抽出-x-个-N-1-的期望"><a href="#抽出-x-个-N-1-的期望" class="headerlink" title="抽出 $x$ 个 $N_1$ 的期望"></a>抽出 $x$ 个 $N_1$ 的期望</h3><script type="math/tex; mode=display">E(x)=\sum_{x=0}^{N_1} x\times P(X=x) =\sum_{x=1}^{N_1} x\times P(X=x)</script><p>由组合数公式 $\displaystyle{\binom{N}{n}=\frac{N}{n} \binom{N-1}{n-1}}$ 得</p>
-<script type="math/tex; mode=display">\begin{aligned}原式
-
-&=\sum_{x=1}^{N_1} x\times \frac{ \frac{N_1}{x} \binom{N_1-1}{x-1} \binom{N_2}{n-x} }{ \frac{N}{n} \binom{N-1}{n-1}} \\
-
-&=\frac{n\times N_1}{N} \sum_{x=1}^{N_1} \frac{ \binom{N_1-1}{x-1} \binom{N_2}{n-x}}{ \binom{N-1}{n-1}} \\
-
-&=\frac{n\times N_1}{N} \sum_{x=1}^{N_1} \frac{ \binom{N_1-1}{x-1} \binom{N_2}{(n-1)-(x-1)}}{ \binom{N-1}{n-1}} \\
-
-&=\frac{n\times N_1}{N} \sum_{x=1}^{N_1} P(X=x-1)
-
-\end{aligned}</script><script type="math/tex; mode=display">\because \sum_{x=1}^{N_1} P(X=x-1) 的含义为：n 中有 x-1 个 N_1 的概率和</script><script type="math/tex; mode=display">\therefore \sum_{x=1}^{N_1} P(X=x-1)=1</script><script type="math/tex; mode=display">\therefore 原式=\frac{n\times N_1}{N}</script>]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>期望</tag>
-        <tag>组合数学</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>迭代加深</title>
     <url>/2021/04/07/%E8%BF%AD%E4%BB%A3%E5%8A%A0%E6%B7%B1/</url>
     <content><![CDATA[<h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3><ul>
@@ -1623,6 +1592,37 @@ g_i
       </categories>
       <tags>
         <tag>迭代加深</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>超几何分布中的期望</title>
+    <url>/2021/07/18/%E8%B6%85%E5%87%A0%E4%BD%95%E5%88%86%E5%B8%83%E4%B8%AD%E7%9A%84%E6%9C%9F%E6%9C%9B/</url>
+    <content><![CDATA[<h2 id="超几何分布"><a href="#超几何分布" class="headerlink" title="超几何分布"></a>超几何分布</h2><h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3><p>对于 $N=N_1+N_2$ 个外表相同的物品，从中抽取 $n$ 个物品，每个物品抽取等概率随机</p>
+<hr>
+<h3 id="n-个中有-x-个-N-1-类物品的概率"><a href="#n-个中有-x-个-N-1-类物品的概率" class="headerlink" title="$n$ 个中有 $x$ 个 $N_1$ 类物品的概率"></a>$n$ 个中有 $x$ 个 $N_1$ 类物品的概率</h3><p>首先，若 $x&gt;N_1$ 概率为 $0$ ，故不需考虑</p>
+<p>对于所取的 $n$ 个数，若满足条件：</p>
+<p>- 从 $N_1$ 个中抽 $x$ 个 ， 有 $\displaystyle{\binom{N_1}{x}}$ 种</p>
+<p>- 从 $N_2$ 个中抽 $n-x$ 个 ， 有 $\displaystyle{\binom{N_2}{n-x}}$ 种</p>
+<p>所以总合法取法有 $\displaystyle{\binom{N_1}{x} \binom{N_2}{n-x}}$ 种 ， 而总取法有 $\displaystyle{\binom{N}{n}}$</p>
+<script type="math/tex; mode=display">\therefore P(X=x)= \frac{\binom{N_1}{x} \binom{N_2}{n-x}}{\binom{N}{n}}</script><hr>
+<h3 id="抽出-x-个-N-1-的期望"><a href="#抽出-x-个-N-1-的期望" class="headerlink" title="抽出 $x$ 个 $N_1$ 的期望"></a>抽出 $x$ 个 $N_1$ 的期望</h3><script type="math/tex; mode=display">E(x)=\sum_{x=0}^{N_1} x\times P(X=x) =\sum_{x=1}^{N_1} x\times P(X=x)</script><p>由组合数公式 $\displaystyle{\binom{N}{n}=\frac{N}{n} \binom{N-1}{n-1}}$ 得</p>
+<script type="math/tex; mode=display">\begin{aligned}原式
+
+&=\sum_{x=1}^{N_1} x\times \frac{ \frac{N_1}{x} \binom{N_1-1}{x-1} \binom{N_2}{n-x} }{ \frac{N}{n} \binom{N-1}{n-1}} \\
+
+&=\frac{n\times N_1}{N} \sum_{x=1}^{N_1} \frac{ \binom{N_1-1}{x-1} \binom{N_2}{n-x}}{ \binom{N-1}{n-1}} \\
+
+&=\frac{n\times N_1}{N} \sum_{x=1}^{N_1} \frac{ \binom{N_1-1}{x-1} \binom{N_2}{(n-1)-(x-1)}}{ \binom{N-1}{n-1}} \\
+
+&=\frac{n\times N_1}{N} \sum_{x=1}^{N_1} P(X=x-1)
+
+\end{aligned}</script><script type="math/tex; mode=display">\because \sum_{x=1}^{N_1} P(X=x-1) 的含义为：n 中有 x-1 个 N_1 的概率和</script><script type="math/tex; mode=display">\therefore \sum_{x=1}^{N_1} P(X=x-1)=1</script><script type="math/tex; mode=display">\therefore 原式=\frac{n\times N_1}{N}</script>]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>期望</tag>
+        <tag>组合数学</tag>
       </tags>
   </entry>
   <entry>
