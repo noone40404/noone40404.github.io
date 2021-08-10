@@ -249,6 +249,64 @@ a &a=b \\
       </tags>
   </entry>
   <entry>
+    <title>70801202-AGC005</title>
+    <url>/2021/08/07/AGC005/</url>
+    <content><![CDATA[<h2 id="D"><a href="#D" class="headerlink" title="D"></a>D</h2><blockquote>
+<p>求数列 $A$ 的合法排列数满足 $\forall i\in(1,n) |p_i-i|\not =k$</p>
+</blockquote>
+<p>考虑到 $\not =$ 并不容易计算，使用容斥转化为 $=$</p>
+<p>设 $\Gamma_c$ 表示包含已知的 $c对=$ 的排列数量(其他位置任意)，而其他位置任意本质上就是全排列，即，对 $\Gamma_c$ 的贡献是 $(N-c)!$ 。 由此，根据广义容斥，最终答案为 $\displaystyle{\sum_{c=0}^N (-1)^c \times \Gamma_c}$</p>
+<p>转化问题为<strong>能选出多少对 $(i,a_i)$ 使 $|a_i-i|=K$ 且所有的 $i,a_i$ 分别互不相同</strong> ，设选出 $\gamma_c$ ，则 $\Gamma_c=\gamma_c \times (N-c)!$</p>
+<p>则最终答案是</p>
+<script type="math/tex; mode=display">\sum_{c=0}^N (-1)^c\times (N-c)! \times \gamma_c</script><p>注意这里<strong>下标与键值的对应关系</strong>，像匹配的定义，且可以将其转化成二分图模型：$G=(V_1,V_2 ; E)$，其中 $V_1={L_1,L_2,…,L_N} \ ,\ V_2={R_1,R_2,…,R_N} \ ,\ E={(L_i,R_j)\mid \ |i-j|=k}$ ，求 $E$ 有多少个 $K$ 的匹配</p>
+<p>再考虑图 $G$ 的性质：</p>
+<ul>
+<li>每个顶点度数不超过 $2$ ——因为 $L_i$ 至多与 $R_{i-k},R_{i+k}$ 相连，对 $R_i$ 同理</li>
+<li>$G$ 为若干个链的并——证明没有圈：若有圈，则设最小者 $\min$ , 顶点式 $L_{\min}$ ，与之相连的节点 $L_{\min-k}$ 则不能在圈中，则度数不超过 $1$ ,与性质 $1$ 矛盾</li>
+</ul>
+<p>所以求一个全由链组成的图 $G$ ，其大小为 $k$ 的匹配个数</p>
+<p>考虑将这些链首尾相连，而连边则为<strong>强制不能加入匹配</strong>的坏边</p>
+<p>问题转化到了链，$f_{i,j}$ 表示前 $i$ 条边，当前匹配大小为 $j$ ，且最后一条边没有匹配的方案数； $g_{i,j}$ 表示最后一条边匹配的方案数，转移时注意坏边以及相邻的边不能同时出现在匹配中</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">4e3</span>+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod=<span class="number">924844033</span>;</span><br><span class="line"><span class="keyword">int</span> n,k,len;</span><br><span class="line"><span class="keyword">int</span> sp[N],fac[N],f[N][N],g[N][N];</span><br><span class="line">ll ans;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> &amp;x,<span class="keyword">const</span> <span class="keyword">int</span> y)</span></span>&#123; x+=y-mod; x+=x&gt;&gt;<span class="number">31</span>&amp;mod;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;k); fac[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) fac[i]=(ll) fac[i<span class="number">-1</span>]*i%mod;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;k;++i)&#123;</span><br><span class="line">        sp[++len]=<span class="number">1</span>,len+=(n-i<span class="number">-1</span>)/k;</span><br><span class="line">        sp[++len]=<span class="number">1</span>,len+=(n-i<span class="number">-1</span>)/k;</span><br><span class="line">    &#125;</span><br><span class="line">    f[<span class="number">0</span>][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=len;++i)&#123;</span><br><span class="line">        f[i][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(rei j=<span class="number">1</span>;j&lt;=(i+<span class="number">1</span>)/<span class="number">2</span>;++j)&#123;</span><br><span class="line">            <span class="built_in">add</span>(f[i][j]=f[i<span class="number">-1</span>][j],g[i<span class="number">-1</span>][j]);</span><br><span class="line">            g[i][j]=sp[i] ? <span class="number">0</span> : f[i<span class="number">-1</span>][j<span class="number">-1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(rei c=<span class="number">0</span>;c&lt;=n;++c)&#123;</span><br><span class="line">        rei tmp=(ll) (f[len][c]+g[len][c])%mod*fac[n-c]%mod;</span><br><span class="line">        c&amp;<span class="number">1</span> ? ans-=tmp : ans+=tmp;</span><br><span class="line">    &#125;</span><br><span class="line">    ans%=mod;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,ans+(ans&gt;&gt;<span class="number">63</span>&amp;mod));</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="E"><a href="#E" class="headerlink" title="E"></a>E</h2><blockquote>
+<p>给定红蓝两棵树和起点，两人分别在两棵树上交替移动，相遇后（所在节点编号相同）游戏结束，现在 $A（红）$ 想最大化游戏轮数，$B（蓝）$ 想最小化游戏轮数，求游戏轮数</p>
+</blockquote>
+<p><del>对抗搜索！（雾</del></p>
+<p>首先考虑无解情况，即后手永远抓不到先手</p>
+<p>如果存在一条红边 $(u,v)$ 且满足 $u,v$ 两点在蓝树上的距离 $\geq 3$ ，且先手能跑到 $u,v$ 点中任意一个 且 该回合内没有被抓到，则无解</p>
+<p>先假设有解情况，即，先手可以走的红边的两端点在蓝树上距离 $\leq 2$ ，那么对于点 $u$ ，其与根的距离分别为 $len_红,len_蓝$ ，若 $len_红\leq len_蓝$ 那么红方一定不会走到 $u$ ， 即红方每一次移动都要保证 $len_红&gt;len_蓝$</p>
+<p>$\therefore$ $\text{dfs}$ 一次找无解与满足 $len_红&gt;len_蓝$ 的点，答案就是 $2\times \max len_红$ ，即最优决策是走到 $\max len_红$ 并原地等待</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">2e5</span>+<span class="number">5</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> next,to;</span><br><span class="line">    <span class="built_in">Edge</span>(<span class="keyword">int</span> next=<span class="number">0</span>,<span class="keyword">int</span> to=<span class="number">0</span>):<span class="built_in">next</span>(next),<span class="built_in">to</span>(to)&#123;&#125;;</span><br><span class="line">&#125;edge[N&lt;&lt;<span class="number">2</span>];</span><br><span class="line"><span class="keyword">int</span> ha[N],hb[N],tot;</span><br><span class="line"><span class="keyword">int</span> fa[N],hson[N],Size[N],top[N],depth[N];</span><br><span class="line"><span class="keyword">int</span> ans,cir,n,a,b;</span><br><span class="line"></span><br><span class="line"><span class="keyword">inline</span> <span class="keyword">void</span> _add(<span class="keyword">int</span> *head,<span class="keyword">int</span> x,<span class="keyword">int</span> y)&#123; edge[++tot]=<span class="built_in">Edge</span>(head[x],y);head[x]=tot;&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> *head,<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123; _add(head,x,y); _add(head,y,x);&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs1</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    Size[x]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=hb[x];i;i=edge[i].next)&#123;</span><br><span class="line">        rei y=edge[i].to; <span class="keyword">if</span>(y==fa[x]) <span class="keyword">continue</span>;</span><br><span class="line">        depth[y]=depth[x]+<span class="number">1</span>,fa[y]=x; <span class="built_in">dfs1</span>(y),</span><br><span class="line">        Size[x]+=Size[y],hson[x]=Size[ hson[x] ]&gt;Size[y] ? hson[x] : y;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">lca</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(top[x]!=top[y])&#123;</span><br><span class="line">        <span class="keyword">if</span>(depth[ top[x] ]&lt;depth[ top[y] ]) x^=y,y^=x,x^=y;</span><br><span class="line">        x=fa[ top[x] ];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> depth[x]&lt;depth[y] ? x : y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">dis</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123; <span class="keyword">return</span> depth[x]+depth[y]<span class="number">-2</span>*depth[ <span class="built_in">lca</span>(x,y) ];&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs2</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> anc)</span></span>&#123;</span><br><span class="line">    top[x]=anc;</span><br><span class="line">    <span class="keyword">if</span>(hson[x]) <span class="built_in">dfs2</span>(hson[x],anc);</span><br><span class="line">    <span class="keyword">for</span>(rei i=hb[x];i;i=edge[i].next)&#123;</span><br><span class="line">        rei y=edge[i].to; <span class="keyword">if</span>(y!=fa[x] &amp;&amp; y!=hson[x]) <span class="built_in">dfs2</span>(y,y);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">escape</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> fa,<span class="keyword">int</span> dep)</span></span>&#123;</span><br><span class="line">    ans=<span class="built_in">max</span>(ans,depth[x]&lt;&lt;<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(rei i=ha[x];i;i=edge[i].next)&#123;</span><br><span class="line">        rei y=edge[i].to;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">dis</span>(x,y)&gt;<span class="number">2</span>) cir=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(y==fa || dep+<span class="number">1</span>&gt;=depth[y]) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="built_in">escape</span>(y,x,dep+<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>,&amp;n,&amp;a,&amp;b);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>,x,y;i&lt;n;++i)</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;x,&amp;y),<span class="built_in">add</span>(ha,x,y);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>,x,y;i&lt;n;++i)</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;x,&amp;y),<span class="built_in">add</span>(hb,x,y);</span><br><span class="line">    <span class="built_in">dfs1</span>(b);<span class="built_in">dfs2</span>(b,b);</span><br><span class="line">    <span class="built_in">escape</span>(a,<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,cir ? <span class="number">-1</span> : ans);</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="F"><a href="#F" class="headerlink" title="F"></a>F</h2><blockquote>
+<p>对于一颗树 $T=(V,E)$ ，对于非空子集 $S\subseteq V$ ， 定义 $f(S)$ 表示包含 $S$ 中所有点的连通块大小的最小值，即，$f(S)=min{|U| \ \mid s\subseteq U\subseteq V,T |U|是连通图}$ ，对 $K:1\rightarrow n$ 分别求出 $\sum_{S\subseteq V,|S|=K} f(S)$ 的值</p>
+</blockquote>
+<p>考虑每个点 $x$ 对答案的贡献，即总方案数减去不合法方案数</p>
+<script type="math/tex; mode=display">\begin{aligned}
+f_i&=\sum_{x=1}^n\left(\binom{n}{i}-\sum_{\exists e(x,y)}\binom{size_y}{i} \right) \\
+&=n\times \binom{n}{i} - \sum_{x=1}^m\times \sum_{\exists e(x,y)} \binom{size_y}{i} \\
+\end{aligned}</script><p>设 $cnt_i$ 为子树大小为 $i$ 的子树个数</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+f_i&=n\times \binom{n}{i}-\sum_{j=i}^n cnt_j\times \binom{j}{i} \\
+&=n\times \binom{n}{i}-\sum_{j=i}^n cnt_j\times \frac{j!}{i!\times (j-i)!} \\
+&=n\times \binom{n}{i}-\frac{1}{i!}\sum_{j=i}^n\frac{cnt_j\times j!}{(j-i)!} \\
+&=n\times \binom{n}{i}-\frac{1}{i!} \sum_{j=0}^{n-i}\frac{cnt_{i+j}\times (i+j)!}{j!} \\
+\end{aligned}</script><p>发现第二项是减法卷积，考虑 $NTT$</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">8e5</span>+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod=<span class="number">924844033</span>,G=<span class="number">5</span>;</span><br><span class="line">ll n;</span><br><span class="line">ll rev[N],f[N],g[N],fac[N],ifac[N],Size[N],cnt[N];</span><br><span class="line"><span class="keyword">int</span> head[N],tot,Next[N&lt;&lt;<span class="number">1</span>],ver[N&lt;&lt;<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v)</span></span>&#123; ver[++tot]=v,Next[tot]=head[u],head[u]=tot;&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">qpow</span><span class="params">(ll x,ll y)</span></span>&#123; ll v=<span class="number">1</span>; <span class="keyword">while</span>(y)&#123; <span class="keyword">if</span>(y&amp;<span class="number">1</span>) v=v*x%mod; x=x*x%mod,y&gt;&gt;=<span class="number">1</span>;&#125; <span class="keyword">return</span> v;&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">calc</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    rei lim=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(lim&lt;=n) lim&lt;&lt;=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;lim;++i) rev[i]=(rev[i&gt;&gt;<span class="number">1</span>]&gt;&gt;<span class="number">1</span>) | ((i&amp;<span class="number">1</span>) ? lim&gt;&gt;<span class="number">1</span> : <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> lim;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">NTT</span><span class="params">(ll *a,<span class="keyword">int</span> lim,<span class="keyword">int</span> type)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;lim;++i) <span class="keyword">if</span>(i&lt;rev[i]) <span class="built_in">swap</span>(a[i],a[ rev[i] ]);</span><br><span class="line">    <span class="keyword">for</span>(rei len=<span class="number">1</span>;len&lt;lim;len&lt;&lt;=<span class="number">1</span>)&#123;</span><br><span class="line">        ll wn=<span class="built_in">qpow</span>(G,(mod<span class="number">-1</span>)/(len&lt;&lt;<span class="number">1</span>));</span><br><span class="line">        <span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;lim;i+=len&lt;&lt;<span class="number">1</span>)&#123;</span><br><span class="line">            ll w=<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span>(rei j=i;j&lt;i+len;++j,w=w*wn%mod)&#123;</span><br><span class="line">                ll x=a[j],y=w*a[j+len]%mod;</span><br><span class="line">                a[j]=(x+y)%mod,a[j+len]=(x-y+mod)%mod;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(type==<span class="number">1</span>) <span class="keyword">return</span>;</span><br><span class="line">    ll inv=<span class="built_in">qpow</span>(lim,mod<span class="number">-2</span>);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;lim;++i) a[i]=a[i]*inv%mod;</span><br><span class="line">    <span class="built_in">reverse</span>(a+<span class="number">1</span>,a+lim);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">mul</span><span class="params">(ll *f,ll *g)</span></span>&#123;</span><br><span class="line">    rei lim=<span class="built_in">calc</span>(n&lt;&lt;<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">NTT</span>(f,lim,<span class="number">1</span>),<span class="built_in">NTT</span>(g,lim,<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;lim;++i) f[i]=f[i]*g[i]%mod;</span><br><span class="line">    <span class="built_in">NTT</span>(f,lim,<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> fa)</span></span>&#123;</span><br><span class="line">    Size[x]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=head[x];i;i=Next[i])&#123;</span><br><span class="line">        rei y=ver[i];</span><br><span class="line">        <span class="keyword">if</span>(y==fa) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="built_in">dfs</span>(y,x),Size[x]+=Size[y];</span><br><span class="line">    &#125;</span><br><span class="line">    ++cnt[ Size[x] ],++cnt[ n-Size[x] ];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">get_C</span><span class="params">(ll n,ll m)</span></span>&#123; <span class="keyword">return</span> fac[n]*ifac[m]%mod *ifac[n-m]%mod;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">    fac[<span class="number">0</span>]=ifac[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) fac[i]=fac[i<span class="number">-1</span>]*i%mod;</span><br><span class="line">    ifac[n]=<span class="built_in">qpow</span>(fac[n],mod<span class="number">-2</span>);</span><br><span class="line">    <span class="keyword">for</span>(rei i=n<span class="number">-1</span>;i;--i) ifac[i]=ifac[i+<span class="number">1</span>]*(i+<span class="number">1</span>)%mod;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">    <span class="built_in">init</span>();</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>,x,y;i&lt;n;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;x,&amp;y),<span class="built_in">add</span>(x,y),<span class="built_in">add</span>(y,x);</span><br><span class="line">    <span class="built_in">dfs</span>(<span class="number">1</span>,<span class="number">0</span>);</span><br><span class="line">    g[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) f[i]=cnt[n-i]*fac[n-i]%mod,g[i]=ifac[i];</span><br><span class="line">    <span class="built_in">mul</span>(f,g),<span class="built_in">reverse</span>(f,f+n+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,(n*<span class="built_in">get_C</span>(n,i)%mod-ifac[i]*f[i]%mod+mod)%mod);</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>构造</tag>
+        <tag>思维</tag>
+        <tag>dp</tag>
+        <tag>博弈论</tag>
+        <tag>多项式</tag>
+        <tag>容斥</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>90801202-AGC006</title>
     <url>/2021/08/09/AGC006/</url>
     <content><![CDATA[<h2 id="B"><a href="#B" class="headerlink" title="B"></a>B</h2><blockquote>
@@ -338,64 +396,6 @@ d'_{i+1}=f_{i+1}-(f_{i-1}+f_{i+1}-f_i)=f_i-f_{i-1}=d_i \\</script><p>恰好是�
         <tag>思维</tag>
         <tag>染色</tag>
         <tag>差分</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>70801202-AGC005</title>
-    <url>/2021/08/07/AGC005/</url>
-    <content><![CDATA[<h2 id="D"><a href="#D" class="headerlink" title="D"></a>D</h2><blockquote>
-<p>求数列 $A$ 的合法排列数满足 $\forall i\in(1,n) |p_i-i|\not =k$</p>
-</blockquote>
-<p>考虑到 $\not =$ 并不容易计算，使用容斥转化为 $=$</p>
-<p>设 $\Gamma_c$ 表示包含已知的 $c对=$ 的排列数量(其他位置任意)，而其他位置任意本质上就是全排列，即，对 $\Gamma_c$ 的贡献是 $(N-c)!$ 。 由此，根据广义容斥，最终答案为 $\displaystyle{\sum_{c=0}^N (-1)^c \times \Gamma_c}$</p>
-<p>转化问题为<strong>能选出多少对 $(i,a_i)$ 使 $|a_i-i|=K$ 且所有的 $i,a_i$ 分别互不相同</strong> ，设选出 $\gamma_c$ ，则 $\Gamma_c=\gamma_c \times (N-c)!$</p>
-<p>则最终答案是</p>
-<script type="math/tex; mode=display">\sum_{c=0}^N (-1)^c\times (N-c)! \times \gamma_c</script><p>注意这里<strong>下标与键值的对应关系</strong>，像匹配的定义，且可以将其转化成二分图模型：$G=(V_1,V_2 ; E)$，其中 $V_1={L_1,L_2,…,L_N} \ ,\ V_2={R_1,R_2,…,R_N} \ ,\ E={(L_i,R_j)\mid \ |i-j|=k}$ ，求 $E$ 有多少个 $K$ 的匹配</p>
-<p>再考虑图 $G$ 的性质：</p>
-<ul>
-<li>每个顶点度数不超过 $2$ ——因为 $L_i$ 至多与 $R_{i-k},R_{i+k}$ 相连，对 $R_i$ 同理</li>
-<li>$G$ 为若干个链的并——证明没有圈：若有圈，则设最小者 $\min$ , 顶点式 $L_{\min}$ ，与之相连的节点 $L_{\min-k}$ 则不能在圈中，则度数不超过 $1$ ,与性质 $1$ 矛盾</li>
-</ul>
-<p>所以求一个全由链组成的图 $G$ ，其大小为 $k$ 的匹配个数</p>
-<p>考虑将这些链首尾相连，而连边则为<strong>强制不能加入匹配</strong>的坏边</p>
-<p>问题转化到了链，$f_{i,j}$ 表示前 $i$ 条边，当前匹配大小为 $j$ ，且最后一条边没有匹配的方案数； $g_{i,j}$ 表示最后一条边匹配的方案数，转移时注意坏边以及相邻的边不能同时出现在匹配中</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">4e3</span>+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod=<span class="number">924844033</span>;</span><br><span class="line"><span class="keyword">int</span> n,k,len;</span><br><span class="line"><span class="keyword">int</span> sp[N],fac[N],f[N][N],g[N][N];</span><br><span class="line">ll ans;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> &amp;x,<span class="keyword">const</span> <span class="keyword">int</span> y)</span></span>&#123; x+=y-mod; x+=x&gt;&gt;<span class="number">31</span>&amp;mod;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;k); fac[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) fac[i]=(ll) fac[i<span class="number">-1</span>]*i%mod;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;k;++i)&#123;</span><br><span class="line">        sp[++len]=<span class="number">1</span>,len+=(n-i<span class="number">-1</span>)/k;</span><br><span class="line">        sp[++len]=<span class="number">1</span>,len+=(n-i<span class="number">-1</span>)/k;</span><br><span class="line">    &#125;</span><br><span class="line">    f[<span class="number">0</span>][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=len;++i)&#123;</span><br><span class="line">        f[i][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(rei j=<span class="number">1</span>;j&lt;=(i+<span class="number">1</span>)/<span class="number">2</span>;++j)&#123;</span><br><span class="line">            <span class="built_in">add</span>(f[i][j]=f[i<span class="number">-1</span>][j],g[i<span class="number">-1</span>][j]);</span><br><span class="line">            g[i][j]=sp[i] ? <span class="number">0</span> : f[i<span class="number">-1</span>][j<span class="number">-1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(rei c=<span class="number">0</span>;c&lt;=n;++c)&#123;</span><br><span class="line">        rei tmp=(ll) (f[len][c]+g[len][c])%mod*fac[n-c]%mod;</span><br><span class="line">        c&amp;<span class="number">1</span> ? ans-=tmp : ans+=tmp;</span><br><span class="line">    &#125;</span><br><span class="line">    ans%=mod;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,ans+(ans&gt;&gt;<span class="number">63</span>&amp;mod));</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="E"><a href="#E" class="headerlink" title="E"></a>E</h2><blockquote>
-<p>给定红蓝两棵树和起点，两人分别在两棵树上交替移动，相遇后（所在节点编号相同）游戏结束，现在 $A（红）$ 想最大化游戏轮数，$B（蓝）$ 想最小化游戏轮数，求游戏轮数</p>
-</blockquote>
-<p><del>对抗搜索！（雾</del></p>
-<p>首先考虑无解情况，即后手永远抓不到先手</p>
-<p>如果存在一条红边 $(u,v)$ 且满足 $u,v$ 两点在蓝树上的距离 $\geq 3$ ，且先手能跑到 $u,v$ 点中任意一个 且 该回合内没有被抓到，则无解</p>
-<p>先假设有解情况，即，先手可以走的红边的两端点在蓝树上距离 $\leq 2$ ，那么对于点 $u$ ，其与根的距离分别为 $len_红,len_蓝$ ，若 $len_红\leq len_蓝$ 那么红方一定不会走到 $u$ ， 即红方每一次移动都要保证 $len_红&gt;len_蓝$</p>
-<p>$\therefore$ $\text{dfs}$ 一次找无解与满足 $len_红&gt;len_蓝$ 的点，答案就是 $2\times \max len_红$ ，即最优决策是走到 $\max len_红$ 并原地等待</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">2e5</span>+<span class="number">5</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> next,to;</span><br><span class="line">    <span class="built_in">Edge</span>(<span class="keyword">int</span> next=<span class="number">0</span>,<span class="keyword">int</span> to=<span class="number">0</span>):<span class="built_in">next</span>(next),<span class="built_in">to</span>(to)&#123;&#125;;</span><br><span class="line">&#125;edge[N&lt;&lt;<span class="number">2</span>];</span><br><span class="line"><span class="keyword">int</span> ha[N],hb[N],tot;</span><br><span class="line"><span class="keyword">int</span> fa[N],hson[N],Size[N],top[N],depth[N];</span><br><span class="line"><span class="keyword">int</span> ans,cir,n,a,b;</span><br><span class="line"></span><br><span class="line"><span class="keyword">inline</span> <span class="keyword">void</span> _add(<span class="keyword">int</span> *head,<span class="keyword">int</span> x,<span class="keyword">int</span> y)&#123; edge[++tot]=<span class="built_in">Edge</span>(head[x],y);head[x]=tot;&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> *head,<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123; _add(head,x,y); _add(head,y,x);&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs1</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    Size[x]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=hb[x];i;i=edge[i].next)&#123;</span><br><span class="line">        rei y=edge[i].to; <span class="keyword">if</span>(y==fa[x]) <span class="keyword">continue</span>;</span><br><span class="line">        depth[y]=depth[x]+<span class="number">1</span>,fa[y]=x; <span class="built_in">dfs1</span>(y),</span><br><span class="line">        Size[x]+=Size[y],hson[x]=Size[ hson[x] ]&gt;Size[y] ? hson[x] : y;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">lca</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(top[x]!=top[y])&#123;</span><br><span class="line">        <span class="keyword">if</span>(depth[ top[x] ]&lt;depth[ top[y] ]) x^=y,y^=x,x^=y;</span><br><span class="line">        x=fa[ top[x] ];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> depth[x]&lt;depth[y] ? x : y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">dis</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123; <span class="keyword">return</span> depth[x]+depth[y]<span class="number">-2</span>*depth[ <span class="built_in">lca</span>(x,y) ];&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs2</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> anc)</span></span>&#123;</span><br><span class="line">    top[x]=anc;</span><br><span class="line">    <span class="keyword">if</span>(hson[x]) <span class="built_in">dfs2</span>(hson[x],anc);</span><br><span class="line">    <span class="keyword">for</span>(rei i=hb[x];i;i=edge[i].next)&#123;</span><br><span class="line">        rei y=edge[i].to; <span class="keyword">if</span>(y!=fa[x] &amp;&amp; y!=hson[x]) <span class="built_in">dfs2</span>(y,y);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">escape</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> fa,<span class="keyword">int</span> dep)</span></span>&#123;</span><br><span class="line">    ans=<span class="built_in">max</span>(ans,depth[x]&lt;&lt;<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(rei i=ha[x];i;i=edge[i].next)&#123;</span><br><span class="line">        rei y=edge[i].to;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">dis</span>(x,y)&gt;<span class="number">2</span>) cir=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(y==fa || dep+<span class="number">1</span>&gt;=depth[y]) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="built_in">escape</span>(y,x,dep+<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>,&amp;n,&amp;a,&amp;b);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>,x,y;i&lt;n;++i)</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;x,&amp;y),<span class="built_in">add</span>(ha,x,y);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>,x,y;i&lt;n;++i)</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;x,&amp;y),<span class="built_in">add</span>(hb,x,y);</span><br><span class="line">    <span class="built_in">dfs1</span>(b);<span class="built_in">dfs2</span>(b,b);</span><br><span class="line">    <span class="built_in">escape</span>(a,<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,cir ? <span class="number">-1</span> : ans);</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="F"><a href="#F" class="headerlink" title="F"></a>F</h2><blockquote>
-<p>对于一颗树 $T=(V,E)$ ，对于非空子集 $S\subseteq V$ ， 定义 $f(S)$ 表示包含 $S$ 中所有点的连通块大小的最小值，即，$f(S)=min{|U| \ \mid s\subseteq U\subseteq V,T |U|是连通图}$ ，对 $K:1\rightarrow n$ 分别求出 $\sum_{S\subseteq V,|S|=K} f(S)$ 的值</p>
-</blockquote>
-<p>考虑每个点 $x$ 对答案的贡献，即总方案数减去不合法方案数</p>
-<script type="math/tex; mode=display">\begin{aligned}
-f_i&=\sum_{x=1}^n\left(\binom{n}{i}-\sum_{\exists e(x,y)}\binom{size_y}{i} \right) \\
-&=n\times \binom{n}{i} - \sum_{x=1}^m\times \sum_{\exists e(x,y)} \binom{size_y}{i} \\
-\end{aligned}</script><p>设 $cnt_i$ 为子树大小为 $i$ 的子树个数</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-f_i&=n\times \binom{n}{i}-\sum_{j=i}^n cnt_j\times \binom{j}{i} \\
-&=n\times \binom{n}{i}-\sum_{j=i}^n cnt_j\times \frac{j!}{i!\times (j-i)!} \\
-&=n\times \binom{n}{i}-\frac{1}{i!}\sum_{j=i}^n\frac{cnt_j\times j!}{(j-i)!} \\
-&=n\times \binom{n}{i}-\frac{1}{i!} \sum_{j=0}^{n-i}\frac{cnt_{i+j}\times (i+j)!}{j!} \\
-\end{aligned}</script><p>发现第二项是减法卷积，考虑 $NTT$</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">8e5</span>+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod=<span class="number">924844033</span>,G=<span class="number">5</span>;</span><br><span class="line">ll n;</span><br><span class="line">ll rev[N],f[N],g[N],fac[N],ifac[N],Size[N],cnt[N];</span><br><span class="line"><span class="keyword">int</span> head[N],tot,Next[N&lt;&lt;<span class="number">1</span>],ver[N&lt;&lt;<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v)</span></span>&#123; ver[++tot]=v,Next[tot]=head[u],head[u]=tot;&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">qpow</span><span class="params">(ll x,ll y)</span></span>&#123; ll v=<span class="number">1</span>; <span class="keyword">while</span>(y)&#123; <span class="keyword">if</span>(y&amp;<span class="number">1</span>) v=v*x%mod; x=x*x%mod,y&gt;&gt;=<span class="number">1</span>;&#125; <span class="keyword">return</span> v;&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">calc</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    rei lim=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(lim&lt;=n) lim&lt;&lt;=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;lim;++i) rev[i]=(rev[i&gt;&gt;<span class="number">1</span>]&gt;&gt;<span class="number">1</span>) | ((i&amp;<span class="number">1</span>) ? lim&gt;&gt;<span class="number">1</span> : <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> lim;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">NTT</span><span class="params">(ll *a,<span class="keyword">int</span> lim,<span class="keyword">int</span> type)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;lim;++i) <span class="keyword">if</span>(i&lt;rev[i]) <span class="built_in">swap</span>(a[i],a[ rev[i] ]);</span><br><span class="line">    <span class="keyword">for</span>(rei len=<span class="number">1</span>;len&lt;lim;len&lt;&lt;=<span class="number">1</span>)&#123;</span><br><span class="line">        ll wn=<span class="built_in">qpow</span>(G,(mod<span class="number">-1</span>)/(len&lt;&lt;<span class="number">1</span>));</span><br><span class="line">        <span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;lim;i+=len&lt;&lt;<span class="number">1</span>)&#123;</span><br><span class="line">            ll w=<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span>(rei j=i;j&lt;i+len;++j,w=w*wn%mod)&#123;</span><br><span class="line">                ll x=a[j],y=w*a[j+len]%mod;</span><br><span class="line">                a[j]=(x+y)%mod,a[j+len]=(x-y+mod)%mod;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(type==<span class="number">1</span>) <span class="keyword">return</span>;</span><br><span class="line">    ll inv=<span class="built_in">qpow</span>(lim,mod<span class="number">-2</span>);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;lim;++i) a[i]=a[i]*inv%mod;</span><br><span class="line">    <span class="built_in">reverse</span>(a+<span class="number">1</span>,a+lim);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">mul</span><span class="params">(ll *f,ll *g)</span></span>&#123;</span><br><span class="line">    rei lim=<span class="built_in">calc</span>(n&lt;&lt;<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">NTT</span>(f,lim,<span class="number">1</span>),<span class="built_in">NTT</span>(g,lim,<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;lim;++i) f[i]=f[i]*g[i]%mod;</span><br><span class="line">    <span class="built_in">NTT</span>(f,lim,<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> fa)</span></span>&#123;</span><br><span class="line">    Size[x]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=head[x];i;i=Next[i])&#123;</span><br><span class="line">        rei y=ver[i];</span><br><span class="line">        <span class="keyword">if</span>(y==fa) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="built_in">dfs</span>(y,x),Size[x]+=Size[y];</span><br><span class="line">    &#125;</span><br><span class="line">    ++cnt[ Size[x] ],++cnt[ n-Size[x] ];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">get_C</span><span class="params">(ll n,ll m)</span></span>&#123; <span class="keyword">return</span> fac[n]*ifac[m]%mod *ifac[n-m]%mod;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">    fac[<span class="number">0</span>]=ifac[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) fac[i]=fac[i<span class="number">-1</span>]*i%mod;</span><br><span class="line">    ifac[n]=<span class="built_in">qpow</span>(fac[n],mod<span class="number">-2</span>);</span><br><span class="line">    <span class="keyword">for</span>(rei i=n<span class="number">-1</span>;i;--i) ifac[i]=ifac[i+<span class="number">1</span>]*(i+<span class="number">1</span>)%mod;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">    <span class="built_in">init</span>();</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>,x,y;i&lt;n;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;x,&amp;y),<span class="built_in">add</span>(x,y),<span class="built_in">add</span>(y,x);</span><br><span class="line">    <span class="built_in">dfs</span>(<span class="number">1</span>,<span class="number">0</span>);</span><br><span class="line">    g[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) f[i]=cnt[n-i]*fac[n-i]%mod,g[i]=ifac[i];</span><br><span class="line">    <span class="built_in">mul</span>(f,g),<span class="built_in">reverse</span>(f,f+n+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,(n*<span class="built_in">get_C</span>(n,i)%mod-ifac[i]*f[i]%mod+mod)%mod);</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>构造</tag>
-        <tag>思维</tag>
-        <tag>dp</tag>
-        <tag>博弈论</tag>
-        <tag>多项式</tag>
-        <tag>容斥</tag>
       </tags>
   </entry>
   <entry>
@@ -652,105 +652,6 @@ a_1 & a_2 & a_3 & \dotsb & a_i & \dotsb & a_n\\
       </tags>
   </entry>
   <entry>
-    <title>min-max容斥</title>
-    <url>/2020/12/04/minmax%E5%AE%B9%E6%96%A5/</url>
-    <content><![CDATA[<h2 id="minmax容斥"><a href="#minmax容斥" class="headerlink" title="minmax容斥"></a>minmax容斥</h2><ul>
-<li><p>用途</p>
-<p>已知集合的最小值 (<strong>期望</strong>) 求最大值</p>
-<p>$eg:$ $n$ 个元素，每个元素出现概率 $p_i$，求每个元素都出现的期望时间</p>
-</li>
-<li><p>结论</p>
-<script type="math/tex; mode=display">\max\{S\}=\sum_{T\subset S}(-1)^{|T|+1} \min\{T\}</script><p>即</p>
-<script type="math/tex; mode=display">E\left(\max\{S\}\right)=\sum_{T\subset S}(-1)^{|T|+1} E\left(\min\{T\}\right)</script></li>
-<li><p>证明</p>
-<p>设容斥系数 $g\left(|T|\right)$</p>
-<p>即 $\displaystyle{\max\{S\}=\sum_{T\subset S}g\left(|T|\right) \min\{T\}}$</p>
-<p>考虑当排名为 $k$ 的数作为集合 $T$ 的最小值时，集合 $T$ 中所有值都 $\geq k$</p>
-<p>所以对于第$k$大数 ， 在大小为 $|T|$ 的集合中， $\max$ 的选取方案为 $\displaystyle{\binom{k-1}{|T|-1}}$</p>
-<p>考虑集合大小为 $1\sim k$ ，则第 $k$ 数的总贡献为</p>
-<p>$\displaystyle{\sum_{i=1}^k \binom{k-1}{i-1}} * g(i)=[k=1] \qquad \text{即只有最大值对 max 有贡献}$</p>
-<p>由二项式反演得</p>
-<script type="math/tex; mode=display">\begin{aligned}
-g(k)&=\sum_{i=1}^k (-1)^{k-i} \binom{k-1}{i-1} [i=1] \\
-&=(-1)^{k+1} \\
-\end{aligned}</script><span id="more"></span>
-</li>
-<li><p>变式</p>
-<ul>
-<li><p>由 $\max \Rightarrow \max$</p>
-<script type="math/tex; mode=display">\min(S)=\sum_{T\subseteq S,\ T \neq \varnothing} (-1)^{|T|-1} \max(T)</script></li>
-<li><p>扩展 $\min\max容斥$</p>
-<script type="math/tex; mode=display">\text{kthmax}\{S\}=\sum_{T\subseteq S}(-1)^{|T|-k} \binom{|T|-1}{k-1} \min\{T\}</script><ul>
-<li><p>证明</p>
-<p>目的是找到容斥系数满足 $\text{kthmax}\{S\}=\sum_{T\subseteq S} f(|T|) \min\{T\}$</p>
-<p>考虑第 $x$ 大元素，受原式启发得到</p>
-<script type="math/tex; mode=display">\sum_{i=1}^t \binom{t-1}{i-1} f(i)=[t=k]</script><script type="math/tex; mode=display">\therefore 经反演易得 f(n)=(-1)^{n-k} \binom{n-1}{k-1}</script><p><a href="https://oi-wiki.org/math/inclusion-exclusion-principle/#min-max"><del>并不会用到的扩展minmax容斥</del></a></p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><ul>
-<li><p><a href="https://www.luogu.com.cn/problem/P3175">P3175 [HAOI2015]按位或</a></p>
-<ul>
-<li><p>题意</p>
-<p>设 $\min\{S\}$ 表示二进制数 $S$ 中，第一个元素变为 $1$ 所需时间，$\max\{S\}$ 表示最后一个元素变为 $1$ 所需时间</p>
-<p>题为求 $E(\max\{U\})$ ,其中 $U$ 为全集，$U=2^n-1$</p>
-</li>
-<li><p>解</p>
-<p>由公式易知 $\displaystyle{E(\max\{U\})=\sum_{S\subseteq U}(-1)^{|S|-1} \ \sum E(\min\{S\})}$</p>
-<p>$\therefore$ 求 $\min$</p>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p><a href="https://www.luogu.com.cn/problem/P5643">P5643 [PKUWC2018]随机游走</a></p>
-<ul>
-<li><p>题意:</p>
-<p>给出一棵树，从根节点出发每次等概率选择并走向一条相邻边</p>
-<p>多次询问中，每次给定点集 $S$ ,求从根出发直到 $S$ 中所有点至少经过一次的期望步数</p>
-</li>
-<li><p>解:</p>
-<p>由 $\min-\max$ 容斥得：$\displaystyle{E[ \max(S’) ]=\sum_{T’\in S’}(-1)^{|T’|+1}E[ \min(T’) ]}$</p>
-<p>易知 $E[ \max(S’) ]$ 表示走完集合 $S$ 期望步数， $E[ \min(S’) ]$ 表示第一次走到集合 $S$ 的期望步数</p>
-<p>设 $f_{S,x}$ 表示从 $x$ 出发，第一次访问到集合 $S$ 的期望步数</p>
-<ul>
-<li><p>考虑预处理所有 $f_{S,x}$</p>
-<p>设 $f_x$ 为点 $x$ 到 $S$ 的最早期望时间</p>
-<p>对于 $x\in S$ 有 $f_x=0$</p>
-<p>对于 $x\not\in S$ 有 $\displaystyle{f_x=1+\frac{1}{\deg x}\sum_{(x,y)\in E} f_y }$</p>
-<p>这里需要 $O(n^3)$ 的高斯消元，考虑到特殊的树形结构，以起点 $root$ 为根，用一次函数分离父子关系</p>
-<p>即设 $\displaystyle{f_x=f_{fa_x} \times A_x + B_x }$</p>
-<p>$\therefore$ 对于 $x \not\in S$ 有 $\displaystyle{f_x=1+\frac{1}{\deg x} \left(f_{fa_x} + \sum_{y\in son_x}(A_y\times f_x + B_y) \right) }$</p>
-<p>化简得</p>
-<script type="math/tex; mode=display">\begin{aligned}
-
-​      A_x&=\frac{1}{\deg x-\sum_{y\in son_x}A_x} \\\
-
-​      B_x&=\frac{\deg x+\sum_{y\in son_x}B_x}{\deg x-\sum_{y\in son_x}A_x} \\
-
- \end{aligned}</script><p>由此，对于给定的询问点集 $S$ ,答案就是 $\sum_{T\in S} (-1)^{|T|+1} f_{T,root}$</p>
-</li>
-<li><p>再考虑优化询问</p>
-<p>由 $n\leq 18$ 提示可以状压点集，并预处理对于每个点集 $S$ 的 $\sum_{T\in S}(-1) ^{|T|+1} f_{T,root}$</p>
-<p>那么预处理高维前缀和即可</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>minmax</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>博弈论</title>
     <url>/2021/02/04/%E5%8D%9A%E5%BC%88%E8%AE%BA/</url>
     <content><![CDATA[<h1 id="博弈论游戏及其的变形"><a href="#博弈论游戏及其的变形" class="headerlink" title="博弈论游戏及其的变形"></a>博弈论游戏及其的变形</h1><h2 id="请熟背以下结论（因为没看懂推导）"><a href="#请熟背以下结论（因为没看懂推导）" class="headerlink" title="请熟背以下结论（因为没看懂推导）"></a>请熟背以下结论（因为没看懂推导）</h2><hr>
@@ -883,6 +784,105 @@ g(k)&=\sum_{i=1}^k (-1)^{k-i} \binom{k-1}{i-1} [i=1] \\
       </tags>
   </entry>
   <entry>
+    <title>min-max容斥</title>
+    <url>/2020/12/04/minmax%E5%AE%B9%E6%96%A5/</url>
+    <content><![CDATA[<h2 id="minmax容斥"><a href="#minmax容斥" class="headerlink" title="minmax容斥"></a>minmax容斥</h2><ul>
+<li><p>用途</p>
+<p>已知集合的最小值 (<strong>期望</strong>) 求最大值</p>
+<p>$eg:$ $n$ 个元素，每个元素出现概率 $p_i$，求每个元素都出现的期望时间</p>
+</li>
+<li><p>结论</p>
+<script type="math/tex; mode=display">\max\{S\}=\sum_{T\subset S}(-1)^{|T|+1} \min\{T\}</script><p>即</p>
+<script type="math/tex; mode=display">E\left(\max\{S\}\right)=\sum_{T\subset S}(-1)^{|T|+1} E\left(\min\{T\}\right)</script></li>
+<li><p>证明</p>
+<p>设容斥系数 $g\left(|T|\right)$</p>
+<p>即 $\displaystyle{\max\{S\}=\sum_{T\subset S}g\left(|T|\right) \min\{T\}}$</p>
+<p>考虑当排名为 $k$ 的数作为集合 $T$ 的最小值时，集合 $T$ 中所有值都 $\geq k$</p>
+<p>所以对于第$k$大数 ， 在大小为 $|T|$ 的集合中， $\max$ 的选取方案为 $\displaystyle{\binom{k-1}{|T|-1}}$</p>
+<p>考虑集合大小为 $1\sim k$ ，则第 $k$ 数的总贡献为</p>
+<p>$\displaystyle{\sum_{i=1}^k \binom{k-1}{i-1}} * g(i)=[k=1] \qquad \text{即只有最大值对 max 有贡献}$</p>
+<p>由二项式反演得</p>
+<script type="math/tex; mode=display">\begin{aligned}
+g(k)&=\sum_{i=1}^k (-1)^{k-i} \binom{k-1}{i-1} [i=1] \\
+&=(-1)^{k+1} \\
+\end{aligned}</script><span id="more"></span>
+</li>
+<li><p>变式</p>
+<ul>
+<li><p>由 $\max \Rightarrow \max$</p>
+<script type="math/tex; mode=display">\min(S)=\sum_{T\subseteq S,\ T \neq \varnothing} (-1)^{|T|-1} \max(T)</script></li>
+<li><p>扩展 $\min\max容斥$</p>
+<script type="math/tex; mode=display">\text{kthmax}\{S\}=\sum_{T\subseteq S}(-1)^{|T|-k} \binom{|T|-1}{k-1} \min\{T\}</script><ul>
+<li><p>证明</p>
+<p>目的是找到容斥系数满足 $\text{kthmax}\{S\}=\sum_{T\subseteq S} f(|T|) \min\{T\}$</p>
+<p>考虑第 $x$ 大元素，受原式启发得到</p>
+<script type="math/tex; mode=display">\sum_{i=1}^t \binom{t-1}{i-1} f(i)=[t=k]</script><script type="math/tex; mode=display">\therefore 经反演易得 f(n)=(-1)^{n-k} \binom{n-1}{k-1}</script><p><a href="https://oi-wiki.org/math/inclusion-exclusion-principle/#min-max"><del>并不会用到的扩展minmax容斥</del></a></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><ul>
+<li><p><a href="https://www.luogu.com.cn/problem/P3175">P3175 [HAOI2015]按位或</a></p>
+<ul>
+<li><p>题意</p>
+<p>设 $\min\{S\}$ 表示二进制数 $S$ 中，第一个元素变为 $1$ 所需时间，$\max\{S\}$ 表示最后一个元素变为 $1$ 所需时间</p>
+<p>题为求 $E(\max\{U\})$ ,其中 $U$ 为全集，$U=2^n-1$</p>
+</li>
+<li><p>解</p>
+<p>由公式易知 $\displaystyle{E(\max\{U\})=\sum_{S\subseteq U}(-1)^{|S|-1} \ \sum E(\min\{S\})}$</p>
+<p>$\therefore$ 求 $\min$</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><a href="https://www.luogu.com.cn/problem/P5643">P5643 [PKUWC2018]随机游走</a></p>
+<ul>
+<li><p>题意:</p>
+<p>给出一棵树，从根节点出发每次等概率选择并走向一条相邻边</p>
+<p>多次询问中，每次给定点集 $S$ ,求从根出发直到 $S$ 中所有点至少经过一次的期望步数</p>
+</li>
+<li><p>解:</p>
+<p>由 $\min-\max$ 容斥得：$\displaystyle{E[ \max(S’) ]=\sum_{T’\in S’}(-1)^{|T’|+1}E[ \min(T’) ]}$</p>
+<p>易知 $E[ \max(S’) ]$ 表示走完集合 $S$ 期望步数， $E[ \min(S’) ]$ 表示第一次走到集合 $S$ 的期望步数</p>
+<p>设 $f_{S,x}$ 表示从 $x$ 出发，第一次访问到集合 $S$ 的期望步数</p>
+<ul>
+<li><p>考虑预处理所有 $f_{S,x}$</p>
+<p>设 $f_x$ 为点 $x$ 到 $S$ 的最早期望时间</p>
+<p>对于 $x\in S$ 有 $f_x=0$</p>
+<p>对于 $x\not\in S$ 有 $\displaystyle{f_x=1+\frac{1}{\deg x}\sum_{(x,y)\in E} f_y }$</p>
+<p>这里需要 $O(n^3)$ 的高斯消元，考虑到特殊的树形结构，以起点 $root$ 为根，用一次函数分离父子关系</p>
+<p>即设 $\displaystyle{f_x=f_{fa_x} \times A_x + B_x }$</p>
+<p>$\therefore$ 对于 $x \not\in S$ 有 $\displaystyle{f_x=1+\frac{1}{\deg x} \left(f_{fa_x} + \sum_{y\in son_x}(A_y\times f_x + B_y) \right) }$</p>
+<p>化简得</p>
+<script type="math/tex; mode=display">\begin{aligned}
+
+​      A_x&=\frac{1}{\deg x-\sum_{y\in son_x}A_x} \\\
+
+​      B_x&=\frac{\deg x+\sum_{y\in son_x}B_x}{\deg x-\sum_{y\in son_x}A_x} \\
+
+ \end{aligned}</script><p>由此，对于给定的询问点集 $S$ ,答案就是 $\sum_{T\in S} (-1)^{|T|+1} f_{T,root}$</p>
+</li>
+<li><p>再考虑优化询问</p>
+<p>由 $n\leq 18$ 提示可以状压点集，并预处理对于每个点集 $S$ 的 $\sum_{T\in S}(-1) ^{|T|+1} f_{T,root}$</p>
+<p>那么预处理高维前缀和即可</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>minmax</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>学不会的生成函数</title>
     <url>/2021/05/05/%E5%AD%A6%E4%B8%8D%E4%BC%9A%E7%9A%84%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/</url>
     <content><![CDATA[<h2 id="不知道怎么开始"><a href="#不知道怎么开始" class="headerlink" title="不知道怎么开始"></a>不知道怎么开始</h2><ul>
@@ -934,6 +934,262 @@ F(z)G(z)
       </categories>
       <tags>
         <tag>生成函数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>确实不会的多项式</title>
+    <url>/2021/05/05/%E7%A1%AE%E5%AE%9E%E4%B8%8D%E4%BC%9A%E7%9A%84%E5%A4%9A%E9%A1%B9%E5%BC%8F/</url>
+    <content><![CDATA[<h2 id="写总结的地方"><a href="#写总结的地方" class="headerlink" title="写总结的地方"></a>写总结的地方</h2><ul>
+<li>将式子转化为卷积形式: $\displaystyle{\sum_{i=1}^n A_i B_{n-i}}$</li>
+</ul>
+<h3 id="P3338-ZJOI2014-力"><a href="#P3338-ZJOI2014-力" class="headerlink" title="P3338 [ZJOI2014]力"></a><a href="https://www.luogu.com.cn/problem/P3338">P3338 [ZJOI2014]力</a></h3><ul>
+<li><p>题意：<br>求 $E_j=\displaystyle{\sum_{i=1}^{j-1}\frac{q_j}{\left(i-j\right)^2} - \sum_{i=j+1}^n \frac{q_j}{\left(i-j\right)^2}}$</p>
+<p>$q_i被消掉了qwq$</p>
+</li>
+<li><p>解：</p>
+<ul>
+<li><p>先简化数据范围</p>
+<script type="math/tex; mode=display">\sum_{i=1}^{j-1} \Rightarrow \sum_{i=0}^{j}</script></li>
+<li><p>化成能算的样子</p>
+<p>设 $f[i]=q_j \ , f’[i]=f[n-i] \ , \ g[i]=\frac{1}{i^2}$</p>
+<script type="math/tex; mode=display">\begin{aligned}
+原式
+&=\underbrace{\sum_{i=1}^j f[i] \cdot g[j-i]}_{\rm 已经是卷积形式} - \sum_{i=j}^n f[i] \cdot g[i-j] \\
+&=\sum_{i=1}^j f[i] \cdot g[j-i] - \underbrace{\sum_{i=0}^{n-j} f[i+j] \cdot g[i]}_{\rm 然而还不能算} \\
+&设 t=n-j \\
+&=\sum_{i=1}^j f[i] \cdot g[j-i] - \sum_{i=0}^t f'[t-i] \cdot g[i] \\
+\end{aligned}</script></li>
+</ul>
+<p>$\bf{Trick:}$ <strong>翻转数列</strong> </p>
+<p>&amp;&amp; 把函数设成数组以看起来更好算</p>
+</li>
+</ul>
+<h3 id="P3723-AH2017-HNOI2017-礼物"><a href="#P3723-AH2017-HNOI2017-礼物" class="headerlink" title="P3723 [AH2017/HNOI2017]礼物"></a><a href="https://www.luogu.com.cn/problem/P3723">P3723 [AH2017/HNOI2017]礼物</a></h3><ul>
+<li><p>题意：</p>
+<p>给定两个序列 $a,b$ ，顺序可以移动，求 $\displaystyle{\sum_{i=1}^n \left(a_i-b_i+c \right)^2}$ 最小值</p>
+</li>
+<li><p>解：</p>
+<script type="math/tex; mode=display">原式=\underbrace{\sum_{i=1}^n a_i^2+\sum_{i=1}^n b_i^2}_{\rm [一]可以预处理} - \underbrace{\sum_{i=1}^n a_ib_i}_{\rm [二]见下面} + \underbrace{nc^2 + 2c\left(\sum_{i=1}^na_i - \sum_{i=1}^nb_i \right)}_{\rm [三]关于 c 的二次函数}</script><p>由题：要取 $\displaystyle{\sum_{i=1}^n a_ib_i}$ 的最大值</p>
+<p>考虑移动 $k$ 位时：</p>
+<p>先把环 $b$ 变为链 $\Rightarrow$ $b[i+n]=b[i]$</p>
+<p>转化为考虑 $\displaystyle{\sum_{i=1}^n a_ib_{i+k} }$</p>
+<p>翻转 $a$ 得 $\displaystyle{\sum_{i=1}^n b_{i+k} \cdot a_{n-i+1}}$ ， 符合卷积形式</p>
+<p>$\therefore \tt{FFT}\left(a_{reserved}\right),\tt{FFT}(b)$</p>
+<p>$\bf{Trick:}$ 由于 $c$ 是整数，用二次函数对称轴来算 [式三],比枚举 $-100\leq c \geq 100$ 更好</p>
+<p>算出$\left\lfloor -\frac{a}{b} \right\rfloor$ 和 $\left\lceil -\frac{a}{b} \right\rceil$ ， 取 $\min$</p>
+</li>
+</ul>
+<h3 id="P5488-差分与前缀和"><a href="#P5488-差分与前缀和" class="headerlink" title="P5488 差分与前缀和"></a><a href="https://www.luogu.com.cn/problem/P5488">P5488 差分与前缀和</a></h3><ul>
+<li><p>题意：</p>
+<p>求数列 $a$ 的 $k$ 维前缀和或差分</p>
+</li>
+<li><p>解：</p>
+<p>设 $\displaystyle{F(x)=\sum_{i=0}^\infty a_ix^i }$</p>
+<ul>
+<li><p>前缀和</p>
+<p>比较前缀和与卷积</p>
+<p>$\displaystyle{a_i=\sum_{j=1}^i a_j \qquad \And\And \qquad S_i=\sum_{j=1}^i A_j B_{i-j}}$</p>
+<p>发现需要卷一个系数都为 $1$ 的多项式 $G(x)$</p>
+<p>以样例为例：</p>
+<script type="math/tex; mode=display">\begin{aligned}
+&F(x)*G(x) \\
+&=(1+9x+2x^2+6x^3+0x^4+8x^6+7x^7) \cdot (1+x+x^2+x^3+x^4+ \cdots +x^{\infty}) \\
+&=1+\underbrace{9x^1 + \underbrace{2x^2 + \underbrace{6x^3 + \underbrace{0x^4 + \underbrace{8x^6 + \underbrace{7x^7}_{\rm 系数+8}}_{\rm 系数+0}}_{\rm 系数+6}}_{\rm 系数+2}}_{\rm 系数+9}}_{\rm 系数+1}
+\end{aligned}</script></li>
+</ul>
+</li>
+</ul>
+<pre><code>发现 $F(x)\cdot G(x)$ 所得多项式就是 $F$ 的一阶前缀和
+
+$\displaystyle&#123;\therefore 显然有 G(x)=\frac&#123;1&#125;&#123;1-x&#125;&#125;$
+
+$\displaystyle&#123;\therefore k阶前缀和 \Rightarrow
+ F(x) \cdot \frac&#123;1&#125;&#123;\left(1-x \right)^k&#125;&#125;$
+
+$\displaystyle&#123;\frac&#123;1&#125;&#123;\left(1-x \right)^k&#125; 的第 n 项系数就是 \dbinom&#123;n+k-1&#125;&#123;k-1&#125; &#125;$
+
+$\displaystyle&#123;\therefore a_i=\sum_&#123;j=1&#125;^&#123;i-1&#125;\dbinom&#123;j+k-1&#125;&#123;k-1&#125; \cdot a_&#123;i-j&#125; &#125;$
+
+设组合数递推式 $g_i=\dbinom&#123;i+k-1&#125;&#123;k-1&#125;$
+
+$$\begin&#123;aligned&#125;
+\therefore
+g_i
+&amp;=\frac&#123;g_&#123;i-1&#125;\times (k+i-1)&#125;&#123;i&#125;\%p &amp;\text&#123;只会在计算中用到这个&#125;\\
+&amp;=\left(\frac&#123;g_&#123;i-1&#125; &#125;&#123;i&#125;\%p \right)\times ((k+i-1)\%p) \\
+&amp;=\left(\frac&#123;g_&#123;i-1&#125; &#125;&#123;i&#125;\%p \right)\times ((k\%p+i-1)\%p) \\ &amp;\text&#123;只是为了推 $k$ 可以取模&#125; \\
+\end&#123;aligned&#125;$$
+</code></pre><p>  $\therefore$ 可以对 $k$ 取模</p>
+<ul>
+<li><p>差分</p>
+<p>易得 $F(x) \times (1-x)$ 所得的多项式就是差分后</p>
+<p>  同理得 $\left(1-x\right)^k$</p>
+<script type="math/tex; mode=display">\begin{aligned}
+  B
+  &=F(x) \cdot \left(1-x\right)^k \\
+  &=F(x) \cdot \sum_{i=0}^{\infty} \dbinom{k}{i} \left(-x \right)^i \\
+&=F(x) \cdot \sum_{i=0}^{\infty} \left(-1 \right)^i \cdot \dbinom{k}{i} x^i \\
+  \end{aligned}</script><p>  看组合数递推式: $\dbinom{k}{i}$</p>
+<script type="math/tex; mode=display">\dbinom{k}{0}=1</script><script type="math/tex; mode=display">\dbinom{k}{1}=\frac{k!}{(k-1)!}=k</script><script type="math/tex; mode=display">\dbinom{k}{2}=\frac{k!}{2!(k-2)!}=\frac{k(k-1)}{2}</script><script type="math/tex; mode=display">\dbinom{k}{3}=\frac{k!}{3!(k-3)!}=\frac{k(k-1)(k-2)}{2\times 3}</script><script type="math/tex; mode=display">\dbinom{k}{i}=\dbinom{k}{i-1} \cdot \frac{k-i+1}{i} \qquad\text{用这个递推}</script></li>
+</ul>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>多项式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>背包问题</title>
+    <url>/2021/01/04/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h1 id="背包9讲（大概"><a href="#背包9讲（大概" class="headerlink" title="背包9讲（大概"></a>背包9讲（大概</h1><h2 id="0-1背包"><a href="#0-1背包" class="headerlink" title="0/1背包"></a>0/1背包</h2><ul>
+<li><p>模型</p>
+<p>多种物品,每种物品只有一个.求能获得的最大总价值.</p>
+</li>
+<li><p>思路</p>
+<p>不选择第 $i$ 件物品,就相当用 $i-1$ 件物品,填充了体积为 $v$ 的背包.</p>
+<p>选择第 $i$ 件物品，相当于对 $i-1$ 件物品填充得到的体积为  $v-c[i]$ 的背包,再填充第 $i$ 个物品得到体积为 $v$ 的背包.</p>
+</li>
+<li><p>转移方程</p>
+<script type="math/tex; mode=display">f[i][v]=\max(f[i-1][v],f[i-1][v-c[i]]+w[i])</script><p>$f[i][v]$ 代表用 $i$ 件物品填充为体积为 $v$ 的背包得到的最大价值.</p>
+</li>
+<li><p>注</p>
+<p>一般考虑倒序枚举</p>
+<p>这样 $f_i$ 不会被 $i$ 以前的状态影响,更新也不会影响其他位置的状态.</p>
+</li>
+</ul>
+<p>-代码</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;i++)<span class="comment">//枚举物品</span></span><br><span class="line">	<span class="keyword">for</span>(rei j=V;j&gt;=c[i];j--)<span class="comment">//枚举体积</span></span><br><span class="line">		f[j]=<span class="built_in">max</span>(f[j],f[j-c[i]]+w[i]);<span class="comment">//状态转移方程.</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="完全背包"><a href="#完全背包" class="headerlink" title="完全背包"></a>完全背包</h2><ul>
+<li><p>模型</p>
+<p>每种物品有无限多个,可重复选取.</p>
+</li>
+</ul>
+<p><del>- 思路没有了（与0/1类似（逃</del></p>
+<ul>
+<li><p>转移方程</p>
+<script type="math/tex; mode=display">f[i][v]=\max(f[i-1][v],f[i-1][j-k\ast c[i]]+k\ast w[i])</script></li>
+<li><p>注</p>
+<p>顺序枚举</p>
+<p><a href="https://www.luogu.com.cn/blog/RPdreamer/post-01-bei-bao-yu-wan-quan-bei-bao-di-mei-ju-shun-xu-di-fou-tong-chu">01背包与完全背包的枚举顺序的不同处</a></p>
+</li>
+<li><p>代码</p>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;i++)<span class="comment">//枚举物品</span></span><br><span class="line">	<span class="keyword">for</span>(rei j=c[i];j&lt;=V;j++)<span class="comment">//枚举体积</span></span><br><span class="line">		f[j]=<span class="built_in">max</span>(f[j,f[j-c[i]]]+w[i]);<span class="comment">//状态转移.</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="多重背包"><a href="#多重背包" class="headerlink" title="多重背包"></a>多重背包</h2><ul>
+<li><p>模型</p>
+<p>有了个数的限制</p>
+</li>
+</ul>
+<p><del>- 思路不想写了</del></p>
+<pre><code>朴素做法就是把每种物品都拆成 size 个物品跑0/1背包
+</code></pre><h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><ul>
+<li><p>二进制拆分</p>
+<p>易知 $size_i=2^0+2^1+2^2+2^3…+2^x+y$</p>
+<p>其 $k$ 是任意数，$y$ 是一个不为2的整数次幂的数</p>
+<p>所以在多重背包中，可以将个数的限制如此分解</p>
+<p>每个分解看成一个物品</p>
+<p>(如： $2^2$ 看成 $1$ 个物品，该物品 $val=4\cdot val_i \space, \space w=4\cdot w_i$)</p>
+<p>如此进行后就是 $\log (size)$</p>
+<ul>
+<li><p>代码</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Good</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> v,w;</span><br><span class="line">&#125;;</span><br><span class="line">vector&lt;Good&gt; g;</span><br><span class="line"></span><br><span class="line">···</span><br><span class="line"><span class="comment">//对每个读入的v,w,s</span></span><br><span class="line"><span class="keyword">for</span>(rei k=<span class="number">1</span>;k&lt;=s;k*=<span class="number">2</span>)&#123;</span><br><span class="line">    s-=k;</span><br><span class="line">    g.<span class="built_in">push_back</span>(&#123;v*k,w*k&#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(s) g.<span class="built_in">push_back</span>(&#123;v*s,w*s&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//总dp</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> good:g)&#123;</span><br><span class="line">    <span class="keyword">for</span>(rei j=m;j&gt;=good.v;--j)&#123;</span><br><span class="line">        f[j]=<span class="built_in">max</span>(f[j],f[j-good.v]+good.w);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>单调队列优化</p>
+<p>这是一个最基本的转移式子</p>
+</li>
+</ul>
+<p>$f[i][j]=\max(f[i−1][j],f[i−1][j−k\ast c[i]]+k\ast w[i])$</p>
+<p>其中 $k \in [1,\min(\left\lfloor\frac{V}{c[i]}\right\rfloor,num[i])]$</p>
+<p>下面用 $lim$ 表示 $\min(\left\lfloor\frac{V}{c[i]}\right\rfloor,num[i])$</p>
+<p>易得 $f[i][j−k\cdot c[i]]$ 会被 $f[i][j−(k+1)\cdot c[i]]$ 影响</p>
+<p>(体积为 $c[i]$ 的物品填充体积为 $j−(k+1)\cdot c[i]$ 的背包,会得到体积为 $j−k\cdot c[i]$ 的背包)</p>
+<p>$f[i][j]$ 将会影响 $f[i][j+k\cdot c[i]]　(j+k\cdot c[i]\leq V)$</p>
+<p>注意这里影响的传导，往取模上想</p>
+<p>所以我们可以根据对 $c[i]$ 取模得到的余数进行分组.</p>
+<p>即可分为 $0,1,2,3…c[i]−1$ 共 $c[i]$ 组</p>
+<p>每组之间的状态互相没有影响</p>
+<p>且每组中位置靠后的受前面的影响</p>
+<ul>
+<li><p>进行一些推导</p>
+<p>注： $\frac{j}{c[i]}即是全选状态下的物品个数$</p>
+<script type="math/tex; mode=display">\because j=\frac{j}{c[i]} \ \cdot \ c[i] \ +\ j\% c[i]</script><script type="math/tex; mode=display">\therefore j−k∗c[i]=\frac{j}{c[i]}\cdot c[i] \ +\ j\% c[i] \ −\ k\cdot c[i]</script><script type="math/tex; mode=display">\space \space \space \space \space \space \space \space \space =(\frac{j}{c[i]} \ −\ k)\cdot c[i]+j \% c[i]</script><p>令 $(\frac{j}{c[i]}−k)=k^{‘}$</p>
+<p>最原始的状态转移方程中第二状态 :</p>
+<p>$f[i][j−k\cdot c[i]\ ]+k\cdot w[i]$ 代表选择 $k$ 个当前 $i$ 物品</p>
+<p>根据单步容斥 ：全选−不选=选</p>
+<p>因此 $\frac{j}{c[i]} \ −\ (\frac{j}{c[i]}−k)=k$</p>
+<script type="math/tex; mode=display">\because (\frac{j}{c[i]}−k)=k^{'}</script><script type="math/tex; mode=display">\therefore f[i][j]=\max( \ f[i−1][\ k^{'}\cdot c[i]+j \% c[i] \ ] \ + \ \frac{j}{c[i]}\cdot w[i]−k^{'}\cdot w[i])</script><p>而其中 $\frac{j}{c[i]}\cdot w[i]$ 为一个常量(因为 $\frac{j}{c[i]}$ 已知)</p>
+<p>要求的状态变为</p>
+<script type="math/tex; mode=display">f[i][j]=\max(f[i−1][ \ k^{'}\cdot c[i]+j\% c[i] \ ]−k^{'}\cdot w[i])+\frac{j}{c[i]}\cdot w[i]</script><script type="math/tex; mode=display">\because k \in [1,lim]</script><script type="math/tex; mode=display">\therefore k^{'} \in [\frac{j}{c[i]}−k,\frac{j}{c[i]}]</script><p>当前的 $f[i][j]$ 求解的就是为 $lim+1$ 个数对应的 $f[i−1][k^{‘}\cdot c[i]+j\% c[i] \ ]−k^{‘}\cdot w[i]$ 的最大值.</p>
+<p>(之所以为 $lim+1$ 个数,是包括当前这个 $j$ ,还有前面的物品数量)</p>
+<p>将 $f[i][j]$ 前面所有的 $f[i−1][k^{‘}\cdot c[i]+j\% c[i]\ ]−k^{‘}\cdot w[i]$ 放入一个队列.</p>
+<p>问题转化为求这个最长为 $lim+1$ 的队列的最大值 $+\frac{j}{c[i]}\cdot w[i]$</p>
+</li>
+<li><p>代码</p>
+  <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;i++)&#123;<span class="comment">//枚举物品种类</span></span><br><span class="line">    cin&gt;&gt;c[i]&gt;&gt;w[i]&gt;&gt;num[i];<span class="comment">//c,w,num分别对应 体积,价值,个数</span></span><br><span class="line">    <span class="keyword">if</span>(V/c[i] &lt; num[i]) num[i]=V/c[i];<span class="comment">//求lim</span></span><br><span class="line">    <span class="keyword">for</span>(rei p=<span class="number">0</span>;p&lt;c[i];p++)&#123;<span class="comment">//枚举余数</span></span><br><span class="line">        head=tail=<span class="number">0</span>;<span class="comment">//队列初始化</span></span><br><span class="line">        <span class="keyword">for</span>(rei k=<span class="number">0</span>;k&lt;=(V-p)/c[i];k++)&#123;</span><br><span class="line">            rei x=k;</span><br><span class="line">            rei y=f[k*c[i]+p]-k*w[i];</span><br><span class="line">            <span class="keyword">while</span>(head&lt;tail &amp;&amp; q[head].pos&lt;k-num) ++head;<span class="comment">//限制长度</span></span><br><span class="line">            <span class="keyword">while</span>(head&lt;tail &amp;&amp; q[tail<span class="number">-1</span>].value&lt;=y) --tail;</span><br><span class="line">            q[tail].value=y,q[tail].pos=x;</span><br><span class="line">            ++tail;</span><br><span class="line">            f[k*c[i]+p]=q[head].value+k*w[i];</span><br><span class="line">            <span class="comment">//单调队列维护的是前i-1种的状态最大值.</span></span><br><span class="line">            <span class="comment">//因此这里加上k*w[i].</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h2 id="混合背包"><a href="#混合背包" class="headerlink" title="混合背包"></a>混合背包</h2><ul>
+<li><p>思路</p>
+<p>拆开分别算即可</p>
+</li>
+<li><p>代码</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;n;++i)&#123;</span><br><span class="line">    rei v,w,s;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>,&amp;v,&amp;w,&amp;s);</span><br><span class="line">    <span class="keyword">if</span>(s&lt;<span class="number">0</span>) things.<span class="built_in">push_back</span>(&#123;<span class="number">-1</span>,v,w&#125;);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(!s) things.<span class="built_in">push_back</span>(&#123;<span class="number">0</span>,v,w&#125;);</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(rei k=<span class="number">1</span>;k&lt;=s;k*=<span class="number">2</span>)&#123;</span><br><span class="line">            s-=k;</span><br><span class="line">            things.<span class="built_in">push_back</span>(&#123;<span class="number">-1</span>,v*k,w*k&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(s&gt;<span class="number">0</span>) things.<span class="built_in">push_back</span>(&#123;<span class="number">-1</span>,v*s,w*s&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> thing : things)&#123;</span><br><span class="line">    <span class="keyword">if</span>(thing.kind&lt;<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">for</span>(rei j=m;j&gt;=thing.v;--j)</span><br><span class="line">            f[j]=<span class="built_in">max</span>(f[j],f[j-thing.v]+thing.w);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(rei j=thing.v;j&lt;=m;++j)</span><br><span class="line">            f[j]=<span class="built_in">max</span>(f[j],f[j-thing.v]+thing.w);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h2 id="二维费用背包"><a href="#二维费用背包" class="headerlink" title="二维费用背包"></a>二维费用背包</h2><ul>
+<li><p>模型</p>
+<p>有容量 $v$ 与重量 $w$ 两个限制</p>
+</li>
+<li><p>思路</p>
+<p>限制扩展到二维即可</p>
+</li>
+<li><p>代码</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;n;++i)&#123;</span><br><span class="line">    rei a,b,c;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>,&amp;a,&amp;b,&amp;c);</span><br><span class="line">    <span class="keyword">for</span>(rei j=v;j&gt;=a;--j)</span><br><span class="line">        <span class="keyword">for</span>(rei k=m;k&gt;=b;--k)</span><br><span class="line">            f[j][k]=<span class="built_in">max</span>(f[j][k],f[j-a][k-b]+c);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h2 id="分组背包"><a href="#分组背包" class="headerlink" title="分组背包"></a>分组背包</h2><ul>
+<li><p>模型</p>
+<p>每组若干个物品，每个物品组内的物品互斥（只能选一个）</p>
+</li>
+<li><p>转移方程</p>
+<script type="math/tex; mode=display">f[k][v]=\max(f[k-1][v],f[k-1][v-c[i]]+w[i])</script></li>
+<li><p>代码</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;n;++i)&#123;<span class="comment">//每一组</span></span><br><span class="line">    rei s;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;s);</span><br><span class="line">    <span class="keyword">for</span>(rei j=<span class="number">0</span>;j&lt;s;++j) <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;v[j],&amp;w[j]);</span><br><span class="line">    <span class="keyword">for</span>(rei j=m;j&gt;=<span class="number">0</span>;--j)<span class="comment">//枚举体积</span></span><br><span class="line">        <span class="keyword">for</span>(rei k=<span class="number">0</span>;k&lt;s;++k)<span class="comment">//枚举物品</span></span><br><span class="line">            <span class="keyword">if</span>(j&gt;=v[k])</span><br><span class="line">                f[j]=<span class="built_in">max</span>(f[j],f[j-v[k]]+w[k]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h2 id="有依赖的背包"><a href="#有依赖的背包" class="headerlink" title="有依赖的背包"></a>有依赖的背包</h2><ul>
+<li><p>模型</p>
+<p>物品间有依赖关系，且依赖关系组成一棵树</p>
+<p>为选取某节点，必须选取该节点的父节点</p>
+<p>eg:<strong>选课问题</strong></p>
+</li>
+<li><p>思路</p>
+<p>对每个点，dfs其子节点再dp</p>
+<p>特别注意子节点dp体积时要给父节点留下空间</p>
+<p>详见代码</p>
+</li>
+<li><p>代码</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(rei i=head[u];i!=<span class="number">-1</span>;i=Next[i])&#123;</span><br><span class="line">        rei son=ver[i];</span><br><span class="line">        <span class="built_in">dfs</span>(son);</span><br><span class="line">        <span class="keyword">for</span>(rei j=m-v[u];j&gt;=<span class="number">0</span>;--j)<span class="comment">//注意，这里要留出当前点的体积再去dp其子节点</span></span><br><span class="line">            <span class="keyword">for</span>(rei k=<span class="number">0</span>;k&lt;=j;++k)</span><br><span class="line">                f[u][j]=<span class="built_in">max</span>(f[u][j],f[u][j-k]+f[son][k]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(rei i=m;i&gt;=v[u];--i) f[u][i]=f[u][i-v[u]]+w[u];<span class="comment">//加上当前点</span></span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;v[u];++i) f[u][i]=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>dp</tag>
+        <tag>背包</tag>
       </tags>
   </entry>
   <entry>
@@ -1224,110 +1480,6 @@ V(F)^{\prime}
       </tags>
   </entry>
   <entry>
-    <title>确实不会的多项式</title>
-    <url>/2021/05/05/%E7%A1%AE%E5%AE%9E%E4%B8%8D%E4%BC%9A%E7%9A%84%E5%A4%9A%E9%A1%B9%E5%BC%8F/</url>
-    <content><![CDATA[<h2 id="写总结的地方"><a href="#写总结的地方" class="headerlink" title="写总结的地方"></a>写总结的地方</h2><ul>
-<li>将式子转化为卷积形式: $\displaystyle{\sum_{i=1}^n A_i B_{n-i}}$</li>
-</ul>
-<h3 id="P3338-ZJOI2014-力"><a href="#P3338-ZJOI2014-力" class="headerlink" title="P3338 [ZJOI2014]力"></a><a href="https://www.luogu.com.cn/problem/P3338">P3338 [ZJOI2014]力</a></h3><ul>
-<li><p>题意：<br>求 $E_j=\displaystyle{\sum_{i=1}^{j-1}\frac{q_j}{\left(i-j\right)^2} - \sum_{i=j+1}^n \frac{q_j}{\left(i-j\right)^2}}$</p>
-<p>$q_i被消掉了qwq$</p>
-</li>
-<li><p>解：</p>
-<ul>
-<li><p>先简化数据范围</p>
-<script type="math/tex; mode=display">\sum_{i=1}^{j-1} \Rightarrow \sum_{i=0}^{j}</script></li>
-<li><p>化成能算的样子</p>
-<p>设 $f[i]=q_j \ , f’[i]=f[n-i] \ , \ g[i]=\frac{1}{i^2}$</p>
-<script type="math/tex; mode=display">\begin{aligned}
-原式
-&=\underbrace{\sum_{i=1}^j f[i] \cdot g[j-i]}_{\rm 已经是卷积形式} - \sum_{i=j}^n f[i] \cdot g[i-j] \\
-&=\sum_{i=1}^j f[i] \cdot g[j-i] - \underbrace{\sum_{i=0}^{n-j} f[i+j] \cdot g[i]}_{\rm 然而还不能算} \\
-&设 t=n-j \\
-&=\sum_{i=1}^j f[i] \cdot g[j-i] - \sum_{i=0}^t f'[t-i] \cdot g[i] \\
-\end{aligned}</script></li>
-</ul>
-<p>$\bf{Trick:}$ <strong>翻转数列</strong> </p>
-<p>&amp;&amp; 把函数设成数组以看起来更好算</p>
-</li>
-</ul>
-<h3 id="P3723-AH2017-HNOI2017-礼物"><a href="#P3723-AH2017-HNOI2017-礼物" class="headerlink" title="P3723 [AH2017/HNOI2017]礼物"></a><a href="https://www.luogu.com.cn/problem/P3723">P3723 [AH2017/HNOI2017]礼物</a></h3><ul>
-<li><p>题意：</p>
-<p>给定两个序列 $a,b$ ，顺序可以移动，求 $\displaystyle{\sum_{i=1}^n \left(a_i-b_i+c \right)^2}$ 最小值</p>
-</li>
-<li><p>解：</p>
-<script type="math/tex; mode=display">原式=\underbrace{\sum_{i=1}^n a_i^2+\sum_{i=1}^n b_i^2}_{\rm [一]可以预处理} - \underbrace{\sum_{i=1}^n a_ib_i}_{\rm [二]见下面} + \underbrace{nc^2 + 2c\left(\sum_{i=1}^na_i - \sum_{i=1}^nb_i \right)}_{\rm [三]关于 c 的二次函数}</script><p>由题：要取 $\displaystyle{\sum_{i=1}^n a_ib_i}$ 的最大值</p>
-<p>考虑移动 $k$ 位时：</p>
-<p>先把环 $b$ 变为链 $\Rightarrow$ $b[i+n]=b[i]$</p>
-<p>转化为考虑 $\displaystyle{\sum_{i=1}^n a_ib_{i+k} }$</p>
-<p>翻转 $a$ 得 $\displaystyle{\sum_{i=1}^n b_{i+k} \cdot a_{n-i+1}}$ ， 符合卷积形式</p>
-<p>$\therefore \tt{FFT}\left(a_{reserved}\right),\tt{FFT}(b)$</p>
-<p>$\bf{Trick:}$ 由于 $c$ 是整数，用二次函数对称轴来算 [式三],比枚举 $-100\leq c \geq 100$ 更好</p>
-<p>算出$\left\lfloor -\frac{a}{b} \right\rfloor$ 和 $\left\lceil -\frac{a}{b} \right\rceil$ ， 取 $\min$</p>
-</li>
-</ul>
-<h3 id="P5488-差分与前缀和"><a href="#P5488-差分与前缀和" class="headerlink" title="P5488 差分与前缀和"></a><a href="https://www.luogu.com.cn/problem/P5488">P5488 差分与前缀和</a></h3><ul>
-<li><p>题意：</p>
-<p>求数列 $a$ 的 $k$ 维前缀和或差分</p>
-</li>
-<li><p>解：</p>
-<p>设 $\displaystyle{F(x)=\sum_{i=0}^\infty a_ix^i }$</p>
-<ul>
-<li><p>前缀和</p>
-<p>比较前缀和与卷积</p>
-<p>$\displaystyle{a_i=\sum_{j=1}^i a_j \qquad \And\And \qquad S_i=\sum_{j=1}^i A_j B_{i-j}}$</p>
-<p>发现需要卷一个系数都为 $1$ 的多项式 $G(x)$</p>
-<p>以样例为例：</p>
-<script type="math/tex; mode=display">\begin{aligned}
-&F(x)*G(x) \\
-&=(1+9x+2x^2+6x^3+0x^4+8x^6+7x^7) \cdot (1+x+x^2+x^3+x^4+ \cdots +x^{\infty}) \\
-&=1+\underbrace{9x^1 + \underbrace{2x^2 + \underbrace{6x^3 + \underbrace{0x^4 + \underbrace{8x^6 + \underbrace{7x^7}_{\rm 系数+8}}_{\rm 系数+0}}_{\rm 系数+6}}_{\rm 系数+2}}_{\rm 系数+9}}_{\rm 系数+1}
-\end{aligned}</script></li>
-</ul>
-</li>
-</ul>
-<pre><code>发现 $F(x)\cdot G(x)$ 所得多项式就是 $F$ 的一阶前缀和
-
-$\displaystyle&#123;\therefore 显然有 G(x)=\frac&#123;1&#125;&#123;1-x&#125;&#125;$
-
-$\displaystyle&#123;\therefore k阶前缀和 \Rightarrow
- F(x) \cdot \frac&#123;1&#125;&#123;\left(1-x \right)^k&#125;&#125;$
-
-$\displaystyle&#123;\frac&#123;1&#125;&#123;\left(1-x \right)^k&#125; 的第 n 项系数就是 \dbinom&#123;n+k-1&#125;&#123;k-1&#125; &#125;$
-
-$\displaystyle&#123;\therefore a_i=\sum_&#123;j=1&#125;^&#123;i-1&#125;\dbinom&#123;j+k-1&#125;&#123;k-1&#125; \cdot a_&#123;i-j&#125; &#125;$
-
-设组合数递推式 $g_i=\dbinom&#123;i+k-1&#125;&#123;k-1&#125;$
-
-$$\begin&#123;aligned&#125;
-\therefore
-g_i
-&amp;=\frac&#123;g_&#123;i-1&#125;\times (k+i-1)&#125;&#123;i&#125;\%p &amp;\text&#123;只会在计算中用到这个&#125;\\
-&amp;=\left(\frac&#123;g_&#123;i-1&#125; &#125;&#123;i&#125;\%p \right)\times ((k+i-1)\%p) \\
-&amp;=\left(\frac&#123;g_&#123;i-1&#125; &#125;&#123;i&#125;\%p \right)\times ((k\%p+i-1)\%p) \\ &amp;\text&#123;只是为了推 $k$ 可以取模&#125; \\
-\end&#123;aligned&#125;$$
-</code></pre><p>  $\therefore$ 可以对 $k$ 取模</p>
-<ul>
-<li><p>差分</p>
-<p>易得 $F(x) \times (1-x)$ 所得的多项式就是差分后</p>
-<p>  同理得 $\left(1-x\right)^k$</p>
-<script type="math/tex; mode=display">\begin{aligned}
-  B
-  &=F(x) \cdot \left(1-x\right)^k \\
-  &=F(x) \cdot \sum_{i=0}^{\infty} \dbinom{k}{i} \left(-x \right)^i \\
-&=F(x) \cdot \sum_{i=0}^{\infty} \left(-1 \right)^i \cdot \dbinom{k}{i} x^i \\
-  \end{aligned}</script><p>  看组合数递推式: $\dbinom{k}{i}$</p>
-<script type="math/tex; mode=display">\dbinom{k}{0}=1</script><script type="math/tex; mode=display">\dbinom{k}{1}=\frac{k!}{(k-1)!}=k</script><script type="math/tex; mode=display">\dbinom{k}{2}=\frac{k!}{2!(k-2)!}=\frac{k(k-1)}{2}</script><script type="math/tex; mode=display">\dbinom{k}{3}=\frac{k!}{3!(k-3)!}=\frac{k(k-1)(k-2)}{2\times 3}</script><script type="math/tex; mode=display">\dbinom{k}{i}=\dbinom{k}{i-1} \cdot \frac{k-i+1}{i} \qquad\text{用这个递推}</script></li>
-</ul>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>多项式</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>树链剖分</title>
     <url>/2021/07/01/%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86/</url>
     <content><![CDATA[<h2 id="关于长链剖分中指针的理解"><a href="#关于长链剖分中指针的理解" class="headerlink" title="关于长链剖分中指针的理解"></a>关于长链剖分中指针的理解</h2><p>与指针有关的变量：$\ast dp[N],tmp[N]$,$\ast pos$</p>
@@ -1353,158 +1505,6 @@ g_i
       </categories>
       <tags>
         <tag>树链剖分</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>背包问题</title>
-    <url>/2021/01/04/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<h1 id="背包9讲（大概"><a href="#背包9讲（大概" class="headerlink" title="背包9讲（大概"></a>背包9讲（大概</h1><h2 id="0-1背包"><a href="#0-1背包" class="headerlink" title="0/1背包"></a>0/1背包</h2><ul>
-<li><p>模型</p>
-<p>多种物品,每种物品只有一个.求能获得的最大总价值.</p>
-</li>
-<li><p>思路</p>
-<p>不选择第 $i$ 件物品,就相当用 $i-1$ 件物品,填充了体积为 $v$ 的背包.</p>
-<p>选择第 $i$ 件物品，相当于对 $i-1$ 件物品填充得到的体积为  $v-c[i]$ 的背包,再填充第 $i$ 个物品得到体积为 $v$ 的背包.</p>
-</li>
-<li><p>转移方程</p>
-<script type="math/tex; mode=display">f[i][v]=\max(f[i-1][v],f[i-1][v-c[i]]+w[i])</script><p>$f[i][v]$ 代表用 $i$ 件物品填充为体积为 $v$ 的背包得到的最大价值.</p>
-</li>
-<li><p>注</p>
-<p>一般考虑倒序枚举</p>
-<p>这样 $f_i$ 不会被 $i$ 以前的状态影响,更新也不会影响其他位置的状态.</p>
-</li>
-</ul>
-<p>-代码</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;i++)<span class="comment">//枚举物品</span></span><br><span class="line">	<span class="keyword">for</span>(rei j=V;j&gt;=c[i];j--)<span class="comment">//枚举体积</span></span><br><span class="line">		f[j]=<span class="built_in">max</span>(f[j],f[j-c[i]]+w[i]);<span class="comment">//状态转移方程.</span></span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="完全背包"><a href="#完全背包" class="headerlink" title="完全背包"></a>完全背包</h2><ul>
-<li><p>模型</p>
-<p>每种物品有无限多个,可重复选取.</p>
-</li>
-</ul>
-<p><del>- 思路没有了（与0/1类似（逃</del></p>
-<ul>
-<li><p>转移方程</p>
-<script type="math/tex; mode=display">f[i][v]=\max(f[i-1][v],f[i-1][j-k\ast c[i]]+k\ast w[i])</script></li>
-<li><p>注</p>
-<p>顺序枚举</p>
-<p><a href="https://www.luogu.com.cn/blog/RPdreamer/post-01-bei-bao-yu-wan-quan-bei-bao-di-mei-ju-shun-xu-di-fou-tong-chu">01背包与完全背包的枚举顺序的不同处</a></p>
-</li>
-<li><p>代码</p>
-</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;i++)<span class="comment">//枚举物品</span></span><br><span class="line">	<span class="keyword">for</span>(rei j=c[i];j&lt;=V;j++)<span class="comment">//枚举体积</span></span><br><span class="line">		f[j]=<span class="built_in">max</span>(f[j,f[j-c[i]]]+w[i]);<span class="comment">//状态转移.</span></span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="多重背包"><a href="#多重背包" class="headerlink" title="多重背包"></a>多重背包</h2><ul>
-<li><p>模型</p>
-<p>有了个数的限制</p>
-</li>
-</ul>
-<p><del>- 思路不想写了</del></p>
-<pre><code>朴素做法就是把每种物品都拆成 size 个物品跑0/1背包
-</code></pre><h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><ul>
-<li><p>二进制拆分</p>
-<p>易知 $size_i=2^0+2^1+2^2+2^3…+2^x+y$</p>
-<p>其 $k$ 是任意数，$y$ 是一个不为2的整数次幂的数</p>
-<p>所以在多重背包中，可以将个数的限制如此分解</p>
-<p>每个分解看成一个物品</p>
-<p>(如： $2^2$ 看成 $1$ 个物品，该物品 $val=4\cdot val_i \space, \space w=4\cdot w_i$)</p>
-<p>如此进行后就是 $\log (size)$</p>
-<ul>
-<li><p>代码</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Good</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> v,w;</span><br><span class="line">&#125;;</span><br><span class="line">vector&lt;Good&gt; g;</span><br><span class="line"></span><br><span class="line">···</span><br><span class="line"><span class="comment">//对每个读入的v,w,s</span></span><br><span class="line"><span class="keyword">for</span>(rei k=<span class="number">1</span>;k&lt;=s;k*=<span class="number">2</span>)&#123;</span><br><span class="line">    s-=k;</span><br><span class="line">    g.<span class="built_in">push_back</span>(&#123;v*k,w*k&#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(s) g.<span class="built_in">push_back</span>(&#123;v*s,w*s&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//总dp</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> good:g)&#123;</span><br><span class="line">    <span class="keyword">for</span>(rei j=m;j&gt;=good.v;--j)&#123;</span><br><span class="line">        f[j]=<span class="built_in">max</span>(f[j],f[j-good.v]+good.w);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>单调队列优化</p>
-<p>这是一个最基本的转移式子</p>
-</li>
-</ul>
-<p>$f[i][j]=\max(f[i−1][j],f[i−1][j−k\ast c[i]]+k\ast w[i])$</p>
-<p>其中 $k \in [1,\min(\left\lfloor\frac{V}{c[i]}\right\rfloor,num[i])]$</p>
-<p>下面用 $lim$ 表示 $\min(\left\lfloor\frac{V}{c[i]}\right\rfloor,num[i])$</p>
-<p>易得 $f[i][j−k\cdot c[i]]$ 会被 $f[i][j−(k+1)\cdot c[i]]$ 影响</p>
-<p>(体积为 $c[i]$ 的物品填充体积为 $j−(k+1)\cdot c[i]$ 的背包,会得到体积为 $j−k\cdot c[i]$ 的背包)</p>
-<p>$f[i][j]$ 将会影响 $f[i][j+k\cdot c[i]]　(j+k\cdot c[i]\leq V)$</p>
-<p>注意这里影响的传导，往取模上想</p>
-<p>所以我们可以根据对 $c[i]$ 取模得到的余数进行分组.</p>
-<p>即可分为 $0,1,2,3…c[i]−1$ 共 $c[i]$ 组</p>
-<p>每组之间的状态互相没有影响</p>
-<p>且每组中位置靠后的受前面的影响</p>
-<ul>
-<li><p>进行一些推导</p>
-<p>注： $\frac{j}{c[i]}即是全选状态下的物品个数$</p>
-<script type="math/tex; mode=display">\because j=\frac{j}{c[i]} \ \cdot \ c[i] \ +\ j\% c[i]</script><script type="math/tex; mode=display">\therefore j−k∗c[i]=\frac{j}{c[i]}\cdot c[i] \ +\ j\% c[i] \ −\ k\cdot c[i]</script><script type="math/tex; mode=display">\space \space \space \space \space \space \space \space \space =(\frac{j}{c[i]} \ −\ k)\cdot c[i]+j \% c[i]</script><p>令 $(\frac{j}{c[i]}−k)=k^{‘}$</p>
-<p>最原始的状态转移方程中第二状态 :</p>
-<p>$f[i][j−k\cdot c[i]\ ]+k\cdot w[i]$ 代表选择 $k$ 个当前 $i$ 物品</p>
-<p>根据单步容斥 ：全选−不选=选</p>
-<p>因此 $\frac{j}{c[i]} \ −\ (\frac{j}{c[i]}−k)=k$</p>
-<script type="math/tex; mode=display">\because (\frac{j}{c[i]}−k)=k^{'}</script><script type="math/tex; mode=display">\therefore f[i][j]=\max( \ f[i−1][\ k^{'}\cdot c[i]+j \% c[i] \ ] \ + \ \frac{j}{c[i]}\cdot w[i]−k^{'}\cdot w[i])</script><p>而其中 $\frac{j}{c[i]}\cdot w[i]$ 为一个常量(因为 $\frac{j}{c[i]}$ 已知)</p>
-<p>要求的状态变为</p>
-<script type="math/tex; mode=display">f[i][j]=\max(f[i−1][ \ k^{'}\cdot c[i]+j\% c[i] \ ]−k^{'}\cdot w[i])+\frac{j}{c[i]}\cdot w[i]</script><script type="math/tex; mode=display">\because k \in [1,lim]</script><script type="math/tex; mode=display">\therefore k^{'} \in [\frac{j}{c[i]}−k,\frac{j}{c[i]}]</script><p>当前的 $f[i][j]$ 求解的就是为 $lim+1$ 个数对应的 $f[i−1][k^{‘}\cdot c[i]+j\% c[i] \ ]−k^{‘}\cdot w[i]$ 的最大值.</p>
-<p>(之所以为 $lim+1$ 个数,是包括当前这个 $j$ ,还有前面的物品数量)</p>
-<p>将 $f[i][j]$ 前面所有的 $f[i−1][k^{‘}\cdot c[i]+j\% c[i]\ ]−k^{‘}\cdot w[i]$ 放入一个队列.</p>
-<p>问题转化为求这个最长为 $lim+1$ 的队列的最大值 $+\frac{j}{c[i]}\cdot w[i]$</p>
-</li>
-<li><p>代码</p>
-  <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;i++)&#123;<span class="comment">//枚举物品种类</span></span><br><span class="line">    cin&gt;&gt;c[i]&gt;&gt;w[i]&gt;&gt;num[i];<span class="comment">//c,w,num分别对应 体积,价值,个数</span></span><br><span class="line">    <span class="keyword">if</span>(V/c[i] &lt; num[i]) num[i]=V/c[i];<span class="comment">//求lim</span></span><br><span class="line">    <span class="keyword">for</span>(rei p=<span class="number">0</span>;p&lt;c[i];p++)&#123;<span class="comment">//枚举余数</span></span><br><span class="line">        head=tail=<span class="number">0</span>;<span class="comment">//队列初始化</span></span><br><span class="line">        <span class="keyword">for</span>(rei k=<span class="number">0</span>;k&lt;=(V-p)/c[i];k++)&#123;</span><br><span class="line">            rei x=k;</span><br><span class="line">            rei y=f[k*c[i]+p]-k*w[i];</span><br><span class="line">            <span class="keyword">while</span>(head&lt;tail &amp;&amp; q[head].pos&lt;k-num) ++head;<span class="comment">//限制长度</span></span><br><span class="line">            <span class="keyword">while</span>(head&lt;tail &amp;&amp; q[tail<span class="number">-1</span>].value&lt;=y) --tail;</span><br><span class="line">            q[tail].value=y,q[tail].pos=x;</span><br><span class="line">            ++tail;</span><br><span class="line">            f[k*c[i]+p]=q[head].value+k*w[i];</span><br><span class="line">            <span class="comment">//单调队列维护的是前i-1种的状态最大值.</span></span><br><span class="line">            <span class="comment">//因此这里加上k*w[i].</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<hr>
-<h2 id="混合背包"><a href="#混合背包" class="headerlink" title="混合背包"></a>混合背包</h2><ul>
-<li><p>思路</p>
-<p>拆开分别算即可</p>
-</li>
-<li><p>代码</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;n;++i)&#123;</span><br><span class="line">    rei v,w,s;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>,&amp;v,&amp;w,&amp;s);</span><br><span class="line">    <span class="keyword">if</span>(s&lt;<span class="number">0</span>) things.<span class="built_in">push_back</span>(&#123;<span class="number">-1</span>,v,w&#125;);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(!s) things.<span class="built_in">push_back</span>(&#123;<span class="number">0</span>,v,w&#125;);</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(rei k=<span class="number">1</span>;k&lt;=s;k*=<span class="number">2</span>)&#123;</span><br><span class="line">            s-=k;</span><br><span class="line">            things.<span class="built_in">push_back</span>(&#123;<span class="number">-1</span>,v*k,w*k&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(s&gt;<span class="number">0</span>) things.<span class="built_in">push_back</span>(&#123;<span class="number">-1</span>,v*s,w*s&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> thing : things)&#123;</span><br><span class="line">    <span class="keyword">if</span>(thing.kind&lt;<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">for</span>(rei j=m;j&gt;=thing.v;--j)</span><br><span class="line">            f[j]=<span class="built_in">max</span>(f[j],f[j-thing.v]+thing.w);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(rei j=thing.v;j&lt;=m;++j)</span><br><span class="line">            f[j]=<span class="built_in">max</span>(f[j],f[j-thing.v]+thing.w);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<hr>
-<h2 id="二维费用背包"><a href="#二维费用背包" class="headerlink" title="二维费用背包"></a>二维费用背包</h2><ul>
-<li><p>模型</p>
-<p>有容量 $v$ 与重量 $w$ 两个限制</p>
-</li>
-<li><p>思路</p>
-<p>限制扩展到二维即可</p>
-</li>
-<li><p>代码</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;n;++i)&#123;</span><br><span class="line">    rei a,b,c;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>,&amp;a,&amp;b,&amp;c);</span><br><span class="line">    <span class="keyword">for</span>(rei j=v;j&gt;=a;--j)</span><br><span class="line">        <span class="keyword">for</span>(rei k=m;k&gt;=b;--k)</span><br><span class="line">            f[j][k]=<span class="built_in">max</span>(f[j][k],f[j-a][k-b]+c);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<hr>
-<h2 id="分组背包"><a href="#分组背包" class="headerlink" title="分组背包"></a>分组背包</h2><ul>
-<li><p>模型</p>
-<p>每组若干个物品，每个物品组内的物品互斥（只能选一个）</p>
-</li>
-<li><p>转移方程</p>
-<script type="math/tex; mode=display">f[k][v]=\max(f[k-1][v],f[k-1][v-c[i]]+w[i])</script></li>
-<li><p>代码</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;n;++i)&#123;<span class="comment">//每一组</span></span><br><span class="line">    rei s;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;s);</span><br><span class="line">    <span class="keyword">for</span>(rei j=<span class="number">0</span>;j&lt;s;++j) <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;v[j],&amp;w[j]);</span><br><span class="line">    <span class="keyword">for</span>(rei j=m;j&gt;=<span class="number">0</span>;--j)<span class="comment">//枚举体积</span></span><br><span class="line">        <span class="keyword">for</span>(rei k=<span class="number">0</span>;k&lt;s;++k)<span class="comment">//枚举物品</span></span><br><span class="line">            <span class="keyword">if</span>(j&gt;=v[k])</span><br><span class="line">                f[j]=<span class="built_in">max</span>(f[j],f[j-v[k]]+w[k]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<hr>
-<h2 id="有依赖的背包"><a href="#有依赖的背包" class="headerlink" title="有依赖的背包"></a>有依赖的背包</h2><ul>
-<li><p>模型</p>
-<p>物品间有依赖关系，且依赖关系组成一棵树</p>
-<p>为选取某节点，必须选取该节点的父节点</p>
-<p>eg:<strong>选课问题</strong></p>
-</li>
-<li><p>思路</p>
-<p>对每个点，dfs其子节点再dp</p>
-<p>特别注意子节点dp体积时要给父节点留下空间</p>
-<p>详见代码</p>
-</li>
-<li><p>代码</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(rei i=head[u];i!=<span class="number">-1</span>;i=Next[i])&#123;</span><br><span class="line">        rei son=ver[i];</span><br><span class="line">        <span class="built_in">dfs</span>(son);</span><br><span class="line">        <span class="keyword">for</span>(rei j=m-v[u];j&gt;=<span class="number">0</span>;--j)<span class="comment">//注意，这里要留出当前点的体积再去dp其子节点</span></span><br><span class="line">            <span class="keyword">for</span>(rei k=<span class="number">0</span>;k&lt;=j;++k)</span><br><span class="line">                f[u][j]=<span class="built_in">max</span>(f[u][j],f[u][j-k]+f[son][k]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(rei i=m;i&gt;=v[u];--i) f[u][i]=f[u][i-v[u]]+w[u];<span class="comment">//加上当前点</span></span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;v[u];++i) f[u][i]=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>dp</tag>
-        <tag>背包</tag>
       </tags>
   </entry>
   <entry>
