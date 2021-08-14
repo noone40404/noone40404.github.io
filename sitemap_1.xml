@@ -242,6 +242,13 @@
   </url>
   
   <url>
+    <loc>http://noone40404.github.io/tags/%E6%95%B0%E8%AE%BA/</loc>
+    <lastmod>2021-08-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://noone40404.github.io/tags/%E6%9F%93%E8%89%B2/</loc>
     <lastmod>2021-08-14</lastmod>
     <changefreq>daily</changefreq>
@@ -257,13 +264,6 @@
   
   <url>
     <loc>http://noone40404.github.io/tags/%E5%AE%B9%E6%96%A5/</loc>
-    <lastmod>2021-08-14</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://noone40404.github.io/tags/%E6%95%B0%E8%AE%BA/</loc>
     <lastmod>2021-08-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -298,13 +298,6 @@
   </url>
   
   <url>
-    <loc>http://noone40404.github.io/tags/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/</loc>
-    <lastmod>2021-08-14</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://noone40404.github.io/tags/%E6%9D%82%E9%A2%98/</loc>
     <lastmod>2021-08-14</lastmod>
     <changefreq>daily</changefreq>
@@ -319,7 +312,7 @@
   </url>
   
   <url>
-    <loc>http://noone40404.github.io/tags/%E8%83%8C%E5%8C%85/</loc>
+    <loc>http://noone40404.github.io/tags/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/</loc>
     <lastmod>2021-08-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -327,6 +320,13 @@
   
   <url>
     <loc>http://noone40404.github.io/tags/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6/</loc>
+    <lastmod>2021-08-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://noone40404.github.io/tags/%E8%83%8C%E5%8C%85/</loc>
     <lastmod>2021-08-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
