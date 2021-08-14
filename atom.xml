@@ -6,7 +6,7 @@
   <link href="http://noone40404.github.io/atom.xml" rel="self"/>
   
   <link href="http://noone40404.github.io/"/>
-  <updated>2021-08-14T13:54:05.154Z</updated>
+  <updated>2021-08-14T14:05:36.618Z</updated>
   <id>http://noone40404.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://noone40404.github.io/2021/08/14/AGC010/"/>
     <id>http://noone40404.github.io/2021/08/14/AGC010/</id>
     <published>2021-08-14T13:52:41.000Z</published>
-    <updated>2021-08-14T13:54:05.154Z</updated>
+    <updated>2021-08-14T14:05:36.618Z</updated>
     
     
     <summary type="html">AGC010</summary>
@@ -37,9 +37,9 @@
     
     <category term="博弈论" scheme="http://noone40404.github.io/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/"/>
     
-    <category term="贪心" scheme="http://noone40404.github.io/tags/%E8%B4%AA%E5%BF%83/"/>
-    
     <category term="数论" scheme="http://noone40404.github.io/tags/%E6%95%B0%E8%AE%BA/"/>
+    
+    <category term="贪心" scheme="http://noone40404.github.io/tags/%E8%B4%AA%E5%BF%83/"/>
     
   </entry>
   
@@ -216,9 +216,9 @@
     
     <category term="思维" scheme="http://noone40404.github.io/tags/%E6%80%9D%E7%BB%B4/"/>
     
-    <category term="贪心" scheme="http://noone40404.github.io/tags/%E8%B4%AA%E5%BF%83/"/>
-    
     <category term="数论" scheme="http://noone40404.github.io/tags/%E6%95%B0%E8%AE%BA/"/>
+    
+    <category term="贪心" scheme="http://noone40404.github.io/tags/%E8%B4%AA%E5%BF%83/"/>
     
   </entry>
   
@@ -335,9 +335,9 @@
     
     <category term="dp" scheme="http://noone40404.github.io/tags/dp/"/>
     
-    <category term="贪心" scheme="http://noone40404.github.io/tags/%E8%B4%AA%E5%BF%83/"/>
-    
     <category term="数论" scheme="http://noone40404.github.io/tags/%E6%95%B0%E8%AE%BA/"/>
+    
+    <category term="贪心" scheme="http://noone40404.github.io/tags/%E8%B4%AA%E5%BF%83/"/>
     
     <category term="期望" scheme="http://noone40404.github.io/tags/%E6%9C%9F%E6%9C%9B/"/>
     
