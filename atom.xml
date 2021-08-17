@@ -6,7 +6,7 @@
   <link href="http://noone40404.github.io/atom.xml" rel="self"/>
   
   <link href="http://noone40404.github.io/"/>
-  <updated>2021-08-16T14:25:52.276Z</updated>
+  <updated>2021-08-17T14:53:11.543Z</updated>
   <id>http://noone40404.github.io/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>71801202-AGC012</title>
+    <link href="http://noone40404.github.io/2021/08/17/AGC012/"/>
+    <id>http://noone40404.github.io/2021/08/17/AGC012/</id>
+    <published>2021-08-17T14:50:41.000Z</published>
+    <updated>2021-08-17T14:53:11.543Z</updated>
+    
+    
+    <summary type="html">AGC012</summary>
+    
+    
+    
+    <category term="题解" scheme="http://noone40404.github.io/categories/%E9%A2%98%E8%A7%A3/"/>
+    
+    
+    <category term="构造" scheme="http://noone40404.github.io/tags/%E6%9E%84%E9%80%A0/"/>
+    
+    <category term="思维" scheme="http://noone40404.github.io/tags/%E6%80%9D%E7%BB%B4/"/>
+    
+    <category term="贪心" scheme="http://noone40404.github.io/tags/%E8%B4%AA%E5%BF%83/"/>
+    
+    <category term="dp" scheme="http://noone40404.github.io/tags/dp/"/>
+    
+    <category term="组合数学" scheme="http://noone40404.github.io/tags/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6/"/>
+    
+  </entry>
+  
+  <entry>
     <title>61801202-AGC011</title>
     <link href="http://noone40404.github.io/2021/08/16/AGC011/"/>
     <id>http://noone40404.github.io/2021/08/16/AGC011/</id>
     <published>2021-08-16T14:19:41.000Z</published>
-    <updated>2021-08-16T14:25:52.276Z</updated>
+    <updated>2021-08-17T14:51:32.758Z</updated>
     
     
     <summary type="html">AGC011</summary>
@@ -464,25 +491,6 @@
     
     
     <category term="迭代加深" scheme="http://noone40404.github.io/tags/%E8%BF%AD%E4%BB%A3%E5%8A%A0%E6%B7%B1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>博弈论</title>
-    <link href="http://noone40404.github.io/2021/02/04/%E5%8D%9A%E5%BC%88%E8%AE%BA/"/>
-    <id>http://noone40404.github.io/2021/02/04/%E5%8D%9A%E5%BC%88%E8%AE%BA/</id>
-    <published>2021-02-04T11:18:17.000Z</published>
-    <updated>2021-08-03T13:54:24.540Z</updated>
-    
-    
-    <summary type="html">博弈论及其变形</summary>
-    
-    
-    
-    <category term="笔记" scheme="http://noone40404.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="博弈论" scheme="http://noone40404.github.io/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/"/>
     
   </entry>
   

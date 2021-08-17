@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+<meta name="google-site-verification" content="LZ0JOjQQZw7PhvjIbZqeOojf3J6807W7DPn6--OTptc" />
+<meta name="baidu-site-verification" content="code-DDmcbQ6zQN" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <meta name="google-site-verification" content="true">
+  <meta name="msvalidate.01" content="true">
+  <meta name="yandex-verification" content="true">
+  <meta name="baidu-site-verification" content="true">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"noone40404.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="AGC012">
+<meta property="og:type" content="article">
+<meta property="og:title" content="71801202-AGC012">
+<meta property="og:url" content="http://noone40404.github.io/2021/08/17/AGC012/index.html">
+<meta property="og:site_name" content="noone___&#39;s blog">
+<meta property="og:description" content="AGC012">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/ntzucbso.png">
+<meta property="article:published_time" content="2021-08-17T14:50:41.000Z">
+<meta property="article:modified_time" content="2021-08-17T14:53:11.543Z">
+<meta property="article:author" content="noone___">
+<meta property="article:tag" content="构造">
+<meta property="article:tag" content="思维">
+<meta property="article:tag" content="贪心">
+<meta property="article:tag" content="dp">
+<meta property="article:tag" content="组合数学">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.luogu.com.cn/upload/image_hosting/ntzucbso.png">
+
+<link rel="canonical" href="http://noone40404.github.io/2021/08/17/AGC012/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>71801202-AGC012 | noone___'s blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="noone___'s blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">noone___'s blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap_1.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/noone40404" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2021/08/17/AGC012/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="noone___">
+      <meta itemprop="description" content="不能逃避，不能逃避，不能逃避，不能逃避⋯⋯">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="noone___'s blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          71801202-AGC012
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-08-17 22:50:41 / 修改时间：22:53:11" itemprop="dateCreated datePublished" datetime="2021-08-17T22:50:41+08:00">2021-08-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">题解</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+            <div class="post-description">AGC012</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="C"><a href="#C" class="headerlink" title="C"></a>C</h2><blockquote>
+<p>定义一个好字符串 $x$ 满足：$x=yy$ ，给出 $n$ , 求一个串 $s$ 满足 $|s|\leq 200$ ，且每个字符用 $[1,100]$ 的整数表示，且在 $s$ 的所有 $2^{|s|}$ 哥子序列中，恰好有 $n$ 个串是好的</p>
+</blockquote>
+<p>有一个巧妙的构造方案：</p>
+<p>分成前后两部分，后半部分为 $1\sim 100$ ，前半部分为 $1$ 至 $x \ (x\leq 100)$ ，<strong>好序列的个数为前半部分上升子序列的个数</strong></p>
+<p>从小到大增加前半部分的字符，放到最前面使方案数 $+1$ ，最后面使方案数 $\times 2$ ，而反向过来就是一个二进制拆分过程</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">210</span>;</span><br><span class="line"><span class="keyword">int</span> p[N],q[N],cnt;</span><br><span class="line">ll n;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">(ll n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!n) <span class="keyword">return</span> ;</span><br><span class="line">    <span class="keyword">if</span>(~n&amp;<span class="number">1</span>) q[ ++q[<span class="number">0</span>] ]=cnt++,<span class="built_in">solve</span>(n<span class="number">-1</span>);<span class="comment">//放前面,会使数量加1</span></span><br><span class="line">    <span class="keyword">else</span> p[ ++p[<span class="number">0</span>] ]=cnt++,<span class="built_in">solve</span>(n&gt;&gt;<span class="number">1</span>);<span class="comment">//放后面，会使数量 *2</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%lld&quot;</span>,&amp;n);</span><br><span class="line">    <span class="built_in">solve</span>(n); <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,cnt+<span class="number">100</span>);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=q[<span class="number">0</span>];++i) <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,cnt-q[i]);</span><br><span class="line">    <span class="keyword">for</span>(rei i=p[<span class="number">0</span>];i;--i) <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,cnt-p[i]);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=<span class="number">100</span>;++i) <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,i);</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="D"><a href="#D" class="headerlink" title="D"></a>D</h2><blockquote>
+<p>$n$ 个球，第 $i$ 个颜色为 $c_i$ ，质量为 $w_i$ ，有两种操作：选择两个同色且质量和不超过 $x$ 的球并交换位置 ; 选择两个异色且质量和不超过 $Y$ 的球并交换位置</p>
+<p>求一共能得到多少不同的颜色序列</p>
+</blockquote>
+<p>对于一种颜色，设所有球质量分别为 $w_1,w_2…w_n$ ，假设 $w_1&lt;w_2&lt;w_n$ ，易得若 $w_1+w_n\leq x$ 则这 $n$ 个球可以任意交换位置（以 $1$ 号球为媒介依次交换 $(1,i),(1,j),(i,1)$</p>
+<p>若 $w_1+w_n&gt;x$ 再设 $m$ 为最大的满足 $w_1+w_m\leq x$ 的数，考虑处理 $w_m\sim w_n$</p>
+<p>考虑使用全局最小值，指与 $w_i$ 不同颜色的最小值，设为 $w_g$ ，对于要处理的部分，若 $w_g+w_i\leq y$ ，则 $(i,g)$ 可以互换位置（同样以 $1$ 为媒介），也就是数，满足 $w_g+w_i\leq y$ 的 $i$ 与 $1\leq i\leq m$ 的 $i$ 性质一样</p>
+<p>但若 $w_g+w_i&gt;y$  则该球不能移动</p>
+<p>对于剩下的球，将每种颜色视为整体，质量为所有球的总质量，可以发现其性质与小球一样</p>
+<p>答案就是前 $m$ 种颜色的所有球的排列总数</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">2e5</span>+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod=<span class="number">1e9</span>+<span class="number">7</span>,INF=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="keyword">int</span> n,S,D;</span><br><span class="line"><span class="keyword">int</span> fac[N],facinv[N];</span><br><span class="line">ll ans=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">int</span> m,MIN=INF,sec=INF;</span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; s[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">down</span><span class="params">(<span class="keyword">int</span> &amp;x,<span class="keyword">const</span> <span class="keyword">int</span> y)</span></span>&#123; x&gt;y ? x=y : <span class="number">0</span>;&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">qpow</span><span class="params">(ll x,<span class="keyword">int</span> y)</span></span>&#123; ll ans=<span class="number">1</span>; <span class="keyword">while</span>(y)&#123; <span class="keyword">if</span>(y&amp;<span class="number">1</span>) ans=ans*x%mod; x=x*x%mod; y&gt;&gt;=<span class="number">1</span>;&#125; <span class="keyword">return</span> ans;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">    fac[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) fac[i]=(ll) fac[i<span class="number">-1</span>]*i%mod;</span><br><span class="line">    facinv[n]=<span class="built_in">qpow</span>(fac[n],mod<span class="number">-2</span>);</span><br><span class="line">    <span class="keyword">for</span>(rei i=n;i;--i) facinv[i<span class="number">-1</span>]=(ll) facinv[i]*i%mod;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>,&amp;n,&amp;S,&amp;D); <span class="built_in">init</span>();</span><br><span class="line">    <span class="comment">// puts(&quot;here&quot;);</span></span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>,c,v;i&lt;=n;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;c,&amp;v),s[c].<span class="built_in">emplace_back</span>(v);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="keyword">if</span>(s[i].<span class="built_in">size</span>())&#123;</span><br><span class="line">        <span class="built_in">iter_swap</span>(s[i].<span class="built_in">begin</span>(),<span class="built_in">min_element</span>(s[i].<span class="built_in">begin</span>(),s[i].<span class="built_in">end</span>()));</span><br><span class="line">        <span class="keyword">if</span>(s[i].<span class="built_in">front</span>()&lt;MIN) sec=MIN,MIN=s[i].<span class="built_in">front</span>();</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">down</span>(sec,s[i].<span class="built_in">front</span>());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// puts(&quot;here&quot;);</span></span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="keyword">if</span>(s[i].<span class="built_in">size</span>() &amp;&amp; s[i].<span class="built_in">front</span>()+MIN&lt;=D)&#123;</span><br><span class="line">        rei c=<span class="number">0</span>,v=s[i].<span class="built_in">front</span>()==MIN ? sec : MIN;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> u:s[i]) c+=u+s[i].<span class="built_in">front</span>()&lt;=S || u+v&lt;=D;</span><br><span class="line">        m+=c,ans=ans*facinv[c]%mod;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// puts(&quot;here&quot;);</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,ans*fac[m]%mod);</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="E"><a href="#E" class="headerlink" title="E"></a>E</h2><blockquote>
+<p>数轴上有 $n(n\leq 2\times 10^5)$ 个绿洲，有一只储水量 $V(V\leq 2\times 10^5)$ 的骆驼，骆驼有两个操作：走到距离 $V$ 以内的一个绿洲；跳到任意绿洲，代价是 $V$ 会变为 $\left\lfloor \frac{V}{2} \right\rfloor$ ，注意当 $V=0$ 时不能跳，骆驼会从每个绿洲出发，对每一个判断能否一次性遍历所有绿洲</p>
+</blockquote>
+<p>对于 $V,\frac{V}{2},\frac{V}{4},…$ 可以先预处理出此时那些绿洲之间可以直接走</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/ntzucbso.png" alt="https://cdn.luogu.com.cn/upload/image_hosting/ntzucbso.png"></p>
+<p>每跳一次相当于向下走一层，题目转化为钦定第一条线段，然后从每一层选一条，问是否能覆盖整个区间</p>
+<p>神仙状压</p>
+<p>设状态 $s$ 的第 $i$ 位为 $1$ 表示从第 $i$ 层选出一条线段， $f_1[s]$ 表示状态 $s$ 时从 $1$ 向右最多能延伸到的位置，$f_2[s]$ 表示状态 $s$ 时从 $n$ 向左做多能延伸到的位置</p>
+<p>有转移：</p>
+<script type="math/tex; mode=display">\begin{aligned}
+f_1[s]=\max(f_1[s],upFind(f_1[s_0])) \\
+f_2[s]=\min(f_2[s],downFind(f_2[s_0]-1)) \\
+\end{aligned}</script><p>即，从 $s_0$ 加上一条线段能延伸到的位置</p>
+<p>检查答案时，对第一层的每一条线段寻找是否有 $s$ 使 $f_1[s],f_2[U-s-1]$ 贺该线段覆盖整个区间。用状态 $s$ 的线段尽可能扩展左半部分，剩下的线段（不包括第一层的）尽可能扩展右半部分</p>
+<p>最多会跳 $\log {V+1}$ 所以全集的状态 $U=2^{\log {V+1}}-1$ 所以要开到 $2^{19}$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">2e5</span>+<span class="number">10</span>,S=<span class="number">1</span>&lt;&lt;<span class="number">19</span>;</span><br><span class="line"><span class="keyword">int</span> n,V;</span><br><span class="line">ll d[N];</span><br><span class="line"><span class="keyword">int</span> logV,a[<span class="number">25</span>][N],U,f1[S],f2[S];</span><br><span class="line"><span class="comment">//a[i][j] 表示第i层第j条线段的右端点，而a[i][0]记录第i层线段的条数</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">upFind</span><span class="params">(<span class="keyword">int</span> *a,<span class="keyword">int</span> x)</span></span>&#123;<span class="comment">//第一个严格大于x的右端点，该端点所在区间一定能延伸当前f_1</span></span><br><span class="line">    rei L=<span class="number">1</span>,R=a[<span class="number">0</span>];<span class="comment">//a[i][0]被用成边界了</span></span><br><span class="line">    <span class="keyword">while</span>(L&lt;R<span class="number">-1</span>)&#123;</span><br><span class="line">        rei mid=L+R&gt;&gt;<span class="number">1</span>;</span><br><span class="line">        a[mid]&lt;=x ? L=mid+<span class="number">1</span> : R=mid;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> a[L]&gt;x ? a[L] : a[R];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">lowFind</span><span class="params">(<span class="keyword">int</span> *a,<span class="keyword">int</span> x)</span></span>&#123;<span class="comment">//lowfind(x-1):第一个严格小于x-1的右端点，该点的下一个区间一定能延伸当前的f_2</span></span><br><span class="line"><span class="comment">//特别注意这里不能写lowfind(x) : 要是找到x-1，说明有一段以x-1为右端点的区间以及一段以x为左端点的区间，显然加入前者更优，但却加入后者导致错误</span></span><br><span class="line">    rei L=<span class="number">1</span>,R=a[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">while</span>(L&lt;R<span class="number">-1</span>)&#123;</span><br><span class="line">        rei mid=L+R&gt;&gt;<span class="number">1</span>;</span><br><span class="line">        a[mid]&lt;x ? L=mid : R=mid<span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> a[R]&lt;x ? a[R]+<span class="number">1</span> : a[L]+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;V);</span><br><span class="line">    <span class="keyword">while</span>((<span class="number">1</span>&lt;&lt;logV)&lt;=V) ++logV; ++logV;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%lld&quot;</span>,&amp;d[i]),d[i<span class="number">-1</span>]=d[i]-d[i<span class="number">-1</span>]; d[n]=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=logV;++i)&#123;</span><br><span class="line">        a[i][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(rei j=<span class="number">1</span>;j&lt;=n;++j)&#123;</span><br><span class="line">            a[i][ a[i][<span class="number">0</span>] ]=j;</span><br><span class="line">            <span class="keyword">if</span>(d[j]&gt;(V&gt;&gt;(i<span class="number">-1</span>))) ++a[i][<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(a[<span class="number">1</span>][<span class="number">0</span>]&gt;logV)&#123;</span><br><span class="line">        <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="built_in">puts</span>(<span class="string">&quot;Impossible&quot;</span>);</span><br><span class="line">        <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    U=(<span class="number">1</span>&lt;&lt;logV)<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei s=<span class="number">0</span>;s&lt;=U;++s) f1[s]=<span class="number">0</span>,f2[s]=n+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei s=<span class="number">0</span>;s&lt;=U;s+=<span class="number">2</span>)</span><br><span class="line">        <span class="keyword">for</span>(rei i=<span class="number">2</span>;i&lt;=logV;++i)&#123;</span><br><span class="line">            rei s0=<span class="number">1</span>&lt;&lt;(i<span class="number">-1</span>);</span><br><span class="line">            <span class="keyword">if</span>(s&amp;s0) <span class="keyword">continue</span>;</span><br><span class="line">            f1[s|s0]=<span class="built_in">max</span>(f1[s|s0],<span class="built_in">upFind</span>(a[i],f1[s]));</span><br><span class="line">            f2[s|s0]=<span class="built_in">min</span>(f2[s|s0],<span class="built_in">lowFind</span>(a[i],f2[s]<span class="number">-1</span>));</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=a[<span class="number">1</span>][<span class="number">0</span>];++i)&#123;</span><br><span class="line">        <span class="keyword">bool</span> flag=<span class="literal">false</span>;</span><br><span class="line">        rei fr=a[<span class="number">1</span>][i<span class="number">-1</span>]+<span class="number">1</span>,to=a[<span class="number">1</span>][i];</span><br><span class="line">        <span class="keyword">if</span>(i==<span class="number">1</span>) fr=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(rei s=<span class="number">0</span>;s&lt;=U&amp;&amp;!flag;s+=<span class="number">2</span>) <span class="keyword">if</span>(fr&lt;=f1[s]+<span class="number">1</span> &amp;&amp; f2[U-s<span class="number">-1</span>]<span class="number">-1</span>&lt;=to) flag=<span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">if</span>(flag) <span class="keyword">for</span>(rei j=fr;j&lt;=to;++j) <span class="built_in">puts</span>(<span class="string">&quot;Possible&quot;</span>);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">for</span>(rei j=fr;j&lt;=to;++j) <span class="built_in">puts</span>(<span class="string">&quot;Impossible&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="F"><a href="#F" class="headerlink" title="F"></a>F</h2><blockquote>
+<p>给定长度为 $2n-1 \ (n\leq 60)$ 的数组 $a$ ，可以重排 $a$ 中的元素，再生成一个长度为 $n$ 的数组 $b$ ，其中 $b_i$ 是 $a_1\sim a_{2\times i-1}$ 的中位数，对于给定的 $a$ 球能生成多少种 $b$ ，对 $998244353$ 取模</p>
+</blockquote>
+<p>神仙 $\text{dp}$ qwq</p>
+<p>可以设 $a_i$ 升序，那么 $b_i$ 有两条性质：</p>
+<ul>
+<li>$b_i\in \{a_i,a_{i+1},…,a_n,…,a_{2n-i}\}$</li>
+<li>不存在 $i&lt;j$ 使 $b_i$ 介于 $b_j,b_{j+1}$ 之间</li>
+</ul>
+<p>设 $f_{i,j,k}$ 表示当前确定了 $b_i\sim b_n$ 且第 $i$ 层左边还有 $j$ 个不同的数可供选择，右边还有 $k$ 个不同的数可供选择（不含 $b_i$ ），边界为 $f_{n,0,0}=1$</p>
+<p>考虑转移：</p>
+<ul>
+<li>若 $b_{i-1}=b_i$ 则两侧可供选择的数的个数不变，只需加上两侧新增的数 ($le$ 表示 $a_i$ 是否等于 $a_{i-1}$ ，$re$ 同理): $f_{i-1,j+le,k+re}\leftarrow f_{i,j,k}$</li>
+<li>若 $b_{i-1}&lt;b_i$ 由性质 $2$ 得之前的 $b_j$ 不能在范围 $(b_{i-1},b_i)$ 之间，那么这些数无用。则右侧可选的数多 $1$ ，左侧可选的数数量在 $0\sim j+le-1$ 任取: $f_{i-1,v,k+1+re}\leftarrow f_{i,j,k} \ \ \ \ (v\in [0,j+le])$</li>
+</ul>
+<p>答案为当 $i=1$ ，任取 $j,k\in[0,2\times n-1]$ 求和</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">125</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod=<span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"><span class="keyword">int</span> n,G,ans;</span><br><span class="line"><span class="keyword">int</span> a[N],f[<span class="number">2</span>][N][N],(*cur)[N]=*f,(*Next)[N]=f[<span class="number">1</span>];<span class="comment">//滚动</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">fix</span><span class="params">(<span class="keyword">int</span> &amp;x)</span></span>&#123; x&gt;=mod ? x-=mod : <span class="number">0</span>;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n); G=(n&lt;&lt;<span class="number">1</span>)<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=G;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a[i]);</span><br><span class="line">    <span class="built_in">sort</span>(a+<span class="number">1</span>,a+<span class="number">1</span>+G);</span><br><span class="line">    Next[<span class="number">0</span>][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=n;i&gt;<span class="number">1</span>;--i)&#123;</span><br><span class="line">        <span class="built_in">swap</span>(cur,Next); <span class="built_in">memset</span>(Next,<span class="number">0</span>,<span class="keyword">sizeof</span> *f);</span><br><span class="line">        rei le=a[i]!=a[i<span class="number">-1</span>],re=a[G-i+<span class="number">1</span>]!=a[G-i+<span class="number">2</span>];</span><br><span class="line">        <span class="keyword">for</span>(rei j=<span class="number">0</span>;j&lt;=n-i&lt;&lt;<span class="number">1</span>;++j)</span><br><span class="line">            <span class="keyword">for</span>(rei k=<span class="number">0</span>;k&lt;=n-i&lt;&lt;<span class="number">1</span>;++k)&#123;</span><br><span class="line">                rei c=cur[j][k]; <span class="keyword">if</span>(!c) <span class="keyword">continue</span>;</span><br><span class="line">                <span class="built_in">fix</span>(Next[j+le][k+re]+=c);</span><br><span class="line">                <span class="keyword">for</span>(rei v=<span class="number">0</span>;v&lt;j+le;++v) <span class="built_in">fix</span>(Next[v][k+<span class="number">1</span>+re]+=c);<span class="comment">//右边</span></span><br><span class="line">                <span class="keyword">for</span>(rei v=<span class="number">0</span>;v&lt;k+re;++v) <span class="built_in">fix</span>(Next[j+<span class="number">1</span>+le][v]+=c);<span class="comment">//左边</span></span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;=G;++i) <span class="keyword">for</span>(rei j=<span class="number">0</span>;j&lt;=G;++j) <span class="built_in">fix</span>(ans+=Next[i][j]);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,ans);</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>noone___
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://noone40404.github.io/2021/08/17/AGC012/" title="71801202-AGC012">http://noone40404.github.io/2021/08/17/AGC012/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E6%9E%84%E9%80%A0/" rel="tag"><i class="fa fa-tag"></i> 构造</a>
+              <a href="/tags/%E6%80%9D%E7%BB%B4/" rel="tag"><i class="fa fa-tag"></i> 思维</a>
+              <a href="/tags/%E8%B4%AA%E5%BF%83/" rel="tag"><i class="fa fa-tag"></i> 贪心</a>
+              <a href="/tags/dp/" rel="tag"><i class="fa fa-tag"></i> dp</a>
+              <a href="/tags/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6/" rel="tag"><i class="fa fa-tag"></i> 组合数学</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/08/16/AGC011/" rel="prev" title="61801202-AGC011">
+      <i class="fa fa-chevron-left"></i> 61801202-AGC011
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#C"><span class="nav-number">1.</span> <span class="nav-text">C</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#D"><span class="nav-number">2.</span> <span class="nav-text">D</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#E"><span class="nav-number">3.</span> <span class="nav-text">E</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#F"><span class="nav-number">4.</span> <span class="nav-text">F</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="noone___"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">noone___</p>
+  <div class="site-description" itemprop="description">不能逃避，不能逃避，不能逃避，不能逃避⋯⋯</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/noone40404" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;noone40404" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://ctp314.github.io/" title="https:&#x2F;&#x2F;ctp314.github.io&#x2F;" rel="noopener" target="_blank">CTime_Pup_314</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://evitagen.blog.luogu.org/" title="https:&#x2F;&#x2F;evitagen.blog.luogu.org&#x2F;" rel="noopener" target="_blank">Evitagen</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">noone___</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+  <script data-pjax>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'ebdb5b537395179b4514',
+      clientSecret: 'd0843e5853efe963ca9983db6cac3a1f9d736856',
+      repo        : 'noone40404.github.io',
+      owner       : 'noone40404',
+      admin       : ['noone40404'],
+      id          : 'e089782104d9a0a745b74b8a3b06f87d',
+        language: 'zn-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+    </div>
+</body>
+</html>
