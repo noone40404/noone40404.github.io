@@ -25,20 +25,23 @@
     var CONFIG = {"hostname":"noone40404.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="全程口胡的生成函数">
+  <meta name="description" content="AGC014">
 <meta property="og:type" content="article">
-<meta property="og:title" content="学不会的生成函数">
-<meta property="og:url" content="http://noone40404.github.io/2021/05/05/%E5%AD%A6%E4%B8%8D%E4%BC%9A%E7%9A%84%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/index.html">
+<meta property="og:title" content="20801202-AGC014">
+<meta property="og:url" content="http://noone40404.github.io/2021/08/20/AGC014/index.html">
 <meta property="og:site_name" content="noone___&#39;s blog">
-<meta property="og:description" content="全程口胡的生成函数">
+<meta property="og:description" content="AGC014">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-05-05T11:14:16.000Z">
-<meta property="article:modified_time" content="2021-08-04T12:52:09.093Z">
+<meta property="article:published_time" content="2021-08-20T13:42:41.000Z">
+<meta property="article:modified_time" content="2021-08-20T13:43:54.975Z">
 <meta property="article:author" content="noone___">
-<meta property="article:tag" content="生成函数">
+<meta property="article:tag" content="思维">
+<meta property="article:tag" content="贪心">
+<meta property="article:tag" content="构造">
+<meta property="article:tag" content="启发式合并">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://noone40404.github.io/2021/05/05/%E5%AD%A6%E4%B8%8D%E4%BC%9A%E7%9A%84%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/">
+<link rel="canonical" href="http://noone40404.github.io/2021/08/20/AGC014/">
 
 
 <script id="page-configurations">
@@ -51,7 +54,7 @@
   };
 </script>
 
-  <title>学不会的生成函数 | noone___'s blog</title>
+  <title>20801202-AGC014 | noone___'s blog</title>
   
 
 
@@ -209,7 +212,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2021/05/05/%E5%AD%A6%E4%B8%8D%E4%BC%9A%E7%9A%84%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2021/08/20/AGC014/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -222,7 +225,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          学不会的生成函数
+          20801202-AGC014
         </h1>
 
         <div class="post-meta">
@@ -231,23 +234,17 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-05-05 19:14:16" itemprop="dateCreated datePublished" datetime="2021-05-05T19:14:16+08:00">2021-05-05</time>
+              <time title="创建时间：2021-08-20 21:42:41 / 修改时间：21:43:54" itemprop="dateCreated datePublished" datetime="2021-08-20T21:42:41+08:00">2021-08-20</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-04 20:52:09" itemprop="dateModified" datetime="2021-08-04T20:52:09+08:00">2021-08-04</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+                  <a href="/categories/%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">题解</span></a>
                 </span>
             </span>
 
@@ -259,7 +256,7 @@
               <span class="post-meta-item-text">阅读次数：</span>
               <span id="busuanzi_value_page_pv"></span>
             </span>
-            <div class="post-description">全程口胡的生成函数</div>
+            <div class="post-description">AGC014</div>
 
         </div>
       </header>
@@ -270,49 +267,43 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="不知道怎么开始"><a href="#不知道怎么开始" class="headerlink" title="不知道怎么开始"></a>不知道怎么开始</h2><ul>
-<li><p>$a=\langle1,1,1,1,1…\rangle$的生成函数是</p>
-<script type="math/tex; mode=display">f(x)=x+x^2+x^3+x^4+...</script><p>限定 $x\in(-1,1)$</p>
-<script type="math/tex; mode=display">f(x)=\lim_{n\to \infty} \frac{1-x^n}{1-x} = \frac{1}{1-x}</script><p>同理得,函数</p>
-<script type="math/tex; mode=display">f(x)=1+x^2+x^4+x^6...=\frac{1}{1-x^2}</script><script type="math/tex; mode=display">f(x)=1+2x+3x^2+4x^3...=\frac{1}{\left(1-x \right)^2}</script><script type="math/tex; mode=display">f(x)=1+3x+6x^2+10x^3+15x^4...=\frac{1}{\left(1-x\right)^3}</script><p>推广有：</p>
-<script type="math/tex; mode=display">\frac{1}{\left(1-x\right)^k} 的生成数列是 \sum_i^\infty C_{i+k-1}^{k-1} x^i</script></li>
-</ul>
-<p>设 $F(z) , G(z)$ 是数列 $\langle \ f_n \ \rangle , \langle \ g_i \ \rangle$ 的生成函数</p>
+        <h2 id="E"><a href="#E" class="headerlink" title="E"></a>E</h2><blockquote>
+<p>$n$ 个顶点的树，初始时每条边为蓝色，执行 $n-1$ 次操作：选定只包含蓝色边的路径 $u\rightarrow v$ ，并移除路径上的某一条蓝边，并加入一条 $u\rightarrow v$ 的红边。问是否能让最终的红树与给定的红树相同</p>
+</blockquote>
+<p>开始时状态不好考虑，先考虑最后一步操作时：蓝边一定同时存在于蓝树和红树上</p>
+<p>可以找到任意一条这样的边，分别在红蓝图上合并两端的点，剩下继续处理子问题</p>
+<p>用并查集合并节点，暴力遍历出度数小的点进行启发式合并</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">5e5</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> n,d[N];</span><br><span class="line">queue&lt;PII&gt; q;</span><br><span class="line">set&lt;<span class="keyword">int</span>&gt; e[N];</span><br><span class="line">map&lt;PII,<span class="keyword">int</span>&gt; s;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">DSU</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> fa[N];</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123; <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;i++) fa[i]=i;&#125;</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123; <span class="keyword">return</span> fa[x]==x ? x : fa[x]=<span class="built_in">find</span>(fa[x]);&#125;</span><br><span class="line">&#125;dsu;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> PII <span class="title">get</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;<span class="keyword">return</span> <span class="built_in">mk</span>(<span class="built_in">min</span>(x,y),<span class="built_in">max</span>(x,y));&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">ins</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">	e[x].<span class="built_in">insert</span>(y),e[y].<span class="built_in">insert</span>(x);</span><br><span class="line">	PII now=<span class="built_in">get</span>(x,y); ++s[now];</span><br><span class="line">	<span class="keyword">if</span>(s[now]==<span class="number">2</span>) q.<span class="built_in">push</span>(now);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">    dsu.<span class="built_in">init</span>(n);</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>,u,v;i&lt;n*<span class="number">2</span><span class="number">-1</span>;i++) <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;u,&amp;v),<span class="built_in">ins</span>(u,v);</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>,x,y;i&lt;n;i++)&#123;</span><br><span class="line">		<span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">			<span class="keyword">if</span>(!q.<span class="built_in">size</span>()) <span class="keyword">return</span> <span class="built_in">puts</span>(<span class="string">&quot;NO&quot;</span>),<span class="number">0</span>;</span><br><span class="line">            PII top=q.<span class="built_in">front</span>(); q.<span class="built_in">pop</span>();</span><br><span class="line">			x=dsu.<span class="built_in">find</span>( top.first ),y=dsu.<span class="built_in">find</span>( top.second );</span><br><span class="line">			<span class="keyword">if</span>(x!=y) <span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(e[x].<span class="built_in">size</span>()&gt;e[y].<span class="built_in">size</span>()) x^=y,y^=x,x^=y;</span><br><span class="line">		dsu.fa[x]=y;</span><br><span class="line">        s.<span class="built_in">erase</span>(<span class="built_in">get</span>(x,y)),e[y].<span class="built_in">erase</span>(x);</span><br><span class="line">		<span class="keyword">for</span>(set&lt;<span class="keyword">int</span>&gt;::iterator it=e[x].<span class="built_in">begin</span>();it!=e[x].<span class="built_in">end</span>();++it)&#123;</span><br><span class="line">			rei t=dsu.<span class="built_in">find</span>(*it);</span><br><span class="line">			<span class="keyword">if</span>(t==y) <span class="keyword">continue</span>;</span><br><span class="line">			s.<span class="built_in">erase</span>(<span class="built_in">get</span>(x,t)); <span class="built_in">ins</span>(t,y);</span><br><span class="line">			e[t].<span class="built_in">erase</span>(x),e[x].<span class="built_in">erase</span>(t);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;YES&quot;</span>);</span><br><span class="line">	<span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="F"><a href="#F" class="headerlink" title="F"></a>F</h2><blockquote>
+<p>给定长度 $n$ 排列 $P$ ，对其进行奇怪排序直至升序：</p>
+<p>对于每一轮： 找到序列 $P$ 的所有前缀最大值（ $P_i$ 为前缀最大值当且仅当 $\forall 1\leq j\leq i \quad 有 P_j\leq P_i$），取出所有前缀最大值并按照原顺序移到队尾</p>
+<p>求至少需要多少轮才能对 $P$ 排序</p>
+</blockquote>
+<p>定义 $high$ 为前缀最大值, $low$ 为前缀最小值</p>
+<p>假设忽略 $1$ ，用 $T$ 次排列好 $[2,n]$ ，答案就是 $T/T+1$</p>
+<p>考虑 $T-1$ 轮后序列状态：设 $f$ 为第一个数，如果 $1$ 出现在 $f,2$ 之间则答案为 $T$ ，否则为 $T-1$</p>
 <ul>
-<li><p>相加</p>
-<script type="math/tex; mode=display">\begin{aligned}
-\alpha F(z)+ \beta G(z)
-&= \alpha \sum_n f_nz^n + \beta \sum_ng_nz^n \\
-&=\sum_n (\alpha f_n + \beta g_n) z^n\\
-\end{aligned}</script><p>得到数列 $\langle \ \alpha f_n+\beta g_n \  \rangle$ 的生成函数</p>
+<li><p>结论 $1$ : $f$ 不会出现：不在第一个位置且为 $high$ 的情况</p>
+<p>反证法易得</p>
 </li>
-<li><p>平移生成函数</p>
+<li><p>结论 $2$ : 定义循环序列 $(a,b,c)=(b,c,a)=(c,a,b)$ ，则 $1,2,f$ 在前 $T-1$ 次组成的，关于位置的循环序列不变</p>
+</li>
+</ul>
+<p>考虑 $[i,n]$ ，设 $T_i$ 为对该序列排序需要的操作数</p>
+<p>设 $f_i$ 为 $T_i-1$ 次操作后的第一个整数 ，$q_i$ 为 $i$ 在初始序列中的位置( $p_{q_i}=i$ ) 。按照 $i=n\sim 1$ 的顺序计算 $T_i,f_1$ ，答案就为 $T_1$</p>
 <ul>
-<li><p>向右 $m$ 位</p>
-<p>即，构造前面有 $m$ 个 $0$ 的数列 $\langle \ \underbrace{0,\cdots}_{m个},g_0,g_1,\cdots \ \rangle = \langle \ g_{n-m} \ \rangle$ 的生成函数</p>
-<p>直接用 $z_m$ 乘</p>
-<script type="math/tex; mode=display">z_m \cdot G(z) = \sum_n g_nz^{n+m} = \sum_n g_{n-m}z^n</script></li>
-<li><p>向左 $m$ 位</p>
-<p>即，构造前面 $m$ 个元素被删除的数列 $\langle \ g_m,g_{m+1},g_{m+2},\cdots \ \rangle$ 的生成函数</p>
-<p>减去前 $m$ 项，并用 $z_m$ 来除</p>
-<script type="math/tex; mode=display">\frac{G(z)-g_0-g_1z-\cdots -g_{m-1}z^{m-1}}{z^m} = \sum_{n\geq m} g_nz^{n-m} = \sum_{n\geq 0} g_{n+m}g^z</script></li>
+<li>若 $T_{i+1}=0$<ul>
+<li>若 $q_i&gt;q_{i+1}$ ，则 $T_i=1,f_i=i+1$</li>
+<li>否则 $T_i=0,f_i无$</li>
 </ul>
 </li>
-<li><p>常数倍的 $z$</p>
-<script type="math/tex; mode=display">G(cz) = \sum_ng_n(cz)^n = \sum_n g_nz^n</script><p>即，数列 $\langle \ c^ng_n  \ \rangle$ 的生成函数</p>
-<p>当 $c=-1$ 时特别有用</p>
-</li>
-<li><p>相乘</p>
-<script type="math/tex; mode=display">\begin{aligned}
-F(z)G(z)
-&=(f_0+f_1z+f_2z^2+\cdots ) \cdot (g_0+g_0z+g_0z^2+\cdots) \\
-&=(f_0 \cdot g_0) + (f_0\cdot g_1 + f_1 \cdot g_0)z + (f_0\cdot g_2 + f_1\cdot g_1 + f_2 \cdot g_0) z^2 + \cdots \\
-&=\sum_n \left(\sum f_k \cdot g_{n-k} \right) z^n \\
-\end{aligned}</script><p>求得数列 $\langle \ h_n \ \rangle$ 的生成函数，即数列 $\langle \ f_n \ \rangle , \langle \ g_i \ \rangle$ 的卷积的生成函数</p>
-<p>和式 $\displaystyle{h_n=\sum_{k=0}^n f_k \cdot g_{n-k}}$</p>
+<li>否则<ul>
+<li>若 $q_{f_{i+1}},q_i,q_{i+1}$ 处于循环顺序，则 $T_i=T_{i+1},f_i=f_{i+1}$</li>
+<li>否则 $T_i=T_{i+1}+1,f_i=i+1$</li>
+</ul>
 </li>
 </ul>
-<p><strong>具体参见具体数学P280 , 表7-1，7-2</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">2e5</span>+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">int</span> q[N],p[N],n,T[N],f[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;p[i]),q[ p[i] ]=i;</span><br><span class="line">	<span class="keyword">for</span>(rei i=n<span class="number">-1</span>;i;--i)&#123;</span><br><span class="line">		<span class="keyword">if</span>(!T[i+<span class="number">1</span>])</span><br><span class="line">			<span class="keyword">if</span>(q[i]&gt;q[i+<span class="number">1</span>]) T[i]=<span class="number">1</span>,f[i]=i+<span class="number">1</span>;</span><br><span class="line">			<span class="keyword">else</span> T[i]=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			rei cnt=<span class="number">0</span>;</span><br><span class="line">			cnt+=q[ f[i+<span class="number">1</span>] ]&lt;q[i];</span><br><span class="line">			cnt+=q[i]&lt;q[i+<span class="number">1</span>];</span><br><span class="line">			cnt+=q[i+<span class="number">1</span>]&lt;q[ f[i+<span class="number">1</span>] ];</span><br><span class="line">			<span class="keyword">if</span>(cnt==<span class="number">2</span>) T[i]=T[i+<span class="number">1</span>],f[i]=f[i+<span class="number">1</span>];</span><br><span class="line">			<span class="keyword">else</span> T[i]=T[i+<span class="number">1</span>]+<span class="number">1</span>,f[i]=i+<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,T[<span class="number">1</span>]);</span><br><span class="line">	<span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -328,7 +319,7 @@ F(z)G(z)
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://noone40404.github.io/2021/05/05/%E5%AD%A6%E4%B8%8D%E4%BC%9A%E7%9A%84%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/" title="学不会的生成函数">http://noone40404.github.io/2021/05/05/学不会的生成函数/</a>
+    <a href="http://noone40404.github.io/2021/08/20/AGC014/" title="20801202-AGC014">http://noone40404.github.io/2021/08/20/AGC014/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -340,7 +331,10 @@ F(z)G(z)
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/" rel="tag"><i class="fa fa-tag"></i> 生成函数</a>
+              <a href="/tags/%E6%80%9D%E7%BB%B4/" rel="tag"><i class="fa fa-tag"></i> 思维</a>
+              <a href="/tags/%E8%B4%AA%E5%BF%83/" rel="tag"><i class="fa fa-tag"></i> 贪心</a>
+              <a href="/tags/%E6%9E%84%E9%80%A0/" rel="tag"><i class="fa fa-tag"></i> 构造</a>
+              <a href="/tags/%E5%90%AF%E5%8F%91%E5%BC%8F%E5%90%88%E5%B9%B6/" rel="tag"><i class="fa fa-tag"></i> 启发式合并</a>
           </div>
 
         
@@ -349,13 +343,10 @@ F(z)G(z)
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/04/07/%E8%BF%AD%E4%BB%A3%E5%8A%A0%E6%B7%B1/" rel="prev" title="迭代加深">
-      <i class="fa fa-chevron-left"></i> 迭代加深
+    <a href="/2021/08/18/AGC013/" rel="prev" title="81801202-AGC013">
+      <i class="fa fa-chevron-left"></i> 81801202-AGC013
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/05/05/%E7%A1%AE%E5%AE%9E%E4%B8%8D%E4%BC%9A%E7%9A%84%E5%A4%9A%E9%A1%B9%E5%BC%8F/" rel="next" title="确实不会的多项式">
-      确实不会的多项式 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -415,7 +406,7 @@ F(z)G(z)
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E7%9F%A5%E9%81%93%E6%80%8E%E4%B9%88%E5%BC%80%E5%A7%8B"><span class="nav-number">1.</span> <span class="nav-text">不知道怎么开始</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#E"><span class="nav-number">1.</span> <span class="nav-text">E</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#F"><span class="nav-number">2.</span> <span class="nav-text">F</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -729,7 +720,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'noone40404.github.io',
       owner       : 'noone40404',
       admin       : ['noone40404'],
-      id          : 'fdba114538f52865b50984ba59062d59',
+      id          : 'e2c4cf49e14581242d94cd9652d7d4eb',
         language: 'zn-CN',
       distractionFreeMode: true
     });
