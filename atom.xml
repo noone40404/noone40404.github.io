@@ -6,7 +6,7 @@
   <link href="http://noone40404.github.io/atom.xml" rel="self"/>
   
   <link href="http://noone40404.github.io/"/>
-  <updated>2021-08-21T14:20:06.283Z</updated>
+  <updated>2021-08-21T14:20:35.411Z</updated>
   <id>http://noone40404.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://noone40404.github.io/2021/08/21/AGC015/"/>
     <id>http://noone40404.github.io/2021/08/21/AGC015/</id>
     <published>2021-08-21T14:13:41.000Z</published>
-    <updated>2021-08-21T14:20:06.283Z</updated>
+    <updated>2021-08-21T14:20:35.411Z</updated>
     
     
     <summary type="html">AGC015</summary>
@@ -172,9 +172,9 @@
     
     <category term="贪心" scheme="http://noone40404.github.io/tags/%E8%B4%AA%E5%BF%83/"/>
     
-    <category term="博弈论" scheme="http://noone40404.github.io/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/"/>
-    
     <category term="数论" scheme="http://noone40404.github.io/tags/%E6%95%B0%E8%AE%BA/"/>
+    
+    <category term="博弈论" scheme="http://noone40404.github.io/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/"/>
     
   </entry>
   
