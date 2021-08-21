@@ -25,24 +25,24 @@
     var CONFIG = {"hostname":"noone40404.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="AGC002">
+  <meta name="description" content="AGC015">
 <meta property="og:type" content="article">
-<meta property="og:title" content="40801202-AGC002">
-<meta property="og:url" content="http://noone40404.github.io/2021/08/04/AGC002/index.html">
+<meta property="og:title" content="12801202-AGC015">
+<meta property="og:url" content="http://noone40404.github.io/2021/08/21/AGC015/index.html">
 <meta property="og:site_name" content="noone___&#39;s blog">
-<meta property="og:description" content="AGC002">
+<meta property="og:description" content="AGC015">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-08-04T12:46:54.000Z">
-<meta property="article:modified_time" content="2021-08-05T09:17:33.977Z">
+<meta property="article:published_time" content="2021-08-21T14:13:41.000Z">
+<meta property="article:modified_time" content="2021-08-21T14:14:48.976Z">
 <meta property="article:author" content="noone___">
 <meta property="article:tag" content="构造">
 <meta property="article:tag" content="思维">
 <meta property="article:tag" content="dp">
-<meta property="article:tag" content="博弈论">
-<meta property="article:tag" content="Kruskal重构树">
+<meta property="article:tag" content="数论">
+<meta property="article:tag" content="位运算">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://noone40404.github.io/2021/08/04/AGC002/">
+<link rel="canonical" href="http://noone40404.github.io/2021/08/21/AGC015/">
 
 
 <script id="page-configurations">
@@ -55,7 +55,7 @@
   };
 </script>
 
-  <title>40801202-AGC002 | noone___'s blog</title>
+  <title>12801202-AGC015 | noone___'s blog</title>
   
 
 
@@ -213,7 +213,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2021/08/04/AGC002/">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2021/08/21/AGC015/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -226,7 +226,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          40801202-AGC002
+          12801202-AGC015
         </h1>
 
         <div class="post-meta">
@@ -235,16 +235,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-08-04 20:46:54" itemprop="dateCreated datePublished" datetime="2021-08-04T20:46:54+08:00">2021-08-04</time>
+              <time title="创建时间：2021-08-21 22:13:41 / 修改时间：22:14:48" itemprop="dateCreated datePublished" datetime="2021-08-21T22:13:41+08:00">2021-08-21</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-05 17:17:33" itemprop="dateModified" datetime="2021-08-05T17:17:33+08:00">2021-08-05</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -263,7 +257,7 @@
               <span class="post-meta-item-text">阅读次数：</span>
               <span id="busuanzi_value_page_pv"></span>
             </span>
-            <div class="post-description">AGC002</div>
+            <div class="post-description">AGC015</div>
 
         </div>
       </header>
@@ -275,28 +269,54 @@
 
       
         <h2 id="D"><a href="#D" class="headerlink" title="D"></a>D</h2><blockquote>
-<p>给一张图，多次询问，每次 $u\leftarrow v$ 中经过的不重复点数量 $=z$ ，求经过边最大编号最小值</p>
+<p>给定正整数 $A,B \quad (1\leq A,B\leq 2^{60})$ ，令 $S=\{A,A+1,A+2,…,B-1,B\}$ ，求 $S$ 的所有非空子集的元素按位或的结果有多少不同取值</p>
 </blockquote>
-<p>边权问题想到 $Kruskal$ 重构树</p>
-<p>重构树上倍增二分即可</p>
-<p><del>这道题还有一种整体二分+并查集做法，但我不会</del></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e5</span>+<span class="number">100</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> x,y,w;</span><br><span class="line">    <span class="keyword">friend</span> <span class="keyword">bool</span> <span class="keyword">operator</span> &lt;(<span class="keyword">const</span> node &amp;a,<span class="keyword">const</span> node &amp;b)&#123; <span class="keyword">return</span> a.w&lt;b.w;&#125;</span><br><span class="line">&#125;edge[N&lt;&lt;<span class="number">1</span>];</span><br><span class="line"><span class="keyword">int</span> anc[<span class="number">20</span>][N&lt;&lt;<span class="number">1</span>],fa[N&lt;&lt;<span class="number">1</span>],Size[N&lt;&lt;<span class="number">1</span>],edge_val[N&lt;&lt;<span class="number">1</span>];</span><br><span class="line"><span class="keyword">int</span> n,m,root;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find_fa</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123; <span class="keyword">return</span> x==fa[x] ? x : fa[x]=<span class="built_in">find_fa</span>(fa[x]);&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">find_anc</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> d)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">19</span>;~i;--i) <span class="keyword">if</span>(edge_val[ anc[i][x] ]&lt;=d) x=anc[i][x];</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y,<span class="keyword">int</span> z,<span class="keyword">int</span> d)</span></span>&#123;</span><br><span class="line">    x=<span class="built_in">find_anc</span>(x,d),y=<span class="built_in">find_anc</span>(y,d);</span><br><span class="line">    <span class="keyword">return</span> x==y ? Size[x]&gt;=z : Size[x]+Size[y]&gt;=z;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;m);</span><br><span class="line">    edge_val[<span class="number">0</span>]=m+<span class="number">1</span>; root=n;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) fa[i]=i,Size[i]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=m;++i)&#123;</span><br><span class="line">        rei u,v; <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;u,&amp;v);</span><br><span class="line">        u=<span class="built_in">find_fa</span>(u),v=<span class="built_in">find_fa</span>(v);</span><br><span class="line">        <span class="keyword">if</span>(u==v) <span class="keyword">continue</span>;</span><br><span class="line">        fa[u]=fa[v]=++root;Size[root]=Size[u]+Size[v];</span><br><span class="line">        fa[root]=root; anc[<span class="number">0</span>][u]=anc[<span class="number">0</span>][v]=root; edge_val[root]=i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(rei i=root;i;--i) <span class="keyword">for</span>(rei j=<span class="number">1</span>;j&lt;<span class="number">20</span>;++j) anc[j][i]=anc[j<span class="number">-1</span>][ anc[j<span class="number">-1</span>][i] ];</span><br><span class="line">    rei Q;<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;Q);</span><br><span class="line">    <span class="keyword">while</span>(Q--)&#123;</span><br><span class="line">        rei x,y,z; <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>,&amp;x,&amp;y,&amp;z);</span><br><span class="line">        rei l=<span class="number">1</span>,r=m,ans=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(l&lt;=r)&#123;</span><br><span class="line">            rei mid=l+r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">            <span class="built_in">check</span>(x,y,z,mid) ? ans=mid,r=mid<span class="number">-1</span> : l=mid+<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,ans);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>首先有 $A=B$ 时答案为 $1$</p>
+<p>设 $AB$ 最高的不一样的位为第 $b$ 位，则 $A$ 的第 $b$ 位一定为 $0$ ， $B$ 的第 $b$ 位一定是 $1$</p>
+<p>考虑比 $b$ 高的那些位，无论取 $S$ 中的哪些数，其比 $b$ 高的位结构相同，或的结果也相同，所以不必考虑这些位，只考虑前 $b$ 位</p>
+<p>设 $U$ 在第 $b$ 位为 $0$ ，$b-1\sim 1$ 位为 $1$ ； $V$ 在第 $b$ 位为 $1$ ，$b-1\sim 1$ 位为 $0$</p>
+<p>$S$ 子集或的结果有：</p>
+<ul>
+<li><p>第 $b$ 位为 $0$</p>
+<p>只能使用 $A\sim U$ 的元素，设 $T=\{A,A+1,…,U\}$ ，或的结果（或闭包）显然包含 $T$</p>
+<p>又由于 $a\mid b\geq \max(a,b)$ 所以或闭包中所有元素均 $\geq A$ ，且 $T$ 中所有数值可能为 $1$ 的位只有 $0,1,…,b-1$ 位，于是结果的每个数中，值为 $1$ 的为是这些位的子集，所以它们 $\leq T$</p>
+<p>综上， $T$ 就是 $T$ 的或闭包，共 $|T|$ 个</p>
+</li>
+<li><p>第 $b$ 位为 $1$</p>
+<p>首先，$T\cup \{V\}$ 的或闭包中，考虑第 $b$ 位为 $1$ 的元素，和上面类似可知是 $\{V+A,V+A+1,…,V+U\}=[V+A,2V)$ 而它们的或闭包是 $[V,2V)$ ，即 $\left[2^b,2^{b+1}\right)$ 的子集，于是剩下的元素只有 $[V,V+A)$</p>
+<p>考虑「或闭包」在这个区间中的表现</p>
+<p><strong>注意此时不能使用 $T$ 中的元素</strong></p>
+<p>于是，只需要考虑 $V\sim B$ 中的元素，而这是原问题的一个子问题。从而，我们把 $V$ 和 $B$ 相同的位删掉 —— 即找到 $B$ 中除了 $b$ 外最高为 $1$ 的位，记为 $d$</p>
+<p>它们的或闭包就是 $\left[0,2^{d+1}\right)$ ，这部分的贡献就是 $\left[V,V+2^{d+1}\right)$</p>
+<p>综上，该部分答案就是 $\left[V,V+2^{d+1}\right)\cup [V+A,2V)$</p>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> b, d; ll L, R;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">doz</span><span class="params">(ll x)</span></span>&#123; <span class="keyword">return</span> ~(x&gt;&gt;<span class="number">63</span>)&amp;x;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%lld%lld&quot;</span>,&amp;L,&amp;R);</span><br><span class="line">	<span class="keyword">if</span>(L==R) <span class="keyword">return</span> <span class="built_in">puts</span>(<span class="string">&quot;1&quot;</span>),<span class="number">0</span>;</span><br><span class="line">	b=__lg(L^R),L&amp;=~(<span class="number">-2ll</span>&lt;&lt;b),R&amp;=~(<span class="number">-1ll</span>&lt;&lt;b),d=R ? __lg(R)+<span class="number">1</span> : <span class="number">0</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,(<span class="number">2ll</span>&lt;&lt;b)-L-<span class="built_in">doz</span>(L-(<span class="number">1ll</span>&lt;&lt;d)));</span><br><span class="line">	<span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h2 id="E"><a href="#E" class="headerlink" title="E"></a>E</h2><blockquote>
-<p>博弈论 每次操作将当前最大堆的糖果全部吃完或将每堆糖果吃掉一个，吃完的人输</p>
+<p>数轴上有 $N$ 个点，每个点初始时在位置 $X_i$ ，以 $V_i$ 的速度向数轴正方向前进。 初始时刻，选择一些点为其染色，之后的行走过程中，染色的点会将其碰到的所有点都染上色，之后被染上色的点亦是如。此<br>在所有 $2^N$ 种初始染色方案中，问有多少种初始染色方案，能使得最终所有的点都被染色</p>
 </blockquote>
-<p>GreenDay学长之前讲过</p>
-<p>将每堆小石子的数量看成柱状图并排序，问题转化为从 $(1,1)$ 出发，每次只能向上或向右走一格，到边界者输</p>
-<p>显然棱角处均为必败点，且<del>打表得</del> $y=-k\times x$ 直线上的格子性质相同</p>
-<p>找最大的 $(i,i)$ 再简单判断即可</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e5</span>+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">int</span> a[N],n;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a[i]);</span><br><span class="line">	<span class="built_in">sort</span>(a+<span class="number">1</span>,a+<span class="number">1</span>+n,greater&lt;<span class="keyword">int</span>&gt;());</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i)</span><br><span class="line">		<span class="keyword">if</span>(i+<span class="number">1</span>&gt;a[i+<span class="number">1</span>])&#123;<span class="comment">//最大正方形</span></span><br><span class="line">			<span class="keyword">if</span>((a[i]-i)&amp;<span class="number">1</span>)&#123; <span class="built_in">puts</span>(<span class="string">&quot;First&quot;</span>); <span class="keyword">break</span>;&#125;</span><br><span class="line">			rei right=i;</span><br><span class="line">			<span class="keyword">while</span>(a[right+<span class="number">1</span>]==i) ++right;</span><br><span class="line">			<span class="keyword">if</span>((right-i)&amp;<span class="number">1</span>)&#123; <span class="built_in">puts</span>(<span class="string">&quot;First&quot;</span>); <span class="keyword">break</span>;&#125;</span><br><span class="line">			<span class="built_in">puts</span>(<span class="string">&quot;Second&quot;</span>); <span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>按 $x_i$ 将所有点排序，第 $i$ 个点被选中后，对于 $j<i且v_j>v_i$ 和 $j&gt;i且v_j<v_i$ 的点会被直接打上标记，而对于 $j>i,v_j\leq \max_{k\leq i} v_k$ 的点都会被间接打上标记</p>
+<p>考虑初始时最靠右的标记点 $i$ ，由于 $i$ 对右侧影响最强，故点 $j,j&lt;i$ 被打标记当且仅当 $v_j\max{k\leq i} \ v_k$ 。只需要确保 $[1,i-1]$ 的点使 $j&lt;i,v_j&lt;\min_{k\geq i} \ v_k$ 的点都被打标记</p>
+<p>设 $f_i$ 表示操纵 $[1,i-1]$ 的点使 $j&lt;i ,v_j&lt;\min_{k\geq i} \ v_k$ 的点都被打标记的方案数， 设 $j$ 是初始时 $[1,i-1]$ 内最靠右被打上标记的点，满足 $\max_{j&lt;k&lt;i\ ,\ v_k&lt;\min_{t\geq i}\ v_t} \ v_k&lt;\max_{1\leq k\leq j} \ v_k$</p>
+<p>考虑用 $f_j$ 转移：合法的 $j$ 是一段右端点为 $i$ 的区间，考虑左端点：设 $mx$ 表示最大的 $mx$ 满足 $mx&lt;i,v_{mx}&lt;\min_{t\leq i} \ v_t$ 的 $v_{mx}$</p>
+<p>对于 $v_{mx}$ 可以作为 $j$ 左侧只需要考虑 $\max_{1\leq k\leq j} \ v_k&gt;v_{mx}$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">2e5</span>+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod=<span class="number">1e9</span>+<span class="number">7</span>,INF=<span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> x,<span class="keyword">const</span> <span class="keyword">int</span> y)</span></span>&#123; <span class="keyword">return</span> x+y&lt;mod ? x+y : x+y-mod;&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">dec</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> x,<span class="keyword">const</span> <span class="keyword">int</span> y)</span></span>&#123; <span class="keyword">return</span> x&lt;y ? x-y+mod : x-y;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,f[N],sf[N];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> x,v;</span><br><span class="line">	<span class="keyword">friend</span> <span class="keyword">bool</span> <span class="keyword">operator</span>&lt;(<span class="keyword">const</span> node &amp;a,<span class="keyword">const</span> node &amp;b)&#123; <span class="keyword">return</span> a.x&lt;b.x;&#125;</span><br><span class="line">&#125;a[N];</span><br><span class="line"><span class="keyword">int</span> id[N];</span><br><span class="line"><span class="keyword">int</span> premn[N],sufmn[N],premx[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123; <span class="keyword">return</span> a[x].v&lt;a[y].v;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;a[i].x,&amp;a[i].v);</span><br><span class="line">	<span class="built_in">sort</span>(a+<span class="number">1</span>,a+n+<span class="number">1</span>);</span><br><span class="line">	premn[<span class="number">0</span>]=sufmn[n+<span class="number">1</span>]=INF;</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) premn[i]=<span class="built_in">min</span>(premn[i<span class="number">-1</span>],a[i].v);</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) premx[i]=<span class="built_in">max</span>(premx[i<span class="number">-1</span>],a[i].v);</span><br><span class="line">	<span class="keyword">for</span>(rei i=n;i&gt;=<span class="number">1</span>;--i) sufmn[i]=<span class="built_in">min</span>(sufmn[i+<span class="number">1</span>],a[i].v);</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) id[i]=i;</span><br><span class="line">	<span class="built_in">sort</span>(id+<span class="number">1</span>,id+n+<span class="number">1</span>,cmp);</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>,j=<span class="number">1</span>,p1=<span class="number">0</span>,p2=<span class="number">1</span>;i&lt;=n+<span class="number">1</span>;++i)&#123;</span><br><span class="line">		<span class="keyword">if</span>(i!=<span class="number">1</span>) <span class="keyword">if</span>(a[i<span class="number">-1</span>].v&lt;sufmn[i]) <span class="keyword">if</span>(!p1 || a[i<span class="number">-1</span>].v&gt;a[p1].v) p1=i<span class="number">-1</span>;</span><br><span class="line">		<span class="keyword">while</span>(j&lt;=n &amp;&amp; a[ id[j] ].v&lt;sufmn[i])&#123;</span><br><span class="line">			<span class="keyword">if</span>(id[j]&lt;i) <span class="keyword">if</span>(!p1||a[ id[j] ].v&gt;a[p1].v) p1=id[j];</span><br><span class="line">			++j;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">while</span>(p2&lt;=n &amp;&amp; a[p2].v&lt;a[p1].v) ++p2;</span><br><span class="line">		<span class="keyword">if</span>(p1)&#123;</span><br><span class="line">			rei p=<span class="built_in">min</span>(p2,p1);</span><br><span class="line">			f[i]=<span class="built_in">dec</span>(sf[i<span class="number">-1</span>],sf[p<span class="number">-1</span>]);</span><br><span class="line">			sf[i]=<span class="built_in">add</span>(sf[i<span class="number">-1</span>],f[i]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> f[i]=<span class="built_in">add</span>(sf[i<span class="number">-1</span>],<span class="number">1</span>);</span><br><span class="line">		sf[i]=<span class="built_in">add</span>(sf[i<span class="number">-1</span>],f[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,f[n+<span class="number">1</span>]);</span><br><span class="line">	<span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="F"><a href="#F" class="headerlink" title="F"></a>F</h2><blockquote>
-<p>给你 $n$ 种不含白色颜色的球，每个球有 $m$ 个，把这 $n\times m$ 个球排成一排，把每一种颜色的最左边出现的球涂成白色，求有多少种不同的颜色序列</p>
+<p>定义 $E(x,y)$ 是对 $x,y$ 进行 $\text{Euclid}$ 算法需要的步数。其中 $E(a,b)=E(b,a) \forall a,b\in \N$ ; $E(0,a)=0$ ; 若 $0&lt;a\leq b$ ，则 $E(a,b)=E(b\mod a,a)+1$ 。 有多次询问，每次给定 $x,y\in \N^+$ 求出 $\displaystyle{M=\max_{1\leq x\leq X} \max_{1\leq y\leq Y} E(x,y)}$ 以及 $\displaystyle{C_M=\sum_{x=1}^X\sum_{y=1}^Y [E(x,y)=M]}$</p>
 </blockquote>
-<p>有 $m$ 个白球，$n$ 种其他颜色的球各 $m-1$ 个 只有任意前缀中白球的个数均大于其他颜色种类数时合法</p>
-<p>考虑序列计数 $dp$: 枚举位置或元素，这里枚举元素</p>
-<p>设状态 $f_{i,j}$ 表示在 $n\times m$ 个位置上填了 $i$ 个白球和 $j$ 个其他球</p>
-<p>考虑合法序列的从左到右的第一个格子如何转移</p>
-<script type="math/tex; mode=display">\therefore f_{i,j}=\underbrace{f_{i-1,j}}_{放白球} \ + \ \underbrace{f_{i,j-1}}_{放其他颜色} \times \underbrace{\left(n-j+1\right)}_{没有使用过的颜色}\times \underbrace{\binom{n\times m-i-(m-1)\times (j-1)-1}{m-2}}_{还有 m-2 个该颜色的球没有放}</script><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">2e3</span>+<span class="number">5</span>,M=<span class="number">4e6</span>+<span class="number">5</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod=<span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"><span class="keyword">int</span> n,m,f[N][N],fac[M],ifac[M],inv[M],ans;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">C</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> m)</span></span>&#123; <span class="keyword">return</span> (ll) fac[n]*ifac[n-m]%mod*ifac[m]%mod;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;m); inv[<span class="number">1</span>]=ifac[<span class="number">0</span>]=fac[<span class="number">0</span>]=<span class="number">1</span>; f[<span class="number">0</span>][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">2</span>;i&lt;=n*m;++i) inv[i]=(ll) (mod-mod/i)*inv[mod%i]%mod;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n*m;++i) fac[i]=(ll) i*fac[i<span class="number">-1</span>]%mod,ifac[i]=(ll) inv[i]*ifac[i<span class="number">-1</span>]%mod;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="keyword">for</span>(rei j=<span class="number">0</span>;j&lt;=i;++j)&#123;</span><br><span class="line">            f[i][j]=f[i<span class="number">-1</span>][j];</span><br><span class="line">            <span class="keyword">if</span>(j) f[i][j]=(f[i][j]+(ll) f[i][j<span class="number">-1</span>]*(n-j+<span class="number">1</span>)%mod *<span class="built_in">C</span>(n*m-i-(j<span class="number">-1</span>)*(m<span class="number">-1</span>)<span class="number">-1</span>,m<span class="number">-2</span>)%mod)%mod;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,m==<span class="number">1</span> ? <span class="number">1</span> : f[n][n]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>只会打表找结论，具体的数学过程参见yhx的博客</p>
+<ul>
+<li><p>结论 $1$ :</p>
+<p>$f(Fib(x),Fib(x+1))=x$ ，且不存在 $i,j \forall i,j\in \N 使 $f(i,j)\geq x,i&lt;Fib(x),j&lt;Fib(x+1)$$</p>
+</li>
+<li><p>结论 $2$ :<br>定义一个二元组 $(x,y)$ 是好的，当且仅当 不存在 $(i,j)$ 满足 $i<x,j<y,f(i,j)>f(x,y)$</p>
+<p>一个二元组 $(x,y)$ 是优秀的，当且仅当 $x,y\leq Fib(v+2)+Fib(v-1)$ ，其中 $v=f(x,y)$</p>
+<p>那么：<strong>一个好的二元组进行一次 $\text{Euclid}$ 后一定变为一个优秀二元组</strong>，反证法易得</p>
+</li>
+</ul>
+<p>预处理所有优秀二元组就好qwq</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">110</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod=<span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"></span><br><span class="line">vector&lt;PII&gt; t[N];</span><br><span class="line"><span class="keyword">int</span> n,m,q,f[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    t[<span class="number">1</span>].<span class="built_in">push_back</span>(<span class="built_in">mk</span>(<span class="number">1</span>,<span class="number">2</span>)),t[<span class="number">1</span>].<span class="built_in">push_back</span>(<span class="built_in">mk</span>(<span class="number">1</span>,<span class="number">3</span>)),t[<span class="number">1</span>].<span class="built_in">push_back</span>(<span class="built_in">mk</span>(<span class="number">1</span>,<span class="number">4</span>));</span><br><span class="line">    f[<span class="number">0</span>]=f[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">2</span>;i&lt;=<span class="number">100</span>;++i) f[i]=f[i<span class="number">-1</span>]+f[i<span class="number">-2</span>];</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=<span class="number">100</span>;++i)</span><br><span class="line">        <span class="keyword">for</span>(rei j=<span class="number">0</span>,l=t[i].<span class="built_in">size</span>()<span class="number">-1</span>;j&lt;=l;++j)&#123;</span><br><span class="line">            rei x=t[i][j].second,y=t[i][j].first+x;</span><br><span class="line">            <span class="keyword">while</span>(y&lt;=f[i+<span class="number">3</span>]+f[i]) t[i+<span class="number">1</span>].<span class="built_in">push_back</span>(<span class="built_in">mk</span>(x,y)),y+=x;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;q);</span><br><span class="line">    <span class="keyword">while</span>(q--)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%lld%lld&quot;</span>,&amp;n,&amp;m); <span class="keyword">if</span>(n&gt;m) n^=m,m^=n,n^=m;</span><br><span class="line">        rei pos=<span class="number">1</span>,ans=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(f[pos+<span class="number">1</span>]&lt;=n &amp;&amp; f[pos+<span class="number">2</span>]&lt;=m) ++pos;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%lld &quot;</span>,pos);</span><br><span class="line">        <span class="keyword">if</span>(pos==<span class="number">1</span>)&#123; <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,n%mod*m%mod); <span class="keyword">continue</span>;&#125;</span><br><span class="line">        <span class="keyword">for</span>(rei j=<span class="number">0</span>,l=t[pos<span class="number">-1</span>].<span class="built_in">size</span>()<span class="number">-1</span>;j&lt;=l;++j)&#123;</span><br><span class="line">            rei x=t[pos<span class="number">-1</span>] [j].first,y=t[pos<span class="number">-1</span>][j].second;</span><br><span class="line">            <span class="keyword">if</span>(y&lt;=n) ans=(ans+(m-x)/y)%mod;</span><br><span class="line">            <span class="keyword">if</span>(y&lt;=m) ans=(ans+(n-x)/y)%mod;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,ans);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
     </div>
 
     
@@ -311,7 +331,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://noone40404.github.io/2021/08/04/AGC002/" title="40801202-AGC002">http://noone40404.github.io/2021/08/04/AGC002/</a>
+    <a href="http://noone40404.github.io/2021/08/21/AGC015/" title="12801202-AGC015">http://noone40404.github.io/2021/08/21/AGC015/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -326,8 +346,8 @@
               <a href="/tags/%E6%9E%84%E9%80%A0/" rel="tag"><i class="fa fa-tag"></i> 构造</a>
               <a href="/tags/%E6%80%9D%E7%BB%B4/" rel="tag"><i class="fa fa-tag"></i> 思维</a>
               <a href="/tags/dp/" rel="tag"><i class="fa fa-tag"></i> dp</a>
-              <a href="/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" rel="tag"><i class="fa fa-tag"></i> 博弈论</a>
-              <a href="/tags/Kruskal%E9%87%8D%E6%9E%84%E6%A0%91/" rel="tag"><i class="fa fa-tag"></i> Kruskal重构树</a>
+              <a href="/tags/%E6%95%B0%E8%AE%BA/" rel="tag"><i class="fa fa-tag"></i> 数论</a>
+              <a href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" rel="tag"><i class="fa fa-tag"></i> 位运算</a>
           </div>
 
         
@@ -336,13 +356,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/08/03/AGC001/" rel="prev" title="30801202-AGC001">
-      <i class="fa fa-chevron-left"></i> 30801202-AGC001
+    <a href="/2021/08/20/AGC014/" rel="prev" title="02801202-AGC014">
+      <i class="fa fa-chevron-left"></i> 02801202-AGC014
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/08/05/AGC003/" rel="next" title="50801202-AGC003">
-      50801202-AGC003 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -716,7 +733,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'noone40404.github.io',
       owner       : 'noone40404',
       admin       : ['noone40404'],
-      id          : '41758fac75f66e7460d7f3a20f1bbb20',
+      id          : '99588318f6785e92f1c0164bc0bfb89a',
         language: 'zn-CN',
       distractionFreeMode: true
     });
