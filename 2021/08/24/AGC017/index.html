@@ -25,24 +25,27 @@
     var CONFIG = {"hostname":"noone40404.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="AGC002">
+  <meta name="description" content="AGC017">
 <meta property="og:type" content="article">
-<meta property="og:title" content="40801202-AGC002">
-<meta property="og:url" content="http://noone40404.github.io/2021/08/04/AGC002/index.html">
+<meta property="og:title" content="42801202-AGC017">
+<meta property="og:url" content="http://noone40404.github.io/2021/08/24/AGC017/index.html">
 <meta property="og:site_name" content="noone___&#39;s blog">
-<meta property="og:description" content="AGC002">
+<meta property="og:description" content="AGC017">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-08-04T12:46:54.000Z">
-<meta property="article:modified_time" content="2021-08-05T09:17:33.977Z">
+<meta property="og:image" content="https://atcoder.jp/img/agc017/2b6cd7f4500d3621bc18de407f167522.png">
+<meta property="og:image" content="https://atcoder.jp/img/agc017/8d354fb1a389a0aa5b64ba93f6ca7801.png">
+<meta property="article:published_time" content="2021-08-24T14:37:41.000Z">
+<meta property="article:modified_time" content="2021-08-24T14:39:17.999Z">
 <meta property="article:author" content="noone___">
 <meta property="article:tag" content="思维">
 <meta property="article:tag" content="构造">
 <meta property="article:tag" content="dp">
 <meta property="article:tag" content="博弈论">
-<meta property="article:tag" content="Kruskal重构树">
+<meta property="article:tag" content="图论">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://atcoder.jp/img/agc017/2b6cd7f4500d3621bc18de407f167522.png">
 
-<link rel="canonical" href="http://noone40404.github.io/2021/08/04/AGC002/">
+<link rel="canonical" href="http://noone40404.github.io/2021/08/24/AGC017/">
 
 
 <script id="page-configurations">
@@ -55,7 +58,7 @@
   };
 </script>
 
-  <title>40801202-AGC002 | noone___'s blog</title>
+  <title>42801202-AGC017 | noone___'s blog</title>
   
 
 
@@ -213,7 +216,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2021/08/04/AGC002/">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2021/08/24/AGC017/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -226,7 +229,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          40801202-AGC002
+          42801202-AGC017
         </h1>
 
         <div class="post-meta">
@@ -235,16 +238,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-08-04 20:46:54" itemprop="dateCreated datePublished" datetime="2021-08-04T20:46:54+08:00">2021-08-04</time>
+              <time title="创建时间：2021-08-24 22:37:41 / 修改时间：22:39:17" itemprop="dateCreated datePublished" datetime="2021-08-24T22:37:41+08:00">2021-08-24</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-05 17:17:33" itemprop="dateModified" datetime="2021-08-05T17:17:33+08:00">2021-08-05</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -263,7 +260,7 @@
               <span class="post-meta-item-text">阅读次数：</span>
               <span id="busuanzi_value_page_pv"></span>
             </span>
-            <div class="post-description">AGC002</div>
+            <div class="post-description">AGC017</div>
 
         </div>
       </header>
@@ -275,28 +272,60 @@
 
       
         <h2 id="D"><a href="#D" class="headerlink" title="D"></a>D</h2><blockquote>
-<p>给一张图，多次询问，每次 $u\leftarrow v$ 中经过的不重复点数量 $=z$ ，求经过边最大编号最小值</p>
+<p>一个 $N$ 节点的树，两人轮流选择一条树上的边并断开，删除不包含 $1$ 号点的连通块，当一人不能操作时输，求胜者</p>
 </blockquote>
-<p>边权问题想到 $Kruskal$ 重构树</p>
-<p>重构树上倍增二分即可</p>
-<p><del>这道题还有一种整体二分+并查集做法，但我不会</del></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e5</span>+<span class="number">100</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> x,y,w;</span><br><span class="line">    <span class="keyword">friend</span> <span class="keyword">bool</span> <span class="keyword">operator</span> &lt;(<span class="keyword">const</span> node &amp;a,<span class="keyword">const</span> node &amp;b)&#123; <span class="keyword">return</span> a.w&lt;b.w;&#125;</span><br><span class="line">&#125;edge[N&lt;&lt;<span class="number">1</span>];</span><br><span class="line"><span class="keyword">int</span> anc[<span class="number">20</span>][N&lt;&lt;<span class="number">1</span>],fa[N&lt;&lt;<span class="number">1</span>],Size[N&lt;&lt;<span class="number">1</span>],edge_val[N&lt;&lt;<span class="number">1</span>];</span><br><span class="line"><span class="keyword">int</span> n,m,root;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find_fa</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123; <span class="keyword">return</span> x==fa[x] ? x : fa[x]=<span class="built_in">find_fa</span>(fa[x]);&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">find_anc</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> d)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">19</span>;~i;--i) <span class="keyword">if</span>(edge_val[ anc[i][x] ]&lt;=d) x=anc[i][x];</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y,<span class="keyword">int</span> z,<span class="keyword">int</span> d)</span></span>&#123;</span><br><span class="line">    x=<span class="built_in">find_anc</span>(x,d),y=<span class="built_in">find_anc</span>(y,d);</span><br><span class="line">    <span class="keyword">return</span> x==y ? Size[x]&gt;=z : Size[x]+Size[y]&gt;=z;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;m);</span><br><span class="line">    edge_val[<span class="number">0</span>]=m+<span class="number">1</span>; root=n;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) fa[i]=i,Size[i]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=m;++i)&#123;</span><br><span class="line">        rei u,v; <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;u,&amp;v);</span><br><span class="line">        u=<span class="built_in">find_fa</span>(u),v=<span class="built_in">find_fa</span>(v);</span><br><span class="line">        <span class="keyword">if</span>(u==v) <span class="keyword">continue</span>;</span><br><span class="line">        fa[u]=fa[v]=++root;Size[root]=Size[u]+Size[v];</span><br><span class="line">        fa[root]=root; anc[<span class="number">0</span>][u]=anc[<span class="number">0</span>][v]=root; edge_val[root]=i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(rei i=root;i;--i) <span class="keyword">for</span>(rei j=<span class="number">1</span>;j&lt;<span class="number">20</span>;++j) anc[j][i]=anc[j<span class="number">-1</span>][ anc[j<span class="number">-1</span>][i] ];</span><br><span class="line">    rei Q;<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;Q);</span><br><span class="line">    <span class="keyword">while</span>(Q--)&#123;</span><br><span class="line">        rei x,y,z; <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>,&amp;x,&amp;y,&amp;z);</span><br><span class="line">        rei l=<span class="number">1</span>,r=m,ans=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(l&lt;=r)&#123;</span><br><span class="line">            rei mid=l+r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">            <span class="built_in">check</span>(x,y,z,mid) ? ans=mid,r=mid<span class="number">-1</span> : l=mid+<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,ans);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>树上 $\text{nim}$ 游戏，每个节点的 $\text{sg}$ 值是所有儿子 $\text{sg}$ 值 $+1$ 的异或和，判断根节点 $\text{sg}$ 函数值是否为 $1$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e5</span>+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; G[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> fa=<span class="number">0</span>)</span></span>&#123;</span><br><span class="line">    rei res=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> y:G[x]) <span class="keyword">if</span>(y!=fa) res^=<span class="built_in">dfs</span>(y,x)+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>,u,v;i&lt;n;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;u,&amp;v),G[u].<span class="built_in">push_back</span>(v),G[v].<span class="built_in">push_back</span>(u);</span><br><span class="line">    <span class="built_in">puts</span>(<span class="built_in">dfs</span>(<span class="number">1</span>) ? <span class="string">&quot;Alice&quot;</span> : <span class="string">&quot;Bob&quot;</span>);</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="E"><a href="#E" class="headerlink" title="E"></a>E</h2><blockquote>
-<p>博弈论 每次操作将当前最大堆的糖果全部吃完或将每堆糖果吃掉一个，吃完的人输</p>
+<p>有 $n$ 块不规则拼图，每块拼图看成连接在一起的三个宽度为 $1$ 的矩形，如图<img src="https://atcoder.jp/img/agc017/2b6cd7f4500d3621bc18de407f167522.png" alt="https://atcoder.jp/img/agc017/2b6cd7f4500d3621bc18de407f167522.png"><br>具体地，其中中间的矩形的高度为 $H$ ，左侧矩形的高度为 $A_i$ ，距离中间矩形底部 $C_i$ ，右侧矩形的高度为 $B_i$ ，距离中间矩形底部 $D_i$<br>将这些拼图放入一个边长为 $10^{100}$<br> 的正方形中，需要满足如下条件：</p>
+<ul>
+<li><p>所有 $N$ 块拼图都必须用上</p>
+</li>
+<li><p>所有拼图的中间矩形的下底面需要和正方形的下底面对齐</p>
+</li>
+<li><p>对于非中间的部分的下底面，要么和正方形的下底面对齐，要么和另一块拼图的非中间部分的上顶面对齐</p>
+</li>
+<li><p>拼图只能平移，不能旋转或翻转</p>
+</li>
+</ul>
 </blockquote>
-<p>GreenDay学长之前讲过</p>
-<p>将每堆小石子的数量看成柱状图并排序，问题转化为从 $(1,1)$ 出发，每次只能向上或向右走一格，到边界者输</p>
-<p>显然棱角处均为必败点，且<del>打表得</del> $y=-k\times x$ 直线上的格子性质相同</p>
-<p>找最大的 $(i,i)$ 再简单判断即可</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e5</span>+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">int</span> a[N],n;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a[i]);</span><br><span class="line">	<span class="built_in">sort</span>(a+<span class="number">1</span>,a+<span class="number">1</span>+n,greater&lt;<span class="keyword">int</span>&gt;());</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i)</span><br><span class="line">		<span class="keyword">if</span>(i+<span class="number">1</span>&gt;a[i+<span class="number">1</span>])&#123;<span class="comment">//最大正方形</span></span><br><span class="line">			<span class="keyword">if</span>((a[i]-i)&amp;<span class="number">1</span>)&#123; <span class="built_in">puts</span>(<span class="string">&quot;First&quot;</span>); <span class="keyword">break</span>;&#125;</span><br><span class="line">			rei right=i;</span><br><span class="line">			<span class="keyword">while</span>(a[right+<span class="number">1</span>]==i) ++right;</span><br><span class="line">			<span class="keyword">if</span>((right-i)&amp;<span class="number">1</span>)&#123; <span class="built_in">puts</span>(<span class="string">&quot;First&quot;</span>); <span class="keyword">break</span>;&#125;</span><br><span class="line">			<span class="built_in">puts</span>(<span class="string">&quot;Second&quot;</span>); <span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对于一块拼图，如果其一侧的小矩形不接地，那么这个小矩形一定与另一拼图接地的小矩形相接，即，其高度无关紧要，只关心非 “接地” 小矩形的 $C_i,D_i$</p>
+<p>而对于接地的小矩形有 $C_i=0 / D_i=0$ ，此时需要关注高度</p>
+<p>于是，对于每块拼图的一侧，我们可以给它对应到个参数：如果是接地的，称它是 $下A_i$ 或 $下B_i$ ，否则，称它为 $上C_i$或 $上D_i$</p>
+<p>显然有： $上x$ 的一侧与某矩形 $下x$ 相接，且最两端矩形的两侧是 $下x$</p>
+<p>考虑到 $上下x$ 相连没有什么好性质，不妨利用左右矩形：对于左侧小矩形，点 $N_x$ 表示 $上x$ ，点 $P_x$ 表示 $下x$ ；右侧矩形则相反，点 $P_x$ 表示 $上x$ ，点 $N_x$ 表示 $下x$</p>
+<p>两个拼图的连接处就是相同的点：全为 $P_x$ 或全为 $N_x$</p>
+<p>那么，对于拼图 $(u,v)$ 连接 $u\rightarrow v$ ，那么一连串拼图构成的组对应所得的图上的一条有向边，且路径起点为 $P_x$ ，终点为 $N_x$</p>
+<p>那么转化为<strong>判断整张图是否能被拆分成若干个从 $P_x$ 连向 $N_x$ 的有向路径即可</strong></p>
+<p>考虑建立超级点 $S$ ，能向所有形如 $P_x$ 的点不断提供入边，也能使足够多的 $N_x$ 连向它</p>
+<p>那么对于路径 $P_x\rightarrow v_1\rightarrow v_2\rightarrow …\rightarrow N_y$ ，在两侧分别补上 $N_y\rightarrow S$ 和 $S\rightarrow P_x$ ，如此得到一个有向圈</p>
+<p>那么在连接若干条与 $S$ 的边后，图 $G$ 将变为 $\text{Euler}$ 图</p>
+<p>考虑到 $\text{Euler}$ 图的性质: $\forall v\in G , 有 d^+(v)=d^-(v)$</p>
+<p>由此：在删去 $S$ 及其关联的边后， $\forall P_x\in G , 有d^-(P_x)\leq d^+(P_x)$ ，$\forall N_x\in G , 有d^-(N_x)\geq d^+(N_x)$</p>
+<p>首先，如果一张图满足上述条件，那么我们将 $S$ 点与若干个点连边后，可以得到一张 $\text{Euler}$ 图 (且这个方案事实上是唯一的，即我们可以算出 $S$ 该向每个点连多少条边)。</p>
+<p>其次，由 $\text{Euler}$ 图的性质，可得到 $S$ 的若干条 $\text{Euler}$ 回路 (这里用若干的原因是 $G$ 不一定连通)。</p>
+<p>那么，考虑其中的每个圈 (注意与回路的区别)：</p>
+<ul>
+<li><p>如果它经过 $S$ ，那么将 $S$ 点去掉后，就得到一个可行的路径。</p>
+</li>
+<li><p>如果这个圈不经过点 $S$</p>
+<p>那么，如果这个圈可以和一个包含 $S$ 点的圈合并，得到一个大的回路，那么这个回路也满足条件，即，边不重复。于是，希望这些圈尽可能地进行合并</p>
+<p>所以，考虑最终得到的每个图的连通分量 ($\text{Euler}$ 图的强连通性保证这里的强连通分量和弱连通分量是同一个)，如果存在一个不包含 $S$ 的连通分量，则问题是无解的 —— 因为这个圈/回路不包含 $S$ ，从而不可能找到一条对应的路径经过 $S$ 和圈/回路中所有的边。</p>
+<p>而反之，如果所有连通分量都包含 $S$ (从而只有一个连通分量)，那么问题就是有解的了。</p>
+</li>
+</ul>
+<p>于是，我们使用并查集维护一下连通性就可以了。注意到，在满足性质的条件下，一个点和 $S$ 相连当且仅当它的入度和出度不相等。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">410</span>;</span><br><span class="line"><span class="keyword">int</span> n,H,V;</span><br><span class="line"><span class="keyword">int</span> fa[N],in[N],out[N];</span><br><span class="line"><span class="keyword">bool</span> dicyc[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">get_anc</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;<span class="keyword">return</span> fa[x]==x ? x : fa[x]=<span class="built_in">get_anc</span>(fa[x]);&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> Lu,Ld,Ru,Rd,L,R;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;H); V=H&lt;&lt;<span class="number">1</span>;</span><br><span class="line">	<span class="built_in">iota</span>(fa,fa+V,<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d%d&quot;</span>,&amp;Lu,&amp;Ru,&amp;Ld,&amp;Rd);</span><br><span class="line">		++out[ L=(Ld ? Ld+H : Lu)<span class="number">-1</span> ];</span><br><span class="line">        ++in[ R=(Rd ? Rd : Ru+H)<span class="number">-1</span> ];</span><br><span class="line">		fa[ <span class="built_in">get_anc</span>(L) ]=<span class="built_in">get_anc</span>(R);</span><br><span class="line">    &#125;</span><br><span class="line">	rei i;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;H &amp;&amp; in[i]&lt;=out[i] &amp;&amp; in[i+H]&gt;=out[i+H];++i);</span><br><span class="line">	<span class="keyword">if</span>(i!=H) <span class="keyword">return</span> <span class="built_in">puts</span>(<span class="string">&quot;NO&quot;</span>),<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;V;++i) dicyc[ <span class="built_in">get_anc</span>(i) ] |= in[i]!=out[i] || !in[i];</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;V &amp;&amp; (fa[i]!=i || dicyc[i]);++i);</span><br><span class="line">    <span class="built_in">puts</span>(i==V ? <span class="string">&quot;YES&quot;</span> : <span class="string">&quot;NO&quot;</span>);</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h2 id="F"><a href="#F" class="headerlink" title="F"></a>F</h2><blockquote>
-<p>给你 $n$ 种不含白色颜色的球，每个球有 $m$ 个，把这 $n\times m$ 个球排成一排，把每一种颜色的最左边出现的球涂成白色，求有多少种不同的颜色序列</p>
+<p>你有一个由 $\frac{n(n+1)}{2}$ 个点组成的等边三角形。 在 $(i,j)$ 点左下的是 $(i+1,j)$ 点， 右下的是 $(i+1,j+1)$ 点. 现在在上面画 $m$ 条从 $(1,1)$ 开始，$(n,p)$ 结束的连续路径 $(p\in[1,n])$ ， 满足对于任意 $1\leq i\leq j\leq m$, 第 $j$ 条线的任意一个部分不在第 $i$ 条线的左边。<br><img src="https://atcoder.jp/img/agc017/8d354fb1a389a0aa5b64ba93f6ca7801.png" alt="https://atcoder.jp/img/agc017/8d354fb1a389a0aa5b64ba93f6ca7801.png"><br>另外，还有 $k$ 个限制 , 第 $i$ 个限制形如 $A_i,B_i,C_i$ ，表示第 $A_i$ 条路径， 在第 $B_i$ 次决策的时候， 如果 $C_i=0$ ​则必须走左下， 否则必须走右下。</p>
+<p>求出一共有多少种不同的画路径的方案满足以上的要求。</p>
 </blockquote>
-<p>有 $m$ 个白球，$n$ 种其他颜色的球各 $m-1$ 个 只有任意前缀中白球的个数均大于其他颜色种类数时合法</p>
-<p>考虑序列计数 $dp$: 枚举位置或元素，这里枚举元素</p>
-<p>设状态 $f_{i,j}$ 表示在 $n\times m$ 个位置上填了 $i$ 个白球和 $j$ 个其他球</p>
-<p>考虑合法序列的从左到右的第一个格子如何转移</p>
-<script type="math/tex; mode=display">\therefore f_{i,j}=\underbrace{f_{i-1,j}}_{放白球} \ + \ \underbrace{f_{i,j-1}}_{放其他颜色} \times \underbrace{\left(n-j+1\right)}_{没有使用过的颜色}\times \underbrace{\binom{n\times m-i-(m-1)\times (j-1)-1}{m-2}}_{还有 m-2 个该颜色的球没有放}</script><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">2e3</span>+<span class="number">5</span>,M=<span class="number">4e6</span>+<span class="number">5</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod=<span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"><span class="keyword">int</span> n,m,f[N][N],fac[M],ifac[M],inv[M],ans;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">C</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> m)</span></span>&#123; <span class="keyword">return</span> (ll) fac[n]*ifac[n-m]%mod*ifac[m]%mod;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;m); inv[<span class="number">1</span>]=ifac[<span class="number">0</span>]=fac[<span class="number">0</span>]=<span class="number">1</span>; f[<span class="number">0</span>][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">2</span>;i&lt;=n*m;++i) inv[i]=(ll) (mod-mod/i)*inv[mod%i]%mod;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n*m;++i) fac[i]=(ll) i*fac[i<span class="number">-1</span>]%mod,ifac[i]=(ll) inv[i]*ifac[i<span class="number">-1</span>]%mod;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="keyword">for</span>(rei j=<span class="number">0</span>;j&lt;=i;++j)&#123;</span><br><span class="line">            f[i][j]=f[i<span class="number">-1</span>][j];</span><br><span class="line">            <span class="keyword">if</span>(j) f[i][j]=(f[i][j]+(ll) f[i][j<span class="number">-1</span>]*(n-j+<span class="number">1</span>)%mod *<span class="built_in">C</span>(n*m-i-(j<span class="number">-1</span>)*(m<span class="number">-1</span>)<span class="number">-1</span>,m<span class="number">-2</span>)%mod)%mod;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,m==<span class="number">1</span> ? <span class="number">1</span> : f[n][n]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>有一个朴素状压 $\text{dp}$ ，用 $O(m\times 4^n)$ 直接枚举状态转移</p>
+<p>而直接枚举状态显然多余考虑了很多不合法状态</p>
+<p>有神仙思路如下：</p>
+<p>设 $0$ 为向左走，$1$ 为向右走，不考虑方向的限制，合法转移后的状态一定满足任何一个前缀 $1$ 的个数都大于之前状态前缀 $1$ 的个数</p>
+<p>那么设 $dp_{i,j,k}$ 表示第 $i$ 条路径的第 $j$ 条转移，转移状态的前 $j$ 位与 $k$ 相同，考虑向右的情况：直接把后面的第一个 $1$ 变为 $0$ ，然后提到前面，如此，中间段取 $1/0$ 都满足要求，不会向左越过原来的，总复杂度 $O(n\times m\times 2^n)$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">21</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod=<span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"><span class="keyword">int</span> n,m,k,all,last=<span class="number">1</span>,cur,ans;</span><br><span class="line"><span class="keyword">int</span> dir[N][N],dp[<span class="number">2</span>][<span class="number">1</span>&lt;&lt;N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">fix</span><span class="params">(<span class="keyword">int</span> &amp;x)</span></span>&#123; x&gt;=mod ? x-=mod : <span class="number">0</span>;&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">lowbit</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123; <span class="keyword">return</span> x&amp;(-x);&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>,&amp;n,&amp;m,&amp;k);--n;</span><br><span class="line">	all=(<span class="number">1</span>&lt;&lt;n)<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>,x,y,foo;i&lt;=k;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>,&amp;x,&amp;y,&amp;foo),dir[x][y<span class="number">-1</span>]=foo+<span class="number">1</span>;</span><br><span class="line">	dp[<span class="number">0</span>][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=m;++i) <span class="keyword">for</span>(rei j=<span class="number">0</span>;j&lt;n;++j)&#123;</span><br><span class="line">		<span class="built_in">swap</span>(last,cur);</span><br><span class="line">		rei foo=<span class="number">1</span>&lt;&lt;j,bar=all^((foo&lt;&lt;<span class="number">1</span>)<span class="number">-1</span>);</span><br><span class="line">		<span class="keyword">for</span>(rei s=<span class="number">0</span>;s&lt;=all;++s) dp[cur][s]=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(rei s=<span class="number">0</span>;s&lt;=all;++s)&#123;</span><br><span class="line">			<span class="keyword">if</span>(dp[last][s])&#123;</span><br><span class="line">				<span class="keyword">if</span>(dir[i][j]!=<span class="number">2</span> &amp;&amp; (!(foo&amp;s))) <span class="built_in">fix</span>(dp[cur][s]+=dp[last][s]);<span class="comment">//左</span></span><br><span class="line">				<span class="keyword">if</span>(dir[i][j]!=<span class="number">1</span>)&#123;<span class="comment">//右</span></span><br><span class="line">					rei x;</span><br><span class="line">					<span class="keyword">if</span>(foo&amp;s) x=s;<span class="comment">//必须右</span></span><br><span class="line">					<span class="keyword">else</span>&#123;</span><br><span class="line">						<span class="keyword">if</span>(!(bar&amp;s)) x=s|foo;</span><br><span class="line">						<span class="keyword">else</span> x=(s|foo)^<span class="built_in">lowbit</span>(bar&amp;s);</span><br><span class="line">					&#125;</span><br><span class="line">					<span class="built_in">fix</span>(dp[cur][x]+=dp[last][s]);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;=all;++i) <span class="built_in">fix</span>(ans+=dp[cur][i]);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,ans);</span><br><span class="line">	<span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -311,7 +340,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://noone40404.github.io/2021/08/04/AGC002/" title="40801202-AGC002">http://noone40404.github.io/2021/08/04/AGC002/</a>
+    <a href="http://noone40404.github.io/2021/08/24/AGC017/" title="42801202-AGC017">http://noone40404.github.io/2021/08/24/AGC017/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -327,7 +356,7 @@
               <a href="/tags/%E6%9E%84%E9%80%A0/" rel="tag"><i class="fa fa-tag"></i> 构造</a>
               <a href="/tags/dp/" rel="tag"><i class="fa fa-tag"></i> dp</a>
               <a href="/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" rel="tag"><i class="fa fa-tag"></i> 博弈论</a>
-              <a href="/tags/Kruskal%E9%87%8D%E6%9E%84%E6%A0%91/" rel="tag"><i class="fa fa-tag"></i> Kruskal重构树</a>
+              <a href="/tags/%E5%9B%BE%E8%AE%BA/" rel="tag"><i class="fa fa-tag"></i> 图论</a>
           </div>
 
         
@@ -336,13 +365,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/08/03/AGC001/" rel="prev" title="30801202-AGC001">
-      <i class="fa fa-chevron-left"></i> 30801202-AGC001
+    <a href="/2021/08/23/AGC016/" rel="prev" title="32801202-AGC016">
+      <i class="fa fa-chevron-left"></i> 32801202-AGC016
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/08/05/AGC003/" rel="next" title="50801202-AGC003">
-      50801202-AGC003 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -716,7 +742,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'noone40404.github.io',
       owner       : 'noone40404',
       admin       : ['noone40404'],
-      id          : '41758fac75f66e7460d7f3a20f1bbb20',
+      id          : '0f400e905658dfa4f4850a99ba7fd378',
         language: 'zn-CN',
       distractionFreeMode: true
     });

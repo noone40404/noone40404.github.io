@@ -25,20 +25,21 @@
     var CONFIG = {"hostname":"noone40404.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="min-max容斥及其例题">
+  <meta name="description" content="AGC016">
 <meta property="og:type" content="article">
-<meta property="og:title" content="min-max容斥">
-<meta property="og:url" content="http://noone40404.github.io/2020/12/04/minmax%E5%AE%B9%E6%96%A5/index.html">
+<meta property="og:title" content="32801202-AGC016">
+<meta property="og:url" content="http://noone40404.github.io/2021/08/23/AGC016/index.html">
 <meta property="og:site_name" content="noone___&#39;s blog">
-<meta property="og:description" content="min-max容斥及其例题">
+<meta property="og:description" content="AGC016">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-12-04T10:05:37.000Z">
-<meta property="article:modified_time" content="2021-08-02T12:17:17.548Z">
+<meta property="article:published_time" content="2021-08-23T14:13:41.000Z">
+<meta property="article:modified_time" content="2021-08-24T14:37:14.065Z">
 <meta property="article:author" content="noone___">
-<meta property="article:tag" content="minmax">
+<meta property="article:tag" content="思维">
+<meta property="article:tag" content="构造">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://noone40404.github.io/2020/12/04/minmax%E5%AE%B9%E6%96%A5/">
+<link rel="canonical" href="http://noone40404.github.io/2021/08/23/AGC016/">
 
 
 <script id="page-configurations">
@@ -51,7 +52,7 @@
   };
 </script>
 
-  <title>min-max容斥 | noone___'s blog</title>
+  <title>32801202-AGC016 | noone___'s blog</title>
   
 
 
@@ -209,7 +210,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2020/12/04/minmax%E5%AE%B9%E6%96%A5/">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2021/08/23/AGC016/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -222,7 +223,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          min-max容斥
+          32801202-AGC016
         </h1>
 
         <div class="post-meta">
@@ -232,14 +233,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-12-04 18:05:37" itemprop="dateCreated datePublished" datetime="2020-12-04T18:05:37+08:00">2020-12-04</time>
+              <time title="创建时间：2021-08-23 22:13:41" itemprop="dateCreated datePublished" datetime="2021-08-23T22:13:41+08:00">2021-08-23</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-02 20:17:17" itemprop="dateModified" datetime="2021-08-02T20:17:17+08:00">2021-08-02</time>
+                <time title="修改时间：2021-08-24 22:37:14" itemprop="dateModified" datetime="2021-08-24T22:37:14+08:00">2021-08-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -247,7 +248,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+                  <a href="/categories/%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">题解</span></a>
                 </span>
             </span>
 
@@ -259,7 +260,7 @@
               <span class="post-meta-item-text">阅读次数：</span>
               <span id="busuanzi_value_page_pv"></span>
             </span>
-            <div class="post-description">min-max容斥及其例题</div>
+            <div class="post-description">AGC016</div>
 
         </div>
       </header>
@@ -270,94 +271,28 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="minmax容斥"><a href="#minmax容斥" class="headerlink" title="minmax容斥"></a>minmax容斥</h2><ul>
-<li><p>用途</p>
-<p>已知集合的最小值 (<strong>期望</strong>) 求最大值</p>
-<p>$eg:$ $n$ 个元素，每个元素出现概率 $p_i$，求每个元素都出现的期望时间</p>
-</li>
-<li><p>结论</p>
-<script type="math/tex; mode=display">\max\{S\}=\sum_{T\subset S}(-1)^{|T|+1} \min\{T\}</script><p>即</p>
-<script type="math/tex; mode=display">E\left(\max\{S\}\right)=\sum_{T\subset S}(-1)^{|T|+1} E\left(\min\{T\}\right)</script></li>
-<li><p>证明</p>
-<p>设容斥系数 $g\left(|T|\right)$</p>
-<p>即 $\displaystyle{\max\{S\}=\sum_{T\subset S}g\left(|T|\right) \min\{T\}}$</p>
-<p>考虑当排名为 $k$ 的数作为集合 $T$ 的最小值时，集合 $T$ 中所有值都 $\geq k$</p>
-<p>所以对于第$k$大数 ， 在大小为 $|T|$ 的集合中， $\max$ 的选取方案为 $\displaystyle{\binom{k-1}{|T|-1}}$</p>
-<p>考虑集合大小为 $1\sim k$ ，则第 $k$ 数的总贡献为</p>
-<p>$\displaystyle{\sum_{i=1}^k \binom{k-1}{i-1}} * g(i)=[k=1] \qquad \text{即只有最大值对 max 有贡献}$</p>
-<p>由二项式反演得</p>
-<script type="math/tex; mode=display">\begin{aligned}
-g(k)&=\sum_{i=1}^k (-1)^{k-i} \binom{k-1}{i-1} [i=1] \\
-&=(-1)^{k+1} \\
-\end{aligned}</script><span id="more"></span>
-</li>
-<li><p>变式</p>
+        <h2 id="D"><a href="#D" class="headerlink" title="D"></a>D</h2><blockquote>
+<p>给定一序列 $a$ ，每次操作可以使指定位置的数变成整个序列的异或和，求达到目标序列的最少次数</p>
+</blockquote>
+<p>设初始时异或和为 $x$ ，转化为每次将 $a_i$ 变为 $x$ 并将 $a_i$ 拿在手上下一次替换</p>
+<p>显然有解当且仅当 $a\cup \{x\} \in b$</p>
+<p>再考虑替换的过程，<strong>最后一定要用 $b_i$ 替换掉 $a_i$ ，这启发连边 $b_i\rightarrow a_i$ ，再从 $x$ 开始遍历每一条边</strong></p>
+<p>如果图是一个包含 $x$ 的连通块，则一定有一条 $1$ 欧拉路径覆盖所有边</p>
+<p>如果不连通，或 $x$ 是孤立点/不在连通块内，则答案就是 $边数+连通块数-(x不是孤立点)$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e5</span>+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">int</span> n,a[N],b[N],x;</span><br><span class="line"><span class="keyword">int</span> cnt,edge_cnt,block_cnt;</span><br><span class="line"><span class="keyword">int</span> vis[N];</span><br><span class="line">map&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; mp;</span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; G[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">	vis[x]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> y:G[x]) <span class="keyword">if</span> (!vis[y]) <span class="built_in">dfs</span>(y);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a[i]),++mp[ a[i] ],x^=a[i];</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;b[i]),--mp[ b[i] ];</span><br><span class="line">    ++mp[x];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> it:mp) <span class="keyword">if</span>(it.second&lt;<span class="number">0</span>) <span class="keyword">return</span> <span class="built_in">puts</span>(<span class="string">&quot;-1&quot;</span>),<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;it:mp) it.second=++cnt;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i)</span><br><span class="line">        <span class="keyword">if</span>(a[i]!=b[i])&#123;</span><br><span class="line">            rei u=mp[ b[i] ],v=mp[ a[i] ];</span><br><span class="line">            G[u].<span class="built_in">push_back</span>(v),G[v].<span class="built_in">push_back</span>(u); ++edge_cnt;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=cnt;++i) <span class="keyword">if</span>(G[i].<span class="built_in">size</span>()) <span class="keyword">if</span>(!vis[i]) ++block_cnt,<span class="built_in">dfs</span>(i);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,edge_cnt+block_cnt-(!G[ mp[x] ].<span class="built_in">empty</span>()));</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="E"><a href="#E" class="headerlink" title="E"></a>E</h2><blockquote>
+<p>$2\leq N\leq 400$ 只火鸡， $m$ 个人，每人指定两只火鸡2 $x,y$ ，若两只都活着，则会等概率随机吃掉一只；若只活着一只，则悲吃掉；若都死亡则不做操作。第 $1$ 个人到第 $m$ 个人依次操作，求有多少 $(i,j)$ 满足最终时刻 $i,j$ 可能都活着</p>
+</blockquote>
+<p>考虑如何使 $i$ 存活：第 $I$ 人选中 $i,j$ 只，则必须让 $j$ 死亡 ，则在第 $1\sim I-1$ 中第 $j$ 只不能死亡</p>
+<p>而如果选择了 $(i,j),(i,k)$ 则如果前面的人选择 $(j,k)$ ，则第 $i$ 只必死</p>
+<p>对于第 $i$ 只，设 $S_i$ 表示为了使 $i$ 存活需要保护的鸡的编号，从后往前扫到 $(x,y)$ ：</p>
 <ul>
-<li><p>由 $\max \Rightarrow \max$</p>
-<script type="math/tex; mode=display">\min(S)=\sum_{T\subseteq S,\ T \neq \varnothing} (-1)^{|T|-1} \max(T)</script></li>
-<li><p>扩展 $\min\max容斥$</p>
-<script type="math/tex; mode=display">\text{kthmax}\{S\}=\sum_{T\subseteq S}(-1)^{|T|-k} \binom{|T|-1}{k-1} \min\{T\}</script><ul>
-<li><p>证明</p>
-<p>目的是找到容斥系数满足 $\text{kthmax}\{S\}=\sum_{T\subseteq S} f(|T|) \min\{T\}$</p>
-<p>考虑第 $x$ 大元素，受原式启发得到</p>
-<script type="math/tex; mode=display">\sum_{i=1}^t \binom{t-1}{i-1} f(i)=[t=k]</script><script type="math/tex; mode=display">\therefore 经反演易得 f(n)=(-1)^{n-k} \binom{n-1}{k-1}</script><p><a target="_blank" rel="noopener" href="https://oi-wiki.org/math/inclusion-exclusion-principle/#min-max"><del>并不会用到的扩展minmax容斥</del></a></p>
-</li>
+<li>初始时 $S_i=\{i\}$</li>
+<li>不妨设 $x\in S_i , y\notin S_i$ ，则将 $y$ 加入 $S_i$</li>
+<li>若 $x,y\in S_i$ ，则 $i$ 一定会死亡</li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><ul>
-<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3175">P3175 [HAOI2015]按位或</a></p>
-<ul>
-<li><p>题意</p>
-<p>设 $\min\{S\}$ 表示二进制数 $S$ 中，第一个元素变为 $1$ 所需时间，$\max\{S\}$ 表示最后一个元素变为 $1$ 所需时间</p>
-<p>题为求 $E(\max\{U\})$ ,其中 $U$ 为全集，$U=2^n-1$</p>
-</li>
-<li><p>解</p>
-<p>由公式易知 $\displaystyle{E(\max\{U\})=\sum_{S\subseteq U}(-1)^{|S|-1} \ \sum E(\min\{S\})}$</p>
-<p>$\therefore$ 求 $\min$</p>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5643">P5643 [PKUWC2018]随机游走</a></p>
-<ul>
-<li><p>题意:</p>
-<p>给出一棵树，从根节点出发每次等概率选择并走向一条相邻边</p>
-<p>多次询问中，每次给定点集 $S$ ,求从根出发直到 $S$ 中所有点至少经过一次的期望步数</p>
-</li>
-<li><p>解:</p>
-<p>由 $\min-\max$ 容斥得：$\displaystyle{E[ \max(S’) ]=\sum_{T’\in S’}(-1)^{|T’|+1}E[ \min(T’) ]}$</p>
-<p>易知 $E[ \max(S’) ]$ 表示走完集合 $S$ 期望步数， $E[ \min(S’) ]$ 表示第一次走到集合 $S$ 的期望步数</p>
-<p>设 $f_{S,x}$ 表示从 $x$ 出发，第一次访问到集合 $S$ 的期望步数</p>
-<ul>
-<li><p>考虑预处理所有 $f_{S,x}$</p>
-<p>设 $f_x$ 为点 $x$ 到 $S$ 的最早期望时间</p>
-<p>对于 $x\in S$ 有 $f_x=0$</p>
-<p>对于 $x\not\in S$ 有 $\displaystyle{f_x=1+\frac{1}{\deg x}\sum_{(x,y)\in E} f_y }$</p>
-<p>这里需要 $O(n^3)$ 的高斯消元，考虑到特殊的树形结构，以起点 $root$ 为根，用一次函数分离父子关系</p>
-<p>即设 $\displaystyle{f_x=f_{fa_x} \times A_x + B_x }$</p>
-<p>$\therefore$ 对于 $x \not\in S$ 有 $\displaystyle{f_x=1+\frac{1}{\deg x} \left(f_{fa_x} + \sum_{y\in son_x}(A_y\times f_x + B_y) \right) }$</p>
-<p>化简得</p>
-<script type="math/tex; mode=display">\begin{aligned}
-
-​      A_x&=\frac{1}{\deg x-\sum_{y\in son_x}A_x} \\\
-
-​      B_x&=\frac{\deg x+\sum_{y\in son_x}B_x}{\deg x-\sum_{y\in son_x}A_x} \\
-
- \end{aligned}</script><p>由此，对于给定的询问点集 $S$ ,答案就是 $\sum_{T\in S} (-1)^{|T|+1} f_{T,root}$</p>
-</li>
-<li><p>再考虑优化询问</p>
-<p>由 $n\leq 18$ 提示可以状压点集，并预处理对于每个点集 $S$ 的 $\sum_{T\in S}(-1) ^{|T|+1} f_{T,root}$</p>
-<p>那么预处理高维前缀和即可</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+<p>再考虑鸡 $(i,j)$ 的存活：枚举 $i,j$ 并判断 $S_i\cap S_j$ 是否为空</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">2e5</span>+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">int</span> n,m,ans,x[N],y[N],dead[N];</span><br><span class="line">bitset&lt;410&gt; f[<span class="number">401</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;m);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=m;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;x[i],&amp;y[i]);</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i)&#123;</span><br><span class="line">		f[i][i]=<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(rei j=m;j;--j)&#123;</span><br><span class="line">			rei u=f[i][ x[j] ],v=f[i][ y[j] ];</span><br><span class="line">            u&amp;&amp;v ? dead[i]=<span class="number">1</span> : <span class="number">0</span>;</span><br><span class="line">			u ? f[i][ y[j] ]=<span class="number">1</span> : (v ? f[i][ x[j] ]=<span class="number">1</span> : <span class="number">0</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i)&#123;</span><br><span class="line">		<span class="keyword">if</span>(dead[i]) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">for</span>(rei j=i+<span class="number">1</span>;j&lt;=n;++j)&#123;</span><br><span class="line">            <span class="keyword">if</span>(dead[j]) <span class="keyword">continue</span>;</span><br><span class="line">			ans+=!((f[i]&amp;f[j]).<span class="built_in">count</span>());</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,ans);</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -373,7 +308,7 @@ g(k)&=\sum_{i=1}^k (-1)^{k-i} \binom{k-1}{i-1} [i=1] \\
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://noone40404.github.io/2020/12/04/minmax%E5%AE%B9%E6%96%A5/" title="min-max容斥">http://noone40404.github.io/2020/12/04/minmax容斥/</a>
+    <a href="http://noone40404.github.io/2021/08/23/AGC016/" title="32801202-AGC016">http://noone40404.github.io/2021/08/23/AGC016/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -385,7 +320,8 @@ g(k)&=\sum_{i=1}^k (-1)^{k-i} \binom{k-1}{i-1} [i=1] \\
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/minmax/" rel="tag"><i class="fa fa-tag"></i> minmax</a>
+              <a href="/tags/%E6%80%9D%E7%BB%B4/" rel="tag"><i class="fa fa-tag"></i> 思维</a>
+              <a href="/tags/%E6%9E%84%E9%80%A0/" rel="tag"><i class="fa fa-tag"></i> 构造</a>
           </div>
 
         
@@ -393,10 +329,13 @@ g(k)&=\sum_{i=1}^k (-1)^{k-i} \binom{k-1}{i-1} [i=1] \\
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2021/01/04/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" rel="next" title="背包问题">
-      背包问题 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/08/21/AGC015/" rel="prev" title="12801202-AGC015">
+      <i class="fa fa-chevron-left"></i> 12801202-AGC015
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/08/24/AGC017/" rel="next" title="42801202-AGC017">
+      42801202-AGC017 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -457,7 +396,7 @@ g(k)&=\sum_{i=1}^k (-1)^{k-i} \binom{k-1}{i-1} [i=1] \\
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#minmax%E5%AE%B9%E6%96%A5"><span class="nav-number">1.</span> <span class="nav-text">minmax容斥</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">1.1.</span> <span class="nav-text">例题</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#D"><span class="nav-number">1.</span> <span class="nav-text">D</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#E"><span class="nav-number">2.</span> <span class="nav-text">E</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -771,7 +710,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'noone40404.github.io',
       owner       : 'noone40404',
       admin       : ['noone40404'],
-      id          : 'd850227131a090bf22c88d85b4c2edd9',
+      id          : '35b234ed11e71d55f1fa95c0bd5bfaa4',
         language: 'zn-CN',
       distractionFreeMode: true
     });
