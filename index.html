@@ -205,6 +205,93 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2021/08/25/AGC018/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="noone___">
+      <meta itemprop="description" content="不能逃避，不能逃避，不能逃避，不能逃避⋯⋯">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="noone___'s blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/25/AGC018/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-08-25 22:07:35 / 修改时间：22:11:33" itemprop="dateCreated datePublished" datetime="2021-08-25T22:07:35+08:00">2021-08-25</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="D"><a href="#D" class="headerlink" title="D"></a>D</h2><blockquote>
+<p>有一颗 $N$ 个顶点的树，顶点依次标号 $1\sim N$ ，第 $i$ 条边连接着顶点 $A_i$ 和 $B_i$ ，且第 $i$ 条边的长度为  $C_i$ 。有一张 $N$ 个点的完全图，图上两点之间的边的边权为它们在树上的距离。求最长 $\text{Hamilton}$ 路径（即不重不漏恰好经过每个点一次）。</p>
+</blockquote>
+<p>求 $\text{Hamilton}$ 路径转化为求 $\text{Hamilton}$ 回路再减去一条路径</p>
+<ul>
+<li><p>对于 $\text{Hamilton}$ 回路，有一个结论：对于每一个边，把它断开后树分成了连通块 $x,y$ ，则有 $\min(x,y)$ 条路径通过该边</p>
+</li>
+<li><p>对于减掉的那条路径：</p>
+<p><strong>需要发现：不经过重心的路径都不会被包含在任意最优解中</strong></p>
+<p>那么每一条路径都是在重心的两个不同子树中各任取一点相连，于是，当重心为点时，删去以重心为端点的最短的一条边，重心为边时，删去那条边</p>
+</li>
+</ul>
+<h2 id="E"><a href="#E" class="headerlink" title="E"></a>E</h2><blockquote>
+<p>给定平面上三个矩形：$[X_1,X_2]\times [Y_1,Y_2] ; [X_3,X_4]\times [Y_3,Y_4] ; [X_5,X_6]\times [Y_5,Y_6]$ ，在三个矩形中各选一个整点 $A,B,C$ ，再选择一条 $A\rightarrow B$ 的 $HV$ 格路以及 $B\rightarrow C$ 的 $HV$ 格路 ，求方案数</p>
+</blockquote>
+<p>先考虑只有两个矩形，统计 $A\rightarrow C$ 的 $HV$ 格路数：</p>
+<script type="math/tex; mode=display">\sum_{i=X_1}^{X_2} \sum_{j=Y_1}^{Y_2} \sum_{u=X_5}^{X_6} \sum_{v=Y_5}^{Y_6} \binom {u-i+v-j} {u-i}</script><p>固定 $i,j,u$ 能进行上指标求和：</p>
+<script type="math/tex; mode=display">\sum_{v=Y_5}^{Y_6} \binom {u-i+v-j} {u-i} = \binom {u-i+\left( Y_6+1 \right)-j} {u-i}-\binom {u-i+Y_5-j} {u-i}</script><p>同理，对其他三个均进行上指标求和，得：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\sum_{i=X_1}^{X_2} \sum_{j=Y_1}^{Y_2} \sum_{u=X_5}^{X_6} \sum_{v=Y_5}^{Y_6} \binom {u-i+v-j} {u-i} &= \binom {\left( X_6+1 \right)-\left( X_1-1 \right)+\left( Y_6+1 \right)-\left( Y_1-1 \right)} {\left( X_6+1 \right)-\left( X_1-1 \right)} +\binom {\left( X_6+1 \right)-\left( X_1-1 \right)+Y_5-\left( Y_1-1 \right)} {\left( X_6+1 \right)-\left( X_1-1 \right)} +\binom {X_5-\left( X_1-1 \right)+\left( Y_6+1 \right)-\left( Y_1-1 \right)} {X_5-\left( X_1-1 \right)} +\binom {X_5-\left( X_1-1 \right)+Y_5-\left( Y_1-1 \right)} {X_5-\left( X_1-1 \right)} \\ &- \binom {\left( X_6+1 \right)-\left( X_1-1 \right)+\left( Y_6+1 \right)-Y_2} {\left( X_6+1 \right)-\left( X_1-1 \right)} + \binom {\left( X_6+1 \right)-\left( X_1-1 \right)+Y_5-Y_2} {\left( X_6+1 \right)-\left( X_1-1 \right)} + \binom {X_5-\left( X_1-1 \right)+\left( Y_6+1 \right)-Y_2} {X_5-\left( X_1-1 \right)}- \binom {X_5-\left( X_1-1 \right)+Y_5-Y_2} {X_5-\left( X_1-1 \right)} \\  &- \binom {\left( X_6+1 \right)-X_2+\left( Y_6+1 \right)-\left( Y_1-1 \right)} {\left( X_6+1 \right)-X_2} + \binom {\left( X_6+1 \right)-X_2+Y_5-\left( Y_1-1 \right)} {\left( X_6+1 \right)-X_2} + \binom {X_5-X_2+\left( Y_6+1 \right)-\left( Y_1-1 \right)} {X_5-X_2} - \binom {X_5-X_2+Y_5-\left( Y_1-1 \right)} {X_5-X_2} \\  &+ \binom {\left( X_6+1 \right)-X_2+\left( Y_6+1 \right)-Y_2} {\left( X_6+1 \right)-X_2} - \binom {\left( X_6+1 \right)-X_2+Y_5-Y_2} {\left( X_6+1 \right)-X_2} -\binom {X_5-X_2+\left( Y_6+1 \right)-Y_2} {X_5-X_2}+\binom {X_5-X_2+Y_5-Y_2} {X_5-X_2}
+\end{aligned}</script><p>再考虑三个矩形：</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/08/25/AGC018/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2021/08/24/AGC017/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -900,87 +987,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2021/08/11/AGC008/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="noone___">
-      <meta itemprop="description" content="不能逃避，不能逃避，不能逃避，不能逃避⋯⋯">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="noone___'s blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/11/AGC008/" class="post-title-link" itemprop="url">11801202-AGC008</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-08-11 21:51:41" itemprop="dateCreated datePublished" datetime="2021-08-11T21:51:41+08:00">2021-08-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-12 21:44:25" itemprop="dateModified" datetime="2021-08-12T21:44:25+08:00">2021-08-12</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">题解</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>AGC008</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/08/11/AGC008/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1052,7 +1058,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

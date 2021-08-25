@@ -25,17 +25,19 @@
     var CONFIG = {"hostname":"noone40404.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="不能逃避，不能逃避，不能逃避，不能逃避⋯⋯">
-<meta property="og:type" content="website">
+  <meta name="description" content="D 有一颗 $N$ 个顶点的树，顶点依次标号 $1\sim N$ ，第 $i$ 条边连接着顶点 $A_i$ 和 $B_i$ ，且第 $i$ 条边的长度为  $C_i$ 。有一张 $N$ 个点的完全图，图上两点之间的边的边权为它们在树上的距离。求最长 $\text{Hamilton}$ 路径（即不重不漏恰好经过每个点一次）。  求 $\text{Hamilton}$ 路径转化为求 $\text{Ha">
+<meta property="og:type" content="article">
 <meta property="og:title" content="noone___&#39;s blog">
-<meta property="og:url" content="http://noone40404.github.io/archives/2020/12/index.html">
+<meta property="og:url" content="http://noone40404.github.io/2021/08/25/AGC018/index.html">
 <meta property="og:site_name" content="noone___&#39;s blog">
-<meta property="og:description" content="不能逃避，不能逃避，不能逃避，不能逃避⋯⋯">
+<meta property="og:description" content="D 有一颗 $N$ 个顶点的树，顶点依次标号 $1\sim N$ ，第 $i$ 条边连接着顶点 $A_i$ 和 $B_i$ ，且第 $i$ 条边的长度为  $C_i$ 。有一张 $N$ 个点的完全图，图上两点之间的边的边权为它们在树上的距离。求最长 $\text{Hamilton}$ 路径（即不重不漏恰好经过每个点一次）。  求 $\text{Hamilton}$ 路径转化为求 $\text{Ha">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-08-25T14:07:35.483Z">
+<meta property="article:modified_time" content="2021-08-25T14:11:33.561Z">
 <meta property="article:author" content="noone___">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://noone40404.github.io/archives/2020/12/">
+<link rel="canonical" href="http://noone40404.github.io/2021/08/25/AGC018/">
 
 
 <script id="page-configurations">
@@ -43,12 +45,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>归档 | noone___'s blog</title>
+  <title> | noone___'s blog</title>
   
 
 
@@ -199,56 +201,159 @@
         <div class="content-wrap">
           
 
-          <div class="content archive">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 30 篇日志。 继续努力。</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2021/08/25/AGC018/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="noone___">
+      <meta itemprop="description" content="不能逃避，不能逃避，不能逃避，不能逃避⋯⋯">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="noone___'s blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-08-25 22:07:35 / 修改时间：22:11:33" itemprop="dateCreated datePublished" datetime="2021-08-25T22:07:35+08:00">2021-08-25</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2020</span>
+        <h2 id="D"><a href="#D" class="headerlink" title="D"></a>D</h2><blockquote>
+<p>有一颗 $N$ 个顶点的树，顶点依次标号 $1\sim N$ ，第 $i$ 条边连接着顶点 $A_i$ 和 $B_i$ ，且第 $i$ 条边的长度为  $C_i$ 。有一张 $N$ 个点的完全图，图上两点之间的边的边权为它们在树上的距离。求最长 $\text{Hamilton}$ 路径（即不重不漏恰好经过每个点一次）。</p>
+</blockquote>
+<p>求 $\text{Hamilton}$ 路径转化为求 $\text{Hamilton}$ 回路再减去一条路径</p>
+<ul>
+<li><p>对于 $\text{Hamilton}$ 回路，有一个结论：对于每一个边，把它断开后树分成了连通块 $x,y$ ，则有 $\min(x,y)$ 条路径通过该边</p>
+</li>
+<li><p>对于减掉的那条路径：</p>
+<p><strong>需要发现：不经过重心的路径都不会被包含在任意最优解中</strong></p>
+<p>那么每一条路径都是在重心的两个不同子树中各任取一点相连，于是，当重心为点时，删去以重心为端点的最短的一条边，重心为边时，删去那条边</p>
+</li>
+</ul>
+<h2 id="E"><a href="#E" class="headerlink" title="E"></a>E</h2><blockquote>
+<p>给定平面上三个矩形：$[X_1,X_2]\times [Y_1,Y_2] ; [X_3,X_4]\times [Y_3,Y_4] ; [X_5,X_6]\times [Y_5,Y_6]$ ，在三个矩形中各选一个整点 $A,B,C$ ，再选择一条 $A\rightarrow B$ 的 $HV$ 格路以及 $B\rightarrow C$ 的 $HV$ 格路 ，求方案数</p>
+</blockquote>
+<p>先考虑只有两个矩形，统计 $A\rightarrow C$ 的 $HV$ 格路数：</p>
+<script type="math/tex; mode=display">\sum_{i=X_1}^{X_2} \sum_{j=Y_1}^{Y_2} \sum_{u=X_5}^{X_6} \sum_{v=Y_5}^{Y_6} \binom {u-i+v-j} {u-i}</script><p>固定 $i,j,u$ 能进行上指标求和：</p>
+<script type="math/tex; mode=display">\sum_{v=Y_5}^{Y_6} \binom {u-i+v-j} {u-i} = \binom {u-i+\left( Y_6+1 \right)-j} {u-i}-\binom {u-i+Y_5-j} {u-i}</script><p>同理，对其他三个均进行上指标求和，得：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\sum_{i=X_1}^{X_2} \sum_{j=Y_1}^{Y_2} \sum_{u=X_5}^{X_6} \sum_{v=Y_5}^{Y_6} \binom {u-i+v-j} {u-i} &= \binom {\left( X_6+1 \right)-\left( X_1-1 \right)+\left( Y_6+1 \right)-\left( Y_1-1 \right)} {\left( X_6+1 \right)-\left( X_1-1 \right)} +\binom {\left( X_6+1 \right)-\left( X_1-1 \right)+Y_5-\left( Y_1-1 \right)} {\left( X_6+1 \right)-\left( X_1-1 \right)} +\binom {X_5-\left( X_1-1 \right)+\left( Y_6+1 \right)-\left( Y_1-1 \right)} {X_5-\left( X_1-1 \right)} +\binom {X_5-\left( X_1-1 \right)+Y_5-\left( Y_1-1 \right)} {X_5-\left( X_1-1 \right)} \\ &- \binom {\left( X_6+1 \right)-\left( X_1-1 \right)+\left( Y_6+1 \right)-Y_2} {\left( X_6+1 \right)-\left( X_1-1 \right)} + \binom {\left( X_6+1 \right)-\left( X_1-1 \right)+Y_5-Y_2} {\left( X_6+1 \right)-\left( X_1-1 \right)} + \binom {X_5-\left( X_1-1 \right)+\left( Y_6+1 \right)-Y_2} {X_5-\left( X_1-1 \right)}- \binom {X_5-\left( X_1-1 \right)+Y_5-Y_2} {X_5-\left( X_1-1 \right)} \\  &- \binom {\left( X_6+1 \right)-X_2+\left( Y_6+1 \right)-\left( Y_1-1 \right)} {\left( X_6+1 \right)-X_2} + \binom {\left( X_6+1 \right)-X_2+Y_5-\left( Y_1-1 \right)} {\left( X_6+1 \right)-X_2} + \binom {X_5-X_2+\left( Y_6+1 \right)-\left( Y_1-1 \right)} {X_5-X_2} - \binom {X_5-X_2+Y_5-\left( Y_1-1 \right)} {X_5-X_2} \\  &+ \binom {\left( X_6+1 \right)-X_2+\left( Y_6+1 \right)-Y_2} {\left( X_6+1 \right)-X_2} - \binom {\left( X_6+1 \right)-X_2+Y_5-Y_2} {\left( X_6+1 \right)-X_2} -\binom {X_5-X_2+\left( Y_6+1 \right)-Y_2} {X_5-X_2}+\binom {X_5-X_2+Y_5-Y_2} {X_5-X_2}
+\end{aligned}</script><p>再考虑三个矩形：</p>
+<p>假设固定了 $(x,y)\in [X_3,X_4]\times [Y_3,Y_4]$ ，那么只需对左下和右上方的矩形分别做一个二维部分和，同上转化出四个二项式系数</p>
+<p>将问题看成：左下角的矩形集合可以等价于 $4$ 个 (带权的) 点，每个点有系数 $±1$ ，同理，右上角的矩形也可以等价于 $4$ 个 (带权的) 点，每个点有系数 $±1$</p>
+<p>由此，原问题转化为 $16$ 个问题：给定起点 $(x_L,y_L)$<br>，终点 $(x_R,y_R)$ 和一个中途矩形 $[x_3,x_4]\times [y_3,y_4]$ ，求有多少种方案在中途矩形中选择点 $P$ ，以及一条 $(x_L,y_L)\rightarrow P$ 的 $HV$ 格路和一条 $P\rightarrow (x_R,y_R)$ 的 $HV$ 格路</p>
+<p>首先考虑经过矩形 $[x_3,x_4]\times [y_3,y_4]$ 的格路数量：注意到任何一条经过某个矩形的格路至少经过这 $(x_4-x_3+1)+(y_4-y_3+1)$ 条边之一</p>
+<p>那么枚举经过的这条边，后计算该边终点到 $(x_R,y_R)$ 的 $HV$ 格路数</p>
+<p>而需要经过矩形中特定点的格路数，那么对于经过矩形的每一条格路，经过矩形内 $c$ 个点就会对最终方案数贡献 $c$</p>
+<p>转化为求每条经过中途矩形的格路在中途矩形内长度之和：设到达时坐标 $(x_a,y_a)$ ，离开时 $(x_b,y_b)$ ，该格路在中途矩形内的长度就是 $(x_b-x_a)+(y_b-y_a)+1$</p>
+<p>由于枚举起点终点，对上式求和会达到无法接受的 $O(n^2)$</p>
+<p><strong>这里考虑用分离变量</strong>：即，把 $(x_b-x_a)+(y_b-y_a)+1$ 拆成 $(x_b+y_b+1)-(x_a+y_a)$ ，然后在起点终点处分别统计并将贡献相加即可</p>
+<p>再把该子问题做 $16$ 遍就好了</p>
+<h2 id="F"><a href="#F" class="headerlink" title="F"></a>F</h2><blockquote>
+<p>给定两个 $n$ 个点的树，给每个点赋值满足两棵树上均有任意节点子树权值和为 $1/-1$</p>
+</blockquote>
+<ul>
+<li><p>先考虑一棵树情况</p>
+<p>直接从叶子往上构造。但为便于推广，找出一个等价过程</p>
+<p>由于一个子树对父亲的 $Size$ 的贡献只有 $1/-1$ ，所以考虑给树边定向：儿子指向父亲代表贡献为 $1$ ，反过来代表贡献为 $-1$</p>
+<p>由于整个树的权值和也为 $1$ 或 $-1$ ，所以新建一个根 $0$ ，然后 $0$ 连向当前根，对 $0$ 点的定向就是整棵树的贡献</p>
+<p>由此：先给所有边定向(随机即可)，对于一条儿子指向父亲的边，把儿子 $+1$ ，父亲 $-1$ ，这样只有以儿子为根的一个子树的大小改变，反之同理</p>
+<p>实际上就是定向完后，$a_i=out_i-in_i$</p>
+</li>
+<li><p>两棵树</p>
+<p>考虑此时如何保证对两棵树定向后的 $a_i=b_i$ ，考虑再加一些边</p>
+<p>首先，如果两棵树上某个标号对应的两个点的度数奇偶性不一样，那么一定无解</p>
+<p>其次，如果度数为奇数，就把这两个点连起来</p>
+<p>这样得到的新图满足，连通（两个 $0$ 节点之间一定有连边），而且所有点度数均为偶数，即，存在欧拉回路</p>
+<p>由欧拉回路的性质，对任意点 $in=out$</p>
+<p>那么如果按照欧拉回路去定向，每个点的点权就都为 $0$ ，那么显然相等</p>
+</li>
+</ul>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
+        
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-12-04T18:05:37+08:00"
-              content="2020-12-04">
-          12-04
-        </time>
-      </div>
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>noone___
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://noone40404.github.io/2021/08/25/AGC018/" title="">http://noone40404.github.io/2021/08/25/AGC018/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/12/04/minmax%E5%AE%B9%E6%96%A5/" itemprop="url">
-            <span itemprop="name">min-max容斥</span>
-          </a>
-      </div>
 
-    </header>
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/08/24/AGC017/" rel="prev" title="42801202-AGC017">
+      <i class="fa fa-chevron-left"></i> 42801202-AGC017
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
   </article>
-
-
-    </div>
-  </div>
   
   
-  
-
   
 
 
 
           </div>
           
+    <div class="comments" id="gitalk-container"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -295,6 +400,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#D"><span class="nav-number">1.</span> <span class="nav-text">D</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#E"><span class="nav-number">2.</span> <span class="nav-text">E</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#F"><span class="nav-number">3.</span> <span class="nav-text">F</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -542,6 +648,25 @@ window.addEventListener('pjax:success', () => {
 
   
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'ebdb5b537395179b4514',
+      clientSecret: 'd0843e5853efe963ca9983db6cac3a1f9d736856',
+      repo        : 'noone40404.github.io',
+      owner       : 'noone40404',
+      admin       : ['noone40404'],
+      id          : '4bb67655bdd66c51b91404263de3281f',
+        language: 'zn-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
 
     </div>
 </body>
