@@ -25,23 +25,26 @@
     var CONFIG = {"hostname":"noone40404.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="AGC009">
+  <meta name="description" content="AGC021">
 <meta property="og:type" content="article">
-<meta property="og:title" content="21801202-AGC009">
-<meta property="og:url" content="http://noone40404.github.io/2021/08/12/AGC009/index.html">
+<meta property="og:title" content="82801202-AGC021">
+<meta property="og:url" content="http://noone40404.github.io/2021/08/28/AGC021/index.html">
 <meta property="og:site_name" content="noone___&#39;s blog">
-<meta property="og:description" content="AGC009">
+<meta property="og:description" content="AGC021">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-08-12T13:44:41.000Z">
-<meta property="article:modified_time" content="2021-08-14T13:51:59.963Z">
+<meta property="article:published_time" content="2021-08-28T14:14:41.000Z">
+<meta property="article:modified_time" content="2021-08-28T14:22:41.612Z">
 <meta property="article:author" content="noone___">
 <meta property="article:tag" content="构造">
 <meta property="article:tag" content="思维">
 <meta property="article:tag" content="dp">
-<meta property="article:tag" content="贪心">
+<meta property="article:tag" content="数论">
+<meta property="article:tag" content="组合数学">
+<meta property="article:tag" content="字符串">
+<meta property="article:tag" content="计算几何">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://noone40404.github.io/2021/08/12/AGC009/">
+<link rel="canonical" href="http://noone40404.github.io/2021/08/28/AGC021/">
 
 
 <script id="page-configurations">
@@ -54,7 +57,7 @@
   };
 </script>
 
-  <title>21801202-AGC009 | noone___'s blog</title>
+  <title>82801202-AGC021 | noone___'s blog</title>
   
 
 
@@ -212,7 +215,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2021/08/12/AGC009/">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2021/08/28/AGC021/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -225,7 +228,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          21801202-AGC009
+          82801202-AGC021
         </h1>
 
         <div class="post-meta">
@@ -234,16 +237,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-08-12 21:44:41" itemprop="dateCreated datePublished" datetime="2021-08-12T21:44:41+08:00">2021-08-12</time>
+              <time title="创建时间：2021-08-28 22:14:41 / 修改时间：22:22:41" itemprop="dateCreated datePublished" datetime="2021-08-28T22:14:41+08:00">2021-08-28</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-14 21:51:59" itemprop="dateModified" datetime="2021-08-14T21:51:59+08:00">2021-08-14</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -262,7 +259,7 @@
               <span class="post-meta-item-text">阅读次数：</span>
               <span id="busuanzi_value_page_pv"></span>
             </span>
-            <div class="post-description">AGC009</div>
+            <div class="post-description">AGC021</div>
 
         </div>
       </header>
@@ -273,29 +270,110 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="D"><a href="#D" class="headerlink" title="D"></a>D</h2><blockquote>
-<p>给定一棵树 $T$ ，递归定义一棵树是否为 $k$ -可点分的：$1$ : 包含一个顶点的树是 $0$ -可点分，$2$ :若存在顶点 $v\in T$ ，满足将 $v$ 删去后所有子树均为 $k$ -可点分的，则 $T$ 为 $(k+1)$ -可点分，求最小的 $k$ 使 $T$ 是 $k$ -可点分的</p>
+        <h2 id="B"><a href="#B" class="headerlink" title="B"></a>B</h2><blockquote>
+<p>无限大的平面上给出 $n$ 个点，任选一点出发，走到离自己欧几里得距离最近的点停下，求到每个点停下的概率</p>
 </blockquote>
-<p>设每个点在点分治树种深度 $k_i$ ，对于任意两个深度相同的点路径上深度最大的点一定大于 $k_i$</p>
-<p>由此得到性质：</p>
+<p>对于点 $x$ ，对该点到其余点的 $atan2$ 函数值排序</p>
+<p>设相邻两个向量的夹角 $\theta$ ，对于点 $i$ 答案为 $\displaystyle{\frac{\max_{1\leq j\leq N,j\not ={i}}\{\theta_{i\rightarrow j},0\}}{2\times \pi}}$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">110</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> PI=<span class="built_in">acos</span>(<span class="number">-1.0</span>);</span><br><span class="line"><span class="keyword">int</span> n,tot; <span class="keyword">double</span> ans;</span><br><span class="line"><span class="keyword">double</span> slope[N];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Point</span>&#123;</span> <span class="keyword">int</span> x,y; &#125;p[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;p[i].x,&amp;p[i].y);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i)&#123;</span><br><span class="line">        tot=<span class="number">0</span>; ans=<span class="number">0.0</span>;</span><br><span class="line">        <span class="keyword">for</span>(rei j=<span class="number">1</span>;j&lt;=n;++j) <span class="keyword">if</span>(i!=j) slope[++tot]=<span class="built_in">atan2</span>(p[j].y-p[i].y,p[j].x-p[i].x);</span><br><span class="line">        <span class="built_in">sort</span>(slope+<span class="number">1</span>,slope+<span class="number">1</span>+tot);</span><br><span class="line">        ans=<span class="built_in">max</span>(ans,PI-(slope[tot]-slope[<span class="number">1</span>]));</span><br><span class="line">        <span class="keyword">for</span>(rei j=<span class="number">2</span>;j&lt;=tot;++j) ans=<span class="built_in">max</span>(ans,(slope[j]-slope[j<span class="number">-1</span>])-PI);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%.10lf\n&quot;</span>,ans/(<span class="number">2</span>*PI));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="D"><a href="#D" class="headerlink" title="D"></a>D</h2><blockquote>
+<p>给定字符串 $S(1\leq S\leq 300)$ ，最多更改其中的 $k$ 个字符 ，求 $S$ 和 $S’(S的反串)$ 的 $\text{LCS}$ 的最长长度</p>
+</blockquote>
+<p>有神仙结论：<strong>字符串的最长回文子序列 $\text{lps}$ 的长度等于其自身与反转的最长公共子序列的长度</strong></p>
 <ul>
-<li>对于点 $u$ ，如果在其两个不同子树种同时存在 $k$ ，且到 $u$ 的路径上没有超过 $k$ 的点，则其标号一定大于 $k$</li>
-<li>如果某个子树种存在一个值 $k$ 且从它到 $x$ 的路径上都没有超过 $k$ 的点，则 $x$ 标号不能为 $k$</li>
+<li><p>证明</p>
+<p>要求得到 $|LPS|=|LCS|$ ，即 $|LPS|\leq |LCS| \And |LPS|\geq |LCS|$</p>
+<p>显然只需要考虑 $|LPS|\geq |LCS|$</p>
+<p>设 $T$ 是 $S,S’$ 的一个最长公共子序列，不妨设 $|T|$ 是奇数（偶数时证明同理可得）</p>
+<p>设 $T$ 的第 $k$ 位是 $S$ 的第 $i$ 位与 $S’$ 的第 $j$ 位的匹配</p>
+<p>令</p>
+<script type="math/tex; mode=display">\begin{aligned}
+    n=|S|,m=|T| \\
+    S_l=S_{1\sim i-1},S_r=S_{i+1\sim n} \\
+    S'_l=S'_{1\sim j-1},S'_r=S'_{j+1\sim m} \\
+    T_l=T_{1\sim k-1},T_r=T_{k+1\sim m}
+\end{aligned}</script><p>那么有 $T_l$ 是 $S_l$ 和 $S’_l$ 的一个最长公共子序列， $T_r$ 是 $S_r$ 和 $S’_r$ 的一个最长公共子序列</p>
+<ul>
+<li><p>若 $S’_r$ 是 ${S_l}’$ 的一个后缀</p>
+<p>$\because T_r$ 是 $S_r$ 和 $S’_r$ 的最长公共子序列       $\therefore T_r$ 一定是 ${S_l}’$ 和 ${S’_l}’$ 的公共子序列，则 ${T_r}’+T_k+T_r$ 是 $S$ 的一个回文子序列。则 $|LPS|\geq |LCS|$</p>
+</li>
+<li><p>否则</p>
+<p>$S_l$ 一定是 ${S’_r}’$ 的一个前缀，那么 $S’_l$ 就是 $S_r’$ 的一个前缀，同理得 $|LPS|\geq |LCS|$</p>
+</li>
 </ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e5</span>+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">int</span> n,u,v,ans;</span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; a[N];</span><br><span class="line"><span class="keyword">int</span> bit[N],f[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> fa)</span></span>&#123;</span><br><span class="line">	rei l=<span class="number">0</span>,Size=a[x].<span class="built_in">size</span>();</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;Size;++i)&#123;</span><br><span class="line">		rei u=a[x][i]; <span class="keyword">if</span>(u==fa) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="built_in">dfs</span>(u,x);</span><br><span class="line">		l|=(bit[x] &amp; bit[u]);</span><br><span class="line">		bit[x]|=bit[u];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(!bit[x]) bit[x]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="keyword">while</span>((<span class="number">1</span>&lt;&lt;f[x])&lt;l || (<span class="number">1</span>&lt;&lt;f[x])&amp;bit[x]) ++f[x];</span><br><span class="line">		bit[x]=(bit[x]/(<span class="number">1</span>&lt;&lt;f[x]) * (<span class="number">1</span>&lt;&lt;f[x])) | (<span class="number">1</span>&lt;&lt;f[x]);</span><br><span class="line">	&#125;</span><br><span class="line">	ans=<span class="built_in">max</span>(ans,f[x]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>,u,v;i&lt;n;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;u,&amp;v),a[u].<span class="built_in">push_back</span>(v),a[v].<span class="built_in">push_back</span>(u);</span><br><span class="line">	<span class="built_in">dfs</span>(<span class="number">1</span>,<span class="number">0</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,ans);</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>综上得证</p>
+</li>
+</ul>
+<p>那么转化为求更改最多 $K$ 个字符后 $S$ 的最长回文子序列长度</p>
+<p>区间 $dp$ ，$dp_{i,j,k}$ 含义显然</p>
+<script type="math/tex; mode=display">
+dp_{i,j,k}=
+\begin{cases}
+    \max\{dp_{i+1,j,k},dp_{i,j-1,k}\} &\text{显然的更新} \\
+    \max\{dp_{i+1,j-1,k}+2\} &s_i=s_j \\
+    \max\{dp_{i+1,j-1,k-1}+2\} &k!=0 \\
+\end{cases}</script><p>注意这三个判断并不冲突</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">310</span>;</span><br><span class="line"><span class="keyword">char</span> s[N];</span><br><span class="line"><span class="keyword">int</span> f[N][N][N],K,n,ans;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%s%d&quot;</span>,s+<span class="number">1</span>,&amp;K);</span><br><span class="line">    n=<span class="built_in">strlen</span>(s+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) f[i][i][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei l=<span class="number">1</span>;l&lt;=n;++l)</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>;i+l&lt;=n;++i)</span><br><span class="line">        <span class="keyword">for</span>(rei k=<span class="number">0</span>,j=i+l;k&lt;=K;++k)&#123;</span><br><span class="line">            f[i][j][k]=<span class="built_in">max</span>(f[i+<span class="number">1</span>][j][k],f[i][j<span class="number">-1</span>][k]);</span><br><span class="line">            <span class="keyword">if</span>(s[i]==s[j]) f[i][j][k]=<span class="built_in">max</span>(f[i][j][k],f[i+<span class="number">1</span>][j<span class="number">-1</span>][k]+<span class="number">2</span>);</span><br><span class="line">            <span class="keyword">if</span>(k) f[i][j][k]=<span class="built_in">max</span>(f[i][j][k],f[i+<span class="number">1</span>][j<span class="number">-1</span>][k<span class="number">-1</span>]+<span class="number">2</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;=K;++i) ans=<span class="built_in">max</span>(ans,f[<span class="number">1</span>][n][i]);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,ans);</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h2 id="E"><a href="#E" class="headerlink" title="E"></a>E</h2><blockquote>
-<p>有 $n$ 个 $0$ 和 $m$ 个 $1$ ，给定 $K\geq 2$ 且 $n+m\equiv \pmod {K+1}$ ，不断选取 $K$ 个数并替换为他们的平均数，求最终得到的数有多少可能的取值</p>
+<p>$n$ 值变色龙，初始时均为蓝色，喂 $k$ 次球，每次让指定变色龙吃下指定颜色的球，变色龙蓝变红当且仅当吃的红球数严格多余蓝球数，反之亦有，求最后使所有变色龙变红的方案数，这里，方案数指 $k$ 个球按顺序组成的颜色序列不同</p>
 </blockquote>
-<p>考虑建出严格 $k$ 叉树，所有 $0$ 的深度为 $a_1,a_2,…,a_N$ ，所有 $1$ 的深度为 $b_0,b_1,…,b_m$ ,则最终所得到的数就等于 $B=\sum_{i=1}^m k^{-b_i}$</p>
-<p>设 $A=\sum_{i=1}^n k^{-a_i}$ ，即，将 $0,1$ 翻过来，有 $A+B=1$</p>
-<p>将 $B$ 以 $k$ 进制呈现，进位过程中，$\sum$ 数码 $\mod {k-1}$ 的值是不变量，一个必要条件就是 $\sum数码 \equiv \pmod {k-1}$ ，且有 $\sum 数码 \leq m$</p>
-<p>则问题转化为求多少个数对 $(A,B)$ 满足 $A+B=1$ ，且 $S_k(A)\equiv N\pmod {k-1} 或 S_k(B)\equiv m\pmod{k-1}或S_k(B)\leq m$ ，其中 $S_k(x)$ 表示 $x$ 在 $k$ 进制下数码和</p>
-<p>显然 $S_k(A)\equiv N\pmod {k-1}\Leftrightarrow S_k(B)\equiv m\pmod{k-1}$ ，保证其一即可</p>
-<p>由于 $A+B=1$ ，可得 $S_k(A)+S_k(B)=(i-1)\times (k-1)+k=i\times (k-1)+1$ ，即， $S_k(B)\leq m \Leftrightarrow S_k(A)\geq i\times (k-1)+1-m$</p>
-<p>至此，所有条件仅与 $S_k(A)$ 有关</p>
-<p>做一个简单的数位 $\text{dp}$ ，加前缀和转移即可</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">2010</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod=<span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"><span class="keyword">int</span> A,B,k,f[N&lt;&lt;<span class="number">1</span>][N],g[N&lt;&lt;<span class="number">1</span>][N];</span><br><span class="line">ll ans;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> &amp;<span class="title">reduce</span><span class="params">(<span class="keyword">int</span> &amp;x)</span></span>&#123; <span class="keyword">return</span> x+=x&gt;&gt;<span class="number">31</span>&amp;mod;&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> &amp;<span class="title">add</span><span class="params">(<span class="keyword">int</span> &amp;x,<span class="keyword">const</span> <span class="keyword">int</span> y)</span></span>&#123; <span class="keyword">return</span> x+=y-mod,x+=x&gt;&gt;<span class="number">31</span>&amp;mod;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>,&amp;A,&amp;B,&amp;k);</span><br><span class="line">	<span class="keyword">if</span>(A&gt;B) A^=B,B^=A,A^=B;</span><br><span class="line">	rei limit=(A+B<span class="number">-1</span>)/--k;</span><br><span class="line">	**f=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=limit;++i)&#123;</span><br><span class="line">		<span class="keyword">for</span>(rei j=<span class="number">0</span>;j&lt;=A;++j) <span class="built_in">add</span>(g[i][j+<span class="number">1</span>]=g[i][j],<span class="built_in">add</span>(f[i][j]=f[i<span class="number">-1</span>][j],g[i<span class="number">-1</span>][j]));</span><br><span class="line">		<span class="keyword">for</span>(rei j=A;j&gt;=k;--j) <span class="built_in">reduce</span>(g[i][j]-=g[i][j-k]);</span><br><span class="line">		<span class="keyword">for</span>(rei l=<span class="built_in">max</span>(A%k,i*k-B+<span class="number">1</span>),r=i*k-l+<span class="number">1</span>; l&lt;=A &amp;&amp; r&gt;=<span class="number">0</span> ;l+=k,r-=k) ans+=g[i][l];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,ans%mod);</span><br><span class="line">	<span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<p>设 $R$ 个红球 ，$B$ 个蓝球</p>
+<p>当 $R<B$ 显然无解；$R>N$ 时一定有解，将多出来的这部分暂时搁置，只考虑 $B\leq R&lt;B+N$ 的情况</p>
+<p>得出有解的的必要条件为 $R\geq B,R\geq N$</p>
+<ul>
+<li><p>R=B</p>
+<p>那么每只变色龙必须吃球 $RB$ ,而若最后一只吃的是 $BR$ 则无解，故转化为考虑 $(R=R，B=R-1)$ 的情况</p>
+</li>
+<li><p>R&gt;B</p>
+<p>有一些结论：</p>
+<ul>
+<li>一个变色龙最多不会吃超过 $1$ 个 $R$ ，且吃完后最多吃 $1$ 个 $B$</li>
+<li>对于多个蓝球，全部喂给一条变色龙优于喂给多个</li>
+<li>任何变色龙的 $R-B\leq 1$</li>
+</ul>
+<p>那么要将组合分为：</p>
+<ul>
+<li>若干配对的 $RB$</li>
+<li>若干 $R=B+1$</li>
+</ul>
+<p>显然 $组合 R=B+1$ 至多产生 $R-B$ 个，即，当 $N\leq R-B$ 时所有情况均可，否则需要有 $N-(R-B)$ 个 $组合 RB$</p>
+<p>且 $B$ 必须在 $R$ 后面出现</p>
+<p>这个条件等价于: <strong>对于序列的任何一个前缀，$B-R\leq B-(N-(R-B))=R-N$ 个</strong></p>
+<p>即，统计 $(0,0)\rightarrow (R,B)$ 中处于直线 $y=x+(R-N)$ 及其下方的 $HV$ 格路数量</p>
+<p>总方案数为 $\displaystyle{\binom{R+B}{R}-\binom{R+B}{2\times R-N+1}}$</p>
+</li>
+<li><p>再考虑 $R=B$ 时，总方案数为 $\displaystyle{\binom{2\times R-1}{R}-\binom{2\times R-1}{2\times R-N+1}}$</p>
+</li>
+</ul>
+<p>综上，再加上省略的比 $N$ 多出来的东西，答案为</p>
+<script type="math/tex; mode=display">\sum_{\max \left\{ \left \lfloor K/2 \right \rfloor + 1, N \right\} \leq R \leq K} \left( \binom K R - \binom K {2 R - N + 1} \right) + \left[ 2 \mid K \right] \left[ K \geq 2 N \right] \left( \binom {K - 1} {K / 2} - \binom {K - 1} {K - N + 1} \right)</script><p>把这一坨化简试试：</p>
+<ul>
+<li><p>当 $k$ 奇数，只有左边的式子</p>
+<script type="math/tex; mode=display">\begin{aligned}
+原式&=\sum_{\max\{\frac{K+1}{2},N\}\leq R\leq K} \left(\binom{K-1}{R-1} + \binom{K-1}{R} - \binom{K-1}{2R-N} - \binom{K-1}{2R-N+1}\right) \\
+&=\sum_{i\geq \max\{\frac{K+1}{2},N-1\}\leq R\leq K} \binom{K-1}{i} + \sum_{i\geq \max\{\frac{K+1}{2},N\}} \binom{K-1}{i} - \sum_{i\geq \max\{K+1-N,N\}} \binom{K-1}{i} &\text{emmm这一步稍微有点玄学}\\
+&=\sum_{i\geq \max\{\frac{K+1}{2},N-1\}\leq R\leq K} \binom{K-1}{i} + \sum_{\max\{\frac{K+1}{2},N\}\leq i\leq \max\{K+1-N,N\}} \binom{K-1}{i} \\
+\end{aligned}</script><ul>
+<li><p>$N\leq \frac{K+1}{2}$</p>
+<script type="math/tex; mode=display">\begin{aligned}
+原式&=\sum_{i\geq \frac{K-1}{2}}\binom{K-1}{i} + \sum_{\frac{K+1}{2}\leq i< K+1-N}\binom{K-1}{i} &\text{这里注意k是奇数，边界注意内个是小于号} \\
+&\text{如果这里向下有困难的话就只考虑 $N< \frac{K+1}{2}$ 的情况，再单独考虑相等，那时仅有第一个式子有意义，小于号使第二个式子不存在合法的 $i$ ,结论不变} \\
+&=\sum_{\frac{K-1}{2}\leq i\leq K-1} \binom{K-1}{i} + \sum_{N-1\leq i\leq \frac{k-3}{2}} \binom{K-1}{i} &\text{完善一下第一个的范围，画个数轴，整数范围内就能得到下式}\\
+&=\sum_{i=N-1}^{K-1} \binom{K-1}{i} &\text{typora里面空的怎么这么多啊}\\
+\end{aligned}</script></li>
+<li><p>$N&gt;\frac{K+1}{2}$</p>
+<script type="math/tex; mode=display">\begin{aligned}
+原式&=\sum_{i\geq N-1}\binom{K-1}{i} + \sum_{N\leq i<N} \binom{K-1}{i} \\
+&=\sum_{i=N-1}^{K-1}\binom{K-1}{i} \\
+\end{aligned}</script></li>
+</ul>
+</li>
+<li><p>当 $K$ 为偶数</p>
+<p>这里推到显然相同，只是原式中的第二个会在 $N\leq \frac{K}{2}$ 时对式子产生贡献，使其不变，这里推到略去</p>
+</li>
+</ul>
+<p>综上所述，<del>有人是懒狗但我不说是谁</del> 原式始终为 $\sum_{i=N-1}^{K-1}\binom{K-1}{i}$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">5e5</span>+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod=<span class="number">998244353</span>;</span><br><span class="line"><span class="keyword">int</span> n,K,inv[N];</span><br><span class="line">ll ans;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">fix</span><span class="params">(ll &amp;x)</span></span>&#123; x&gt;=mod ? x-=mod : <span class="number">0</span>;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;K);</span><br><span class="line">	rei cur=<span class="number">1</span>;</span><br><span class="line">	n=K---n; inv[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">2</span>;i&lt;=n;++i) inv[i]=(ll) (mod-mod/i)*inv[mod%i]%mod;</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;=n;++i) <span class="built_in">fix</span>(ans+=cur),cur=(ll) cur*(K-i)%mod *inv[i+<span class="number">1</span>]%mod;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,(<span class="keyword">int</span>) ans%mod);</span><br><span class="line">	<span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -310,7 +388,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://noone40404.github.io/2021/08/12/AGC009/" title="21801202-AGC009">http://noone40404.github.io/2021/08/12/AGC009/</a>
+    <a href="http://noone40404.github.io/2021/08/28/AGC021/" title="82801202-AGC021">http://noone40404.github.io/2021/08/28/AGC021/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -325,7 +403,10 @@
               <a href="/tags/%E6%9E%84%E9%80%A0/" rel="tag"><i class="fa fa-tag"></i> 构造</a>
               <a href="/tags/%E6%80%9D%E7%BB%B4/" rel="tag"><i class="fa fa-tag"></i> 思维</a>
               <a href="/tags/dp/" rel="tag"><i class="fa fa-tag"></i> dp</a>
-              <a href="/tags/%E8%B4%AA%E5%BF%83/" rel="tag"><i class="fa fa-tag"></i> 贪心</a>
+              <a href="/tags/%E6%95%B0%E8%AE%BA/" rel="tag"><i class="fa fa-tag"></i> 数论</a>
+              <a href="/tags/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6/" rel="tag"><i class="fa fa-tag"></i> 组合数学</a>
+              <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag"><i class="fa fa-tag"></i> 字符串</a>
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/" rel="tag"><i class="fa fa-tag"></i> 计算几何</a>
           </div>
 
         
@@ -334,13 +415,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/08/11/AGC008/" rel="prev" title="11801202-AGC008">
-      <i class="fa fa-chevron-left"></i> 11801202-AGC008
+    <a href="/2021/08/27/AGC020/" rel="prev" title="72801202-AGC020">
+      <i class="fa fa-chevron-left"></i> 72801202-AGC020
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/08/14/AGC010/" rel="next" title="41801202-AGC010">
-      41801202-AGC010 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -400,7 +478,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#D"><span class="nav-number">1.</span> <span class="nav-text">D</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#E"><span class="nav-number">2.</span> <span class="nav-text">E</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#B"><span class="nav-number">1.</span> <span class="nav-text">B</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#D"><span class="nav-number">2.</span> <span class="nav-text">D</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#E"><span class="nav-number">3.</span> <span class="nav-text">E</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -714,7 +792,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'noone40404.github.io',
       owner       : 'noone40404',
       admin       : ['noone40404'],
-      id          : 'fcaba5894f354d27423fc79f9dc99d17',
+      id          : '0d19d3ada943f0375a44eb0e0e1589a3',
         language: 'zn-CN',
       distractionFreeMode: true
     });
