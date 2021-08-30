@@ -25,23 +25,24 @@
     var CONFIG = {"hostname":"noone40404.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="AGC014">
+  <meta name="description" content="AGC022">
 <meta property="og:type" content="article">
-<meta property="og:title" content="02801202-AGC014">
-<meta property="og:url" content="http://noone40404.github.io/2021/08/20/AGC014/index.html">
+<meta property="og:title" content="92801202-AGC022">
+<meta property="og:url" content="http://noone40404.github.io/2021/08/29/AGC022/index.html">
 <meta property="og:site_name" content="noone___&#39;s blog">
-<meta property="og:description" content="AGC014">
+<meta property="og:description" content="AGC022">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-08-20T13:42:41.000Z">
-<meta property="article:modified_time" content="2021-08-21T14:13:15.392Z">
+<meta property="article:published_time" content="2021-08-29T14:14:41.000Z">
+<meta property="article:modified_time" content="2021-08-30T14:14:26.225Z">
 <meta property="article:author" content="noone___">
 <meta property="article:tag" content="构造">
 <meta property="article:tag" content="思维">
 <meta property="article:tag" content="贪心">
-<meta property="article:tag" content="启发式合并">
+<meta property="article:tag" content="dp">
+<meta property="article:tag" content="栈">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://noone40404.github.io/2021/08/20/AGC014/">
+<link rel="canonical" href="http://noone40404.github.io/2021/08/29/AGC022/">
 
 
 <script id="page-configurations">
@@ -54,7 +55,7 @@
   };
 </script>
 
-  <title>02801202-AGC014 | noone___'s blog</title>
+  <title>92801202-AGC022 | noone___'s blog</title>
   
 
 
@@ -212,7 +213,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2021/08/20/AGC014/">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2021/08/29/AGC022/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -225,7 +226,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          02801202-AGC014
+          92801202-AGC022
         </h1>
 
         <div class="post-meta">
@@ -235,14 +236,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-08-20 21:42:41" itemprop="dateCreated datePublished" datetime="2021-08-20T21:42:41+08:00">2021-08-20</time>
+              <time title="创建时间：2021-08-29 22:14:41" itemprop="dateCreated datePublished" datetime="2021-08-29T22:14:41+08:00">2021-08-29</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-21 22:13:15" itemprop="dateModified" datetime="2021-08-21T22:13:15+08:00">2021-08-21</time>
+                <time title="修改时间：2021-08-30 22:14:26" itemprop="dateModified" datetime="2021-08-30T22:14:26+08:00">2021-08-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -262,7 +263,7 @@
               <span class="post-meta-item-text">阅读次数：</span>
               <span id="busuanzi_value_page_pv"></span>
             </span>
-            <div class="post-description">AGC014</div>
+            <div class="post-description">AGC022</div>
 
         </div>
       </header>
@@ -273,43 +274,60 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="E"><a href="#E" class="headerlink" title="E"></a>E</h2><blockquote>
-<p>$n$ 个顶点的树，初始时每条边为蓝色，执行 $n-1$ 次操作：选定只包含蓝色边的路径 $u\rightarrow v$ ，并移除路径上的某一条蓝边，并加入一条 $u\rightarrow v$ 的红边。问是否能让最终的红树与给定的红树相同</p>
+        <h2 id="C"><a href="#C" class="headerlink" title="C"></a>C</h2><blockquote>
+<p>给定序列 $A$ ，通过若干次操作使其变为序列 $B$ 。对于每次操作，选择一个正整数 $k$ ，对于每个数选择将其变为 $a_i\pmod k$ 或不变，这次操作代价 $2^k$ 。总代价为所有操作代价和，球最小总代价</p>
 </blockquote>
-<p>开始时状态不好考虑，先考虑最后一步操作时：蓝边一定同时存在于蓝树和红树上</p>
-<p>可以找到任意一条这样的边，分别在红蓝图上合并两端的点，剩下继续处理子问题</p>
-<p>用并查集合并节点，暴力遍历出度数小的点进行启发式合并</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">5e5</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> n,d[N];</span><br><span class="line">queue&lt;PII&gt; q;</span><br><span class="line">set&lt;<span class="keyword">int</span>&gt; e[N];</span><br><span class="line">map&lt;PII,<span class="keyword">int</span>&gt; s;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">DSU</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> fa[N];</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123; <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;i++) fa[i]=i;&#125;</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123; <span class="keyword">return</span> fa[x]==x ? x : fa[x]=<span class="built_in">find</span>(fa[x]);&#125;</span><br><span class="line">&#125;dsu;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> PII <span class="title">get</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;<span class="keyword">return</span> <span class="built_in">mk</span>(<span class="built_in">min</span>(x,y),<span class="built_in">max</span>(x,y));&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">ins</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">	e[x].<span class="built_in">insert</span>(y),e[y].<span class="built_in">insert</span>(x);</span><br><span class="line">	PII now=<span class="built_in">get</span>(x,y); ++s[now];</span><br><span class="line">	<span class="keyword">if</span>(s[now]==<span class="number">2</span>) q.<span class="built_in">push</span>(now);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">    dsu.<span class="built_in">init</span>(n);</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>,u,v;i&lt;n*<span class="number">2</span><span class="number">-1</span>;i++) <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;u,&amp;v),<span class="built_in">ins</span>(u,v);</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>,x,y;i&lt;n;i++)&#123;</span><br><span class="line">		<span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">			<span class="keyword">if</span>(!q.<span class="built_in">size</span>()) <span class="keyword">return</span> <span class="built_in">puts</span>(<span class="string">&quot;NO&quot;</span>),<span class="number">0</span>;</span><br><span class="line">            PII top=q.<span class="built_in">front</span>(); q.<span class="built_in">pop</span>();</span><br><span class="line">			x=dsu.<span class="built_in">find</span>( top.first ),y=dsu.<span class="built_in">find</span>( top.second );</span><br><span class="line">			<span class="keyword">if</span>(x!=y) <span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(e[x].<span class="built_in">size</span>()&gt;e[y].<span class="built_in">size</span>()) x^=y,y^=x,x^=y;</span><br><span class="line">		dsu.fa[x]=y;</span><br><span class="line">        s.<span class="built_in">erase</span>(<span class="built_in">get</span>(x,y)),e[y].<span class="built_in">erase</span>(x);</span><br><span class="line">		<span class="keyword">for</span>(set&lt;<span class="keyword">int</span>&gt;::iterator it=e[x].<span class="built_in">begin</span>();it!=e[x].<span class="built_in">end</span>();++it)&#123;</span><br><span class="line">			rei t=dsu.<span class="built_in">find</span>(*it);</span><br><span class="line">			<span class="keyword">if</span>(t==y) <span class="keyword">continue</span>;</span><br><span class="line">			s.<span class="built_in">erase</span>(<span class="built_in">get</span>(x,t)); <span class="built_in">ins</span>(t,y);</span><br><span class="line">			e[t].<span class="built_in">erase</span>(x),e[x].<span class="built_in">erase</span>(t);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;YES&quot;</span>);</span><br><span class="line">	<span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="F"><a href="#F" class="headerlink" title="F"></a>F</h2><blockquote>
-<p>给定长度 $n$ 排列 $P$ ，对其进行奇怪排序直至升序：</p>
-<p>对于每一轮： 找到序列 $P$ 的所有前缀最大值（ $P_i$ 为前缀最大值当且仅当 $\forall 1\leq j\leq i \quad 有 P_j\leq P_i$），取出所有前缀最大值并按照原顺序移到队尾</p>
-<p>求至少需要多少轮才能对 $P$ 排序</p>
+<p><strong>注意这个 $2^k$ 的代价，其意味着从高位到地位贪心</strong></p>
+<p>然后对每个 $k$ 建图判断一下</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">55</span>;</span><br><span class="line"><span class="keyword">int</span> n,f[N][N],a[N],b[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">check</span><span class="params">(ll sta)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;N;++i) <span class="keyword">for</span>(rei j=<span class="number">0</span>;j&lt;N;++j) f[i][j]=i==j ? <span class="number">1</span> : <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;N;++i) <span class="keyword">for</span>(rei j=<span class="number">1</span>;j&lt;=i;++j) <span class="keyword">if</span>(sta &amp; (<span class="number">1ll</span>&lt;&lt;j)) f[i][i%j]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(rei k=<span class="number">0</span>;k&lt;N;++k) <span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;N;++i) <span class="keyword">for</span>(rei j=<span class="number">0</span>;j&lt;N;++j) f[i][j]|=(f[i][k] &amp; f[k][j]);</span><br><span class="line">	<span class="keyword">bool</span> ret=<span class="literal">true</span>;</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="keyword">if</span>(!f[ a[i] ][ b[i] ])&#123; ret=<span class="literal">false</span>; <span class="keyword">break</span>;&#125;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a[i]);</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;b[i]);</span><br><span class="line">    ll sta=(<span class="number">1ll</span>&lt;&lt;<span class="number">38</span>)<span class="number">-2</span>;</span><br><span class="line">    <span class="keyword">if</span>(!<span class="built_in">check</span>(sta))&#123; <span class="keyword">return</span> <span class="built_in">puts</span>(<span class="string">&quot;-1&quot;</span>),<span class="number">0</span>;&#125;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">37</span>;i;--i)&#123;</span><br><span class="line">        ll tmp=sta^(<span class="number">1ll</span>&lt;&lt;i);</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">check</span>(tmp))&#123; sta=tmp;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,sta);</span><br><span class="line">	<span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="D"><a href="#D" class="headerlink" title="D"></a>D</h2><blockquote>
+<p>$N$ 个商场，第 $i$ 个在数轴的 $x_i$ ，需要花费连续的 $t_i$ 时间购物。一趟火车在 $0,L$ 处往返，行驶一单位长度用一单位时间，在 $0$ 时于 $0$ 处上车，只有在 $商场，0，L$ 处才可下车，求在每个超市购物后返回 $0$ 处的最少时间</p>
 </blockquote>
-<p>定义 $high$ 为前缀最大值, $low$ 为前缀最小值</p>
-<p>假设忽略 $1$ ，用 $T$ 次排列好 $[2,n]$ ，答案就是 $T/T+1$</p>
-<p>考虑 $T-1$ 轮后序列状态：设 $f$ 为第一个数，如果 $1$ 出现在 $f,2$ 之间则答案为 $T$ ，否则为 $T-1$</p>
+<p>有一个神仙思路：</p>
+<p>对于每个 $t_i$ ，先 $\% 2\times L$ ，再把 $2\times L\times n$ 加到答案里</p>
+<p>考虑一个点，如果从左边进只需要到达依次端点就看作左括号，从右边进只需要依次达到端点就看作右括号</p>
+<p>先默认每个点贡献都是 $2\times L$ ，那么左右括号匹配时则可以减少 $2\times L$</p>
+<p>某些点可以看作左/右括号，此时考虑最大化匹配数</p>
+<p>有性质：当一个节点开始时固定作为左括号，则后面一定没有固定作为右括号的，所以不会有两个固定的括号匹配。</p>
+<p>贪心即可</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">3e5</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> n,len,x[N],t[N],l[N],r[N],ans;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;len);</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;x[i]);</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;t[i]);</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i)&#123;</span><br><span class="line">		ans+=t[i]/(<span class="number">2</span>*len); t[i]%=<span class="number">2</span>*len;</span><br><span class="line">		<span class="keyword">if</span>(!t[i])&#123; --ans; <span class="keyword">continue</span>;&#125;</span><br><span class="line">		l[i]=(t[i]&lt;=x[i]*<span class="number">2</span>);</span><br><span class="line">		r[i]=(t[i]&lt;=(len-x[i])*<span class="number">2</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	rei lim=n,L=<span class="number">0</span>,R=<span class="number">0</span>;</span><br><span class="line">    ans+=n+<span class="number">1</span>-r[n];</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;n;++i)&#123;</span><br><span class="line">		<span class="keyword">if</span>(!l[i] &amp;&amp; !r[i]) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">if</span>(!r[i])&#123; lim=i; <span class="keyword">break</span>;&#125;</span><br><span class="line">		<span class="keyword">if</span>(!l[i] &amp;&amp; L) --L,--ans;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(l[i]) ++L;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(rei i=n<span class="number">-1</span>;i&gt;=lim;--i)&#123;</span><br><span class="line">		<span class="keyword">if</span>(!l[i] &amp;&amp; !r[i]) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">if</span>(!l[i]) <span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">if</span>(!r[i] &amp;&amp; R) --R,--ans;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(r[i]) ++R;</span><br><span class="line">	&#125;</span><br><span class="line">	ans-=(L+R)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,<span class="number">2ll</span>*ans*len);</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="E"><a href="#E" class="headerlink" title="E"></a>E</h2><blockquote>
+<p>一个奇数长度的 $01$ 串 $s$ ，其中若干位置是符号 $?$ ，每次将 $3$ 个连续的字符替换成着三个数的中位数，有多少种方案将 $?$ 替换成 $0/1$ 后再进行 $\frac{n-1}{2}$ 次操作后字符串为 $1$</p>
+</blockquote>
+<p>首先考虑没有 $?$ 的情况，考虑其是否合法</p>
+<p>维护一个栈，其中包括一段连续的 $0$ 和一段连续的 $1$</p>
 <ul>
-<li><p>结论 $1$ : $f$ 不会出现：不在第一个位置且为 $high$ 的情况</p>
-<p>反证法易得</p>
-</li>
-<li><p>结论 $2$ : 定义循环序列 $(a,b,c)=(b,c,a)=(c,a,b)$ ，则 $1,2,f$ 在前 $T-1$ 次组成的，关于位置的循环序列不变</p>
-</li>
-</ul>
-<p>考虑 $[i,n]$ ，设 $T_i$ 为对该序列排序需要的操作数</p>
-<p>设 $f_i$ 为 $T_i-1$ 次操作后的第一个整数 ，$q_i$ 为 $i$ 在初始序列中的位置( $p_{q_i}=i$ ) 。按照 $i=n\sim 1$ 的顺序计算 $T_i,f_1$ ，答案就为 $T_1$</p>
-<ul>
-<li>若 $T_{i+1}=0$<ul>
-<li>若 $q_i&gt;q_{i+1}$ ，则 $T_i=1,f_i=i+1$</li>
-<li>否则 $T_i=0,f_i无$</li>
+<li>加入 $0$<ul>
+<li>栈顶 $0$ ：若栈内 $2$ 个 $0$ ，则替换成一个 $0$ ，否则入栈</li>
+<li>栈顶 $1$ ：直接入栈</li>
 </ul>
 </li>
-<li>否则<ul>
-<li>若 $q_{f_{i+1}},q_i,q_{i+1}$ 处于循环顺序，则 $T_i=T_{i+1},f_i=f_{i+1}$</li>
-<li>否则 $T_i=T_{i+1}+1,f_i=i+1$</li>
+<li>加入 $1$<ul>
+<li>栈顶 $0$ ：弹出栈顶的 $0$ ，相当于抵消</li>
+<li>栈顶 $1$ ：若栈内只有一个 $1$ 则入栈，否则不管</li>
 </ul>
 </li>
 </ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">2e5</span>+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">int</span> q[N],p[N],n,T[N],f[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;p[i]),q[ p[i] ]=i;</span><br><span class="line">	<span class="keyword">for</span>(rei i=n<span class="number">-1</span>;i;--i)&#123;</span><br><span class="line">		<span class="keyword">if</span>(!T[i+<span class="number">1</span>])</span><br><span class="line">			<span class="keyword">if</span>(q[i]&gt;q[i+<span class="number">1</span>]) T[i]=<span class="number">1</span>,f[i]=i+<span class="number">1</span>;</span><br><span class="line">			<span class="keyword">else</span> T[i]=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			rei cnt=<span class="number">0</span>;</span><br><span class="line">			cnt+=q[ f[i+<span class="number">1</span>] ]&lt;q[i];</span><br><span class="line">			cnt+=q[i]&lt;q[i+<span class="number">1</span>];</span><br><span class="line">			cnt+=q[i+<span class="number">1</span>]&lt;q[ f[i+<span class="number">1</span>] ];</span><br><span class="line">			<span class="keyword">if</span>(cnt==<span class="number">2</span>) T[i]=T[i+<span class="number">1</span>],f[i]=f[i+<span class="number">1</span>];</span><br><span class="line">			<span class="keyword">else</span> T[i]=T[i+<span class="number">1</span>]+<span class="number">1</span>,f[i]=i+<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,T[<span class="number">1</span>]);</span><br><span class="line">	<span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>那么最后只要 $num_1&gt;num_0$ 则合法</p>
+<p>简化一下栈内部：发现 $0,1$ 的个数只可能是 $0\sim 2$ ，设 $f_{i,a,b}$ 表示第 $i$ 位时，栈内有 $a$ 个 $1$ ，$b$ 个 $0$ 的方案数</p>
+<p>有转移：</p>
+<script type="math/tex; mode=display">
+s[i+1]=0时 \quad
+\begin{cases}
+    f_{i+1,a,1}+=f_{i,a,2}+f_{i,a,0} \\
+    f_{i+1,a,2}+=f_{i,a,1} \\
+\end{cases}</script><script type="math/tex; mode=display">
+s[i+1]=1时 \quad
+\begin{cases}
+    f_{i+1,a,b-1}+=f_{i,a,b} \\
+    f_{i+1,1,0}+=f_{i,0,0} \\
+    f_{i+1,2,0}+=f_{i,1,0}+f_{i,2,0} \\
+\end{cases}</script><script type="math/tex; mode=display">
+s[i+1]=?时 \quad
+\begin{cases}
+    s[i+1]=1时 \\
+    s[i+1]=0时 \\
+\end{cases}</script><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">3e5</span>+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod=<span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"><span class="keyword">int</span> n,ans;</span><br><span class="line"><span class="keyword">int</span> f[N][<span class="number">3</span>][<span class="number">3</span>];</span><br><span class="line"><span class="keyword">char</span> s[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">fix</span><span class="params">(<span class="keyword">int</span> &amp;x)</span></span>&#123; x&gt;=mod ? x-=mod : <span class="number">0</span>;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,s+<span class="number">1</span>); n=<span class="built_in">strlen</span>(s+<span class="number">1</span>);</span><br><span class="line">    f[<span class="number">0</span>][<span class="number">0</span>][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;n;++i)&#123;</span><br><span class="line">        <span class="keyword">if</span>(s[i+<span class="number">1</span>]!=<span class="string">&#x27;1&#x27;</span>)</span><br><span class="line">            <span class="keyword">for</span>(rei a=<span class="number">0</span>;a&lt;=<span class="number">2</span>;++a)&#123;</span><br><span class="line">                <span class="built_in">fix</span>(f[i+<span class="number">1</span>][a][<span class="number">1</span>]+=f[i][a][<span class="number">2</span>]);</span><br><span class="line">                <span class="built_in">fix</span>(f[i+<span class="number">1</span>][a][<span class="number">1</span>]+=f[i][a][<span class="number">0</span>]);</span><br><span class="line">                <span class="built_in">fix</span>(f[i+<span class="number">1</span>][a][<span class="number">2</span>]+=f[i][a][<span class="number">1</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="keyword">if</span>(s[i+<span class="number">1</span>] != <span class="string">&#x27;0&#x27;</span>)&#123;</span><br><span class="line">            <span class="keyword">for</span>(rei a=<span class="number">0</span>;a&lt;=<span class="number">2</span>;++a)&#123;</span><br><span class="line">                <span class="built_in">fix</span>(f[i+<span class="number">1</span>][a][<span class="number">0</span>]+=f[i][a][<span class="number">1</span>]);</span><br><span class="line">                <span class="built_in">fix</span>(f[i+<span class="number">1</span>][a][<span class="number">1</span>]+=f[i][a][<span class="number">2</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">fix</span>(f[i+<span class="number">1</span>][<span class="number">1</span>][<span class="number">0</span>]+=f[i][<span class="number">0</span>][<span class="number">0</span>]);</span><br><span class="line">            <span class="built_in">fix</span>(f[i+<span class="number">1</span>][<span class="number">2</span>][<span class="number">0</span>]+=f[i][<span class="number">1</span>][<span class="number">0</span>]);</span><br><span class="line">            <span class="built_in">fix</span>(f[i+<span class="number">1</span>][<span class="number">2</span>][<span class="number">0</span>]+=f[i][<span class="number">2</span>][<span class="number">0</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(rei a=<span class="number">0</span>;a&lt;=<span class="number">2</span>;++a) <span class="keyword">for</span>(rei b=<span class="number">0</span>;b&lt;=a;++b) <span class="built_in">fix</span>(ans+=f[n][a][b]);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,ans);</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -325,7 +343,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://noone40404.github.io/2021/08/20/AGC014/" title="02801202-AGC014">http://noone40404.github.io/2021/08/20/AGC014/</a>
+    <a href="http://noone40404.github.io/2021/08/29/AGC022/" title="92801202-AGC022">http://noone40404.github.io/2021/08/29/AGC022/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -340,7 +358,8 @@
               <a href="/tags/%E6%9E%84%E9%80%A0/" rel="tag"><i class="fa fa-tag"></i> 构造</a>
               <a href="/tags/%E6%80%9D%E7%BB%B4/" rel="tag"><i class="fa fa-tag"></i> 思维</a>
               <a href="/tags/%E8%B4%AA%E5%BF%83/" rel="tag"><i class="fa fa-tag"></i> 贪心</a>
-              <a href="/tags/%E5%90%AF%E5%8F%91%E5%BC%8F%E5%90%88%E5%B9%B6/" rel="tag"><i class="fa fa-tag"></i> 启发式合并</a>
+              <a href="/tags/dp/" rel="tag"><i class="fa fa-tag"></i> dp</a>
+              <a href="/tags/%E6%A0%88/" rel="tag"><i class="fa fa-tag"></i> 栈</a>
           </div>
 
         
@@ -349,13 +368,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/08/18/AGC013/" rel="prev" title="81801202-AGC013">
-      <i class="fa fa-chevron-left"></i> 81801202-AGC013
+    <a href="/2021/08/28/AGC021/" rel="prev" title="82801202-AGC021">
+      <i class="fa fa-chevron-left"></i> 82801202-AGC021
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/08/21/AGC015/" rel="next" title="12801202-AGC015">
-      12801202-AGC015 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -415,7 +431,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#E"><span class="nav-number">1.</span> <span class="nav-text">E</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#F"><span class="nav-number">2.</span> <span class="nav-text">F</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#C"><span class="nav-number">1.</span> <span class="nav-text">C</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#D"><span class="nav-number">2.</span> <span class="nav-text">D</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#E"><span class="nav-number">3.</span> <span class="nav-text">E</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -729,7 +745,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'noone40404.github.io',
       owner       : 'noone40404',
       admin       : ['noone40404'],
-      id          : 'e2c4cf49e14581242d94cd9652d7d4eb',
+      id          : '4b5ac3985e33851ee382a74380502952',
         language: 'zn-CN',
       distractionFreeMode: true
     });
