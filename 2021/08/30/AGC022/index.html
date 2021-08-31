@@ -33,12 +33,12 @@
 <meta property="og:description" content="AGC022">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-08-30T14:14:41.000Z">
-<meta property="article:modified_time" content="2021-08-30T14:18:31.908Z">
+<meta property="article:modified_time" content="2021-08-31T05:24:07.570Z">
 <meta property="article:author" content="noone___">
 <meta property="article:tag" content="构造">
 <meta property="article:tag" content="思维">
-<meta property="article:tag" content="贪心">
 <meta property="article:tag" content="dp">
+<meta property="article:tag" content="贪心">
 <meta property="article:tag" content="栈">
 <meta name="twitter:card" content="summary">
 
@@ -235,10 +235,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-08-30 22:14:41 / 修改时间：22:18:31" itemprop="dateCreated datePublished" datetime="2021-08-30T22:14:41+08:00">2021-08-30</time>
+              <time title="创建时间：2021-08-30 22:14:41" itemprop="dateCreated datePublished" datetime="2021-08-30T22:14:41+08:00">2021-08-30</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-31 13:24:07" itemprop="dateModified" datetime="2021-08-31T13:24:07+08:00">2021-08-31</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -322,7 +328,24 @@ s[i+1]=?时 \quad
     s[i+1]=1时 \\
     s[i+1]=0时 \\
 \end{cases}</script><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">3e5</span>+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod=<span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"><span class="keyword">int</span> n,ans;</span><br><span class="line"><span class="keyword">int</span> f[N][<span class="number">3</span>][<span class="number">3</span>];</span><br><span class="line"><span class="keyword">char</span> s[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">fix</span><span class="params">(<span class="keyword">int</span> &amp;x)</span></span>&#123; x&gt;=mod ? x-=mod : <span class="number">0</span>;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,s+<span class="number">1</span>); n=<span class="built_in">strlen</span>(s+<span class="number">1</span>);</span><br><span class="line">    f[<span class="number">0</span>][<span class="number">0</span>][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;n;++i)&#123;</span><br><span class="line">        <span class="keyword">if</span>(s[i+<span class="number">1</span>]!=<span class="string">&#x27;1&#x27;</span>)</span><br><span class="line">            <span class="keyword">for</span>(rei a=<span class="number">0</span>;a&lt;=<span class="number">2</span>;++a)&#123;</span><br><span class="line">                <span class="built_in">fix</span>(f[i+<span class="number">1</span>][a][<span class="number">1</span>]+=f[i][a][<span class="number">2</span>]);</span><br><span class="line">                <span class="built_in">fix</span>(f[i+<span class="number">1</span>][a][<span class="number">1</span>]+=f[i][a][<span class="number">0</span>]);</span><br><span class="line">                <span class="built_in">fix</span>(f[i+<span class="number">1</span>][a][<span class="number">2</span>]+=f[i][a][<span class="number">1</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="keyword">if</span>(s[i+<span class="number">1</span>] != <span class="string">&#x27;0&#x27;</span>)&#123;</span><br><span class="line">            <span class="keyword">for</span>(rei a=<span class="number">0</span>;a&lt;=<span class="number">2</span>;++a)&#123;</span><br><span class="line">                <span class="built_in">fix</span>(f[i+<span class="number">1</span>][a][<span class="number">0</span>]+=f[i][a][<span class="number">1</span>]);</span><br><span class="line">                <span class="built_in">fix</span>(f[i+<span class="number">1</span>][a][<span class="number">1</span>]+=f[i][a][<span class="number">2</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">fix</span>(f[i+<span class="number">1</span>][<span class="number">1</span>][<span class="number">0</span>]+=f[i][<span class="number">0</span>][<span class="number">0</span>]);</span><br><span class="line">            <span class="built_in">fix</span>(f[i+<span class="number">1</span>][<span class="number">2</span>][<span class="number">0</span>]+=f[i][<span class="number">1</span>][<span class="number">0</span>]);</span><br><span class="line">            <span class="built_in">fix</span>(f[i+<span class="number">1</span>][<span class="number">2</span>][<span class="number">0</span>]+=f[i][<span class="number">2</span>][<span class="number">0</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(rei a=<span class="number">0</span>;a&lt;=<span class="number">2</span>;++a) <span class="keyword">for</span>(rei b=<span class="number">0</span>;b&lt;=a;++b) <span class="built_in">fix</span>(ans+=f[n][a][b]);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,ans);</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h2 id="F"><a href="#F" class="headerlink" title="F"></a>F</h2><blockquote>
+<p>$x=10^{100}$ ，数轴上有 $n$ 个点，点 $i$ 的坐标为 $x_i$ ，$n-1$ 次操作，每次选择两点 $A,B$ ，将 $A$ 移动到 $B$ 的对称点并删去 $B$ ，求最后剩的数取值的方案数</p>
+</blockquote>
+<p>当 $关于B对称的A$ 变成 $2B-A$ 时，即 $B被消掉$ 时，将 $A$ 视作 $B$ 的父亲，最终形成一颗具有儿子相对顺序的树，如此最终剩下来的点就是根节点</p>
+<p>将一个点 $A$ 的贡献视作 $2^{d_A} \times c_A \times x_A$ ，其中 $x_A$ 视作未知数， $d_A$ 为节点 $A$ 深度 ，$c_A$ 为正负号</p>
+<p>考虑到 $x_i$ 极大且 $x_{i+1}-x_i$ 也极大，那么不会出现点贡献相互抵消，那么只需要考虑前面的系数即可</p>
+<p>深度显然易得，考虑如何求 $c_i$</p>
+<p>这里采取<strong>间接确定每一项的符号</strong>，即，对于点 $i$ 的字节点 $son_1,son_2,…son_k$ ，已知点 $i$ 的符号，观察 $k$ 个子节点符号与 $i$ 的关系</p>
+<p>当 $i$ 再向上与 $fa_i$ 连边时，相当于有 $2\times val_i-val_{fa}$ ，而 $son_i$ 又有贡献 $2\times val_{son}-2\times val_i$ ，所以连边后 $i$ 与 $son_i$ 的正负号会同时取反</p>
+<p>而当 $son_i$ 连向 $i$ 时，对于 $son_i$ ，其实质相当于 $\times 2$ ，而对于 $i$ ，其实质为 $\times -1$</p>
+<p>那么有结论：当且仅当节点 $v$ 有奇数个字节点时，其符号与父节点不一样</p>
+<p>考虑 $dp$ 解决：</p>
+<p>设 $f_{i,j}$ 表示放了 $i$ 个节点，最后一层有 $j$ 个节点的儿子数量为奇数时的方案数</p>
+<p>为了方便将 $c_i$ 差分，与 $fa$ 相同记作 $1$ ，不同记作 $-1$ ，转移时仅关心下一层与 $fa$ 相同/不同的数量</p>
+<p>对于点 $v$ 有 $k$ 个儿子，若不考虑儿子的儿子的影响，应该有 $\left\lfloor \frac{k}{2} \right\rfloor$ 个儿子的 $c$ 与 $v$ 不同</p>
+<p>设下一层长出 $k$ 个节点，其中 $\frac{k-j}{2}$ 个点正负与父亲不同(此时kj奇偶性不同则跳过)</p>
+<p>设考虑儿子的儿子的影响后，点 $v$ 有 $x$ 个儿子与之正负不同，那么就有 $|x-\frac{k-j}{2}|$ 个节点( $son_v$ )的正负性需要修正，即，下一层中的点的儿子个数为奇数的节点数</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">55</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod=<span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line">ll c[N][N],f[N][N]; <span class="keyword">int</span> n;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;=n;++i)&#123;</span><br><span class="line">        c[i][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(rei j=<span class="number">1</span>;j&lt;=i;++j) c[i][j]=(c[i<span class="number">-1</span>][j<span class="number">-1</span>]+c[i<span class="number">-1</span>][j])%mod;</span><br><span class="line">    &#125;</span><br><span class="line">    f[<span class="number">1</span>][<span class="number">0</span>]=f[<span class="number">1</span>][<span class="number">1</span>]=n;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;n;++i) <span class="keyword">for</span>(rei j=<span class="number">0</span>;j&lt;=i;++j) <span class="keyword">for</span>(rei k=(!j ? <span class="number">2</span> : j);i+k&lt;=n;k+=<span class="number">2</span>)&#123;</span><br><span class="line">        rei t=(k-j)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(rei x=<span class="number">0</span>;x&lt;=k;++x) (f[i+k][<span class="built_in">abs</span>(x-t)]+=f[i][j]*c[n-i][k]%mod*c[k][x]%mod)%=mod;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,f[n][<span class="number">0</span>]);</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -351,8 +374,8 @@ s[i+1]=?时 \quad
           <div class="post-tags">
               <a href="/tags/%E6%9E%84%E9%80%A0/" rel="tag"><i class="fa fa-tag"></i> 构造</a>
               <a href="/tags/%E6%80%9D%E7%BB%B4/" rel="tag"><i class="fa fa-tag"></i> 思维</a>
-              <a href="/tags/%E8%B4%AA%E5%BF%83/" rel="tag"><i class="fa fa-tag"></i> 贪心</a>
               <a href="/tags/dp/" rel="tag"><i class="fa fa-tag"></i> dp</a>
+              <a href="/tags/%E8%B4%AA%E5%BF%83/" rel="tag"><i class="fa fa-tag"></i> 贪心</a>
               <a href="/tags/%E6%A0%88/" rel="tag"><i class="fa fa-tag"></i> 栈</a>
           </div>
 
@@ -425,7 +448,7 @@ s[i+1]=?时 \quad
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#C"><span class="nav-number">1.</span> <span class="nav-text">C</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#D"><span class="nav-number">2.</span> <span class="nav-text">D</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#E"><span class="nav-number">3.</span> <span class="nav-text">E</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#C"><span class="nav-number">1.</span> <span class="nav-text">C</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#D"><span class="nav-number">2.</span> <span class="nav-text">D</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#E"><span class="nav-number">3.</span> <span class="nav-text">E</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#F"><span class="nav-number">4.</span> <span class="nav-text">F</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
