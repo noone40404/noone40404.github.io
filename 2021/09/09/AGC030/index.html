@@ -25,15 +25,15 @@
     var CONFIG = {"hostname":"noone40404.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="AGC020">
+  <meta name="description" content="AGC030">
 <meta property="og:type" content="article">
-<meta property="og:title" content="72801202-AGC020">
-<meta property="og:url" content="http://noone40404.github.io/2021/08/27/AGC020/index.html">
+<meta property="og:title" content="90901202-AGC030">
+<meta property="og:url" content="http://noone40404.github.io/2021/09/09/AGC030/index.html">
 <meta property="og:site_name" content="noone___&#39;s blog">
-<meta property="og:description" content="AGC020">
+<meta property="og:description" content="AGC030">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-08-27T14:15:41.000Z">
-<meta property="article:modified_time" content="2021-08-31T14:08:44.022Z">
+<meta property="article:published_time" content="2021-09-09T14:14:41.000Z">
+<meta property="article:modified_time" content="2021-09-22T12:56:22.045Z">
 <meta property="article:author" content="noone___">
 <meta property="article:tag" content="思维">
 <meta property="article:tag" content="贪心">
@@ -42,7 +42,7 @@
 <meta property="article:tag" content="期望">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://noone40404.github.io/2021/08/27/AGC020/">
+<link rel="canonical" href="http://noone40404.github.io/2021/09/09/AGC030/">
 
 
 <script id="page-configurations">
@@ -55,7 +55,7 @@
   };
 </script>
 
-  <title>72801202-AGC020 | noone___'s blog</title>
+  <title>90901202-AGC030 | noone___'s blog</title>
   
 
 
@@ -213,7 +213,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2021/08/27/AGC020/">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2021/09/09/AGC030/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -226,7 +226,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          72801202-AGC020
+          90901202-AGC030
         </h1>
 
         <div class="post-meta">
@@ -236,14 +236,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-08-27 22:15:41" itemprop="dateCreated datePublished" datetime="2021-08-27T22:15:41+08:00">2021-08-27</time>
+              <time title="创建时间：2021-09-09 22:14:41" itemprop="dateCreated datePublished" datetime="2021-09-09T22:14:41+08:00">2021-09-09</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-31 22:08:44" itemprop="dateModified" datetime="2021-08-31T22:08:44+08:00">2021-08-31</time>
+                <time title="修改时间：2021-09-22 20:56:22" itemprop="dateModified" datetime="2021-09-22T20:56:22+08:00">2021-09-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -263,7 +263,7 @@
               <span class="post-meta-item-text">阅读次数：</span>
               <span id="busuanzi_value_page_pv"></span>
             </span>
-            <div class="post-description">AGC020</div>
+            <div class="post-description">AGC030</div>
 
         </div>
       </header>
@@ -275,55 +275,56 @@
 
       
         <h2 id="D"><a href="#D" class="headerlink" title="D"></a>D</h2><blockquote>
-<p>多组询问，对于每组询问给出 $ABCD$ ，求出字符串满足：长度为 $AA+B$ ，由 $A$ 个 字符 $\text{A}$ 和 $B$ 个字符 $\text{B}$ 构成，且连续相同字符个数的最大值最小，且字典序最小。输出第 $C$ 位到第 $D$ 位</p>
+<p>给定长度为 $n$ 的数列，给 $q$ 个交换操作，可选择是否操作，能得到 $2^Q$ 个(可能相同的)序列，求所有情况的逆序数总和</p>
 </blockquote>
-<p>神仙题用<strong>二分构造</strong></p>
-<p>贪心得最小连续长度 $\displaystyle{k=\max\left\{\left\lceil\frac{A}{B+1} \right\rceil , \left\lceil\frac{B}{A+1} \right\rceil \right\}}$</p>
-<p>那么这个串可以分成两部分：前一部分在 $k$ 限制下贪心填 $A$ ，后一部分不得已填 $B$</p>
-<p>二分边界 $p$ 使 $p$ 的右半部分满足 $B&gt;A\times k$ ，确保左边是 $A$ ，右边是 $B$</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> T,A,B,C,D,k;</span><br><span class="line"><span class="keyword">int</span> a,b;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> pos)</span></span>&#123;</span><br><span class="line">    a=A-pos/(k+<span class="number">1</span>)*k-pos%(k+<span class="number">1</span>);</span><br><span class="line">    b=B-pos/(k+<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;T);</span><br><span class="line">    <span class="keyword">while</span>(T--)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d%d&quot;</span>,&amp;A,&amp;B,&amp;C,&amp;D);</span><br><span class="line">        k=(A+B)/(<span class="built_in">min</span>(A,B)+<span class="number">1</span>);</span><br><span class="line">        rei l=<span class="number">0</span>,r=A+B;</span><br><span class="line">        <span class="keyword">while</span>(l&lt;r)&#123;</span><br><span class="line">            rei mid=l+r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">            <span class="built_in">get</span>(mid);</span><br><span class="line">            b&lt;=(ll) a*k ? l=mid+<span class="number">1</span> : r=mid;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">get</span>(l);</span><br><span class="line">        r=l+<span class="number">1</span>+b-a*k;</span><br><span class="line">        <span class="keyword">for</span>(rei i=C;i&lt;=D;++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i&lt;=l) i%(k+<span class="number">1</span>)!=<span class="number">0</span> ? <span class="built_in">printf</span>(<span class="string">&quot;A&quot;</span>) : <span class="built_in">printf</span>(<span class="string">&quot;B&quot;</span>);</span><br><span class="line">            <span class="keyword">else</span> (i-r)%(k+<span class="number">1</span>)!=<span class="number">0</span> ? <span class="built_in">printf</span>(<span class="string">&quot;B&quot;</span>) : <span class="built_in">printf</span>(<span class="string">&quot;A&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>直接算总和过于繁琐，对于每一项计算其期望贡献，最后乘 $2^Q$ ，即 $E(N(A))=\sum_{1\leq i<j\leq n} p(A_i>A_j)$ ，对于每一对 $(i,j) \ i<j$ ，计算 $A_i>A_j$ 的概率</p>
+<p>考虑第 $q$ 次操作 $(A_X,A_Y)$ ，显然若 $\{i,j\}\cap \{X,Y\}=\varnothing$ ，$p(A_i&gt;A_j)$ 的值不变</p>
+<p>而对于 $(A’_X,A’_Y)$ ，操作 $q$ 交换两者的概率可以看作 $\frac{1}{2}$ 。。。。。吗？</p>
+<p>考虑到 $A_X=A_Y$ ，此时需要除去它们相等的概率，即 $1-p(A_X&gt;A_Y)-p(A_Y&gt;A_X)$ ，转移即为：</p>
+<script type="math/tex; mode=display">p(A'_X>A'_Y)=p(A'_Y>A'_X)=\frac{1}{2}\left(p(A_X>A_Y)+p(A_Y>A_X)\right)</script><p>对于 $p(A’_X,A’_i) , i\not \in \{X,Y\}$ ，此时 $A’_X$ 有 $\frac{1}{2}$ 的概率为 $A_X$ , $\frac{1}{2}$ 的概率为 $A_Y$ ，有转移：</p>
+<script type="math/tex; mode=display">p(A'_X>A'_i)=\frac{1}{2}(p(A_X>A_i)+p(A_Y>A_i))</script><p>其余情况类似不再说明</p>
+<p>对于操作 $(X,Y)$ ，能使 $p(A’_i&gt;A’_j)$ 变化的 $(i,j)$ 对需要满足 $\{i,j\}\cap \{X,Y\}\not ={\varnothing}$ ，故只有 $O(n)$ 对</p>
+<p>总复杂度为 $O(n^2)$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">3100</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod=<span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> inv2=<span class="number">5e8</span>+<span class="number">4</span>;</span><br><span class="line">ll E;</span><br><span class="line"><span class="keyword">int</span> n,q,a[N],f[N][N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">qpow</span><span class="params">(ll a,<span class="keyword">int</span> n,ll ans=<span class="number">1</span>)</span></span>&#123; <span class="keyword">for</span>(;n;n&gt;&gt;=<span class="number">1</span>,a=a*a%mod) <span class="keyword">if</span>(n&amp;<span class="number">1</span>) ans=ans*a%mod; <span class="keyword">return</span> ans;&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">half</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123; <span class="keyword">return</span> (ll) x*inv2%mod;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;q);</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a[i]);</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="keyword">for</span>(rei j=<span class="number">1</span>;j&lt;=n;++j) f[i][j]=a[i]&gt;a[j];</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">0</span>,u,v;i&lt;q;++i)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;u,&amp;v); f[u][v]=f[v][u]=<span class="built_in">half</span>(f[u][v]+f[v][u]);</span><br><span class="line">		<span class="keyword">for</span>(rei j=<span class="number">1</span>;j&lt;=n;++j) <span class="keyword">if</span>(j!=u &amp;&amp; j!=v)&#123;</span><br><span class="line">			f[u][j]=f[v][j]=<span class="built_in">half</span>(f[u][j]+f[v][j]);</span><br><span class="line">			f[j][u]=f[j][v]=<span class="built_in">half</span>(f[j][u]+f[j][v]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) E+=<span class="built_in">accumulate</span>(f[i]+i,f[i]+<span class="number">1</span>+n,<span class="number">0ll</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,(<span class="keyword">int</span>) <span class="built_in">qpow</span>(<span class="number">2</span>,q,E%mod));<span class="comment">//期望值*2^Q</span></span><br><span class="line">	<span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="E"><a href="#E" class="headerlink" title="E"></a>E</h2><blockquote>
-<p>定义一个 $01$ 串的压缩是如下的字符串变化过程：$0\rightarrow 0,1\rightarrow 1$ ；如果 $A\rightarrow P,B\rightarrow Q$ 合法，那么 $A+B\rightarrow P+QA+B→P+Q$ 也合法（其中 $+$ 代表字符串拼接）；如果 $S=\underbrace{A+A+\cdots+A}_{n\text{个}(n\ge 2)}$ ，那么 $S\rightarrow(A\times n)$ 也合法（其中 $\text{(, ), ×  }$ 为字符，$n$ 为数字，算作一个字符，即使其中有 $0/1$</p>
-<p>定义 $01$ 串 $B$ 是 $A$ 的子集当且仅当：$|A|=|B|$ ； $\forall B_i=1,A_i=1$</p>
-<p>现在给 $01$ 串 $S$ ，问它所有的子集的合法变化结果数的总和为多少。</p>
+<p>给定两个长度 $n$ 的 $01$ 串 $s,t$ ，进行若干次操作，每次可以使 $s$ 中某一个位置上的值取反，且保证不存在 $3$ 个及以上连续的相同字符，求把 $s$ 变为 $t$ 所需要的最小操作次数</p>
 </blockquote>
-<p>不容易对子集直接求和，考虑解码时是 $S$ 子集的数量，设 $f(S)$ 表示字符串为 $S$ 时的答案</p>
-<p>对于字符串的第一个字符：</p>
+<p>在 $0 \ 1$ 之间画一条红线， $1 \ 0$ 之间画一条蓝线，默认字符串开头结尾处均有无限多的红蓝线</p>
+<p>此时，两个字符串相等等价于两个字符串的红蓝线相等，而更改一个位置上的数相当于将一条红/蓝线左/右移</p>
+<p>那么直接枚举红蓝线之间的位置关系，暴力 $O(n^2)$ 即可</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">2e4</span>+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">int</span> n,a[N],b[N];</span><br><span class="line"><span class="keyword">char</span> s[N],t[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">calc</span><span class="params">()</span></span>&#123;</span><br><span class="line">	rei t1=<span class="number">0</span>,t2=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n<span class="number">-1</span>;++i) <span class="keyword">if</span> (s[i]==<span class="string">&#x27;0&#x27;</span> &amp;&amp; s[i+<span class="number">1</span>]==<span class="string">&#x27;1&#x27;</span>) a[++t1]=i;</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) b[++t2]=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n<span class="number">-1</span>;++i) <span class="keyword">if</span> (t[i]==<span class="string">&#x27;0&#x27;</span> &amp;&amp; t[i+<span class="number">1</span>]==<span class="string">&#x27;1&#x27;</span>) b[++t2]=i;</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) b[++t2]=n;</span><br><span class="line">	rei ret=n*n;</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=t2-t1+<span class="number">1</span>;++i)&#123;</span><br><span class="line">		rei now=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(rei j=<span class="number">1</span>;j&lt;=i<span class="number">-1</span>;++j) now+=b[j];</span><br><span class="line">		<span class="keyword">for</span>(rei j=<span class="number">1</span>;j&lt;=t1;++j) now+=<span class="built_in">abs</span>(a[j]-b[i+j<span class="number">-1</span>]);</span><br><span class="line">		<span class="keyword">for</span>(rei j=i+t1;j&lt;=t2;++j) now+=n-b[j];</span><br><span class="line">		ret=<span class="built_in">min</span>(ret,now);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d%s%s&quot;</span>,&amp;n,s+<span class="number">1</span>,t+<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">if</span>(n&lt;=<span class="number">2</span>)&#123;</span><br><span class="line">		rei ans=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) ans+=s[i]!=t[i];</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,ans);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	rei tmp=<span class="built_in">calc</span>();</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) s[i]=<span class="string">&#x27;0&#x27;</span>+<span class="string">&#x27;1&#x27;</span>-s[i],t[i]=<span class="string">&#x27;0&#x27;</span>+<span class="string">&#x27;1&#x27;</span>-t[i];</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,tmp+<span class="built_in">calc</span>());</span><br><span class="line">	<span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="F"><a href="#F" class="headerlink" title="F"></a>F</h2><blockquote>
+<p>长度 $2\times n$ 的序列 $A$ 中为 $1\sim 2\times n$ ，要将其填入形成一个排列，其中某些位置已经强制有特定的数，有长度为 $n$ 的序列 $B$ ，其中 $B_i=\min\{A_{2i-1},A_{2i}\}$ ，求所有方案中能得到不同的 $B$ 的数量</p>
+</blockquote>
+<p>考虑 $B$ 的取值方法，对于序列 $A$ 两两考虑每一对数：</p>
 <ul>
-<li><p>$0/1$</p>
-<p>与其他部分编码无关，$S_1=1$ 时，编码字符串第一个可能是 $0/1$ , $\therefore f(S_{1\sim |S|})=2\times f(S_{2\sim |S|})$ ；$S_1=0$ 时，编码第一个只能是 $0$ , $\therefore f(S_{1\sim |S|})=f(S_{2\sim |S|})$</p>
+<li><p>对于已经确认的数对，可以直接丢掉不管</p>
 </li>
-<li><p>左括号</p>
-<p>编码字符串开头为 $P\times k$ ，其中 $P$ 是字符串 $A$ 的代码，满足 $k\times |A|\leq |S|$ ，且 $\underbrace{A+A+…+A}_{k个}$ 是 $S_{1\sim k\times |A|}$ 的子集，即 $A$ 是 $S_{1\sim |A|},S_{|A|+1\sim 2\times |A|},…,S_{(k-1)\times |A|+1\sim k\times |A|}$ 的子集</p>
+<li><p>对于形如 $(-1,-1)$ ，即，两个都没有填的对</p>
+<p>显然数对内的顺序对 $B_i$ 的值无影响，仅需要记录其个数 $cnt1$ ，最后给答案累加阶乘 $cnt1!$ 即可</p>
+</li>
+<li><p>对于 $(x,-1)$ 的</p>
+<p>这种形式有两种，一个是题目指定了一个值且尚未被匹配的数对 $(x,-1)$，或一个数填入到了 $(-1,-1)$ 中</p>
+<p>由于 $B_i$ 要取 $\min$ ,所以对所有数从大到小处理</p>
+<p>设 $f_{i,j,k}$ 表示当前在第 $i$ 个数，其中有 $j$ 种填过一个数的 $(-1,-1)$ ，$k$ 种题中所给的未匹配的数对 $(d,-1)$</p>
+<p>对于新加的第 $i$ 个数 $x$：可以和填了一半进行配对，也可以自己产生一个填了一半的数对</p>
+<p>分类，考虑其是否是 $(x,-1)$ 数对中的一个：</p>
+<ul>
+<li>是：<ul>
+<li>产生新的数对: $\rightarrow f_{i,j,k+1}$</li>
+<li>填到一个填了一半的 $(-1,-1)$ 中: $\rightarrow f_{i,j-1,k}$</li>
+</ul>
+</li>
+<li>不是：<ul>
+<li>填到一个空的 $(-1,-1)$ : $\rightarrow f_{i,j+1,k}$</li>
+<li>填到一个填了一半的 $(-1,-1)$ 中: $\rightarrow f_{i,j-1,k}$</li>
+<li>匹配掉一个 $(x,-1)$ 对，其中有 $k$ 种方法: $\times k \rightarrow f_{i,j,k-1}$</li>
+</ul>
 </li>
 </ul>
-<script type="math/tex; mode=display">\therefore f(S)=(1+S_1)\times f\left(S_{2\sim |S|}\right) + \sum_{|A|=1}^{|S|} \sum_{k=1}^{\left\lfloor\frac{|S|}{|A|} \right\rfloor} f\left( g\left(S,k,|A| \right)\right)\times f\left(S_{k\times |A|+1\sim |S|} \right)</script><p>其中 $g(S,k,|A|)$ 表示 $S_{1\sim |A|}\land S_{|A|+1\sim 2\times |A|}\land …\land S_{(k-1)\times |A|+1\sim k\times |A|}$</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> int __int128</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll __int128</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod=<span class="number">998244353</span>;</span><br><span class="line">map&lt; pair&lt;ll,<span class="keyword">int</span>&gt;,<span class="keyword">int</span>&gt; f;</span><br><span class="line"><span class="keyword">char</span> s[<span class="number">111</span>];</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(pair&lt;ll,<span class="keyword">int</span>&gt; now)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!now.second) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span>(f.<span class="built_in">count</span>(now)) <span class="keyword">return</span> f[now];</span><br><span class="line">	rei ans=(ll) <span class="built_in">dfs</span>( <span class="built_in">mk</span>(now.first&gt;&gt;<span class="number">1</span>,now.second<span class="number">-1</span>))*((now.first&amp;<span class="number">1</span>)+<span class="number">1</span>)%mod;</span><br><span class="line">	<span class="keyword">for</span>(rei A=<span class="number">1</span>;A&lt;=(now.second&gt;&gt;<span class="number">1</span>);++A)&#123;</span><br><span class="line">		ll S=((ll)<span class="number">1</span>&lt;&lt;A)<span class="number">-1</span>,tmp=now.first,sum=tmp&amp;S;</span><br><span class="line">		tmp&gt;&gt;=A; sum&amp;=tmp&amp;S; tmp&gt;&gt;=A;</span><br><span class="line">		<span class="keyword">for</span>(rei k=now.second-A-A;k&gt;=<span class="number">0</span>;k-=A,sum&amp;=tmp&amp;S,tmp&gt;&gt;=A) ans=(ans+(ll) <span class="built_in">dfs</span>(<span class="built_in">mk</span>(sum,A))*<span class="built_in">dfs</span>(<span class="built_in">mk</span>(tmp,k))%mod)%mod;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> f[now]=ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,s); n=<span class="built_in">strlen</span>(s);</span><br><span class="line">	ll S=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;=n<span class="number">-1</span>;++i) S=S&lt;&lt;<span class="number">1</span>|(s[i]-<span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,<span class="built_in">dfs</span>(<span class="built_in">mk</span>(S,n)));</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="F"><a href="#F" class="headerlink" title="F"></a>F</h2><blockquote>
-<p>给定一个周长为 $C$ 的圆周，和 $N$ 段 (半径与圆相同的) 圆弧，第 $i$ 段圆弧的长度为 $L_i$ ，现在，每段弧的位置在圆周上均匀分布：具体地，在圆周上等概率随机一个点，作为弧 $L_i$ 的终点。不同的弧的位置是互相独立的，即它们有相应的概率相交。求有多大的概率，使得这 $N$ 段圆弧的并覆盖整个圆周？</p>
-</blockquote>
-<p><strong>环上的问题并不是容易处理，因此首先固定一个点作为起点</strong></p>
-<p>一条弧的端点是一个比较好的选择，因为<strong>这样一条弧覆盖的就是整条链的前缀</strong></p>
-<p>考虑除了弧 $i$ 外剩下的弧，它们需要覆盖 $[L_i,N)$ 这段区间，不过，有可能存在一些弧包含了 $i$ ，从而它们覆盖了一个前缀和一个后缀</p>
-<p>对于这种情况，可以通过指定 $i$ 是最长的弧 (即 $L_i=\max\{L_1,L_2,…,L_N\}$ ) 来避免</p>
-<p>然后问题就转化为了一个<strong>连续型的线段覆盖问题</strong></p>
-<p>如果整个问题是离散的，那么容易通过 $DP$ 来解决，那现在是连续的，就要考虑化连续为离散</p>
-<p>设弧 $i$ 的起点为 $P_i$ ，终点为 $P_i+L_i$ ，由于 $L_i\in \Z$ ，因此将 $P_i$ 拆成 $[P_i]+\{P_i\}$ ，$[P_i]$ 是一个 $[0,N)$ 上等概率分布的整型 (离散型) 随机变量，$\{P_i\}$ 是一个在 $[0,1)$ 上均匀分布的实随机变量</p>
-<p>考察整个问题，整个圆弧能否被覆盖，更进一步地，某两条弧是否相交，可以发现，只和它们 $[P)i]$ 的值以及 $\{P_i\}$ 的大小关系” 有关</p>
-<p>设 $P_i\leq P_j$ ，于是 $i,j$ 相交等价于 $[P_i]+\{P_i\}+L_i\geq [P_j]+\{P_j\}$ 若 $[P_i]+L_i\not ={P_j}$ ，则小数部分不影响不等号；否则 ，则 $[P_i]+\{P_i\}+L_i\geq [P_j]+\{P_j\} \Leftrightarrow \{P_i\}\geq \{P_j\}$</p>
-<p>由于 $\{P_i\}$ 是独立同分布随机变量，因此它们的大小关系均匀分布的，由<strong>随机变量的连续性</strong>知，可以不妨假设 $\{P_i\}$ 两两不同，这不影响最终结果</p>
-<p>那么，对每种可能的 $\{P_i\}$ 的大小关系，求出对应的答案 (概率)，然后最后再除以 $(N-1)!$ 就可以了</p>
-<p>考虑对于一种特定的大小关系，如何计算概率</p>
-<p>由于整个问题只和 $\{P_i\}$ 相对大小有关，设这 $N-1$ 个 $\{P_i\}$ 构成的集合恰为 $\left\{\frac{1}{N},\frac{2}{N},…,\frac{N-1}{N}\right\}$</p>
-<p>每个 $P_i$ 的分布变成离散的：$0+\frac{i}{N},1+\frac{i}{N},…,(C-1)+\frac{i}{N}$</p>
-<p>变得离散后，考虑计算方案数了，即，每段弧有 $C$ 种选择方案，求它们覆盖整个圆周的方案数</p>
-<p>经典的状态压缩 $DP$ : 设 $f_{S,r}$ 表示用 $S$ 中的弧，最远覆盖到 $r$ (即 $[0,r]$ 被完全覆盖，$r$ 为右端点) 的方案数</p>
-<p>边界是 $f_{0,L_N}=1$ (不妨设 $L_N=\max\{L_1,L_2,…,L_N\}$ ，注意最长的弧是预先放置好的)</p>
-<p>考虑转移，枚举每个位置 ( $\frac{1}{N}$ 的倍数)，找到这个位置所能插入的弧 $i$ ，对于 $i\notin S$ ，将 $i$ 插入 $S$</p>
-<p>同时，$r$ 需要在当前的起点后面，设这个弧能覆盖的右端点为 $to=\min\{P_i+L_i,C\}$ ，则转移为 $\displaystyle{f_{S\cup {i},\max\{r,to\}}+=f_{S,r}}$</p>
-<p>$f_{U,C}$ 为总方案数，乘上 $\frac{1}{C^{N-1}}$ 即得概率</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> n,L,ALL,a[N],f[<span class="number">32</span>][<span class="number">324</span>];</span><br><span class="line">ld ans;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">min</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> x,<span class="keyword">const</span> <span class="keyword">int</span> y)</span></span>&#123; <span class="keyword">return</span> x&lt;y ? x : y;&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> x,<span class="keyword">const</span> <span class="keyword">int</span> y)</span></span>&#123; <span class="keyword">return</span> x&lt;y ? y : x;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> ld <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i,len=n*L+L;</span><br><span class="line">	<span class="built_in">memset</span>(f,<span class="number">0</span>,<span class="keyword">sizeof</span> f);</span><br><span class="line">	f[<span class="number">0</span>][ (n+<span class="number">1</span>)*a[n] ]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;len;++i)</span><br><span class="line">		<span class="keyword">if</span>(i%(n+<span class="number">1</span>))&#123;</span><br><span class="line">			rei c=i%(n+<span class="number">1</span>)<span class="number">-1</span>,to=<span class="built_in">min</span>(i+(n+<span class="number">1</span>)*a[c],len);</span><br><span class="line">			<span class="keyword">for</span>(rei j=<span class="number">0</span>;j&lt;=ALL;++j) <span class="keyword">if</span>(!(j&gt;&gt;c&amp;<span class="number">1</span>)) <span class="keyword">for</span>(rei k=i;k&lt;=len;++k) f[j|<span class="number">1</span>&lt;&lt;c][ <span class="built_in">max</span>(k,to) ]+=f[j][k];</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">return</span> f[ALL][i];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> C=<span class="number">0</span>;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;L);</span><br><span class="line">	ALL=~(<span class="number">-1</span> &lt;&lt; --n);</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;=n;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a[i]);</span><br><span class="line">	<span class="built_in">sort</span>(a,a+n+<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">do</span> ans+=<span class="built_in">solve</span>(),++C;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">next_permutation</span>(a,a+n));</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%.12Lg\n&quot;</span>,ans / (C*<span class="built_in">powl</span>(L,n)));</span><br><span class="line">	<span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">310</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod=<span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"><span class="keyword">int</span> n,m,ans,a[N&lt;&lt;<span class="number">1</span>];</span><br><span class="line"><span class="keyword">int</span> cnt1,cnt2,f[N&lt;&lt;<span class="number">1</span>][N][N],S[N&lt;&lt;<span class="number">1</span>];</span><br><span class="line"><span class="keyword">bool</span> vis[N&lt;&lt;<span class="number">1</span>],book[N&lt;&lt;<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">fix</span><span class="params">(<span class="keyword">int</span> &amp;x)</span></span>&#123; x&gt;=mod ? x-=mod : <span class="number">0</span>;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=(n&lt;&lt;<span class="number">1</span>);++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a[i]);</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=(n&lt;&lt;<span class="number">1</span>);i+=<span class="number">2</span>)&#123;</span><br><span class="line">		<span class="keyword">if</span>(a[i]==<span class="number">-1</span> &amp;&amp; a[i+<span class="number">1</span>]==<span class="number">-1</span>) ++cnt1;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(a[i]&gt;<span class="number">0</span> &amp;&amp; a[i+<span class="number">1</span>]&gt;<span class="number">0</span>) vis[ a[i] ]=vis[ a[i+<span class="number">1</span>] ]=<span class="literal">true</span>;</span><br><span class="line">		<span class="keyword">else</span> ++cnt2,book[ (~a[i]) ? a[i] : a[i+<span class="number">1</span>] ]=<span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(rei i=(n&lt;&lt;<span class="number">1</span>);i;--i) <span class="keyword">if</span>(!vis[i]) S[++m]=i;</span><br><span class="line">	f[<span class="number">0</span>][<span class="number">0</span>][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=m;++i) <span class="keyword">for</span>(rei j=<span class="number">0</span>;j&lt;=cnt1+cnt2;++j) <span class="keyword">for</span>(rei k=<span class="number">0</span>;k&lt;=cnt2;++k)&#123;</span><br><span class="line">		<span class="keyword">if</span>(!f[i<span class="number">-1</span>][j][k]) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">if</span>(!book[ S[i] ])&#123;</span><br><span class="line">			<span class="built_in">fix</span>(f[i][j+<span class="number">1</span>][k]+=f[i<span class="number">-1</span>][j][k]);</span><br><span class="line">			<span class="keyword">if</span>(j) <span class="built_in">fix</span>(f[i][j<span class="number">-1</span>][k]+=f[i<span class="number">-1</span>][j][k]);</span><br><span class="line">			<span class="keyword">if</span>(k) <span class="built_in">fix</span>(f[i][j][k<span class="number">-1</span>]+=(ll) k*f[i<span class="number">-1</span>][j][k]%mod);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="built_in">fix</span>(f[i][j][k+<span class="number">1</span>]+=f[i<span class="number">-1</span>][j][k]);</span><br><span class="line">			<span class="keyword">if</span>(j) <span class="built_in">fix</span>(f[i][j<span class="number">-1</span>][k]+=f[i<span class="number">-1</span>][j][k]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	ans=f[m][<span class="number">0</span>][<span class="number">0</span>]; <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=cnt1;++i) ans=(ll) ans*i%mod;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,ans);</span><br><span class="line">	<span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -338,7 +339,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://noone40404.github.io/2021/08/27/AGC020/" title="72801202-AGC020">http://noone40404.github.io/2021/08/27/AGC020/</a>
+    <a href="http://noone40404.github.io/2021/09/09/AGC030/" title="90901202-AGC030">http://noone40404.github.io/2021/09/09/AGC030/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -363,13 +364,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/08/26/AGC019/" rel="prev" title="62801202-AGC019">
-      <i class="fa fa-chevron-left"></i> 62801202-AGC019
+    <a href="/2021/09/08/AGC029/" rel="prev" title="80901202-AGC029">
+      <i class="fa fa-chevron-left"></i> 80901202-AGC029
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/08/28/AGC021/" rel="next" title="82801202-AGC021">
-      82801202-AGC021 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -743,7 +741,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'noone40404.github.io',
       owner       : 'noone40404',
       admin       : ['noone40404'],
-      id          : '6649c6c36a1e5b25ad1283ed89807fd3',
+      id          : 'd70d73f92f69ba2fbd9a35b4537cd6c1',
         language: 'zn-CN',
       distractionFreeMode: true
     });
