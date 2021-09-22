@@ -6,7 +6,7 @@
   <link href="http://noone40404.github.io/atom.xml" rel="self"/>
   
   <link href="http://noone40404.github.io/"/>
-  <updated>2021-09-02T03:28:42.825Z</updated>
+  <updated>2021-09-22T09:06:43.944Z</updated>
   <id>http://noone40404.github.io/</id>
   
   <author>
@@ -15,6 +15,147 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>80901202-AGC029</title>
+    <link href="http://noone40404.github.io/2021/09/08/AGC029/"/>
+    <id>http://noone40404.github.io/2021/09/08/AGC029/</id>
+    <published>2021-09-08T14:14:41.000Z</published>
+    <updated>2021-09-22T09:06:43.944Z</updated>
+    
+    
+    <summary type="html">AGC029</summary>
+    
+    
+    
+    <category term="题解" scheme="http://noone40404.github.io/categories/%E9%A2%98%E8%A7%A3/"/>
+    
+    
+    <category term="构造" scheme="http://noone40404.github.io/tags/%E6%9E%84%E9%80%A0/"/>
+    
+    <category term="思维" scheme="http://noone40404.github.io/tags/%E6%80%9D%E7%BB%B4/"/>
+    
+    <category term="贪心" scheme="http://noone40404.github.io/tags/%E8%B4%AA%E5%BF%83/"/>
+    
+    <category term="二分图" scheme="http://noone40404.github.io/tags/%E4%BA%8C%E5%88%86%E5%9B%BE/"/>
+    
+    <category term="网络流" scheme="http://noone40404.github.io/tags/%E7%BD%91%E7%BB%9C%E6%B5%81/"/>
+    
+    <category term="二分" scheme="http://noone40404.github.io/tags/%E4%BA%8C%E5%88%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>70901202-AGC028</title>
+    <link href="http://noone40404.github.io/2021/09/07/AGC028/"/>
+    <id>http://noone40404.github.io/2021/09/07/AGC028/</id>
+    <published>2021-09-07T14:14:41.000Z</published>
+    <updated>2021-09-22T09:07:23.896Z</updated>
+    
+    
+    <summary type="html">AGC028</summary>
+    
+    
+    
+    <category term="题解" scheme="http://noone40404.github.io/categories/%E9%A2%98%E8%A7%A3/"/>
+    
+    
+    <category term="构造" scheme="http://noone40404.github.io/tags/%E6%9E%84%E9%80%A0/"/>
+    
+    <category term="思维" scheme="http://noone40404.github.io/tags/%E6%80%9D%E7%BB%B4/"/>
+    
+    <category term="贪心" scheme="http://noone40404.github.io/tags/%E8%B4%AA%E5%BF%83/"/>
+    
+    <category term="字符串" scheme="http://noone40404.github.io/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+    
+    <category term="线段树" scheme="http://noone40404.github.io/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/"/>
+    
+    <category term="卡常" scheme="http://noone40404.github.io/tags/%E5%8D%A1%E5%B8%B8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>60901202-AGC027</title>
+    <link href="http://noone40404.github.io/2021/09/06/AGC027/"/>
+    <id>http://noone40404.github.io/2021/09/06/AGC027/</id>
+    <published>2021-09-06T14:14:41.000Z</published>
+    <updated>2021-09-22T09:07:37.933Z</updated>
+    
+    
+    <summary type="html">AGC027</summary>
+    
+    
+    
+    <category term="题解" scheme="http://noone40404.github.io/categories/%E9%A2%98%E8%A7%A3/"/>
+    
+    
+    <category term="构造" scheme="http://noone40404.github.io/tags/%E6%9E%84%E9%80%A0/"/>
+    
+    <category term="思维" scheme="http://noone40404.github.io/tags/%E6%80%9D%E7%BB%B4/"/>
+    
+    <category term="贪心" scheme="http://noone40404.github.io/tags/%E8%B4%AA%E5%BF%83/"/>
+    
+    <category term="染色" scheme="http://noone40404.github.io/tags/%E6%9F%93%E8%89%B2/"/>
+    
+    <category term="二分图" scheme="http://noone40404.github.io/tags/%E4%BA%8C%E5%88%86%E5%9B%BE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>30901202-AGC026</title>
+    <link href="http://noone40404.github.io/2021/09/03/AGC026/"/>
+    <id>http://noone40404.github.io/2021/09/03/AGC026/</id>
+    <published>2021-09-03T14:14:41.000Z</published>
+    <updated>2021-09-14T14:25:43.410Z</updated>
+    
+    
+    <summary type="html">AGC026</summary>
+    
+    
+    
+    <category term="题解" scheme="http://noone40404.github.io/categories/%E9%A2%98%E8%A7%A3/"/>
+    
+    
+    <category term="构造" scheme="http://noone40404.github.io/tags/%E6%9E%84%E9%80%A0/"/>
+    
+    <category term="思维" scheme="http://noone40404.github.io/tags/%E6%80%9D%E7%BB%B4/"/>
+    
+    <category term="贪心" scheme="http://noone40404.github.io/tags/%E8%B4%AA%E5%BF%83/"/>
+    
+    <category term="博弈论" scheme="http://noone40404.github.io/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/"/>
+    
+    <category term="分治" scheme="http://noone40404.github.io/tags/%E5%88%86%E6%B2%BB/"/>
+    
+    <category term="笛卡尔树" scheme="http://noone40404.github.io/tags/%E7%AC%9B%E5%8D%A1%E5%B0%94%E6%A0%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>20901202-AGC025</title>
+    <link href="http://noone40404.github.io/2021/09/02/AGC025/"/>
+    <id>http://noone40404.github.io/2021/09/02/AGC025/</id>
+    <published>2021-09-02T14:14:41.000Z</published>
+    <updated>2021-09-07T02:55:41.840Z</updated>
+    
+    
+    <summary type="html">AGC025</summary>
+    
+    
+    
+    <category term="题解" scheme="http://noone40404.github.io/categories/%E9%A2%98%E8%A7%A3/"/>
+    
+    
+    <category term="构造" scheme="http://noone40404.github.io/tags/%E6%9E%84%E9%80%A0/"/>
+    
+    <category term="思维" scheme="http://noone40404.github.io/tags/%E6%80%9D%E7%BB%B4/"/>
+    
+    <category term="数论" scheme="http://noone40404.github.io/tags/%E6%95%B0%E8%AE%BA/"/>
+    
+    <category term="模拟" scheme="http://noone40404.github.io/tags/%E6%A8%A1%E6%8B%9F/"/>
+    
+    <category term="二分图" scheme="http://noone40404.github.io/tags/%E4%BA%8C%E5%88%86%E5%9B%BE/"/>
+    
+  </entry>
   
   <entry>
     <title>10901202-AGC024</title>
@@ -409,138 +550,9 @@
     
     <category term="贪心" scheme="http://noone40404.github.io/tags/%E8%B4%AA%E5%BF%83/"/>
     
+    <category term="博弈论" scheme="http://noone40404.github.io/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/"/>
+    
     <category term="数论" scheme="http://noone40404.github.io/tags/%E6%95%B0%E8%AE%BA/"/>
-    
-    <category term="博弈论" scheme="http://noone40404.github.io/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>21801202-AGC009</title>
-    <link href="http://noone40404.github.io/2021/08/12/AGC009/"/>
-    <id>http://noone40404.github.io/2021/08/12/AGC009/</id>
-    <published>2021-08-12T13:44:41.000Z</published>
-    <updated>2021-08-14T13:51:59.963Z</updated>
-    
-    
-    <summary type="html">AGC009</summary>
-    
-    
-    
-    <category term="题解" scheme="http://noone40404.github.io/categories/%E9%A2%98%E8%A7%A3/"/>
-    
-    
-    <category term="构造" scheme="http://noone40404.github.io/tags/%E6%9E%84%E9%80%A0/"/>
-    
-    <category term="思维" scheme="http://noone40404.github.io/tags/%E6%80%9D%E7%BB%B4/"/>
-    
-    <category term="贪心" scheme="http://noone40404.github.io/tags/%E8%B4%AA%E5%BF%83/"/>
-    
-    <category term="dp" scheme="http://noone40404.github.io/tags/dp/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>11801202-AGC008</title>
-    <link href="http://noone40404.github.io/2021/08/11/AGC008/"/>
-    <id>http://noone40404.github.io/2021/08/11/AGC008/</id>
-    <published>2021-08-11T13:51:41.000Z</published>
-    <updated>2021-08-12T13:44:25.056Z</updated>
-    
-    
-    <summary type="html">AGC008</summary>
-    
-    
-    
-    <category term="题解" scheme="http://noone40404.github.io/categories/%E9%A2%98%E8%A7%A3/"/>
-    
-    
-    <category term="构造" scheme="http://noone40404.github.io/tags/%E6%9E%84%E9%80%A0/"/>
-    
-    <category term="思维" scheme="http://noone40404.github.io/tags/%E6%80%9D%E7%BB%B4/"/>
-    
-    <category term="dp" scheme="http://noone40404.github.io/tags/dp/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>01801202-AGC007</title>
-    <link href="http://noone40404.github.io/2021/08/10/AGC007/"/>
-    <id>http://noone40404.github.io/2021/08/10/AGC007/</id>
-    <published>2021-08-10T13:38:41.000Z</published>
-    <updated>2021-08-10T13:43:52.275Z</updated>
-    
-    
-    <summary type="html">AGC007</summary>
-    
-    
-    
-    <category term="题解" scheme="http://noone40404.github.io/categories/%E9%A2%98%E8%A7%A3/"/>
-    
-    
-    <category term="构造" scheme="http://noone40404.github.io/tags/%E6%9E%84%E9%80%A0/"/>
-    
-    <category term="思维" scheme="http://noone40404.github.io/tags/%E6%80%9D%E7%BB%B4/"/>
-    
-    <category term="贪心" scheme="http://noone40404.github.io/tags/%E8%B4%AA%E5%BF%83/"/>
-    
-    <category term="dp" scheme="http://noone40404.github.io/tags/dp/"/>
-    
-    <category term="数列" scheme="http://noone40404.github.io/tags/%E6%95%B0%E5%88%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>90801202-AGC006</title>
-    <link href="http://noone40404.github.io/2021/08/09/AGC006/"/>
-    <id>http://noone40404.github.io/2021/08/09/AGC006/</id>
-    <published>2021-08-09T13:37:41.000Z</published>
-    <updated>2021-08-09T13:46:57.839Z</updated>
-    
-    
-    <summary type="html">AGC006</summary>
-    
-    
-    
-    <category term="题解" scheme="http://noone40404.github.io/categories/%E9%A2%98%E8%A7%A3/"/>
-    
-    
-    <category term="构造" scheme="http://noone40404.github.io/tags/%E6%9E%84%E9%80%A0/"/>
-    
-    <category term="思维" scheme="http://noone40404.github.io/tags/%E6%80%9D%E7%BB%B4/"/>
-    
-    <category term="染色" scheme="http://noone40404.github.io/tags/%E6%9F%93%E8%89%B2/"/>
-    
-    <category term="差分" scheme="http://noone40404.github.io/tags/%E5%B7%AE%E5%88%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>70801202-AGC005</title>
-    <link href="http://noone40404.github.io/2021/08/07/AGC005/"/>
-    <id>http://noone40404.github.io/2021/08/07/AGC005/</id>
-    <published>2021-08-07T13:32:41.000Z</published>
-    <updated>2021-08-07T13:37:58.632Z</updated>
-    
-    
-    <summary type="html">AGC005</summary>
-    
-    
-    
-    <category term="题解" scheme="http://noone40404.github.io/categories/%E9%A2%98%E8%A7%A3/"/>
-    
-    
-    <category term="构造" scheme="http://noone40404.github.io/tags/%E6%9E%84%E9%80%A0/"/>
-    
-    <category term="思维" scheme="http://noone40404.github.io/tags/%E6%80%9D%E7%BB%B4/"/>
-    
-    <category term="dp" scheme="http://noone40404.github.io/tags/dp/"/>
-    
-    <category term="博弈论" scheme="http://noone40404.github.io/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/"/>
-    
-    <category term="多项式" scheme="http://noone40404.github.io/tags/%E5%A4%9A%E9%A1%B9%E5%BC%8F/"/>
-    
-    <category term="容斥" scheme="http://noone40404.github.io/tags/%E5%AE%B9%E6%96%A5/"/>
     
   </entry>
   
