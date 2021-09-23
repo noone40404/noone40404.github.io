@@ -33,12 +33,13 @@
 <meta property="og:description" content="AGC028">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-09-07T14:14:41.000Z">
-<meta property="article:modified_time" content="2021-09-22T09:07:23.896Z">
+<meta property="article:modified_time" content="2021-09-22T14:46:13.637Z">
 <meta property="article:author" content="noone___">
-<meta property="article:tag" content="构造">
 <meta property="article:tag" content="思维">
 <meta property="article:tag" content="贪心">
+<meta property="article:tag" content="构造">
 <meta property="article:tag" content="字符串">
+<meta property="article:tag" content="笛卡尔树">
 <meta property="article:tag" content="线段树">
 <meta property="article:tag" content="卡常">
 <meta name="twitter:card" content="summary">
@@ -244,7 +245,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-22 17:07:23" itemprop="dateModified" datetime="2021-09-22T17:07:23+08:00">2021-09-22</time>
+                <time title="修改时间：2021-09-22 22:46:13" itemprop="dateModified" datetime="2021-09-22T22:46:13+08:00">2021-09-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -275,7 +276,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="C"><a href="#C" class="headerlink" title="C"></a>C</h2><blockquote>
+        <h2 id="B"><a href="#B" class="headerlink" title="B"></a>B</h2><blockquote>
+<p>$N$ 个砖块，每个重量 $A_i$ ，进行以下操作：选择一个还未被移除的砖块并移除，代价是其和与其相邻的砖块的重量之和，定义两块砖 $x,y$ 相邻当且仅当 $\forall z(x\leq z\leq y)$ ，$z$ 没有被移除。共有 $N!$ 种移除的顺序，对于所有顺序计算移除所有 $N$ 块砖块的代价并计算和</p>
+</blockquote>
+<p>这个可以用草率的方法，这里记录以下笛卡尔树做法</p>
+<p>针对这种所有方案之和的有 $\text{trick}$ : 均匀随机一个删除顺序，求代价的期望，最后乘 $n!$</p>
+<p>每次删除一个位置并两边分开做，与笛卡尔树的建树方法类似。计算每个点的删除时间，删除一个点就在使其做根，然后两边接过来，发现形成一个笛卡尔树，其中<strong>下标满足 $\text{BST}$ 性质，删除时间满足小根堆性质</strong></p>
+<p>一个位置的贡献就是其在笛卡尔树上的点深度，即，到根路径上点的个数， $\sum 期望深度*权值=代价的期望$</p>
+<p>转化为如何求随机排列构成的笛卡尔树的期望深度：$E(depth_i)=\sum_j p(j\in anc(i))$ ，即， $j$ 是 $i$ 祖先的概率，不妨设 $j&lt;i$</p>
+<p>考虑到笛卡尔树的结构，若 $j$ 是 $i$ 的祖先，则 $[j,i]$ 段中， $j$ 是最小值</p>
+<p>也就是求：对于随机排列，区间 $[l,r]$ 中 $l$ 位置是最小值的概率：</p>
+<p>先选择 $r-l+1$ 个位置放在区间里，剩余 $n-(r-l+1)$ 个位置随便排， $l$ 位置为最小值， $(r-l+1)-1$ 个位置再随便排，最后除以 $n!$ ，得概率 $\frac{1}{r-l+1}$</p>
+<p>$j&gt;i$ 同理，则有 $E(depth_i)=H(i)+H(n-i+1)-1$ ，其中调和级数 $H(n)=\sum_{i=1}^n \frac{1}{i}$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e5</span>+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod=<span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"><span class="keyword">int</span> fac[N],fac_inv[N],inv[N],si[N];</span><br><span class="line"><span class="keyword">int</span> n,a[N];</span><br><span class="line">ll ans;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> lim=<span class="number">1e5</span>;</span><br><span class="line">    fac[<span class="number">0</span>]=fac[<span class="number">1</span>]=fac_inv[<span class="number">0</span>]=fac_inv[<span class="number">1</span>]=inv[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">2</span>;i&lt;=lim;++i)&#123;</span><br><span class="line">        fac[i]=(ll) fac[i<span class="number">-1</span>]*i%mod;</span><br><span class="line">        inv[i]=(ll) inv[ mod%i ]*(mod-mod/i)%mod;</span><br><span class="line">        fac_inv[i]=(ll) fac_inv[i<span class="number">-1</span>]*inv[i]%mod;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=lim;++i) si[i]=(ll) (si[i<span class="number">-1</span>]+inv[i])%mod;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">init</span>();</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a[i]);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) ans=(ans+(ll) (si[i]+si[n-i+<span class="number">1</span>]<span class="number">-1</span>)*a[i])%mod;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,ans*fac[n]%mod);</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="C"><a href="#C" class="headerlink" title="C"></a>C</h2><blockquote>
 <p>给出 $n$ 边的有向完全图，每个点右两个点权 $a,b$ ，一条边的边权值为 $\min(u_a,v_b)$ ，求边权和最小的哈密顿回路的边权和</p>
 </blockquote>
 <p>一个合法的解一定是有 $n$ 条路径的一个环，环上的边权值为 $n$ 个 $a_i,b_i$ 中的 $n$ 个数</p>
@@ -357,10 +371,11 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/%E6%9E%84%E9%80%A0/" rel="tag"><i class="fa fa-tag"></i> 构造</a>
               <a href="/tags/%E6%80%9D%E7%BB%B4/" rel="tag"><i class="fa fa-tag"></i> 思维</a>
               <a href="/tags/%E8%B4%AA%E5%BF%83/" rel="tag"><i class="fa fa-tag"></i> 贪心</a>
+              <a href="/tags/%E6%9E%84%E9%80%A0/" rel="tag"><i class="fa fa-tag"></i> 构造</a>
               <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag"><i class="fa fa-tag"></i> 字符串</a>
+              <a href="/tags/%E7%AC%9B%E5%8D%A1%E5%B0%94%E6%A0%91/" rel="tag"><i class="fa fa-tag"></i> 笛卡尔树</a>
               <a href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/" rel="tag"><i class="fa fa-tag"></i> 线段树</a>
               <a href="/tags/%E5%8D%A1%E5%B8%B8/" rel="tag"><i class="fa fa-tag"></i> 卡常</a>
           </div>
@@ -437,7 +452,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#C"><span class="nav-number">1.</span> <span class="nav-text">C</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#D"><span class="nav-number">2.</span> <span class="nav-text">D</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#E"><span class="nav-number">3.</span> <span class="nav-text">E</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#F"><span class="nav-number">4.</span> <span class="nav-text">F</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#B"><span class="nav-number">1.</span> <span class="nav-text">B</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C"><span class="nav-number">2.</span> <span class="nav-text">C</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#D"><span class="nav-number">3.</span> <span class="nav-text">D</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#E"><span class="nav-number">4.</span> <span class="nav-text">E</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#F"><span class="nav-number">5.</span> <span class="nav-text">F</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
