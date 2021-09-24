@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+<meta name="google-site-verification" content="LZ0JOjQQZw7PhvjIbZqeOojf3J6807W7DPn6--OTptc" />
+<meta name="baidu-site-verification" content="code-DDmcbQ6zQN" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <meta name="google-site-verification" content="true">
+  <meta name="msvalidate.01" content="true">
+  <meta name="yandex-verification" content="true">
+  <meta name="baidu-site-verification" content="true">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"noone40404.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="后缀数组——处理字符串的有力工具论文题组">
+<meta property="og:type" content="article">
+<meta property="og:title" content="后缀数组十三题">
+<meta property="og:url" content="http://noone40404.github.io/2021/09/24/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84%E5%8D%81%E4%B8%89%E9%A2%98/index.html">
+<meta property="og:site_name" content="noone___&#39;s blog">
+<meta property="og:description" content="后缀数组——处理字符串的有力工具论文题组">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-09-24T09:20:33.000Z">
+<meta property="article:modified_time" content="2021-09-24T09:22:29.409Z">
+<meta property="article:author" content="noone___">
+<meta property="article:tag" content="后缀数组">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://noone40404.github.io/2021/09/24/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84%E5%8D%81%E4%B8%89%E9%A2%98/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>后缀数组十三题 | noone___'s blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="noone___'s blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">noone___'s blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap_1.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/noone40404" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2021/09/24/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84%E5%8D%81%E4%B8%89%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="noone___">
+      <meta itemprop="description" content="不能逃避，不能逃避，不能逃避，不能逃避⋯⋯">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="noone___'s blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          后缀数组十三题
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-09-24 17:20:33 / 修改时间：17:22:29" itemprop="dateCreated datePublished" datetime="2021-09-24T17:20:33+08:00">2021-09-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+            <div class="post-description">后缀数组——处理字符串的有力工具论文题组</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3809">P3809 【模板】后缀排序</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e6</span>+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">char</span> s[N];</span><br><span class="line"><span class="keyword">int</span> sa[N],rk[N];<span class="comment">//sa[i]:排名i的后缀的位置;rk[i]:第i个位置开始的后缀的排名.其中 rk[ sa[i] ]=i,sa[ rk[i] ]=i</span></span><br><span class="line"><span class="keyword">int</span> tp[N],tax[N];<span class="comment">//tp[i]:基数排序的第二关键词排名为i的后缀的位置;tax[i]:辅助基数排序,i号元素(即，名次)出现的次数</span></span><br><span class="line"><span class="keyword">int</span> n,m=<span class="number">75</span>;<span class="comment">//m字符集大小</span></span><br><span class="line"><span class="keyword">int</span> height[N];<span class="comment">//height[i]:lcp(sa[i],sa[i-1]):排名为i的后缀与排名i-1的后缀的最长公共前缀</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> SA&#123;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Rsort</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;=m;++i) tax[i]=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) ++tax[ rk[i] ];</span><br><span class="line">        <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=m;++i) tax[i]+=tax[i<span class="number">-1</span>];</span><br><span class="line">        <span class="keyword">for</span>(rei i=n;i;--i) sa[ tax[ rk[ tp[i] ] ]<span class="comment">/*第一关键词相同时，第二关键词较大的后缀的排名*/</span> -- <span class="comment">/*枚举第二关键词，通过rk定位到第一关键词大侠大小*/</span>]=tp[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">get_sa</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) rk[i]=s[i]-<span class="string">&#x27;0&#x27;</span>+<span class="number">1</span>,tp[i]=i;</span><br><span class="line">        <span class="built_in">Rsort</span>();</span><br><span class="line">        <span class="keyword">for</span>(rei w=<span class="number">1</span>,p=<span class="number">0</span>;p&lt;n;m=p,w&lt;&lt;<span class="number">1</span>)&#123;<span class="comment">//w:当前倍增的长度;当前已经求出长度w的后缀的排名，要更新长度2w的后缀的排名</span></span><br><span class="line">            <span class="comment">//p:不同的后缀个数.显然仅有原字符串后缀不同时,p=n,退出</span></span><br><span class="line">            <span class="comment">//m=p:对基数排序的优化，字符集大小就是排名的个数</span></span><br><span class="line">            p=<span class="number">0</span>;</span><br><span class="line">            <span class="comment">//此时sa[i]表示的是长度为w/2的后缀中排名i的位置,即,上一轮的结果</span></span><br><span class="line">            <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=w;++i) tp[++p]=n-w+i;<span class="comment">//一些没有第二关键字的后缀，其排名在最前面</span></span><br><span class="line">            <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="keyword">if</span>(sa[i]&gt;w) tp[++p]=sa[i]-w;</span><br><span class="line">            <span class="built_in">Rsort</span>();<span class="comment">//上轮的rk更新本轮的sa</span></span><br><span class="line">            <span class="built_in">swap</span>(tp,rk);</span><br><span class="line">            rk[ sa[<span class="number">1</span>] ]=p=<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span>(rei i=<span class="number">2</span>;i&lt;=n;++i) rk[ sa[i] ]=(tp[ sa[i<span class="number">-1</span>] ]==tp[ sa[i] ] &amp;&amp; tp[ sa[i<span class="number">-1</span>]+w ]==tp[ sa[i]+w ]) ? p : ++p;<span class="comment">//当两个后缀上一轮排名相同时,本轮也相同</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">get_he</span><span class="params">()</span></span>&#123;</span><br><span class="line">        rei k=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(k) --k;</span><br><span class="line">            rei j=sa[ rk[i]<span class="number">-1</span> ];</span><br><span class="line">            <span class="keyword">while</span>(s[i+k]==s[j+k]) ++k;</span><br><span class="line">            height[ rk[i] ]=k;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,k);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,s+<span class="number">1</span>); n=<span class="built_in">strlen</span>(s+<span class="number">1</span>);</span><br><span class="line">	SA::<span class="built_in">get_sa</span>();</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="built_in">printf</span>(<span class="string">&quot;%d%c&quot;</span>,sa[i],i==n ? <span class="number">10</span> : <span class="number">32</span>);</span><br><span class="line">	<span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><blockquote>
+<p>两个后缀的最大公共前缀 $\text{lcp}$</p>
+</blockquote>
+<p>$\text{lcp}(x,y)=\min\{height_{x+1},height_{x+2},…,height_{y}\}$ , $\text{rmq}$ 维护， $O(1)$ 查询</p>
+<blockquote>
+<p>可重叠最长重复子串</p>
+</blockquote>
+<p>$height_{\max}$</p>
+<blockquote>
+<p>不可重叠最长重复子串</p>
+</blockquote>
+<p>见例题 $1$</p>
+<blockquote>
+<p>本质不同的子串数量</p>
+</blockquote>
+<p>枚举每一个后缀，第 $i$ 个的贡献为 $len-sa_i+1-height_i$</p>
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><h3 id="P2743-USACO5-1-乐曲主题Musical-Themes"><a href="#P2743-USACO5-1-乐曲主题Musical-Themes" class="headerlink" title="P2743 [USACO5.1]乐曲主题Musical Themes"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2743">P2743 [USACO5.1]乐曲主题Musical Themes</a></h3><blockquote>
+<p>求不重叠的最长重复子串，两字符串相等当且仅当相同为值的两个字符差值一定(即经过转调)</p>
+</blockquote>
+<p>显然联想到差分，即转化为差分数组下求相等的不重叠最大子串，而最大重复子串为 $height$ 数组中最大值</p>
+<p>要求不重叠，对 $k$ 二分，转化为子串的存在问题</p>
+<p>将 $height \geq k$ 的归为一组，若组内 $sa_{\max}-sa_{\min}\leq k$ 则存在</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">rk[i]=s[i]+<span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="built_in">valid</span>(<span class="keyword">int</span> k)&#123;</span><br><span class="line">	rei MAX=-INF,MIN=INF;</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i)&#123;</span><br><span class="line">		<span class="keyword">if</span>(height[i]&lt;k) MAX=-INF,MIN=INF;</span><br><span class="line">		MAX=<span class="built_in">max</span>(MAX,sa[i]),MIN=<span class="built_in">min</span>(MIN,sa[i]);</span><br><span class="line">		<span class="keyword">if</span>(MAX-MIN&gt;k) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ....</span><br><span class="line">    rei l=<span class="number">0</span>,r=n;</span><br><span class="line">	<span class="keyword">while</span>(l&lt;=r)&#123;</span><br><span class="line">	<span class="comment">// puts(&quot;here&quot;);</span></span><br><span class="line">		rei mid=l+r&gt;&gt;<span class="number">1</span>; <span class="built_in">valid</span>(mid) ? (l=mid+<span class="number">1</span>,ans=mid) : r=mid<span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="P2852-USACO06DEC-Milk-Patterns-G"><a href="#P2852-USACO06DEC-Milk-Patterns-G" class="headerlink" title="P2852 [USACO06DEC]Milk Patterns G"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2852">P2852 [USACO06DEC]Milk Patterns G</a></h3><blockquote>
+<p>至少出现 $k$ 次的最长重复子串</p>
+</blockquote>
+<p>$k$ 次，相当于选择 $k$ 个后缀后求出它们的 $\text{lcp}$</p>
+<p>由 $\text{lcp}_{i,j}=\min\{height[rk[i]+1],…height[rk[j]]\}$ 可知，$k$ 个后缀在 $rk$ 上一定连续</p>
+<p>二分即可</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">valid</span><span class="params">(<span class="keyword">int</span> now,<span class="keyword">int</span> cnt=<span class="number">0</span>)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i)&#123;</span><br><span class="line">		<span class="keyword">if</span>(height[i]&lt;now) cnt=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">if</span>(++cnt&gt;=k) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="SP694-DISUBSTR-Distinct-Substrings"><a href="#SP694-DISUBSTR-Distinct-Substrings" class="headerlink" title="SP694 DISUBSTR - Distinct Substrings"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/SP694">SP694 DISUBSTR - Distinct Substrings</a></h3><blockquote>
+<p>本质不同的子串数量</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/SP705">双倍经验SP705 SUBST1 - New Distinct Substrings</a></p>
+<p>每个后缀的前缀对应一个子串，枚举 $i$ 会产生 $n-sa_i+1$ 个，但需要减去和上一个的 $\text{lcp}$ 即，$height_i$</p>
+<p>注意多测的数据 $\text{clear}$ ，要重置 $m$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n+<span class="number">10</span>;++i) sa[i]=rk[i]=tp[i]=tax[i]=height[i]=<span class="number">0</span>;</span><br><span class="line">	ans=<span class="number">0</span>; m=<span class="number">300</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) ans+=n-sa[i]+<span class="number">1</span>-height[i];</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="URAL1297-Palindrome"><a href="#URAL1297-Palindrome" class="headerlink" title="URAL1297 Palindrome"></a><a target="_blank" rel="noopener" href="https://vjudge.net/problem/URAL-1297">URAL1297 Palindrome</a></h3><blockquote>
+<p>求最长回文子串</p>
+</blockquote>
+<p>将整个字符串反过来写在原字符串后，中间用特殊字符隔开，先求这个新字符串的莫两个后缀的最长公共前缀，再枚举每一位，计算以其为重心的最长回文子串，注意分奇偶讨论. $O(n\log n)$ 的后缀数组 $+$ $O(n)$ 的 $\text{RMQ}$</p>
+<p>$\sout{O(n)的\text{Manacher}也好啊}$</p>
+<p><strong>注意：</strong> 插入的特殊字符为 $1$ 时：</p>
+<p>由于 <code>0</code> 的 $\text{ACSII}$ 码值为 $48$</p>
+<p>故会出现 <code>rk[i]=1-48(&#39;0&#39;)+1</code> 的情况，于是要改成如下：</p>
+<p><code>for(rei i=1;i&lt;=n;++i) rk[i]=s[i]-&#39;0&#39;+49,tp[i]=i;</code></p>
+<p><del>qwq卡了一上午在这个了</del></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">lcq</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> j)</span></span>&#123;</span><br><span class="line">	rei l=rk[i],r=rk[j];</span><br><span class="line">	<span class="keyword">if</span>(l==r) <span class="keyword">return</span> -INF;</span><br><span class="line">	<span class="keyword">if</span>(l&gt;r) <span class="built_in">swap</span>(l,r); ++l;</span><br><span class="line">	rei k=<span class="built_in">log2</span>(r-l+<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">min</span>(st[l][k],st[ r-(<span class="number">1</span>&lt;&lt;k)+<span class="number">1</span> ][k]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ...</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=len;++i)&#123;</span><br><span class="line">		rei odd=<span class="built_in">lcq</span>(i,<span class="number">2</span>*len+<span class="number">2</span>-i);</span><br><span class="line">		<span class="keyword">if</span>(ans&lt;<span class="number">2</span>*odd<span class="number">-1</span>) ans=<span class="number">2</span>*odd<span class="number">-1</span>,pos=i-odd+<span class="number">1</span>;</span><br><span class="line">		rei even=<span class="built_in">lcq</span>(i,<span class="number">2</span>*len+<span class="number">3</span>-i);</span><br><span class="line">		<span class="keyword">if</span>(ans&lt;<span class="number">2</span>*even) ans=<span class="number">2</span>*even,pos=i-even;</span><br><span class="line">	&#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="UVA10298-Power-Strings"><a href="#UVA10298-Power-Strings" class="headerlink" title="UVA10298 Power Strings"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/UVA10298">UVA10298 Power Strings</a></h3><blockquote>
+<p>求循环同构串的最小循环节/连续重复最小子串</p>
+</blockquote>
+<p>$\sout{KMP:n\%(n-next[n])=0 \ ?\ \frac{n}{n-next[n]}\ :\ 1 }$</p>
+<p>$\sout{Hash}$</p>
+<p>枚举长度的约数 $k$ ，判断 $1$ 与 $k+1$ 的后缀的 $\text{lcp}$ 是否为 $n-k$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(rei k=<span class="number">1</span>;k&lt;n;++k) <span class="keyword">if</span>(n%k==<span class="number">0</span> &amp;&amp; <span class="built_in">lcp</span>(<span class="number">1</span>,k+<span class="number">1</span>)==n-k) ans=n/k,k=n;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,!ans ? <span class="number">1</span> : ans);</span><br></pre></td></tr></table></figure>
+<h3 id="SP687-REPEATS-Repeats"><a href="#SP687-REPEATS-Repeats" class="headerlink" title="SP687 REPEATS - Repeats"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/SP687">SP687 REPEATS - Repeats</a></h3><blockquote>
+<p>重复次数最多的连续重复子串</p>
+</blockquote>
+<p>枚举长度 $L$ ，求长度 $L$ 的子串最多能连续出现几次</p>
+<p>显然可以出现一次，考虑出现至少 $2$ 次的情况。</p>
+<p>以子串 $sub_s$ 在 $s$ 中连续出现 $2$ 次为例，$sub_s$ 一定包含字符 $s_0,s_L,s_{2L},…$ 中相邻的两个，设包含了字符 $s_{L\times i},s_{L\times (i+1)}$</p>
+<p>那么看这两个字符往前往后各能匹配到多远，记录 $\frac{\max 长度}{L}$ 和 $sub_{s_1}$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(rei L=<span class="number">1</span>;(L&lt;&lt;<span class="number">1</span>)&lt;=n;++L)</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">0</span>;L*(i+<span class="number">1</span>)+<span class="number">1</span>&lt;=n;++i)&#123;</span><br><span class="line">        rei x=L*i+<span class="number">1</span>,y=L*(i+<span class="number">1</span>)+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(s[x]!=s[y]) <span class="keyword">continue</span>;</span><br><span class="line">        rei z=<span class="built_in">lcp</span>(x,y);</span><br><span class="line">        rei t1=y+z<span class="number">-1</span>,t0=<span class="number">0</span>;<span class="comment">//t0最早能匹配到的点，t1最晚能匹配到</span></span><br><span class="line">        <span class="keyword">for</span>(rei j=<span class="number">0</span>;j&lt;=L<span class="number">-1</span>;++j)&#123;<span class="comment">//当前起始点不确定时真正循环节的第几个，所以向前找L个</span></span><br><span class="line">            <span class="keyword">if</span>(x-j&lt;<span class="number">1</span> || s[x-j]!=s[y-j]) <span class="keyword">break</span>;</span><br><span class="line">            t0=x-j;</span><br><span class="line">            rei now=((t1-t0+<span class="number">1</span>)/L);</span><br><span class="line">            <span class="keyword">if</span>(now&gt;ans || (now==ans &amp;&amp; rk[t0]&lt;rk[al])) ans=now,al=t0,ar=t0+now*L<span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="P5546-POI2000-公共串"><a href="#P5546-POI2000-公共串" class="headerlink" title="P5546 [POI2000]公共串"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5546">P5546 [POI2000]公共串</a></h3><blockquote>
+<p>给定 $n(n\leq 10)$ 个字符串，求其最长公共子串</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/SP1811">双倍经验SP1811 LCS - Longest Common Substring</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/SP1812">三倍经验SP1812 LCS2 - Longest Common Substring II</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/SP10570">四倍经验SP10570 LONGCS - Longest Common Substring</a></p>
+<p><del>（逃</del></p>
+<p>论文中给出了两个字符串的做法，多字符串能从中推出：</p>
+<p>子串具有连续性，字符串的任何一个子串都是这个字符串某个后缀的前缀，求多个字符串的公共子串相当于求每个字符串后缀的最长公共前缀的最大值</p>
+<p>首先要把所有字符串连在一起，之间用题目限定的字符集以外的字符分隔</p>
+<p>那么问题转化为：在 $height$ 数组上找连续一段使这一段<strong>包含来自每个字符串的至少一个后缀</strong>，设满足条件的第 $i$ 个区间为 $[l_i,r_i]$ ，最后的答案就是 $\displaystyle{\max_{l_i\leq x\leq r_i}height_i}$</p>
+<p>先考虑计算区间：双指针扫一遍，数组记录第 $i$ 个字符串的后缀出现过的次数</p>
+<p>再考虑计算答案：类比滑动窗口，维护一个单调队列即可</p>
+<p>复杂度 $O(\sum |S| \log\sum|S|)$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> color&#123;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">build</span><span class="params">()</span></span>&#123; <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=cnt;++i) <span class="keyword">for</span>(rei j=L[i];j&lt;=R[i];++j) col[ rk[j] ]=i;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!col[x]) <span class="keyword">return</span> ;</span><br><span class="line">        ++num[ col[x] ];</span><br><span class="line">        <span class="keyword">if</span>(num[ col[x] ]==<span class="number">1</span>) ++tot;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">del</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!col[x]) <span class="keyword">return</span> ;</span><br><span class="line">        --num[ col[x] ];</span><br><span class="line">        <span class="keyword">if</span>(!num[ col[x] ]) --tot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;cnt);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=cnt;++i)&#123;</span><br><span class="line">        L[i]=n+<span class="number">1</span>;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,s+n+<span class="number">1</span>); n+=<span class="built_in">strlen</span>(s+<span class="number">1</span>+n);</span><br><span class="line">        R[i]=n;</span><br><span class="line">        s[++n]=i+<span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    SA::<span class="built_in">get_sa</span>(),SA::<span class="built_in">get_he</span>();</span><br><span class="line">    color::<span class="built_in">build</span>(); color::<span class="built_in">add</span>(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">2</span>;i&lt;=n;++i)&#123;</span><br><span class="line">        <span class="keyword">while</span>(head&lt;tail &amp;&amp; height[ q[tail] ]&gt;=height[i]) --tail;</span><br><span class="line">        q[++tail]=i; color::<span class="built_in">add</span>(i);</span><br><span class="line">        <span class="keyword">if</span>(tot==cnt)&#123;</span><br><span class="line">            <span class="keyword">while</span>(tot==cnt &amp;&amp; l&lt;i) color::<span class="built_in">del</span>(l++);</span><br><span class="line">            color::<span class="built_in">add</span>(--l);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(head&lt;tail &amp;&amp; q[head]&lt;=l) ++head;</span><br><span class="line">        <span class="keyword">if</span>(tot==cnt) ans=<span class="built_in">max</span>(ans,height[ q[head] ]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,ans);</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>noone___
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://noone40404.github.io/2021/09/24/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84%E5%8D%81%E4%B8%89%E9%A2%98/" title="后缀数组十三题">http://noone40404.github.io/2021/09/24/后缀数组十三题/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84/" rel="tag"><i class="fa fa-tag"></i> 后缀数组</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/09/23/%E7%AC%9B%E5%8D%A1%E5%B0%94%E6%A0%91/" rel="prev" title="笛卡尔树笔记">
+      <i class="fa fa-chevron-left"></i> 笛卡尔树笔记
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E7%94%A8"><span class="nav-number">1.1.</span> <span class="nav-text">应用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#P2743-USACO5-1-%E4%B9%90%E6%9B%B2%E4%B8%BB%E9%A2%98Musical-Themes"><span class="nav-number">2.1.</span> <span class="nav-text">P2743 [USACO5.1]乐曲主题Musical Themes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P2852-USACO06DEC-Milk-Patterns-G"><span class="nav-number">2.2.</span> <span class="nav-text">P2852 [USACO06DEC]Milk Patterns G</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SP694-DISUBSTR-Distinct-Substrings"><span class="nav-number">2.3.</span> <span class="nav-text">SP694 DISUBSTR - Distinct Substrings</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#URAL1297-Palindrome"><span class="nav-number">2.4.</span> <span class="nav-text">URAL1297 Palindrome</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UVA10298-Power-Strings"><span class="nav-number">2.5.</span> <span class="nav-text">UVA10298 Power Strings</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SP687-REPEATS-Repeats"><span class="nav-number">2.6.</span> <span class="nav-text">SP687 REPEATS - Repeats</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P5546-POI2000-%E5%85%AC%E5%85%B1%E4%B8%B2"><span class="nav-number">2.7.</span> <span class="nav-text">P5546 [POI2000]公共串</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="noone___"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">noone___</p>
+  <div class="site-description" itemprop="description">不能逃避，不能逃避，不能逃避，不能逃避⋯⋯</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">39</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/noone40404" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;noone40404" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://ctp314.github.io/" title="https:&#x2F;&#x2F;ctp314.github.io&#x2F;" rel="noopener" target="_blank">CTime_Pup_314</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://evitagen.blog.luogu.org/" title="https:&#x2F;&#x2F;evitagen.blog.luogu.org&#x2F;" rel="noopener" target="_blank">Evitagen</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">noone___</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+  <script data-pjax>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'ebdb5b537395179b4514',
+      clientSecret: 'd0843e5853efe963ca9983db6cac3a1f9d736856',
+      repo        : 'noone40404.github.io',
+      owner       : 'noone40404',
+      admin       : ['noone40404'],
+      id          : '138aeef802cb02187c8b313ee33da544',
+        language: 'zn-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+    </div>
+</body>
+</html>
