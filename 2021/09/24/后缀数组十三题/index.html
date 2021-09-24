@@ -25,15 +25,15 @@
     var CONFIG = {"hostname":"noone40404.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="《后缀数组——处理字符串的有力工具》论文题组">
+  <meta name="description" content="《后缀数组——处理字符串的有力工具》论文题组+其他题">
 <meta property="og:type" content="article">
-<meta property="og:title" content="后缀数组十三题">
+<meta property="og:title" content="后缀数组一些题">
 <meta property="og:url" content="http://noone40404.github.io/2021/09/24/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84%E5%8D%81%E4%B8%89%E9%A2%98/index.html">
 <meta property="og:site_name" content="noone___&#39;s blog">
-<meta property="og:description" content="《后缀数组——处理字符串的有力工具》论文题组">
+<meta property="og:description" content="《后缀数组——处理字符串的有力工具》论文题组+其他题">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-09-24T09:20:33.000Z">
-<meta property="article:modified_time" content="2021-09-24T09:54:00.700Z">
+<meta property="article:modified_time" content="2021-09-24T13:07:11.968Z">
 <meta property="article:author" content="noone___">
 <meta property="article:tag" content="字符串">
 <meta property="article:tag" content="后缀数组">
@@ -52,7 +52,7 @@
   };
 </script>
 
-  <title>后缀数组十三题 | noone___'s blog</title>
+  <title>后缀数组一些题 | noone___'s blog</title>
   
 
 
@@ -223,7 +223,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          后缀数组十三题
+          后缀数组一些题
         </h1>
 
         <div class="post-meta">
@@ -234,7 +234,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-09-24 17:20:33 / 修改时间：17:54:00" itemprop="dateCreated datePublished" datetime="2021-09-24T17:20:33+08:00">2021-09-24</time>
+              <time title="创建时间：2021-09-24 17:20:33 / 修改时间：21:07:11" itemprop="dateCreated datePublished" datetime="2021-09-24T17:20:33+08:00">2021-09-24</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -254,7 +254,7 @@
               <span class="post-meta-item-text">阅读次数：</span>
               <span id="busuanzi_value_page_pv"></span>
             </span>
-            <div class="post-description">《后缀数组——处理字符串的有力工具》论文题组</div>
+            <div class="post-description">《后缀数组——处理字符串的有力工具》论文题组+其他题</div>
 
         </div>
       </header>
@@ -345,6 +345,20 @@
 <p>再考虑计算答案：类比滑动窗口，维护一个单调队列即可</p>
 <p>复杂度 $O(\sum |S| \log\sum|S|)$</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> color&#123;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">build</span><span class="params">()</span></span>&#123; <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=cnt;++i) <span class="keyword">for</span>(rei j=L[i];j&lt;=R[i];++j) col[ rk[j] ]=i;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!col[x]) <span class="keyword">return</span> ;</span><br><span class="line">        ++num[ col[x] ];</span><br><span class="line">        <span class="keyword">if</span>(num[ col[x] ]==<span class="number">1</span>) ++tot;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">del</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!col[x]) <span class="keyword">return</span> ;</span><br><span class="line">        --num[ col[x] ];</span><br><span class="line">        <span class="keyword">if</span>(!num[ col[x] ]) --tot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;cnt);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=cnt;++i)&#123;</span><br><span class="line">        L[i]=n+<span class="number">1</span>;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,s+n+<span class="number">1</span>); n+=<span class="built_in">strlen</span>(s+<span class="number">1</span>+n);</span><br><span class="line">        R[i]=n;</span><br><span class="line">        s[++n]=i+<span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    SA::<span class="built_in">get_sa</span>(),SA::<span class="built_in">get_he</span>();</span><br><span class="line">    color::<span class="built_in">build</span>(); color::<span class="built_in">add</span>(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">2</span>;i&lt;=n;++i)&#123;</span><br><span class="line">        <span class="keyword">while</span>(head&lt;tail &amp;&amp; height[ q[tail] ]&gt;=height[i]) --tail;</span><br><span class="line">        q[++tail]=i; color::<span class="built_in">add</span>(i);</span><br><span class="line">        <span class="keyword">if</span>(tot==cnt)&#123;</span><br><span class="line">            <span class="keyword">while</span>(tot==cnt &amp;&amp; l&lt;i) color::<span class="built_in">del</span>(l++);</span><br><span class="line">            color::<span class="built_in">add</span>(--l);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(head&lt;tail &amp;&amp; q[head]&lt;=l) ++head;</span><br><span class="line">        <span class="keyword">if</span>(tot==cnt) ans=<span class="built_in">max</span>(ans,height[ q[head] ]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,ans);</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="其他乱七八糟不想用SAM写的"><a href="#其他乱七八糟不想用SAM写的" class="headerlink" title="其他乱七八糟不想用SAM写的"></a>其他乱七八糟不想用SAM写的</h2><h3 id="P4248-AHOI2013-差异"><a href="#P4248-AHOI2013-差异" class="headerlink" title="P4248 [AHOI2013]差异"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4248">P4248 [AHOI2013]差异</a></h3><blockquote>
+<p>求 $\displaystyle{\sum_{1\leq i&lt;j\leq n} i+j-2\times \text{lcp}(T_i,T_j)}$</p>
+</blockquote>
+<p>原式:</p>
+<script type="math/tex; mode=display">=\frac{(n-1)\times n\times (n+1)}{2}-2\times \text{lcp}(T_i,T_j)</script><p>$height$ 数组中 $[2,n]$ 内的每个区间给答案贡献区间最小值，单调栈即可</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">stk[top=<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span>(rei i=<span class="number">2</span>;i&lt;=n;++i)&#123;</span><br><span class="line">    <span class="keyword">while</span>(top &amp;&amp; height[ stk[top] ]&gt;height[i]) R[ stk[top--] ]=i;</span><br><span class="line">    L[i]=stk[top];</span><br><span class="line">    stk[++top]=i;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">while</span>(top) R[ stk[top--] ]=n+<span class="number">1</span>;</span><br><span class="line">ans=(ll) (n<span class="number">-1</span>)*n*(n+<span class="number">1</span>)/<span class="number">2</span>;</span><br><span class="line"><span class="keyword">for</span>(rei i=<span class="number">2</span>;i&lt;=n;++i) ans-=(ll) <span class="number">2</span>*(R[i]-i)*(i-L[i])*height[i];</span><br></pre></td></tr></table></figure>
+<h3 id="P7409-SvT"><a href="#P7409-SvT" class="headerlink" title="P7409 SvT"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P7409">P7409 SvT</a></h3><blockquote>
+<p>求 $\displaystyle{\sum_{i,j\in \{E\},i&lt;j} \text{lcp}(T_i,T_j)}$</p>
+</blockquote>
+<p>这个类似于上面的内题，但这个是给定的点两两组合，而上一题是全部 $n$</p>
+<p>类比上题中用 $height$ 将 $\text{lcp}$ 转化为 $RMQ$ 问题，并用单调栈求答案</p>
+<p>考虑本题中是否能得到类似的 $h’$</p>
+<p>$\sum t\leq 3\times 10^6$ 的范围与虚树类似，故进行类似虚树的转化：将给定的点按 $rk$ 排序去重，$h’_i=\text{lcp}(st[ a[i-1] ],st[ a[i] ])$ ，那么 $h’$ 与上题的 $height$ 由相同性质，单调栈即可</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sort</span>(a+<span class="number">1</span>,a+<span class="number">1</span>+q,cmp);</span><br><span class="line">q=<span class="built_in">unique</span>(a+<span class="number">1</span>,a+<span class="number">1</span>+q)-a<span class="number">-1</span>;</span><br><span class="line"><span class="keyword">for</span>(rei i=q;i&gt;=<span class="number">2</span>;--i) a[i]=<span class="built_in">lcp</span>(a[i<span class="number">-1</span>],a[i]);</span><br><span class="line">a[<span class="number">1</span>]=<span class="number">0</span>,stk[++top]=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span>(rei i=<span class="number">2</span>;i&lt;=q;++i)&#123;</span><br><span class="line">    <span class="keyword">while</span>(top &amp;&amp; a[i]&lt;a[ stk[top] ]) R[ stk[top--] ]=i<span class="number">-1</span>;</span><br><span class="line">    L[i]=stk[top]+<span class="number">1</span>,stk[++top]=i;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">while</span>(top) R[ stk[top--] ]=q;</span><br><span class="line"><span class="keyword">for</span>(rei i=<span class="number">2</span>;i&lt;=q;++i) ans+=(ll) a[i]*(R[i]-i+<span class="number">1</span>)*(i-L[i]+<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -360,7 +374,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://noone40404.github.io/2021/09/24/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84%E5%8D%81%E4%B8%89%E9%A2%98/" title="后缀数组十三题">http://noone40404.github.io/2021/09/24/后缀数组十三题/</a>
+    <a href="http://noone40404.github.io/2021/09/24/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84%E5%8D%81%E4%B8%89%E9%A2%98/" title="后缀数组一些题">http://noone40404.github.io/2021/09/24/后缀数组十三题/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -445,7 +459,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E7%94%A8"><span class="nav-number">1.1.</span> <span class="nav-text">应用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#P2743-USACO5-1-%E4%B9%90%E6%9B%B2%E4%B8%BB%E9%A2%98Musical-Themes"><span class="nav-number">2.1.</span> <span class="nav-text">P2743 [USACO5.1]乐曲主题Musical Themes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P2852-USACO06DEC-Milk-Patterns-G"><span class="nav-number">2.2.</span> <span class="nav-text">P2852 [USACO06DEC]Milk Patterns G</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SP694-DISUBSTR-Distinct-Substrings"><span class="nav-number">2.3.</span> <span class="nav-text">SP694 DISUBSTR - Distinct Substrings</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#URAL1297-Palindrome"><span class="nav-number">2.4.</span> <span class="nav-text">URAL1297 Palindrome</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UVA10298-Power-Strings"><span class="nav-number">2.5.</span> <span class="nav-text">UVA10298 Power Strings</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SP687-REPEATS-Repeats"><span class="nav-number">2.6.</span> <span class="nav-text">SP687 REPEATS - Repeats</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P5546-POI2000-%E5%85%AC%E5%85%B1%E4%B8%B2"><span class="nav-number">2.7.</span> <span class="nav-text">P5546 [POI2000]公共串</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E7%94%A8"><span class="nav-number">1.1.</span> <span class="nav-text">应用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#P2743-USACO5-1-%E4%B9%90%E6%9B%B2%E4%B8%BB%E9%A2%98Musical-Themes"><span class="nav-number">2.1.</span> <span class="nav-text">P2743 [USACO5.1]乐曲主题Musical Themes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P2852-USACO06DEC-Milk-Patterns-G"><span class="nav-number">2.2.</span> <span class="nav-text">P2852 [USACO06DEC]Milk Patterns G</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SP694-DISUBSTR-Distinct-Substrings"><span class="nav-number">2.3.</span> <span class="nav-text">SP694 DISUBSTR - Distinct Substrings</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#URAL1297-Palindrome"><span class="nav-number">2.4.</span> <span class="nav-text">URAL1297 Palindrome</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UVA10298-Power-Strings"><span class="nav-number">2.5.</span> <span class="nav-text">UVA10298 Power Strings</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SP687-REPEATS-Repeats"><span class="nav-number">2.6.</span> <span class="nav-text">SP687 REPEATS - Repeats</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P5546-POI2000-%E5%85%AC%E5%85%B1%E4%B8%B2"><span class="nav-number">2.7.</span> <span class="nav-text">P5546 [POI2000]公共串</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E4%B9%B1%E4%B8%83%E5%85%AB%E7%B3%9F%E4%B8%8D%E6%83%B3%E7%94%A8SAM%E5%86%99%E7%9A%84"><span class="nav-number">3.</span> <span class="nav-text">其他乱七八糟不想用SAM写的</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#P4248-AHOI2013-%E5%B7%AE%E5%BC%82"><span class="nav-number">3.1.</span> <span class="nav-text">P4248 [AHOI2013]差异</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P7409-SvT"><span class="nav-number">3.2.</span> <span class="nav-text">P7409 SvT</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
