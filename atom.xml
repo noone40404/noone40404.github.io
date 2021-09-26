@@ -6,7 +6,7 @@
   <link href="http://noone40404.github.io/atom.xml" rel="self"/>
   
   <link href="http://noone40404.github.io/"/>
-  <updated>2021-09-26T00:48:49.493Z</updated>
+  <updated>2021-09-26T07:40:00.789Z</updated>
   <id>http://noone40404.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>dp套dp</title>
+    <link href="http://noone40404.github.io/2021/09/26/dp%E5%A5%97dp/"/>
+    <id>http://noone40404.github.io/2021/09/26/dp%E5%A5%97dp/</id>
+    <published>2021-09-26T07:38:43.000Z</published>
+    <updated>2021-09-26T07:40:00.789Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;思想&quot;&gt;&lt;a href=&quot;#思想&quot; class=&quot;headerlink&quot; title=&quot;思想&quot;&gt;&lt;/a&gt;思想&lt;/h2&gt;&lt;h3 id=&quot;复习&quot;&gt;&lt;a href=&quot;#复习&quot; class=&quot;headerlink&quot; title=&quot;复习&quot;&gt;&lt;/a&gt;复习&lt;/h3&gt;&lt;p&gt;先重复一下 $dp$ 的本质：$dp$ 将问题以某种顺序解决，其中&lt;strong&gt;记录必需的信息作为当前情况下状态&lt;/strong&gt;，再考虑状态之间的转移以及如何得到答案所需的状态&lt;/p&gt;
+&lt;p&gt;从自动机的角度来说：把解决问题的某一步操作的所有所需特征打包为一个节点，将所有节点连成 $DAG$ (通常情况下)，在 $DAG$ 上拓扑的跑就是 $dp$ 的转移&lt;/p&gt;
+&lt;h3 id=&quot;进一步思考&quot;&gt;&lt;a href=&quot;#进一步思考&quot; class=&quot;headerlink&quot; title=&quot;进一步思考&quot;&gt;&lt;/a&gt;进一步思考&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;现在有一个可以 $dp$ 的问题形式，给定一个答案，有多少种该问题的数据可以使问题的答案是给定的答案&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;简而言之就是在 $dp$ 的 $DAG$ 上再跑 $dp$&lt;/p&gt;
+&lt;p&gt;首先找到 $问题\rightarrow 答案$ 的 $\text{dp}$&lt;/p&gt;
+&lt;p&gt;考虑到 $dp$ 中最重要的是状态，而状态可以被压缩，&lt;strong&gt;将 $内层dp$ 的结果作为 $外层dp$ 的状态&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;具体来说：设 $内层dp - f_{i,j}$ 表示 $i$ 位置的 $j$ 状态，那么 $外层dp - F_{i,P}$ 表示 $内层dp$ 考虑到了节点 $i$ ，要研究的若干个 $内层dp$ 的结果压缩后为 $P$ 作为 $外层dp$ 的状态，$外层dp$ 的目的就是研究此状态的方案数&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="笔记" scheme="http://noone40404.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="思维" scheme="http://noone40404.github.io/tags/%E6%80%9D%E7%BB%B4/"/>
+    
+    <category term="dp" scheme="http://noone40404.github.io/tags/dp/"/>
+    
+  </entry>
   
   <entry>
     <title>回文自动机笔记</title>
@@ -98,9 +127,9 @@
     
     <category term="思维" scheme="http://noone40404.github.io/tags/%E6%80%9D%E7%BB%B4/"/>
     
-    <category term="dp" scheme="http://noone40404.github.io/tags/dp/"/>
-    
     <category term="贪心" scheme="http://noone40404.github.io/tags/%E8%B4%AA%E5%BF%83/"/>
+    
+    <category term="dp" scheme="http://noone40404.github.io/tags/dp/"/>
     
     <category term="期望" scheme="http://noone40404.github.io/tags/%E6%9C%9F%E6%9C%9B/"/>
     
@@ -212,9 +241,9 @@
     
     <category term="思维" scheme="http://noone40404.github.io/tags/%E6%80%9D%E7%BB%B4/"/>
     
-    <category term="博弈论" scheme="http://noone40404.github.io/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/"/>
-    
     <category term="贪心" scheme="http://noone40404.github.io/tags/%E8%B4%AA%E5%BF%83/"/>
+    
+    <category term="博弈论" scheme="http://noone40404.github.io/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/"/>
     
     <category term="分治" scheme="http://noone40404.github.io/tags/%E5%88%86%E6%B2%BB/"/>
     
@@ -293,9 +322,9 @@
     
     <category term="思维" scheme="http://noone40404.github.io/tags/%E6%80%9D%E7%BB%B4/"/>
     
-    <category term="博弈论" scheme="http://noone40404.github.io/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/"/>
-    
     <category term="贪心" scheme="http://noone40404.github.io/tags/%E8%B4%AA%E5%BF%83/"/>
+    
+    <category term="博弈论" scheme="http://noone40404.github.io/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/"/>
     
     <category term="计数" scheme="http://noone40404.github.io/tags/%E8%AE%A1%E6%95%B0/"/>
     
@@ -320,9 +349,9 @@
     
     <category term="思维" scheme="http://noone40404.github.io/tags/%E6%80%9D%E7%BB%B4/"/>
     
-    <category term="dp" scheme="http://noone40404.github.io/tags/dp/"/>
-    
     <category term="贪心" scheme="http://noone40404.github.io/tags/%E8%B4%AA%E5%BF%83/"/>
+    
+    <category term="dp" scheme="http://noone40404.github.io/tags/dp/"/>
     
     <category term="栈" scheme="http://noone40404.github.io/tags/%E6%A0%88/"/>
     
@@ -378,9 +407,9 @@
     
     <category term="思维" scheme="http://noone40404.github.io/tags/%E6%80%9D%E7%BB%B4/"/>
     
-    <category term="dp" scheme="http://noone40404.github.io/tags/dp/"/>
-    
     <category term="贪心" scheme="http://noone40404.github.io/tags/%E8%B4%AA%E5%BF%83/"/>
+    
+    <category term="dp" scheme="http://noone40404.github.io/tags/dp/"/>
     
     <category term="期望" scheme="http://noone40404.github.io/tags/%E6%9C%9F%E6%9C%9B/"/>
     
@@ -432,9 +461,9 @@
     
     <category term="贪心" scheme="http://noone40404.github.io/tags/%E8%B4%AA%E5%BF%83/"/>
     
-    <category term="图论" scheme="http://noone40404.github.io/tags/%E5%9B%BE%E8%AE%BA/"/>
-    
     <category term="组合数学" scheme="http://noone40404.github.io/tags/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6/"/>
+    
+    <category term="图论" scheme="http://noone40404.github.io/tags/%E5%9B%BE%E8%AE%BA/"/>
     
   </entry>
   
@@ -510,31 +539,6 @@
     <category term="数论" scheme="http://noone40404.github.io/tags/%E6%95%B0%E8%AE%BA/"/>
     
     <category term="位运算" scheme="http://noone40404.github.io/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>02801202-AGC014</title>
-    <link href="http://noone40404.github.io/2021/08/20/AGC014/"/>
-    <id>http://noone40404.github.io/2021/08/20/AGC014/</id>
-    <published>2021-08-20T13:42:41.000Z</published>
-    <updated>2021-08-21T14:13:15.392Z</updated>
-    
-    
-    <summary type="html">AGC014</summary>
-    
-    
-    
-    <category term="题解" scheme="http://noone40404.github.io/categories/%E9%A2%98%E8%A7%A3/"/>
-    
-    
-    <category term="构造" scheme="http://noone40404.github.io/tags/%E6%9E%84%E9%80%A0/"/>
-    
-    <category term="思维" scheme="http://noone40404.github.io/tags/%E6%80%9D%E7%BB%B4/"/>
-    
-    <category term="贪心" scheme="http://noone40404.github.io/tags/%E8%B4%AA%E5%BF%83/"/>
-    
-    <category term="启发式合并" scheme="http://noone40404.github.io/tags/%E5%90%AF%E5%8F%91%E5%BC%8F%E5%90%88%E5%B9%B6/"/>
     
   </entry>
   

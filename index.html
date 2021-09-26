@@ -205,6 +205,89 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2021/09/26/dp%E5%A5%97dp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="noone___">
+      <meta itemprop="description" content="不能逃避，不能逃避，不能逃避，不能逃避⋯⋯">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="noone___'s blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/26/dp%E5%A5%97dp/" class="post-title-link" itemprop="url">dp套dp</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-09-26 15:38:43 / 修改时间：15:40:00" itemprop="dateCreated datePublished" datetime="2021-09-26T15:38:43+08:00">2021-09-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="思想"><a href="#思想" class="headerlink" title="思想"></a>思想</h2><h3 id="复习"><a href="#复习" class="headerlink" title="复习"></a>复习</h3><p>先重复一下 $dp$ 的本质：$dp$ 将问题以某种顺序解决，其中<strong>记录必需的信息作为当前情况下状态</strong>，再考虑状态之间的转移以及如何得到答案所需的状态</p>
+<p>从自动机的角度来说：把解决问题的某一步操作的所有所需特征打包为一个节点，将所有节点连成 $DAG$ (通常情况下)，在 $DAG$ 上拓扑的跑就是 $dp$ 的转移</p>
+<h3 id="进一步思考"><a href="#进一步思考" class="headerlink" title="进一步思考"></a>进一步思考</h3><blockquote>
+<p>现在有一个可以 $dp$ 的问题形式，给定一个答案，有多少种该问题的数据可以使问题的答案是给定的答案</p>
+</blockquote>
+<p>简而言之就是在 $dp$ 的 $DAG$ 上再跑 $dp$</p>
+<p>首先找到 $问题\rightarrow 答案$ 的 $\text{dp}$</p>
+<p>考虑到 $dp$ 中最重要的是状态，而状态可以被压缩，<strong>将 $内层dp$ 的结果作为 $外层dp$ 的状态</strong></p>
+<p>具体来说：设 $内层dp - f_{i,j}$ 表示 $i$ 位置的 $j$ 状态，那么 $外层dp - F_{i,P}$ 表示 $内层dp$ 考虑到了节点 $i$ ，要研究的若干个 $内层dp$ 的结果压缩后为 $P$ 作为 $外层dp$ 的状态，$外层dp$ 的目的就是研究此状态的方案数</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/09/26/dp%E5%A5%97dp/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2021/09/25/%E5%9B%9E%E6%96%87%E8%87%AA%E5%8A%A8%E6%9C%BA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -930,87 +1013,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2021/09/01/AGC024/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="noone___">
-      <meta itemprop="description" content="不能逃避，不能逃避，不能逃避，不能逃避⋯⋯">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="noone___'s blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/01/AGC024/" class="post-title-link" itemprop="url">10901202-AGC024</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-09-01 22:14:41" itemprop="dateCreated datePublished" datetime="2021-09-01T22:14:41+08:00">2021-09-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-02 11:28:42" itemprop="dateModified" datetime="2021-09-02T11:28:42+08:00">2021-09-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">题解</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>AGC024</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/09/01/AGC024/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1082,7 +1084,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-count">46</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
