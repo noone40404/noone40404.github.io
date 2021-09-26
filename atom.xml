@@ -177,9 +177,9 @@
     
     <category term="贪心" scheme="http://noone40404.github.io/tags/%E8%B4%AA%E5%BF%83/"/>
     
-    <category term="笛卡尔树" scheme="http://noone40404.github.io/tags/%E7%AC%9B%E5%8D%A1%E5%B0%94%E6%A0%91/"/>
-    
     <category term="字符串" scheme="http://noone40404.github.io/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+    
+    <category term="笛卡尔树" scheme="http://noone40404.github.io/tags/%E7%AC%9B%E5%8D%A1%E5%B0%94%E6%A0%91/"/>
     
     <category term="线段树" scheme="http://noone40404.github.io/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/"/>
     
@@ -453,9 +453,9 @@
     
     <category term="贪心" scheme="http://noone40404.github.io/tags/%E8%B4%AA%E5%BF%83/"/>
     
-    <category term="组合数学" scheme="http://noone40404.github.io/tags/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6/"/>
-    
     <category term="图论" scheme="http://noone40404.github.io/tags/%E5%9B%BE%E8%AE%BA/"/>
+    
+    <category term="组合数学" scheme="http://noone40404.github.io/tags/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6/"/>
     
   </entry>
   
