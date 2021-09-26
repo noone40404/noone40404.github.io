@@ -6,7 +6,7 @@
   <link href="http://noone40404.github.io/atom.xml" rel="self"/>
   
   <link href="http://noone40404.github.io/"/>
-  <updated>2021-09-26T07:40:00.789Z</updated>
+  <updated>2021-09-26T23:31:00.143Z</updated>
   <id>http://noone40404.github.io/</id>
   
   <author>
@@ -21,18 +21,10 @@
     <link href="http://noone40404.github.io/2021/09/26/dp%E5%A5%97dp/"/>
     <id>http://noone40404.github.io/2021/09/26/dp%E5%A5%97dp/</id>
     <published>2021-09-26T07:38:43.000Z</published>
-    <updated>2021-09-26T07:40:00.789Z</updated>
+    <updated>2021-09-26T23:31:00.143Z</updated>
     
     
-    <summary type="html">&lt;h2 id=&quot;思想&quot;&gt;&lt;a href=&quot;#思想&quot; class=&quot;headerlink&quot; title=&quot;思想&quot;&gt;&lt;/a&gt;思想&lt;/h2&gt;&lt;h3 id=&quot;复习&quot;&gt;&lt;a href=&quot;#复习&quot; class=&quot;headerlink&quot; title=&quot;复习&quot;&gt;&lt;/a&gt;复习&lt;/h3&gt;&lt;p&gt;先重复一下 $dp$ 的本质：$dp$ 将问题以某种顺序解决，其中&lt;strong&gt;记录必需的信息作为当前情况下状态&lt;/strong&gt;，再考虑状态之间的转移以及如何得到答案所需的状态&lt;/p&gt;
-&lt;p&gt;从自动机的角度来说：把解决问题的某一步操作的所有所需特征打包为一个节点，将所有节点连成 $DAG$ (通常情况下)，在 $DAG$ 上拓扑的跑就是 $dp$ 的转移&lt;/p&gt;
-&lt;h3 id=&quot;进一步思考&quot;&gt;&lt;a href=&quot;#进一步思考&quot; class=&quot;headerlink&quot; title=&quot;进一步思考&quot;&gt;&lt;/a&gt;进一步思考&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;现在有一个可以 $dp$ 的问题形式，给定一个答案，有多少种该问题的数据可以使问题的答案是给定的答案&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;简而言之就是在 $dp$ 的 $DAG$ 上再跑 $dp$&lt;/p&gt;
-&lt;p&gt;首先找到 $问题\rightarrow 答案$ 的 $\text{dp}$&lt;/p&gt;
-&lt;p&gt;考虑到 $dp$ 中最重要的是状态，而状态可以被压缩，&lt;strong&gt;将 $内层dp$ 的结果作为 $外层dp$ 的状态&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;具体来说：设 $内层dp - f_{i,j}$ 表示 $i$ 位置的 $j$ 状态，那么 $外层dp - F_{i,P}$ 表示 $内层dp$ 考虑到了节点 $i$ ，要研究的若干个 $内层dp$ 的结果压缩后为 $P$ 作为 $外层dp$ 的状态，$外层dp$ 的目的就是研究此状态的方案数&lt;/p&gt;</summary>
+    <summary type="html">dp套dp的理解和例题</summary>
     
     
     
@@ -461,9 +453,9 @@
     
     <category term="贪心" scheme="http://noone40404.github.io/tags/%E8%B4%AA%E5%BF%83/"/>
     
-    <category term="图论" scheme="http://noone40404.github.io/tags/%E5%9B%BE%E8%AE%BA/"/>
-    
     <category term="组合数学" scheme="http://noone40404.github.io/tags/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6/"/>
+    
+    <category term="图论" scheme="http://noone40404.github.io/tags/%E5%9B%BE%E8%AE%BA/"/>
     
   </entry>
   
