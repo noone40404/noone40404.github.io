@@ -25,24 +25,27 @@
     var CONFIG = {"hostname":"noone40404.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="AGC018">
+  <meta name="description" content="莫名其妙被卢神推荐让写的东西">
 <meta property="og:type" content="article">
-<meta property="og:title" content="52801202-AGC018">
-<meta property="og:url" content="http://noone40404.github.io/2021/08/25/AGC018/index.html">
+<meta property="og:title" content="minmax搜索">
+<meta property="og:url" content="http://noone40404.github.io/2021/09/27/minmax%E6%90%9C%E7%B4%A2/index.html">
 <meta property="og:site_name" content="noone___&#39;s blog">
-<meta property="og:description" content="AGC018">
+<meta property="og:description" content="莫名其妙被卢神推荐让写的东西">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-08-25T14:18:41.000Z">
-<meta property="article:modified_time" content="2021-08-25T14:18:21.830Z">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/4graz4vl.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/7lgzhb1j.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/6mw5352z.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/rjtl1ad7.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/xzralhg5.png">
+<meta property="article:published_time" content="2021-09-27T00:15:09.000Z">
+<meta property="article:modified_time" content="2021-09-27T00:16:22.258Z">
 <meta property="article:author" content="noone___">
-<meta property="article:tag" content="构造">
-<meta property="article:tag" content="思维">
-<meta property="article:tag" content="贪心">
-<meta property="article:tag" content="组合数学">
-<meta property="article:tag" content="图论">
+<meta property="article:tag" content="minmax搜索">
+<meta property="article:tag" content="搜索">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.luogu.com.cn/upload/image_hosting/4graz4vl.png">
 
-<link rel="canonical" href="http://noone40404.github.io/2021/08/25/AGC018/">
+<link rel="canonical" href="http://noone40404.github.io/2021/09/27/minmax%E6%90%9C%E7%B4%A2/">
 
 
 <script id="page-configurations">
@@ -55,7 +58,7 @@
   };
 </script>
 
-  <title>52801202-AGC018 | noone___'s blog</title>
+  <title>minmax搜索 | noone___'s blog</title>
   
 
 
@@ -213,7 +216,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2021/08/25/AGC018/">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2021/09/27/minmax%E6%90%9C%E7%B4%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -226,7 +229,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          52801202-AGC018
+          minmax搜索
         </h1>
 
         <div class="post-meta">
@@ -237,7 +240,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-08-25 22:18:41 / 修改时间：22:18:21" itemprop="dateCreated datePublished" datetime="2021-08-25T22:18:41+08:00">2021-08-25</time>
+              <time title="创建时间：2021-09-27 08:15:09 / 修改时间：08:16:22" itemprop="dateCreated datePublished" datetime="2021-09-27T08:15:09+08:00">2021-09-27</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -245,7 +248,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">题解</span></a>
+                  <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
                 </span>
             </span>
 
@@ -257,7 +260,7 @@
               <span class="post-meta-item-text">阅读次数：</span>
               <span id="busuanzi_value_page_pv"></span>
             </span>
-            <div class="post-description">AGC018</div>
+            <div class="post-description">莫名其妙被卢神推荐让写的东西</div>
 
         </div>
       </header>
@@ -268,58 +271,50 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="D"><a href="#D" class="headerlink" title="D"></a>D</h2><blockquote>
-<p>有一颗 $N$ 个顶点的树，顶点依次标号 $1\sim N$ ，第 $i$ 条边连接着顶点 $A_i$ 和 $B_i$ ，且第 $i$ 条边的长度为  $C_i$ 。有一张 $N$ 个点的完全图，图上两点之间的边的边权为它们在树上的距离。求最长 $\text{Hamilton}$ 路径（即不重不漏恰好经过每个点一次）。</p>
-</blockquote>
-<p>求 $\text{Hamilton}$ 路径转化为求 $\text{Hamilton}$ 回路再减去一条路径</p>
+        <h1 id="minimax搜索（对抗搜索）"><a href="#minimax搜索（对抗搜索）" class="headerlink" title="minimax搜索（对抗搜索）"></a>minimax搜索（对抗搜索）</h1><p><del>qwq莫名在做博弈论时就被卢神推荐来做这个了</del></p>
+<h2 id="常见形式"><a href="#常见形式" class="headerlink" title="常见形式"></a>常见形式</h2><p>两人轮流走棋，两人目标相背</p>
 <ul>
-<li><p>对于 $\text{Hamilton}$ 回路，有一个结论：对于每一个边，把它断开后树分成了连通块 $x,y$ ，则有 $\min(x,y)$ 条路径通过该边</p>
+<li>A希望B输，B希望A输</li>
+<li>A使得分最多，B使得分最少。</li>
+</ul>
+<p>双方智商均在线且极高</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>dfs搜博弈树</p>
+<h2 id="思想"><a href="#思想" class="headerlink" title="思想"></a>思想</h2><p>把走法看成一棵树</p>
+<p>圆形代表 $A$，正方形代表 $B$ ，节点的每个孩子节点代表一个候选方案。</p>
+<p>注：圆圈中的数字为 $A$ 的利益值，越大对A越有利</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/4graz4vl.png" alt=""></p>
+<ul>
+<li><p>假设 $A$ 选择第一种方案（即走第一个子节点）</p>
+<p>那么 $B$ 将有两种选择，一种使 $A$ 的值为 $7$，一种使 $A$ 的值为 $3$，那么显然 $B$ 会选择 $3$<br><img src="https://cdn.luogu.com.cn/upload/image_hosting/7lgzhb1j.png" alt=""></p>
 </li>
-<li><p>对于减掉的那条路径：</p>
-<p><strong>需要发现：不经过重心的路径都不会被包含在任意最优解中</strong></p>
-<p>那么每一条路径都是在重心的两个不同子树中各任取一点相连，于是，当重心为点时，删去以重心为端点的最短的一条边，重心为边时，删去那条边</p>
+<li><p>假设 $A$ 选择第二种方案</p>
+<p>那么 $B$ 只有一种选择<br><img src="https://cdn.luogu.com.cn/upload/image_hosting/6mw5352z.png" alt=""></p>
+</li>
+<li><p>同理得第三种情况</p>
 </li>
 </ul>
-<h2 id="E"><a href="#E" class="headerlink" title="E"></a>E</h2><blockquote>
-<p>给定平面上三个矩形：$[X_1,X_2]\times [Y_1,Y_2] ; [X_3,X_4]\times [Y_3,Y_4] ; [X_5,X_6]\times [Y_5,Y_6]$ ，在三个矩形中各选一个整点 $A,B,C$ ，再选择一条 $A\rightarrow B$ 的 $HV$ 格路以及 $B\rightarrow C$ 的 $HV$ 格路 ，求方案数</p>
-</blockquote>
-<p>先考虑只有两个矩形，统计 $A\rightarrow C$ 的 $HV$ 格路数：</p>
-<script type="math/tex; mode=display">\sum_{i=X_1}^{X_2} \sum_{j=Y_1}^{Y_2} \sum_{u=X_5}^{X_6} \sum_{v=Y_5}^{Y_6} \binom {u-i+v-j} {u-i}</script><p>固定 $i,j,u$ 能进行上指标求和：</p>
-<script type="math/tex; mode=display">\sum_{v=Y_5}^{Y_6} \binom {u-i+v-j} {u-i} = \binom {u-i+\left( Y_6+1 \right)-j} {u-i}-\binom {u-i+Y_5-j} {u-i}</script><p>同理，对其他三个均进行上指标求和，得：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\sum_{i=X_1}^{X_2} \sum_{j=Y_1}^{Y_2} \sum_{u=X_5}^{X_6} \sum_{v=Y_5}^{Y_6} \binom {u-i+v-j} {u-i} &= \binom {\left( X_6+1 \right)-\left( X_1-1 \right)+\left( Y_6+1 \right)-\left( Y_1-1 \right)} {\left( X_6+1 \right)-\left( X_1-1 \right)} +\binom {\left( X_6+1 \right)-\left( X_1-1 \right)+Y_5-\left( Y_1-1 \right)} {\left( X_6+1 \right)-\left( X_1-1 \right)} +\binom {X_5-\left( X_1-1 \right)+\left( Y_6+1 \right)-\left( Y_1-1 \right)} {X_5-\left( X_1-1 \right)} +\binom {X_5-\left( X_1-1 \right)+Y_5-\left( Y_1-1 \right)} {X_5-\left( X_1-1 \right)} \\ &- \binom {\left( X_6+1 \right)-\left( X_1-1 \right)+\left( Y_6+1 \right)-Y_2} {\left( X_6+1 \right)-\left( X_1-1 \right)} + \binom {\left( X_6+1 \right)-\left( X_1-1 \right)+Y_5-Y_2} {\left( X_6+1 \right)-\left( X_1-1 \right)} + \binom {X_5-\left( X_1-1 \right)+\left( Y_6+1 \right)-Y_2} {X_5-\left( X_1-1 \right)}- \binom {X_5-\left( X_1-1 \right)+Y_5-Y_2} {X_5-\left( X_1-1 \right)} \\  &- \binom {\left( X_6+1 \right)-X_2+\left( Y_6+1 \right)-\left( Y_1-1 \right)} {\left( X_6+1 \right)-X_2} + \binom {\left( X_6+1 \right)-X_2+Y_5-\left( Y_1-1 \right)} {\left( X_6+1 \right)-X_2} + \binom {X_5-X_2+\left( Y_6+1 \right)-\left( Y_1-1 \right)} {X_5-X_2} - \binom {X_5-X_2+Y_5-\left( Y_1-1 \right)} {X_5-X_2} \\  &+ \binom {\left( X_6+1 \right)-X_2+\left( Y_6+1 \right)-Y_2} {\left( X_6+1 \right)-X_2} - \binom {\left( X_6+1 \right)-X_2+Y_5-Y_2} {\left( X_6+1 \right)-X_2} -\binom {X_5-X_2+\left( Y_6+1 \right)-Y_2} {X_5-X_2}+\binom {X_5-X_2+Y_5-Y_2} {X_5-X_2}
-\end{aligned}</script><p>再考虑三个矩形：</p>
-<p>假设固定了 $(x,y)\in [X_3,X_4]\times [Y_3,Y_4]$ ，那么只需对左下和右上方的矩形分别做一个二维部分和，同上转化出四个二项式系数</p>
-<p>将问题看成：左下角的矩形集合可以等价于 $4$ 个 (带权的) 点，每个点有系数 $±1$ ，同理，右上角的矩形也可以等价于 $4$ 个 (带权的) 点，每个点有系数 $±1$</p>
-<p>由此，原问题转化为 $16$ 个问题：给定起点 $(x_L,y_L)$<br>，终点 $(x_R,y_R)$ 和一个中途矩形 $[x_3,x_4]\times [y_3,y_4]$ ，求有多少种方案在中途矩形中选择点 $P$ ，以及一条 $(x_L,y_L)\rightarrow P$ 的 $HV$ 格路和一条 $P\rightarrow (x_R,y_R)$ 的 $HV$ 格路</p>
-<p>首先考虑经过矩形 $[x_3,x_4]\times [y_3,y_4]$ 的格路数量：注意到任何一条经过某个矩形的格路至少经过这 $(x_4-x_3+1)+(y_4-y_3+1)$ 条边之一</p>
-<p>那么枚举经过的这条边，后计算该边终点到 $(x_R,y_R)$ 的 $HV$ 格路数</p>
-<p>而需要经过矩形中特定点的格路数，那么对于经过矩形的每一条格路，经过矩形内 $c$ 个点就会对最终方案数贡献 $c$</p>
-<p>转化为求每条经过中途矩形的格路在中途矩形内长度之和：设到达时坐标 $(x_a,y_a)$ ，离开时 $(x_b,y_b)$ ，该格路在中途矩形内的长度就是 $(x_b-x_a)+(y_b-y_a)+1$</p>
-<p>由于枚举起点终点，对上式求和会达到无法接受的 $O(n^2)$</p>
-<p><strong>这里考虑用分离变量</strong>：即，把 $(x_b-x_a)+(y_b-y_a)+1$ 拆成 $(x_b+y_b+1)-(x_a+y_a)$ ，然后在起点终点处分别统计并将贡献相加即可</p>
-<p>再把该子问题做 $16$ 遍就好了</p>
-<h2 id="F"><a href="#F" class="headerlink" title="F"></a>F</h2><blockquote>
-<p>给定两个 $n$ 个点的树，给每个点赋值满足两棵树上均有任意节点子树权值和为 $1/-1$</p>
-</blockquote>
-<ul>
-<li><p>先考虑一棵树情况</p>
-<p>直接从叶子往上构造。但为便于推广，找出一个等价过程</p>
-<p>由于一个子树对父亲的 $Size$ 的贡献只有 $1/-1$ ，所以考虑给树边定向：儿子指向父亲代表贡献为 $1$ ，反过来代表贡献为 $-1$</p>
-<p>由于整个树的权值和也为 $1$ 或 $-1$ ，所以新建一个根 $0$ ，然后 $0$ 连向当前根，对 $0$ 点的定向就是整棵树的贡献</p>
-<p>由此：先给所有边定向(随机即可)，对于一条儿子指向父亲的边，把儿子 $+1$ ，父亲 $-1$ ，这样只有以儿子为根的一个子树的大小改变，反之同理</p>
-<p>实际上就是定向完后，$a_i=out_i-in_i$</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/rjtl1ad7.png" alt=""></p>
+<p>又因为 $A$ 需要最佳方案</p>
+<p>于是有<br><img src="https://cdn.luogu.com.cn/upload/image_hosting/xzralhg5.png" alt=""></p>
+<h2 id="alpha-beta-剪枝优化"><a href="#alpha-beta-剪枝优化" class="headerlink" title="$alpha-beta$剪枝优化"></a>$alpha-beta$剪枝优化</h2><p>为便于理解，将 $A$ 走的节点命名为 $max$ 节点，$B$ 走到节点命名为 $min$ 节点</p>
+<p>$alpha-beta$ 剪枝的基本思想:</p>
+<p>是对于每个 $max$ 结点设置一个目前已知下界 $alpha$ ，每个 $min$ 节点设置一个目前已知上界 $beta$ 。$alpha$ 代表 $A$ 可以搜索到的最好值，$beta$ 代表了 $B$ 可以接受的最坏值。</p>
+<p>如果某个行动的结果 $\leq alpha$ ，那么它就是很差的行动，$A$ 可以选择更好的行动（即当前 $alpha$ 值的行动）。</p>
+<p>反之，如果某个行动的结果 $\geq beta$，那么整个节点就作废了，因为对手不希望走到这个局面，而它有一定有别的行动（即走当前 $beta$ 值的行动）可以避免到达这个局面。</p>
+<p>那么发生下面两种情况时可以剪枝，即停止搜索该节点的其余子节点：</p>
+<ol>
+<li><p>不用该点走：当计算一个 $min$ 结点时，如果它的 $beta$ 值小于等于其父结点的 $alpha$ 值，则可以立即停止此结点的计算（ $alpha$ 剪枝）。</p>
 </li>
-<li><p>两棵树</p>
-<p>考虑此时如何保证对两棵树定向后的 $a_i=b_i$ ，考虑再加一些边</p>
-<p>首先，如果两棵树上某个标号对应的两个点的度数奇偶性不一样，那么一定无解</p>
-<p>其次，如果度数为奇数，就把这两个点连起来</p>
-<p>这样得到的新图满足，连通（两个 $0$ 节点之间一定有连边），而且所有点度数均为偶数，即，存在欧拉回路</p>
-<p>由欧拉回路的性质，对任意点 $in=out$</p>
-<p>那么如果按照欧拉回路去定向，每个点的点权就都为 $0$ ，那么显然相等</p>
+<li><p>走多了：当计算一个 $max$ 结点时，如果它的 $alpha$ 结点大于等于其父结点的 $beta$ 值，也可以立即停止此结点的计算（ $beta$ 剪枝）。</p>
 </li>
-</ul>
+</ol>
+<p>基本格式：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(Status s,<span class="keyword">int</span> Alpha,<span class="keyword">int</span> Beta,<span class="keyword">int</span> Which)</span></span></span><br><span class="line"><span class="function"><span class="comment">//Status记录当前状态，Which记录当前操作的选手，其中0号选手取Max，1号选手取Min</span></span></span><br><span class="line"><span class="function"><span class="comment">//Alpha存储较大值，Beta存储较小值</span></span></span><br><span class="line"><span class="function"><span class="comment">//如果当前节点是取Max的节点，则Alpha表示当前节点父亲的父亲的权值，Beta表示当前节点父亲的权值</span></span></span><br><span class="line"><span class="function"><span class="comment">//如果当前节点是取Min的节点，则Alpha表示当前节点父亲的权值，Beta表示当前节点父亲的父亲的权值</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">IsEnd</span>(s)) <span class="keyword">return</span> <span class="built_in">GetVal</span>(s);<span class="comment">//如果当前状态已经为最终状态，就返回当前状态的分值</span></span><br><span class="line">    rei i;</span><br><span class="line">    <span class="built_in">expend</span>(s);<span class="comment">//扩展当前状态，并将新状态存储于NewStatus数组中，用NewStatusTotal记录新状态的数量</span></span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=NewStatusTotal;++i)<span class="comment">//枚举从当前状态能够扩展到的新状态</span></span><br><span class="line">    &#123;</span><br><span class="line">        t=<span class="built_in">dfs</span>(NewStatus,Alpha,Beta,Which^<span class="number">1</span>);<span class="comment">//求出当前枚举到的新状态的分值</span></span><br><span class="line">        (s.Which?Beta=<span class="built_in">min</span>(Beta,t):Alpha=<span class="built_in">max</span>(Alpha,t)); <span class="comment">//如果当前节点取min，就更新Beta，否则更新Alpha</span></span><br><span class="line">        <span class="keyword">if</span>(Alpha&gt;=Beta) <span class="keyword">break</span>;<span class="comment">//如果Alpha≥Beta，就说明这个节点对最终答案没有贡献了，就结束搜索</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> s.Which?Beta:Alpha;<span class="comment">//返回相应值</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><p>ICPC Asia Nanning 2017 I. Rake It In</p>
+<p>P4576 [CQOI2013]棋盘游戏</p>
+<p>World Finals 2009 LA4451 House of Cards UVA1085</p>
+<pre><code>/*刘汝佳的毒瘤题*/
+</code></pre><p>UVA10838 The Pawn Chess</p>
 
     </div>
 
@@ -335,7 +330,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://noone40404.github.io/2021/08/25/AGC018/" title="52801202-AGC018">http://noone40404.github.io/2021/08/25/AGC018/</a>
+    <a href="http://noone40404.github.io/2021/09/27/minmax%E6%90%9C%E7%B4%A2/" title="minmax搜索">http://noone40404.github.io/2021/09/27/minmax搜索/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -347,11 +342,8 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/%E6%9E%84%E9%80%A0/" rel="tag"><i class="fa fa-tag"></i> 构造</a>
-              <a href="/tags/%E6%80%9D%E7%BB%B4/" rel="tag"><i class="fa fa-tag"></i> 思维</a>
-              <a href="/tags/%E8%B4%AA%E5%BF%83/" rel="tag"><i class="fa fa-tag"></i> 贪心</a>
-              <a href="/tags/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6/" rel="tag"><i class="fa fa-tag"></i> 组合数学</a>
-              <a href="/tags/%E5%9B%BE%E8%AE%BA/" rel="tag"><i class="fa fa-tag"></i> 图论</a>
+              <a href="/tags/minmax%E6%90%9C%E7%B4%A2/" rel="tag"><i class="fa fa-tag"></i> minmax搜索</a>
+              <a href="/tags/%E6%90%9C%E7%B4%A2/" rel="tag"><i class="fa fa-tag"></i> 搜索</a>
           </div>
 
         
@@ -360,13 +352,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/08/24/AGC017/" rel="prev" title="42801202-AGC017">
-      <i class="fa fa-chevron-left"></i> 42801202-AGC017
+    <a href="/2021/09/26/dp%E5%A5%97dp/" rel="prev" title="dp套dp">
+      <i class="fa fa-chevron-left"></i> dp套dp
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/08/26/AGC019/" rel="next" title="62801202-AGC019">
-      62801202-AGC019 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -426,7 +415,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#D"><span class="nav-number">1.</span> <span class="nav-text">D</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#E"><span class="nav-number">2.</span> <span class="nav-text">E</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#F"><span class="nav-number">3.</span> <span class="nav-text">F</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#minimax%E6%90%9C%E7%B4%A2%EF%BC%88%E5%AF%B9%E6%8A%97%E6%90%9C%E7%B4%A2%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">minimax搜索（对抗搜索）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E5%BD%A2%E5%BC%8F"><span class="nav-number">1.1.</span> <span class="nav-text">常见形式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.2.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%9D%E6%83%B3"><span class="nav-number">1.3.</span> <span class="nav-text">思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#alpha-beta-%E5%89%AA%E6%9E%9D%E4%BC%98%E5%8C%96"><span class="nav-number">1.4.</span> <span class="nav-text">$alpha-beta$剪枝优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">1.5.</span> <span class="nav-text">例题</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -740,7 +729,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'noone40404.github.io',
       owner       : 'noone40404',
       admin       : ['noone40404'],
-      id          : '4bb67655bdd66c51b91404263de3281f',
+      id          : '383ef4bd38703da9fea097beef8a2205',
         language: 'zn-CN',
       distractionFreeMode: true
     });
