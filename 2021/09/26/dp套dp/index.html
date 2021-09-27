@@ -33,7 +33,7 @@
 <meta property="og:description" content="dp套dp的理解和例题">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-09-26T07:38:43.000Z">
-<meta property="article:modified_time" content="2021-09-27T00:58:40.792Z">
+<meta property="article:modified_time" content="2021-09-27T01:42:42.071Z">
 <meta property="article:author" content="noone___">
 <meta property="article:tag" content="思维">
 <meta property="article:tag" content="dp">
@@ -240,7 +240,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-27 08:58:40" itemprop="dateModified" datetime="2021-09-27T08:58:40+08:00">2021-09-27</time>
+                <time title="修改时间：2021-09-27 09:42:42" itemprop="dateModified" datetime="2021-09-27T09:42:42+08:00">2021-09-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -306,6 +306,17 @@ f_{i,*} 的差分数列是一个 0/1 数列</script><p>状压差分后的数组�
 <p>长度为 $n$ 的随机排列，求其最长上升子序列长度的期望</p>
 </blockquote>
 <p>仍是先考虑 $内层dp \ \text{LIS}$ 的 $O(n\log n)$ 做法：$dp$ 数组记录每个长度的上升子序列的最后一项的最小值</p>
+<ul>
+<li><p>具体操作是：</p>
+<p>构造 $n+1$ 个序列 $L_0\sim L_n$ ，其中序列 $L_{i,j}$ 表示原数组 $A$ 的前 $i$ 个中，能构成的所有长度 $j$ 的 $\text{LIS}$ 中，结尾最小的序列的结尾数字</p>
+<ul>
+<li>设 $L_0=\varnothing$</li>
+<li>若 $L_{i-1}$ 已经被求出且 $A_i$ 大于 $L_{i-1}$ 中每个元素，直接将 $A_i$ 接在 $L_{i-1}$ 后面形成 $L_i$</li>
+<li>若 $L_{i-1}$ 中存在最小的比 $A_i$ 大的元素 $x$ ，那么用 $A_i$ 替换掉 $x$ 以形成 $L_i$</li>
+</ul>
+<p>由此，$L_n$ 的长度就是 $A$ 的 $\text{LIS}$ 长度</p>
+</li>
+</ul>
 <p>可以发现，对于任意一个排列的前缀，只需要存这个数组而不是整个排列就能得到全部所需信息</p>
 <p>由于原数组是一个排列，该数组中不含相同元素，故数组中前 $i$ 个数对应的 $dp$ 数组只有不超过 $2^i$ 中可能</p>
 <p>设 $f_{i,S}$ 表示长度为 $i$ 的排列的 $\text{LIS} \ dp$ 数组为 $S$ 的概率</p>
