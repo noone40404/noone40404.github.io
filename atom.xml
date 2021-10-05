@@ -6,7 +6,7 @@
   <link href="http://noone40404.github.io/atom.xml" rel="self"/>
   
   <link href="http://noone40404.github.io/"/>
-  <updated>2021-10-05T12:46:41.333Z</updated>
+  <updated>2021-10-05T12:52:02.671Z</updated>
   <id>http://noone40404.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://noone40404.github.io/2021/10/05/%E7%8C%AA%E5%9B%BD%E6%9D%80/"/>
     <id>http://noone40404.github.io/2021/10/05/%E7%8C%AA%E5%9B%BD%E6%9D%80/</id>
     <published>2021-10-05T12:44:47.000Z</published>
-    <updated>2021-10-05T12:46:41.333Z</updated>
+    <updated>2021-10-05T12:52:02.671Z</updated>
     
     
     <summary type="html">只是纪念一下</summary>
@@ -499,9 +499,9 @@
     
     <category term="贪心" scheme="http://noone40404.github.io/tags/%E8%B4%AA%E5%BF%83/"/>
     
-    <category term="组合数学" scheme="http://noone40404.github.io/tags/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6/"/>
-    
     <category term="图论" scheme="http://noone40404.github.io/tags/%E5%9B%BE%E8%AE%BA/"/>
+    
+    <category term="组合数学" scheme="http://noone40404.github.io/tags/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6/"/>
     
   </entry>
   
