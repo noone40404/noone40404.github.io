@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+<meta name="google-site-verification" content="LZ0JOjQQZw7PhvjIbZqeOojf3J6807W7DPn6--OTptc" />
+<meta name="baidu-site-verification" content="code-DDmcbQ6zQN" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <meta name="google-site-verification" content="true">
+  <meta name="msvalidate.01" content="true">
+  <meta name="yandex-verification" content="true">
+  <meta name="baidu-site-verification" content="true">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"noone40404.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="重新系统的看了看期望的东西">
+<meta property="og:type" content="article">
+<meta property="og:title" content="概率与期望">
+<meta property="og:url" content="http://noone40404.github.io/2021/10/08/%E6%A6%82%E7%8E%87%E4%B8%8E%E6%9C%9F%E6%9C%9B/index.html">
+<meta property="og:site_name" content="noone___&#39;s blog">
+<meta property="og:description" content="重新系统的看了看期望的东西">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-10-08T04:04:40.000Z">
+<meta property="article:modified_time" content="2021-10-08T04:08:41.540Z">
+<meta property="article:author" content="noone___">
+<meta property="article:tag" content="dp">
+<meta property="article:tag" content="期望">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://noone40404.github.io/2021/10/08/%E6%A6%82%E7%8E%87%E4%B8%8E%E6%9C%9F%E6%9C%9B/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>概率与期望 | noone___'s blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="noone___'s blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">noone___'s blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap_1.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/noone40404" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2021/10/08/%E6%A6%82%E7%8E%87%E4%B8%8E%E6%9C%9F%E6%9C%9B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="noone___">
+      <meta itemprop="description" content="不能逃避，不能逃避，不能逃避，不能逃避⋯⋯">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="noone___'s blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          概率与期望
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-10-08 12:04:40 / 修改时间：12:08:41" itemprop="dateCreated datePublished" datetime="2021-10-08T12:04:40+08:00">2021-10-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+            <div class="post-description">重新系统的看了看期望的东西</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="一些-text-trick"><a href="#一些-text-trick" class="headerlink" title="一些 $\text{trick}$"></a>一些 $\text{trick}$</h2><p>定义 $E(x)$ 表示随机变量 $x$ 的期望值，即，$E(x)=\sum P(x=i)\times i$</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>先定义目标状态的期望 $E(S)$</p>
+<p>用期望的线性性拆成若杠 $\sum E(x_{0,1,2,….})$ 并分类</p>
+<p>对于每一类找递推式或直接算的式子，或考虑引入新的值来辅助计算</p>
+<h3 id="技巧-套路"><a href="#技巧-套路" class="headerlink" title="技巧/套路"></a>技巧/套路</h3><p>由等比数列求和得：</p>
+<script type="math/tex; mode=display">\sum_{i=0}^n x^i=\frac{1-x^{n+1}}{1-x}</script><p>$n\rightarrow \infty,x\in (0,1)$ 时</p>
+<script type="math/tex; mode=display">\sum_{i=0}^{\infty} x^i=\frac{1}{1-x}</script><ul>
+<li><p>期望的性质</p>
+<p><strong>线性性</strong>： $E(x+y)=E(x)+E(y)$</p>
+<p>不相关可积性： $E(xy)=E(x)\times E(y)$</p>
+</li>
+</ul>
+<p>对于离散变量 $x$ ：$P(x=k)=P(x\leq k)-P(x\leq k-1)$</p>
+<h4 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h4><blockquote>
+<p>$n$ 个随机变量 $x_i,\forall x_i,1\leq x_i\leq S$ ，求 $\max_{1\leq i\leq n} x_i$ 的期望</p>
+</blockquote>
+<script type="math/tex; mode=display">\begin{aligned}
+E(\max)&=\sum_{i=1}^S P(\max=i)\times i \\
+&=\sum_{i=1}^S \left(P(\max\leq i)-P(\max\leq i-1)\right)\times i \\
+&=\sum_{i=1}^S \left(\frac{i^n}{S^n}-\frac{(i-1)^n}{S^n} \right)\times i
+\end{aligned}</script><h3 id="拿球问题"><a href="#拿球问题" class="headerlink" title="拿球问题"></a>拿球问题</h3><blockquote>
+<p>$n$ 个球，拿 $m$ 次，求拿出的数字之和期望</p>
+</blockquote>
+<script type="math/tex; mode=display">\sum_{i=1}^n P(i)\times i=\sum_{i=1}^n \frac{m}{n}\times i=\frac{m(n+1)}{2}</script><p>其中是否放回对答案无影响</p>
+<blockquote>
+<p>拿出求后有 $p_1$ 的概率放回，$p_2$ 的概率放回两个和该球相同的，求期望</p>
+</blockquote>
+<p>感性理解一下，答案不变</p>
+<h3 id="游走问题"><a href="#游走问题" class="headerlink" title="游走问题"></a>游走问题</h3><blockquote>
+<p>链上从一段到另一端的期望步数</p>
+</blockquote>
+<p>设 $X_i$ 表示 随机游走下 $i$ 第一次到 $i+1$ 的步数</p>
+<script type="math/tex; mode=display">E(X_2)=\frac{1}{2}+\frac{1}{2}\times (1+E(X_1)+E(X_2))</script><script type="math/tex; mode=display">E(X_i)=\frac{1}{2}+\frac{1}{2}\times (1+E(X_{i-1})+E(X_i))=E(X_{i-1})+2</script><script type="math/tex; mode=display">E(ans)=\sum_{i=1}^{n-1}E(X_i)=(n-1)^2</script><blockquote>
+<p>完全图上，从一个点到另一个点的期望</p>
+</blockquote>
+<p>$\frac{1}{n-1}$ 成功，则期望步数即为 $n-1$</p>
+<blockquote>
+<p>$2n$ 点的完全二分图上游走</p>
+</blockquote>
+<p>设 $E_a$ 表示在同侧的期望步数，$E_b$ 表示在异侧的期望步数，有：</p>
+<script type="math/tex; mode=display">\begin{cases}
+E_b=\frac{1}{n}+\frac{n-1}{n}(E_b+2) &\text{前者是到另一侧的期望步数，后者是另一侧又到另一侧的步数，系数表示不需要自己走回自己}\\
+E_b=E_a+1 \\
+\end{cases}</script><p>解得</p>
+<script type="math/tex; mode=display">\begin{cases}
+E_b=n+1 \\
+E_a=n \\
+\end{cases}</script><h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3><blockquote>
+<p>每次随机一个整数 $[1,n]$ ，求凑齐所有数的期望次数</p>
+</blockquote>
+<p>单次概率 $P=\frac{n-i+1}{n}$</p>
+<p>期望即为 $E(x)=\sum_{i=1}^n\frac{1}{p_i}$</p>
+<blockquote>
+<p>随机长度为 $n$ 的排列 $P$ ，求 $\max=P_i$ 的 $i$ 的个数的平方的期望和</p>
+</blockquote>
+<p>设 $X_i$ 表示 $i$ 是否满足条件的期望</p>
+<p>要求的为：$E\left(\left(\sum_{i}^n X_i\right)^2\right)$</p>
+<p>若 $i$ 被选，$X_i$ 就是 $1$ ，否则为 $0$ ，所以平方无意义</p>
+<script type="math/tex; mode=display">\left(\sum_{i=1}^n X_i\right)^2=\sum_{i,j,i<j}^n \left(X_i\times X_j+X_i^2\right)</script><script type="math/tex; mode=display">原式=\sum_{i,j,i<j}^n\left(E(X_i\times X_j+X_i)\right)=\sum_{i=1}^n E(X_i)+\sum_{i,j,i<j}^n E(X_i\times X_j)</script><p>由于 $X_i,X_j$ 相互独立，则有：</p>
+<script type="math/tex; mode=display">原式=\sum_{i=1}^n \frac{1}{n}+\sum_{i=1,j>i}\frac{1}{i\times j}</script><blockquote>
+<p>随机长度为 $n$ 的排列 $P$ ，求其包含 $w_{1\sim m}$ 作为子序列/连续子序列的概率</p>
+</blockquote>
+<ul>
+<li><p>第一问</p>
+<script type="math/tex; mode=display">\binom{n}{m}\times \frac{(n-m)!}{n!}=\frac{1}{m!}</script></li>
+<li><p>第二问</p>
+<p>  取 $m$ 个位置，第一个位置 $n$ 种，第二个 $n-1$ 种，一直乘到 $n-m+1$ 种，在这 $m$ 个位置选出正确的 $w_i$ 的概率为</p>
+<script type="math/tex; mode=display">\prod_{i=n-m+1}^n\frac{1}{i}=\frac{(n-m)!}{n!}</script><p>  再枚举开头，有 $n-m+1$ 种，即有</p>
+<script type="math/tex; mode=display">ans=\frac{(n-m)!}{n!}\times (n-m+1)=\frac{(n-m+1)!}{n!}</script></li>
+</ul>
+<blockquote>
+<p>$n$ 堆石头，第 $i$ 堆有 $a_i$ 个，每次随机选一个石头并扔掉其所在堆的所有石头，求第 $1$ 堆石头期望第几次被扔掉</p>
+</blockquote>
+<p>设 $X_i$ 表示 $i$ 是第 $X_i$ 次被拿走，即有 $X_i=\sum_{i-1}^m [X_i\leq X_1]$</p>
+<script type="math/tex; mode=display">\begin{aligned}
+E(X_1)&=\sum_{i=2}^n E([E_x\leq E_1])+1 \\
+&=\sum_{i=2}^n P([E_x\leq E_1])+1 \\
+&=\left(\sum_{i=1}^n \frac{a_i}{a_1-a_i}\right)+1 \\
+\end{aligned}</script><blockquote>
+<p>随机长度 $n$ 的 $01$ 串 $S$ ，每个位置为 $1$ 的概率为 $p$ ，定义 $ans$ 是每段连续 $1$ 长度的平方之和，求 $E(ans)$</p>
+</blockquote>
+<p>定义 $X_i$ 表示以 $i$ 结尾时1的答案，$Y_i$ 表示以 $i$ 结尾时后缀 $1$ 的个数</p>
+<ul>
+<li><p>$S_{i+1}=0$</p>
+<script type="math/tex; mode=display">Y_{i+1}=0,X_{i+1}=X_i</script></li>
+<li><p>$S_{i+1}=1$</p>
+<script type="math/tex; mode=display">Y_{i+1}=Y_i+1,X_{i+1}=X_i-Y_i^2+(Y_i+1)^2=X_i+2\times Y_i+1</script></li>
+</ul>
+<p>且有 $E(X_n)=E(ans)$</p>
+<p>那么有</p>
+<script type="math/tex; mode=display">E(X_n)=p\times (\ E(X_{n-1})+2\times E(Y_{n-1}+1)\ )+(1-p)\times E(x_{n-1})</script><script type="math/tex; mode=display">E(Y_n)=p\times (1+E(Y_{n-1}))+(1-p)\times 0</script><blockquote>
+<p>给定序列，每次随机删除一个元素，求 $ij$ 在过程中相邻的概率</p>
+</blockquote>
+<p>将 $ij$ 中间的数全排列，$ij$ 在最后的方案数除以总数</p>
+<script type="math/tex; mode=display">P=\frac{2\times (j-i-1)!}{(j-i+1)!}=\frac{2}{(j-i)(j-i+1)}</script><blockquote>
+<p>给定 $1\sim n$ 这 $n$ 个数，每次随机选择一个并删除其所有约数，求删完的期望</p>
+</blockquote>
+<p>题意转化为随机删除 $x$ ，若其未被标记则标记其所有的约数，求期望选到多少个没被标记的 $x$</p>
+<p>设 $X_i$ 表示 $i$ 在没被标记前就被删掉的期望</p>
+<script type="math/tex; mode=display">E(ans)=\sum_{i=1}^n E(X_i)=\sum_{i=1}^n\frac{1}{\left\lfloor\frac{i}{n} \right\rfloor}</script><p>即，$i$ 的倍数有 $\left\lfloor\frac{i}{n} \right\rfloor$ 个， $i$ 最早被删除的概率即为 $\frac{1}{\left\lfloor\frac{i}{n} \right\rfloor}$</p>
+<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><blockquote>
+<p>给定 $n$ 个硬币，价值为 $val_i$ ，每次随机取走一个，获得的收益时左右两个硬币价值的乘积，求总期望</p>
+</blockquote>
+<p>设 $x_{i,j}=[ij是否相遇]$</p>
+<p>那么总价值为 $S=\sum_{i,j} x_{i,j}\times w_i\times w_j$</p>
+<p>由期望的线性性可知</p>
+<script type="math/tex; mode=display">E(S)=\sum_{i,j,i<j}^n E(x_{i,j})\times w_i\times w_j=\sum_{i,j,i<j}^n \frac{2\times w_i\times w_j}{(j-i)\times (j-i+1)}</script><blockquote>
+<p>$n$ 个数 $a_{1\sim n}$ 每次等概率选出两个数，合并在一起为一个新数并放回，得到的收益时新的数的值，求总收益期望</p>
+</blockquote>
+<p>设 $X_i$ 表示 $a_i$ 被选的次数</p>
+<p>总收益即为 $S=\sum_{i=1}^n X_i\times a_i$</p>
+<script type="math/tex; mode=display">E(S)=\sum_{i=1}^n E(X_i)\times a_i</script><p>一个数 $a_x$ 在第 $j$ 次被合并的概率和是 $\sum_{j=1}^{n-1}\frac{2}{n-j+1}$ ，即，每个数独立，第 $j$ 次还剩 $n-j+1$ 个数</p>
+<p>那么有：</p>
+<script type="math/tex; mode=display">E(S)=\sum_{i=1}^n\sum_{j=1}^{n-1}\frac{2\times a_i}{n-j+1}</script><h2 id="刷一波期望-tag-下的题"><a href="#刷一波期望-tag-下的题" class="headerlink" title="刷一波期望 tag 下的题"></a>刷一波期望 <code>tag</code> 下的题</h2><h3 id="P3232-HNOI2013-游走"><a href="#P3232-HNOI2013-游走" class="headerlink" title="P3232 [HNOI2013]游走"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3232">P3232 [HNOI2013]游走</a></h3><blockquote>
+<p>$n$ 个点 $m$ 个边的无向连通图，在该图上随机游走，每一步中以相等概率随机选择当前点的某条边，沿该边走后获得该边编号的分数，到 $n$ 时游走结束，对 $m$ 条边编号使总分的期望值最小</p>
+</blockquote>
+<p>由数据范围 $1\leq n\leq 500,1\leq m\leq 125000$ 可以考虑到：<strong>若直接考虑边的期望经过次数时间复杂度不能接受，所以先考虑点的期望经过次数</strong>，即：</p>
+<script type="math/tex; mode=display">f_i=\begin{cases}
+\sum_{i,j\in E,j!=n} \frac{f_j}{deg_j}+1 &\text{ $i=1$ } \\
+\sum_{i,j\in E,j!=n} \frac{f_j}{deg_j} \\
+0 &\text{ $i=n$ } \\
+\text{注意这里面是 $deg_j$ 而不是 $deg_i$ } \\
+\end{cases}</script><p>对于这 $n-1$ 个式子(没有 $n$ ) ，用高斯消元求解易得</p>
+<p>那么边的期望经过次数即为 $g(u,v)=\frac{f_u}{deg_u}+\frac{f_v}{deg_v}$</p>
+<p>直接排序求即可</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">550</span>,M=<span class="number">2e5</span>+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> eps=<span class="number">1e-10</span>;</span><br><span class="line"><span class="keyword">int</span> head[M],ver[M&lt;&lt;<span class="number">1</span>],Next[M&lt;&lt;<span class="number">1</span>],tot;</span><br><span class="line"><span class="keyword">int</span> n,m,s[M&lt;&lt;<span class="number">1</span>],ed[M&lt;&lt;<span class="number">1</span>];</span><br><span class="line"><span class="keyword">double</span> d[N],f[N][N],ans[N],sum,E[M&lt;&lt;<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v)</span></span>&#123; ver[++tot]=v; Next[tot]=head[u];head[u]=tot;&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">dcmp</span><span class="params">(<span class="keyword">double</span> x)</span></span>&#123; <span class="keyword">return</span> (x&lt;=eps &amp;&amp; x&gt;=-eps) ? <span class="number">0</span> : (x&gt;<span class="number">0</span> ? <span class="number">1</span> : <span class="number">-1</span>);&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">gauss</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;n;++i)&#123;</span><br><span class="line">        rei num=i;</span><br><span class="line">        <span class="keyword">for</span>(rei j=i+<span class="number">1</span>;j&lt;n;++j) <span class="keyword">if</span>(<span class="built_in">dcmp</span>(f[j][i]-f[num][i])&gt;<span class="number">0</span>) num=j;</span><br><span class="line">        <span class="keyword">if</span>(num!=i) <span class="keyword">for</span>(rei j=<span class="number">1</span>;j&lt;=n;++j) <span class="built_in">swap</span>(f[i][j],f[num][j]);</span><br><span class="line">        <span class="keyword">for</span>(rei j=i+<span class="number">1</span>;j&lt;n;++j) <span class="keyword">if</span>(<span class="built_in">dcmp</span>(f[j][i]))&#123;</span><br><span class="line">            <span class="keyword">double</span> t=f[j][i]/f[i][i];</span><br><span class="line">            <span class="keyword">for</span>(rei k=<span class="number">1</span>;k&lt;=n;++k) f[j][k]-=t*f[i][k];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(rei i=n<span class="number">-1</span>;i;--i)&#123;</span><br><span class="line">        <span class="keyword">for</span>(rei j=i+<span class="number">1</span>;j&lt;n;++j) f[i][n]-=f[i][j]*ans[j];</span><br><span class="line">        ans[i]=f[i][n]/f[i][i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">freopen</span>(<span class="string">&quot;1.in&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin); <span class="built_in">freopen</span>(<span class="string">&quot;1.ans&quot;</span>,<span class="string">&quot;w&quot;</span>,stdout);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;m);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>,x,y;i&lt;=m;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;x,&amp;y),<span class="built_in">add</span>(x,y),<span class="built_in">add</span>(y,x),++d[x],++d[y],s[i]=x,ed[i]=y;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;n;++i)&#123;</span><br><span class="line">        f[i][i]=<span class="number">1.0</span>;</span><br><span class="line">        <span class="keyword">for</span>(rei j=head[i];j;j=Next[j])&#123;</span><br><span class="line">            rei y=ver[j]; <span class="keyword">if</span>(y==n) <span class="keyword">continue</span>;</span><br><span class="line">            f[i][y]=<span class="number">-1</span>/d[y];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    f[<span class="number">1</span>][n]=<span class="number">1</span>;</span><br><span class="line">    <span class="built_in">gauss</span>();</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=m;++i) E[i]=ans[ s[i] ]/d[ s[i] ]+ans[ ed[i] ]/d[ ed[i] ];</span><br><span class="line">    <span class="built_in">sort</span>(E+<span class="number">1</span>,E+<span class="number">1</span>+m);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=m;++i) sum+=E[i]*(m-i+<span class="number">1.0</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%.3lf\n&quot;</span>,sum);</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="P3239-HNOI2015-亚瑟王"><a href="#P3239-HNOI2015-亚瑟王" class="headerlink" title="P3239 [HNOI2015]亚瑟王"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3239">P3239 [HNOI2015]亚瑟王</a></h3><blockquote>
+<p>$n$ 张卡牌，第 $i$ 张发动技能的概率为 $p_i$ ，若成功发动会造成 $d_i$ 点伤害，一局游戏有 $r$ 轮，每一轮中，从第一张开始按照顺序出牌：若当前第 $i$ 牌已成功发动过则跳过，若是最后一张则结束该；否则以 $p_i$ 的概率发动，若成功则结束该轮，否则考虑下一张</p>
+</blockquote>
+<p>题中的 $p_i$ 并不能直接推出答案，考虑设 $fp_i$ 表示牌 $i$ 在所有的 $r$ 轮中被使用的概率，如此有答案 $\sum fp_i\times d_i$</p>
+<ul>
+<li><p>对于 $fp_i$</p>
+<p>显然有 $fp_1=1-(1-p_1)^r$</p>
+<p>考虑第 $2$ 张牌，若第 $1$ 张牌发动则有 $fp_2=1-(1-p_2)^{r-1}$ ，若没有发动则有 $fp_2=1-(1-p_2)^r$</p>
+<p>那么有结论：若已经确定 $\forall i&gt;1$ 在 $1\sim i-1$ 张牌在所有 $r$ 轮种是否发动技能，$fp_i$ 仅取决于 $1\sim i-1$ 有多少张发动的牌，即 $fp_i=1-(1-p_i)^{r-j}$</p>
+</li>
+</ul>
+<p>显然需要一个 $dp$ 来维护，即 $f_{i,j}$ 表示 $r$ 轮中前 $i$ 张牌中有 $j$ 张发动的概率，则有</p>
+<script type="math/tex; mode=display">f_{i,j}+=
+\begin{cases}
+(1-(1-p_i)^{r-j+1})\times f_{i-1,j-1} &\text{$i$ 发动，此时有 $j-1$ 轮不能发动} \\
+(1-p_i)^{r-j}\times f_{i-1,j} &\text{$i$ 不发动，那么有 $j$ 轮不能发动} \\
+\end{cases}</script><p>那么易得 $fp$ :</p>
+<script type="math/tex; mode=display">fp_i=\sum_{j=0}^{min(i-1,j)} (1-(1-p_i)^{r-j})\times f_{i-1,j}</script><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">250</span>,M=<span class="number">150</span>;</span><br><span class="line"><span class="keyword">int</span> n,r,d[N];</span><br><span class="line"><span class="keyword">double</span> p[N],fp[N],pow_j[N][N];<span class="comment">//pow_j[i][j]: (1-p[i])^j</span></span><br><span class="line"><span class="keyword">double</span> f[N][M];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;n;++i)&#123;</span><br><span class="line">        pow_j[i][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(rei j=<span class="number">1</span>;j&lt;=r;++j) pow_j[i][j]=pow_j[i][j<span class="number">-1</span>]*(<span class="number">1</span>-p[i]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">double</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(f,<span class="number">0</span>,<span class="keyword">sizeof</span> f); <span class="built_in">memset</span>(fp,<span class="number">0</span>,<span class="keyword">sizeof</span> fp);</span><br><span class="line">    f[<span class="number">0</span>][<span class="number">0</span>]=pow_j[<span class="number">0</span>][r]; f[<span class="number">0</span>][<span class="number">1</span>]=fp[<span class="number">0</span>]=<span class="number">1</span>-f[<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;n;++i) <span class="keyword">for</span>(rei j=<span class="number">0</span>;j&lt;=r;++j)&#123;</span><br><span class="line">        fp[i]+=f[i<span class="number">-1</span>][j]*(<span class="number">1</span>-pow_j[i][r-j]);<span class="comment">//对于前i-1张，j轮不考虑第i张，r-j轮考虑</span></span><br><span class="line">        f[i][j]+=f[i<span class="number">-1</span>][j]*(pow_j[i][r-j]);<span class="comment">//不选第i张</span></span><br><span class="line">        <span class="keyword">if</span>(j) f[i][j]+=f[i<span class="number">-1</span>][j<span class="number">-1</span>]*(<span class="number">1</span>-pow_j[i][r-j+<span class="number">1</span>]);<span class="comment">//选第i张</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">double</span> res=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;n;++i) res+=d[i]*fp[i];</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    rei T; <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;T);</span><br><span class="line">    <span class="keyword">while</span>(T--)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;r);</span><br><span class="line">        <span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;n;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%lf%d&quot;</span>,&amp;p[i],&amp;d[i]);</span><br><span class="line">        <span class="built_in">init</span>();</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%.10lf\n&quot;</span>,<span class="built_in">solve</span>());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="P4284-SHOI2014-概率充电器"><a href="#P4284-SHOI2014-概率充电器" class="headerlink" title="P4284 [SHOI2014]概率充电器"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4284">P4284 [SHOI2014]概率充电器</a></h3><blockquote>
+<p>一个树形结构，每个点有 $p_i$ 的概率直接被充电，随后直接充电的点以 $edge_{i,j}$ 的概率给其他点间接充电，求进入充电状态的点的个数期望</p>
+<p>注意：被间接充电的点也可以给其他点充电</p>
+</blockquote>
+<p>先考虑一个点有电的情况：</p>
+<script type="math/tex; mode=display">\begin{cases}
+&\text{自身以 $q_i$ 的概率充电} \\
+&\text{被其 $son$ 充电} \\
+&\text{被其 $fa$ 充电} \\
+\end{cases}</script><p>树形图容易考虑到一个 $trick$ : $\text{up \ and \ down}$ ：先从下往上推得前两种情况，再从根往下推第三种</p>
+<p>具体的，设每个点的初始概率即为 $q_i\%$</p>
+<ul>
+<li><p>对于 $up$ 操作：</p>
+<p>设事件 $A$ 表示点 $i$ 直接充电，事件 $B$ 表示点 $i$ 被子节点间接充电，那么至少发生一件的概率为 $P(A)+P(B)-P(A)\times P(B)$</p>
+<p>即，$h_i=h_i+h_j\times edge_{i,j}-h_i\times h_j\times edge_{i,j},\quad j\in son_i$</p>
+</li>
+<li><p>对于 $down$ 操作：</p>
+<p>即，用父亲有电来更新儿子</p>
+<p>设事件 $A$ 表示除了子树 $j$ 以外的使 $i$ 有电的概率，又有 $P(B)=h_j\times edge_{i,j}$</p>
+<p>那么有 $P(A)=\frac{h_i-P(B)}{1-P(B)}$ , $h_j=h_j+P(A)\times edge_{i,j}-h_j\times P(A)\times edge_{i,j}$</p>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">5e5</span>+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> eps=<span class="number">1e-10</span>;</span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> head[N],Next[N&lt;&lt;<span class="number">1</span>],ver[N&lt;&lt;<span class="number">1</span>],val[N&lt;&lt;<span class="number">1</span>],tot;</span><br><span class="line"><span class="keyword">int</span> a[N],depth[N];</span><br><span class="line"><span class="keyword">double</span> h[N],ans;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v,<span class="keyword">int</span> z)</span></span>&#123; ver[++tot]=v; Next[tot]=head[u],head[u]=tot,val[tot]=z;&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">check</span><span class="params">(<span class="keyword">double</span> x,<span class="keyword">double</span> y)</span></span>&#123; <span class="keyword">return</span> (x+eps&gt;y &amp;&amp; x-eps&lt;y) ? <span class="number">1</span> : <span class="number">0</span>;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">up</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(rei i=head[x];i;i=Next[i])&#123;</span><br><span class="line">        rei y=ver[i]; <span class="keyword">if</span>(depth[y]) <span class="keyword">continue</span>;</span><br><span class="line">        depth[y]=depth[x]+<span class="number">1</span>;</span><br><span class="line">        <span class="built_in">up</span>(y);</span><br><span class="line">        <span class="keyword">double</span> P2=h[y]*(<span class="keyword">double</span>) val[i]/<span class="number">100</span>;</span><br><span class="line">        h[x]=h[x]+P2-h[x]*P2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">down</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    ans+=h[x];</span><br><span class="line">    <span class="keyword">for</span>(rei i=head[x];i;i=Next[i])&#123;</span><br><span class="line">        rei y=ver[i]; <span class="keyword">if</span>(depth[y]&lt;=depth[x]) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">check</span>(h[y]*(<span class="keyword">double</span>) val[i]/<span class="number">100</span>,<span class="number">1</span>))&#123; <span class="built_in">down</span>(y); <span class="keyword">continue</span>;&#125;<span class="comment">//h_j已经是1，不需要再更新</span></span><br><span class="line">        <span class="keyword">double</span> P2=(h[x]-h[y]*(<span class="keyword">double</span>) val[i]/<span class="number">100</span>)/(<span class="number">1</span>-h[y]*(<span class="keyword">double</span>) val[i]/<span class="number">100</span>);</span><br><span class="line">        P2*=(<span class="keyword">double</span>) val[i]/<span class="number">100</span>;</span><br><span class="line">        h[y]=h[y]+P2-P2*h[y];</span><br><span class="line">        <span class="built_in">down</span>(y);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>,x,y,z;i&lt;n;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>,&amp;x,&amp;y,&amp;z),<span class="built_in">add</span>(x,y,z),<span class="built_in">add</span>(y,x,z);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a[i]),h[i]=a[i]*<span class="number">0.01</span>;</span><br><span class="line">    depth[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="built_in">up</span>(<span class="number">1</span>); <span class="built_in">down</span>(<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%.6lf\n&quot;</span>,ans);</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>noone___
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://noone40404.github.io/2021/10/08/%E6%A6%82%E7%8E%87%E4%B8%8E%E6%9C%9F%E6%9C%9B/" title="概率与期望">http://noone40404.github.io/2021/10/08/概率与期望/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/dp/" rel="tag"><i class="fa fa-tag"></i> dp</a>
+              <a href="/tags/%E6%9C%9F%E6%9C%9B/" rel="tag"><i class="fa fa-tag"></i> 期望</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/10/05/%E7%8C%AA%E5%9B%BD%E6%9D%80/" rel="prev" title="SDOI2019-猪国杀">
+      <i class="fa fa-chevron-left"></i> SDOI2019-猪国杀
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B-text-trick"><span class="nav-number">1.</span> <span class="nav-text">一些 $\text{trick}$</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.1.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%80%E5%B7%A7-%E5%A5%97%E8%B7%AF"><span class="nav-number">1.2.</span> <span class="nav-text">技巧&#x2F;套路</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B%E5%AD%90"><span class="nav-number">1.2.1.</span> <span class="nav-text">例子</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%BF%E7%90%83%E9%97%AE%E9%A2%98"><span class="nav-number">1.3.</span> <span class="nav-text">拿球问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%B8%E8%B5%B0%E9%97%AE%E9%A2%98"><span class="nav-number">1.4.</span> <span class="nav-text">游走问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.5.</span> <span class="nav-text">模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">1.6.</span> <span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%B7%E4%B8%80%E6%B3%A2%E6%9C%9F%E6%9C%9B-tag-%E4%B8%8B%E7%9A%84%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">刷一波期望 tag 下的题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#P3232-HNOI2013-%E6%B8%B8%E8%B5%B0"><span class="nav-number">2.1.</span> <span class="nav-text">P3232 [HNOI2013]游走</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P3239-HNOI2015-%E4%BA%9A%E7%91%9F%E7%8E%8B"><span class="nav-number">2.2.</span> <span class="nav-text">P3239 [HNOI2015]亚瑟王</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P4284-SHOI2014-%E6%A6%82%E7%8E%87%E5%85%85%E7%94%B5%E5%99%A8"><span class="nav-number">2.3.</span> <span class="nav-text">P4284 [SHOI2014]概率充电器</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="noone___"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">noone___</p>
+  <div class="site-description" itemprop="description">不能逃避，不能逃避，不能逃避，不能逃避⋯⋯</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">45</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/noone40404" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;noone40404" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://ctp314.github.io/" title="https:&#x2F;&#x2F;ctp314.github.io&#x2F;" rel="noopener" target="_blank">CTime_Pup_314</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://evitagen.blog.luogu.org/" title="https:&#x2F;&#x2F;evitagen.blog.luogu.org&#x2F;" rel="noopener" target="_blank">Evitagen</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">noone___</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+  <script data-pjax>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'ebdb5b537395179b4514',
+      clientSecret: 'd0843e5853efe963ca9983db6cac3a1f9d736856',
+      repo        : 'noone40404.github.io',
+      owner       : 'noone40404',
+      admin       : ['noone40404'],
+      id          : '06af32b919db34e33870d0cfec3a166b',
+        language: 'zn-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+    </div>
+</body>
+</html>
