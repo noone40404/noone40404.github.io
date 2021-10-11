@@ -35,8 +35,8 @@
 <meta property="article:published_time" content="2021-08-04T12:46:54.000Z">
 <meta property="article:modified_time" content="2021-08-05T09:17:33.977Z">
 <meta property="article:author" content="noone___">
-<meta property="article:tag" content="构造">
 <meta property="article:tag" content="思维">
+<meta property="article:tag" content="构造">
 <meta property="article:tag" content="dp">
 <meta property="article:tag" content="博弈论">
 <meta property="article:tag" content="Kruskal重构树">
@@ -218,7 +218,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="noone___">
-      <meta itemprop="description" content="不能逃避，不能逃避，不能逃避，不能逃避⋯⋯">
+      <meta itemprop="description" content="自闭中">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -288,7 +288,7 @@
 <p>将每堆小石子的数量看成柱状图并排序，问题转化为从 $(1,1)$ 出发，每次只能向上或向右走一格，到边界者输</p>
 <p>显然棱角处均为必败点，且<del>打表得</del> $y=-k\times x$ 直线上的格子性质相同</p>
 <p>找最大的 $(i,i)$ 再简单判断即可</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e5</span>+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">int</span> a[N],n;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a[i]);</span><br><span class="line">    <span class="built_in">sort</span>(a+<span class="number">1</span>,a+<span class="number">1</span>+n,greater&lt;<span class="keyword">int</span>&gt;());</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i)</span><br><span class="line">        <span class="keyword">if</span>(i+<span class="number">1</span>&gt;a[i+<span class="number">1</span>])&#123;<span class="comment">//最大正方形</span></span><br><span class="line">            <span class="keyword">if</span>((a[i]-i)&amp;<span class="number">1</span>)&#123; <span class="built_in">puts</span>(<span class="string">&quot;First&quot;</span>); <span class="keyword">break</span>;&#125;</span><br><span class="line">            rei right=i;</span><br><span class="line">            <span class="keyword">while</span>(a[right+<span class="number">1</span>]==i) ++right;</span><br><span class="line">            <span class="keyword">if</span>((right-i)&amp;<span class="number">1</span>)&#123; <span class="built_in">puts</span>(<span class="string">&quot;First&quot;</span>); <span class="keyword">break</span>;&#125;</span><br><span class="line">            <span class="built_in">puts</span>(<span class="string">&quot;Second&quot;</span>); <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e5</span>+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">int</span> a[N],n;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a[i]);</span><br><span class="line">	<span class="built_in">sort</span>(a+<span class="number">1</span>,a+<span class="number">1</span>+n,greater&lt;<span class="keyword">int</span>&gt;());</span><br><span class="line">	<span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i)</span><br><span class="line">		<span class="keyword">if</span>(i+<span class="number">1</span>&gt;a[i+<span class="number">1</span>])&#123;<span class="comment">//最大正方形</span></span><br><span class="line">			<span class="keyword">if</span>((a[i]-i)&amp;<span class="number">1</span>)&#123; <span class="built_in">puts</span>(<span class="string">&quot;First&quot;</span>); <span class="keyword">break</span>;&#125;</span><br><span class="line">			rei right=i;</span><br><span class="line">			<span class="keyword">while</span>(a[right+<span class="number">1</span>]==i) ++right;</span><br><span class="line">			<span class="keyword">if</span>((right-i)&amp;<span class="number">1</span>)&#123; <span class="built_in">puts</span>(<span class="string">&quot;First&quot;</span>); <span class="keyword">break</span>;&#125;</span><br><span class="line">			<span class="built_in">puts</span>(<span class="string">&quot;Second&quot;</span>); <span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="F"><a href="#F" class="headerlink" title="F"></a>F</h2><blockquote>
 <p>给你 $n$ 种不含白色颜色的球，每个球有 $m$ 个，把这 $n\times m$ 个球排成一排，把每一种颜色的最左边出现的球涂成白色，求有多少种不同的颜色序列</p>
 </blockquote>
@@ -323,8 +323,8 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/%E6%9E%84%E9%80%A0/" rel="tag"><i class="fa fa-tag"></i> 构造</a>
               <a href="/tags/%E6%80%9D%E7%BB%B4/" rel="tag"><i class="fa fa-tag"></i> 思维</a>
+              <a href="/tags/%E6%9E%84%E9%80%A0/" rel="tag"><i class="fa fa-tag"></i> 构造</a>
               <a href="/tags/dp/" rel="tag"><i class="fa fa-tag"></i> dp</a>
               <a href="/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" rel="tag"><i class="fa fa-tag"></i> 博弈论</a>
               <a href="/tags/Kruskal%E9%87%8D%E6%9E%84%E6%A0%91/" rel="tag"><i class="fa fa-tag"></i> Kruskal重构树</a>
@@ -411,7 +411,7 @@
     <img class="site-author-image" itemprop="image" alt="noone___"
       src="/images/avatar.gif">
   <p class="site-author-name" itemprop="name">noone___</p>
-  <div class="site-description" itemprop="description">不能逃避，不能逃避，不能逃避，不能逃避⋯⋯</div>
+  <div class="site-description" itemprop="description">自闭中</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
