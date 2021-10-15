@@ -33,7 +33,7 @@
 <meta property="og:description" content="深入(?)一下组合数">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-10-10T03:47:07.000Z">
-<meta property="article:modified_time" content="2021-10-10T03:48:48.602Z">
+<meta property="article:modified_time" content="2021-10-15T13:25:11.836Z">
 <meta property="article:author" content="noone___">
 <meta property="article:tag" content="容斥">
 <meta property="article:tag" content="组合数">
@@ -232,10 +232,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-10-10 11:47:07 / 修改时间：11:48:48" itemprop="dateCreated datePublished" datetime="2021-10-10T11:47:07+08:00">2021-10-10</time>
+              <time title="创建时间：2021-10-10 11:47:07" itemprop="dateCreated datePublished" datetime="2021-10-10T11:47:07+08:00">2021-10-10</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-10-15 21:25:11" itemprop="dateModified" datetime="2021-10-15T21:25:11+08:00">2021-10-15</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -307,6 +313,21 @@
 &=\binom{n+1}{a+b+1} \\
 \end{aligned}</script><p>考虑组合意义：原式相当于把 $n$ 个物品分开从前一段选 $a$ ，后一段选 $b$ 个</p>
 <p>等同于将一个分隔符同 $a+b$ 个物品从 $n+1$ 选出来，其中第 $a+1$ 个物品是分隔符，方案与原式对应</p>
+<h3 id="多重集的排列数"><a href="#多重集的排列数" class="headerlink" title="多重集的排列数"></a>多重集的排列数</h3><p>多重集的全排列数为<strong>元素总数的阶乘除以重复度之和的阶乘</strong>，形式化的：</p>
+<p>对于多重集 $S=\{a_1\times n_1,a_2\times n_2,…,a_k\times n_k\}$ ，全排列数为：</p>
+<script type="math/tex; mode=display">\frac{\left(\sum n_i \right)!}{\prod (n_i!)}</script><p>证明：</p>
+<p>设 $n=\sum n_i$</p>
+<p>对于元素 $a_1$ ，放置的方案数为 $\displaystyle{\binom{n}{n_1}}$</p>
+<p>对于元素 $a_2$ ，放置的方案数为 $\displaystyle{\binom{n-n_1}{n_2}}$</p>
+<p>对于元素 $a_k$ ，放置的方案数为 $\displaystyle{\binom{n-n_1-n_2-…-n_{k-1}}{n_k}}$</p>
+<p>那么总方案数即为 $\displaystyle{\frac{n!}{n_1!\times n_2!\times …\times n_k!}}$</p>
+<h4 id="P2518-HAOI2010-计数"><a href="#P2518-HAOI2010-计数" class="headerlink" title="P2518 [HAOI2010]计数"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2518">P2518 [HAOI2010]计数</a></h4><blockquote>
+<p>一组非 $0$ 数字，可以插入人一个 $0$ ，给出一个数，求这个数前有多少被上述方法产生的数</p>
+</blockquote>
+<p>设 $t$ 表示当前已处理的几位的排列总数，初始有 $t=1$</p>
+<p>考虑手玩数据得到：从后往前枚举每一位，若当前位为 $a$ ，截至目前 $a$ 出现 $b$ 次，比 $a$ 小的数有 $c$ 个，则当前位对 $ans$ 的贡献为 $\frac{t\times c}{b}$</p>
+<p>emmm对于正确性的话并不是太会证，感性理解一下吧qwq</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">60</span>;</span><br><span class="line"><span class="keyword">char</span> ch[N];</span><br><span class="line"><span class="keyword">int</span> cnt[<span class="number">20</span>],tr[<span class="number">20</span>],n;</span><br><span class="line">ld s=<span class="number">0</span>,t=<span class="number">1</span>;<span class="comment">//s当前答案，t当前已处理的后t位的排列总数</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">lowbit</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123; <span class="keyword">return</span> x&amp;(-x);&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123; <span class="keyword">for</span>(;x&lt;=<span class="number">10</span>;x+=<span class="built_in">lowbit</span>(x)) ++tr[x];&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> res=<span class="number">0</span>)</span></span>&#123; <span class="keyword">for</span>(;x;x-=<span class="built_in">lowbit</span>(x)) res+=tr[x]; <span class="keyword">return</span> res;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,ch+<span class="number">1</span>); n=<span class="built_in">strlen</span>(ch+<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">for</span>(rei i=n;i;--i)&#123;</span><br><span class="line">		rei a=ch[i]-<span class="string">&#x27;0&#x27;</span>+<span class="number">1</span>,c=<span class="built_in">sum</span>(a<span class="number">-1</span>);<span class="comment">//c:比a小的数的个数</span></span><br><span class="line">		<span class="keyword">if</span>(!c) t=t*(n-i+<span class="number">1</span>)/(++cnt[a]);</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			t/=(++cnt[a]);</span><br><span class="line">			s+=t*c,t*=(n-i+<span class="number">1</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">add</span>(a);</span><br><span class="line">		<span class="comment">// printf(&quot;%d %lld\n&quot;,a,(ll) s);</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,(ll) s);</span><br><span class="line">	<span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><h3 id="P3214-HNOI2011-卡农"><a href="#P3214-HNOI2011-卡农" class="headerlink" title="P3214 [HNOI2011]卡农"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3214">P3214 [HNOI2011]卡农</a></h3><blockquote>
@@ -451,7 +472,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93"><span class="nav-number">1.</span> <span class="nav-text">一些总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8A%E6%8C%87%E6%A0%87"><span class="nav-number">1.1.</span> <span class="nav-text">上指标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E5%90%88%E6%81%92%E7%AD%89%E5%BC%8F"><span class="nav-number">1.2.</span> <span class="nav-text">组合恒等式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E6%B1%82%E5%92%8C"><span class="nav-number">1.3.</span> <span class="nav-text">一些求和</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%B7%E7%A7%AF%E4%B8%8E%E7%82%B9%E7%A7%AF"><span class="nav-number">1.4.</span> <span class="nav-text">卷积与点积</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#P3214-HNOI2011-%E5%8D%A1%E5%86%9C"><span class="nav-number">2.1.</span> <span class="nav-text">P3214 [HNOI2011]卡农</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P5376-THUPC2019-%E8%BF%87%E6%B2%B3%E5%8D%92%E4%BA%8C"><span class="nav-number">2.2.</span> <span class="nav-text">P5376 [THUPC2019]过河卒二</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93"><span class="nav-number">1.</span> <span class="nav-text">一些总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8A%E6%8C%87%E6%A0%87"><span class="nav-number">1.1.</span> <span class="nav-text">上指标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E5%90%88%E6%81%92%E7%AD%89%E5%BC%8F"><span class="nav-number">1.2.</span> <span class="nav-text">组合恒等式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E6%B1%82%E5%92%8C"><span class="nav-number">1.3.</span> <span class="nav-text">一些求和</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%B7%E7%A7%AF%E4%B8%8E%E7%82%B9%E7%A7%AF"><span class="nav-number">1.4.</span> <span class="nav-text">卷积与点积</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E9%87%8D%E9%9B%86%E7%9A%84%E6%8E%92%E5%88%97%E6%95%B0"><span class="nav-number">1.5.</span> <span class="nav-text">多重集的排列数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#P2518-HAOI2010-%E8%AE%A1%E6%95%B0"><span class="nav-number">1.5.1.</span> <span class="nav-text">P2518 [HAOI2010]计数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#P3214-HNOI2011-%E5%8D%A1%E5%86%9C"><span class="nav-number">2.1.</span> <span class="nav-text">P3214 [HNOI2011]卡农</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P5376-THUPC2019-%E8%BF%87%E6%B2%B3%E5%8D%92%E4%BA%8C"><span class="nav-number">2.2.</span> <span class="nav-text">P5376 [THUPC2019]过河卒二</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
