@@ -32,14 +32,14 @@
 <meta property="og:site_name" content="noone___&#39;s blog">
 <meta property="og:description" content="CF933D A Creative Cutout 题解">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/o3sz8u0e.png">
-<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/jc9rqc98.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/616d1e312ab3f51d91a716cc.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/616d1e342ab3f51d91a71a21.png">
 <meta property="article:published_time" content="2021-10-08T12:06:31.000Z">
-<meta property="article:modified_time" content="2021-10-08T12:08:24.190Z">
+<meta property="article:modified_time" content="2021-10-18T07:12:19.111Z">
 <meta property="article:author" content="noone___">
 <meta property="article:tag" content="思维">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.luogu.com.cn/upload/image_hosting/o3sz8u0e.png">
+<meta name="twitter:image" content="https://pic.imgdb.cn/item/616d1e312ab3f51d91a716cc.png">
 
 <link rel="canonical" href="http://noone40404.github.io/2021/10/08/CF933D%20A%20Creative%20Cutout/">
 
@@ -234,10 +234,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-10-08 20:06:31 / 修改时间：20:08:24" itemprop="dateCreated datePublished" datetime="2021-10-08T20:06:31+08:00">2021-10-08</time>
+              <time title="创建时间：2021-10-08 20:06:31" itemprop="dateCreated datePublished" datetime="2021-10-08T20:06:31+08:00">2021-10-08</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-10-18 15:12:19" itemprop="dateModified" datetime="2021-10-18T15:12:19+08:00">2021-10-18</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -267,8 +273,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>上面的 $\text{GreenDay}$ 学长在模拟赛中出了这道题，并把数据范围加到了 $n\leq 10^{14}$</p>
-<p>与学长的式子相似，仍记 $a=x^2+y^2$ ，点 $(x,y)$ 最早被半径为 $\sqrt a$ 的第 $a$ 个圆包含</p>
+        <p>$\text{SYT}$ 学长在模拟赛中出了这道题，并把数据范围加到了 $n\leq 10^{14}$</p>
+<p>与<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/solution/CF933D">学长的式子</a>相似，仍记 $a=x^2+y^2$ ，点 $(x,y)$ 最早被半径为 $\sqrt a$ 的第 $a$ 个圆包含</p>
 <p>枚举每个点被包含圆的编号 $\times$ 在 $n$ 个圆中的出现次数，即能推出上面的式子</p>
 <script type="math/tex; mode=display">\frac{1}{2}(1+n)(n+a)(n-a+1)-\frac{1}{6}n(n+1)(2n+1)+\frac{1}{6}a(a-1)(2a-1)</script><p>但由于插值法常数过大，考虑继续将式子化简</p>
 <p>将 $a=x^2+y^2$ 代入并以 $y$ 为主元，能得到：</p>
@@ -282,7 +288,7 @@
 &\qquad+\left(\frac{1}{2}(1+n)(n+x^2)(n-xx^2+1)-\frac{1}{6}(n)(n+1)(n+2)+\frac{1}{6}x^2(x^2-1)(2x^2-1) \right) \\
 \end{aligned}</script><p>该式的结果是点 $(x,y)$ 对答案的贡献，但还可以更加简化：在 $O(\sqrt n)$ 的时间内枚举正半轴上的每个 $x$ ，有 $max_y=\sqrt{n-x^2}$</p>
 <p>对于每个 $x$ ，预处理所有的 $y$ 的六次方，四次方，二次方之和，$O(1)$ 求满足 $x^2+y^2\leq n$ 的所有 $y$ ，即，所有满足条件的 $(x,*)$ 点对答案的贡献和</p>
-<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/o3sz8u0e.png" alt="看个图理解一下" style="zoom:50%;" /></p>
+<p><img src="https://pic.imgdb.cn/item/616d1e312ab3f51d91a716cc.png" alt="看个图理解一下" style="zoom:50%;" /></p>
 <p>以 $x=1$ 为例，红线部分就是所求的和</p>
 <p>为了运算方便，实际上代码中求的是：</p>
 <script type="math/tex; mode=display">\begin{aligned}
@@ -291,7 +297,7 @@
 &+2\times \left(\frac{1}{2}(1+n)(-2x^2+1)+x^4-x^2+\frac{1}{6} \right) y^2 \\
 &+(2\times max_y+1)\times \left(\frac{1}{2}(1+n)(n+x^2)(n-xx^2+1)-\frac{1}{6}(n)(n+1)(n+2)+\frac{1}{6}x^2(x^2-1)(2x^2-1) \right) \\
 \end{aligned}</script><p>也就是</p>
-<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/jc9rqc98.png" style="zoom:50%;" /></p>
+<p><img src="https://pic.imgdb.cn/item/616d1e342ab3f51d91a71a21.png" style="zoom:50%;" /></p>
 <p>$y$ 的部分 $\times 2$ 是为了加上负半轴的贡献，常数项 $\times (2\times max_y+1)$ 中，$+1$ 是绿色点的部分，即在 $x$ 轴上时的情况</p>
 <p>最终统计答案时，再用：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ans+=(!x) ? added : <span class="number">2</span>*added;</span><br></pre></td></tr></table></figure>
