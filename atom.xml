@@ -345,11 +345,11 @@
     
     <category term="字符串" scheme="http://noone40404.github.io/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
     
-    <category term="笛卡尔树" scheme="http://noone40404.github.io/tags/%E7%AC%9B%E5%8D%A1%E5%B0%94%E6%A0%91/"/>
-    
     <category term="线段树" scheme="http://noone40404.github.io/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/"/>
     
     <category term="卡常" scheme="http://noone40404.github.io/tags/%E5%8D%A1%E5%B8%B8/"/>
+    
+    <category term="笛卡尔树" scheme="http://noone40404.github.io/tags/%E7%AC%9B%E5%8D%A1%E5%B0%94%E6%A0%91/"/>
     
   </entry>
   
@@ -403,9 +403,9 @@
     
     <category term="博弈论" scheme="http://noone40404.github.io/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/"/>
     
-    <category term="分治" scheme="http://noone40404.github.io/tags/%E5%88%86%E6%B2%BB/"/>
-    
     <category term="笛卡尔树" scheme="http://noone40404.github.io/tags/%E7%AC%9B%E5%8D%A1%E5%B0%94%E6%A0%91/"/>
+    
+    <category term="分治" scheme="http://noone40404.github.io/tags/%E5%88%86%E6%B2%BB/"/>
     
   </entry>
   
@@ -430,9 +430,9 @@
     
     <category term="数论" scheme="http://noone40404.github.io/tags/%E6%95%B0%E8%AE%BA/"/>
     
-    <category term="模拟" scheme="http://noone40404.github.io/tags/%E6%A8%A1%E6%8B%9F/"/>
-    
     <category term="二分图" scheme="http://noone40404.github.io/tags/%E4%BA%8C%E5%88%86%E5%9B%BE/"/>
+    
+    <category term="模拟" scheme="http://noone40404.github.io/tags/%E6%A8%A1%E6%8B%9F/"/>
     
   </entry>
   
