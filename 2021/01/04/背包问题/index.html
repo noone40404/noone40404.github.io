@@ -33,7 +33,7 @@
 <meta property="og:description" content="背包9讲及acwing的背包题">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-01-04T11:16:57.000Z">
-<meta property="article:modified_time" content="2021-07-16T02:02:24.999Z">
+<meta property="article:modified_time" content="2021-10-21T10:25:18.298Z">
 <meta property="article:author" content="noone___">
 <meta property="article:tag" content="dp">
 <meta property="article:tag" content="背包">
@@ -240,7 +240,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-16 10:02:24" itemprop="dateModified" datetime="2021-07-16T10:02:24+08:00">2021-07-16</time>
+                <time title="修改时间：2021-10-21 18:25:18" itemprop="dateModified" datetime="2021-10-21T18:25:18+08:00">2021-10-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -306,7 +306,7 @@
 <li><p>代码</p>
 </li>
 </ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;i++)<span class="comment">//枚举物品</span></span><br><span class="line">	<span class="keyword">for</span>(rei j=c[i];j&lt;=V;j++)<span class="comment">//枚举体积</span></span><br><span class="line">		f[j]=<span class="built_in">max</span>(f[j,f[j-c[i]]]+w[i]);<span class="comment">//状态转移.</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;i++)<span class="comment">//枚举物品</span></span><br><span class="line">	<span class="keyword">for</span>(rei j=c[i];j&lt;=V;j++)<span class="comment">//枚举体积</span></span><br><span class="line">		f[j]=<span class="built_in">max</span>(f[j],f[j-c[i]]]+w[i]);<span class="comment">//状态转移.</span></span><br></pre></td></tr></table></figure>
 <hr>
 <h2 id="多重背包"><a href="#多重背包" class="headerlink" title="多重背包"></a>多重背包</h2><ul>
 <li><p>模型</p>
@@ -331,14 +331,12 @@
 </li>
 <li><p>单调队列优化</p>
 <p>这是一个最基本的转移式子</p>
-</li>
-</ul>
-<p>$f[i][j]=\max(f[i−1][j],f[i−1][j−k\ast c[i]]+k\ast w[i])$</p>
-<p>其中 $k \in [1,\min(\left\lfloor\frac{V}{c[i]}\right\rfloor,num[i])]$</p>
-<p>下面用 $lim$ 表示 $\min(\left\lfloor\frac{V}{c[i]}\right\rfloor,num[i])$</p>
+<p>$f[i][j]=\max\left(f[i−1][j],f[i−1][j−k\ast c[i]]+k\ast w[i]\right)$</p>
+<p>其中 $k \in \left[1,\min\left(\left\lfloor\frac{V}{c[i]}\right\rfloor,num[i]\right)\right]$</p>
+<p>下面用 $lim$ 表示 $\min\left(\left\lfloor\frac{V}{c[i]}\right\rfloor,num[i]\right)$</p>
 <p>易得 $f[i][j−k\cdot c[i]]$ 会被 $f[i][j−(k+1)\cdot c[i]]$ 影响</p>
 <p>(体积为 $c[i]$ 的物品填充体积为 $j−(k+1)\cdot c[i]$ 的背包,会得到体积为 $j−k\cdot c[i]$ 的背包)</p>
-<p>$f[i][j]$ 将会影响 $f[i][j+k\cdot c[i]]　(j+k\cdot c[i]\leq V)$</p>
+<p>$f[i][j]$ 将会影响 $f[i][j+k\cdot c[i]]　\left(j+k\cdot c[i]\leq V\right)$</p>
 <p>注意这里影响的传导，往取模上想</p>
 <p>所以我们可以根据对 $c[i]$ 取模得到的余数进行分组.</p>
 <p>即可分为 $0,1,2,3…c[i]−1$ 共 $c[i]$ 组</p>
@@ -346,25 +344,28 @@
 <p>且每组中位置靠后的受前面的影响</p>
 <ul>
 <li><p>进行一些推导</p>
-<p>注： $\frac{j}{c[i]}即是全选状态下的物品个数$</p>
-<script type="math/tex; mode=display">\because j=\frac{j}{c[i]} \ \cdot \ c[i] \ +\ j\% c[i]</script><script type="math/tex; mode=display">\therefore j−k∗c[i]=\frac{j}{c[i]}\cdot c[i] \ +\ j\% c[i] \ −\ k\cdot c[i]</script><script type="math/tex; mode=display">\space \space \space \space \space \space \space \space \space =(\frac{j}{c[i]} \ −\ k)\cdot c[i]+j \% c[i]</script><p>令 $(\frac{j}{c[i]}−k)=k^{‘}$</p>
+<p>注： $\left\lfloor \frac{j}{c[i]} \right\rfloor即是全选状态下的物品个数$</p>
+<script type="math/tex; mode=display">\because j=\left\lfloor \frac{j}{c[i]} \right\rfloor \ \cdot \ c[i] \ +\ j\% c[i]</script><script type="math/tex; mode=display">\begin{aligned}
+j−k∗c[i]&=\left\lfloor \frac{j}{c[i]} \right\rfloor\cdot c[i] \ +\ j\% c[i] \ −\ k\cdot c[i] \\
+&=\left(\left\lfloor \frac{j}{c[i]} \right\rfloor \ −\ k\right)\cdot c[i]+j \% c[i]
+\end{aligned}</script><p>令 $\left(\left\lfloor \frac{j}{c[i]} \right\rfloor−k\right)=k^{‘}$</p>
 <p>最原始的状态转移方程中第二状态 :</p>
 <p>$f[i][j−k\cdot c[i]\ ]+k\cdot w[i]$ 代表选择 $k$ 个当前 $i$ 物品</p>
 <p>根据单步容斥 ：全选−不选=选</p>
-<p>因此 $\frac{j}{c[i]} \ −\ (\frac{j}{c[i]}−k)=k$</p>
-<script type="math/tex; mode=display">\because (\frac{j}{c[i]}−k)=k^{'}</script><script type="math/tex; mode=display">\therefore f[i][j]=\max( \ f[i−1][\ k^{'}\cdot c[i]+j \% c[i] \ ] \ + \ \frac{j}{c[i]}\cdot w[i]−k^{'}\cdot w[i])</script><p>而其中 $\frac{j}{c[i]}\cdot w[i]$ 为一个常量(因为 $\frac{j}{c[i]}$ 已知)</p>
+<p>因此 $\left\lfloor \frac{j}{c[i]} \right\rfloor \ −\ \left(\left\lfloor \frac{j}{c[i]} \right\rfloor−k\right)=k$</p>
+<script type="math/tex; mode=display">\because \left(\left\lfloor \frac{j}{c[i]} \right\rfloor−k\right)=k^{'}</script><script type="math/tex; mode=display">\therefore f[i][j]=\max\left( \ f[i−1][\ k^{'}\cdot c[i]+j \% c[i] \ ] \ + \ \left\lfloor \frac{j}{c[i]} \right\rfloor\cdot w[i]−k^{'}\cdot w[i]\right)</script><p>而其中 $\left\lfloor \frac{j}{c[i]} \right\rfloor\cdot w[i]$ 为一个常量(因为 $\left\lfloor \frac{j}{c[i]} \right\rfloor$ 已知)</p>
 <p>要求的状态变为</p>
-<script type="math/tex; mode=display">f[i][j]=\max(f[i−1][ \ k^{'}\cdot c[i]+j\% c[i] \ ]−k^{'}\cdot w[i])+\frac{j}{c[i]}\cdot w[i]</script><script type="math/tex; mode=display">\because k \in [1,lim]</script><script type="math/tex; mode=display">\therefore k^{'} \in [\frac{j}{c[i]}−k,\frac{j}{c[i]}]</script><p>当前的 $f[i][j]$ 求解的就是为 $lim+1$ 个数对应的 $f[i−1][k^{‘}\cdot c[i]+j\% c[i] \ ]−k^{‘}\cdot w[i]$ 的最大值.</p>
+<script type="math/tex; mode=display">f[i][j]=\max\left(f[i−1][ \ k^{'}\cdot c[i]+j\% c[i] \ ]−k^{'}\cdot w[i]\right)+\left\lfloor \frac{j}{c[i]} \right\rfloor\cdot w[i]</script><script type="math/tex; mode=display">\because k \in [1,lim]</script><script type="math/tex; mode=display">\therefore k^{'} \in \left[\left\lfloor \frac{j}{c[i]} \right\rfloor−k,\left\lfloor \frac{j}{c[i]} \right\rfloor\right]</script><p>当前的 $f[i][j]$ 求解的就是为 $lim+1$ 个数对应的 $f[i−1][k^{‘}\cdot c[i]+j\% c[i] \ ]−k^{‘}\cdot w[i]$ 的最大值.</p>
 <p>(之所以为 $lim+1$ 个数,是包括当前这个 $j$ ,还有前面的物品数量)</p>
 <p>将 $f[i][j]$ 前面所有的 $f[i−1][k^{‘}\cdot c[i]+j\% c[i]\ ]−k^{‘}\cdot w[i]$ 放入一个队列.</p>
-<p>问题转化为求这个最长为 $lim+1$ 的队列的最大值 $+\frac{j}{c[i]}\cdot w[i]$</p>
+<p>问题转化为求这个最长为 $lim+1$ 的队列的最大值 $+\left\lfloor \frac{j}{c[i]} \right\rfloor\cdot w[i]$</p>
 </li>
 <li><p>代码</p>
   <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;i++)&#123;<span class="comment">//枚举物品种类</span></span><br><span class="line">    cin&gt;&gt;c[i]&gt;&gt;w[i]&gt;&gt;num[i];<span class="comment">//c,w,num分别对应 体积,价值,个数</span></span><br><span class="line">    <span class="keyword">if</span>(V/c[i] &lt; num[i]) num[i]=V/c[i];<span class="comment">//求lim</span></span><br><span class="line">    <span class="keyword">for</span>(rei p=<span class="number">0</span>;p&lt;c[i];p++)&#123;<span class="comment">//枚举余数</span></span><br><span class="line">        head=tail=<span class="number">0</span>;<span class="comment">//队列初始化</span></span><br><span class="line">        <span class="keyword">for</span>(rei k=<span class="number">0</span>;k&lt;=(V-p)/c[i];k++)&#123;</span><br><span class="line">            rei x=k;</span><br><span class="line">            rei y=f[k*c[i]+p]-k*w[i];</span><br><span class="line">            <span class="keyword">while</span>(head&lt;tail &amp;&amp; q[head].pos&lt;k-num) ++head;<span class="comment">//限制长度</span></span><br><span class="line">            <span class="keyword">while</span>(head&lt;tail &amp;&amp; q[tail<span class="number">-1</span>].value&lt;=y) --tail;</span><br><span class="line">            q[tail].value=y,q[tail].pos=x;</span><br><span class="line">            ++tail;</span><br><span class="line">            f[k*c[i]+p]=q[head].value+k*w[i];</span><br><span class="line">            <span class="comment">//单调队列维护的是前i-1种的状态最大值.</span></span><br><span class="line">            <span class="comment">//因此这里加上k*w[i].</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <hr>
-<h2 id="混合背包"><a href="#混合背包" class="headerlink" title="混合背包"></a>混合背包</h2><ul>
+<h2 id="混合背包"><a href="#混合背包" class="headerlink" title="混合背包"></a>混合背包</h2></li>
 <li><p>思路</p>
 <p>拆开分别算即可</p>
 </li>
@@ -403,8 +404,8 @@
 <p>eg:<strong>选课问题</strong></p>
 </li>
 <li><p>思路</p>
-<p>对每个点，dfs其子节点再dp</p>
-<p>特别注意子节点dp体积时要给父节点留下空间</p>
+<p>对每个点，$\text{dfs}$ 其子节点再 $\text{dp}$</p>
+<p>特别注意子节点 $\text{dp}$ 体积时要给父节点留下空间</p>
 <p>详见代码</p>
 </li>
 <li><p>代码</p>
