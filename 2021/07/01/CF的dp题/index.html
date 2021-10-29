@@ -34,12 +34,12 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/tozqrh74.png">
 <meta property="article:published_time" content="2021-07-01T11:20:02.000Z">
-<meta property="article:modified_time" content="2021-10-29T13:06:45.909Z">
+<meta property="article:modified_time" content="2021-10-29T13:23:43.099Z">
 <meta property="article:author" content="noone___">
 <meta property="article:tag" content="思维">
 <meta property="article:tag" content="dp">
-<meta property="article:tag" content="数论">
 <meta property="article:tag" content="贪心">
+<meta property="article:tag" content="数论">
 <meta property="article:tag" content="期望">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://cdn.luogu.com.cn/upload/image_hosting/tozqrh74.png">
@@ -245,7 +245,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-29 21:06:45" itemprop="dateModified" datetime="2021-10-29T21:06:45+08:00">2021-10-29</time>
+                <time title="修改时间：2021-10-29 21:23:43" itemprop="dateModified" datetime="2021-10-29T21:23:43+08:00">2021-10-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -276,16 +276,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="CF1515E-Phoenix-and-Computers"><a href="#CF1515E-Phoenix-and-Computers" class="headerlink" title="CF1515E Phoenix and Computers"></a>CF1515E Phoenix and Computers</h2><details>
-    <summary>我们始终不知道EI是怎么写的</summary>
-        <pre><code>
-        #include<bits/stdc++.h>
-        #define R(X,Y) X=(X+Y)%P;
-        int64_t g[410],n,P,k,a,f;int main()&#123;std::cin>>n>>P;g[0]=f=k=1;for(--n;n>=0;n-=2,++k)&#123;for(int i=1;i<=n;++i)R(g[i],g[i-1]*k*2)f=f*k%P;R(a,g[n]*f)&#125;printf("%d\n",a);&#125;
-        </code></pre>
-</details>
-
-
+        <h2 id="CF1515E-Phoenix-and-Computers"><a href="#CF1515E-Phoenix-and-Computers" class="headerlink" title="CF1515E Phoenix and Computers"></a>CF1515E Phoenix and Computers</h2><p><details><br>    <summary>我们始终不知道EI是怎么写的</summary><br>        <pre><code></p>
+<pre><code>    #include&lt;bits/stdc++.h&gt;
+    #define R(X,Y) X=(X+Y)%P;
+    int64_t g[410],n,P,k,a,f;int main()&#123;std::cin&gt;&gt;n&gt;&gt;P;g[0]=f=k=1;for(--n;n&gt;=0;n-=2,++k)&#123;for(int i=1;i&lt;=n;++i)R(g[i],g[i-1]*k*2)f=f*k%P;R(a,g[n]*f)&#125;printf(&quot;%d\n&quot;,a);&#125;
+    &lt;/code&gt;&lt;/pre&gt;
+</code></pre><p>&lt;/details&gt;</p>
 <h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><blockquote>
 <p>要开启 $n$ 台电脑，若第 $i-1,i+1$ 台被开启，第 $i$ 台自动开，询问打开所有电脑的方案数</p>
 </blockquote>
@@ -435,7 +431,7 @@ a_1 & a_2 & a_3 & \dotsb & a_i & \dotsb & a_n\\
 <p>$n$ 个区域，编号为 $1\sim n$ ,有 $m$ 个烟花，给定地点 $a_i$ ，时间 $t_i$ ，参数 $b_i$ ，在 $x$ 时能获得 $b_i-|a_i-x|$ 的值<br>单位时间内能移动 $\leq d$ 个单位长，初始在 $1$ ，求获得的最大值</p>
 </blockquote>
 <p>首先显然有转移：</p>
-<script type="math/tex; mode=display">f_{i,j}=\min\{f_{i-1,k}+b_i-|a_i-x|\} , 其中 k\in [\max\{1,j-t\times d\} , \min\{n,j+t\times d\}],t=t_i-t_{i-1}</script><p>复杂度 $O(mn^2)$</p>
+<script type="math/tex; mode=display">f_{i,j}=\min\{f_{i-1,k}+b_i-|a_i-x|\}</script><script type="math/tex; mode=display">其中 k\in [\max\{1,j-t\times d\} , \min\{n,j+t\times d\}],t=t_i-t_{i-1}</script><p>复杂度 $O(mn^2)$</p>
 <p>首先有滚动数组优化降低空间</p>
 <p>对于枚举的 $b_i-|a_i-x|$ ，套路的转化为求 $\max\{-|a_i-x|\}$ ，即， $\min\{|a_i-x|\}$</p>
 <p>考虑到 $i,j$ 的枚举无法被省略，那么就要考虑维护当前 $k$ 能得到的最小值</p>
@@ -469,8 +465,8 @@ a_1 & a_2 & a_3 & \dotsb & a_i & \dotsb & a_n\\
           <div class="post-tags">
               <a href="/tags/%E6%80%9D%E7%BB%B4/" rel="tag"><i class="fa fa-tag"></i> 思维</a>
               <a href="/tags/dp/" rel="tag"><i class="fa fa-tag"></i> dp</a>
-              <a href="/tags/%E6%95%B0%E8%AE%BA/" rel="tag"><i class="fa fa-tag"></i> 数论</a>
               <a href="/tags/%E8%B4%AA%E5%BF%83/" rel="tag"><i class="fa fa-tag"></i> 贪心</a>
+              <a href="/tags/%E6%95%B0%E8%AE%BA/" rel="tag"><i class="fa fa-tag"></i> 数论</a>
               <a href="/tags/%E6%9C%9F%E6%9C%9B/" rel="tag"><i class="fa fa-tag"></i> 期望</a>
           </div>
 
