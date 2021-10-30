@@ -82,7 +82,7 @@
     <link href="http://noone40404.github.io/2021/10/10/%E6%95%B0%E6%95%B0%E6%80%BB%E7%BB%93/"/>
     <id>http://noone40404.github.io/2021/10/10/%E6%95%B0%E6%95%B0%E6%80%BB%E7%BB%93/</id>
     <published>2021-10-10T03:47:07.000Z</published>
-    <updated>2021-10-30T08:46:26.482Z</updated>
+    <updated>2021-10-30T08:52:00.717Z</updated>
     
     
     <summary type="html">updated 数数</summary>
@@ -302,13 +302,13 @@
     <category term="题解" scheme="http://noone40404.github.io/categories/%E9%A2%98%E8%A7%A3/"/>
     
     
-    <category term="构造" scheme="http://noone40404.github.io/tags/%E6%9E%84%E9%80%A0/"/>
-    
     <category term="思维" scheme="http://noone40404.github.io/tags/%E6%80%9D%E7%BB%B4/"/>
     
-    <category term="dp" scheme="http://noone40404.github.io/tags/dp/"/>
-    
     <category term="贪心" scheme="http://noone40404.github.io/tags/%E8%B4%AA%E5%BF%83/"/>
+    
+    <category term="构造" scheme="http://noone40404.github.io/tags/%E6%9E%84%E9%80%A0/"/>
+    
+    <category term="dp" scheme="http://noone40404.github.io/tags/dp/"/>
     
     <category term="期望" scheme="http://noone40404.github.io/tags/%E6%9C%9F%E6%9C%9B/"/>
     
@@ -329,11 +329,11 @@
     <category term="题解" scheme="http://noone40404.github.io/categories/%E9%A2%98%E8%A7%A3/"/>
     
     
-    <category term="构造" scheme="http://noone40404.github.io/tags/%E6%9E%84%E9%80%A0/"/>
-    
     <category term="思维" scheme="http://noone40404.github.io/tags/%E6%80%9D%E7%BB%B4/"/>
     
     <category term="贪心" scheme="http://noone40404.github.io/tags/%E8%B4%AA%E5%BF%83/"/>
+    
+    <category term="构造" scheme="http://noone40404.github.io/tags/%E6%9E%84%E9%80%A0/"/>
     
     <category term="二分图" scheme="http://noone40404.github.io/tags/%E4%BA%8C%E5%88%86%E5%9B%BE/"/>
     
@@ -358,11 +358,11 @@
     <category term="题解" scheme="http://noone40404.github.io/categories/%E9%A2%98%E8%A7%A3/"/>
     
     
-    <category term="构造" scheme="http://noone40404.github.io/tags/%E6%9E%84%E9%80%A0/"/>
-    
     <category term="思维" scheme="http://noone40404.github.io/tags/%E6%80%9D%E7%BB%B4/"/>
     
     <category term="贪心" scheme="http://noone40404.github.io/tags/%E8%B4%AA%E5%BF%83/"/>
+    
+    <category term="构造" scheme="http://noone40404.github.io/tags/%E6%9E%84%E9%80%A0/"/>
     
     <category term="字符串" scheme="http://noone40404.github.io/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
     
@@ -389,11 +389,11 @@
     <category term="题解" scheme="http://noone40404.github.io/categories/%E9%A2%98%E8%A7%A3/"/>
     
     
-    <category term="构造" scheme="http://noone40404.github.io/tags/%E6%9E%84%E9%80%A0/"/>
-    
     <category term="思维" scheme="http://noone40404.github.io/tags/%E6%80%9D%E7%BB%B4/"/>
     
     <category term="贪心" scheme="http://noone40404.github.io/tags/%E8%B4%AA%E5%BF%83/"/>
+    
+    <category term="构造" scheme="http://noone40404.github.io/tags/%E6%9E%84%E9%80%A0/"/>
     
     <category term="染色" scheme="http://noone40404.github.io/tags/%E6%9F%93%E8%89%B2/"/>
     
@@ -416,13 +416,13 @@
     <category term="题解" scheme="http://noone40404.github.io/categories/%E9%A2%98%E8%A7%A3/"/>
     
     
-    <category term="构造" scheme="http://noone40404.github.io/tags/%E6%9E%84%E9%80%A0/"/>
-    
     <category term="思维" scheme="http://noone40404.github.io/tags/%E6%80%9D%E7%BB%B4/"/>
     
-    <category term="博弈论" scheme="http://noone40404.github.io/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/"/>
-    
     <category term="贪心" scheme="http://noone40404.github.io/tags/%E8%B4%AA%E5%BF%83/"/>
+    
+    <category term="构造" scheme="http://noone40404.github.io/tags/%E6%9E%84%E9%80%A0/"/>
+    
+    <category term="博弈论" scheme="http://noone40404.github.io/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/"/>
     
     <category term="分治" scheme="http://noone40404.github.io/tags/%E5%88%86%E6%B2%BB/"/>
     
@@ -445,15 +445,15 @@
     <category term="题解" scheme="http://noone40404.github.io/categories/%E9%A2%98%E8%A7%A3/"/>
     
     
-    <category term="构造" scheme="http://noone40404.github.io/tags/%E6%9E%84%E9%80%A0/"/>
-    
     <category term="思维" scheme="http://noone40404.github.io/tags/%E6%80%9D%E7%BB%B4/"/>
     
     <category term="数论" scheme="http://noone40404.github.io/tags/%E6%95%B0%E8%AE%BA/"/>
     
-    <category term="二分图" scheme="http://noone40404.github.io/tags/%E4%BA%8C%E5%88%86%E5%9B%BE/"/>
+    <category term="构造" scheme="http://noone40404.github.io/tags/%E6%9E%84%E9%80%A0/"/>
     
     <category term="模拟" scheme="http://noone40404.github.io/tags/%E6%A8%A1%E6%8B%9F/"/>
+    
+    <category term="二分图" scheme="http://noone40404.github.io/tags/%E4%BA%8C%E5%88%86%E5%9B%BE/"/>
     
   </entry>
   
@@ -472,9 +472,9 @@
     <category term="题解" scheme="http://noone40404.github.io/categories/%E9%A2%98%E8%A7%A3/"/>
     
     
-    <category term="构造" scheme="http://noone40404.github.io/tags/%E6%9E%84%E9%80%A0/"/>
-    
     <category term="思维" scheme="http://noone40404.github.io/tags/%E6%80%9D%E7%BB%B4/"/>
+    
+    <category term="构造" scheme="http://noone40404.github.io/tags/%E6%9E%84%E9%80%A0/"/>
     
     <category term="dp" scheme="http://noone40404.github.io/tags/dp/"/>
     
