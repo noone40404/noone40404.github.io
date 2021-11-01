@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+<meta name="google-site-verification" content="LZ0JOjQQZw7PhvjIbZqeOojf3J6807W7DPn6--OTptc" />
+<meta name="baidu-site-verification" content="code-DDmcbQ6zQN" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <meta name="google-site-verification" content="true">
+  <meta name="msvalidate.01" content="true">
+  <meta name="yandex-verification" content="true">
+  <meta name="baidu-site-verification" content="true">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"noone40404.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="学一下数数要用的东西">
+<meta property="og:type" content="article">
+<meta property="og:title" content="burnside引理与polya定理">
+<meta property="og:url" content="http://noone40404.github.io/2021/11/01/burnside%E5%BC%95%E7%90%86%E4%B8%8Epolya%E5%AE%9A%E7%90%86/index.html">
+<meta property="og:site_name" content="noone___&#39;s blog">
+<meta property="og:description" content="学一下数数要用的东西">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-11-01T13:36:10.000Z">
+<meta property="article:modified_time" content="2021-11-01T13:42:20.407Z">
+<meta property="article:author" content="noone___">
+<meta property="article:tag" content="数数">
+<meta property="article:tag" content="群论">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://noone40404.github.io/2021/11/01/burnside%E5%BC%95%E7%90%86%E4%B8%8Epolya%E5%AE%9A%E7%90%86/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>burnside引理与polya定理 | noone___'s blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="noone___'s blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">noone___'s blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/noone40404" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2021/11/01/burnside%E5%BC%95%E7%90%86%E4%B8%8Epolya%E5%AE%9A%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="noone___">
+      <meta itemprop="description" content="自闭中">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="noone___'s blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          burnside引理与polya定理
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-11-01 21:36:10 / 修改时间：21:42:20" itemprop="dateCreated datePublished" datetime="2021-11-01T21:36:10+08:00">2021-11-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+            <div class="post-description">学一下数数要用的东西</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="置换与群"><a href="#置换与群" class="headerlink" title="置换与群"></a>置换与群</h2><blockquote>
+<p>给定一个长度为 $n$ 的环用 $k$ 种颜色染色，有多少种旋转意义下不同的方案</p>
+<p>给一个正方形用 $k$ 种颜色染色，有多少种旋转意义下不同的方案</p>
+</blockquote>
+<p>可以统一表达为：给定一个方案集合 $A$ 和 一个变换集合 $S$ ，两个方案等价，如果存在一系列变换使其中一个方案变为另一个</p>
+<p>对于这种<strong>本质不同</strong>的计数问题，通常用置换群来解决</p>
+<h3 id="置换的定义"><a href="#置换的定义" class="headerlink" title="置换的定义"></a>置换的定义</h3><p>置换使一个双射 $f:\{1,2,..,n\}\rightarrow \{1,2,…,n\}$ 表示将 $i$ 替换为 $f(i)$ ,用记号:</p>
+<script type="math/tex; mode=display">\sigma=\begin{pmatrix}
+1 & 2 & 3 & ... & n \\
+f(1) & f(2) & f(3) & ... & f(n) \\
+\end{pmatrix}=(f_1,f_2,f_3,...,f_n)</script><p>置换也有<strong>合成</strong>运算，也称为置换的乘法，即：</p>
+<script type="math/tex; mode=display">\sigma_1\sigma_2=\begin{pmatrix}
+i \\ f_1(f_2(i))
+\end{pmatrix}</script><h3 id="置换的性质"><a href="#置换的性质" class="headerlink" title="置换的性质"></a>置换的性质</h3><p>循环置换是特殊的置换，具体的，记：</p>
+<script type="math/tex; mode=display">\begin{pmatrix}
+i_1 & i_2 & ... & i_{n-1} & i_n \\
+i_2 & i_3 & ... & i_n& i_1 \\
+\end{pmatrix}
+=(i_1,i_2,...,i_n)</script><p>两个循环置换中若没有相同元素则称它们是不相交的</p>
+<p>有定理：<strong>任意置换都可以被分解称不相交循环的积</strong></p>
+<ul>
+<li><p>证明：</p>
+<p>  将元素看作点，映射关系为有向边，每个点的出入度都为 $1$</p>
+<p>  那么所得的图一定是若干环的集合，一个环即是一个循环置换</p>
+</li>
+</ul>
+<h3 id="置换乘法的性质"><a href="#置换乘法的性质" class="headerlink" title="置换乘法的性质"></a>置换乘法的性质</h3><ul>
+<li>结合律显然</li>
+<li>单位元：有单位置换 $\sigma_1=\binom{i}{i}$</li>
+<li>可逆性：对任意置换都能找到另一置换使其乘积为单位元</li>
+<li>消去律：即 $\sigma_1 x=\sigma_1 y\Rightarrow x=y$</li>
+</ul>
+<h3 id="对换与置换的奇偶性"><a href="#对换与置换的奇偶性" class="headerlink" title="对换与置换的奇偶性"></a>对换与置换的奇偶性</h3><p>对换即是一个 $2$ 轮换，一个循环可以被拆成 $\text{环长-1}$ 个对换</p>
+<p>一个 $n$ 轮换可以被拆成 $n-1$ 个对换的积：</p>
+<script type="math/tex; mode=display">\begin{pmatrix}1&2&3 \\ 2&3&1\end{pmatrix}
+=\begin{pmatrix}1&2 \\ 2&1\end{pmatrix}
+\begin{pmatrix}1&3 \\ 3&1\end{pmatrix}</script><p>那么对于同一个置换，其有不同的对换分解，但各分解中奇偶性必然相同</p>
+<p>定义置换的奇偶性为 $(-1)^{N(\sigma)}$ ，其中 $N(\sigma)$ 为置换能分解成的对换个数</p>
+<h3 id="群"><a href="#群" class="headerlink" title="群"></a>群</h3><p>一个非空集合 $S$ 和定义在 $S$ 上的二元代数运算 $\circ$ 是群，当且仅当满足：</p>
+<ul>
+<li>封闭性：二元代数运算得到的结果仍在 $S$ 中</li>
+<li>结合律</li>
+<li>单位元，且单位元唯一</li>
+<li>每个元素均有逆元，且每个元素的逆元唯一</li>
+</ul>
+<p>此时再去考虑开头的几个旋转变换：</p>
+<ul>
+<li><p>圆环旋转变换构成置换群</p>
+<ul>
+<li>运算封闭：旋转 $i^{\circ}$ 与旋转 $j^{\circ}$ 合成，即是旋转 $(i+j)^{\circ}$ 的变换</li>
+<li>结合律显然</li>
+<li>旋转 $0^{\circ}$ 即是单位元</li>
+<li>旋转 $i^{\circ}$ 与旋转 $(360-i)^{\circ}$ 互为逆元</li>
+</ul>
+</li>
+<li><p>正方形旋转变换构成置换群</p>
+<ul>
+<li>相当于旋转 $(90k)^{\circ}$，易证</li>
+</ul>
+</li>
+</ul>
+<h3 id="置换群的性质"><a href="#置换群的性质" class="headerlink" title="置换群的性质"></a>置换群的性质</h3><p><strong>性质：任何一个存在奇置换的置换群，奇置换与偶置换数量相等</strong></p>
+<ul>
+<li>证明：<ul>
+<li>若置换群 $G$ 存在至少一个奇置换 $\sigma_0$ ,用这个奇置换左乘所有的偶置换，得到互异的奇置换，那么奇置换的个数不少于偶置换的个数</li>
+<li>相反的，这个奇置换左乘所有的奇置换，得到互异的偶置换，因此奇置换和偶置换数量相等</li>
+</ul>
+</li>
+</ul>
+<h2 id="text-Burnside-引理"><a href="#text-Burnside-引理" class="headerlink" title="$\text{Burnside}$ 引理"></a>$\text{Burnside}$ 引理</h2><h3 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h3><blockquote>
+<p>对 $n$ 个对象 $v_1,v_2,…,v_n$ 按某种原则染上不同颜色，求本质不同方案数</p>
+</blockquote>
+<p>给定置换群 $G$ ，两个方案相同当且仅当存在一个 $\sigma\in G$ 使按 $\sigma$ 对节点做变换染色方案不变</p>
+<p>不妨将染色方案看成集合：</p>
+<script type="math/tex; mode=display">C=\{c=(c_1,c_2,..,c_n) | c_i表示颜色\}</script><p>定义置换与染色方案之间的乘法，表示对染色方案进行变换：</p>
+<script type="math/tex; mode=display">\sigma \circ c=(c_{\sigma_1},c_{\sigma_2},...,c_{\sigma_n})</script><p>两个染色方案 $u,v\in C$ 相同，当且仅当存在 $\sigma\in G$ 使：</p>
+<script type="math/tex; mode=display">\sigma\circ u=\sigma\circ v</script><h3 id="稳定核"><a href="#稳定核" class="headerlink" title="稳定核"></a>稳定核</h3><p>考虑将染色方案 $c_1$ 变换到 $c_2$ 的置换</p>
+<p>若有 $\sigma_1\circ c_1=c_2,\sigma_2\circ c_1=c_2$ 则一定有 $(\sigma_2^{-1}\sigma_1) \circ c_1=c_1$</p>
+<p>那么此时，所有能使 $\sigma\circ c=c$ 的置换 $\sigma$ 构成一个子群，检验：</p>
+<ul>
+<li>运算封闭：若 $\sigma_1,\sigma_2$ 均使 $c$ 不变，则 $\sigma_1\sigma_2$ 也使其不变</li>
+<li>单位元显然存在</li>
+<li>逆元：$\sigma_1\circ c=c$ 两边左乘 $\sigma^{-1}$ 即可得 $\sigma^{-1}\circ c=c$</li>
+</ul>
+<p>称这个子群 $\text{ker} \ c$ 为 $c$ 的稳定核</p>
+<h3 id="陪集分解"><a href="#陪集分解" class="headerlink" title="陪集分解"></a>陪集分解</h3><p>对于子群 $c_1$ ,$\sigma_1\approx \sigma_2 \Leftrightarrow \sigma_2^{-1}\sigma_1\in \text{ker} \ c_1$ 是一个<strong>等价关系</strong></p>
+<p>依靠这个等价关系能将 $C$ 集合划分出若干个等价类，其满足：</p>
+<ul>
+<li>自反性：单位元在子群中</li>
+<li>传递性：若 $\sigma_3^{-1}\sigma_2\in \text{ker} \ c,\sigma_2^{-1}\sigma_1\in \text{ker} \ c$  ，由于运算封闭，有 $\sigma_3^{-1}\sigma_1\in \text{ker} \ c$</li>
+<li>对称性：由于 $\text{ker}\ c$ 是子群， $\sigma_2^{-1}\sigma_1$ 的逆元 $\sigma_1^{-1}\sigma_2$ 也在该子群中</li>
+</ul>
+<p>每个划分块为子群 $c_1$ 的一个陪集</p>
+<h3 id="陪集分解的性质"><a href="#陪集分解的性质" class="headerlink" title="陪集分解的性质"></a>陪集分解的性质</h3><p>考虑 $\text{ker} \ c$ 的每一个陪集 $B$ 的大小</p>
+<p>若 $\sigma_1,\sigma_2\in B$ ，则一定有 $x\in \text{ker} \ c$ ,满足 $\sigma_2^{-1}\sigma_1=x\Leftrightarrow \sigma_1=\sigma_2\circ x$</p>
+<p>那么用 $\sigma_2$ 右乘 $\text{ker} \ c$ 中的所有元素，得到 $|\text{ker} \ c|$ 个互异的元素</p>
+<p>那么这恰好就是 $B$ ，即 $|B|=|\text{ker} \ c|$</p>
+<p>那么，将 $c$ 变成 $c_2$ 的置换恰有 $|\text{ker} \ c|$ 种，那么与 $c$ 本质相同的染色方案数恰好为 $\displaystyle{\frac{|G|}{|\text{ker} \ c|}}$</p>
+<p><del>我在写什么？</del></p>
+<p>在写 $\text{burnside}$ 引理之前，看一下刚刚我写了什么</p>
+<p>有染色方案 $C$，置换群 $\sigma$ ，其中染色方案 $c_1$ 是 $C$ 的一个子集，$\text{ker} \ c_1$ 是置换群 $\sigma$ 的一个子群，也是 $c_1$ 的稳定核，陪集 $B$ 是 $\text{ker} \ c$ 的一个子群</p>
+<h3 id="text-burnside-引理"><a href="#text-burnside-引理" class="headerlink" title="$\text{burnside}$ 引理"></a>$\text{burnside}$ 引理</h3><p>每种颜色对于等价类个数的贡献，是其所在等价类的倒数，那么等价类的个数就是</p>
+<script type="math/tex; mode=display">\sum_{c\in C}\frac{|\text{ker} \ c|}{|G|}=\frac{1}{|G|} \sum_{c\in C} |\text{ker} \ c|</script><p>那么，<strong>枚举染色方案对不动置换求和，恰是枚举置换方案并对染色方案求和</strong></p>
+<p>设 $G$ 为置换群，$C(\sigma)$ 是在置换 $\sigma$ 下不变的染色方案数，那么本质不同的染色方案为</p>
+<script type="math/tex; mode=display">|C/G|=\frac{1}{|G|}\sum_{\sigma\in G}|C(\sigma)|</script><h2 id="text-Polya-定理"><a href="#text-Polya-定理" class="headerlink" title="$\text{Pólya}$ 定理"></a>$\text{Pólya}$ 定理</h2><p>考虑更快的使用 $\text{burnside}$</p>
+<p>对于求本质不同的问题中(即使用 $\text{burnside}$ 时)，要求不动点的数量</p>
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><blockquote>
+<p>两种颜色给 $2\times 2$ 正方形染色，本质不同的着色数</p>
+</blockquote>
+<p>考虑每个置换：</p>
+<ul>
+<li>旋转 $0^{\circ}$ ：不动的染色方案为 $2^4$ 种：显然任意染色即可</li>
+<li>旋转 $90^{\circ}$ ：不动的染色方案为 $2$ 种：只有全染和全不染</li>
+<li>旋转 $180^{\circ}$ ：不动的染色方案为 $2^2$ 种：全染全不染+染对角线</li>
+<li>旋转 $270^{\circ}$ ：不动的染色方案为 $2$ 种：只有全染全不染</li>
+</ul>
+<p>那么共 $\frac{16+2+4+2}{4}=6$ 种</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4980">长度为 $n$ 的圆环用 $m$ 种颜色染色，求旋转意义下本质不同方案数</a></p>
+</blockquote>
+<p>旋转 $x$ 位划分的等价类个数是 $\gcd(n,x)$ ，那么答案就是：</p>
+<script type="math/tex; mode=display">\frac{1}{n}\sum_{x=1}^{x=n} k^{\gcd(n,x)}</script><p>化简后有：</p>
+<script type="math/tex; mode=display">\begin{aligned}
+原式&=\frac{1}{n}\sum_{d\mid n} m^d\sum_{d\mid x} \left[\gcd(\frac{n}{d},\frac{x}{d})=1 \right] \\
+&=\frac{1}{n}\sum_{d\mid n}m^d\sum_{k\leq \frac{n}{d}} \left[\gcd(\frac{n}{d},k)=1 \right] \\
+&=\frac{1}{n}\sum_{d\mid n}m^d\varphi\left(\frac{n}{d} \right)
+\end{aligned}</script>
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>noone___
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://noone40404.github.io/2021/11/01/burnside%E5%BC%95%E7%90%86%E4%B8%8Epolya%E5%AE%9A%E7%90%86/" title="burnside引理与polya定理">http://noone40404.github.io/2021/11/01/burnside引理与polya定理/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E6%95%B0/" rel="tag"><i class="fa fa-tag"></i> 数数</a>
+              <a href="/tags/%E7%BE%A4%E8%AE%BA/" rel="tag"><i class="fa fa-tag"></i> 群论</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/10/26/2-SAT/" rel="prev" title="2-SAT">
+      <i class="fa fa-chevron-left"></i> 2-SAT
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%AE%E6%8D%A2%E4%B8%8E%E7%BE%A4"><span class="nav-number">1.</span> <span class="nav-text">置换与群</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%AE%E6%8D%A2%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">1.1.</span> <span class="nav-text">置换的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%AE%E6%8D%A2%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-number">1.2.</span> <span class="nav-text">置换的性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%AE%E6%8D%A2%E4%B9%98%E6%B3%95%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-number">1.3.</span> <span class="nav-text">置换乘法的性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E6%8D%A2%E4%B8%8E%E7%BD%AE%E6%8D%A2%E7%9A%84%E5%A5%87%E5%81%B6%E6%80%A7"><span class="nav-number">1.4.</span> <span class="nav-text">对换与置换的奇偶性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BE%A4"><span class="nav-number">1.5.</span> <span class="nav-text">群</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%AE%E6%8D%A2%E7%BE%A4%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-number">1.6.</span> <span class="nav-text">置换群的性质</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#text-Burnside-%E5%BC%95%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text">$\text{Burnside}$ 引理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E5%85%A5"><span class="nav-number">2.1.</span> <span class="nav-text">引入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A8%B3%E5%AE%9A%E6%A0%B8"><span class="nav-number">2.2.</span> <span class="nav-text">稳定核</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%99%AA%E9%9B%86%E5%88%86%E8%A7%A3"><span class="nav-number">2.3.</span> <span class="nav-text">陪集分解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%99%AA%E9%9B%86%E5%88%86%E8%A7%A3%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-number">2.4.</span> <span class="nav-text">陪集分解的性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#text-burnside-%E5%BC%95%E7%90%86"><span class="nav-number">2.5.</span> <span class="nav-text">$\text{burnside}$ 引理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#text-Polya-%E5%AE%9A%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">$\text{Pólya}$ 定理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">4.</span> <span class="nav-text">例题</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="noone___"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">noone___</p>
+  <div class="site-description" itemprop="description">自闭中</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/noone40404" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;noone40404" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://ctp314.github.io/" title="https:&#x2F;&#x2F;ctp314.github.io&#x2F;" rel="noopener" target="_blank">CTime_Pup_314</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/guanlexiangfan/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;guanlexiangfan&#x2F;" rel="noopener" target="_blank">Evitagen</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.luogu.com.cn/blog/i-am-zhiyangfan/" title="https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;blog&#x2F;i-am-zhiyangfan&#x2F;" rel="noopener" target="_blank">zhiyangfan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/Vitheon/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;Vitheon&#x2F;" rel="noopener" target="_blank">Vareal</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">noone___</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+  <script data-pjax>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'ebdb5b537395179b4514',
+      clientSecret: 'd0843e5853efe963ca9983db6cac3a1f9d736856',
+      repo        : 'noone40404.github.io',
+      owner       : 'noone40404',
+      admin       : ['noone40404'],
+      id          : '01ae0871c3216bf5a56be3a232a7f03e',
+        language: 'zn-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+    </div>
+</body>
+</html>
