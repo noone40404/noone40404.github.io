@@ -25,20 +25,20 @@
     var CONFIG = {"hostname":"noone40404.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="min-max容斥及其例题">
+  <meta name="description" content="01分数规划">
 <meta property="og:type" content="article">
-<meta property="og:title" content="min-max容斥">
-<meta property="og:url" content="http://noone40404.github.io/2020/12/04/minmax%E5%AE%B9%E6%96%A5/index.html">
+<meta property="og:title" content="01分数规划">
+<meta property="og:url" content="http://noone40404.github.io/2021/04/04/01%E5%88%86%E6%95%B0%E8%A7%84%E5%88%92/index.html">
 <meta property="og:site_name" content="noone___&#39;s blog">
-<meta property="og:description" content="min-max容斥及其例题">
+<meta property="og:description" content="01分数规划">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-12-04T10:05:37.000Z">
-<meta property="article:modified_time" content="2021-08-02T12:17:17.548Z">
+<meta property="article:published_time" content="2021-04-04T02:27:59.000Z">
+<meta property="article:modified_time" content="2021-11-10T02:29:42.149Z">
 <meta property="article:author" content="noone___">
-<meta property="article:tag" content="minmax">
+<meta property="article:tag" content="分数规划">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://noone40404.github.io/2020/12/04/minmax%E5%AE%B9%E6%96%A5/">
+<link rel="canonical" href="http://noone40404.github.io/2021/04/04/01%E5%88%86%E6%95%B0%E8%A7%84%E5%88%92/">
 
 
 <script id="page-configurations">
@@ -51,7 +51,7 @@
   };
 </script>
 
-  <title>min-max容斥 | noone___'s blog</title>
+  <title>01分数规划 | noone___'s blog</title>
   
 
 
@@ -209,7 +209,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2020/12/04/minmax%E5%AE%B9%E6%96%A5/">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2021/04/04/01%E5%88%86%E6%95%B0%E8%A7%84%E5%88%92/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -222,7 +222,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          min-max容斥
+          01分数规划
         </h1>
 
         <div class="post-meta">
@@ -232,14 +232,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-12-04 18:05:37" itemprop="dateCreated datePublished" datetime="2020-12-04T18:05:37+08:00">2020-12-04</time>
+              <time title="创建时间：2021-04-04 10:27:59" itemprop="dateCreated datePublished" datetime="2021-04-04T10:27:59+08:00">2021-04-04</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-02 20:17:17" itemprop="dateModified" datetime="2021-08-02T20:17:17+08:00">2021-08-02</time>
+                <time title="修改时间：2021-11-10 10:29:42" itemprop="dateModified" datetime="2021-11-10T10:29:42+08:00">2021-11-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -259,7 +259,7 @@
               <span class="post-meta-item-text">阅读次数：</span>
               <span id="busuanzi_value_page_pv"></span>
             </span>
-            <div class="post-description">min-max容斥及其例题</div>
+            <div class="post-description">01分数规划</div>
 
         </div>
       </header>
@@ -270,92 +270,108 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="minmax容斥"><a href="#minmax容斥" class="headerlink" title="minmax容斥"></a>minmax容斥</h2><ul>
-<li><p>用途</p>
-<p>已知集合的最小值 (<strong>期望</strong>) 求最大值</p>
-<p>$eg:$ $n$ 个元素，每个元素出现概率 $p_i$，求每个元素都出现的期望时间</p>
+        <h2 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h2><p>求一个分数表达式的最大（小）值</p>
+<p>有 $n$ 个物品，每个物品有两个权值 $value$ 和 $cost$ ，</p>
+<p>然后让你选出任意件数（但可能会有限制）的物品，</p>
+<p>使得两个权值和间的比值最大，即求 $\dfrac{\sum_{i=1}^{k} value[i]}{\sum_{j=1}^{k} cost[j]}$的最大值</p>
+<p>（在这里 $1-k$ 为挑出的 $k$ 件物品）</p>
+<p>选择物品方面给出一定的限制条件</p>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><hr>
+<h3 id="二分"><a href="#二分" class="headerlink" title="二分"></a>二分</h3><p>以上面的式子为例，并添加上限制 $k \geq W$</p>
+<p>令 $sum=\sum_{i=1}^{k} value[i]$ , $tot= \sum_{j=1}^{k} cost[j],k\geq W$</p>
+<p>然后假设问题中的最优解为 $ans$ ，那么必然有：</p>
+<script type="math/tex; mode=display">\dfrac{sum}{tot}\leq ans</script><p>移项得：</p>
+<script type="math/tex; mode=display">sum\leq ans\times tot</script><p>继续移就得到：</p>
+<script type="math/tex; mode=display">sum-ans\times tot\leq 0</script><p>将 $sum$ 和 $tot$ 带回去:</p>
+<script type="math/tex; mode=display">\sum_{i=1}^{k} (value[i]-cost[i]\times ans) \leq 0</script><p>所以二分这个 $ans$ ，排序，贪心，取前 $W$ 个，重新二分</p>
+<hr>
+<h3 id="玄学的-Dinkelbach-算法"><a href="#玄学的-Dinkelbach-算法" class="headerlink" title="(玄学的)Dinkelbach 算法"></a>(玄学的)Dinkelbach 算法</h3><p>咕了</p>
+<hr>
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><h3 id="裸题"><a href="#裸题" class="headerlink" title="裸题"></a>裸题</h3><p><a target="_blank" rel="noopener" href="http://poj.org/problem?id=2976">dropping test</a></p>
+<h3 id="最优比例背包"><a href="#最优比例背包" class="headerlink" title="最优比例背包"></a>最优比例背包</h3><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4377">Talent Show</a></p>
+<p>对于条件的判断方式改为了0/1背包</p>
+<p>对每个物品，体积 $cost$ ，价值是 $value_i-cost_i*ans$</p>
+<p>跑个背包判断是否满背包即可</p>
+<hr>
+<h3 id="最优比率生成树"><a href="#最优比率生成树" class="headerlink" title="最优比率生成树"></a>最优比率生成树</h3><ul>
+<li><p>模型</p>
+<p>带权无向图 $G$ ， 对于图中每条边 $e_i$，</p>
+<p>都有 $value_i$ 和 $cost_i$，</p>
+<p>现在求一棵生成树 $T$ ，最大（小）化</p>
+<script type="math/tex; mode=display">\frac{\sum value_i}{\sum cost_i},e_i\in T</script></li>
+<li><p>解法</p>
+<p>若 $e_i\in T$ 则 $x_i=1$ 否则 $x_i=0$</p>
+<p>二分答案 $r$ ，边赋值 $weight_i = value_i-r\cdot cost_i$ ，</p>
+<p>因为是生成树，边的数量确定，那么 $max\{f(r)\}$ 需要选取前 $|G| -1$ 大的 $weight_i$ ，</p>
+<p>也就是求最大生成树，按最大生成树权值的正负性就可以二分了。</p>
+<p>最小化就求最小生成树。</p>
 </li>
-<li><p>结论</p>
-<script type="math/tex; mode=display">\max\{S\}=\sum_{T\subset S}(-1)^{|T|+1} \min\{T\}</script><p>即</p>
-<script type="math/tex; mode=display">E\left(\max\{S\}\right)=\sum_{T\subset S}(-1)^{|T|+1} E\left(\min\{T\}\right)</script></li>
-<li><p>证明</p>
-<p>设容斥系数 $g\left(|T|\right)$</p>
-<p>即 $\displaystyle{\max\{S\}=\sum_{T\subset S}g\left(|T|\right) \min\{T\}}$</p>
-<p>考虑当排名为 $k$ 的数作为集合 $T$ 的最小值时，集合 $T$ 中所有值都 $\geq k$</p>
-<p>所以对于第$k$大数 ， 在大小为 $|T|$ 的集合中， $\max$ 的选取方案为 $\displaystyle{\binom{k-1}{|T|-1}}$</p>
-<p>考虑集合大小为 $1\sim k$ ，则第 $k$ 数的总贡献为</p>
-<p>$\displaystyle{\sum_{i=1}^k \binom{k-1}{i-1}} * g(i)=[k=1] \qquad \text{即只有最大值对 max 有贡献}$</p>
-<p>由二项式反演得</p>
+<li><p>例题</p>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/350/">[poj]desert king</a></p>
+</li>
+</ul>
+<hr>
+<h3 id="最优比率环"><a href="#最优比率环" class="headerlink" title="最优比率环"></a>最优比率环</h3><ul>
+<li><p>模型</p>
+<p>给定有点权和边权的图，求一个环，使得环的点权和与边权和的比值最大。</p>
+<p>点权为 $value_i$ ，边权为 $cost_i$ ，一个环为 $C$</p>
+<p>问题要求最大化</p>
+<script type="math/tex; mode=display">\frac{\sum value_i }{\sum cost_i},i\in C</script><p><del>（表述不严谨，将就看）</del></p>
+</li>
+<li><p>解法</p>
+<script type="math/tex; mode=display">\frac{\sum value_i}{\sum cost_i} \leq r^*</script><script type="math/tex; mode=display">\therefore \sum value_i - r^* \cdot \sum cost_i \geq 0</script><p>设当前答案 $r$ ，</p>
+<p>$r \leq r^*$ ，至少存在一个环，$r \cdot \sum cost_i - \sum value_i \leq 0$ ，</p>
+<p>即存在负权回路（将边权设为 $r\cdot cost_i-value_i$ ，不是提前算出，而是在更新路径的时候从哪个点访问到这条边的就将这条边设为相应点权与边权的对应值）；</p>
+<p>$r \geq r^*$ ，则不存在负环。</p>
+<p>求负环用 spfa 算法</p>
+<p>具体判断方法为，一个点不能入队 $n$ 次，否则有负环；一条最短路径长度不能到 $n$ ，否则有负环。</p>
+<p>两个判断方法可以同时使用。</p>
+<p>最小化时边权设为 $\sum value_i -r \cdot \sum cost_i$<br>即可，同样也是更新时算出此值。</p>
+</li>
+<li><p>例题</p>
+<p><a href="luogu.com.cn/problem/P3199">P3199 [HNOI2009]最小圈</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2868">P2868 [USACO07DEC]Sightseeing Cows G</a></p>
+</li>
+</ul>
+<hr>
+<h3 id="最大密度子图"><a href="#最大密度子图" class="headerlink" title="最大密度子图"></a>最大密度子图</h3><ul>
+<li><p><del>不想打Latex了</del> <del>然而还是又打上了</del></p>
+<p>在一个无向图 $G$ 里找一个子图 $G^{‘}$ 使得</p>
+<script type="math/tex; mode=display">\frac{ \sum edge_i}{ \sum vertex_i},i \in G^{'}</script><p>推波式子</p>
+<p>二分 $mid \leq \frac{ \sum edge_i}{ \sum vertex_i}$</p>
+<script type="math/tex; mode=display">\therefore \sum edge_i \space - \space \sum vertex_i \cdot mid \geq 0</script><script type="math/tex; mode=display">\therefore 如果选某条边，那么两边的点也要选 \Rightarrow 最大闭合权子图</script><p>再考虑优化</p>
+<p>把边数看成 $(至少有一点在 G^{‘} 内的边) - (只有一点在 G^{‘} 内的边)$</p>
+<p>只有一点在 $G^{‘}$ 内的边相当于 $G^{‘}$ 与其补集的最小割</p>
+<p>设 $h(x)=\max (\sum edge_i \space - \space \sum vertex_i \cdot mid)$</p>
+<p>那么目的就是最大化 $h(x)$</p>
+<p>转化为求 $\min ( \space -h(x)<br>\space)$</p>
 <script type="math/tex; mode=display">\begin{aligned}
-g(k)&=\sum_{i=1}^k (-1)^{k-i} \binom{k-1}{i-1} [i=1] \\
-&=(-1)^{k+1} \\
-\end{aligned}</script><span id="more"></span>
-</li>
-<li><p>变式</p>
+    h(x)& = \min \space (\space \sum vertex_i \cdot mid -(至少有一点在 G^{'} 内的边) + (只有一点在 G^{'} 内的边) )\\
+        & =\sum vertex_i \cdot mid -(所选点度数和)/2 - 割\\
+\end{aligned}</script><script type="math/tex; mode=display">\therefore 转化为求 \space 2 \cdot \sum vertex_i \cdot mid-(所选点度数和) - 2\cdot割</script><p>可以推出建图方法</p>
 <ul>
-<li><p>由 $\max \Rightarrow \max$</p>
-<script type="math/tex; mode=display">\min(S)=\sum_{T\subseteq S,\ T \neq \varnothing} (-1)^{|T|-1} \max(T)</script></li>
-<li><p>扩展 $\min\max容斥$</p>
-<script type="math/tex; mode=display">\text{kthmax}\{S\}=\sum_{T\subseteq S}(-1)^{|T|-k} \binom{|T|-1}{k-1} \min\{T\}</script><ul>
-<li><p>证明</p>
-<p>目的是找到容斥系数满足 $\text{kthmax}\{S\}=\sum_{T\subseteq S} f(|T|) \min\{T\}$</p>
-<p>考虑第 $x$ 大元素，受原式启发得到</p>
-<script type="math/tex; mode=display">\sum_{i=1}^t \binom{t-1}{i-1} f(i)=[t=k]</script><script type="math/tex; mode=display">\therefore 经反演易得 f(n)=(-1)^{n-k} \binom{n-1}{k-1}</script><p><a target="_blank" rel="noopener" href="https://oi-wiki.org/math/inclusion-exclusion-principle/#min-max"><del>并不会用到的扩展minmax容斥</del></a></p>
+<li><p>每条原图的边 $(u,v)$ : $\text{u,v}$之间连无向边</p>
+</li>
+<li><p>超级源点 $S$ 向点 $i$ 连一条容量为 $U$ 的边  ($U$ 是一个足够大的数，一般取总边数 $m$)</p>
+</li>
+<li><p>每个点向超级汇点 $T$ 连一条容量为 $U+2 \cdot mid -度数$</p>
 </li>
 </ul>
 </li>
-</ul>
+<li><p>注</p>
+<p>这一部分与图论，尤其是<strong>最小割</strong>联系很紧密，</p>
+<p>可以考虑参看 2007胡伯涛论文：《最小割模型在信息学竞赛中的应用》</p>
+</li>
+<li><p>例题</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/UVA1389">UVA1389 Hard Life</a></p>
+<pre><code>qwq最小割建模好难
+</code></pre><p><del>于是全交到uva上就不会掉洛谷AC率了qwq</del></p>
 </li>
 </ul>
-<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><ul>
-<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3175">P3175 [HAOI2015]按位或</a></p>
-<ul>
-<li><p>题意</p>
-<p>设 $\min\{S\}$ 表示二进制数 $S$ 中，第一个元素变为 $1$ 所需时间，$\max\{S\}$ 表示最后一个元素变为 $1$ 所需时间</p>
-<p>题为求 $E(\max\{U\})$ ,其中 $U$ 为全集，$U=2^n-1$</p>
-</li>
-<li><p>解</p>
-<p>由公式易知 $\displaystyle{E(\max\{U\})=\sum_{S\subseteq U}(-1)^{|S|-1} \ \sum E(\min\{S\})}$</p>
-<p>$\therefore$ 求 $\min$</p>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5643">P5643 [PKUWC2018]随机游走</a></p>
-<ul>
-<li><p>题意:</p>
-<p>给出一棵树，从根节点出发每次等概率选择并走向一条相邻边</p>
-<p>多次询问中，每次给定点集 $S$ ,求从根出发直到 $S$ 中所有点至少经过一次的期望步数</p>
-</li>
-<li><p>解:</p>
-<p>由 $\min-\max$ 容斥得：$\displaystyle{E[ \max(S’) ]=\sum_{T’\in S’}(-1)^{|T’|+1}E[ \min(T’) ]}$</p>
-<p>易知 $E[ \max(S’) ]$ 表示走完集合 $S$ 期望步数， $E[ \min(S’) ]$ 表示第一次走到集合 $S$ 的期望步数</p>
-<p>设 $f_{S,x}$ 表示从 $x$ 出发，第一次访问到集合 $S$ 的期望步数</p>
-<ul>
-<li><p>考虑预处理所有 $f_{S,x}$</p>
-<p>设 $f_x$ 为点 $x$ 到 $S$ 的最早期望时间</p>
-<p>对于 $x\in S$ 有 $f_x=0$</p>
-<p>对于 $x\not\in S$ 有 $\displaystyle{f_x=1+\frac{1}{\deg x}\sum_{(x,y)\in E} f_y }$</p>
-<p>这里需要 $O(n^3)$ 的高斯消元，考虑到特殊的树形结构，以起点 $root$ 为根，用一次函数分离父子关系</p>
-<p>即设 $\displaystyle{f_x=f_{fa_x} \times A_x + B_x }$</p>
-<p>$\therefore$ 对于 $x \not\in S$ 有 $\displaystyle{f_x=1+\frac{1}{\deg x} \left(f_{fa_x} + \sum_{y\in son_x}(A_y\times f_x + B_y) \right) }$</p>
-<p>化简得</p>
-<script type="math/tex; mode=display">\begin{aligned}
-
-​      A_x&=\frac{1}{\deg x-\sum_{y\in son_x}A_x} \\\
-
-​      B_x&=\frac{\deg x+\sum_{y\in son_x}B_x}{\deg x-\sum_{y\in son_x}A_x} \\
-
- \end{aligned}</script><p>由此，对于给定的询问点集 $S$ ,答案就是 $\sum_{T\in S} (-1)^{|T|+1} f_{T,root}$</p>
-</li>
-<li><p>再考虑优化询问</p>
-<p>由 $n\leq 18$ 提示可以状压点集，并预处理对于每个点集 $S$ 的 $\sum_{T\in S}(-1) ^{|T|+1} f_{T,root}$</p>
-<p>那么预处理高维前缀和即可</p>
-</li>
-</ul>
-</li>
-</ul>
+<hr>
+<h3 id="最优比例流"><a href="#最优比例流" class="headerlink" title="最优比例流"></a>最优比例流</h3><ul>
+<li><p>例题<br><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3705">P3705 [SDOI2017]新生舞会</a></p>
+<p><del>咕了</del></p>
 </li>
 </ul>
 
@@ -373,7 +389,7 @@ g(k)&=\sum_{i=1}^k (-1)^{k-i} \binom{k-1}{i-1} [i=1] \\
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://noone40404.github.io/2020/12/04/minmax%E5%AE%B9%E6%96%A5/" title="min-max容斥">http://noone40404.github.io/2020/12/04/minmax容斥/</a>
+    <a href="http://noone40404.github.io/2021/04/04/01%E5%88%86%E6%95%B0%E8%A7%84%E5%88%92/" title="01分数规划">http://noone40404.github.io/2021/04/04/01分数规划/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -385,7 +401,7 @@ g(k)&=\sum_{i=1}^k (-1)^{k-i} \binom{k-1}{i-1} [i=1] \\
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/minmax/" rel="tag"><i class="fa fa-tag"></i> minmax</a>
+              <a href="/tags/%E5%88%86%E6%95%B0%E8%A7%84%E5%88%92/" rel="tag"><i class="fa fa-tag"></i> 分数规划</a>
           </div>
 
         
@@ -393,10 +409,13 @@ g(k)&=\sum_{i=1}^k (-1)^{k-i} \binom{k-1}{i-1} [i=1] \\
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2021/01/04/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" rel="next" title="背包问题">
-      背包问题 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/03/21/minmax%E6%90%9C%E7%B4%A2/" rel="prev" title="minmax搜索">
+      <i class="fa fa-chevron-left"></i> minmax搜索
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/04/07/%E8%BF%AD%E4%BB%A3%E5%8A%A0%E6%B7%B1/" rel="next" title="迭代加深">
+      迭代加深 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -457,7 +476,7 @@ g(k)&=\sum_{i=1}^k (-1)^{k-i} \binom{k-1}{i-1} [i=1] \\
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#minmax%E5%AE%B9%E6%96%A5"><span class="nav-number">1.</span> <span class="nav-text">minmax容斥</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">1.1.</span> <span class="nav-text">例题</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%88%86"><span class="nav-number">2.1.</span> <span class="nav-text">二分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8E%84%E5%AD%A6%E7%9A%84-Dinkelbach-%E7%AE%97%E6%B3%95"><span class="nav-number">2.2.</span> <span class="nav-text">(玄学的)Dinkelbach 算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A3%B8%E9%A2%98"><span class="nav-number">3.1.</span> <span class="nav-text">裸题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E4%BC%98%E6%AF%94%E4%BE%8B%E8%83%8C%E5%8C%85"><span class="nav-number">3.2.</span> <span class="nav-text">最优比例背包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E4%BC%98%E6%AF%94%E7%8E%87%E7%94%9F%E6%88%90%E6%A0%91"><span class="nav-number">3.3.</span> <span class="nav-text">最优比率生成树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E4%BC%98%E6%AF%94%E7%8E%87%E7%8E%AF"><span class="nav-number">3.4.</span> <span class="nav-text">最优比率环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%A4%A7%E5%AF%86%E5%BA%A6%E5%AD%90%E5%9B%BE"><span class="nav-number">3.5.</span> <span class="nav-text">最大密度子图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E4%BC%98%E6%AF%94%E4%BE%8B%E6%B5%81"><span class="nav-number">3.6.</span> <span class="nav-text">最优比例流</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -777,7 +796,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'noone40404.github.io',
       owner       : 'noone40404',
       admin       : ['noone40404'],
-      id          : 'd850227131a090bf22c88d85b4c2edd9',
+      id          : '4f4e98970c59129d2ab506941600362b',
         language: 'zn-CN',
       distractionFreeMode: true
     });
