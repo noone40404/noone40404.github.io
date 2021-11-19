@@ -6,7 +6,7 @@
   <link href="http://noone40404.github.io/atom.xml" rel="self"/>
   
   <link href="http://noone40404.github.io/"/>
-  <updated>2021-11-15T13:07:58.988Z</updated>
+  <updated>2021-11-19T00:51:03.631Z</updated>
   <id>http://noone40404.github.io/</id>
   
   <author>
@@ -15,6 +15,23 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>写在NOIp退役前</title>
+    <link href="http://noone40404.github.io/2021/11/19/%E5%86%99%E5%9C%A8NOIp%E9%80%80%E5%BD%B9%E5%89%8D/"/>
+    <id>http://noone40404.github.io/2021/11/19/%E5%86%99%E5%9C%A8NOIp%E9%80%80%E5%BD%B9%E5%89%8D/</id>
+    <published>2021-11-18T23:44:42.000Z</published>
+    <updated>2021-11-19T00:51:03.631Z</updated>
+    
+    
+    <summary type="html">さようならはまた会うためのおまじないだって</summary>
+    
+    
+    
+    <category term="随便写" scheme="http://noone40404.github.io/categories/%E9%9A%8F%E4%BE%BF%E5%86%99/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>曼哈顿距离与切比雪夫距离</title>
@@ -367,9 +384,9 @@
     
     <category term="思维" scheme="http://noone40404.github.io/tags/%E6%80%9D%E7%BB%B4/"/>
     
-    <category term="贪心" scheme="http://noone40404.github.io/tags/%E8%B4%AA%E5%BF%83/"/>
-    
     <category term="dp" scheme="http://noone40404.github.io/tags/dp/"/>
+    
+    <category term="贪心" scheme="http://noone40404.github.io/tags/%E8%B4%AA%E5%BF%83/"/>
     
     <category term="期望" scheme="http://noone40404.github.io/tags/%E6%9C%9F%E6%9C%9B/"/>
     
@@ -432,33 +449,6 @@
     <category term="线段树" scheme="http://noone40404.github.io/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/"/>
     
     <category term="卡常" scheme="http://noone40404.github.io/tags/%E5%8D%A1%E5%B8%B8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>60901202-AGC027</title>
-    <link href="http://noone40404.github.io/2021/09/06/AGC027/"/>
-    <id>http://noone40404.github.io/2021/09/06/AGC027/</id>
-    <published>2021-09-06T14:14:41.000Z</published>
-    <updated>2021-09-22T09:07:37.933Z</updated>
-    
-    
-    <summary type="html">AGC027</summary>
-    
-    
-    
-    <category term="题解" scheme="http://noone40404.github.io/categories/%E9%A2%98%E8%A7%A3/"/>
-    
-    
-    <category term="构造" scheme="http://noone40404.github.io/tags/%E6%9E%84%E9%80%A0/"/>
-    
-    <category term="思维" scheme="http://noone40404.github.io/tags/%E6%80%9D%E7%BB%B4/"/>
-    
-    <category term="贪心" scheme="http://noone40404.github.io/tags/%E8%B4%AA%E5%BF%83/"/>
-    
-    <category term="染色" scheme="http://noone40404.github.io/tags/%E6%9F%93%E8%89%B2/"/>
-    
-    <category term="二分图" scheme="http://noone40404.github.io/tags/%E4%BA%8C%E5%88%86%E5%9B%BE/"/>
     
   </entry>
   
