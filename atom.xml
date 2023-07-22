@@ -6,7 +6,7 @@
   <link href="http://noone40404.github.io/atom.xml" rel="self"/>
   
   <link href="http://noone40404.github.io/"/>
-  <updated>2023-07-22T03:33:36.812Z</updated>
+  <updated>2023-07-22T03:36:48.724Z</updated>
   <id>http://noone40404.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>DVWA-brutr force</title>
+    <title>DVWA-brute force</title>
     <link href="http://noone40404.github.io/2023/07/20/DVWA-brute%20force/"/>
     <id>http://noone40404.github.io/2023/07/20/DVWA-brute%20force/</id>
     <published>2023-07-20T10:24:00.000Z</published>
-    <updated>2023-07-22T03:33:36.812Z</updated>
+    <updated>2023-07-22T03:36:48.724Z</updated>
     
     
     <summary type="html">dvwa.1</summary>
