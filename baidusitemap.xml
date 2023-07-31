@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://noone40404.github.io/2023/07/31/DVWA-file%20inclusion/</loc>
+    <lastmod>2023-07-31</lastmod>
+  </url>
+  <url>
+    <loc>http://noone40404.github.io/2023/07/24/DVWA-CSRF/</loc>
+    <lastmod>2023-07-31</lastmod>
+  </url>
+  <url>
+    <loc>http://noone40404.github.io/2023/07/22/DVWA-command%20injection/</loc>
+    <lastmod>2023-07-24</lastmod>
+  </url>
+  <url>
     <loc>http://noone40404.github.io/2023/07/20/DVWA-brute%20force/</loc>
     <lastmod>2023-07-22</lastmod>
   </url>

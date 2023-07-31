@@ -6,7 +6,7 @@
   <link href="http://noone40404.github.io/atom.xml" rel="self"/>
   
   <link href="http://noone40404.github.io/"/>
-  <updated>2023-07-22T03:36:48.724Z</updated>
+  <updated>2023-07-31T09:10:37.372Z</updated>
   <id>http://noone40404.github.io/</id>
   
   <author>
@@ -17,11 +17,68 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>DVWA-file inclusion</title>
+    <link href="http://noone40404.github.io/2023/07/31/DVWA-file%20inclusion/"/>
+    <id>http://noone40404.github.io/2023/07/31/DVWA-file%20inclusion/</id>
+    <published>2023-07-31T09:10:00.000Z</published>
+    <updated>2023-07-31T09:10:37.372Z</updated>
+    
+    
+    <summary type="html">dvwa.4</summary>
+    
+    
+    
+    <category term="web渗透" scheme="http://noone40404.github.io/categories/web%E6%B8%97%E9%80%8F/"/>
+    
+    
+    <category term="dvwa" scheme="http://noone40404.github.io/tags/dvwa/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>DVWA-CSRF</title>
+    <link href="http://noone40404.github.io/2023/07/24/DVWA-CSRF/"/>
+    <id>http://noone40404.github.io/2023/07/24/DVWA-CSRF/</id>
+    <published>2023-07-24T09:42:00.000Z</published>
+    <updated>2023-07-31T09:09:22.717Z</updated>
+    
+    
+    <summary type="html">dvwa.3</summary>
+    
+    
+    
+    <category term="web渗透" scheme="http://noone40404.github.io/categories/web%E6%B8%97%E9%80%8F/"/>
+    
+    
+    <category term="dvwa" scheme="http://noone40404.github.io/tags/dvwa/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>DVWA-command injection</title>
+    <link href="http://noone40404.github.io/2023/07/22/DVWA-command%20injection/"/>
+    <id>http://noone40404.github.io/2023/07/22/DVWA-command%20injection/</id>
+    <published>2023-07-22T03:25:00.000Z</published>
+    <updated>2023-07-24T09:42:35.493Z</updated>
+    
+    
+    <summary type="html">dvwa.2</summary>
+    
+    
+    
+    <category term="web渗透" scheme="http://noone40404.github.io/categories/web%E6%B8%97%E9%80%8F/"/>
+    
+    
+    <category term="dvwa" scheme="http://noone40404.github.io/tags/dvwa/"/>
+    
+  </entry>
+  
+  <entry>
     <title>DVWA-brute force</title>
     <link href="http://noone40404.github.io/2023/07/20/DVWA-brute%20force/"/>
     <id>http://noone40404.github.io/2023/07/20/DVWA-brute%20force/</id>
     <published>2023-07-20T10:24:00.000Z</published>
-    <updated>2023-07-22T03:36:48.724Z</updated>
+    <updated>2023-07-22T03:41:32.059Z</updated>
     
     
     <summary type="html">dvwa.1</summary>
@@ -356,69 +413,6 @@
     <category term="思维" scheme="http://noone40404.github.io/tags/%E6%80%9D%E7%BB%B4/"/>
     
     <category term="dp" scheme="http://noone40404.github.io/tags/dp/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>回文自动机笔记</title>
-    <link href="http://noone40404.github.io/2021/09/25/%E5%9B%9E%E6%96%87%E8%87%AA%E5%8A%A8%E6%9C%BA/"/>
-    <id>http://noone40404.github.io/2021/09/25/%E5%9B%9E%E6%96%87%E8%87%AA%E5%8A%A8%E6%9C%BA/</id>
-    <published>2021-09-25T00:47:31.000Z</published>
-    <updated>2021-09-26T00:48:49.493Z</updated>
-    
-    
-    <summary type="html">PAM</summary>
-    
-    
-    
-    <category term="笔记" scheme="http://noone40404.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="字符串" scheme="http://noone40404.github.io/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
-    
-    <category term="回文自动机" scheme="http://noone40404.github.io/tags/%E5%9B%9E%E6%96%87%E8%87%AA%E5%8A%A8%E6%9C%BA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>后缀数组一些题</title>
-    <link href="http://noone40404.github.io/2021/09/24/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84%E5%8D%81%E4%B8%89%E9%A2%98/"/>
-    <id>http://noone40404.github.io/2021/09/24/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84%E5%8D%81%E4%B8%89%E9%A2%98/</id>
-    <published>2021-09-24T09:20:33.000Z</published>
-    <updated>2021-11-16T10:10:45.110Z</updated>
-    
-    
-    <summary type="html">《后缀数组——处理字符串的有力工具》论文题组+其他题</summary>
-    
-    
-    
-    <category term="笔记" scheme="http://noone40404.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="字符串" scheme="http://noone40404.github.io/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
-    
-    <category term="后缀数组" scheme="http://noone40404.github.io/tags/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>笛卡尔树笔记</title>
-    <link href="http://noone40404.github.io/2021/09/23/%E7%AC%9B%E5%8D%A1%E5%B0%94%E6%A0%91/"/>
-    <id>http://noone40404.github.io/2021/09/23/%E7%AC%9B%E5%8D%A1%E5%B0%94%E6%A0%91/</id>
-    <published>2021-09-23T11:50:52.000Z</published>
-    <updated>2021-09-24T23:13:46.910Z</updated>
-    
-    
-    <summary type="html">笛卡尔树</summary>
-    
-    
-    
-    <category term="笔记" scheme="http://noone40404.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="启发式合并" scheme="http://noone40404.github.io/tags/%E5%90%AF%E5%8F%91%E5%BC%8F%E5%90%88%E5%B9%B6/"/>
-    
-    <category term="笛卡尔树" scheme="http://noone40404.github.io/tags/%E7%AC%9B%E5%8D%A1%E5%B0%94%E6%A0%91/"/>
     
   </entry>
   
