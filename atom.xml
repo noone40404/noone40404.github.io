@@ -6,7 +6,7 @@
   <link href="http://noone40404.github.io/atom.xml" rel="self"/>
   
   <link href="http://noone40404.github.io/"/>
-  <updated>2023-07-31T10:01:30.865Z</updated>
+  <updated>2023-08-02T06:15:33.238Z</updated>
   <id>http://noone40404.github.io/</id>
   
   <author>
@@ -17,11 +17,49 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>DVWA-SQL injection</title>
+    <link href="http://noone40404.github.io/2023/08/02/DVWA-SQL%20injection/"/>
+    <id>http://noone40404.github.io/2023/08/02/DVWA-SQL%20injection/</id>
+    <published>2023-08-02T06:15:00.000Z</published>
+    <updated>2023-08-02T06:15:33.238Z</updated>
+    
+    
+    <summary type="html">dvwa.6</summary>
+    
+    
+    
+    <category term="web渗透" scheme="http://noone40404.github.io/categories/web%E6%B8%97%E9%80%8F/"/>
+    
+    
+    <category term="dvwa" scheme="http://noone40404.github.io/tags/dvwa/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>DVWA-file upload</title>
+    <link href="http://noone40404.github.io/2023/08/02/DVWA-file%20upload/"/>
+    <id>http://noone40404.github.io/2023/08/02/DVWA-file%20upload/</id>
+    <published>2023-08-02T05:10:00.000Z</published>
+    <updated>2023-08-02T06:13:36.549Z</updated>
+    
+    
+    <summary type="html">dvwa.5</summary>
+    
+    
+    
+    <category term="web渗透" scheme="http://noone40404.github.io/categories/web%E6%B8%97%E9%80%8F/"/>
+    
+    
+    <category term="dvwa" scheme="http://noone40404.github.io/tags/dvwa/"/>
+    
+  </entry>
+  
+  <entry>
     <title>DVWA-file inclusion</title>
     <link href="http://noone40404.github.io/2023/07/31/DVWA-file%20inclusion/"/>
     <id>http://noone40404.github.io/2023/07/31/DVWA-file%20inclusion/</id>
     <published>2023-07-31T09:10:00.000Z</published>
-    <updated>2023-07-31T10:01:30.865Z</updated>
+    <updated>2023-08-02T05:03:53.942Z</updated>
     
     
     <summary type="html">dvwa.4</summary>
@@ -365,54 +403,6 @@
     
     
     <category term="模拟" scheme="http://noone40404.github.io/tags/%E6%A8%A1%E6%8B%9F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>动态dp</title>
-    <link href="http://noone40404.github.io/2021/09/27/%E5%8A%A8%E6%80%81dp/"/>
-    <id>http://noone40404.github.io/2021/09/27/%E5%8A%A8%E6%80%81dp/</id>
-    <published>2021-09-27T05:31:52.000Z</published>
-    <updated>2023-04-16T02:45:55.836Z</updated>
-    
-    
-    <summary type="html">动态dp的例题，部分参考猫老师的PPT</summary>
-    
-    
-    
-    <category term="笔记" scheme="http://noone40404.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="dp" scheme="http://noone40404.github.io/tags/dp/"/>
-    
-    <category term="多项式" scheme="http://noone40404.github.io/tags/%E5%A4%9A%E9%A1%B9%E5%BC%8F/"/>
-    
-    <category term="生成函数" scheme="http://noone40404.github.io/tags/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/"/>
-    
-    <category term="动态dp" scheme="http://noone40404.github.io/tags/%E5%8A%A8%E6%80%81dp/"/>
-    
-    <category term="矩阵乘法" scheme="http://noone40404.github.io/tags/%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>dp套dp</title>
-    <link href="http://noone40404.github.io/2021/09/26/dp%E5%A5%97dp/"/>
-    <id>http://noone40404.github.io/2021/09/26/dp%E5%A5%97dp/</id>
-    <published>2021-09-26T07:38:43.000Z</published>
-    <updated>2021-10-15T06:59:02.561Z</updated>
-    
-    
-    <summary type="html">dp套dp的理解和例题</summary>
-    
-    
-    
-    <category term="笔记" scheme="http://noone40404.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="思维" scheme="http://noone40404.github.io/tags/%E6%80%9D%E7%BB%B4/"/>
-    
-    <category term="dp" scheme="http://noone40404.github.io/tags/dp/"/>
     
   </entry>
   
