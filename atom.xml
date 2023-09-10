@@ -6,7 +6,7 @@
   <link href="http://noone40404.github.io/atom.xml" rel="self"/>
   
   <link href="http://noone40404.github.io/"/>
-  <updated>2023-09-10T08:14:51.107Z</updated>
+  <updated>2023-09-10T12:35:49.660Z</updated>
   <id>http://noone40404.github.io/</id>
   
   <author>
@@ -21,10 +21,29 @@
     <link href="http://noone40404.github.io/2023/09/10/DVWA-Weak%20session%20id/"/>
     <id>http://noone40404.github.io/2023/09/10/DVWA-Weak%20session%20id/</id>
     <published>2023-09-10T09:15:00.000Z</published>
-    <updated>2023-09-10T08:14:51.107Z</updated>
+    <updated>2023-09-10T12:35:49.660Z</updated>
     
     
     <summary type="html">dvwa.8</summary>
+    
+    
+    
+    <category term="web渗透" scheme="http://noone40404.github.io/categories/web%E6%B8%97%E9%80%8F/"/>
+    
+    
+    <category term="dvwa" scheme="http://noone40404.github.io/tags/dvwa/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>DVWA-XSS</title>
+    <link href="http://noone40404.github.io/2023/09/10/DVWA-XSS/"/>
+    <id>http://noone40404.github.io/2023/09/10/DVWA-XSS/</id>
+    <published>2023-09-10T09:15:00.000Z</published>
+    <updated>2023-09-10T14:42:42.455Z</updated>
+    
+    
+    <summary type="html">dvwa.9</summary>
     
     
     
@@ -382,27 +401,6 @@
     
     
     <category term="思维" scheme="http://noone40404.github.io/tags/%E6%80%9D%E7%BB%B4/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>概率与期望</title>
-    <link href="http://noone40404.github.io/2021/10/08/%E6%A6%82%E7%8E%87%E4%B8%8E%E6%9C%9F%E6%9C%9B/"/>
-    <id>http://noone40404.github.io/2021/10/08/%E6%A6%82%E7%8E%87%E4%B8%8E%E6%9C%9F%E6%9C%9B/</id>
-    <published>2021-10-08T04:04:40.000Z</published>
-    <updated>2021-10-09T02:56:39.784Z</updated>
-    
-    
-    <summary type="html">重新系统的看了看期望的东西</summary>
-    
-    
-    
-    <category term="笔记" scheme="http://noone40404.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="dp" scheme="http://noone40404.github.io/tags/dp/"/>
-    
-    <category term="期望" scheme="http://noone40404.github.io/tags/%E6%9C%9F%E6%9C%9B/"/>
     
   </entry>
   
