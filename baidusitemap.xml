@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://noone40404.github.io/2023/09/10/DVWA-Weak%20session%20id/</loc>
+    <lastmod>2023-09-10</lastmod>
+  </url>
+  <url>
     <loc>http://noone40404.github.io/2023/08/10/DVWA-SQL%20injection(blind)/</loc>
     <lastmod>2023-09-10</lastmod>
   </url>

@@ -6,7 +6,7 @@
   <link href="http://noone40404.github.io/atom.xml" rel="self"/>
   
   <link href="http://noone40404.github.io/"/>
-  <updated>2023-09-10T05:29:46.895Z</updated>
+  <updated>2023-09-10T08:14:51.107Z</updated>
   <id>http://noone40404.github.io/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>DVWA-Weak session id</title>
+    <link href="http://noone40404.github.io/2023/09/10/DVWA-Weak%20session%20id/"/>
+    <id>http://noone40404.github.io/2023/09/10/DVWA-Weak%20session%20id/</id>
+    <published>2023-09-10T09:15:00.000Z</published>
+    <updated>2023-09-10T08:14:51.107Z</updated>
+    
+    
+    <summary type="html">dvwa.8</summary>
+    
+    
+    
+    <category term="web渗透" scheme="http://noone40404.github.io/categories/web%E6%B8%97%E9%80%8F/"/>
+    
+    
+    <category term="dvwa" scheme="http://noone40404.github.io/tags/dvwa/"/>
+    
+  </entry>
   
   <entry>
     <title>DVWA-SQL injection(blind)</title>
@@ -384,25 +403,6 @@
     <category term="dp" scheme="http://noone40404.github.io/tags/dp/"/>
     
     <category term="期望" scheme="http://noone40404.github.io/tags/%E6%9C%9F%E6%9C%9B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>根号分治</title>
-    <link href="http://noone40404.github.io/2021/10/06/%E6%A0%B9%E5%8F%B7%E5%88%86%E6%B2%BB/"/>
-    <id>http://noone40404.github.io/2021/10/06/%E6%A0%B9%E5%8F%B7%E5%88%86%E6%B2%BB/</id>
-    <published>2021-10-06T10:49:29.000Z</published>
-    <updated>2021-11-17T12:41:17.835Z</updated>
-    
-    
-    <summary type="html">根号分治</summary>
-    
-    
-    
-    <category term="笔记" scheme="http://noone40404.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="根号分治" scheme="http://noone40404.github.io/tags/%E6%A0%B9%E5%8F%B7%E5%88%86%E6%B2%BB/"/>
     
   </entry>
   
