@@ -6,7 +6,7 @@
   <link href="http://noone40404.github.io/atom.xml" rel="self"/>
   
   <link href="http://noone40404.github.io/"/>
-  <updated>2023-09-10T12:35:49.660Z</updated>
+  <updated>2023-09-11T13:47:56.924Z</updated>
   <id>http://noone40404.github.io/</id>
   
   <author>
@@ -18,10 +18,10 @@
   
   <entry>
     <title>DVWA-Weak session id</title>
-    <link href="http://noone40404.github.io/2023/09/10/DVWA-Weak%20session%20id/"/>
-    <id>http://noone40404.github.io/2023/09/10/DVWA-Weak%20session%20id/</id>
-    <published>2023-09-10T09:15:00.000Z</published>
-    <updated>2023-09-10T12:35:49.660Z</updated>
+    <link href="http://noone40404.github.io/2023/09/11/DVWA-Weak%20session%20id/"/>
+    <id>http://noone40404.github.io/2023/09/11/DVWA-Weak%20session%20id/</id>
+    <published>2023-09-11T09:15:00.000Z</published>
+    <updated>2023-09-11T13:47:56.924Z</updated>
     
     
     <summary type="html">dvwa.8</summary>
@@ -40,7 +40,7 @@
     <link href="http://noone40404.github.io/2023/09/10/DVWA-XSS/"/>
     <id>http://noone40404.github.io/2023/09/10/DVWA-XSS/</id>
     <published>2023-09-10T09:15:00.000Z</published>
-    <updated>2023-09-10T14:42:42.455Z</updated>
+    <updated>2023-09-11T11:14:30.975Z</updated>
     
     
     <summary type="html">dvwa.9</summary>
