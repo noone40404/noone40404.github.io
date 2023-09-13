@@ -6,7 +6,7 @@
   <link href="http://noone40404.github.io/atom.xml" rel="self"/>
   
   <link href="http://noone40404.github.io/"/>
-  <updated>2023-09-11T13:47:56.924Z</updated>
+  <updated>2023-09-13T09:02:13.278Z</updated>
   <id>http://noone40404.github.io/</id>
   
   <author>
@@ -15,6 +15,44 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Book of hours 菜菜翻译</title>
+    <link href="http://noone40404.github.io/2023/09/13/BOH/"/>
+    <id>http://noone40404.github.io/2023/09/13/BOH/</id>
+    <published>2023-09-13T09:15:00.000Z</published>
+    <updated>2023-09-13T09:02:13.278Z</updated>
+    
+    
+    <summary type="html">qwq</summary>
+    
+    
+    
+    <category term="兴趣所在" scheme="http://noone40404.github.io/categories/%E5%85%B4%E8%B6%A3%E6%89%80%E5%9C%A8/"/>
+    
+    
+    <category term="汉化" scheme="http://noone40404.github.io/tags/%E6%B1%89%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Windows基础提权</title>
+    <link href="http://noone40404.github.io/2023/09/12/Windows%E5%9F%BA%E7%A1%80%E6%8F%90%E6%9D%83/"/>
+    <id>http://noone40404.github.io/2023/09/12/Windows%E5%9F%BA%E7%A1%80%E6%8F%90%E6%9D%83/</id>
+    <published>2023-09-12T09:15:00.000Z</published>
+    <updated>2023-09-12T12:29:46.394Z</updated>
+    
+    
+    <summary type="html">包括windows下系统命令与辅助工具，以及本地/远程提权操作</summary>
+    
+    
+    
+    <category term="web渗透" scheme="http://noone40404.github.io/categories/web%E6%B8%97%E9%80%8F/"/>
+    
+    
+    <category term="提权" scheme="http://noone40404.github.io/tags/%E6%8F%90%E6%9D%83/"/>
+    
+  </entry>
   
   <entry>
     <title>DVWA-Weak session id</title>
@@ -40,7 +78,7 @@
     <link href="http://noone40404.github.io/2023/09/10/DVWA-XSS/"/>
     <id>http://noone40404.github.io/2023/09/10/DVWA-XSS/</id>
     <published>2023-09-10T09:15:00.000Z</published>
-    <updated>2023-09-11T11:14:30.975Z</updated>
+    <updated>2023-09-11T14:48:37.464Z</updated>
     
     
     <summary type="html">dvwa.9</summary>
@@ -359,48 +397,6 @@
     <category term="构造" scheme="http://noone40404.github.io/tags/%E6%9E%84%E9%80%A0/"/>
     
     <category term="网络流" scheme="http://noone40404.github.io/tags/%E7%BD%91%E7%BB%9C%E6%B5%81/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数数总结</title>
-    <link href="http://noone40404.github.io/2021/10/10/%E6%95%B0%E6%95%B0%E6%80%BB%E7%BB%93/"/>
-    <id>http://noone40404.github.io/2021/10/10/%E6%95%B0%E6%95%B0%E6%80%BB%E7%BB%93/</id>
-    <published>2021-10-10T03:47:07.000Z</published>
-    <updated>2021-11-05T23:17:02.024Z</updated>
-    
-    
-    <summary type="html">updated 数数</summary>
-    
-    
-    
-    <category term="笔记" scheme="http://noone40404.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="容斥" scheme="http://noone40404.github.io/tags/%E5%AE%B9%E6%96%A5/"/>
-    
-    <category term="数数" scheme="http://noone40404.github.io/tags/%E6%95%B0%E6%95%B0/"/>
-    
-    <category term="组合数" scheme="http://noone40404.github.io/tags/%E7%BB%84%E5%90%88%E6%95%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CF933D A Creative Cutout 题解</title>
-    <link href="http://noone40404.github.io/2021/10/08/CF933D%20A%20Creative%20Cutout/"/>
-    <id>http://noone40404.github.io/2021/10/08/CF933D%20A%20Creative%20Cutout/</id>
-    <published>2021-10-08T12:06:31.000Z</published>
-    <updated>2021-10-18T07:12:19.111Z</updated>
-    
-    
-    <summary type="html">CF933D A Creative Cutout 题解</summary>
-    
-    
-    
-    <category term="题解" scheme="http://noone40404.github.io/categories/%E9%A2%98%E8%A7%A3/"/>
-    
-    
-    <category term="思维" scheme="http://noone40404.github.io/tags/%E6%80%9D%E7%BB%B4/"/>
     
   </entry>
   

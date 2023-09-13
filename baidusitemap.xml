@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://noone40404.github.io/2023/09/11/DVWA-Weak%20session%20id/</loc>
-    <lastmod>2023-09-11</lastmod>
+    <loc>http://noone40404.github.io/2023/09/13/BOH/</loc>
+    <lastmod>2023-09-13</lastmod>
+  </url>
+  <url>
+    <loc>http://noone40404.github.io/2023/09/12/Windows%E5%9F%BA%E7%A1%80%E6%8F%90%E6%9D%83/</loc>
+    <lastmod>2023-09-12</lastmod>
   </url>
   <url>
     <loc>http://noone40404.github.io/2023/09/10/DVWA-XSS/</loc>
+    <lastmod>2023-09-11</lastmod>
+  </url>
+  <url>
+    <loc>http://noone40404.github.io/2023/09/11/DVWA-Weak%20session%20id/</loc>
     <lastmod>2023-09-11</lastmod>
   </url>
   <url>
