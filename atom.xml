@@ -6,7 +6,7 @@
   <link href="http://noone40404.github.io/atom.xml" rel="self"/>
   
   <link href="http://noone40404.github.io/"/>
-  <updated>2023-09-13T09:02:13.278Z</updated>
+  <updated>2023-09-21T09:10:50.028Z</updated>
   <id>http://noone40404.github.io/</id>
   
   <author>
@@ -17,11 +17,194 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>sql注入</title>
+    <link href="http://noone40404.github.io/2023/09/20/sql%E6%B3%A8%E5%85%A5/"/>
+    <id>http://noone40404.github.io/2023/09/20/sql%E6%B3%A8%E5%85%A5/</id>
+    <published>2023-09-20T09:15:00.000Z</published>
+    <updated>2023-09-21T09:10:50.028Z</updated>
+    
+    
+    <summary type="html">o.O</summary>
+    
+    
+    
+    <category term="2018训练营" scheme="http://noone40404.github.io/categories/2018%E8%AE%AD%E7%BB%83%E8%90%A5/"/>
+    
+    
+    <category term="注入" scheme="http://noone40404.github.io/tags/%E6%B3%A8%E5%85%A5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>信息收集</title>
+    <link href="http://noone40404.github.io/2023/09/16/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/"/>
+    <id>http://noone40404.github.io/2023/09/16/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/</id>
+    <published>2023-09-16T09:15:00.000Z</published>
+    <updated>2023-09-21T07:40:01.091Z</updated>
+    
+    
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;域名信息&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;whois&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;  查询域名是否已经被注册，以及注册域名的详细信息的数据库&lt;/p&gt;
+&lt;p&gt;  不同域名后缀的信息需要到不同 &lt;code&gt;whois&lt;/code&gt; 数据库查询&lt;/p&gt;
+&lt;p&gt;通过工信部备案查询也可得到负责人信息，对于中小网站来说，网站负责人往往就是管理员&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;子域名收集&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;maltego CE&lt;/code&gt; 做子域名收集&lt;/li&gt;
+&lt;li&gt;搜索引擎 &lt;code&gt;site:xxx.com&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://tool.chinaz.com/subdomain&quot;&gt;第三方网站查询&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://censys.io&quot;&gt;证书透明度公开日志枚举&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;web&lt;/code&gt; 站点信息收集&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;CMS&lt;/code&gt; 指纹识别&lt;/p&gt;
+&lt;p&gt;  &lt;code&gt;CMS&lt;/code&gt; 内容管理系统，利用不同的结构命名规则和特定文件内容可以得到 &lt;code&gt;CMS&lt;/code&gt; 站点的具体软件和版本&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;识别工具&lt;/p&gt;
+&lt;p&gt;  &lt;a href=&quot;http://yunsee.com&quot;&gt;在线识别&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://bugs.shuimugan.com&quot;&gt;对应网站查询指定漏洞&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;web&lt;/code&gt; 目录结构和敏感隐藏文件探测&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;    kali自带的 `dirbuster`
+
+- `wordpress` 测试
+
+    可以理解为一种独特的 `CMS` ，可以在kali里用 `whatweb [website]` 进行探测
+
+    当然，上面的在线识别网站也可以用.
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;端口信息收集&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;端口扫描&lt;/p&gt;
+  &lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;netstat -anbo windows查看已开放端口&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+  &lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;nmap -A -v -T4 -Pn [target IP]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;  &lt;code&gt;masscan&lt;/code&gt; 扫描&lt;/p&gt;
+&lt;p&gt;  &lt;a href=&quot;http://tool.chinaz.com/port&quot;&gt;在线网站扫描&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;端口攻击&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+  \begin{array}{|c|c|c|}
+      \hline
+      port &amp; 端口说明 &amp; 攻击方法 \\
+      \hline
+      22 &amp; ssh 远程连接 &amp; 爆破，ssh隧道急内网代理转发，文件传输 \\
+      \hline
+      23 &amp; telnet远程连接 &amp; 爆破，嗅探，弱口令 \\
+      \hline
+      3389 &amp; rdp远程桌面 &amp; shift后门，爆破 \\
+      \hline
+      5900 &amp; vnc远程连接 &amp; 弱口令,rce \\
+      \hline
+      5632 &amp; PcAnywhere远程连接 &amp; 嗅探，代码执行 \\
+      \hline
+  \end{array}&lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;敏感信息收集&lt;/p&gt;
+&lt;p&gt;  搜索目标暴露在互联网上的关联信息，如数据库信息，服务器配置，sql注入，甚至通过 &lt;code&gt;git&lt;/code&gt; 找到源代码，&lt;code&gt;redis&lt;/code&gt; 授权未访问，&lt;code&gt;robot.txt&lt;/code&gt; 等信息&lt;/p&gt;
+&lt;p&gt;  所以在技术渗透前应多加进行信息收集&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;google hack&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;  借助搜索引擎对特定网络主机漏洞（通常是服务器的脚本漏洞）进行搜索，&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+  \begin{array}{|c|c|}
+      \hline
+      函数 &amp; 含义 \\
+      \hline
+      site &amp; 指定域名 \\
+      \hline
+      inurl &amp; 网站url中关键词\\
+      \hline
+      intext &amp; 内容中关键词 \\
+      \hline
+      filetype &amp; 文件类型 \\
+      \hline
+      intitle &amp; 标题中关键词 \\
+      \hline
+      link &amp; 指定与改网页做外链的站点 \\
+      \hline
+      info &amp; 搜索指定网站信息 \\
+      \hline
+  \end{array}&lt;/script&gt;&lt;p&gt;  &lt;a href=&quot;http://www.exploit-db.com/google-hacking-database&quot;&gt;googlem hack数据库&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;http&lt;/code&gt; 响应搜集 &lt;code&gt;server&lt;/code&gt; 信息&lt;/p&gt;
+&lt;p&gt;  通过 &lt;code&gt;http(s)&lt;/code&gt; 与站点沟通时，目标响应报文的 &lt;code&gt;server&lt;/code&gt; 头和 &lt;code&gt;X-power-by&lt;/code&gt; 头会暴露目标服务器和使用的编程语言信息&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;获取响应&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;浏览器审计，&lt;code&gt;burp&lt;/code&gt; 截获&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;借助 &lt;code&gt;requests&lt;/code&gt;库 使用&lt;code&gt;python&lt;/code&gt; 脚本&lt;/p&gt;
+  &lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;import requests&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;r=requests.get(&amp;#x27;[target]&amp;#x27;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print(r.headers)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;真实 &lt;code&gt;IP&lt;/code&gt; 泄露&lt;/p&gt;
+&lt;p&gt;  &lt;code&gt;CDN&lt;/code&gt; 即内容分发网络，请求时直接从当地的高速缓冲服务器中获取，只有交互时才与网站服务器连接&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;判断存在&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ping&lt;/code&gt; 命令&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://ping.chinaz.com&quot;&gt;在线 &lt;code&gt;ping&lt;/code&gt; 网站&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;获得 &lt;code&gt;IP&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;无 &lt;code&gt;CDN&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;  直接 &lt;code&gt;ping&lt;/code&gt; ，或者利用&lt;a href=&quot;http://www.ip138.com&quot;&gt;在线网站&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;有 &lt;code&gt;CDN&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;网站的 &lt;code&gt;php.info&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;找到内部邮箱源，收集内部邮箱服务器的 &lt;code&gt;IP&lt;/code&gt; 地址&lt;/li&gt;
+&lt;li&gt;尝试分站或者子站，&lt;code&gt;CDN&lt;/code&gt; 可能不包含&lt;/li&gt;
+&lt;li&gt;利用&lt;a href=&quot;http://asm.ca.com/en/ping.php&quot;&gt;国外网站&lt;/a&gt;，公司可能并未架设外国 &lt;code&gt;CDN&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://viewdns.info&quot;&gt;查询域名解析记录&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;验证 &lt;code&gt;IP&lt;/code&gt; 地址&lt;/p&gt;
+&lt;p&gt;  直接访问所得到的 &lt;code&gt;IP&lt;/code&gt; ，查看网页栏前是否有 &lt;code&gt;logo&lt;/code&gt; ，以及是否有报错&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;shodan&lt;/code&gt; 信息收集&lt;/p&gt;
+  &lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;shodan host [IP] 查询对应ip的信息&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;shodan myip 获取自身外部ip&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;shodan honeyscore [IP] 检测蜜罐&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</summary>
+    
+    
+    
+    <category term="2018训练营" scheme="http://noone40404.github.io/categories/2018%E8%AE%AD%E7%BB%83%E8%90%A5/"/>
+    
+    
+    <category term="信息收集" scheme="http://noone40404.github.io/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Book of hours 菜菜翻译</title>
     <link href="http://noone40404.github.io/2023/09/13/BOH/"/>
     <id>http://noone40404.github.io/2023/09/13/BOH/</id>
     <published>2023-09-13T09:15:00.000Z</published>
-    <updated>2023-09-13T09:02:13.278Z</updated>
+    <updated>2023-09-17T07:07:38.787Z</updated>
     
     
     <summary type="html">qwq</summary>
@@ -40,7 +223,7 @@
     <link href="http://noone40404.github.io/2023/09/12/Windows%E5%9F%BA%E7%A1%80%E6%8F%90%E6%9D%83/"/>
     <id>http://noone40404.github.io/2023/09/12/Windows%E5%9F%BA%E7%A1%80%E6%8F%90%E6%9D%83/</id>
     <published>2023-09-12T09:15:00.000Z</published>
-    <updated>2023-09-12T12:29:46.394Z</updated>
+    <updated>2023-09-16T08:35:21.415Z</updated>
     
     
     <summary type="html">包括windows下系统命令与辅助工具，以及本地/远程提权操作</summary>
@@ -211,7 +394,7 @@
     <link href="http://noone40404.github.io/2023/07/20/DVWA-brute%20force/"/>
     <id>http://noone40404.github.io/2023/07/20/DVWA-brute%20force/</id>
     <published>2023-07-20T10:24:00.000Z</published>
-    <updated>2023-07-22T03:41:32.059Z</updated>
+    <updated>2023-09-20T08:15:47.964Z</updated>
     
     
     <summary type="html">dvwa.1</summary>
@@ -357,46 +540,6 @@
     <category term="构造" scheme="http://noone40404.github.io/tags/%E6%9E%84%E9%80%A0/"/>
     
     <category term="2-sat" scheme="http://noone40404.github.io/tags/2-sat/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>换根dp</title>
-    <link href="http://noone40404.github.io/2021/10/18/%E6%8D%A2%E6%A0%B9dp/"/>
-    <id>http://noone40404.github.io/2021/10/18/%E6%8D%A2%E6%A0%B9dp/</id>
-    <published>2021-10-17T22:38:27.000Z</published>
-    <updated>2021-10-18T23:34:33.855Z</updated>
-    
-    
-    <summary type="html">继续复习，记性好差</summary>
-    
-    
-    
-    <category term="笔记" scheme="http://noone40404.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="dp" scheme="http://noone40404.github.io/tags/dp/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>网络流基础</title>
-    <link href="http://noone40404.github.io/2021/10/13/%E7%BD%91%E7%BB%9C%E6%B5%81%E5%9F%BA%E7%A1%80/"/>
-    <id>http://noone40404.github.io/2021/10/13/%E7%BD%91%E7%BB%9C%E6%B5%81%E5%9F%BA%E7%A1%80/</id>
-    <published>2021-10-12T23:18:34.000Z</published>
-    <updated>2021-11-10T07:26:36.754Z</updated>
-    
-    
-    <summary type="html">复习一下网络流</summary>
-    
-    
-    
-    <category term="笔记" scheme="http://noone40404.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="构造" scheme="http://noone40404.github.io/tags/%E6%9E%84%E9%80%A0/"/>
-    
-    <category term="网络流" scheme="http://noone40404.github.io/tags/%E7%BD%91%E7%BB%9C%E6%B5%81/"/>
     
   </entry>
   
