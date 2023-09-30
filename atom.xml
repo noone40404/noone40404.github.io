@@ -6,7 +6,7 @@
   <link href="http://noone40404.github.io/atom.xml" rel="self"/>
   
   <link href="http://noone40404.github.io/"/>
-  <updated>2023-09-21T09:10:50.028Z</updated>
+  <updated>2023-09-28T01:26:19.631Z</updated>
   <id>http://noone40404.github.io/</id>
   
   <author>
@@ -17,11 +17,49 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>sql注入</title>
-    <link href="http://noone40404.github.io/2023/09/20/sql%E6%B3%A8%E5%85%A5/"/>
-    <id>http://noone40404.github.io/2023/09/20/sql%E6%B3%A8%E5%85%A5/</id>
+    <title>文件上传基础</title>
+    <link href="http://noone40404.github.io/2023/09/28/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%9F%BA%E7%A1%80/"/>
+    <id>http://noone40404.github.io/2023/09/28/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%9F%BA%E7%A1%80/</id>
+    <published>2023-09-28T09:15:00.000Z</published>
+    <updated>2023-09-28T01:26:19.631Z</updated>
+    
+    
+    <summary type="html">0.o</summary>
+    
+    
+    
+    <category term="2018训练营" scheme="http://noone40404.github.io/categories/2018%E8%AE%AD%E7%BB%83%E8%90%A5/"/>
+    
+    
+    <category term="文件上传" scheme="http://noone40404.github.io/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>xss基础</title>
+    <link href="http://noone40404.github.io/2023/09/22/xss%E5%9F%BA%E7%A1%80/"/>
+    <id>http://noone40404.github.io/2023/09/22/xss%E5%9F%BA%E7%A1%80/</id>
+    <published>2023-09-22T09:15:00.000Z</published>
+    <updated>2023-09-27T08:47:24.860Z</updated>
+    
+    
+    <summary type="html">O.o</summary>
+    
+    
+    
+    <category term="2018训练营" scheme="http://noone40404.github.io/categories/2018%E8%AE%AD%E7%BB%83%E8%90%A5/"/>
+    
+    
+    <category term="xss" scheme="http://noone40404.github.io/tags/xss/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>sql注入基础参数</title>
+    <link href="http://noone40404.github.io/2023/09/20/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%E5%8F%82%E6%95%B0/"/>
+    <id>http://noone40404.github.io/2023/09/20/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%E5%8F%82%E6%95%B0/</id>
     <published>2023-09-20T09:15:00.000Z</published>
-    <updated>2023-09-21T09:10:50.028Z</updated>
+    <updated>2023-09-22T01:46:07.125Z</updated>
     
     
     <summary type="html">o.O</summary>
@@ -261,7 +299,7 @@
     <link href="http://noone40404.github.io/2023/09/10/DVWA-XSS/"/>
     <id>http://noone40404.github.io/2023/09/10/DVWA-XSS/</id>
     <published>2023-09-10T09:15:00.000Z</published>
-    <updated>2023-09-11T14:48:37.464Z</updated>
+    <updated>2023-09-28T00:59:11.839Z</updated>
     
     
     <summary type="html">dvwa.9</summary>
@@ -272,6 +310,8 @@
     
     
     <category term="dvwa" scheme="http://noone40404.github.io/tags/dvwa/"/>
+    
+    <category term="xss" scheme="http://noone40404.github.io/tags/xss/"/>
     
   </entry>
   
@@ -318,7 +358,7 @@
     <link href="http://noone40404.github.io/2023/08/02/DVWA-file%20upload/"/>
     <id>http://noone40404.github.io/2023/08/02/DVWA-file%20upload/</id>
     <published>2023-08-02T05:10:00.000Z</published>
-    <updated>2023-08-02T06:13:36.549Z</updated>
+    <updated>2023-09-28T00:58:51.172Z</updated>
     
     
     <summary type="html">dvwa.5</summary>
@@ -329,6 +369,8 @@
     
     
     <category term="dvwa" scheme="http://noone40404.github.io/tags/dvwa/"/>
+    
+    <category term="文件上传" scheme="http://noone40404.github.io/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/"/>
     
   </entry>
   
@@ -498,48 +540,6 @@
     
     
     <category term="数数" scheme="http://noone40404.github.io/tags/%E6%95%B0%E6%95%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>burnside引理与polya定理</title>
-    <link href="http://noone40404.github.io/2021/11/01/burnside%E5%BC%95%E7%90%86%E4%B8%8Epolya%E5%AE%9A%E7%90%86/"/>
-    <id>http://noone40404.github.io/2021/11/01/burnside%E5%BC%95%E7%90%86%E4%B8%8Epolya%E5%AE%9A%E7%90%86/</id>
-    <published>2021-11-01T13:36:10.000Z</published>
-    <updated>2021-11-16T10:15:57.912Z</updated>
-    
-    
-    <summary type="html">学一下数数要用的东西</summary>
-    
-    
-    
-    <category term="笔记" scheme="http://noone40404.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="数数" scheme="http://noone40404.github.io/tags/%E6%95%B0%E6%95%B0/"/>
-    
-    <category term="群论" scheme="http://noone40404.github.io/tags/%E7%BE%A4%E8%AE%BA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2-SAT</title>
-    <link href="http://noone40404.github.io/2021/10/26/2-SAT/"/>
-    <id>http://noone40404.github.io/2021/10/26/2-SAT/</id>
-    <published>2021-10-26T08:45:13.000Z</published>
-    <updated>2021-10-27T13:11:15.935Z</updated>
-    
-    
-    <summary type="html">补一下2-SAT的题</summary>
-    
-    
-    
-    <category term="笔记" scheme="http://noone40404.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="构造" scheme="http://noone40404.github.io/tags/%E6%9E%84%E9%80%A0/"/>
-    
-    <category term="2-sat" scheme="http://noone40404.github.io/tags/2-sat/"/>
     
   </entry>
   

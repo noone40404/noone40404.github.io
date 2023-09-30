@@ -1,8 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://noone40404.github.io/2023/09/20/sql%E6%B3%A8%E5%85%A5/</loc>
-    <lastmod>2023-09-21</lastmod>
+    <loc>http://noone40404.github.io/2023/09/28/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%9F%BA%E7%A1%80/</loc>
+    <lastmod>2023-09-28</lastmod>
+  </url>
+  <url>
+    <loc>http://noone40404.github.io/2023/09/10/DVWA-XSS/</loc>
+    <lastmod>2023-09-28</lastmod>
+  </url>
+  <url>
+    <loc>http://noone40404.github.io/2023/08/02/DVWA-file%20upload/</loc>
+    <lastmod>2023-09-28</lastmod>
+  </url>
+  <url>
+    <loc>http://noone40404.github.io/2023/09/22/xss%E5%9F%BA%E7%A1%80/</loc>
+    <lastmod>2023-09-27</lastmod>
+  </url>
+  <url>
+    <loc>http://noone40404.github.io/2023/09/20/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%E5%8F%82%E6%95%B0/</loc>
+    <lastmod>2023-09-22</lastmod>
   </url>
   <url>
     <loc>http://noone40404.github.io/2023/09/16/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/</loc>
@@ -21,10 +37,6 @@
     <lastmod>2023-09-16</lastmod>
   </url>
   <url>
-    <loc>http://noone40404.github.io/2023/09/10/DVWA-XSS/</loc>
-    <lastmod>2023-09-11</lastmod>
-  </url>
-  <url>
     <loc>http://noone40404.github.io/2023/09/11/DVWA-Weak%20session%20id/</loc>
     <lastmod>2023-09-11</lastmod>
   </url>
@@ -35,10 +47,6 @@
   <url>
     <loc>http://noone40404.github.io/2023/08/02/DVWA-SQL%20injection/</loc>
     <lastmod>2023-08-23</lastmod>
-  </url>
-  <url>
-    <loc>http://noone40404.github.io/2023/08/02/DVWA-file%20upload/</loc>
-    <lastmod>2023-08-02</lastmod>
   </url>
   <url>
     <loc>http://noone40404.github.io/2023/07/31/DVWA-file%20inclusion/</loc>
