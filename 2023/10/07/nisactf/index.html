@@ -25,30 +25,27 @@
     var CONFIG = {"hostname":"noone40404.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="O.o">
+  <meta name="description" content="猪脑差点烧了">
 <meta property="og:type" content="article">
-<meta property="og:title" content="xss基础">
-<meta property="og:url" content="http://noone40404.github.io/2023/09/22/xss%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:title" content="NISACTF 新生赛">
+<meta property="og:url" content="http://noone40404.github.io/2023/10/07/nisactf/index.html">
 <meta property="og:site_name" content="noone___&#39;s blog">
-<meta property="og:description" content="O.o">
+<meta property="og:description" content="猪脑差点烧了">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://pic.imgdb.cn/item/650e3746c458853aefb8c3cf.png">
-<meta property="og:image" content="https://pic.imgdb.cn/item/650e3a3bc458853aefbb60a3.png">
-<meta property="og:image" content="https://pic.imgdb.cn/item/650e3aa1c458853aefbc01d4.png">
-<meta property="og:image" content="https://pic.imgdb.cn/item/650e4891c458853aefc5e090.png">
-<meta property="og:image" content="https://pic.imgdb.cn/item/650e4940c458853aefc70313.png">
-<meta property="og:image" content="https://pic.imgdb.cn/item/650e4940c458853aefc70313.png">
-<meta property="og:image" content="https://pic.imgdb.cn/item/6510312fc458853aef954d25.png">
-<meta property="og:image" content="https://pic.imgdb.cn/item/65118005c458853aef51a310.png">
-<meta property="og:image" content="https://pic.imgdb.cn/item/65118005c458853aef51a310.png">
-<meta property="article:published_time" content="2023-09-22T09:15:00.000Z">
-<meta property="article:modified_time" content="2023-09-27T08:47:24.860Z">
+<meta property="og:image" content="https://pic.imgdb.cn/item/651ac590c458853aef16e773.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/651f7d5bc458853aef8c9c26.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6520d9b3c458853aef12e47a.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/652147dfc458853aef66c590.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6522832fc458853aefe61bb1.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/65229619c458853aefeee3cf.png">
+<meta property="article:published_time" content="2023-10-07T05:10:00.000Z">
+<meta property="article:modified_time" content="2023-10-09T11:35:42.508Z">
 <meta property="article:author" content="noone___">
-<meta property="article:tag" content="xss">
+<meta property="article:tag" content="ctf">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://pic.imgdb.cn/item/650e3746c458853aefb8c3cf.png">
+<meta name="twitter:image" content="https://pic.imgdb.cn/item/651ac590c458853aef16e773.png">
 
-<link rel="canonical" href="http://noone40404.github.io/2023/09/22/xss%E5%9F%BA%E7%A1%80/">
+<link rel="canonical" href="http://noone40404.github.io/2023/10/07/nisactf/">
 
 
 <script id="page-configurations">
@@ -61,7 +58,7 @@
   };
 </script>
 
-  <title>xss基础 | noone___'s blog</title>
+  <title>NISACTF 新生赛 | noone___'s blog</title>
   
 
 
@@ -219,7 +216,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2023/09/22/xss%E5%9F%BA%E7%A1%80/">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2023/10/07/nisactf/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -232,7 +229,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          xss基础
+          NISACTF 新生赛
         </h1>
 
         <div class="post-meta">
@@ -242,14 +239,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2023-09-22 17:15:00" itemprop="dateCreated datePublished" datetime="2023-09-22T17:15:00+08:00">2023-09-22</time>
+              <time title="创建时间：2023-10-07 13:10:00" itemprop="dateCreated datePublished" datetime="2023-10-07T13:10:00+08:00">2023-10-07</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-09-27 16:47:24" itemprop="dateModified" datetime="2023-09-27T16:47:24+08:00">2023-09-27</time>
+                <time title="修改时间：2023-10-09 19:35:42" itemprop="dateModified" datetime="2023-10-09T19:35:42+08:00">2023-10-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -257,7 +254,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/2018%E8%AE%AD%E7%BB%83%E8%90%A5/" itemprop="url" rel="index"><span itemprop="name">2018训练营</span></a>
+                  <a href="/categories/ctf/" itemprop="url" rel="index"><span itemprop="name">ctf</span></a>
                 </span>
             </span>
 
@@ -269,7 +266,7 @@
               <span class="post-meta-item-text">阅读次数：</span>
               <span id="busuanzi_value_page_pv"></span>
             </span>
-            <div class="post-description">O.o</div>
+            <div class="post-description">猪脑差点烧了</div>
 
         </div>
       </header>
@@ -280,176 +277,180 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <ul>
-<li><p><code>XSS</code> 篡改连接</p>
+        <p>武靖骐 121182023004</p>
 <ul>
-<li><p><code>JS</code> 代码</p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">window.onload=function()&#123;  /*当窗口加载时执行匿名代码*/</span><br><span class="line">    var link=document.getElementsByTagName(&quot;a&quot;); /*html中,&lt;a&gt; 标签是超链接标签*/</span><br><span class="line">    for(i=0;i&lt;link.length;i++) link[i].href=&quot;http://noone40404.github.io&quot;;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<p>  直接在输入框中提交，所有的连接都指向的我的博客</p>
-<p>  而针对没有输入框的网站，我们需要构造一个 <code>url</code> ，即</p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">http://[ip]/dvwa/vulnerabilities/xss_r/?name=&lt;script&gt;</span><br><span class="line">window.onload=function()&#123;  /*当窗口加载时执行匿名代码*/</span><br><span class="line">    var link=document.getElementsByTagName(&quot;a&quot;); /*html中,&lt;a&gt; 标签是超链接标签*/</span><br><span class="line">    for(i=0;i&lt;link.length;i%2B%2B) link[i].href=&quot;http://noone40404.github.io&quot;;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<p>  值得注意的是，浏览器会在本地将空格转义为 <code>+</code> 号，所以会导致死循环，解决方案是使用转义后的加号 <code>%2B</code></p>
+<li><p>$web$</p>
+<ul>
+<li><p>$huaji$</p>
+<p>  图片隐写为什么在web里（雾</p>
+<p>  扔到 <code>winhex</code> 里十六进制看一下，<code>flag</code> 在最后面</p>
 </li>
-<li><p>恶意网页创建</p>
-<p>  <code>beef-xss</code> 生成对应hook，默认账号是 <code>beef</code> ，密码自己设定</p>
-<p>  <img src="https://pic.imgdb.cn/item/650e3746c458853aefb8c3cf.png" alt=""></p>
-<p>  先看下 <code>ip</code></p>
-<p>  打开 <code>apache2</code> ，在 <code>/var/www/html/index.html</code> 中加入上面给的代码</p>
-<p>  <img src="https://pic.imgdb.cn/item/650e3a3bc458853aefbb60a3.png" alt=""></p>
-<p>  此时再访问 <code>http://[ip]/index.html</code> 时，<code>beef</code> 后台能看到我们的机器</p>
-<p>  <img src="https://pic.imgdb.cn/item/650e3aa1c458853aefbc01d4.png" alt=""></p>
-<p>  <code>beef</code> 能做很多事情，以后再说。如此就创建好一个恶意网页</p>
+<li><p>$brcbeb$</p>
+<p>  直接看前端，<code>index.js</code> 里面搜 <code>flag</code> 即可</p>
 </li>
-<li><p>篡改连接</p>
-<p>  将创建好的恶意网站与构造的 <code>url</code> 结合</p>
+<li><p>$弱欸$</p>
+<p>  <code>hackbar</code> post 提交，用 <code>114514.0</code> 绕过</p>
+</li>
+<li><p>$伯乐$</p>
+<p>  <code>weevely</code> 上传</p>
+</li>
+<li><p>$杂鱼rce$</p>
+<p>  <code>aaa=system(&quot;ls /&quot;);</code></p>
+<p>  直接找 <code>flag</code></p>
+</li>
+<li><p>$启动$</p>
+<p>  抓包得到是跳转到 <code>flag</code> 界面后再跳转到启动界面</p>
+</li>
+<li><p>$小店$</p>
+<p>  反复提交价位看报错得，具体代码类似</p>
+  <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$a</span>=<span class="variable">$post</span></span><br><span class="line"><span class="variable">$b</span>=.....<span class="variable">$f</span>=....</span><br><span class="line"><span class="keyword">eval</span>(<span class="string">&quot;echo <span class="subst">$a</span>*<span class="subst">$d</span>+<span class="subst">$b</span>*<span class="subst">$e</span>+<span class="subst">$c</span>*<span class="subst">$f</span>;&quot;</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>  那么只需使 <code>$a=/* , $f=*/</code> 把中间注释掉，再用 <code>$f=system()</code> 注入即可</p>
+</li>
+<li><p>$easy-xss（题没了）$</p>
+<p>  想太复杂了，<code>level1</code> 直接 <code>&lt;script&gt;</code> 框住就好，<code>level2</code> 用 <code>&quot; &lt;/h2&gt;</code> 闭合前面的标签</p>
+</li>
+<li><p>$homo$</p>
+<p>  现学 <code>vim</code> ，在第三个临时文件 <code>.index.php.swn</code> 中找到这个</p>
+<p>  <img src="https://pic.imgdb.cn/item/651ac590c458853aef16e773.png" alt=""></p>
+<p>  得到了很复杂的过滤表达式</p>
+<p>  但这串正则表达式太具有标志性，<a target="_blank" rel="noopener" href="https://blog.51cto.com/u_15127682/3866434">百度</a> 已经构造好了 <code>payload</code></p>
+</li>
+<li><p>$xml$</p>
+<p>  抓包，找到 <code>doLogin.php</code> ,发现 <code>application/xml</code> 判断是 <code>xxe</code> 注入，直接百度到以下 <code>payload</code></p>
+  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">note</span> [</span></span><br><span class="line"><span class="meta"><span class="meta">&lt;!ENTITY <span class="meta-keyword">admin</span> <span class="meta-keyword">SYSTEM</span> <span class="meta-string">&quot;file:///flag.txt&quot;</span>&gt;</span></span></span><br><span class="line"><span class="meta">]&gt;</span></span><br></pre></td></tr></table></figure>
+<p>  直接在根目录下找到 <code>flag</code></p>
+</li>
+<li><p>$rickroll$</p>
+<p>  <code>F12</code> 找到“你怎么不传参”界面，在这里卡了很长时间</p>
+<p>  <a target="_blank" rel="noopener" href="https://blog.51cto.com/u_16159500/6514962">最后找到问题</a></p>
+<p>  当 <code>PHP</code> 版本小于 $8$ 时，参数中出现 <code>[</code> , 则会被转换成 <code>_</code> ，而导致接下来参数名中的非法字符不会继续转换为 <code>_</code> ，例</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c[m.d=xxx</span><br></pre></td></tr></table></figure>
+<p>  会被转成 <code>c_m.d=xxx</code></p>
+</li>
+<li><p>$1453$</p>
+<p>  扫了一下还是怎么得到了 <code>/robots.txt</code> ，在这里找到 <code>/h1nt.html</code></p>
+<p>  得到提示是用 <code>get</code> 传 <code>basilic</code></p>
+<p>  到新朝雅政这里，一直以为是 <code>post: sultan=xinchaoyazheng</code> 卡住了，想了几天用 <code>xinchaoyazheng=1</code> 看到报错，那么直接</p>
+  <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xinchaoyazheng=system(<span class="string">&quot;ls /&quot;</span>);</span><br><span class="line">xinchaoyazheng=system(<span class="string">&quot;cat /flag.txt&quot;</span>);</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
-<li><p><code>XSS</code> 盗取用户信息</p>
+<li><p>$misc$</p>
 <ul>
-<li><p>原理与创建</p>
-<p>  <code>setoolkit</code> 克隆一个与存在 <code>XSS</code> 漏洞网站的登陆网站相同的页面</p>
-<p>  <code>Social engineering Attacks-Website Attack Vectors-Credential Harvester Attack Method-Site Cloner</code></p>
-<p>  钓鱼网站页面默认为本机网卡 <code>ip</code> , 再输入所克隆网站网址</p>
-<p>  <img src="https://pic.imgdb.cn/item/650e4891c458853aefc5e090.png" alt=""></p>
-<p>  <img src="https://pic.imgdb.cn/item/650e4940c458853aefc70313.png" alt=""></p>
-<p>  在钓鱼网站中输入的信息被成功截获</p>
-<p>  <img src="https://pic.imgdb.cn/item/650e4940c458853aefc70313.png" alt=""></p>
-<p>  将该网址与上面的 <code>xss</code> 恶意代码结合即可</p>
+<li><p>签到题略</p>
+</li>
+<li><p>$流量分析$</p>
+<p>  扔 <code>wireshark</code> 里，公式化的拉到最底下，挨个看一看找到这个</p>
+<p>  <img src="https://pic.imgdb.cn/item/651f7d5bc458853aef8c9c26.png" alt=""></p>
+<p>  解一个三重 <code>base64</code></p>
+</li>
+<li><p>$艾克$</p>
+<p>  考查英文翻译，找到 <code>lol</code> 原文去掉逗号提交即可（雾</p>
+<p>  $GIF$ 看起来很卡，结合背景艾克联想到时间轴隐写</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">identify -format &quot;%s %T \n&quot; TIME.GIF</span><br></pre></td></tr></table></figure>
+<p>  得到这个：</p>
+<p>  <img src="https://pic.imgdb.cn/item/6520d9b3c458853aef12e47a.png" alt=""></p>
+<p>  一眼 <code>ASCII</code> ，直接转换得到</p>
+</li>
+<li><p>$osint$</p>
+<p>  $osint \ ×$</p>
+<p>  $web \ √$</p>
+<p>  真会 <code>osint</code> ，但这个不会</p>
+<p>  仔细读题：</p>
+<p>  <img src="https://pic.imgdb.cn/item/652147dfc458853aef66c590.png" alt=""></p>
+<p>  <a target="_blank" rel="noopener" href="https://blog.csdn.net/Cafemimi_/article/details/130944687">百度一下</a></p>
+<p>  筛去中文</p>
+  <figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"><span class="comment">rem 删除txt文本里的所有汉字/中文</span></span><br><span class="line"><span class="built_in">set</span> #=Any question&amp;<span class="built_in">set</span> $=Q&amp;<span class="built_in">set</span>/az=<span class="number">0</span>x53b7e0b4</span><br><span class="line"><span class="built_in">title</span> <span class="variable">%#%</span> +<span class="variable">%$%</span><span class="variable">%$%</span> <span class="variable">%z%</span></span><br><span class="line"><span class="built_in">cd</span> /d &quot;%~dp0&quot;</span><br><span class="line"><span class="built_in">set</span> &quot;folder=#result&quot;</span><br><span class="line"><span class="number">2</span>&gt;<span class="built_in">nul</span> <span class="built_in">md</span> &quot;<span class="variable">%folder%</span>&quot;</span><br><span class="line">&gt;&quot;<span class="variable">%tmp%</span>\t.t&quot; <span class="built_in">echo</span>;var s=&#x27;&#x27;;try&#123;s=WSH.StdIn.ReadAll().<span class="built_in">replace</span>(/[^^\x00-\xff]/g,&#x27;&#x27;);&#125;catch(e)&#123;&#125;;WSH.<span class="built_in">echo</span>(s);</span><br><span class="line"><span class="keyword">for</span> /f &quot;delims=&quot; <span class="variable">%%a</span> <span class="keyword">in</span> (&#x27;<span class="built_in">dir</span> /a-d/b *.txt&#x27;) <span class="keyword">do</span> (</span><br><span class="line">    <span class="built_in">echo</span>;&quot;<span class="variable">%%a</span>&quot;</span><br><span class="line">    <span class="built_in">type</span> &quot;<span class="variable">%%a</span>&quot;|cscript -nologo -e:jscript &quot;<span class="variable">%tmp%</span>\t.t&quot;&gt;&quot;<span class="variable">%folder%</span>\<span class="variable">%%~</span>nxa&quot;</span><br><span class="line">)</span><br><span class="line"><span class="built_in">echo</span>;<span class="variable">%#%</span> +<span class="variable">%$%</span><span class="variable">%$%</span> <span class="variable">%z%</span></span><br><span class="line"><span class="built_in">pause</span></span><br></pre></td></tr></table></figure>
+<p>  <code>burp-intuder</code> 直接爆破就过了</p>
+<p>  但我仍不知道答案是什么（大雾</p>
+</li>
+<li><p>$中国编码$</p>
+<p>  搞到压缩包放先 <code>ARCHPR</code> 试了 $5$ 位的不行，<code>winhex</code> 试试是否是伪加密失败</p>
+<p>  搜资料的时候<a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_58030673/article/details/128838451">这篇</a>提醒我去看注释，提示是密码全是数字，暴力得到 <code>220294012</code></p>
+<p>  <code>中国编码app</code> 扫出来 <code>这里没有flag</code></p>
+<p>  <code>binwalk</code> 分解出 <code>misc3.txt</code></p>
+<p>  删除多余字符然后用 <code>playfair</code> ?</p>
+<p>  不会喵</p>
+</li>
+<li><p>$排队吃果果$</p>
+<p>  怎么不是 <code>prime</code> 能表达强壮和质数啊（恼</p>
+<p>  改一下字体颜色发现有加粗的</p>
+<p>  按照题目的排队把每一列都升序排一下</p>
+<p>  加粗黑块直接二维码了</p>
+<p>  <img src="https://pic.imgdb.cn/item/6522832fc458853aefe61bb1.png" alt=""></p>
+<p>  改一下列宽即可</p>
 </li>
 </ul>
 </li>
-<li><p>提交 <code>XSS</code></p>
-<p>  构造一个独一无二且不会被识别为恶意代码的字符串提交</p>
-<p>  然后进行代码审查，寻找字符串是否在页面中显示</p>
-<p>  <img src="https://pic.imgdb.cn/item/6510312fc458853aef954d25.png" alt=""></p>
-<p>  查看前后标签，在 <code>payload</code> 前提前闭合</p>
-<p>  这里就需要闭合双引号 <code>&quot;</code> 以及加粗标签 <code>&lt;/b&gt;</code></p>
-<p>  对于存在输入长度限制的，<code>F12</code> 改 <code>maxlength</code> 即可</p>
+<li><p>$crypto$</p>
 <ul>
-<li><p><code>html</code> 事件</p>
-<p>  浏览器内置的事件处理器能监视诸如单击鼠标等用户行为，通过 <code>JS</code> 可以将事件处理器作为属性给特定标签，并在事件发生时执行 <code>JS</code> 命令或函数</p>
-<p>  <code>onclick</code> 与 <code>ondblclick</code> 是较常用的处理器，能在单击/双击鼠标时运行脚本</p>
-<p>  <code>onmouseover</code> 在鼠标移动至元素之上时运行脚本</p>
-<p>  例：</p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">onmouseover=&quot;alert(&quot;xss&quot;)&quot;</span><br></pre></td></tr></table></figure>
+<li><p>栅栏和凯撒写在题面了，直接在线解，莫斯同理</p>
 </li>
-<li><p>空格属性探测</p>
-<p>  输入空格时，可以发现空格后的被转成标签</p>
-<p>  <img src="https://pic.imgdb.cn/item/65118005c458853aef51a310.png" alt=""></p>
-<p>  在加个等于号，发现等号后的自动加上了双引号，则此时 <code>xss</code> 代码就不需要双引号</p>
-<p>  <img src="https://pic.imgdb.cn/item/65118005c458853aef51a310.png" alt=""></p>
+<li><p>$凯撒pro$</p>
+<p>  看格式前几个对应 <code>NISACTF</code></p>
+<p>  结合凯撒规律是每个字符后推 $i++$ 位</p>
 </li>
-<li><p><code>JS</code> 伪协议</p>
-<p>  将 <code>JS</code> 代码放在 <code>javascript:</code> 后的 <code>url</code> 中，可以将其添加到客户端。该协议声明了 <code>url</code> 的主体是任意的 <code>JS</code> 代码，含有多个语句时用分号隔开，例</p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javascript:alert(&quot;xss&quot;);</span><br></pre></td></tr></table></figure>
+<li><p>$vigenere$</p>
+<p>  网上找转换器，括号和一些字符没有被成功转换，手动换即可</p>
+<p>PS： rsa不会啦，现搜脚本</p>
 </li>
-<li><p><code>xss</code> 绕过 $1$</p>
-<p>  最简单的将识别到的关键词替换为空</p>
-<ul>
-<li>双写</li>
-<li><p>编码</p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eval(atob(&#x27;[base64_code]&#x27;));</span><br></pre></td></tr></table></figure>
-<p>  <code>eval</code> 函数返回括号内字符串运行结果</p>
-<p>  <code>atob</code> 解码 <code>base64</code></p>
+<li><p>$ezzzRSA$ (已知 $n,c,e$ )</p>
+<p>  <a target="_blank" rel="noopener" href="http://www.factordb.com/index.php">在线分解大整数</a>得到 $p,q$</p>
+  <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">phi = (p-<span class="number">1</span>)*(q-<span class="number">1</span>)</span><br><span class="line">d = gmpy2.invert(e,phi)</span><br><span class="line">m = gmpy2.powmod(c,d,n)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>$EmbryoRSA$ (已知 $p,q,n,c,e$)</p>
+<p>  同上</p>
+</li>
+<li><p>$babyRSA$ (已知 $n,c,e$ )</p>
+<p>  $n$ 不能分解，考虑低指数攻击，搜<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43790779/article/details/108539518">脚本</a>得到</p>
+  <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">i = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">if</span> gmpy2.iroot((c+i*n),e)[<span class="number">1</span>] == <span class="literal">True</span>:</span><br><span class="line">        m = gmpy2.iroot((c+i*n),e)[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    i += <span class="number">1</span></span><br><span class="line"><span class="built_in">print</span>(m)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>$CrtRSA$</p>
+<p>  我贫瘠的竞赛记忆告诉我是中国剩余定理</p>
+<p>  $e=3$ ，百度得考虑低加密指数攻击，又因为 $e=k=3$ ，有同余式组</p>
+<script type="math/tex; mode=display">
+  C_1=m^e \mod n_1 \\
+  C_2=m^e \mod n_2 \\
+  C_3=m^e \mod n_3 \\</script><p>  其中 <code>n_1,n_2,n_3</code> 应该两两互素，设 $M=n_1 \times n_2 \times n_3$</p>
+<p>  $M_i=\frac{M}{n_i}$</p>
+<p>  那么 $m^e \equiv C_i \mod n_i$</p>
+<p>  有解我忘了</p>
+<p>  继续搜<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/616139626?utm_id=0">脚本</a>得到</p>
+  <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span>*</span><br><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> reduce</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">CRT</span>(<span class="params">a,n</span>):</span></span><br><span class="line">    <span class="built_in">sum</span> = <span class="number">0</span></span><br><span class="line">    N = reduce(<span class="keyword">lambda</span> x,y:x*y,n)   <span class="comment"># ni 的乘积,N=n1*n2*n3</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> n_i, a_i <span class="keyword">in</span> <span class="built_in">zip</span>(n,a):    <span class="comment"># zip()将对象打包成元组</span></span><br><span class="line">        N_i = N // n_i           <span class="comment">#Mi=M/ni</span></span><br><span class="line">        <span class="built_in">sum</span> += a_i*N_i*invert(N_i,n_i)   <span class="comment">#sum=C1M1y1+C2M2y2+C3M3y3</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">sum</span> % N </span><br><span class="line"></span><br><span class="line">n =[n1,n2,n3] </span><br><span class="line">c =[c1,c2,c3]</span><br><span class="line"></span><br><span class="line">x = CRT(c,n)</span><br><span class="line"></span><br><span class="line">m = iroot(x,e)[<span class="number">0</span>]</span><br><span class="line"><span class="built_in">print</span>(m)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>$Do you know coding$</p>
+<p>  看一下是数字+6种字母的组合，恰好字母 $nopqrs$ 连着，对应十六进制的 $ABCDEF$</p>
+<p>  替换得到</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">49524644515954504A4A59564D534A51474655454B355A5A4E354156434E4B59494D59584B5A4C514B464A43365354594D355A4532554B50504658555756335149524B474F34324650425256455254574F5254454954523548553D3D3D3D3D3D</span><br></pre></td></tr></table></figure>
+<p>  直接 <code>ASCII</code> 转，结尾有 $5$ 个 <code>=</code> 那么再 <code>base32</code> 转</p>
+<p>  然后不会</p>
+<p>  然后搜资料的时候发现<a target="_blank" rel="noopener" href="https://gchq.github.io/CyberChef/#recipe=From_Hex(&#39;None&#39;">懒狗ai</a>From_Base32(‘A-Z2-7%3D’,false)From_Base64(‘N-ZA-Mn-za-m0-9%2B/%3D’,true,false)From_Base85(‘!-u’,true,’z’)&amp;input=NDk1MjQ2NDQ1MTU5NTQ1MDRBNEE1OTU2NEQ1MzRBNTE0NzQ2NTU0NTRCMzU1QTVBNEUzNTQxNTY0MzRFNEI1OTQ5NEQ1OTU4NEI1QTRDNTE0QjQ2NEE0MzM2NTM1NDU5NEQzNTVBNDUzMjU1NEI1MDUwNDY1ODU1NTc1NjMzNTE0OTUyNEI0NzRGMzQzMjQ2NTA0MjUyNTY0NTUyNTQ1NzRGNTI1NDQ1NDk1NDUyMzU0ODU1M0QzRDNEM0QzRDNE) 直接出答案啊嗯</p>
 </li>
 </ul>
 </li>
-<li><p><code>xss</code> 绕过 $2$</p>
-<p>  对于所有 <code>script</code> 标签，加上 <code>x</code> 变成 <code>xscript</code></p>
-<p>  先尝试伪协议绕过，但是发现被转换成了 <code>javaxscript</code></p>
-<p>  结合空格，躲开关键词检索，即 <code>javascr    ipt</code></p>
-</li>
-<li><p><code>IE</code> 特性绕过 $1$</p>
-<p>  输入时屏蔽了双引号</p>
-<p>  一个仅存在于 <code>IE</code> 中的特性是两个 <code>` </code> 可以闭合左边的双引号，其余同上</p>
-</li>
-<li><p><code>IE</code> 特性绕过 $2$</p>
-<p>  对输入的字符进行转义，使无法用 <code>&quot;</code> 和 <code>&gt;</code> 直接闭合</p>
-<p>  另一个存在于 <code>IE</code> 中的特性是可以用 <code>css</code> 命令中包含 <code>JS</code> 代码，格式如下：</p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">background:url(&quot;javascript:alert(&quot;xss&quot;);&quot;);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>IE</code> 特性绕过 $3$</p>
-<p>  <code>css</code> 中 <code>expression</code> 可以将 <code>css</code> 属性与 <code>JS</code> 代码关联起来，即 <code>expression([JS_code])</code> 。而前端过滤名单中有 <code>expression</code> ，考虑用注释符 <code>/**/</code> 破坏字符完整性，例：</p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xss.expre/**/ssion(if(!window.x)&#123;alert(&quot;xss&quot;); window.x=1;&#125;)</span><br></pre></td></tr></table></figure>
-<p>  这里最前面的 <code>xss</code> 可以理解为函数名，自定即可。<code>window.x</code> 声明了一个全局窗口变量，默认为 $0$ ，而最后将其改为 $1$ 是防止该代码反复执行</p>
-</li>
-<li><p>$16$ 进制绕过</p>
-<p>  同样面临着 <code>&lt;</code> 被转义，字符串为 <code>value</code> 类型的情况，而且对于单个 <code>\</code> 会进行替换</p>
-<p>  可以用 $16$ 进制对尖括号进行转义得到 <code>\x3c</code> 与 <code>\x3e</code></p>
-<p>  如此可以构造 <code>payload</code>:</p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\\x3cscript\\x3e alert(&quot;xss&quot;);\\x3c/script\\x3e</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>unicode</code> 绕过</p>
-<p>  不能用 $16$ 进制转换尖括号了，可以用 <code>unicode</code> 试试</p>
-<p>  <code>\u003c</code> 与 <code>\u003e</code></p>
-</li>
-<li><p>源与同源</p>
-<p>  源包含了协议，主机号与端口号，严格遵循 协议://主机号:端口</p>
-<p>  仅当三者完全相同时，才认定为属于同源，例：</p>
-<p>  <code>http://www.qwq.com</code> 与 <code>https://www.qwq.com</code>不是同一源</p>
-<p>  而对于不同源，存在同源策略，阻止一个源上的恶意代码访问另一个源上的资源</p>
-<p>  特殊的是，对于 <code>IE</code> 存在互信域，域中可以相互访问</p>
-<p>  并且 <code>IE</code> 在判断同源时不考虑端口</p>
+<li><p>$逆向$</p>
 <ul>
-<li><p>关于 <code>document.domain</code></p>
-<p>  <code>domain</code> 属性可以进行降域，因为同源策略认为域与子域并非同源，而设置他们的 <code>document.domain</code> 可以使浏览器认为他们为同一域</p>
+<li><p>$恋恋$</p>
+<p>  录屏啊嗯</p>
+</li>
+<li><p>$变表base64$</p>
+<p>  不会逆向，现下 <code>IDA</code> ，扔里面 <code>F5</code> 找到 <code>hello,reverse</code></p>
+<p>  直接提交发现过了</p>
 </li>
 </ul>
 </li>
-</ul>
-</li>
-<li><p><code>xss-filter</code> 过滤器</p>
-<ul>
-<li><p><code>htmlspecialchars()</code> / <code>htmlentities</code></p>
-<p>  将预定义的字符 <code>&amp;,&quot;,&#39;,&lt;,&gt;</code> 转换为<code>html</code> 实体，例</p>
-  <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$str</span>=<span class="string">&quot;&lt;script&gt;alert(&quot;</span>xss<span class="string">&quot;);&lt;/script&gt;&quot;</span>;</span><br><span class="line"><span class="variable">$new_str</span>=htmlspecialchars(<span class="variable">$str</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$new_str</span>;</span><br></pre></td></tr></table></figure>
-<p>  并不会跳出弹窗，而是显示</p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt; alert(&quot;xss&quot;) &lt;/script&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>strip_tags()</code></p>
-<p>  移除原字符串中的 <code>html,xml,php</code> 标签，如上例，会输出</p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert(&quot;xss&quot;);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>编码转义</p>
-<ul>
-<li><p><code>url</code> 编码</p>
-<p>  考虑到传输问题，选用了较小且通用的安全字母表。而 <code>url</code> 需要包含不在表内的二进制数据与字符，所以 <code>url</code> 存在转义机制将不安全的字符编码为安全字符再传输</p>
-<p>  其形式是 <code>%[xx]</code> ，后跟两位表示字符 <code>ASCII</code> 码的十六进制数</p>
-</li>
-<li><p><code>html</code> 编码</p>
-<p>  某些字符出现在值中时不安全，例如 <code>&lt;&gt;</code> 会被误认为标签，所以 <code>html</code> 重新编码后可以正确显示这些字符</p>
-<p>  分为实体编码与进制编码</p>
-<p>  实体编码以 <code>&amp;</code> 开头，将标签 <code>&lt;</code> 转为实体 <code>&lt;</code></p>
-<p>  进制编码以 <code>&amp;#</code> 开头，加上字符的数值，其可以是十进制<code>ASCII</code> 码或者 <code>Unicode</code> 编码</p>
-</li>
-<li><p><code>JS</code> 编码</p>
-<p>  在 <code>\u</code> 后面加 $4$ 位十六进制数字，或者 <code>\x</code> 后加 $2$ 位十六进制数字，按字符的 <code>unicode</code> 编码，不足位数用 $0$ 填充</p>
-<p>  <a target="_blank" rel="noopener" href="http://www.jsfuck.com">ctf常用网站</a></p>
-</li>
-</ul>
-</li>
-<li><p><code>payload</code> 与自动化</p>
-<p>  <code>kali</code> 下自带 <code>payload</code> 字典，位于 <code>/usr/share/wordlist/wfuzz/Injections</code></p>
-<p>  用 <code>burpsuite-intruder</code> 即可</p>
-</li>
-<li><p><code>XSS</code> 注入位置</p>
-<ul>
-<li><p><code>GET</code> 型</p>
-<p>  在 <code>url</code>中出现的提交参数出现在页面中</p>
-</li>
-<li><p><code>POST</code> 型</p>
-<p>  在表单中提交的参数出现在页面中</p>
-</li>
-<li><p><code>JSON</code> 型</p>
-<p>  提交数据出现在封闭的 <code>&lt;script&gt;&lt;/script&gt;</code> 中</p>
-</li>
-<li><p>自定义 <code>http</code> 头型</p>
-<p>  对于 <code>burp</code> 抓包，手动加入 <code>http</code> 头的内容，当显示在页面上时</p>
-</li>
-</ul>
+<li><p>$PPC$</p>
+<p>  <code>nmap</code> 扫出来，扫一下敏感目录，访问 <code>robots.txt</code> 提示 <code>/~secret</code> 那么模糊测试访问得到 <code>ssh</code> <code>id:icex64</code> 密码 <code>devils91</code></p>
+<p>  直接登录得到第一个 <code>flag</code></p>
+<p>  <code>sudo -l</code> 查看权限，得到一个可以运行的 <code>py</code></p>
+<p>  已经贴心的写好了 <code>arsene</code> 的 <code>shell</code></p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -u arsene /usr/bin/python3.9 /home/arsene/heist.py</span><br></pre></td></tr></table></figure>
+<p>  进到这里之后能得到第二个 <code>flag</code></p>
+<p>  <code>/home/arsene</code> 查看隐藏文件在 <code>.secret</code> 里找到密码</p>
+<p>  在没有 <code>sudo</code> 权限的地方硬卡着，最终找到<a target="_blank" rel="noopener" href="https://blog.51cto.com/u_2198048/6196801">这篇文章</a></p>
+<p>  如此能将 <code>arsene</code> 加入 <code>sudoer</code> 中，如下</p>
+<p>  <img src="https://pic.imgdb.cn/item/65229619c458853aefeee3cf.png" alt=""></p>
+<p>  那么可以在<a target="_blank" rel="noopener" href="https://gtfobins.github.io/">这里</a>随便找个 <code>shell</code> 拿下</p>
 </li>
 </ul>
 
@@ -467,7 +468,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://noone40404.github.io/2023/09/22/xss%E5%9F%BA%E7%A1%80/" title="xss基础">http://noone40404.github.io/2023/09/22/xss基础/</a>
+    <a href="http://noone40404.github.io/2023/10/07/nisactf/" title="NISACTF 新生赛">http://noone40404.github.io/2023/10/07/nisactf/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -479,7 +480,7 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/xss/" rel="tag"><i class="fa fa-tag"></i> xss</a>
+              <a href="/tags/ctf/" rel="tag"><i class="fa fa-tag"></i> ctf</a>
           </div>
 
         
@@ -488,12 +489,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/09/20/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%E5%8F%82%E6%95%B0/" rel="prev" title="sql注入基础参数">
-      <i class="fa fa-chevron-left"></i> sql注入基础参数
+    <a href="/2023/10/07/sqli-labs/" rel="prev" title="sqlilabs 通关">
+      <i class="fa fa-chevron-left"></i> sqlilabs 通关
     </a></div>
       <div class="post-nav-item">
-    <a href="/2023/09/28/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%9F%BA%E7%A1%80/" rel="next" title="文件上传基础">
-      文件上传基础 <i class="fa fa-chevron-right"></i>
+    <a href="/2023/10/15/upload-lab&%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%9F%BA%E7%A1%80/" rel="next" title="upload-labs">
+      upload-labs <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -569,20 +570,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">79</span>
+          <span class="site-state-item-count">81</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">59</span>
+        <span class="site-state-item-count">63</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -873,7 +874,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'noone40404.github.io',
       owner       : 'noone40404',
       admin       : ['noone40404'],
-      id          : '17902ad94c770d4f9251741524210901',
+      id          : '4dde57f8ec1a008684fcf8ba619f09df',
         language: 'zn-CN',
       distractionFreeMode: true
     });

@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+<meta name="google-site-verification" content="LZ0JOjQQZw7PhvjIbZqeOojf3J6807W7DPn6--OTptc" />
+<meta name="baidu-site-verification" content="code-DDmcbQ6zQN" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <meta name="google-site-verification" content="true">
+  <meta name="msvalidate.01" content="true">
+  <meta name="yandex-verification" content="true">
+  <meta name="baidu-site-verification" content="true">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"noone40404.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="O.o">
+<meta property="og:type" content="article">
+<meta property="og:title" content="xss基础">
+<meta property="og:url" content="http://noone40404.github.io/2023/09/22/xss-lab&xss%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="noone___&#39;s blog">
+<meta property="og:description" content="O.o">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic.imgdb.cn/item/650e3746c458853aefb8c3cf.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/650e3a3bc458853aefbb60a3.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/650e3aa1c458853aefbc01d4.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/650e4891c458853aefc5e090.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/650e4940c458853aefc70313.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/650e4940c458853aefc70313.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6510312fc458853aef954d25.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/65118005c458853aef51a310.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/65118005c458853aef51a310.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/652b6f7cc458853aefea7807.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/652b70eac458853aefee972c.jpg">
+<meta property="og:image" content="https://pic.imgdb.cn/item/652b75d6c458853aeffd055a.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/652b73ffc458853aeff7a5ca.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/652b7660c458853aeffe87bb.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/652b769ec458853aefff2e6a.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/652b7f74c458853aef18c894.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/652b8390c458853aef2454f3.jpg">
+<meta property="og:image" content="https://pic.imgdb.cn/item/652b8618c458853aef2b9536.jpg">
+<meta property="article:published_time" content="2023-09-22T09:15:00.000Z">
+<meta property="article:modified_time" content="2023-10-15T06:27:50.766Z">
+<meta property="article:author" content="noone___">
+<meta property="article:tag" content="xss">
+<meta property="article:tag" content="靶场">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.imgdb.cn/item/650e3746c458853aefb8c3cf.png">
+
+<link rel="canonical" href="http://noone40404.github.io/2023/09/22/xss-lab&xss%E5%9F%BA%E7%A1%80/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>xss基础 | noone___'s blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="noone___'s blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">noone___'s blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/noone40404" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2023/09/22/xss-lab&xss%E5%9F%BA%E7%A1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="noone___">
+      <meta itemprop="description" content="自闭中">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="noone___'s blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          xss基础
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-09-22 17:15:00" itemprop="dateCreated datePublished" datetime="2023-09-22T17:15:00+08:00">2023-09-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-10-15 14:27:50" itemprop="dateModified" datetime="2023-10-15T14:27:50+08:00">2023-10-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2018%E8%AE%AD%E7%BB%83%E8%90%A5/" itemprop="url" rel="index"><span itemprop="name">2018训练营</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+            <div class="post-description">O.o</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <ul>
+<li><p><code>XSS</code> 篡改连接</p>
+<ul>
+<li><p><code>JS</code> 代码</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">window.onload=function()&#123;  /*当窗口加载时执行匿名代码*/</span><br><span class="line">    var link=document.getElementsByTagName(&quot;a&quot;); /*html中,&lt;a&gt; 标签是超链接标签*/</span><br><span class="line">    for(i=0;i&lt;link.length;i++) link[i].href=&quot;http://noone40404.github.io&quot;;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>  直接在输入框中提交，所有的连接都指向的我的博客</p>
+<p>  而针对没有输入框的网站，我们需要构造一个 <code>url</code> ，即</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">http://[ip]/dvwa/vulnerabilities/xss_r/?name=&lt;script&gt;</span><br><span class="line">window.onload=function()&#123;  /*当窗口加载时执行匿名代码*/</span><br><span class="line">    var link=document.getElementsByTagName(&quot;a&quot;); /*html中,&lt;a&gt; 标签是超链接标签*/</span><br><span class="line">    for(i=0;i&lt;link.length;i%2B%2B) link[i].href=&quot;http://noone40404.github.io&quot;;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>  值得注意的是，浏览器会在本地将空格转义为 <code>+</code> 号，所以会导致死循环，解决方案是使用转义后的加号 <code>%2B</code></p>
+</li>
+<li><p>恶意网页创建</p>
+<p>  <code>beef-xss</code> 生成对应hook，默认账号是 <code>beef</code> ，密码自己设定</p>
+<p>  <img src="https://pic.imgdb.cn/item/650e3746c458853aefb8c3cf.png" alt=""></p>
+<p>  先看下 <code>ip</code></p>
+<p>  打开 <code>apache2</code> ，在 <code>/var/www/html/index.html</code> 中加入上面给的代码</p>
+<p>  <img src="https://pic.imgdb.cn/item/650e3a3bc458853aefbb60a3.png" alt=""></p>
+<p>  此时再访问 <code>http://[ip]/index.html</code> 时，<code>beef</code> 后台能看到我们的机器</p>
+<p>  <img src="https://pic.imgdb.cn/item/650e3aa1c458853aefbc01d4.png" alt=""></p>
+<p>  <code>beef</code> 能做很多事情，以后再说。如此就创建好一个恶意网页</p>
+</li>
+<li><p>篡改连接</p>
+<p>  将创建好的恶意网站与构造的 <code>url</code> 结合</p>
+</li>
+</ul>
+</li>
+<li><p><code>XSS</code> 盗取用户信息</p>
+<ul>
+<li><p>原理与创建</p>
+<p>  <code>setoolkit</code> 克隆一个与存在 <code>XSS</code> 漏洞网站的登陆网站相同的页面</p>
+<p>  <code>Social engineering Attacks-Website Attack Vectors-Credential Harvester Attack Method-Site Cloner</code></p>
+<p>  钓鱼网站页面默认为本机网卡 <code>ip</code> , 再输入所克隆网站网址</p>
+<p>  <img src="https://pic.imgdb.cn/item/650e4891c458853aefc5e090.png" alt=""></p>
+<p>  <img src="https://pic.imgdb.cn/item/650e4940c458853aefc70313.png" alt=""></p>
+<p>  在钓鱼网站中输入的信息被成功截获</p>
+<p>  <img src="https://pic.imgdb.cn/item/650e4940c458853aefc70313.png" alt=""></p>
+<p>  将该网址与上面的 <code>xss</code> 恶意代码结合即可</p>
+</li>
+</ul>
+</li>
+<li><p>提交 <code>XSS</code></p>
+<p>  构造一个独一无二且不会被识别为恶意代码的字符串提交</p>
+<p>  然后进行代码审查，寻找字符串是否在页面中显示</p>
+<p>  <img src="https://pic.imgdb.cn/item/6510312fc458853aef954d25.png" alt=""></p>
+<p>  查看前后标签，在 <code>payload</code> 前提前闭合</p>
+<p>  这里就需要闭合双引号 <code>&quot;</code> 以及加粗标签 <code>&lt;/b&gt;</code></p>
+<p>  对于存在输入长度限制的，<code>F12</code> 改 <code>maxlength</code> 即可</p>
+<ul>
+<li><p><code>html</code> 事件</p>
+<p>  浏览器内置的事件处理器能监视诸如单击鼠标等用户行为，通过 <code>JS</code> 可以将事件处理器作为属性给特定标签，并在事件发生时执行 <code>JS</code> 命令或函数</p>
+<p>  <code>onclick</code> 与 <code>ondblclick</code> 是较常用的处理器，能在单击/双击鼠标时运行脚本</p>
+<p>  <code>onmouseover</code> 在鼠标移动至元素之上时运行脚本</p>
+<p>  例：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">onmouseover=alert(&quot;xss&quot;)</span><br></pre></td></tr></table></figure>
+<p>  注意引号闭合</p>
+</li>
+<li><p>空格属性探测</p>
+<p>  输入空格时，可以发现空格后的被转成标签</p>
+<p>  <img src="https://pic.imgdb.cn/item/65118005c458853aef51a310.png" alt=""></p>
+<p>  在加个等于号，发现等号后的自动加上了双引号，则此时 <code>xss</code> 代码就不需要双引号</p>
+<p>  <img src="https://pic.imgdb.cn/item/65118005c458853aef51a310.png" alt=""></p>
+</li>
+<li><p><code>JS</code> 伪协议</p>
+<p>  将 <code>JS</code> 代码放在 <code>javascript:</code> 后的 <code>url</code> 中，可以将其添加到客户端。该协议声明了 <code>url</code> 的主体是任意的 <code>JS</code> 代码，含有多个语句时用分号隔开，例</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javascript:alert(&quot;xss&quot;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>xss</code> 绕过 $1$</p>
+<p>  最简单的将识别到的关键词替换为空</p>
+<ul>
+<li>双写</li>
+<li><p>编码</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eval(atob(&#x27;[base64_code]&#x27;));</span><br></pre></td></tr></table></figure>
+<p>  <code>eval</code> 函数返回括号内字符串运行结果</p>
+<p>  <code>atob</code> 解码 <code>base64</code></p>
+</li>
+</ul>
+</li>
+<li><p><code>xss</code> 绕过 $2$</p>
+<p>  对于所有 <code>script</code> 标签，加上 <code>x</code> 变成 <code>xscript</code></p>
+<p>  先尝试伪协议绕过，但是发现被转换成了 <code>javaxscript</code></p>
+<p>  结合空格，躲开关键词检索，即 <code>javascr    ipt</code></p>
+</li>
+<li><p><code>IE</code> 特性绕过 $1$</p>
+<p>  输入时屏蔽了双引号</p>
+<p>  一个仅存在于 <code>IE</code> 中的特性是两个 <code>` </code> 可以闭合左边的双引号，其余同上</p>
+</li>
+<li><p><code>IE</code> 特性绕过 $2$</p>
+<p>  对输入的字符进行转义，使无法用 <code>&quot;</code> 和 <code>&gt;</code> 直接闭合</p>
+<p>  另一个存在于 <code>IE</code> 中的特性是可以用 <code>css</code> 命令中包含 <code>JS</code> 代码，格式如下：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">background:url(&quot;javascript:alert(&quot;xss&quot;);&quot;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>IE</code> 特性绕过 $3$</p>
+<p>  <code>css</code> 中 <code>expression</code> 可以将 <code>css</code> 属性与 <code>JS</code> 代码关联起来，即 <code>expression([JS_code])</code> 。而前端过滤名单中有 <code>expression</code> ，考虑用注释符 <code>/**/</code> 破坏字符完整性，例：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xss.expre/**/ssion(if(!window.x)&#123;alert(&quot;xss&quot;); window.x=1;&#125;)</span><br></pre></td></tr></table></figure>
+<p>  这里最前面的 <code>xss</code> 可以理解为函数名，自定即可。<code>window.x</code> 声明了一个全局窗口变量，默认为 $0$ ，而最后将其改为 $1$ 是防止该代码反复执行</p>
+</li>
+<li><p>$16$ 进制绕过</p>
+<p>  同样面临着 <code>&lt;</code> 被转义，字符串为 <code>value</code> 类型的情况，而且对于单个 <code>\</code> 会进行替换</p>
+<p>  可以用 $16$ 进制对尖括号进行转义得到 <code>\x3c</code> 与 <code>\x3e</code></p>
+<p>  如此可以构造 <code>payload</code>:</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\\x3cscript\\x3e alert(&quot;xss&quot;);\\x3c/script\\x3e</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>unicode</code> 绕过</p>
+<p>  不能用 $16$ 进制转换尖括号了，可以用 <code>unicode</code> 试试</p>
+<p>  <code>\u003c</code> 与 <code>\u003e</code></p>
+</li>
+<li><p>源与同源</p>
+<p>  源包含了协议，主机号与端口号，严格遵循 协议://主机号:端口</p>
+<p>  仅当三者完全相同时，才认定为属于同源，例：</p>
+<p>  <code>http://www.qwq.com</code> 与 <code>https://www.qwq.com</code>不是同一源</p>
+<p>  而对于不同源，存在同源策略，阻止一个源上的恶意代码访问另一个源上的资源</p>
+<p>  特殊的是，对于 <code>IE</code> 存在互信域，域中可以相互访问</p>
+<p>  并且 <code>IE</code> 在判断同源时不考虑端口</p>
+<ul>
+<li><p>关于 <code>document.domain</code></p>
+<p>  <code>domain</code> 属性可以进行降域，因为同源策略认为域与子域并非同源，而设置他们的 <code>document.domain</code> 可以使浏览器认为他们为同一域</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code>xss-filter</code> 过滤器</p>
+<ul>
+<li><p><code>htmlspecialchars()</code> / <code>htmlentities</code></p>
+<p>  将预定义的字符 <code>&amp;,&quot;,&#39;,&lt;,&gt;</code> 转换为<code>html</code> 实体，例</p>
+  <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$str</span>=<span class="string">&quot;&lt;script&gt;alert(&quot;</span>xss<span class="string">&quot;);&lt;/script&gt;&quot;</span>;</span><br><span class="line"><span class="variable">$new_str</span>=htmlspecialchars(<span class="variable">$str</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$new_str</span>;</span><br></pre></td></tr></table></figure>
+<p>  并不会跳出弹窗，而是显示</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt; alert(&quot;xss&quot;) &lt;/script&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>strip_tags()</code></p>
+<p>  移除原字符串中的 <code>html,xml,php</code> 标签，如上例，会输出</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert(&quot;xss&quot;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>编码转义</p>
+<ul>
+<li><p><code>url</code> 编码</p>
+<p>  考虑到传输问题，选用了较小且通用的安全字母表。而 <code>url</code> 需要包含不在表内的二进制数据与字符，所以 <code>url</code> 存在转义机制将不安全的字符编码为安全字符再传输</p>
+<p>  其形式是 <code>%[xx]</code> ，后跟两位表示字符 <code>ASCII</code> 码的十六进制数</p>
+</li>
+<li><p><code>html</code> 编码</p>
+<p>  某些字符出现在值中时不安全，例如 <code>&lt;&gt;</code> 会被误认为标签，所以 <code>html</code> 重新编码后可以正确显示这些字符</p>
+<p>  分为实体编码与进制编码</p>
+<p>  实体编码以 <code>&amp;</code> 开头，将标签 <code>&lt;</code> 转为实体 <code>&lt;</code></p>
+<p>  进制编码以 <code>&amp;#</code> 开头，加上字符的数值，其可以是十进制<code>ASCII</code> 码或者 <code>Unicode</code> 编码</p>
+</li>
+<li><p><code>JS</code> 编码</p>
+<p>  在 <code>\u</code> 后面加 $4$ 位十六进制数字，或者 <code>\x</code> 后加 $2$ 位十六进制数字，按字符的 <code>unicode</code> 编码，不足位数用 $0$ 填充</p>
+<p>  <a target="_blank" rel="noopener" href="http://www.jsfuck.com">ctf常用网站</a></p>
+</li>
+</ul>
+</li>
+<li><p><code>payload</code> 与自动化</p>
+<p>  <code>kali</code> 下自带 <code>payload</code> 字典，位于 <code>/usr/share/wordlist/wfuzz/Injections</code></p>
+<p>  用 <code>burpsuite-intruder</code> 即可</p>
+</li>
+<li><p><code>XSS</code> 注入位置</p>
+<ul>
+<li><p><code>GET</code> 型</p>
+<p>  在 <code>url</code>中出现的提交参数出现在页面中</p>
+</li>
+<li><p><code>POST</code> 型</p>
+<p>  在表单中提交的参数出现在页面中</p>
+</li>
+<li><p><code>JSON</code> 型</p>
+<p>  提交数据出现在封闭的 <code>&lt;script&gt;&lt;/script&gt;</code> 中</p>
+</li>
+<li><p>自定义 <code>http</code> 头型</p>
+<p>  对于 <code>burp</code> 抓包，手动加入 <code>http</code> 头的内容，当显示在页面上时</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>靶场内容：</p>
+<ul>
+<li><p><code>level2</code></p>
+<p>  <img src="https://pic.imgdb.cn/item/652b6f7cc458853aefea7807.png" alt=""></p>
+<p>  <code>&lt;</code> 被转义成 <code>html</code> 实体</p>
+<p>  但看下面，<code>value</code> 处没有过滤，那么这就是注入点，闭合 <code>value</code> 即可</p>
+<p>  <img src="https://pic.imgdb.cn/item/652b70eac458853aefee972c.jpg" alt=""></p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?keyword=&quot;&gt;&lt;script&gt;alert(&quot;&quot;)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>level3</code></p>
+<p>  <code>value</code> 处也被转义，但可以发现括号没有，用不带 <code>&lt;</code> 的命令尝试</p>
+<p>  注意引号的闭合，由于 <code>value</code> 前后都是单引号，有 <code>payload</code></p>
+  <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;onmouseover=&#x27;</span>alert()</span><br></pre></td></tr></table></figure>
+<p>  闭合结果如下：</p>
+<p>  <img src="https://pic.imgdb.cn/item/652b75d6c458853aeffd055a.png" alt=""></p>
+</li>
+<li><p><code>level4</code></p>
+<p>  <img src="https://pic.imgdb.cn/item/652b73ffc458853aeff7a5ca.png" alt=""></p>
+<p>  看一下过滤，尖括号转义，<code>value</code> 处是删去尖括号</p>
+<p>  如上一题即可，注意要闭合的引号是双引号</p>
+</li>
+<li><p><code>level5</code></p>
+<p>  <img src="https://pic.imgdb.cn/item/652b7660c458853aeffe87bb.png" alt=""></p>
+<p>  <img src="https://pic.imgdb.cn/item/652b769ec458853aefff2e6a.png" alt=""></p>
+<p>  关键词被添加了下划线，大小写失效</p>
+<p>  挨个试一下常用的 <code>xss</code> 语句：</p>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span> alert(1) <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>= <span class="string">οnerrοr</span>=<span class="string">alert(1)</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">svg</span> ο<span class="attr">nl</span>ο<span class="attr">ad</span>=<span class="string">alert(1)</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">javascript:alert(1)</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>  发现最后一个超链接没有被过滤</p>
+<p>  再闭合前面的括号即可</p>
+</li>
+<li><p><code>level6</code></p>
+<p>  仍是过滤了大部分函数，但经测试都可以用大小写绕过</p>
+</li>
+<li><p><code>level7</code></p>
+<p>  <code>&lt;script&gt;</code> 被过滤为 <code>&lt;&gt;</code> ，自然想到双写绕过</p>
+</li>
+<li><p><code>level8</code></p>
+<p>  仍是关键词加下划线，尝试绕过判断，用上面提过的编码：</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javascrip&amp;#x74:alert()</span><br></pre></td></tr></table></figure>
+<p>  <code>&amp;#x74=t</code></p>
+</li>
+<li><p><code>level9</code></p>
+<p>  前端返回的结果是链接不合法，测试结果是必须包含 <code>http://</code> 才会被接受，所以可以将其放在最后并注释</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javascrip&amp;#x74:alert()<span class="comment">//http://</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>level10</code></p>
+<p>  看源码发现有三个隐藏的值，分别向其中输入参数，<img src="https://pic.imgdb.cn/item/652b7f74c458853aef18c894.png" alt=""></p>
+<p>  发现只有 <code>t_sort</code> 有显示</p>
+<p>  注入过程发现尖括号被吞了</p>
+<p>  用 <code>onclick</code> 或者 <code>onmouseover</code> ，注意这里页面上是没有 <code>t_sort</code> 的，需要手动添加一个 <code>type</code> 使其可以被点击</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot; onmouseover=alert() type=&quot;</span>text<span class="string">&quot;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>level11</code></p>
+<p>  四个隐藏值还是只有 <code>t_sort</code> 能用，但过滤了双引号，用十六进制转换没用</p>
+<p>  但注意 <code>t_ref</code> ，联想到 <code>referer</code> 头，<code>hackbar</code> 传一下发现可行</p>
+<p>  <img src="https://pic.imgdb.cn/item/652b8390c458853aef2454f3.jpg" alt=""></p>
+<p>  <code>payload</code> 与上题一样即可</p>
+</li>
+<li><p><code>level12</code></p>
+<p>  同理 <code>hackbar</code> 改 <code>UA</code> 即可，注意要保留原始 <code>UA</code> 否则会被服务器拒绝</p>
+</li>
+<li><p><code>level13</code></p>
+<p>  同理要提交 <code>cookie</code> ，但没有用户名，<code>burp</code> 抓包找一下</p>
+<p>  <img src="https://pic.imgdb.cn/item/652b8618c458853aef2b9536.jpg" alt=""></p>
+<p>  那么要上传的 <code>cookie</code> 即为</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">user=call+me+maybe <span class="string">&quot; onmouseover=alert() type=&quot;</span>text<span class="string">&quot;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>level14</code></p>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>noone___
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://noone40404.github.io/2023/09/22/xss-lab&xss%E5%9F%BA%E7%A1%80/" title="xss基础">http://noone40404.github.io/2023/09/22/xss-lab&xss基础/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/xss/" rel="tag"><i class="fa fa-tag"></i> xss</a>
+              <a href="/tags/%E9%9D%B6%E5%9C%BA/" rel="tag"><i class="fa fa-tag"></i> 靶场</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/09/20/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%E5%8F%82%E6%95%B0/" rel="prev" title="sqlmap注入基础参数">
+      <i class="fa fa-chevron-left"></i> sqlmap注入基础参数
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/10/07/sqli-labs/" rel="next" title="sqlilabs 通关">
+      sqlilabs 通关 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="noone___"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">noone___</p>
+  <div class="site-description" itemprop="description">自闭中</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">63</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/noone40404" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;noone40404" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://ctp314.github.io/" title="https:&#x2F;&#x2F;ctp314.github.io&#x2F;" rel="noopener" target="_blank">CTime_Pup_314</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/guanlexiangfan/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;guanlexiangfan&#x2F;" rel="noopener" target="_blank">Evitagen</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.luogu.com.cn/blog/i-am-zhiyangfan/" title="https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;blog&#x2F;i-am-zhiyangfan&#x2F;" rel="noopener" target="_blank">zhiyangfan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/Vitheon/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;Vitheon&#x2F;" rel="noopener" target="_blank">Vareal</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">noone___</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+  <script data-pjax>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'ebdb5b537395179b4514',
+      clientSecret: 'd0843e5853efe963ca9983db6cac3a1f9d736856',
+      repo        : 'noone40404.github.io',
+      owner       : 'noone40404',
+      admin       : ['noone40404'],
+      id          : '873f8a95e9ffaf60ab4194b01432b8fb',
+        language: 'zn-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+    </div>
+</body>
+</html>
