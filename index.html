@@ -205,6 +205,72 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2023/12/04/1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="noone___">
+      <meta itemprop="description" content="自闭中">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="noone___'s blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/12/04/1/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-12-04 21:15:47 / 修改时间：21:15:55" itemprop="dateCreated datePublished" datetime="2023-12-04T21:15:47+08:00">2023-12-04</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$file_name</span> = trim(<span class="variable">$_FILES</span>[<span class="string">&#x27;upload_file&#x27;</span>][<span class="string">&#x27;name&#x27;</span>]);</span><br><span class="line">    <span class="variable">$black</span> = <span class="keyword">array</span>(<span class="string">&quot;.php5&quot;</span>,<span class="string">&quot;.php4&quot;</span>,<span class="string">&quot;.php3&quot;</span>,<span class="string">&quot;.php2&quot;</span>,<span class="string">&quot;.php&quot;</span>,<span class="string">&quot;.phtml&quot;</span>,<span class="string">&quot;.htaccess&quot;</span>,<span class="string">&quot;.ini&quot;</span>);</span><br><span class="line">    <span class="variable">$file_ext</span> = strrchr(<span class="variable">$file_name</span>, <span class="string">&#x27;.&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!in_array(<span class="variable">$file_ext</span>, <span class="variable">$black</span>))&#123;</span><br><span class="line">        <span class="variable">$temp_file</span> = <span class="variable">$_FILES</span>[<span class="string">&#x27;upload_file&#x27;</span>][<span class="string">&#x27;tmp_name&#x27;</span>];</span><br><span class="line">        <span class="keyword">if</span> (is_uploaded_file(<span class="variable">$temp_file</span>)) &#123;</span><br><span class="line">            <span class="variable">$fileContent</span> = file_get_contents(<span class="variable">$temp_file</span>);</span><br><span class="line">            <span class="variable">$forbidden</span> = <span class="keyword">array</span>(<span class="string">&quot;$&quot;</span>, <span class="string">&quot;.&quot;</span>, <span class="string">&quot;`&quot;</span>, <span class="string">&quot;&#x27;&quot;</span>, <span class="string">&quot;\&quot;&quot;</span>, <span class="string">&quot;,&quot;</span>, <span class="string">&quot; &quot;</span>, <span class="string">&quot;\n&quot;</span>, <span class="string">&quot;\t&quot;</span>, <span class="string">&quot;exec&quot;</span>, <span class="string">&quot;sys&quot;</span>, <span class="string">&quot;pass&quot;</span>, <span class="string">&quot;php&quot;</span>);</span><br><span class="line">            <span class="keyword">foreach</span> (<span class="variable">$forbidden</span> <span class="keyword">as</span> <span class="variable">$forbid</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (strpos(<span class="variable">$fileContent</span>, <span class="variable">$forbid</span>) !== <span class="literal">false</span>) &#123;</span><br><span class="line">                    <span class="keyword">die</span>(<span class="string">&quot;请你iphone手机&quot;</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/12/04/1/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2023/11/29/tmp/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -688,7 +754,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-12-01 17:10:43" itemprop="dateModified" datetime="2023-12-01T17:10:43+08:00">2023-12-01</time>
+                <time title="修改时间：2023-12-19 19:11:57" itemprop="dateModified" datetime="2023-12-19T19:11:57+08:00">2023-12-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -769,7 +835,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-12-01 14:00:31" itemprop="dateModified" datetime="2023-12-01T14:00:31+08:00">2023-12-01</time>
+                <time title="修改时间：2023-12-08 16:34:38" itemprop="dateModified" datetime="2023-12-08T16:34:38+08:00">2023-12-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -975,87 +1041,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2023/10/07/nisactf/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="noone___">
-      <meta itemprop="description" content="自闭中">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="noone___'s blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/10/07/nisactf/" class="post-title-link" itemprop="url">NISACTF 新生赛</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-10-07 13:10:00" itemprop="dateCreated datePublished" datetime="2023-10-07T13:10:00+08:00">2023-10-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-09 19:35:42" itemprop="dateModified" datetime="2023-10-09T19:35:42+08:00">2023-10-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ctf/" itemprop="url" rel="index"><span itemprop="name">ctf</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>猪脑差点烧了</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/10/07/nisactf/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2023/10/07/sqli-labs/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1137,7 +1122,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2023/09/22/xss-lab&xss%E5%9F%BA%E7%A1%80/">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2023/10/07/nisactf/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1151,7 +1136,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/09/22/xss-lab&xss%E5%9F%BA%E7%A1%80/" class="post-title-link" itemprop="url">xss基础</a>
+            <a href="/2023/10/07/nisactf/" class="post-title-link" itemprop="url">NISACTF 新生赛</a>
         </h2>
 
         <div class="post-meta">
@@ -1161,14 +1146,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2023-09-22 17:15:00" itemprop="dateCreated datePublished" datetime="2023-09-22T17:15:00+08:00">2023-09-22</time>
+              <time title="创建时间：2023-10-07 13:10:00" itemprop="dateCreated datePublished" datetime="2023-10-07T13:10:00+08:00">2023-10-07</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-15 15:21:34" itemprop="dateModified" datetime="2023-10-15T15:21:34+08:00">2023-10-15</time>
+                <time title="修改时间：2023-10-09 19:35:42" itemprop="dateModified" datetime="2023-10-09T19:35:42+08:00">2023-10-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1176,7 +1161,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/2018%E8%AE%AD%E7%BB%83%E8%90%A5/" itemprop="url" rel="index"><span itemprop="name">2018训练营</span></a>
+                  <a href="/categories/ctf/" itemprop="url" rel="index"><span itemprop="name">ctf</span></a>
                 </span>
             </span>
 
@@ -1191,10 +1176,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>O.o</p>
+          <p>猪脑差点烧了</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2023/09/22/xss-lab&xss%E5%9F%BA%E7%A1%80/">
+              <a class="btn" href="/2023/10/07/nisactf/">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1285,7 +1270,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">87</span>
+          <span class="site-state-item-count">88</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

