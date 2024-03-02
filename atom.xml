@@ -6,7 +6,7 @@
   <link href="http://noone40404.github.io/atom.xml" rel="self"/>
   
   <link href="http://noone40404.github.io/"/>
-  <updated>2024-02-29T12:23:02.151Z</updated>
+  <updated>2024-03-02T05:06:09.626Z</updated>
   <id>http://noone40404.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://noone40404.github.io/2024/02/29/RMI%E5%8D%8F%E8%AE%AE%E5%88%9D%E6%8E%A2/"/>
     <id>http://noone40404.github.io/2024/02/29/RMI%E5%8D%8F%E8%AE%AE%E5%88%9D%E6%8E%A2/</id>
     <published>2024-02-29T05:10:00.000Z</published>
-    <updated>2024-02-29T12:23:02.151Z</updated>
+    <updated>2024-03-02T05:06:09.626Z</updated>
     
     
     <summary type="html">RMI攻击方式又很多，恰好2017-3248用到，顺便学一下</summary>
@@ -175,7 +175,7 @@
     <link href="http://noone40404.github.io/2023/10/15/weblogic%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%B7%B1%E5%85%A5/"/>
     <id>http://noone40404.github.io/2023/10/15/weblogic%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%B7%B1%E5%85%A5/</id>
     <published>2023-10-15T09:15:00.000Z</published>
-    <updated>2024-02-29T11:52:03.218Z</updated>
+    <updated>2024-03-02T10:17:45.429Z</updated>
     
     
     <summary type="html">从0开始的java反序列化学习到Weblogic漏洞复现</summary>
