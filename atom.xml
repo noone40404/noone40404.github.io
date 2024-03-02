@@ -6,7 +6,7 @@
   <link href="http://noone40404.github.io/atom.xml" rel="self"/>
   
   <link href="http://noone40404.github.io/"/>
-  <updated>2024-02-24T12:37:52.104Z</updated>
+  <updated>2024-02-29T12:23:02.151Z</updated>
   <id>http://noone40404.github.io/</id>
   
   <author>
@@ -15,6 +15,44 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>RMI协议初探</title>
+    <link href="http://noone40404.github.io/2024/02/29/RMI%E5%8D%8F%E8%AE%AE%E5%88%9D%E6%8E%A2/"/>
+    <id>http://noone40404.github.io/2024/02/29/RMI%E5%8D%8F%E8%AE%AE%E5%88%9D%E6%8E%A2/</id>
+    <published>2024-02-29T05:10:00.000Z</published>
+    <updated>2024-02-29T12:23:02.151Z</updated>
+    
+    
+    <summary type="html">RMI攻击方式又很多，恰好2017-3248用到，顺便学一下</summary>
+    
+    
+    
+    <category term="笔记" scheme="http://noone40404.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="协议层" scheme="http://noone40404.github.io/tags/%E5%8D%8F%E8%AE%AE%E5%B1%82/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>安全牛第三章-安全测试实践2.0</title>
+    <link href="http://noone40404.github.io/2023/12/10/%E5%AE%89%E5%85%A8%E7%89%9B%E8%AF%BE%E5%A0%82%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B52.0/"/>
+    <id>http://noone40404.github.io/2023/12/10/%E5%AE%89%E5%85%A8%E7%89%9B%E8%AF%BE%E5%A0%82%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B52.0/</id>
+    <published>2023-12-10T05:10:00.000Z</published>
+    <updated>2024-02-29T11:42:41.032Z</updated>
+    
+    
+    <summary type="html">嫖老大的课</summary>
+    
+    
+    
+    <category term="web渗透" scheme="http://noone40404.github.io/categories/web%E6%B8%97%E9%80%8F/"/>
+    
+    
+    <category term="网课" scheme="http://noone40404.github.io/tags/%E7%BD%91%E8%AF%BE/"/>
+    
+  </entry>
   
   <entry>
     <title>浏览器攻击框架beef</title>
@@ -57,11 +95,11 @@
   </entry>
   
   <entry>
-    <title>安全牛第三章-安全测试实践</title>
-    <link href="http://noone40404.github.io/2023/11/10/%E5%AE%89%E5%85%A8%E7%89%9B%E8%AF%BE%E5%A0%82%E7%AC%AC%E4%B8%89%E7%AB%A0-%E4%BC%81%E4%B8%9A%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B5%E5%92%8C%E6%BC%8F%E6%B4%9E%E7%BB%BC%E5%90%88%E5%88%A9%E7%94%A8/"/>
-    <id>http://noone40404.github.io/2023/11/10/%E5%AE%89%E5%85%A8%E7%89%9B%E8%AF%BE%E5%A0%82%E7%AC%AC%E4%B8%89%E7%AB%A0-%E4%BC%81%E4%B8%9A%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B5%E5%92%8C%E6%BC%8F%E6%B4%9E%E7%BB%BC%E5%90%88%E5%88%A9%E7%94%A8/</id>
+    <title>安全牛第三章-安全测试实践1.0</title>
+    <link href="http://noone40404.github.io/2023/11/10/%E5%AE%89%E5%85%A8%E7%89%9B%E8%AF%BE%E5%A0%82%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B51.0/"/>
+    <id>http://noone40404.github.io/2023/11/10/%E5%AE%89%E5%85%A8%E7%89%9B%E8%AF%BE%E5%A0%82%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B51.0/</id>
     <published>2023-11-10T05:10:00.000Z</published>
-    <updated>2024-01-02T11:00:37.793Z</updated>
+    <updated>2024-02-29T11:40:00.630Z</updated>
     
     
     <summary type="html">嫖老大的课</summary>
@@ -137,7 +175,7 @@
     <link href="http://noone40404.github.io/2023/10/15/weblogic%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%B7%B1%E5%85%A5/"/>
     <id>http://noone40404.github.io/2023/10/15/weblogic%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%B7%B1%E5%85%A5/</id>
     <published>2023-10-15T09:15:00.000Z</published>
-    <updated>2024-02-25T01:31:21.130Z</updated>
+    <updated>2024-02-29T11:52:03.218Z</updated>
     
     
     <summary type="html">从0开始的java反序列化学习到Weblogic漏洞复现</summary>
@@ -514,46 +552,6 @@
     <category term="dvwa" scheme="http://noone40404.github.io/tags/dvwa/"/>
     
     <category term="sql" scheme="http://noone40404.github.io/tags/sql/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>DVWA-file upload</title>
-    <link href="http://noone40404.github.io/2023/08/02/DVWA-file%20upload/"/>
-    <id>http://noone40404.github.io/2023/08/02/DVWA-file%20upload/</id>
-    <published>2023-08-02T05:10:00.000Z</published>
-    <updated>2023-09-28T00:58:51.172Z</updated>
-    
-    
-    <summary type="html">dvwa.5</summary>
-    
-    
-    
-    <category term="web渗透" scheme="http://noone40404.github.io/categories/web%E6%B8%97%E9%80%8F/"/>
-    
-    
-    <category term="dvwa" scheme="http://noone40404.github.io/tags/dvwa/"/>
-    
-    <category term="文件上传" scheme="http://noone40404.github.io/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>DVWA-file inclusion</title>
-    <link href="http://noone40404.github.io/2023/07/31/DVWA-file%20inclusion/"/>
-    <id>http://noone40404.github.io/2023/07/31/DVWA-file%20inclusion/</id>
-    <published>2023-07-31T09:10:00.000Z</published>
-    <updated>2023-08-02T05:03:53.942Z</updated>
-    
-    
-    <summary type="html">dvwa.4</summary>
-    
-    
-    
-    <category term="web渗透" scheme="http://noone40404.github.io/categories/web%E6%B8%97%E9%80%8F/"/>
-    
-    
-    <category term="dvwa" scheme="http://noone40404.github.io/tags/dvwa/"/>
     
   </entry>
   
