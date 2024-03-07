@@ -6,7 +6,7 @@
   <link href="http://noone40404.github.io/atom.xml" rel="self"/>
   
   <link href="http://noone40404.github.io/"/>
-  <updated>2024-03-02T05:06:09.626Z</updated>
+  <updated>2024-03-07T11:06:37.294Z</updated>
   <id>http://noone40404.github.io/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>安全牛第三章-安全测试实践3.0</title>
+    <link href="http://noone40404.github.io/2024/03/07/%E5%AE%89%E5%85%A8%E7%89%9B%E8%AF%BE%E5%A0%82%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B53.0/"/>
+    <id>http://noone40404.github.io/2024/03/07/%E5%AE%89%E5%85%A8%E7%89%9B%E8%AF%BE%E5%A0%82%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B53.0/</id>
+    <published>2024-03-07T05:10:00.000Z</published>
+    <updated>2024-03-07T11:06:37.294Z</updated>
+    
+    
+    <summary type="html">Jboss</summary>
+    
+    
+    
+    <category term="web渗透" scheme="http://noone40404.github.io/categories/web%E6%B8%97%E9%80%8F/"/>
+    
+    
+    <category term="网课" scheme="http://noone40404.github.io/tags/%E7%BD%91%E8%AF%BE/"/>
+    
+  </entry>
   
   <entry>
     <title>RMI协议初探</title>
@@ -40,10 +59,10 @@
     <link href="http://noone40404.github.io/2023/12/10/%E5%AE%89%E5%85%A8%E7%89%9B%E8%AF%BE%E5%A0%82%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B52.0/"/>
     <id>http://noone40404.github.io/2023/12/10/%E5%AE%89%E5%85%A8%E7%89%9B%E8%AF%BE%E5%A0%82%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B52.0/</id>
     <published>2023-12-10T05:10:00.000Z</published>
-    <updated>2024-02-29T11:42:41.032Z</updated>
+    <updated>2024-03-07T10:46:16.206Z</updated>
     
     
-    <summary type="html">嫖老大的课</summary>
+    <summary type="html">更多的XSS与Bash-shellshock与SSRF与XXE与好多Weblgic</summary>
     
     
     
@@ -99,10 +118,10 @@
     <link href="http://noone40404.github.io/2023/11/10/%E5%AE%89%E5%85%A8%E7%89%9B%E8%AF%BE%E5%A0%82%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B51.0/"/>
     <id>http://noone40404.github.io/2023/11/10/%E5%AE%89%E5%85%A8%E7%89%9B%E8%AF%BE%E5%A0%82%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B51.0/</id>
     <published>2023-11-10T05:10:00.000Z</published>
-    <updated>2024-02-29T11:40:00.630Z</updated>
+    <updated>2024-03-07T10:45:27.552Z</updated>
     
     
-    <summary type="html">嫖老大的课</summary>
+    <summary type="html">MSF与Armitage与Beef与XSS</summary>
     
     
     
@@ -118,10 +137,10 @@
     <link href="http://noone40404.github.io/2023/11/02/%E5%AE%89%E5%85%A8%E7%89%9B%E8%AF%BE%E5%A0%82%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7/"/>
     <id>http://noone40404.github.io/2023/11/02/%E5%AE%89%E5%85%A8%E7%89%9B%E8%AF%BE%E5%A0%82%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7/</id>
     <published>2023-11-02T05:10:00.000Z</published>
-    <updated>2023-12-08T08:34:38.868Z</updated>
+    <updated>2024-03-07T10:44:32.061Z</updated>
     
     
-    <summary type="html">嫖老大的课</summary>
+    <summary type="html">安全测试扫描与主被动信息手机</summary>
     
     
     
@@ -171,11 +190,11 @@
   </entry>
   
   <entry>
-    <title>java反序列化时在干什么？有没有空？可不可以来找链子？</title>
+    <title>weblogic反序列化时在干什么？有没有空？可不可以来找链子？</title>
     <link href="http://noone40404.github.io/2023/10/15/weblogic%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%B7%B1%E5%85%A5/"/>
     <id>http://noone40404.github.io/2023/10/15/weblogic%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%B7%B1%E5%85%A5/</id>
     <published>2023-10-15T09:15:00.000Z</published>
-    <updated>2024-03-02T10:17:45.429Z</updated>
+    <updated>2024-03-07T10:38:23.927Z</updated>
     
     
     <summary type="html">从0开始的java反序列化学习到Weblogic漏洞复现</summary>
@@ -522,27 +541,6 @@
     
     
     <summary type="html">dvwa.7</summary>
-    
-    
-    
-    <category term="web渗透" scheme="http://noone40404.github.io/categories/web%E6%B8%97%E9%80%8F/"/>
-    
-    
-    <category term="dvwa" scheme="http://noone40404.github.io/tags/dvwa/"/>
-    
-    <category term="sql" scheme="http://noone40404.github.io/tags/sql/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>DVWA-SQL injection</title>
-    <link href="http://noone40404.github.io/2023/08/02/DVWA-SQL%20injection/"/>
-    <id>http://noone40404.github.io/2023/08/02/DVWA-SQL%20injection/</id>
-    <published>2023-08-02T06:15:00.000Z</published>
-    <updated>2023-10-11T01:19:29.538Z</updated>
-    
-    
-    <summary type="html">dvwa.6</summary>
     
     
     
