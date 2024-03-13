@@ -6,7 +6,7 @@
   <link href="http://noone40404.github.io/atom.xml" rel="self"/>
   
   <link href="http://noone40404.github.io/"/>
-  <updated>2024-03-07T11:06:37.294Z</updated>
+  <updated>2024-03-12T08:30:48.137Z</updated>
   <id>http://noone40404.github.io/</id>
   
   <author>
@@ -15,6 +15,23 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>实战web渗透1.0</title>
+    <link href="http://noone40404.github.io/2024/03/12/%E5%AE%9E%E6%88%98web%E6%B8%97%E9%80%8F1.0/"/>
+    <id>http://noone40404.github.io/2024/03/12/%E5%AE%9E%E6%88%98web%E6%B8%97%E9%80%8F1.0/</id>
+    <published>2024-03-12T05:10:00.000Z</published>
+    <updated>2024-03-12T08:30:48.137Z</updated>
+    
+    
+    
+    
+    <category term="web渗透" scheme="http://noone40404.github.io/categories/web%E6%B8%97%E9%80%8F/"/>
+    
+    
+    <category term="网课" scheme="http://noone40404.github.io/tags/%E7%BD%91%E8%AF%BE/"/>
+    
+  </entry>
   
   <entry>
     <title>安全牛第三章-安全测试实践3.0</title>
@@ -529,27 +546,6 @@
     <category term="dvwa" scheme="http://noone40404.github.io/tags/dvwa/"/>
     
     <category term="xss" scheme="http://noone40404.github.io/tags/xss/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>DVWA-SQL injection(blind)</title>
-    <link href="http://noone40404.github.io/2023/08/10/DVWA-SQL%20injection(blind)/"/>
-    <id>http://noone40404.github.io/2023/08/10/DVWA-SQL%20injection(blind)/</id>
-    <published>2023-08-10T09:15:00.000Z</published>
-    <updated>2024-02-25T00:13:40.547Z</updated>
-    
-    
-    <summary type="html">dvwa.7</summary>
-    
-    
-    
-    <category term="web渗透" scheme="http://noone40404.github.io/categories/web%E6%B8%97%E9%80%8F/"/>
-    
-    
-    <category term="dvwa" scheme="http://noone40404.github.io/tags/dvwa/"/>
-    
-    <category term="sql" scheme="http://noone40404.github.io/tags/sql/"/>
     
   </entry>
   
