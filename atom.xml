@@ -43,80 +43,7 @@
     <updated>2024-07-11T08:49:06.358Z</updated>
     
     
-    <summary type="html">&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;熟练使用多种工具进行敏感信息搜集，包括蜜罐捕获信息溯源。&lt;/p&gt;
-&lt;p&gt;  github敏感信息-gsil&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;熟悉使用Metasploit等渗透测试工具，具备日志分析能力。BP,nessus,goby等的一系列扫描工具的使用经验&lt;/p&gt;
-&lt;p&gt;  &lt;a href=&quot;https://blog.csdn.net/m0_59302403/article/details/131466352&quot;&gt;https://blog.csdn.net/m0_59302403/article/details/131466352&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;  工具字符串特征&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;  AWVS扫描器：acunetix_wvs_security_test或acunetix
-  Appscan扫描器：Appscan
-  sqlmap：User-Agent中发现字符串sqlmap
-  curl：User-Agent中发现字符串curl（linux中用的多）
-  ​Request Line（请求行）：包括请求方法、请求的资源路径和 HTTP 协议版本，格式为：&amp;lt;METHOD&amp;gt; &amp;lt;URL&amp;gt; HTTP/&amp;lt;VERSION&amp;gt;。
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;  HTTP请求字段&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;  ​Host：指定目标服务器的主机名或 IP 地址。
-  ​User-Agent：发送请求的用户代理信息，用于描述客户端的软件应用程序。
-  ​Accept：指定客户端可以接受的响应内容类型，使用 MIME 类型。
-  ​Accept-Language：指定客户端可以接受的语言类型。
-  ​Accept-Encoding：指定客户端可以接受的内容编码方式，用于压缩传输的数据。
-  ​Connection：指定是否需要持久连接（keep-alive）。
-  ​Referer：指定当前请求的来源页面的 URL，用于跟踪链接来源。
-  ​Content-Type：指定请求体的媒体类型。
-  ​Content-Length：指定请求体的长度（字节数）。
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;  HTTP状态码&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;  1xx（信息性状态码）：表示接收到请求并且正在处理。
-  100：继续
-  101：切换协议
-  2xx（成功状态码）：表示请求已成功处理。
-  200：OK
-  201：已创建
-  204：无内容
-  3xx（重定向状态码）：表示需要采取进一步的操作才能完成请求。
-  301：永久重定向
-  302：临时重定向
-  304：未修改
-  4xx（客户端错误状态码）：表示服务器无法处理客户端的请求。
-  400：错误的请求
-  401：未授权
-  403：禁止访问
-  404：未找到
-  5xx（服务器错误状态码）：表示服务器在处理请求时遇到了问题。
-  500：服务器内部错误
-  502：错误的网关
-  503：服务不可用
-  504：网关超时
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;  行为特征&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;  漏洞扫描
-
-      来源地址相对固定，返回结果大部分失败（参考HTTP状态码）。假如用AWVS和Appscan扫描，返回的结果大部分是失败的，因为字典肯定比实际多
-
-  暴力破解
-
-      来源地址相对固定，登录页面短时间高频率发起请求，请求的url地址（登录页面）相对固定
-
-      （post请求不会被日志记录，get请求会被日志记录。登录页面提交数据一般是post请求）
-
-  webshell（大马）
-
-      如果攻击者在web服务器上发现了漏洞，并利用漏洞获得了上传权限，就有可能上传webshell（后门程序，由脚本语言编写，可以在web服务器上运行）
-
-      只有攻击者能访问（只有攻击者才了解），来源ip地址就是攻击者的ip地址，访问时间相对集中，webshell没有内嵌页面，不会跳转其他页面
-
-  处理：确认webshell，通过与攻击者同样的方式打开webshell所在的页面查看
-
-  一句话木马（小马）
-
-      一句话木马通常用php语言编写
-
-      查找一句话木马，搜&amp;lt;?php即可
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;熟悉十大基本漏洞及其变种，能够在源码层面复现Weblogic系列漏洞&lt;/p&gt;
-&lt;p&gt; OWASP TOP10 &lt;a href=&quot;https://blog.csdn.net/m0_73826804/article/details/136226960&quot;&gt;https://blog.csdn.net/m0_73826804/article/details/136226960&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-</summary>
+    <summary type="html">不给看</summary>
     
     
     
@@ -173,64 +100,7 @@
     <updated>2024-07-11T08:45:55.856Z</updated>
     
     
-    <summary type="html">&lt;h2 id=&quot;基本信息&quot;&gt;&lt;a href=&quot;#基本信息&quot; class=&quot;headerlink&quot; title=&quot;基本信息&quot;&gt;&lt;/a&gt;基本信息&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;姓名:&lt;/strong&gt; 武靖骐&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;联系方式:&lt;/strong&gt; 17630020907&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;邮箱：&lt;/strong&gt; 1092615389@qq.com&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;所在地:&lt;/strong&gt; 福建省福州市&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;求职意向:&lt;/strong&gt; 蓝队初级&lt;/p&gt;
-&lt;h2 id=&quot;教育背景&quot;&gt;&lt;a href=&quot;#教育背景&quot; class=&quot;headerlink&quot; title=&quot;教育背景&quot;&gt;&lt;/a&gt;教育背景&lt;/h2&gt;&lt;div class=&quot;table-container&quot;&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;时间段&lt;/th&gt;
-&lt;th&gt;院校&lt;/th&gt;
-&lt;th&gt;专业&lt;/th&gt;
-&lt;th&gt;学历&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;2023年9月 - 至今&lt;/td&gt;
-&lt;td&gt;福建师范大学&lt;/td&gt;
-&lt;td&gt;网络工程&lt;/td&gt;
-&lt;td&gt;本科&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;h2 id=&quot;比赛经历&quot;&gt;&lt;a href=&quot;#比赛经历&quot; class=&quot;headerlink&quot; title=&quot;比赛经历&quot;&gt;&lt;/a&gt;比赛经历&lt;/h2&gt;&lt;div class=&quot;table-container&quot;&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;比赛名称&lt;/th&gt;
-&lt;th&gt;比赛时间&lt;/th&gt;
-&lt;th&gt;比赛成果&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;2023年ISCTF&lt;/td&gt;
-&lt;td&gt;2023.11.22-2023.11.29&lt;/td&gt;
-&lt;td&gt;新生榜第 $12$ 名&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;2024年数据安全产业人才积分争夺赛&lt;/td&gt;
-&lt;td&gt;2024.04.28-2024.04.29&lt;/td&gt;
-&lt;td&gt;北区第 $18$ 名&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;2024年ISCC&lt;/td&gt;
-&lt;td&gt;2024.05.01-2024.05.25&lt;/td&gt;
-&lt;td&gt;国三&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;2024年CISCN&lt;/td&gt;
-&lt;td&gt;2024.05.18-2024.05.19&lt;/td&gt;
-&lt;td&gt;第 $809$ 名&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;</summary>
+    <summary type="html">不给看</summary>
     
     
     

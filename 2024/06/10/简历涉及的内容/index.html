@@ -25,12 +25,12 @@
     var CONFIG = {"hostname":"noone40404.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="熟练使用多种工具进行敏感信息搜集，包括蜜罐捕获信息溯源。   github敏感信息-gsil  熟悉使用Metasploit等渗透测试工具，具备日志分析能力。BP,nessus,goby等的一系列扫描工具的使用经验   https:&#x2F;&#x2F;blog.csdn.net&#x2F;m0_59302403&#x2F;article&#x2F;details&#x2F;131466352   工具字符串特征   AWVS扫描器：acunetix_">
+  <meta name="description" content="不给看">
 <meta property="og:type" content="article">
 <meta property="og:title" content="这是针对简历中提到的技能点的详细内容">
 <meta property="og:url" content="http://noone40404.github.io/2024/06/10/%E7%AE%80%E5%8E%86%E6%B6%89%E5%8F%8A%E7%9A%84%E5%86%85%E5%AE%B9/index.html">
 <meta property="og:site_name" content="noone___&#39;s blog">
-<meta property="og:description" content="熟练使用多种工具进行敏感信息搜集，包括蜜罐捕获信息溯源。   github敏感信息-gsil  熟悉使用Metasploit等渗透测试工具，具备日志分析能力。BP,nessus,goby等的一系列扫描工具的使用经验   https:&#x2F;&#x2F;blog.csdn.net&#x2F;m0_59302403&#x2F;article&#x2F;details&#x2F;131466352   工具字符串特征   AWVS扫描器：acunetix_">
+<meta property="og:description" content="不给看">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-06-09T16:00:00.000Z">
 <meta property="article:modified_time" content="2024-07-11T08:49:06.358Z">
@@ -269,80 +269,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <ul>
-<li><p>熟练使用多种工具进行敏感信息搜集，包括蜜罐捕获信息溯源。</p>
-<p>  github敏感信息-gsil</p>
-</li>
-<li><p>熟悉使用Metasploit等渗透测试工具，具备日志分析能力。BP,nessus,goby等的一系列扫描工具的使用经验</p>
-<p>  <a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_59302403/article/details/131466352">https://blog.csdn.net/m0_59302403/article/details/131466352</a></p>
-<p>  工具字符串特征</p>
-<pre><code>  AWVS扫描器：acunetix_wvs_security_test或acunetix
-  Appscan扫描器：Appscan
-  sqlmap：User-Agent中发现字符串sqlmap
-  curl：User-Agent中发现字符串curl（linux中用的多）
-  ​Request Line（请求行）：包括请求方法、请求的资源路径和 HTTP 协议版本，格式为：&lt;METHOD&gt; &lt;URL&gt; HTTP/&lt;VERSION&gt;。
-</code></pre><p>  HTTP请求字段</p>
-<pre><code>  ​Host：指定目标服务器的主机名或 IP 地址。
-  ​User-Agent：发送请求的用户代理信息，用于描述客户端的软件应用程序。
-  ​Accept：指定客户端可以接受的响应内容类型，使用 MIME 类型。
-  ​Accept-Language：指定客户端可以接受的语言类型。
-  ​Accept-Encoding：指定客户端可以接受的内容编码方式，用于压缩传输的数据。
-  ​Connection：指定是否需要持久连接（keep-alive）。
-  ​Referer：指定当前请求的来源页面的 URL，用于跟踪链接来源。
-  ​Content-Type：指定请求体的媒体类型。
-  ​Content-Length：指定请求体的长度（字节数）。
-</code></pre><p>  HTTP状态码</p>
-<pre><code>  1xx（信息性状态码）：表示接收到请求并且正在处理。
-  100：继续
-  101：切换协议
-  2xx（成功状态码）：表示请求已成功处理。
-  200：OK
-  201：已创建
-  204：无内容
-  3xx（重定向状态码）：表示需要采取进一步的操作才能完成请求。
-  301：永久重定向
-  302：临时重定向
-  304：未修改
-  4xx（客户端错误状态码）：表示服务器无法处理客户端的请求。
-  400：错误的请求
-  401：未授权
-  403：禁止访问
-  404：未找到
-  5xx（服务器错误状态码）：表示服务器在处理请求时遇到了问题。
-  500：服务器内部错误
-  502：错误的网关
-  503：服务不可用
-  504：网关超时
-</code></pre><p>  行为特征</p>
-<pre><code>  漏洞扫描
-
-      来源地址相对固定，返回结果大部分失败（参考HTTP状态码）。假如用AWVS和Appscan扫描，返回的结果大部分是失败的，因为字典肯定比实际多
-
-  暴力破解
-
-      来源地址相对固定，登录页面短时间高频率发起请求，请求的url地址（登录页面）相对固定
-
-      （post请求不会被日志记录，get请求会被日志记录。登录页面提交数据一般是post请求）
-
-  webshell（大马）
-
-      如果攻击者在web服务器上发现了漏洞，并利用漏洞获得了上传权限，就有可能上传webshell（后门程序，由脚本语言编写，可以在web服务器上运行）
-
-      只有攻击者能访问（只有攻击者才了解），来源ip地址就是攻击者的ip地址，访问时间相对集中，webshell没有内嵌页面，不会跳转其他页面
-
-  处理：确认webshell，通过与攻击者同样的方式打开webshell所在的页面查看
-
-  一句话木马（小马）
-
-      一句话木马通常用php语言编写
-
-      查找一句话木马，搜&lt;?php即可
-</code></pre></li>
-<li><p>熟悉十大基本漏洞及其变种，能够在源码层面复现Weblogic系列漏洞</p>
-<p> OWASP TOP10 <a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_73826804/article/details/136226960">https://blog.csdn.net/m0_73826804/article/details/136226960</a></p>
-</li>
-</ul>
-
+        <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="08565890f43e6f0d85d004ea220957a4a0f04cdc8dc3d089738b8ec6f9b9435b">ac23095d19d3c763550fbb1ae2fa0b8f2d0135595525a364e149ee9d0d06b192e93716c3806284343ac9a84781fcc863a025a316312121004029b37c1a443153f6c11f629ceceff3e4dbede16b685c763e2e6804ae0ab65c0bb406d91536a7ca85f44a7a51d22d4b6e3dc0e4e00679377e2d73ef9c8b500cad88123ce0a0d55e293b70d88812f6cf21cc1f7ac22d167e065a4c5784cf8cb670132c6192e6d28fc7736ae923e96f1d63acf19d4291f18050d884ef10d98c8de4458ef355446435e7ef827791b689eaca4277c4d5f6f0a8fc6a831e71ddf0d7258e12444de47690721fc2d27a9fb2f731a6be4eef4848715094d425f1330897a01ea1581513f5e36115575207345c335e39ba59c6bf66c588ce54c7477853df5584d480471f5eb67d94ddbed494537aac531c86c2e00c2560e01666ddb67709d24e981f028a06ce1cbd441b41cdd4463f4e7c1f306935994eca277909b068fdef3471b6be4227b0df71c3532d416a71060474afb721e41deb86b532dbf754b3d14aa58a685f16ae294cc5cacdc91582c048e9b7c03c771a295a8a69094adbc0532084d7ae2530f7f3a31840bee120d02e61e09c80c5a9c48d56f1de63040464c9a435767464fe7c7d1d88816dea0d300f4c2ccf9c5a25b881c5413fc63655133c3001b88595c33e8e6c3879c3c8729ae1c6ab15066b4dea5fce1bcad2931f33300ab77fb69f8cf4054abdc7dc084f6cb12c44c6be5f2086ab11cb2bcd57540d348b715b31848d021d3225726cba4e1ee76006464a12d339ce020ab57e87cef14dadfd6d334ce6b42133ceb2f7b2d21b71bc0ac0f6f6d554eae4193435218d59fba2cd332be1e40a0d9cab60441f33d7a1b0ff28e4981805e84c86e319f2fa6f827b1a982852ba8310221f22b306647d251614072ebcac5ac43388c82b414d24b665cb30332ea4185e0e5f9d794ccf842af4dc9446815d3b2c97385db73d6a2c73c5f9f8bc5f3bf4ba6c0342e69b7c7c18e90e1b44bf3534f393ed2abde8f46e1520e7152a00fa5908a6674865f7d142b1cbb1c89067b39d8dc8746d4a9dffeb884ed42423d7def006fddbb6e4b370d1a4cae926923bee721d01e224192888130d029d3517f209f2412468d7f9afe487edb36a9fa5c95db975ca3bf4d26023f7b36778547657fe81da35e6bd13a08d18b5fd5b80604dac14291150cafe687c010cb76693aa6c2a1f794c352528290b103a1b26e9fa27b650a6325644e0929414da8d7c30c1299f5e61eda6a6b939e8169afa0949eda1739ff5acd8b2bb47a522998396efad6388dac649064e6cf47c1a390aed033a4c97c4eb288a67fd18ac4289c66af089221a838b71f128b5b2f14589d05054a6d24cdb65efe59ec534d9463a934c1c495a62b2b6cb16f060e56d9cf0b0ea79b358f90b303ccdb336af7d02a3cd441d341ae6e7ecc26e5802026034c18ff6c4bfdc41d8ac8725efb940d1d92d930d8605d84b4511674066316878922ba5bc9313429b11747314763de64eb289feb1705fae01f6bd6216e34d8c77fef1a16949c083003f652759fdd7407909066c2cad72016401c747ea79135525fc85296d041fe39dbaae16e0c46d7454adf92bb35d251c7241c64a196bdac5af55a502aed2b8bbb103df5fd7c1ec15a49fb82fcd8310a370c799e518eef1db7e20d10eab1c494e796243208493c8a75075d30ce17866239ea7635634052d53d8036acaac882edd524d1a22488df13b629df19bf75fabc707a8957ad8aa38b3e50b927bf2b1bbbdc0e3fa7ac2937dfb2e0a8637fd471b9ceeb6fe5d92993544aa34bb3251875d11cc543f199f34b07d2064f0f530f5aa70b1448d7eb011727dc11f3f43eb2637bc822f57a6372994983650451fe8854bd552539ef5e3c327b2a8694b078f66b85825372c9e31930dac1e3c49237b5be67aec1b316ef8ef47f8408db63fde92afa1c4f4bcb828a104390d3d2e7ff5e988dcf8e343ebb1872abc271831603bdfbb2c7c5e75ee7be912ed13114373ef67b54384066108461461bf909ba2dbbc746308909dd8c1f962209521cf7e034f8b9123d49bed37035a0b2265fd62e6f14ca74f62f63e5b2bbfb556bd1bf129c8439aa7a69d7ae664e2dd44f2cae4bb76af09bb96252ef465c4881234293d9f50cedbf705dc97f73d8d9931da3f1bf90bbbf6d632cbaa3392c17732a493be8e481bbcf575043af51856d1d572e3e5ff2ba4527974b17950aca182a10fec4718a8c708ce68d46078ea5f1ca87d0ae4a4ba2b5be80fa184ea48af47549c4033fab2a1b3b1ff86537656c7ff4f46529a7e8eea468f92ed659573dbe06573fd8b19ff8394d198b15c572995d61418b90dcfd0492fb15be24f95fe24e36217982718ef09ff2d5ea23df4a67d1d36a125a2b7fe6ba4305f7278af3959d140fec01071632f97f1da53b0d8d337bda4f492db513ab47c94c120799e9b04c68e88d2cc7ce0f23e1da6af113d240c3a3dd03aef1fe009a2be0920a9b4dc4a0c244ef7de34e030dbae0ae17e5968ecf0e2ac51fa118cc53ecb3f59502b7872ba26e2a6779680f481ba1eb994fa35c4791cf7711be567ed54a82b5f2829476be676b607234b554e3a5eb436901c59d94d5bcac5be08598e2b2d11157f7c19728693fac91fe5e0be20b4c12e8df367b7bf9a3319db4a69293ed06a53390ffb3405d5aafbf0809f9b2602ed490ce3f534e8de12f09b06c1f9d8a998b246f17061c3d1a0f3d1876dab527eadce13f09c23e835222cb913d73a08beda70b6ffd044db1719a82615f2a3920e064135eefd88e7979e95860dfd12b5d3d4255470332a546dd8c0024be854c8576e4170a394f33fe92daadb89ed54e17f805b63d2263f89abf7b98197eb718666f5dc6c95aa2bfe775829756ed04207e132554afd1136a5db1d09a2722ef514e5157a865fa5d57e6e23347d7547020fb8fdf72c332768964331298a733693ea01ca2e7d0981f2889e648ad0cc6abeafb207784d96975837f9c426499742bbb01bd4622b22064cb2a339b61b083d1834755248c837601445c6580f6a57878c9bcb2b0f4fdf1b30204ce0beafa5bbb437bfc567f52d02481a2f47958cf5fe31c3d39dd79d4cb66d234d52ac76756bf69e3993a89339ec9787a39066ca0f830decde482e8acb03418d491e6a70072ed94b44dd0be517b88a9b4aecce7cc8222388e78a876d9d87bc8e5a8bee35dfc085fcce66b10154ad772f9a156d1d3fef5318a720c2cc72334d684ae6d51f7d9d6558fa010356f048c32f161ff81258a1adaac28639010cf4fc8c3b62a4c7959ec485f24d8c437f4c6e201516702cfeeb9aa105db8733c09bce82f9d1e20e525343fdef70cbc80d1182222be2af0c7f69f9caaae44af520d6d60f28fa8d9a223df3349205e78d7d84af70d7fd959e03d8f65a026a92ccf2f128ad10f5cf18c41f5dc42ab956dbfec4171e6ef2a05d3693d381eae7179cd2854658331ab03223c7f528b0f4321c94a13eee2d53b2df684216cebc7f7bd4d85f7880d41ee3b9d68c4f828236d0d86090849d22542e6de52d430ea48767850bd734216ead9552146ce17be94a992c7973e7d4c1545ea4660c2f9f3251f78cc3b3a722bd0f0a7aa5a1ae28a90c928f71d0246f327ec4a848f32667106bd0bc8dd5b25bab87b7a27fae1c7a3adb483e49463961078cc7fab943b6f3028344f95f64a8865455e2172667f1ed997249a41ae0d141f1fbcfc52442fcb7431bce8a30a212fa0a5b3e240aff20791d7dbe56a22c5a7d782c186af808ef7de43cb435a064546d0c84ab36da6629c5237aed497efd8297cc47eb8515b048207d5df0893265bff8972738971213ba29f0954c5c0d5dd9aae5e926e41a86f768a598d184672fada74afeffa8cfee1cd7e3aa10996eda7279cf583443d6636ece819151e09e28229e50dea5f3f5621c905a3d1e592d21a38c6af9be7565ebd343a1ca4aaf3f6d040a5db57352b7c205162491bd05a60b7a76ead68f465e5ebcf9385305ea6a9aff74bd3d2ebdb063a2f2a30ad05f45b3802de31aca8e4b64639f00c675b653fd28410ffa51fc55e44e938d9bb2035531b2bb86dab0c0af0bab07f421ec9c821863bed42123ab0384f7fed9680910f71805791c7fd981501d6c3f68d0811bd7b1f405dae89a554ccdf2c17c36b24c53d5c2c1565517c73083d7785934b740e98557cbb0d4cc36c9b036a08fe89836b1bbd625f5bad3c38ed940d78a150f7ce356d7a31585449088112ee4812cadc2b020dd24f3adce45b8a751ec1b258ba3d8977cf06c98e22ff6c36b2df9ce9c79f6ec913f4bf3dada32ffa4529b8e078a5246afa72cba5b8c4663680638be47dfcdfbdbe8e75f34251adb0f159d10c60b7e41c7de415989b9a06411651954386692d85fb0ce0f612d7cd7dabd2eb8ac417da47d4453e8d3c1d9eda352b474d2926b21ebef247b80f276ff5bc1d0c962177d90aae58c33f51744f615f1b66ac0a7c108803909b85141a249372d1a8f12f60783c67b697b4a5b03be3f71af9dbab4d9a58ff68eaad759525ac1a0bbdafd649d00fc6daa23f9f546ffa3c24590b33e65b0db8acdb18eabedfd21d572a5d21bd1114c3fcc878dd4fe1e5e342d785c96aa28e024dbb1b20a8751db7f42b1970e1b391301224d9daaf1a783b121ee83c6f2692ddf5d393a978434b201b13bcf40e0428bc454c003b5eefe9ccd0d25345591a324d374e1c5f68b7d0e7b1b40a516a8719616b6ad3627deaf5024888ab308db9f7e0177180c6108bd4227f96f1ff846b64d22d0d45fea12639e2d0e30981b4fed92376170dfec7999caeed5da8a1cb08efba2a58f9827cf2ed0d6477295223dac75c90b0d40caca75cf1cedd3694b955098fca8e7e154a0a8562cff472fc20f192389c98756aab9168495fa8066dcb55e72d1ffd7712b5494f1bd52dfcffcdb37d1323b32a24ae0811cd8c8c2aa16abf1a3afbc02593c30c5cd77510a05cff87cfc92797b4813904f929774f2f847dc79ae6567ddc36327fde3a600b21160c29a3a3114b0f56dc135ba40f4b8b1ba06bd69860cee2714196b05ed3cb636af335a2c9d4a1e0a7dfbabeca0b60de46ec01a196e5c013e6c3c1ea552f754b036a6ed0d32e672d78ff153caf22b0732711b23e73073dc69f267d612ddbb42e0266cdec01d43800de77d436b846d9618733ba0259f2a427a59141a883d1a3591f5c8ee4f8c9e4254a534d9d599e69789241cbdcd8183e239f9c3879b1a2970070963a68ffaad9c683a6cbca74695ec1114fb9a58a3e749167ec25663a6ce5e510f68d23acc35e06e04416183d78f1deef28536ae4457e85cd739104d6e48420e8d6fc25f52c0e79feec53c73befbcac81361919bfafe825fc6d6e7d3b44c1c8a</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">这个也不给看/>_<</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
     </div>
 
     

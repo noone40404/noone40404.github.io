@@ -334,80 +334,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <ul>
-<li><p>熟练使用多种工具进行敏感信息搜集，包括蜜罐捕获信息溯源。</p>
-<p>  github敏感信息-gsil</p>
-</li>
-<li><p>熟悉使用Metasploit等渗透测试工具，具备日志分析能力。BP,nessus,goby等的一系列扫描工具的使用经验</p>
-<p>  <a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_59302403/article/details/131466352">https://blog.csdn.net/m0_59302403/article/details/131466352</a></p>
-<p>  工具字符串特征</p>
-<pre><code>  AWVS扫描器：acunetix_wvs_security_test或acunetix
-  Appscan扫描器：Appscan
-  sqlmap：User-Agent中发现字符串sqlmap
-  curl：User-Agent中发现字符串curl（linux中用的多）
-  ​Request Line（请求行）：包括请求方法、请求的资源路径和 HTTP 协议版本，格式为：&lt;METHOD&gt; &lt;URL&gt; HTTP/&lt;VERSION&gt;。
-</code></pre><p>  HTTP请求字段</p>
-<pre><code>  ​Host：指定目标服务器的主机名或 IP 地址。
-  ​User-Agent：发送请求的用户代理信息，用于描述客户端的软件应用程序。
-  ​Accept：指定客户端可以接受的响应内容类型，使用 MIME 类型。
-  ​Accept-Language：指定客户端可以接受的语言类型。
-  ​Accept-Encoding：指定客户端可以接受的内容编码方式，用于压缩传输的数据。
-  ​Connection：指定是否需要持久连接（keep-alive）。
-  ​Referer：指定当前请求的来源页面的 URL，用于跟踪链接来源。
-  ​Content-Type：指定请求体的媒体类型。
-  ​Content-Length：指定请求体的长度（字节数）。
-</code></pre><p>  HTTP状态码</p>
-<pre><code>  1xx（信息性状态码）：表示接收到请求并且正在处理。
-  100：继续
-  101：切换协议
-  2xx（成功状态码）：表示请求已成功处理。
-  200：OK
-  201：已创建
-  204：无内容
-  3xx（重定向状态码）：表示需要采取进一步的操作才能完成请求。
-  301：永久重定向
-  302：临时重定向
-  304：未修改
-  4xx（客户端错误状态码）：表示服务器无法处理客户端的请求。
-  400：错误的请求
-  401：未授权
-  403：禁止访问
-  404：未找到
-  5xx（服务器错误状态码）：表示服务器在处理请求时遇到了问题。
-  500：服务器内部错误
-  502：错误的网关
-  503：服务不可用
-  504：网关超时
-</code></pre><p>  行为特征</p>
-<pre><code>  漏洞扫描
-
-      来源地址相对固定，返回结果大部分失败（参考HTTP状态码）。假如用AWVS和Appscan扫描，返回的结果大部分是失败的，因为字典肯定比实际多
-
-  暴力破解
-
-      来源地址相对固定，登录页面短时间高频率发起请求，请求的url地址（登录页面）相对固定
-
-      （post请求不会被日志记录，get请求会被日志记录。登录页面提交数据一般是post请求）
-
-  webshell（大马）
-
-      如果攻击者在web服务器上发现了漏洞，并利用漏洞获得了上传权限，就有可能上传webshell（后门程序，由脚本语言编写，可以在web服务器上运行）
-
-      只有攻击者能访问（只有攻击者才了解），来源ip地址就是攻击者的ip地址，访问时间相对集中，webshell没有内嵌页面，不会跳转其他页面
-
-  处理：确认webshell，通过与攻击者同样的方式打开webshell所在的页面查看
-
-  一句话木马（小马）
-
-      一句话木马通常用php语言编写
-
-      查找一句话木马，搜&lt;?php即可
-</code></pre></li>
-<li><p>熟悉十大基本漏洞及其变种，能够在源码层面复现Weblogic系列漏洞</p>
-<p> OWASP TOP10 <a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_73826804/article/details/136226960">https://blog.csdn.net/m0_73826804/article/details/136226960</a></p>
-</li>
-</ul>
-
+          不给看
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2024/06/10/%E7%AE%80%E5%8E%86%E6%B6%89%E5%8F%8A%E7%9A%84%E5%86%85%E5%AE%B9/#more" rel="contents">
@@ -650,64 +577,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><p><strong>姓名:</strong> 武靖骐</p>
-<p><strong>联系方式:</strong> 17630020907</p>
-<p><strong>邮箱：</strong> 1092615389@qq.com</p>
-<p><strong>所在地:</strong> 福建省福州市</p>
-<p><strong>求职意向:</strong> 蓝队初级</p>
-<h2 id="教育背景"><a href="#教育背景" class="headerlink" title="教育背景"></a>教育背景</h2><div class="table-container">
-<table>
-<thead>
-<tr>
-<th>时间段</th>
-<th>院校</th>
-<th>专业</th>
-<th>学历</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>2023年9月 - 至今</td>
-<td>福建师范大学</td>
-<td>网络工程</td>
-<td>本科</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h2 id="比赛经历"><a href="#比赛经历" class="headerlink" title="比赛经历"></a>比赛经历</h2><div class="table-container">
-<table>
-<thead>
-<tr>
-<th>比赛名称</th>
-<th>比赛时间</th>
-<th>比赛成果</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>2023年ISCTF</td>
-<td>2023.11.22-2023.11.29</td>
-<td>新生榜第 $12$ 名</td>
-</tr>
-<tr>
-<td>2024年数据安全产业人才积分争夺赛</td>
-<td>2024.04.28-2024.04.29</td>
-<td>北区第 $18$ 名</td>
-</tr>
-<tr>
-<td>2024年ISCC</td>
-<td>2024.05.01-2024.05.25</td>
-<td>国三</td>
-</tr>
-<tr>
-<td>2024年CISCN</td>
-<td>2024.05.18-2024.05.19</td>
-<td>第 $809$ 名</td>
-</tr>
-</tbody>
-</table>
-</div>
+          不给看
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2024/05/04/%E7%AE%80%E5%8E%86/#more" rel="contents">
