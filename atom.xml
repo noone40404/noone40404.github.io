@@ -6,7 +6,7 @@
   <link href="http://noone40404.github.io/atom.xml" rel="self"/>
   
   <link href="http://noone40404.github.io/"/>
-  <updated>2024-05-20T04:13:25.097Z</updated>
+  <updated>2024-06-28T10:08:28.477Z</updated>
   <id>http://noone40404.github.io/</id>
   
   <author>
@@ -17,14 +17,225 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Webshell流量特征</title>
+    <link href="http://noone40404.github.io/2024/06/28/webshell%E6%B5%81%E9%87%8F%E7%89%B9%E5%BE%81/"/>
+    <id>http://noone40404.github.io/2024/06/28/webshell%E6%B5%81%E9%87%8F%E7%89%B9%E5%BE%81/</id>
+    <published>2024-06-28T09:15:00.000Z</published>
+    <updated>2024-06-28T10:08:28.477Z</updated>
+    
+    
+    <summary type="html">要面蓝初了好紧张</summary>
+    
+    
+    
+    <category term="蓝队" scheme="http://noone40404.github.io/categories/%E8%93%9D%E9%98%9F/"/>
+    
+    
+    <category term="webshell" scheme="http://noone40404.github.io/tags/webshell/"/>
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://noone40404.github.io/2024/06/28/%E7%AE%80%E5%8E%86%E6%B6%89%E5%8F%8A%E7%9A%84%E5%86%85%E5%AE%B9/"/>
+    <id>http://noone40404.github.io/2024/06/28/%E7%AE%80%E5%8E%86%E6%B6%89%E5%8F%8A%E7%9A%84%E5%86%85%E5%AE%B9/</id>
+    <published>2024-06-28T01:49:27.964Z</published>
+    <updated>2024-06-28T02:31:40.174Z</updated>
+    
+    
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;熟练使用多种工具进行敏感信息搜集，包括蜜罐捕获信息溯源。&lt;/p&gt;
+&lt;p&gt;  github敏感信息-gsil&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;熟悉使用Metasploit等渗透测试工具，具备日志分析能力。BP,nessus,goby等的一系列扫描工具的使用经验&lt;/p&gt;
+&lt;p&gt;  &lt;a href=&quot;https://blog.csdn.net/m0_59302403/article/details/131466352&quot;&gt;https://blog.csdn.net/m0_59302403/article/details/131466352&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;  工具字符串特征&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  AWVS扫描器：acunetix_wvs_security_test或acunetix
+  Appscan扫描器：Appscan
+  sqlmap：User-Agent中发现字符串sqlmap
+  curl：User-Agent中发现字符串curl（linux中用的多）
+  ​Request Line（请求行）：包括请求方法、请求的资源路径和 HTTP 协议版本，格式为：&amp;lt;METHOD&amp;gt; &amp;lt;URL&amp;gt; HTTP/&amp;lt;VERSION&amp;gt;。
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;  HTTP请求字段&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  ​Host：指定目标服务器的主机名或 IP 地址。
+  ​User-Agent：发送请求的用户代理信息，用于描述客户端的软件应用程序。
+  ​Accept：指定客户端可以接受的响应内容类型，使用 MIME 类型。
+  ​Accept-Language：指定客户端可以接受的语言类型。
+  ​Accept-Encoding：指定客户端可以接受的内容编码方式，用于压缩传输的数据。
+  ​Connection：指定是否需要持久连接（keep-alive）。
+  ​Referer：指定当前请求的来源页面的 URL，用于跟踪链接来源。
+  ​Content-Type：指定请求体的媒体类型。
+  ​Content-Length：指定请求体的长度（字节数）。
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;  HTTP状态码&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  1xx（信息性状态码）：表示接收到请求并且正在处理。
+  100：继续
+  101：切换协议
+  2xx（成功状态码）：表示请求已成功处理。
+  200：OK
+  201：已创建
+  204：无内容
+  3xx（重定向状态码）：表示需要采取进一步的操作才能完成请求。
+  301：永久重定向
+  302：临时重定向
+  304：未修改
+  4xx（客户端错误状态码）：表示服务器无法处理客户端的请求。
+  400：错误的请求
+  401：未授权
+  403：禁止访问
+  404：未找到
+  5xx（服务器错误状态码）：表示服务器在处理请求时遇到了问题。
+  500：服务器内部错误
+  502：错误的网关
+  503：服务不可用
+  504：网关超时
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;  行为特征&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  漏洞扫描
+
+      来源地址相对固定，返回结果大部分失败（参考HTTP状态码）。假如用AWVS和Appscan扫描，返回的结果大部分是失败的，因为字典肯定比实际多
+
+  暴力破解
+
+      来源地址相对固定，登录页面短时间高频率发起请求，请求的url地址（登录页面）相对固定
+
+      （post请求不会被日志记录，get请求会被日志记录。登录页面提交数据一般是post请求）
+
+  webshell（大马）
+
+      如果攻击者在web服务器上发现了漏洞，并利用漏洞获得了上传权限，就有可能上传webshell（后门程序，由脚本语言编写，可以在web服务器上运行）
+
+      只有攻击者能访问（只有攻击者才了解），来源ip地址就是攻击者的ip地址，访问时间相对集中，webshell没有内嵌页面，不会跳转其他页面
+
+  处理：确认webshell，通过与攻击者同样的方式打开webshell所在的页面查看
+
+  一句话木马（小马）
+
+      一句话木马通常用php语言编写
+
+      查找一句话木马，搜&amp;lt;?php即可
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;熟悉十大基本漏洞及其变种，能够在源码层面复现Weblogic系列漏洞&lt;/p&gt;
+&lt;p&gt; OWASP TOP10 &lt;a href=&quot;https://blog.csdn.net/m0_73826804/article/details/136226960&quot;&gt;https://blog.csdn.net/m0_73826804/article/details/136226960&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://noone40404.github.io/2024/06/22/%E9%97%BD%E7%9B%BE%E6%9D%AF2024/"/>
+    <id>http://noone40404.github.io/2024/06/22/%E9%97%BD%E7%9B%BE%E6%9D%AF2024/</id>
+    <published>2024-06-22T00:45:02.714Z</published>
+    <updated>2024-06-22T00:45:08.127Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://noone40404.github.io/2024/05/26/%E7%AE%80%E5%8E%86/"/>
+    <id>http://noone40404.github.io/2024/05/26/%E7%AE%80%E5%8E%86/</id>
+    <published>2024-05-26T10:14:12.090Z</published>
+    <updated>2024-06-27T08:22:57.505Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;基本信息&quot;&gt;&lt;a href=&quot;#基本信息&quot; class=&quot;headerlink&quot; title=&quot;基本信息&quot;&gt;&lt;/a&gt;基本信息&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;姓名:&lt;/strong&gt; 武靖骐&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;联系方式:&lt;/strong&gt; 17630020907&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;邮箱：&lt;/strong&gt; 1092615389@qq.com&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;所在地:&lt;/strong&gt; 福建省福州市&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;求职意向:&lt;/strong&gt; 蓝队初级&lt;/p&gt;
+&lt;h2 id=&quot;教育背景&quot;&gt;&lt;a href=&quot;#教育背景&quot; class=&quot;headerlink&quot; title=&quot;教育背景&quot;&gt;&lt;/a&gt;教育背景&lt;/h2&gt;&lt;div class=&quot;table-container&quot;&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;时间段&lt;/th&gt;
+&lt;th&gt;院校&lt;/th&gt;
+&lt;th&gt;专业&lt;/th&gt;
+&lt;th&gt;学历&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;2023年9月 - 至今&lt;/td&gt;
+&lt;td&gt;福建师范大学&lt;/td&gt;
+&lt;td&gt;网络工程&lt;/td&gt;
+&lt;td&gt;本科&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;h2 id=&quot;比赛经历&quot;&gt;&lt;a href=&quot;#比赛经历&quot; class=&quot;headerlink&quot; title=&quot;比赛经历&quot;&gt;&lt;/a&gt;比赛经历&lt;/h2&gt;&lt;div class=&quot;table-container&quot;&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;比赛名称&lt;/th&gt;
+&lt;th&gt;比赛时间&lt;/th&gt;
+&lt;th&gt;比赛成果&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;2023年ISCTF&lt;/td&gt;
+&lt;td&gt;2023.11.22-2023.11.29&lt;/td&gt;
+&lt;td&gt;新生榜第 $12$ 名&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2024年数据安全产业人才积分争夺赛&lt;/td&gt;
+&lt;td&gt;2024.04.28-2024.04.29&lt;/td&gt;
+&lt;td&gt;北区第 $18$ 名&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2024年ISCC&lt;/td&gt;
+&lt;td&gt;2024.05.01-2024.05.25&lt;/td&gt;
+&lt;td&gt;国三&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2024年CISCN&lt;/td&gt;
+&lt;td&gt;2024.05.18-2024.05.19&lt;/td&gt;
+&lt;td&gt;第 $809$ 名&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>是不是有点太难的CISCN</title>
+    <link href="http://noone40404.github.io/2024/05/19/CISCN2024/"/>
+    <id>http://noone40404.github.io/2024/05/19/CISCN2024/</id>
+    <published>2024-05-18T16:00:00.000Z</published>
+    <updated>2024-05-21T08:50:46.403Z</updated>
+    
+    
+    <summary type="html">痛，太痛了</summary>
+    
+    
+    
+    <category term="比赛" scheme="http://noone40404.github.io/categories/%E6%AF%94%E8%B5%9B/"/>
+    
+    
+    <category term="比赛" scheme="http://noone40404.github.io/tags/%E6%AF%94%E8%B5%9B/"/>
+    
+  </entry>
+  
+  <entry>
     <title>被狠狠带飞的iscc口牙</title>
     <link href="http://noone40404.github.io/2024/05/05/iscc2024/"/>
     <id>http://noone40404.github.io/2024/05/05/iscc2024/</id>
     <published>2024-05-04T16:00:00.000Z</published>
-    <updated>2024-05-20T04:13:25.097Z</updated>
+    <updated>2024-05-25T08:45:37.959Z</updated>
     
     
-    <summary type="html">狠狠放完五一后发现题都被切了（</summary>
+    <summary type="html">狠狠放完五一后发现题都被切了，然后大家顿悟太快导致题就算都做完也只有rank1的一半分（</summary>
     
     
     
@@ -57,14 +268,14 @@
   </entry>
   
   <entry>
-    <title>只会签到的数字中国</title>
+    <title>只会签到(和复赛纯坐牢)的数字中国</title>
     <link href="http://noone40404.github.io/2024/04/28/%E6%95%B0%E5%AD%97%E4%B8%AD%E5%9B%BD2024/"/>
     <id>http://noone40404.github.io/2024/04/28/%E6%95%B0%E5%AD%97%E4%B8%AD%E5%9B%BD2024/</id>
     <published>2024-04-27T16:00:00.000Z</published>
-    <updated>2024-05-06T11:36:33.738Z</updated>
+    <updated>2024-05-21T08:51:48.952Z</updated>
     
     
-    <summary type="html">怎么只做了签到还被打电话画饼催wp啊</summary>
+    <summary type="html">怎么只做了签到还能进复赛啊，怎么到复赛需要插网线啊，怎么轻薄本跟拓展坞都没有网口啊，怎么有人坐牢7小时上不去平台啊</summary>
     
     
     
@@ -198,7 +409,7 @@
     <link href="http://noone40404.github.io/2023/12/10/%E5%AE%89%E5%85%A8%E7%89%9B%E8%AF%BE%E5%A0%82%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B52.0/"/>
     <id>http://noone40404.github.io/2023/12/10/%E5%AE%89%E5%85%A8%E7%89%9B%E8%AF%BE%E5%A0%82%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B52.0/</id>
     <published>2023-12-10T05:10:00.000Z</published>
-    <updated>2024-03-07T10:46:16.206Z</updated>
+    <updated>2024-06-28T03:13:10.488Z</updated>
     
     
     <summary type="html">更多的XSS与Bash-shellshock与SSRF与XXE与好多Weblgic</summary>
@@ -257,7 +468,7 @@
     <link href="http://noone40404.github.io/2023/11/10/%E5%AE%89%E5%85%A8%E7%89%9B%E8%AF%BE%E5%A0%82%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B51.0/"/>
     <id>http://noone40404.github.io/2023/11/10/%E5%AE%89%E5%85%A8%E7%89%9B%E8%AF%BE%E5%A0%82%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B51.0/</id>
     <published>2023-11-10T05:10:00.000Z</published>
-    <updated>2024-03-07T10:45:27.552Z</updated>
+    <updated>2024-05-21T02:56:53.866Z</updated>
     
     
     <summary type="html">MSF与Armitage与Beef与XSS</summary>
@@ -276,7 +487,7 @@
     <link href="http://noone40404.github.io/2023/11/02/%E5%AE%89%E5%85%A8%E7%89%9B%E8%AF%BE%E5%A0%82%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7/"/>
     <id>http://noone40404.github.io/2023/11/02/%E5%AE%89%E5%85%A8%E7%89%9B%E8%AF%BE%E5%A0%82%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7/</id>
     <published>2023-11-02T05:10:00.000Z</published>
-    <updated>2024-03-07T10:44:32.061Z</updated>
+    <updated>2024-05-21T02:08:44.579Z</updated>
     
     
     <summary type="html">安全测试扫描与主被动信息手机</summary>
@@ -306,107 +517,6 @@
     
     
     <category term="网课" scheme="http://noone40404.github.io/tags/%E7%BD%91%E8%AF%BE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>upload-labs</title>
-    <link href="http://noone40404.github.io/2023/10/15/upload-lab&amp;%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%9F%BA%E7%A1%80/"/>
-    <id>http://noone40404.github.io/2023/10/15/upload-lab&amp;%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%9F%BA%E7%A1%80/</id>
-    <published>2023-10-15T09:15:00.000Z</published>
-    <updated>2023-10-15T07:59:05.666Z</updated>
-    
-    
-    <summary type="html">R.I.P 我还没找到硬盘</summary>
-    
-    
-    
-    <category term="2018训练营" scheme="http://noone40404.github.io/categories/2018%E8%AE%AD%E7%BB%83%E8%90%A5/"/>
-    
-    
-    <category term="文件上传，靶场" scheme="http://noone40404.github.io/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%EF%BC%8C%E9%9D%B6%E5%9C%BA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>weblogic反序列化时在干什么？有没有空？可不可以来找链子？</title>
-    <link href="http://noone40404.github.io/2023/10/15/weblogic%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%B7%B1%E5%85%A5/"/>
-    <id>http://noone40404.github.io/2023/10/15/weblogic%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%B7%B1%E5%85%A5/</id>
-    <published>2023-10-15T09:15:00.000Z</published>
-    <updated>2024-03-07T10:38:23.927Z</updated>
-    
-    
-    <summary type="html">从0开始的java反序列化学习到Weblogic漏洞复现</summary>
-    
-    
-    
-    <category term="web渗透" scheme="http://noone40404.github.io/categories/web%E6%B8%97%E9%80%8F/"/>
-    
-    
-    <category term="反序列化" scheme="http://noone40404.github.io/tags/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/"/>
-    
-    <category term="java" scheme="http://noone40404.github.io/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>sqlilabs 通关</title>
-    <link href="http://noone40404.github.io/2023/10/07/sqli-labs/"/>
-    <id>http://noone40404.github.io/2023/10/07/sqli-labs/</id>
-    <published>2023-10-07T05:10:00.000Z</published>
-    <updated>2023-10-15T03:42:54.772Z</updated>
-    
-    
-    <summary type="html">R.I.P 我的硬盘</summary>
-    
-    
-    
-    <category term="web渗透" scheme="http://noone40404.github.io/categories/web%E6%B8%97%E9%80%8F/"/>
-    
-    
-    <category term="sql" scheme="http://noone40404.github.io/tags/sql/"/>
-    
-    <category term="靶场" scheme="http://noone40404.github.io/tags/%E9%9D%B6%E5%9C%BA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>NISACTF 新生赛</title>
-    <link href="http://noone40404.github.io/2023/10/07/nisactf/"/>
-    <id>http://noone40404.github.io/2023/10/07/nisactf/</id>
-    <published>2023-10-07T05:10:00.000Z</published>
-    <updated>2023-10-09T11:35:42.508Z</updated>
-    
-    
-    <summary type="html">猪脑差点烧了</summary>
-    
-    
-    
-    <category term="ctf" scheme="http://noone40404.github.io/categories/ctf/"/>
-    
-    
-    <category term="ctf" scheme="http://noone40404.github.io/tags/ctf/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>xss基础</title>
-    <link href="http://noone40404.github.io/2023/09/22/xss-lab&amp;xss%E5%9F%BA%E7%A1%80/"/>
-    <id>http://noone40404.github.io/2023/09/22/xss-lab&amp;xss%E5%9F%BA%E7%A1%80/</id>
-    <published>2023-09-22T09:15:00.000Z</published>
-    <updated>2023-10-15T07:21:34.662Z</updated>
-    
-    
-    <summary type="html">O.o</summary>
-    
-    
-    
-    <category term="2018训练营" scheme="http://noone40404.github.io/categories/2018%E8%AE%AD%E7%BB%83%E8%90%A5/"/>
-    
-    
-    <category term="xss" scheme="http://noone40404.github.io/tags/xss/"/>
-    
-    <category term="靶场" scheme="http://noone40404.github.io/tags/%E9%9D%B6%E5%9C%BA/"/>
     
   </entry>
   
