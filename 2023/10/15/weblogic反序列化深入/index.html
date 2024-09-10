@@ -100,7 +100,7 @@
 <meta property="og:image" content="https://pic.imgdb.cn/item/65e70f639f345e8d0392d414.jpg">
 <meta property="og:image" content="https://pic.imgdb.cn/item/65e70f639f345e8d0392d414.jpg">
 <meta property="article:published_time" content="2023-10-15T09:15:00.000Z">
-<meta property="article:modified_time" content="2024-03-07T10:38:23.927Z">
+<meta property="article:modified_time" content="2024-09-06T07:16:11.422Z">
 <meta property="article:author" content="noone___">
 <meta property="article:tag" content="反序列化">
 <meta property="article:tag" content="java">
@@ -308,7 +308,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-03-07 18:38:23" itemprop="dateModified" datetime="2024-03-07T18:38:23+08:00">2024-03-07</time>
+                <time title="修改时间：2024-09-06 15:16:11" itemprop="dateModified" datetime="2024-09-06T15:16:11+08:00">2024-09-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -353,7 +353,7 @@
 <p>  而为了使“手机”这个概念具象化，即由存于定义变为实际存在，我们需要构造器</p>
   <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">phone</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">double</span> weight;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">phone</span><span class="params">()</span></span>&#123;&#125;<span class="comment">//无参数构造器，系统会自动帮忙声明，所以这一行可以不写</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">phone</span><span class="params">(String name,<span class="keyword">double</span> weight)</span></span>&#123;<span class="comment">//有参数构造器，实例化对象时方便对其赋值</span></span><br><span class="line">        <span class="keyword">this</span>.name=name;</span><br><span class="line">        <span class="keyword">this</span>.weight=weight;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>  再随意写入一个函数</p>
-  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> test1;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">phone</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">double</span> weight;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">phone</span><span class="params">()</span></span>&#123;&#125;<span class="comment">//无参数构造器，系统会自动帮忙声明，所以这一行可以不写</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">phone</span><span class="params">(String name,<span class="keyword">double</span> weight)</span></span>&#123;<span class="comment">//有参数构造器，实例化对象时方便对其赋值</span></span><br><span class="line">        <span class="keyword">this</span>.name=name;</span><br><span class="line">        <span class="keyword">this</span>.weight=weight;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.*out*.println(<span class="string">&quot;Power on&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> test1;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">phone</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">double</span> weight;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">phone</span><span class="params">()</span></span>&#123;&#125;<span class="comment">//无参数构造器，系统会自动帮忙声明，所以这一行可以不写</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">phone</span><span class="params">(String name,<span class="keyword">double</span> weight)</span></span>&#123;<span class="comment">//有参数构造器，实例化对象时方便对其赋值</span></span><br><span class="line">        <span class="keyword">this</span>.name=name;</span><br><span class="line">        <span class="keyword">this</span>.weight=weight;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Power on&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>  如此就完成了一个对象的定义，现在需要创建该对象，或者说，实例化这个类</p>
   <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        phone p=<span class="keyword">new</span> phone();<span class="comment">//new一个名为p，类型为phone的对象</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
@@ -850,8 +850,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/10/07/nisactf%E6%96%B0%E7%94%9F%E8%B5%9B/" rel="prev" title="NISACTF 新生赛">
-      <i class="fa fa-chevron-left"></i> NISACTF 新生赛
+    <a href="/2023/10/07/sqli-labs/" rel="prev" title="sqlilabs 通关">
+      <i class="fa fa-chevron-left"></i> sqlilabs 通关
     </a></div>
       <div class="post-nav-item">
     <a href="/2023/10/15/upload-lab&%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%9F%BA%E7%A1%80/" rel="next" title="upload-labs">
@@ -931,7 +931,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-count">109</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -944,7 +944,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">73</span>
+        <span class="site-state-item-count">76</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
