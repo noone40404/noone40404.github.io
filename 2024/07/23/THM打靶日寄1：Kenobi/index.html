@@ -49,7 +49,7 @@
 <meta property="og:image" content="https://pic.imgdb.cn/item/66de5442d9c307b7e940cb29.png">
 <meta property="og:image" content="https://pic.imgdb.cn/item/66de5551d9c307b7e941ca72.png">
 <meta property="article:published_time" content="2024-07-23T05:10:00.000Z">
-<meta property="article:modified_time" content="2024-09-09T11:45:09.866Z">
+<meta property="article:modified_time" content="2024-09-13T13:53:26.473Z">
 <meta property="article:author" content="noone___">
 <meta property="article:tag" content="THM">
 <meta property="article:tag" content="靶场">
@@ -257,7 +257,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-09-09 19:45:09" itemprop="dateModified" datetime="2024-09-09T19:45:09+08:00">2024-09-09</time>
+                <time title="修改时间：2024-09-13 21:53:26" itemprop="dateModified" datetime="2024-09-13T21:53:26+08:00">2024-09-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -315,7 +315,7 @@
 <p>  <code>nfs</code> (网络文件系统) 支持本地客户端读写远端 <code>nfs</code> 服务器上文件。</p>
 <p>  再回到 <code>nmap</code> 扫描的结果，<code>111</code> 端口运行着 <code>RPCbind</code> 服务，其用于调用网络上另一计算机的子程序而不必关注细节</p>
 <p>  <del>这里thm直接说明要针对 <code>nfs</code> 来扫，但笔者没有找到相关的联系qwq</del></p>
-<p>  用详细的扫描就能得出 <code>111</code> 端口的 <code>nfs</code> 信息</p>
+<p>  update: 用详细的扫描就能得出 <code>111</code> 端口的 <code>nfs</code> 信息</p>
 <p>  用 <code>nmap -p 111 --script=nfs-ls,nfs-statfs,nfs-showmount 10.10.234.4</code> 枚举 <code>nfs</code> 信息</p>
 <p>  <img src="https://pic.imgdb.cn/item/66d87068d9c307b7e961b5c0.png" alt=""></p>
 <p>  下面的 <code>showmount</code> 给出了导出文件夹列表，即在本题中，可以访问靶机服务器的 <code>/var</code> 目录及子目录</p>
@@ -354,7 +354,7 @@
 </li>
 </ul>
 </li>
-<li><p>提权</p>
+<li><p>找 <code>SUID</code> 文件的<code>linux</code> 提权</p>
 <p>  <img src="https://pic.imgdb.cn/item/66de517ed9c307b7e93e2bfc.png" alt=""></p>
 <p>  针对 <code>SUID</code> 位，其允许用户使用文件所有者的权限执行文件，有此权限的文件是不安全的</p>
 <p>  用 <code>find / -perm -u=s -type f 2&gt;/dev/null</code> 搜索SUID/SGID类型的文件</p>
@@ -486,20 +486,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">109</span>
+          <span class="site-state-item-count">118</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">76</span>
+        <span class="site-state-item-count">77</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
