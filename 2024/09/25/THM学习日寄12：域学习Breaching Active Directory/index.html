@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+<meta name="google-site-verification" content="LZ0JOjQQZw7PhvjIbZqeOojf3J6807W7DPn6--OTptc" />
+<meta name="baidu-site-verification" content="code-DDmcbQ6zQN" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <meta name="google-site-verification" content="true">
+  <meta name="msvalidate.01" content="true">
+  <meta name="yandex-verification" content="true">
+  <meta name="baidu-site-verification" content="true">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"noone40404.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="域的内容好多哦qwq">
+<meta property="og:type" content="article">
+<meta property="og:title" content="THM学习日寄12-域学习Breaching Active Directory">
+<meta property="og:url" content="http://noone40404.github.io/2024/09/25/THM%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%AF%8412%EF%BC%9A%E5%9F%9F%E5%AD%A6%E4%B9%A0Breaching%20Active%20Directory/index.html">
+<meta property="og:site_name" content="noone___&#39;s blog">
+<meta property="og:description" content="域的内容好多哦qwq">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f27dc4f21886ccc0b5afa4.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f3d25df21886ccc0cbba9c.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f51fe4f21886ccc0d7d573.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f522bef21886ccc0da4f50.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f5230ff21886ccc0da8998.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f524bef21886ccc0dbee5f.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f52b5df21886ccc0e15f6b.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f52c11f21886ccc0e1eda1.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f56bbff21886ccc01980e1.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f56c84f21886ccc01a3d5d.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f56e87f21886ccc01c3b9e.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f573eef21886ccc0220d33.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f57541f21886ccc02352b7.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f64a6cf21886ccc0c71ffe.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f650eaf21886ccc0cdf1f6.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f65110f21886ccc0ce278f.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f6520df21886ccc0cf6fb5.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f653f1f21886ccc0d34d90.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f65437f21886ccc0d3de92.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f656faf21886ccc0d86c54.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f65834f21886ccc0da6085.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f6585df21886ccc0da9f4e.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f65891f21886ccc0daecab.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f65963f21886ccc0dc0d4f.png">
+<meta property="article:published_time" content="2024-09-25T05:10:00.000Z">
+<meta property="article:modified_time" content="2024-09-29T11:18:07.206Z">
+<meta property="article:author" content="noone___">
+<meta property="article:tag" content="THM">
+<meta property="article:tag" content="靶场">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.imgdb.cn/item/66f27dc4f21886ccc0b5afa4.png">
+
+<link rel="canonical" href="http://noone40404.github.io/2024/09/25/THM%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%AF%8412%EF%BC%9A%E5%9F%9F%E5%AD%A6%E4%B9%A0Breaching%20Active%20Directory/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>THM学习日寄12-域学习Breaching Active Directory | noone___'s blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="noone___'s blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">noone___'s blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/noone40404" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2024/09/25/THM%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%AF%8412%EF%BC%9A%E5%9F%9F%E5%AD%A6%E4%B9%A0Breaching%20Active%20Directory/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="noone___">
+      <meta itemprop="description" content="自闭中">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="noone___'s blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          THM学习日寄12-域学习Breaching Active Directory
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-09-25 13:10:00" itemprop="dateCreated datePublished" datetime="2024-09-25T13:10:00+08:00">2024-09-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-09-29 19:18:07" itemprop="dateModified" datetime="2024-09-29T19:18:07+08:00">2024-09-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">渗透</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+            <div class="post-description">域的内容好多哦qwq</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <ul>
+<li><p><code>Introduction to AD Breaches</code></p>
+<p>  攻击 <code>AD</code> 的办法有多种，而此则秘传讲述了关于获得 <code>AD</code> 凭证之隐秘。。。</p>
+</li>
+<li><p><code>OSINT and Phishing</code></p>
+<p>  获取第一组 <code>AD</code> 凭据的常见办法有 <code>OSINT</code> 和钓鱼:</p>
+<ul>
+<li><p><code>OSINT</code></p>
+<p>  就 <code>AD</code> 而言，其信息主要泄露在：</p>
+<ul>
+<li><code>Stackall</code> 提问但披露敏感信息（如凭证）</li>
+<li>硬编码凭据将脚本上传至 <code>github</code> 的开发人员</li>
+<li>员工使用工作账户注册外部网站，而外部网站被数据泄露，如<a target="_blank" rel="noopener" href="https://haveibeenpwned.com/">HaveIBeenPwned</a> 和 <a target="_blank" rel="noopener" href="https://www.dehashed.com/">DeHashed</a></li>
+</ul>
+</li>
+<li><p>钓鱼</p>
+<p>  就嗯钓，没讲什么重要的</p>
+</li>
+</ul>
+</li>
+<li><p><code>NTLM Authenticated Services</code> <del>丑陋的爆破</del></p>
+<p>  <code>LAN</code> 管理器：<code>NTLM</code> 是用于在 <code>AD</code> 中验证用户身份的安全协议，使用称为 <code>NetNTML</code> 的基于质询-相应的方案进行身份验证，而使用 <code>NetNTML</code> 的服务也可以暴露在互联网上，比如：</p>
+<ul>
+<li>公开 <code>Outlool Web App</code> 的登录门户的内部托管 <code>Exchange</code> 服务器</li>
+<li>暴露在互联网的的服务器的远程桌面协议 <code>RDP</code> 服务</li>
+<li>与 <code>AD</code> 集成的公开 <code>VPN</code> 端点</li>
+<li><p>面向互联网并使用 <code>NetNTML</code> 的 <code>Web</code> 应用程序</p>
+<p><code>NetNTML</code> 允许应用程序扮演客户端和 <code>AD</code> 之间的中间人角色，所有所有身份验证材料以质询的形式转发到域控制器，如果成功完成，应用程序将对用户进行身份验证。</p>
+<p>这意味着应用程序代表用户进行身份验证，而不是直接在应用程序本身上对用户进行身份验证。 以此防止应用程序存储 <code>AD</code> 凭据，该凭据应仅存储在域控制器上：</p>
+<p><img src="https://pic.imgdb.cn/item/66f27dc4f21886ccc0b5afa4.png" alt=""></p>
+</li>
+<li><p><del>丑陋的</del>密码爆破</p>
+<p>  由于大多数 <code>AD</code> 都配置有账户锁定，所以很难对同一个账户爆破密码。相反的，需要执行密码喷射攻击，即使用一个密码尝试登录所有获得的用户名</p>
+<p>  但这类攻击仍会导致大量失败日志，所以实战感觉会被逮捕的（逃</p>
+<p>  题目的文件提供了用户名列表，密码 <code>Changeme123</code> ，以及一份写好的爆破脚本</p>
+<p>  <img src="https://pic.imgdb.cn/item/66f3d25df21886ccc0cbba9c.png" alt=""></p>
+<p>  得到用户 <code>hollie.powell</code> <code>heather.smith</code> <code>gordon.stevens</code> <code>georgina.edwards</code></p>
+<p>登进去可以看到 <code>hello world</code></p>
+</li>
+</ul>
+</li>
+<li><p><code>LDAP Bind Credentials</code> 拦截LDAP身份验证</p>
+<p>  应用程序可使用的另一种 <code>AD</code> 身份验证方法是轻量级目录访问协议 <code>LDAP</code> 。其与 <code>NTLM</code> 类似，但通过 <code>LDAP</code> 应用程序可以直接验证用户凭据。即应用程序使用自身的一对 <code>AD</code> 凭据来查询 <code>LDAP</code> ，然后验证 <code>AD</code> 用户的凭据，如下：</p>
+<p>  <img src="https://pic.imgdb.cn/item/66f51fe4f21886ccc0d7d573.png" alt=""></p>
+<p>  <code>LDAP</code> 身份验证是与 <code>AD</code> 集成的第三方应用程序的一种机制，如：</p>
+<ul>
+<li>Gitlab</li>
+<li>Jenkins</li>
+<li>Custom-developed web applications</li>
+<li>Printers</li>
+<li><p>VPNs</p>
+<p>如果这些应用程序或服务暴露在互联网上，可以使用类似于攻击 <code>NTLM</code> 身份验证系统的攻击方式。由于使用 <code>LDAP</code> 身份验证需要一组 <code>AD</code> 凭据，那么可以尝试恢复服务使用的 <code>AD</code> 凭据，以获得对 <code>AD</code> 的经过身份验证的访问。</p>
+<p><code>AD</code> 凭据通常以纯文本形式存储在配置文件中，对其利用详见 <code>Task7</code></p>
+</li>
+<li><p><code>LDAP</code> 回传攻击</p>
+<p>  当获得对内部网络的初始访问权限时，这是针对网络设备（比如打印机）的常见攻击：</p>
+<p>  当可以访问并修改指定 <code>LDAP</code> 参数的设备配置时，可以执行 <code>LDAP</code> 回传攻击：通过更改 <code>LDAP</code> 配置中的主机名/IP为自己的IP，此时再测试 <code>LDAP</code> 配置时可以强制设备对恶意设备进行 <code>LDAP</code> 身份验证，可以拦截此身份验证并尝试恢复 <code>LDAP</code> 凭据</p>
+<p>  以 <a target="_blank" rel="noopener" href="http://printer.za.tryhackme.com/settings.aspx">http://printer.za.tryhackme.com/settings.aspx</a> 为例：</p>
+<p>  <img src="https://pic.imgdb.cn/item/66f522bef21886ccc0da4f50.png" alt=""></p>
+<p>  该网页是网络打印机的管理网站，拿到用户名：</p>
+<p>  <img src="https://pic.imgdb.cn/item/66f5230ff21886ccc0da8998.png" alt=""></p>
+<p>  当点击 <code>Test setting</code> 时，打印机会向域控制器发出身份验证请求来测试其 <code>LDAP</code> 凭据，那么可以尝试利用这点让打印机连接到我们的 <code>IP</code> 以得到其凭据。而 <code>LADP</code> 的默认端口号是 $389$ ，那么监听一下：</p>
+<p>  <img src="https://pic.imgdb.cn/item/66f524bef21886ccc0dbee5f.png" alt=""></p>
+<p>  这是因为在发送凭据之前网络打印机会与 <code>LDAP</code> 服务器协商，选择两者都支持的最安全的身份验证方法。</p>
+<p>  在足够安全的配置下凭据会以密文形式传输，而对于某些身份验证方法，凭据则根本不会通过网络传输，所以不能简单的 <code>nc</code> 监听到凭据，而需要创建一个恶意的 <code>LDAP</code> 服务器，并更改为不安全的配置以确保凭证以明文形式发送</p>
+<p>  安装 <code>OpenLDAP</code> 并配置自己的 <code>LDAP</code> 服务器</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">apt-get update &amp;&amp; sudo apt-get -y install slapd ldap-utils &amp;&amp; sudo systemctl enable slapd</span><br><span class="line"></span><br><span class="line">dpkg-reconfigure -p low slapd</span><br></pre></td></tr></table></figure>
+<p>  配置中提供的域名和组织名都应是 <code>za.tryhackme.com</code></p>
+<p>  由于前文说到过的，现在配置过于安全，需要降级其支持的身份验证机制来使其明文传输凭据。那么，我们希望其仅支持 <code>PLAIN</code> 和 <code>LOGIN</code> 身份验证方法：</p>
+<p>  <code>​olcSaslSecProps.ldif</code></p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#olcSaslSecProps.ldif</span><br><span class="line">dn: cn=config</span><br><span class="line">replace: olcSaslSecProps</span><br><span class="line">olcSaslSecProps: noanonymous,minssf=0,passcred</span><br></pre></td></tr></table></figure>
+<p>  其具有以下属性：</p>
+<ul>
+<li><code>olcSaslSecProps</code>: 指定 SASL 安全属性</li>
+<li><code>noanonymous</code>: 禁用支持匿名登录的机制</li>
+<li><p><code>minssf</code>: 指定可接受的最小安全强度，$0$ 表示无保护。</p>
+<p>用这个文件来更新 <code>LDAP</code> 服务器的配置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ldapmodify -Y EXTERNAL -H ldapi:// -f ./olcSaslSecProps.ldif &amp;&amp; sudo service slapd restart</span><br></pre></td></tr></table></figure>
+<p>然后可以用这个命令来检测配置状态：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ldapsearch -H ldap:// -x -LLL -s base -b &quot;&quot; supportedSASLMechanisms</span><br></pre></td></tr></table></figure>
+<p><img src="https://pic.imgdb.cn/item/66f52b5df21886ccc0e15f6b.png" alt=""></p>
+<p>此时配置完成，用 <code>tcpdump</code> 监听 $389$ 端口：</p>
+<p><code>tcpdump -SX -i breachad tcp port 389</code></p>
+<p><img src="https://pic.imgdb.cn/item/66f52c11f21886ccc0e1eda1.png" alt=""></p>
+<p>得到密码 <code>tryhackmeldappass1@</code></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code>Authentication Relays</code> 中间人攻击服务泄露</p>
+<p>  继续研究针对更广泛的网络身份验证协议的攻击。<code>Windows</code> 网络中有大量服务相互通信，允许用户利用网络提供的服务。而这些服务必须使用内置的身份验证方法。</p>
+<p>  在这里，我们重点关注 <code>SMB</code> 使用的 <code>NetNTLM</code> 身份验证</p>
+<ul>
+<li><p>服务器消息块 <code>SMB</code></p>
+<p>  <code>SMB</code> 协议允许客户端（如工作站）与服务器（如文件共享）进行通信。在域中， <code>SMB</code> 负责管理包括网络间文件共享到远程管理的所有事物</p>
+<p>  然而早期版本的 <code>SMB</code> 存在多个漏洞可用于恢复凭据，以及代码执行。而有些时候，遗留的系统并不支持新版本的更新，导致仍在使用旧版本</p>
+<p>  以下是两种用 <code>SMB</code> 进行 <code>NetNTML</code> 身份验证的漏洞：</p>
+<ul>
+<li>由于 <code>NTLM Chanllenges</code> 可以被拦截，可以使用离线破解来恢复相关密码，但这种过程很慢</li>
+<li>使用设备进行中间人攻击，在客户端与服务端之间进行 <code>SMB</code> 身份验证，来提供已进行过身份认证的会话以及对目标服务器的访问</li>
+</ul>
+</li>
+<li><p><code>LLMNR,NBT-NS,WPAD</code></p>
+<p>  本地多播链路解析协议 <code>LLMNR</code> 用于在局域网中解析主机名到 <code>IP</code> 。常用于替代基于 <code>DNS</code> 的主机名解析，特别是在没有 <code>DNS</code> 服务器或者 <code>DNS</code> 服务器不可用的情况下。</p>
+<p>  NetBIOS名称服务 <code>NBT-NS</code> 用于在 <code>TCP/IP</code> 网络中解析 <code>NetBIOS</code> 名称</p>
+<p>  网络代理自动发现协议 <code>WPAD</code> 用于局域网浏览器自动发现内网中的代理服务器并自动设置为该代理连接内网或互联网，找到后会自动下载 <code>PAC</code> 配置文件</p>
+<p>  在大型 <code>Windows</code> 网络上，这些协议允许主机为同一本地网络上所有主机执行自己的本地 <code>DNS</code> 服务：先通过发送 <code>LLMNR</code> 请求来查看是否有主机响应，从而确定他们正在查找的主机是否位于同一本地网络上来避免 <code>DNS</code> 服务器等网络资源负担过重。<code>NBT-NS</code> 是 <code>LLMNR</code> 的先驱协议。而发出 <code>WPAD</code> 请求是为了尝试为未来的 <code>HTTP</code> 连接找到代理</p>
+<p>  而通过 <code>Responder</code> 工具，其允许我们在 <code>NetNTLM</code> 身份验证期间执行中间人攻击，欺骗客户端与攻击端进行连接。具体来说，以上协议的请求都依赖于本地网络广播，<code>Responder</code> 会监听所有这些请求，并发送恶意相应来尝试连接到客户端</p>
+</li>
+<li><p>拦截 <code>NetNTLM</code></p>
+<p>  值得注意的是，<code>Responder</code> 在实战情况下会拦截所有正常的身份验证请求，导致用户和服务无法连接到主机和共享，因此具有一定破坏性</p>
+<p>  这里由于连接的是 <code>VPN</code> 而非本地网络，靶机模拟了一个 $30mins$ 执行一次的身份验证请求，所以拦截请求会比较耗时</p>
+<p>  使用这条命令来连接，其中 <code>breachad</code> 是这里对应的网络接口：</p>
+<p>  <img src="https://pic.imgdb.cn/item/66f56bbff21886ccc01980e1.png" alt=""></p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">responder -I breachad</span><br></pre></td></tr></table></figure>
+<p>  然后静置一段时间，可能会提示端口被占用，但我这里不用管就行：</p>
+<p>  <img src="https://pic.imgdb.cn/item/66f56c84f21886ccc01a3d5d.png" alt=""></p>
+<p>  其格式为</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[SMBv2] NTLMv2-SSP Client   : &lt;Client IP&gt;</span><br><span class="line">[SMBv2] NTLMv2-SSP Username : ZA\&lt;Service Account Username&gt;</span><br><span class="line">[SMBv2] NTLMv2-SSP Hash     : &lt;Service Account Username&gt;::ZA:&lt;NTLMv2-SSP Hash&gt;</span><br></pre></td></tr></table></figure>
+<p>  靶机同时下发了密码列表来加速破解</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">john --wordlist=./passwordlist-1647876320267.txt hash.txt</span><br></pre></td></tr></table></figure>
+<p>  注意 <code>hash</code> 文件要放整个串，即 <code>svcFileCopy::ZA::...</code> 那一串</p>
+<p>  <img src="https://pic.imgdb.cn/item/66f56e87f21886ccc01c3b9e.png" alt=""></p>
+<p>  得到密码 <code>FPassword1!</code></p>
+</li>
+</ul>
+</li>
+<li><p><code>Microsoft Deployment Toolkit</code> 部署使用的 <code>PXE</code> 文件泄露</p>
+<ul>
+<li><p><code>MDT</code> 和 <code>SCCM</code></p>
+<p>  microsoft部署工具包 <code>MDT</code> 用于自动部署微软的操作系统，大型组织一般使用该服务来更有效的部署新映像，从而方便再中央位置维护和更新基础映像</p>
+<p>  系统中心配置管理器 <code>SCCM</code> 用于管理所有微软应用程序，服务和操作系统的所有更新，通常和 <code>MDT</code>集成。二者配合允许 <code>IT</code> 团队预配置和管理启动影响，即需要配置新机器时，只需插入网线即可自动执行</p>
+<p>  在这里，将关注预处理执行环境 <code>PXE</code> 启动的配置</p>
+</li>
+<li><p><code>PXE</code> 启动</p>
+<p>   大型组织使用 <code>PXE</code> 引导来允许连接到网络的新设备直接通过网络加载和安装操作系统。而 <code>MDT</code> 用于创建，管理和托管 <code>PXE</code> 启动映像。</p>
+<p>   <code>PXE</code> 启动常与 <code>DHCP</code> 集成，即每当 <code>DHCP</code> 分配 <code>IP</code> 租约则允许主机请求 <code>PXE</code> 启动映像并启动网络操作系统安装过程</p>
+<p>  <img src="https://pic.imgdb.cn/item/66f573eef21886ccc0220d33.png" alt=""></p>
+<p>  对 <code>PXE</code> 的利用有两种方向：</p>
+<ul>
+<li>注入权限提升，以便在 <code>PXE</code> 启动完成后获得对操作系统的管理访问权限</li>
+<li><p>执行密码抓取攻击以获得安装期间的 <code>AD</code> 凭据</p>
+<p>这里将关注后者</p>
+</li>
+</ul>
+</li>
+<li><p><code>PXE</code> 启动映像检索</p>
+<p>  这里 <code>THM</code> 跳过了从 <code>DHCP</code> 请求 <code>IP</code> 和 <code>PXE</code> 的预配置阶段</p>
+<p>  通过网络图可以得到 <code>MDT</code> 服务器的 <code>IP</code></p>
+<p>  <img src="https://pic.imgdb.cn/item/66f57541f21886ccc02352b7.png" alt=""></p>
+<p>  而访问 <a target="_blank" rel="noopener" href="http://pxeboot.za.tryhackme.com">http://pxeboot.za.tryhackme.com</a> 这里列出了所有 <code>BCD</code> 文件的信息，这些文件存储了不同类型体系结构的 <code>PXE</code> 引导相关信息</p>
+<p>  <img src="https://pic.imgdb.cn/item/66f64a6cf21886ccc0c71ffe.png" alt=""></p>
+<p>  这里通常需要使用 <code>TFTP</code> 请求每个 <code>BCD</code> 文件并枚举所有文件的配置。这里选择重点关注 <code>x64</code> 架构的 <code>BCD</code> 文件 <code>x64&#123;E259EB83-3541-4D5F-B0CC-F7326F4E8592&#125;.bcd</code></p>
+<p>  注意文件名每天都会改变</p>
+<p>  现在需要连接 <code>ssh</code> 并下载 <code>BCD</code> 文件来读取 <code>MDT</code> 服务器配置：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh thm@THMJMP1.za.tryhackme.com</span><br></pre></td></tr></table></figure>
+<p>  密码为 <code>Password1@</code></p>
+<p>  嗯，登录信息是 <code>THM</code> 给定的</p>
+<p>  这里需要创建一个用户并复制一个 <code>powerpxe</code> 进去，目的是确保所有网络用户都可以使用 <code>ssh</code></p>
+<p>  <img src="https://pic.imgdb.cn/item/66f650eaf21886ccc0cdf1f6.png" alt=""></p>
+<p>  这里需要使用 <code>TFTP</code> 来下载 <code>BCD</code> 文件，而其相较于 <code>FTP</code> 来说，没有命令可用于列出文件。所以需要准确的指定目录和文件名，而 <code>BCD</code> 文件始终位于 <code>MDT</code> 服务器的 <code>/Tmp</code> 目录中：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tftp -i &lt;THMMDT IP&gt; GET &quot;\Tmp\x64&#123;39...28&#125;.bcd&quot; conf.bcd</span><br></pre></td></tr></table></figure>
+<p>  <img src="https://pic.imgdb.cn/item/66f65110f21886ccc0ce278f.png" alt=""></p>
+<p>  现在在 <code>noone</code> 文件夹得到了恢复的 <code>BCD</code> 文件，将使用 <code>powerpxe</code> 来读取内容，具体来说，使用其 <code>Get-WimFile</code> 函数来从中恢复 <code>PXE</code> 启动映像的位置：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">powershell -executionpolicy bypass</span><br><span class="line">Import-Module .\PowerPXE.ps1</span><br><span class="line">$BCDFile = &quot;conf.bcd&quot;</span><br><span class="line">Get-WimFile -bcdFile $BCDFile</span><br></pre></td></tr></table></figure>
+<p>  <img src="https://pic.imgdb.cn/item/66f6520df21886ccc0cf6fb5.png" alt=""></p>
+<p>  现在有了启动映像的位置，下一下：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tftp -i &lt;THMMDT IP&gt; GET &quot;&lt;PXE Boot Image Location&gt;&quot; pxeboot.wim</span><br></pre></td></tr></table></figure>
+<p>  <img src="https://pic.imgdb.cn/item/66f653f1f21886ccc0d34d90.png" alt=""></p>
+</li>
+<li><p>从 <code>PXE</code> 启动映像中恢复 <code>AD</code> 凭据</p>
+<p>  这里已经可以注入本地管理员，当映像启动时就有了管理员权限。那么可以手动安装映像，就有了加入域的计算机，<a target="_blank" rel="noopener" href="https://www.riskinsight-wavestone.com/en/2020/01/take-over-windows-workstations-pxe-laps/">详见这里</a></p>
+<p>  这里只讨论从中窃取 <code>AD</code> 凭据：</p>
+<p>  再次使用 <code>powerpxe</code> ：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Get-FindCredentials -WimFile pxeboot.wim</span><br></pre></td></tr></table></figure>
+<p>  <img src="https://pic.imgdb.cn/item/66f65437f21886ccc0d3de92.png" alt=""></p>
+<p>  由此得到另一组 <code>AD</code> 凭据: <code>svcMDT:PXEBootSecure1@</code></p>
+</li>
+</ul>
+</li>
+<li><p><code>Configuration Files</code> 配置文件泄露</p>
+<p>  如果能访问网络上的主机，那么通过配置文件有很大可能恢复 <code>AD</code> 凭据，具体来说是这几种：</p>
+<ul>
+<li>Web应用程序配置文件</li>
+<li>服务配置文件</li>
+<li>注册表项</li>
+<li><p>集中部署的应用程序</p>
+<p>可以使用枚举脚本来自动执行该过程，如 <a target="_blank" rel="noopener" href="https://github.com/GhostPack/Seatbelt">seatbelt</a></p>
+<p>在这里将集中在从集中部署的应用程序中恢复凭据，通常来说这类程序需要在安装执行阶段对域进行身份验证的方法</p>
+<p>这里以应用程序 <code>McAfee</code> 为例：</p>
+<p>其将凭据存入了 <code>ma.db</code> 文件中，而这个文件存在固定位置： <code>C:\ProgramData\McAfee\Agent\DB</code></p>
+<p><img src="https://pic.imgdb.cn/item/66f656faf21886ccc0d86c54.png" alt=""></p>
+<p>在 <code>kali</code> 上面用 <code>scp</code> 复制过来：</p>
+<p><code>scp thm@THMJMP1.za.tryhackme.com:C:/ProgramData/McAfee/Agent/DB/ma.db /</code></p>
+<p><img src="https://pic.imgdb.cn/item/66f65834f21886ccc0da6085.png" alt=""></p>
+<p><img src="https://pic.imgdb.cn/item/66f6585df21886ccc0da9f4e.png" alt=""></p>
+<p>使用 <code>sqlitebrowser</code> 打开数据库</p>
+<p><img src="https://pic.imgdb.cn/item/66f65891f21886ccc0daecab.png" alt=""></p>
+<p>转到 <code>浏览数据-Agent_Repositories</code> 表，关注 <code>DOMAIN</code> <code>AUTH_USER</code> <code>AUTH_PASSWD</code> 条目，而 <code>AUTH_PASSWD</code> 被 <code>McAfee</code> 使用已知密钥加密，<code>THM</code> 提供了旧版 <code>python2</code> 爆破脚本</p>
+<p>这里直接偷图了</p>
+<p><img src="https://pic.imgdb.cn/item/66f65963f21886ccc0dc0d4f.png" alt=""></p>
+<p>对应的用户名密码是 <code>svcAV:MyStrongPassword</code></p>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>noone___
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://noone40404.github.io/2024/09/25/THM%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%AF%8412%EF%BC%9A%E5%9F%9F%E5%AD%A6%E4%B9%A0Breaching%20Active%20Directory/" title="THM学习日寄12-域学习Breaching Active Directory">http://noone40404.github.io/2024/09/25/THM学习日寄12：域学习Breaching Active Directory/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/THM/" rel="tag"><i class="fa fa-tag"></i> THM</a>
+              <a href="/tags/%E9%9D%B6%E5%9C%BA/" rel="tag"><i class="fa fa-tag"></i> 靶场</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/09/24/THM%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%AF%8411.5%EF%BC%9AAD%E5%9F%9F%E5%86%85%E7%BD%91%E9%9D%B6%E6%9C%BA%E8%BF%9E%E6%8E%A5%E9%85%8D%E7%BD%AE/" rel="prev" title="THM学习日寄11.5-AD域内网靶机连接配置">
+      <i class="fa fa-chevron-left"></i> THM学习日寄11.5-AD域内网靶机连接配置
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2024/09/29/THM%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%AF%8413%EF%BC%9A%E5%9F%9F%E5%AD%A6%E4%B9%A0Enumerating%20Active%20Directory/" rel="next" title="THM学习日寄13-域学习Enumerating Active Directory">
+      THM学习日寄13-域学习Enumerating Active Directory <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="noone___"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">noone___</p>
+  <div class="site-description" itemprop="description">自闭中</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">126</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">78</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/noone40404" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;noone40404" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://ctp314.github.io/" title="https:&#x2F;&#x2F;ctp314.github.io&#x2F;" rel="noopener" target="_blank">CTime_Pup_314</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/guanlexiangfan/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;guanlexiangfan&#x2F;" rel="noopener" target="_blank">Evitagen</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.luogu.com.cn/blog/i-am-zhiyangfan/" title="https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;blog&#x2F;i-am-zhiyangfan&#x2F;" rel="noopener" target="_blank">zhiyangfan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/Vitheon/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;Vitheon&#x2F;" rel="noopener" target="_blank">Vareal</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">noone___</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+  <script data-pjax>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'ebdb5b537395179b4514',
+      clientSecret: 'd0843e5853efe963ca9983db6cac3a1f9d736856',
+      repo        : 'noone40404.github.io',
+      owner       : 'noone40404',
+      admin       : ['noone40404'],
+      id          : '8a6e5afc0ffd5fbb0797b2d4146def09',
+        language: 'zn-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+    </div>
+</body>
+</html>

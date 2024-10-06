@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+<meta name="google-site-verification" content="LZ0JOjQQZw7PhvjIbZqeOojf3J6807W7DPn6--OTptc" />
+<meta name="baidu-site-verification" content="code-DDmcbQ6zQN" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <meta name="google-site-verification" content="true">
+  <meta name="msvalidate.01" content="true">
+  <meta name="yandex-verification" content="true">
+  <meta name="baidu-site-verification" content="true">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"noone40404.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="是的，BufferOverflowprep那个堆栈溢出的系列被跳过了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="THM学习日寄11-域学习Active Directory Basics">
+<meta property="og:url" content="http://noone40404.github.io/2024/09/23/THM%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%AF%8411%EF%BC%9A%E5%9F%9F%E5%AD%A6%E4%B9%A0Active%20Directory%20Basics/index.html">
+<meta property="og:site_name" content="noone___&#39;s blog">
+<meta property="og:description" content="是的，BufferOverflowprep那个堆栈溢出的系列被跳过了">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f0c4baf21886ccc0340c7d.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f0c548f21886ccc034a698.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f0c622f21886ccc0359057.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f0c869f21886ccc0384811.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f0c8c3f21886ccc038ad20.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f0c9b6f21886ccc039b956.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f0d6a2f21886ccc046ea9e.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f0d6cbf21886ccc0471b9d.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f0db33f21886ccc04c661e.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f0de37f21886ccc0504e73.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f0dfecf21886ccc052605c.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f0e24af21886ccc0554612.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f0e40ef21886ccc05743c3.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f15b2bf21886ccc0cd66cf.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f15bb0f21886ccc0cdd89c.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f15d60f21886ccc0cf7d13.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f15e24f21886ccc0d03a43.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f15e2ef21886ccc0d04371.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f15e2ef21886ccc0d04371.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f15f0bf21886ccc0d11ce2.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f15fb3f21886ccc0d1c3dd.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66f15ff2f21886ccc0d2033d.png">
+<meta property="article:published_time" content="2024-09-23T05:10:00.000Z">
+<meta property="article:modified_time" content="2024-09-23T12:33:42.356Z">
+<meta property="article:author" content="noone___">
+<meta property="article:tag" content="THM">
+<meta property="article:tag" content="靶场">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.imgdb.cn/item/66f0c4baf21886ccc0340c7d.png">
+
+<link rel="canonical" href="http://noone40404.github.io/2024/09/23/THM%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%AF%8411%EF%BC%9A%E5%9F%9F%E5%AD%A6%E4%B9%A0Active%20Directory%20Basics/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>THM学习日寄11-域学习Active Directory Basics | noone___'s blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="noone___'s blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">noone___'s blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/noone40404" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2024/09/23/THM%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%AF%8411%EF%BC%9A%E5%9F%9F%E5%AD%A6%E4%B9%A0Active%20Directory%20Basics/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="noone___">
+      <meta itemprop="description" content="自闭中">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="noone___'s blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          THM学习日寄11-域学习Active Directory Basics
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-09-23 13:10:00 / 修改时间：20:33:42" itemprop="dateCreated datePublished" datetime="2024-09-23T13:10:00+08:00">2024-09-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">渗透</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+            <div class="post-description">是的，BufferOverflowprep那个堆栈溢出的系列被跳过了</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <ul>
+<li><p><code>Introduction</code></p>
+<p>  关于 <code>Active Directory</code> 的基本组件介绍</p>
+</li>
+<li><p><code>Windows Domains</code></p>
+<p>  <code>Windows</code> 域：给定企业管理下的一组用户与计算机，其主要思想是将 <code>Windows</code> 计算机网络常见组件的管理集中到 <code>Active Directory</code> 单个存储库中，运行 <code>AD</code> 的服务为域控制器 <code>Domain Controller</code> <code>DC</code></p>
+<p>  其主要优点在于：</p>
+<pre><code>  - 集中身份管理：网络上所有用户都可通过 `AD` 配置
+  - 管理安全策略：可以直接从 `AD` 配置安全策略，并应用至网络上的计算机与用户
+</code></pre><p>  例子： 在校内任何计算机上用你的账户登录，其都将把身份验证转发回 <code>AD</code> ，并检查凭据</p>
+</li>
+<li><p><code>Active Directory</code></p>
+<p>  任何 <code>Windows</code> 域的核心都是 <code>Active Directory</code> 域服务，该服务充当目录，保存网络上所有存在对象的信息，包括用户，组，机器，打印机，共享等</p>
+<ul>
+<li><p>用户</p>
+<p>  <code>AD</code> 中最常见的对象类型，也是安全主题的对象之一，即题目可以通过域进行身份验证，且可以被分配对文件/打印机的权限</p>
+<p>  其可用于表示两种类型的实体：</p>
+<ul>
+<li>人员：代表组织中需要访问网络的人员/员工</li>
+<li>服务：供 <code>IIS/MSSQL</code> 等服务使用的用户，注意每个服务都需要用户来运行，但服务用户只有运行特定服务所需的权限</li>
+</ul>
+</li>
+<li><p>机器</p>
+<p>  对于加入 <code>AD</code> 域的每台计算机，都会创建一个计算机对象，其也被视为是安全主体，并被分配一个账户</p>
+<p>  计算机账户本身是指定计算机上的本地管理员，除了计算机本身不应有任何人访问他们，但如果有密码可以登录</p>
+<p>  而机器账户的密码会自动轮换，通常由 $120$ 个随机字符组成</p>
+<p>  机器账户有特定的命名方案以便识别，其名称为 <code>计算机名称+$</code> ，即名为 <code>DC01</code> 的计算机的计算机账户为 <code>DC01$</code></p>
+</li>
+<li><p>安全组</p>
+<p>  可以定义用户组，把文件及其他资源的访问权限分配给整个组而非单个用户，以实现更好的可管理性。</p>
+<p>  组可以同时包含用户和计算机作为成员，甚至是其他组</p>
+<p>  默认情况下，域会创建多个组，以下是其中重要的组：</p>
+<p>  <img src="https://pic.imgdb.cn/item/66f0c4baf21886ccc0340c7d.png" alt=""></p>
+<p>如果要配置用户，需要登录域控制器并访问 <code>Active Directory用户和计算机</code></p>
+<p><img src="https://pic.imgdb.cn/item/66f0c548f21886ccc034a698.png" alt=""></p>
+<p>可以查看域中存在的用户，计算机，组的层次结构，其按照组织单位<code>Organizational Units</code> <code>OU</code> 进行组织，<code>OU</code> 是允许对用户，计算机进行分类的容器对象，用于定义具有相似监管要求的用户组。</p>
+<p>如图，名为 <code>THM</code> 的 <code>OU</code> 有四个 <code>子OU</code> ，且可以查看其包含的用户，也可以重置密码 </p>
+<p><img src="https://pic.imgdb.cn/item/66f0c622f21886ccc0359057.png" alt=""></p>
+<p>当然，除了 <code>THM OU</code> 之外还有其他默认容器，其由 <code>Windows</code> 自动创建</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Builtin：包含可供任何 Windows 主机使用的默认组。</span><br><span class="line">Computers：默认情况下，任何加入网络的计算机都会放在这里。 如果需要，您可以移动它们。</span><br><span class="line">Domain Controllers：包含网络中 DC 的默认 OU。</span><br><span class="line">Users：适用于域范围上下文的默认用户和组。</span><br><span class="line">Managed Service Accounts：保存 Windows 域中的服务使用的帐户。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安全组与 <code>OU</code></p>
+<p>  <code>OU</code> 将策略应用于用户和计算机，包括用户组相关的特定配置。用户只能在一个 <code>OU</code> 之中，因为不能对同一用户实行两种不同策略</p>
+<p>  安全组用于授予对资源的权限，用户可以属于多个组来获得对多种资源的访问权限</p>
+</li>
+</ul>
+</li>
+<li><p><code>Managing Users in AD</code></p>
+<p>  模拟对 <code>AD</code> 系统的操作：</p>
+<p>  对于删除 <code>OU</code> ，直接删除会报错</p>
+<p>  <img src="https://pic.imgdb.cn/item/66f0c869f21886ccc0384811.png" alt=""></p>
+<p>  需要去打开 <code>View-Advanced feature</code></p>
+<p>  然后去该 <code>OU</code> 的属性，关闭意外删除保护：</p>
+<p>  <img src="https://pic.imgdb.cn/item/66f0c8c3f21886ccc038ad20.png" alt=""></p>
+<p>  同时，<code>AD</code> 允许授予特定用户一些 <code>OU</code> 的一定控制权，称为委托。</p>
+<p>  常见案例包括授予IT支持重置其他低权限用户密码的权限</p>
+<p>  选定被分配权限的 <code>OU</code> ，选择委派控制(Delegate Control)</p>
+<p>  <img src="https://pic.imgdb.cn/item/66f0c9b6f21886ccc039b956.png" alt=""></p>
+<p>  题目让找sophie的 <code>flag</code> ，那么先连接到刚刚有权限的</p>
+<p>  然后改密码 <code>Set-ADAccountPassword sophie -Reset -NewPassword (Read-Host -AsSecureString -Prompt &#39;New Password&#39;) -Verbose</code></p>
+<p>  <img src="https://pic.imgdb.cn/item/66f0d6a2f21886ccc046ea9e.png" alt=""></p>
+</li>
+<li><p><code>Managing Computers in AD</code></p>
+<p>  <img src="https://pic.imgdb.cn/item/66f0d6cbf21886ccc0471b9d.png" alt=""></p>
+<p>  但是将所有设备放在 <code>computer</code> 文件夹并不是好办法，因为不便于为服务器与用户日常使用的计算机制定不同策略</p>
+<p>  最好来说应该根据设备用途对其进行隔离</p>
+<ul>
+<li><p>工作站</p>
+<p>  <code>AD</code> 域中最常见设备之一，域中每个用户都可能登录到工作站以完成工作或进行正常浏览活动，不应该让特权用户登录</p>
+</li>
+<li><p>服务器</p>
+<p>  用来为用户或其他服务器提供服务</p>
+</li>
+<li><p>域控制器</p>
+<p>  用来管理 <code>AD</code> 域，这些设备是网络中最敏感的设备，因为包含了环境中所有用户账户的哈希密码</p>
+<p>为了整理 <code>AD</code> ，可以为工作站和服务器创建两个单独的 <code>OU</code> ：</p>
+<p><img src="https://pic.imgdb.cn/item/66f0db33f21886ccc04c661e.png" alt=""></p>
+<p>然后把 <code>computers</code> 里面的LPT笔记本电脑和PC个人计算机移到 <code>工作站OU</code> ，服务器移到 <code>服务器OU</code></p>
+<p>这么做的目的是给每个 <code>OU</code> 单独部署不同的策略</p>
+<p><code>Windows</code> 通过组策略对象 <code>GPO</code> 管理此类策略，<code>GPO</code> 是可应用于 <code>OU</code> 的设置的集合，可包含针对用户或计算机的策略</p>
+<p>在开始菜单使用 <code>组策略管理</code> 工具</p>
+<p><img src="https://pic.imgdb.cn/item/66f0de37f21886ccc0504e73.png" alt=""></p>
+<p><img src="https://pic.imgdb.cn/item/66f0dfecf21886ccc052605c.png" alt=""></p>
+<p>可以看到默认域策略和 <code>RDP</code> 策略被连接到 <code>thm.local</code> 域，默认域控制器策略被连接到域控制器</p>
+<p>值得注意的是，任何 <code>GPO</code> 都会应用于连接的 <code>OU</code> 及其子 <code>OU</code> ，例：域控制器仍受到默认域策略的影响</p>
+<p>以默认域控制为例：</p>
+<p><img src="https://pic.imgdb.cn/item/66f0e24af21886ccc0554612.png" alt=""></p>
+<p>可以看到其范围是仅连接到 <code>thm.local</code> 域，安全过滤默认应用于 <code>Authenticated Users</code> 组，其包含所有用户与 <code>PC</code></p>
+<p><img src="https://pic.imgdb.cn/item/66f0e40ef21886ccc05743c3.png" alt=""></p>
+<p><code>setting</code> 里面是 <code>GPO</code> 实际内容</p>
+<p><code>GPO</code> 通过 <code>SYSVOL</code> 网络共享分发到网络，该共享存储在 <code>DC</code> 中，域中所有用户都应该有权限访问该共享以定期同步 <code>GPO</code> ，默认情况下该共享指向每台 <code>DC</code> 上的 <code>C:\Windows\SYSVOL\sysvol\</code> 目录</p>
+<p>通常需要 $2$ 小时来让计算机同步 <code>GPO</code> 设置，但也可以在所需计算机上运行：<code>gpupdate /force</code> 来更新</p>
+<p>现在尝试来创建一个新 <code>GPO</code> 以阻止非 <code>IT</code> 用户访问控制面板</p>
+<p>在用户配置下做以下策略：</p>
+<p><img src="https://pic.imgdb.cn/item/66f15b2bf21886ccc0cd66cf.png" alt=""></p>
+<p>并将其连接到所有无权访问控制面板的用户对应的 <code>OU</code> ，即除 <code>IT</code> 以外的 <code>OU</code></p>
+<p><img src="https://pic.imgdb.cn/item/66f15bb0f21886ccc0cdd89c.png" alt=""></p>
+</li>
+</ul>
+</li>
+<li><p><code>Authentication Methods</code></p>
+<p>  <code>Windows</code> 域存在两种协议进行网络身份认证：</p>
+<ul>
+<li><p><code>Kerberos</code>：新版</p>
+<ol>
+<li><p>用户将用密码派生的密钥加密的用户名和时间戳发送到密钥分发中心 <code>KDC</code> ，<code>KDC</code> 创建并发回票证授予票证 <code>TGT</code> ，允许用户请求额外票证来访问特定服务。这允许用户每次连接到服务时只需请求服务票证而无需传递其凭据。同样会发回<strong>会话密钥</strong>，用来后期请求的生成</p>
+<p><img src="https://pic.imgdb.cn/item/66f15d60f21886ccc0cf7d13.png" alt=""></p>
+</li>
+<li><p>用户尝试连接到网络上服务时，使用 <code>TGT</code> 向 <code>KGT</code> 发送票证授予服务 <code>TGS</code> ，需要用户发送用户名时间戳，以及 <code>TGT</code> 和服务主体名称 <code>SPN</code></p>
+<p><img src="https://pic.imgdb.cn/item/66f15e24f21886ccc0d03a43.png" alt=""></p>
+<p><img src="https://pic.imgdb.cn/item/66f15e2ef21886ccc0d04371.png" alt=""></p>
+</li>
+</ol>
+</li>
+<li><p><code>NetNTLM</code>：旧版</p>
+<ol>
+<li><p>客户端向想要访问的服务器发送身份验证请求。</p>
+</li>
+<li><p>服务器生成一个随机数并将其作为质询发送给客户端。</p>
+</li>
+<li><p>客户端将其 NTLM 密码哈希与质询（以及其他已知数据）相结合，生成对质询的响应，并将其发送回服务器进行验证。</p>
+</li>
+<li><p>服务器将质询和响应转发给域控制器进行验证。</p>
+</li>
+<li><p>域控制器使用质询重新计算响应并将其与客户端发送的原始响应进行比较。 如果两者匹配，则客户端通过身份验证； 否则，访问将被拒绝。 认证结果发送回服务器。</p>
+</li>
+<li><p>服务器将认证结果转发给客户端。</p>
+<p><img src="https://pic.imgdb.cn/item/66f15e2ef21886ccc0d04371.png" alt=""></p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p><code>Trees, Forests and Trusts</code></p>
+<p>  <code>AD</code> 支持集成多个域，以便将网络划分为可独立管理单元，以下是其实例：</p>
+<ul>
+<li><p><code>tree</code></p>
+<p>  如果 <code>thm.local</code> 域被分为英国和美国分支机构的两个子域，可以构建一个树，其中根域为 <code>thm.local</code> ，两个子域分别为 <code>uk.thm.local</code> 和 <code>us.thm.local</code>，每个都有其 AD、计算机和用户：</p>
+<p>  <img src="https://pic.imgdb.cn/item/66f15f0bf21886ccc0d11ce2.png" alt=""></p>
+<p>  每个分支机构的域管理员将完全控制各自的 <code>DC</code>，但不能控制其他分支机构的 <code>DC</code>。</p>
+<p>  此时需要引进一个新安全组：企业管理员组将授予用户对所有企业域的管理权限。</p>
+</li>
+<li><p><code>forests</code></p>
+<p>  将具有不同名称空间的几棵树联合到同一网络则是森林：</p>
+<p>  <img src="https://pic.imgdb.cn/item/66f15fb3f21886ccc0d1c3dd.png" alt=""></p>
+</li>
+<li><p>信任关系</p>
+<p>  排列在树和森林中的域通过信任关系连接到一起，最简单的是单向信任，注意单向信任关系的方向与访问方向相反</p>
+<p>  <img src="https://pic.imgdb.cn/item/66f15ff2f21886ccc0d2033d.png" alt=""></p>
+<p>  双向信任关系允许两个域相互授权对方的用户。 默认情况下，加入树或森林下的多个域将形成双向信任关系。</p>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>noone___
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://noone40404.github.io/2024/09/23/THM%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%AF%8411%EF%BC%9A%E5%9F%9F%E5%AD%A6%E4%B9%A0Active%20Directory%20Basics/" title="THM学习日寄11-域学习Active Directory Basics">http://noone40404.github.io/2024/09/23/THM学习日寄11：域学习Active Directory Basics/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/THM/" rel="tag"><i class="fa fa-tag"></i> THM</a>
+              <a href="/tags/%E9%9D%B6%E5%9C%BA/" rel="tag"><i class="fa fa-tag"></i> 靶场</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/09/22/%E5%AD%A6%E9%95%BF%E7%9A%84%E4%BB%BB%E5%8A%A1%E7%BD%A2%E4%BA%863%EF%BC%9AThales/" rel="prev" title="学长的任务罢了3-Thales">
+      <i class="fa fa-chevron-left"></i> 学长的任务罢了3-Thales
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2024/09/24/THM%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%AF%8411.5%EF%BC%9AAD%E5%9F%9F%E5%86%85%E7%BD%91%E9%9D%B6%E6%9C%BA%E8%BF%9E%E6%8E%A5%E9%85%8D%E7%BD%AE/" rel="next" title="THM学习日寄11.5-AD域内网靶机连接配置">
+      THM学习日寄11.5-AD域内网靶机连接配置 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="noone___"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">noone___</p>
+  <div class="site-description" itemprop="description">自闭中</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">126</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">78</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/noone40404" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;noone40404" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://ctp314.github.io/" title="https:&#x2F;&#x2F;ctp314.github.io&#x2F;" rel="noopener" target="_blank">CTime_Pup_314</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/guanlexiangfan/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;guanlexiangfan&#x2F;" rel="noopener" target="_blank">Evitagen</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.luogu.com.cn/blog/i-am-zhiyangfan/" title="https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;blog&#x2F;i-am-zhiyangfan&#x2F;" rel="noopener" target="_blank">zhiyangfan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/Vitheon/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;Vitheon&#x2F;" rel="noopener" target="_blank">Vareal</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">noone___</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+  <script data-pjax>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'ebdb5b537395179b4514',
+      clientSecret: 'd0843e5853efe963ca9983db6cac3a1f9d736856',
+      repo        : 'noone40404.github.io',
+      owner       : 'noone40404',
+      admin       : ['noone40404'],
+      id          : '7140dae4ec606fed271786e379f1cee8',
+        language: 'zn-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+    </div>
+</body>
+</html>
