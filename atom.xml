@@ -6,7 +6,7 @@
   <link href="http://noone40404.github.io/atom.xml" rel="self"/>
   
   <link href="http://noone40404.github.io/"/>
-  <updated>2024-12-27T13:23:21.446Z</updated>
+  <updated>2025-01-15T07:13:54.591Z</updated>
   <id>http://noone40404.github.io/</id>
   
   <author>
@@ -15,6 +15,56 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>学长的任务罢了11-evilbox</title>
+    <link href="http://noone40404.github.io/2025/01/15/%E5%AD%A6%E9%95%BF%E7%9A%84%E4%BB%BB%E5%8A%A1%E7%BD%A2%E4%BA%8611%EF%BC%9Aevilbox/"/>
+    <id>http://noone40404.github.io/2025/01/15/%E5%AD%A6%E9%95%BF%E7%9A%84%E4%BB%BB%E5%8A%A1%E7%BD%A2%E4%BA%8611%EF%BC%9Aevilbox/</id>
+    <published>2025-01-15T03:10:00.000Z</published>
+    <updated>2025-01-15T07:13:54.591Z</updated>
+    
+    
+    <summary type="html">经典的操作，没什么好说的</summary>
+    
+    
+    
+    <category term="渗透" scheme="http://noone40404.github.io/categories/%E6%B8%97%E9%80%8F/"/>
+    
+    
+    <category term="靶场" scheme="http://noone40404.github.io/tags/%E9%9D%B6%E5%9C%BA/"/>
+    
+    <category term="vuln" scheme="http://noone40404.github.io/tags/vuln/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>学长的任务罢了12-snakeoil</title>
+    <link href="http://noone40404.github.io/2025/01/15/%E5%AD%A6%E9%95%BF%E7%9A%84%E4%BB%BB%E5%8A%A1%E7%BD%A2%E4%BA%8612%EF%BC%9Asnakeoil/"/>
+    <id>http://noone40404.github.io/2025/01/15/%E5%AD%A6%E9%95%BF%E7%9A%84%E4%BB%BB%E5%8A%A1%E7%BD%A2%E4%BA%8612%EF%BC%9Asnakeoil/</id>
+    <published>2025-01-15T03:10:00.000Z</published>
+    <updated>2025-01-15T08:38:02.200Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;扫描打点&lt;/p&gt;
+&lt;p&gt;  &lt;img src=&quot;https://pic1.imgdb.cn/item/67876063d0e0a243d4f47777.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;80&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;</summary>
+      
+    
+    
+    
+    <category term="渗透" scheme="http://noone40404.github.io/categories/%E6%B8%97%E9%80%8F/"/>
+    
+    
+    <category term="靶场" scheme="http://noone40404.github.io/tags/%E9%9D%B6%E5%9C%BA/"/>
+    
+    <category term="vuln" scheme="http://noone40404.github.io/tags/vuln/"/>
+    
+  </entry>
   
   <entry>
     <title>THM打靶日寄60-Advent of Cyber 2024：Day24</title>
@@ -369,7 +419,7 @@
     <link href="http://noone40404.github.io/2024/12/10/2024%E7%9C%81%E5%B7%A5%E4%BF%A1%E9%A2%86%E5%9F%9Fhw%E6%B8%B8%E8%AE%B0/"/>
     <id>http://noone40404.github.io/2024/12/10/2024%E7%9C%81%E5%B7%A5%E4%BF%A1%E9%A2%86%E5%9F%9Fhw%E6%B8%B8%E8%AE%B0/</id>
     <published>2024-12-10T05:12:32.000Z</published>
-    <updated>2024-12-10T04:03:19.821Z</updated>
+    <updated>2025-01-14T12:52:07.580Z</updated>
     
     
     <summary type="html">怎么这种东西也能写游记啊</summary>
@@ -394,48 +444,6 @@
     
     
     <summary type="html">呃，一个简单的钓鱼，没什么参考价值</summary>
-    
-    
-    
-    <category term="渗透" scheme="http://noone40404.github.io/categories/%E6%B8%97%E9%80%8F/"/>
-    
-    
-    <category term="THM" scheme="http://noone40404.github.io/tags/THM/"/>
-    
-    <category term="Advent of Cyber 2024" scheme="http://noone40404.github.io/tags/Advent-of-Cyber-2024/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>THM打靶日寄43-Advent of Cyber 2024：Day9</title>
-    <link href="http://noone40404.github.io/2024/12/09/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8443%EF%BC%9AAdvent%20of%20Cyber%202024%EF%BC%9ADay9/"/>
-    <id>http://noone40404.github.io/2024/12/09/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8443%EF%BC%9AAdvent%20of%20Cyber%202024%EF%BC%9ADay9/</id>
-    <published>2024-12-09T00:26:00.000Z</published>
-    <updated>2024-12-11T08:21:34.431Z</updated>
-    
-    
-    <summary type="html">这个风险评估搞得挺抽象的</summary>
-    
-    
-    
-    <category term="渗透" scheme="http://noone40404.github.io/categories/%E6%B8%97%E9%80%8F/"/>
-    
-    
-    <category term="THM" scheme="http://noone40404.github.io/tags/THM/"/>
-    
-    <category term="Advent of Cyber 2024" scheme="http://noone40404.github.io/tags/Advent-of-Cyber-2024/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>THM打靶日寄42-Advent of Cyber 2024：Day8</title>
-    <link href="http://noone40404.github.io/2024/12/08/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8442%EF%BC%9AAdvent%20of%20Cyber%202024%EF%BC%9ADay8/"/>
-    <id>http://noone40404.github.io/2024/12/08/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8442%EF%BC%9AAdvent%20of%20Cyber%202024%EF%BC%9ADay8/</id>
-    <published>2024-12-08T00:26:00.000Z</published>
-    <updated>2024-12-11T07:50:12.585Z</updated>
-    
-    
-    <summary type="html">ez_反弹shell</summary>
     
     
     
