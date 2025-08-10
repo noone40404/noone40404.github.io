@@ -205,6 +205,157 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2025/02/19/THM%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%AF%8463%EF%BC%9A%E5%9F%9F%E5%AD%A6%E4%B9%A0Exploiting%20Active%20Directory/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="noone___">
+      <meta itemprop="description" content="自闭中">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="noone___'s blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/02/19/THM%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%AF%8463%EF%BC%9A%E5%9F%9F%E5%AD%A6%E4%B9%A0Exploiting%20Active%20Directory/" class="post-title-link" itemprop="url">THM学习日寄63-域学习Exploiting Active Directory</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-02-19 13:10:00" itemprop="dateCreated datePublished" datetime="2025-02-19T13:10:00+08:00">2025-02-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-05-01 18:24:42" itemprop="dateModified" datetime="2025-05-01T18:24:42+08:00">2025-05-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">渗透</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i &#x27;1s|^|nameserver 10.200.83.101\n|&#x27; /etc/resolv-dnsmasq</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>常见ad域利用技术-介绍</p>
+<p>  现在已执行了内部侦察，拿到ad结构和环境情况。这个阶段将利用配置错误执行横向与提权。其通常与持久化结合以确保不会失去新获得的位置。</p>
+</li>
+<li><p><code>Exploiting Permission Delegation</code> 利用权限委派</p>
+<p>  <code>AD</code> 可以通过 <code>permission Delegation</code> 权限委派的功能来委派权限和特权，利用委派，可以将部分特权委派给帮助团队来避免仅有少数用户可以访问 <code>AD</code> 并处理所有用户请求的情况。原则上委派应遵循最小特权原则，而这里将利用委派配置错误</p>
+<ul>
+<li><p>权限委派</p>
+<p>  对其的利用通常被称为基于 <code>ACL</code> 的攻击：<code>AD</code> 允许管理员配置访问控制条目 (ACE)，这些条目填充了自主访问控制列表 (DACL) 。几乎任何 <code>AD</code> 对象都可以通过ACE进行安全配置，然后描述其他任何AD对象对目标对象具有的允许和拒绝权限</p>
+<p>  而对于配置错误的ACE的例子：如果IT支持团队被授予了对 <code>Domain Users</code> 组的 <code>ForceChangePassword</code> ACE，在这种情况下，他们可以重置忘记密码的员工的密码，但同时可以重置特权账户的密码，如属于 <code>Domain Admins</code> 组的账户，本质上允许特权提升</p>
+</li>
+<li><p><code>ACE</code> 访问控制条目的利用</p>
+<p>  滥用ACE的数量很多，可以参考<a target="_blank" rel="noopener" href="https://bloodhound.readthedocs.io/en/latest/data-analysis/edges.html#">bloodhound的文档</a>，以下是几个常用的：</p>
+<ul>
+<li><code>ForceChangePassword</code>：在不知道用户当前密码的情况下设置其当前密码</li>
+<li><code>AddMembers</code>：将用户（包括自己的帐户）、组或计算机添加到目标组</li>
+<li><code>GenericAll</code>：对对象拥有完全控制权，包括更改用户密码、注册 SPN 或将 AD 对象添加到目标组的能力</li>
+<li><code>GenericWrite</code>：可以更新目标对象的任何非受保护参数。例如，可以更新 <code>scriptPath</code> 参数，其将导致用户下次登录时执行脚本。</li>
+<li><code>WriteOwner</code>：可以更新目标对象的所有者。可以将自己设为所有者，从而获得对对象的额外权限。</li>
+<li><code>WriteDACL</code>：可以向目标对象的 DACL 中写入新的 ACE。例如，我们可以写入一个 ACE，授予我们的帐户对目标对象的完全控制。</li>
+<li><p><code>AllExtendedRights</code>：可以执行与目标对象相关的扩展 AD 权限的任何操作。这包括例如强制更改用户密码的能力。</p>
+<p>为了利用ACE，需要与AD交互来发出请求，可以使用 <code>AD-RSAT Powershell cmdlet</code> 或 <code>PowerSploit</code></p>
+</li>
+</ul>
+</li>
+<li><p>使用 <code>bloodhound</code></p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">neo4j console start</span><br></pre></td></tr></table></figure>
+<p>  然后启动 <code>bloodhound</code> ，把给的那堆拖进去</p>
+<p>  对于我们已经获得的起点 <code>DomainUser@za.tryhackme.loc</code> ，研究其 <code>node info</code> 发现并没有很多权限，其可以远程桌面到 <code>THMWRK1</code> ，但这只有低权限的访问：</p>
+<p>  <img src="https://pic1.imgdb.cn/item/67cf938b066befcec6e29dfc.png" alt=""></p>
+<p>  由于域分层，第一步就是攻击第二层的基础设施，即第二层的管理员组 <code>tier 2 admins@za.tryhackme.loc</code>，其对所有工作站具有管理员特权。</p>
+<p>  <img src="https://pic1.imgdb.cn/item/67cf94cb066befcec6e2a154.png" alt=""></p>
+<p>  <code>bloodhound</code> 提供的路径显示，域中错误的为IT支持组提供了对 <code>Domain Users</code> 组的 <code>AddMembers</code> ACE，其意味着 <code>Domain Users</code> 组中任何成员（包括我们的账户）都可以将账户添加到IT支持组中。并且该支持组对二层管理员组的成员都有 <code>ForceChangePassword</code> ACE，其并不能说是配置错误，但与 <code>AddMembers</code> 错误结合后就可以允许我们利用</p>
+<p>  <code>ssh</code> 连上去，切到 <code>powershell</code>：</p>
+<p>  <img src="https://pic1.imgdb.cn/item/67cf99f3066befcec6e2ac7b.png" alt=""></p>
+<p>  攻击的第一步就是把当前账户添加到IT支持组：</p>
+  <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Add-ADGroupMember</span> <span class="string">&quot;IT Support&quot;</span> <span class="literal">-Members</span> <span class="string">&quot;[账户名]&quot;</span></span><br></pre></td></tr></table></figure>
+<p>  用以下命令来查看是否生效</p>
+  <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Get-ADGroupMember</span> <span class="literal">-Identity</span> <span class="string">&quot;IT Support&quot;</span></span><br></pre></td></tr></table></figure>
+<p>  <img src="https://pic1.imgdb.cn/item/67cf9aae066befcec6e2ae4a.png" alt=""></p>
+<p>  既然已经是支持组成员，那么就有着对二层管理员组的 <code>ForceChangePassword</code> 的权限委派，首先选择一个该组的成员：</p>
+  <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Get-ADGroupMember</span> <span class="literal">-Identity</span> <span class="string">&quot;Tier 2 Admins&quot;</span></span><br></pre></td></tr></table></figure>
+<p>  <img src="https://pic1.imgdb.cn/item/67cf9b5b066befcec6e2b016.png" alt=""></p>
+<p>  这里ssh连接的显示有问题，<code>-</code> 参数都没有显示出来</p>
+  <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$Password</span> = <span class="built_in">ConvertTo-SecureString</span> <span class="string">&quot;[新密码]&quot;</span> <span class="literal">-AsPlainText</span> <span class="literal">-Force</span></span><br><span class="line"><span class="built_in">Set-ADAccountPassword</span> <span class="literal">-Identity</span> <span class="string">&quot;[幸运挑选的管理员组成员]&quot;</span> <span class="literal">-Reset</span> <span class="literal">-NewPassword</span> <span class="variable">$Password</span></span><br></pre></td></tr></table></figure>
+<p>  如果拒绝访问是因为当前权限还没有在域中传播，<del>！稍作等待</del> 我等了快20分钟，可以把下面的 <code>kerberos</code> 委派看完再回来提权</p>
+<p>  <img src="https://pic1.imgdb.cn/item/67cf9c31066befcec6e2b237.png" alt=""></p>
+<p>  此时账密 <code>t2_melanie.davies:admin12345ABC</code></p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh za.tryhackme.loc\\t2_melanie.davies@thmwrk1.za.tryhackme.loc</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>利用 <code>Kerberos</code> 委派</p>
+<p>  在讨论 <code>AD</code> 委派时，通常指的就是 <code>Kerberos</code> 委派而非权限委派</p>
+<ul>
+<li><p><code>Kerberos</code> 委派</p>
+<p>  其实际用途是使应用程序能访问托管在不同服务器上的资源，如 <code>Web</code> 服务器需要访问托管在数据库服务器上的 <code>SQL</code> 以供其Web使用。如果没有委派，可能会使用一个 <code>AD</code> 服务账户并直接授予其对数据库的访问权限，每当Web应用进行请求时，该服务账户用于对数据库进行身份验证和检索信息</p>
+<p>  也可以允许该服务账户被委派到SQL服务器服务。一旦用户登录到Web应用，服务账户将代表该用户请求访问数据库。这意味着用户只能访问他们具有相关权限的数据库数据，而无需为服务账户本身提供任何数据库特权或权限</p>
+</li>
+<li><p>约束与无约束</p>
+<p>存在两种 <code>Kerberos</code> 委派。对于最不安全的无约束委派 <code>Unconstrained Delegation</code> ，其没有对委派设置任何限制。例如，一个设置了 <code>TRUSTED_FOR_DELEGATION</code> 的用户在无约束委派配置的主机上进行了身份验证，就会生成并存储该用户账户的票据授权票证 <code>TGT</code> 。此时如果攻击者入侵该配置着无约束委派的主机，就可以迫使一个特权账户对主机进行身份验证，进而拦截生成的 <code>TGT</code> 并冒充特权服务。其案例可以参考<a target="_blank" rel="noopener" href="https://medium.com/@riccardo.ancarani94/exploiting-unconstrained-delegation-a81eabbd6976">这篇文章</a></p>
+<p>而为了解决此类安全问题，引入了约束委派，其限制了一个账户可以被委派到哪些服务从而在账户被入侵时限制暴露的范围</p>
+<p>对于约束委派的利用更加复杂，例如：可以入侵一个配置了约束委派的 <code>AD</code> 账户，知道该账户的明文密码或者 <code>NTLM</code> 哈希，可以为该账户生成一个 <code>TGT</code> ，并使用其对任何非敏感用户账户执行票据授权服务器(TGS)请求以作为该用户访问服务，即冒充一个可以访问敏感数据库的账户</p>
+</li>
+<li><p>基于资源的委派</p>
+<p>  <code>kerberos</code> 委派其实有三种，但基于资源的委派 <code>Resource-Based Constrained Delegation(RBCD)</code> 值得单独拿出来说。其完全改变了委派模型，即不再指定那个对象可以委派给哪个服务，而是服务指定了哪些对象可以委派给他，这使得服务所有者可以控制谁可以访问它。按照上面的例子，数据库服务指定允许Web服务账户委派访问它。</p>
+<p>  对其的利用参考<a target="_blank" rel="noopener" href="https://blog.netwrix.com/2022/09/29/resource-based-constrained-delegation-abuse/">这篇文章</a></p>
+</li>
+<li><p>约束委派的利用</p>
+<p>  首先利用 <code>powerSploit</code> 枚举出可用的委派：</p>
+  <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Import-Module</span> C:\Tools\PowerView.ps1</span><br><span class="line"><span class="built_in">Get-NetUser</span> <span class="literal">-TrustedToAuth</span></span><br></pre></td></tr></table></figure>
+<p>  <img src="https://pic1.imgdb.cn/item/67cfa853066befcec6e2c0cd.png" alt=""></p>
+<p>  可以看到 <code>svcIIS</code> 账户可以委派 <code>THMSERVER1</code> 上的 <code>HTTP</code> 和 <code>WSMAN</code> 。而值得注意的是，其不仅仅只用于模拟用户访问网站，<code>Powershell</code> 远程管理也使用这两个服务。那么一个理想的选择是冒充第一层管理员（即svcIIS账户）来提供对 <code>THMSERVER1</code> 的管理访问权限</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2025/01/31/Thunder%E7%BB%BC%E5%90%88%E5%86%85%E7%BD%91%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -981,81 +1132,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2024/12/21/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8456%EF%BC%9AAdvent%20of%20Cyber%202024%EF%BC%9ADay20/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="noone___">
-      <meta itemprop="description" content="自闭中">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="noone___'s blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/12/21/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8456%EF%BC%9AAdvent%20of%20Cyber%202024%EF%BC%9ADay20/" class="post-title-link" itemprop="url">THM打靶日寄56-Advent of Cyber 2024：Day20</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2024-12-21 08:26:00 / 修改时间：20:54:06" itemprop="dateCreated datePublished" datetime="2024-12-21T08:26:00+08:00">2024-12-21</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">渗透</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>针对C2的流量分析</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/12/21/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8456%EF%BC%9AAdvent%20of%20Cyber%202024%EF%BC%9ADay20/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1127,7 +1203,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">228</span>
+          <span class="site-state-item-count">229</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
