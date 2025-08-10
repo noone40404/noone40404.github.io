@@ -6,7 +6,7 @@
   <link href="http://noone40404.github.io/atom.xml" rel="self"/>
   
   <link href="http://noone40404.github.io/"/>
-  <updated>2025-03-27T01:59:34.917Z</updated>
+  <updated>2025-08-10T11:46:50.000Z</updated>
   <id>http://noone40404.github.io/</id>
   
   <author>
@@ -17,195 +17,232 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>THM打靶日寄67-The Bandit Surfer</title>
-    <link href="http://noone40404.github.io/2025/03/27/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8467%EF%BC%9AThe%20Bandit%20Surfer/"/>
-    <id>http://noone40404.github.io/2025/03/27/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8467%EF%BC%9AThe%20Bandit%20Surfer/</id>
-    <published>2025-03-27T05:10:00.000Z</published>
-    <updated>2025-03-27T01:59:34.917Z</updated>
+    <title>noone的爬虫-精通汽修</title>
+    <link href="http://noone40404.github.io/2025/07/21/noone%E7%9A%84py%E7%88%AC%E8%99%AB-%E7%B2%BE%E9%80%9A%E6%B1%BD%E4%BF%AE/"/>
+    <id>http://noone40404.github.io/2025/07/21/noone%E7%9A%84py%E7%88%AC%E8%99%AB-%E7%B2%BE%E9%80%9A%E6%B1%BD%E4%BF%AE/</id>
+    <published>2025-07-21T10:00:00.000Z</published>
+    <updated>2025-08-10T11:46:50.000Z</updated>
     
     
-    <summary type="html">最近打联机杀戮尖塔有点摆烂，加上在准备教育hw就没咋打靶机</summary>
+    <summary type="html">好麻烦的路径</summary>
     
     
     
-    <category term="渗透" scheme="http://noone40404.github.io/categories/%E6%B8%97%E9%80%8F/"/>
+    <category term="爬虫" scheme="http://noone40404.github.io/categories/%E7%88%AC%E8%99%AB/"/>
     
     
-    <category term="THM" scheme="http://noone40404.github.io/tags/THM/"/>
-    
-    <category term="靶场" scheme="http://noone40404.github.io/tags/%E9%9D%B6%E5%9C%BA/"/>
+    <category term="爬虫" scheme="http://noone40404.github.io/tags/%E7%88%AC%E8%99%AB/"/>
     
   </entry>
   
   <entry>
-    <title>noone破解补丁：TogetherInSpire</title>
-    <link href="http://noone40404.github.io/2025/03/25/noone%E7%9A%84%E7%A0%B4%E8%A7%A3%E8%A1%A5%E4%B8%81%EF%BC%9ATogetherInSpire/"/>
-    <id>http://noone40404.github.io/2025/03/25/noone%E7%9A%84%E7%A0%B4%E8%A7%A3%E8%A1%A5%E4%B8%81%EF%BC%9ATogetherInSpire/</id>
-    <published>2025-03-25T09:15:00.000Z</published>
-    <updated>2025-04-02T03:04:49.937Z</updated>
+    <title>noone的蓝牙中继攻击其一</title>
+    <link href="http://noone40404.github.io/2025/07/18/noone%E7%9A%84%E8%93%9D%E7%89%99%E4%B8%AD%E7%BB%A7%E6%94%BB%E5%87%BB%E5%85%B6%E4%B8%80/"/>
+    <id>http://noone40404.github.io/2025/07/18/noone%E7%9A%84%E8%93%9D%E7%89%99%E4%B8%AD%E7%BB%A7%E6%94%BB%E5%87%BB%E5%85%B6%E4%B8%80/</id>
+    <published>2025-07-18T10:00:00.000Z</published>
+    <updated>2025-08-10T11:46:26.000Z</updated>
     
     
-    <summary type="html">那他文件都给我了解锁什么皮肤可就是我说了算了</summary>
+    <summary type="html">呃呃，中道崩殂这块</summary>
     
     
     
     <category term="兴趣所在" scheme="http://noone40404.github.io/categories/%E5%85%B4%E8%B6%A3%E6%89%80%E5%9C%A8/"/>
     
     
-    <category term="java" scheme="http://noone40404.github.io/tags/java/"/>
+    <category term="BLE" scheme="http://noone40404.github.io/tags/BLE/"/>
     
-    <category term="破解" scheme="http://noone40404.github.io/tags/%E7%A0%B4%E8%A7%A3/"/>
+    <category term="loT" scheme="http://noone40404.github.io/tags/loT/"/>
     
   </entry>
   
   <entry>
-    <title>noone的校赛出题</title>
-    <link href="http://noone40404.github.io/2025/03/20/noone%E7%9A%84%E6%A0%A1%E8%B5%9B%E5%87%BA%E9%A2%98/"/>
-    <id>http://noone40404.github.io/2025/03/20/noone%E7%9A%84%E6%A0%A1%E8%B5%9B%E5%87%BA%E9%A2%98/</id>
-    <published>2025-03-20T09:15:00.000Z</published>
-    <updated>2025-04-02T02:55:01.790Z</updated>
+    <title>锁匠的梦境其N-锁的特征码</title>
+    <link href="http://noone40404.github.io/2025/07/16/%E9%94%81%E5%8C%A0%E7%9A%84%E6%A2%A6%E5%A2%83%E5%85%B6N-%E9%94%81%E7%9A%84%E7%89%B9%E5%BE%81%E7%A0%81/"/>
+    <id>http://noone40404.github.io/2025/07/16/%E9%94%81%E5%8C%A0%E7%9A%84%E6%A2%A6%E5%A2%83%E5%85%B6N-%E9%94%81%E7%9A%84%E7%89%B9%E5%BE%81%E7%A0%81/</id>
+    <published>2025-07-16T13:00:00.000Z</published>
+    <updated>2025-08-10T12:00:04.859Z</updated>
     
     
-    <summary type="html">夹带私货的魔改版</summary>
+    <summary type="html">那里有一扇不该开启的门，现在连它的合页都在摇摇欲动</summary>
     
     
     
-    <category term="靶场" scheme="http://noone40404.github.io/categories/%E9%9D%B6%E5%9C%BA/"/>
+    <category term="锁匠的梦境" scheme="http://noone40404.github.io/categories/%E9%94%81%E5%8C%A0%E7%9A%84%E6%A2%A6%E5%A2%83/"/>
     
+    
+    <category term="BLE" scheme="http://noone40404.github.io/tags/BLE/"/>
+    
+    <category term="loT" scheme="http://noone40404.github.io/tags/loT/"/>
+    
+    <category term="逆向" scheme="http://noone40404.github.io/tags/%E9%80%86%E5%90%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>noone的简易EMP制作</title>
+    <link href="http://noone40404.github.io/2025/07/16/noone%E7%9A%84%E7%AE%80%E6%98%93EMP%E5%88%B6%E4%BD%9C/"/>
+    <id>http://noone40404.github.io/2025/07/16/noone%E7%9A%84%E7%AE%80%E6%98%93EMP%E5%88%B6%E4%BD%9C/</id>
+    <published>2025-07-16T10:00:00.000Z</published>
+    <updated>2025-07-16T01:13:22.000Z</updated>
+    
+    
+    <summary type="html">我什么都不会说的。。啊啊啊啊（昊京音</summary>
+    
+    
+    
+    <category term="兴趣所在" scheme="http://noone40404.github.io/categories/%E5%85%B4%E8%B6%A3%E6%89%80%E5%9C%A8/"/>
+    
+    
+    <category term="loT" scheme="http://noone40404.github.io/tags/loT/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>noone的车联网-CAN总线环境模拟与重放攻击</title>
+    <link href="http://noone40404.github.io/2025/07/14/noone%E7%9A%84%E8%BD%A6%E8%81%94%E7%BD%91-CAN%E6%80%BB%E7%BA%BF%E7%8E%AF%E5%A2%83%E6%A8%A1%E6%8B%9F%E4%B8%8E%E9%87%8D%E6%94%BE%E6%94%BB%E5%87%BB/"/>
+    <id>http://noone40404.github.io/2025/07/14/noone%E7%9A%84%E8%BD%A6%E8%81%94%E7%BD%91-CAN%E6%80%BB%E7%BA%BF%E7%8E%AF%E5%A2%83%E6%A8%A1%E6%8B%9F%E4%B8%8E%E9%87%8D%E6%94%BE%E6%94%BB%E5%87%BB/</id>
+    <published>2025-07-14T10:00:00.000Z</published>
+    <updated>2025-07-18T04:52:48.000Z</updated>
+    
+    
+    <summary type="html">打完hw回来上班了</summary>
+    
+    
+    
+    <category term="车联网" scheme="http://noone40404.github.io/categories/%E8%BD%A6%E8%81%94%E7%BD%91/"/>
+    
+    
+    <category term="loT" scheme="http://noone40404.github.io/tags/loT/"/>
+    
+    <category term="车联网" scheme="http://noone40404.github.io/tags/%E8%BD%A6%E8%81%94%E7%BD%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2025省公安hw游记</title>
+    <link href="http://noone40404.github.io/2025/07/09/2025%E7%9C%81%E5%85%AC%E5%AE%89hw/"/>
+    <id>http://noone40404.github.io/2025/07/09/2025%E7%9C%81%E5%85%AC%E5%AE%89hw/</id>
+    <published>2025-07-09T05:12:32.000Z</published>
+    <updated>2025-08-10T11:49:16.000Z</updated>
+    
+    
+    <summary type="html">这一世。。。后面忘了</summary>
+    
+    
+    
+    <category term="hw" scheme="http://noone40404.github.io/categories/hw/"/>
+    
+    
+    <category term="hw" scheme="http://noone40404.github.io/tags/hw/"/>
     
     <category term="渗透" scheme="http://noone40404.github.io/tags/%E6%B8%97%E9%80%8F/"/>
     
   </entry>
   
   <entry>
-    <title>noone的黑奴项目：互联网+深度学习预测投药量</title>
-    <link href="http://noone40404.github.io/2025/02/28/noone%E7%9A%84%E9%BB%91%E5%A5%B4%E9%A1%B9%E7%9B%AE%EF%BC%9A%E4%BA%92%E8%81%94%E7%BD%91+%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E9%A2%84%E6%B5%8B%E6%8A%95%E8%8D%AF%E9%87%8F/"/>
-    <id>http://noone40404.github.io/2025/02/28/noone%E7%9A%84%E9%BB%91%E5%A5%B4%E9%A1%B9%E7%9B%AE%EF%BC%9A%E4%BA%92%E8%81%94%E7%BD%91+%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E9%A2%84%E6%B5%8B%E6%8A%95%E8%8D%AF%E9%87%8F/</id>
-    <published>2025-02-28T05:10:00.000Z</published>
-    <updated>2025-03-01T13:13:35.295Z</updated>
+    <title>noone的ble协议学习</title>
+    <link href="http://noone40404.github.io/2025/07/02/noone%E7%9A%84ble%E5%8D%8F%E8%AE%AE%E5%AD%A6%E4%B9%A0/"/>
+    <id>http://noone40404.github.io/2025/07/02/noone%E7%9A%84ble%E5%8D%8F%E8%AE%AE%E5%AD%A6%E4%B9%A0/</id>
+    <published>2025-07-02T11:04:00.000Z</published>
+    <updated>2025-08-10T11:46:42.000Z</updated>
     
     
-    <summary type="html">被拉进来当苦力导致要两天内速成深度学习并提出一个创新方案</summary>
-    
-    
-    
-    <category term="兴趣所在" scheme="http://noone40404.github.io/categories/%E5%85%B4%E8%B6%A3%E6%89%80%E5%9C%A8/"/>
-    
-    
-    <category term="ai" scheme="http://noone40404.github.io/tags/ai/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>THM打靶日寄66-Squid Game</title>
-    <link href="http://noone40404.github.io/2025/02/26/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8466%EF%BC%9ASquid%20Game/"/>
-    <id>http://noone40404.github.io/2025/02/26/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8466%EF%BC%9ASquid%20Game/</id>
-    <published>2025-02-26T05:10:00.000Z</published>
-    <updated>2025-03-04T14:19:31.230Z</updated>
-    
-    
-    <summary type="html">恶意宏文件专题</summary>
+    <summary type="html">感觉应该早点学比较好，但现在也为时不晚</summary>
     
     
     
-    <category term="渗透" scheme="http://noone40404.github.io/categories/%E6%B8%97%E9%80%8F/"/>
+    <category term="BLE" scheme="http://noone40404.github.io/categories/BLE/"/>
     
     
-    <category term="THM" scheme="http://noone40404.github.io/tags/THM/"/>
+    <category term="BLE" scheme="http://noone40404.github.io/tags/BLE/"/>
     
-    <category term="靶场" scheme="http://noone40404.github.io/tags/%E9%9D%B6%E5%9C%BA/"/>
+    <category term="loT" scheme="http://noone40404.github.io/tags/loT/"/>
     
   </entry>
   
   <entry>
-    <title>THM打靶日寄65-Uranium CTF</title>
-    <link href="http://noone40404.github.io/2025/02/22/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8465%EF%BC%9AUranium%20CTF/"/>
-    <id>http://noone40404.github.io/2025/02/22/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8465%EF%BC%9AUranium%20CTF/</id>
-    <published>2025-02-22T13:26:00.000Z</published>
-    <updated>2025-02-24T04:14:25.235Z</updated>
+    <title>锁匠的白日梦境其五-通通锁不可逆开锁</title>
+    <link href="http://noone40404.github.io/2025/07/02/%E9%94%81%E5%8C%A0%E7%9A%84%E7%99%BD%E6%97%A5%E6%A2%A6%E5%A2%83%E5%85%B6%E4%BA%94-%E9%80%9A%E9%80%9A%E9%94%81%E4%B8%8D%E5%8F%AF%E9%80%86%E5%BC%80%E9%94%81/"/>
+    <id>http://noone40404.github.io/2025/07/02/%E9%94%81%E5%8C%A0%E7%9A%84%E7%99%BD%E6%97%A5%E6%A2%A6%E5%A2%83%E5%85%B6%E4%BA%94-%E9%80%9A%E9%80%9A%E9%94%81%E4%B8%8D%E5%8F%AF%E9%80%86%E5%BC%80%E9%94%81/</id>
+    <published>2025-07-02T04:00:00.000Z</published>
+    <updated>2025-07-22T01:12:24.000Z</updated>
     
     
-    <summary type="html">模拟钓鱼的靶机</summary>
-    
-    
-    
-    <category term="渗透" scheme="http://noone40404.github.io/categories/%E6%B8%97%E9%80%8F/"/>
-    
-    
-    <category term="THM" scheme="http://noone40404.github.io/tags/THM/"/>
-    
-    <category term="靶场" scheme="http://noone40404.github.io/tags/%E9%9D%B6%E5%9C%BA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>THM打靶日寄64-Python Playground</title>
-    <link href="http://noone40404.github.io/2025/02/20/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8464%EF%BC%9APython%20Playground/"/>
-    <id>http://noone40404.github.io/2025/02/20/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8464%EF%BC%9APython%20Playground/</id>
-    <published>2025-02-20T13:26:00.000Z</published>
-    <updated>2025-02-22T11:47:40.720Z</updated>
-    
-    
-    <summary type="html">过完寒假了，堂堂复活</summary>
+    <summary type="html">“我如饥似渴地吸收着知识，仿佛影子吸收光线。也许我离提升不远了。”</summary>
     
     
     
-    <category term="渗透" scheme="http://noone40404.github.io/categories/%E6%B8%97%E9%80%8F/"/>
+    <category term="锁匠的梦境" scheme="http://noone40404.github.io/categories/%E9%94%81%E5%8C%A0%E7%9A%84%E6%A2%A6%E5%A2%83/"/>
     
     
-    <category term="THM" scheme="http://noone40404.github.io/tags/THM/"/>
+    <category term="BLE" scheme="http://noone40404.github.io/tags/BLE/"/>
     
-    <category term="靶场" scheme="http://noone40404.github.io/tags/%E9%9D%B6%E5%9C%BA/"/>
+    <category term="loT" scheme="http://noone40404.github.io/tags/loT/"/>
+    
+    <category term="逆向" scheme="http://noone40404.github.io/tags/%E9%80%86%E5%90%91/"/>
     
   </entry>
   
   <entry>
-    <title>THM学习日寄63-域学习Exploiting Active Directory</title>
-    <link href="http://noone40404.github.io/2025/02/19/THM%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%AF%8463%EF%BC%9A%E5%9F%9F%E5%AD%A6%E4%B9%A0Exploiting%20Active%20Directory/"/>
-    <id>http://noone40404.github.io/2025/02/19/THM%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%AF%8463%EF%BC%9A%E5%9F%9F%E5%AD%A6%E4%B9%A0Exploiting%20Active%20Directory/</id>
-    <published>2025-02-19T05:10:00.000Z</published>
-    <updated>2025-03-11T03:22:01.292Z</updated>
+    <title>noone的车联网-CAN总线模拟数据读取与篡改</title>
+    <link href="http://noone40404.github.io/2025/07/01/noone%E7%9A%84%E8%BD%A6%E8%81%94%E7%BD%91-CAN%E6%80%BB%E7%BA%BF%E6%A8%A1%E6%8B%9F%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%8F%96%E4%B8%8E%E7%AF%A1%E6%94%B9/"/>
+    <id>http://noone40404.github.io/2025/07/01/noone%E7%9A%84%E8%BD%A6%E8%81%94%E7%BD%91-CAN%E6%80%BB%E7%BA%BF%E6%A8%A1%E6%8B%9F%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%8F%96%E4%B8%8E%E7%AF%A1%E6%94%B9/</id>
+    <published>2025-07-01T11:23:00.000Z</published>
+    <updated>2025-08-10T11:45:08.000Z</updated>
     
     
-      
-      
-    <summary type="html">&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;常见ad域利用技术-介绍&lt;/p&gt;
-&lt;p&gt;  现在已执行了内部侦察，拿到ad结构和环境情况。这个阶段将利用配置错误执行横向与提权。其通常与持久化结合以确保不会失去新获得的位置。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;Exploiting Permis</summary>
-      
+    <summary type="html">一切的都好可怕喵</summary>
     
     
     
-    <category term="渗透" scheme="http://noone40404.github.io/categories/%E6%B8%97%E9%80%8F/"/>
+    <category term="车联网" scheme="http://noone40404.github.io/categories/%E8%BD%A6%E8%81%94%E7%BD%91/"/>
     
     
-    <category term="THM" scheme="http://noone40404.github.io/tags/THM/"/>
+    <category term="loT" scheme="http://noone40404.github.io/tags/loT/"/>
     
-    <category term="靶场" scheme="http://noone40404.github.io/tags/%E9%9D%B6%E5%9C%BA/"/>
+    <category term="车联网" scheme="http://noone40404.github.io/tags/%E8%BD%A6%E8%81%94%E7%BD%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>noone的车联网-CAN总线</title>
+    <link href="http://noone40404.github.io/2025/06/19/noone%E7%9A%84%E8%BD%A6%E8%81%94%E7%BD%91-CAN%E6%80%BB%E7%BA%BF/"/>
+    <id>http://noone40404.github.io/2025/06/19/noone%E7%9A%84%E8%BD%A6%E8%81%94%E7%BD%91-CAN%E6%80%BB%E7%BA%BF/</id>
+    <published>2025-06-19T10:00:00.000Z</published>
+    <updated>2025-07-01T11:10:14.000Z</updated>
+    
+    
+    <summary type="html">想要截断Tbox的数据还得研究下这个</summary>
+    
+    
+    
+    <category term="车联网" scheme="http://noone40404.github.io/categories/%E8%BD%A6%E8%81%94%E7%BD%91/"/>
+    
+    
+    <category term="loT" scheme="http://noone40404.github.io/tags/loT/"/>
+    
+    <category term="车联网" scheme="http://noone40404.github.io/tags/%E8%BD%A6%E8%81%94%E7%BD%91/"/>
     
   </entry>
   
   <entry>
     <title></title>
-    <link href="http://noone40404.github.io/2025/02/17/2025%E6%95%99%E8%82%B2hw%E6%B8%B8%E8%AE%B0/"/>
-    <id>http://noone40404.github.io/2025/02/17/2025%E6%95%99%E8%82%B2hw%E6%B8%B8%E8%AE%B0/</id>
-    <published>2025-02-17T02:25:21.626Z</published>
-    <updated>2025-03-24T13:29:35.100Z</updated>
+    <link href="http://noone40404.github.io/2025/06/18/noone%E7%9A%84%E8%80%83%E5%89%8D%E5%A4%8D%E4%B9%A0-%E8%B7%AF%E7%94%B1%E4%BA%A4%E6%8D%A2%E6%8A%80%E6%9C%AF/"/>
+    <id>http://noone40404.github.io/2025/06/18/noone%E7%9A%84%E8%80%83%E5%89%8D%E5%A4%8D%E4%B9%A0-%E8%B7%AF%E7%94%B1%E4%BA%A4%E6%8D%A2%E6%8A%80%E6%9C%AF/</id>
+    <published>2025-06-18T13:45:33.492Z</published>
+    <updated>2025-06-18T13:46:25.493Z</updated>
     
     
       
       
     <summary type="html">&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;准备环节&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;静态路由&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;福州职业技术学院&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;学生权限&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;贴吧找新生qq群&lt;/p&gt;
-&lt;p&gt;  &lt;img src=&quot;https://pic.imgdb.cn/item/66e3f10</summary>
+&lt;li&gt;&lt;p&gt;实验要求：&lt;/p&gt;
+&lt;p&gt;（1）自行分配 IP 地址，将整个网络分为 5 个网段。&lt;/p&gt;
+&lt;p&gt;（2）配置静态路由，实现整个网络互联互通，PC 机之间能互相 PING 通。&lt;/p&gt;
+&lt;p&gt;（3）查看路由表。&lt;/p</summary>
       
     
     
@@ -214,245 +251,207 @@
   </entry>
   
   <entry>
-    <title>Thunder综合内网打靶日寄</title>
-    <link href="http://noone40404.github.io/2025/01/31/Thunder%E7%BB%BC%E5%90%88%E5%86%85%E7%BD%91%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%84/"/>
-    <id>http://noone40404.github.io/2025/01/31/Thunder%E7%BB%BC%E5%90%88%E5%86%85%E7%BD%91%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%84/</id>
-    <published>2025-01-31T11:26:00.000Z</published>
-    <updated>2025-02-02T02:21:09.638Z</updated>
+    <title>noone的车联网-Tbox与信息通信主机研究</title>
+    <link href="http://noone40404.github.io/2025/06/18/noone%E7%9A%84%E8%BD%A6%E8%81%94%E7%BD%91-Tbox%E7%A0%94%E7%A9%B6/"/>
+    <id>http://noone40404.github.io/2025/06/18/noone%E7%9A%84%E8%BD%A6%E8%81%94%E7%BD%91-Tbox%E7%A0%94%E7%A9%B6/</id>
+    <published>2025-06-18T10:00:00.000Z</published>
+    <updated>2025-07-21T08:43:10.000Z</updated>
     
     
-      
-      
-    <summary type="html">&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;扫描打点&lt;/p&gt;
-&lt;p&gt;  byd平台需要通过openvpn访问才给靶机 &lt;code&gt;ip&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;  &lt;img src=&quot;https://pic1.imgdb.cn/item/679c4412d0e0a243d4f8bb5f.png&quot;</summary>
-      
+    <summary type="html">有点专业了，需要个从业人员浇浇我</summary>
     
     
     
-    <category term="渗透" scheme="http://noone40404.github.io/categories/%E6%B8%97%E9%80%8F/"/>
+    <category term="车联网" scheme="http://noone40404.github.io/categories/%E8%BD%A6%E8%81%94%E7%BD%91/"/>
     
     
-    <category term="靶场" scheme="http://noone40404.github.io/tags/%E9%9D%B6%E5%9C%BA/"/>
+    <category term="loT" scheme="http://noone40404.github.io/tags/loT/"/>
+    
+    <category term="车联网" scheme="http://noone40404.github.io/tags/%E8%BD%A6%E8%81%94%E7%BD%91/"/>
     
   </entry>
   
   <entry>
-    <title>THM打靶日寄62-Advent of Cyber &#39;24：支线T3丑陋复现</title>
-    <link href="http://noone40404.github.io/2025/01/25/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8462%EF%BC%9AAdvent%20of%20Cyber%20&#39;24%20Side%20QuestT3/"/>
-    <id>http://noone40404.github.io/2025/01/25/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8462%EF%BC%9AAdvent%20of%20Cyber%20&#39;24%20Side%20QuestT3/</id>
-    <published>2025-01-25T00:26:00.000Z</published>
-    <updated>2025-01-25T09:48:17.457Z</updated>
+    <title>noone的嵌入式开发-OnMicro</title>
+    <link href="http://noone40404.github.io/2025/06/15/noone%E7%9A%84%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91-OnMicro/"/>
+    <id>http://noone40404.github.io/2025/06/15/noone%E7%9A%84%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91-OnMicro/</id>
+    <published>2025-06-15T13:00:00.000Z</published>
+    <updated>2025-06-18T01:11:04.000Z</updated>
     
     
-    <summary type="html">最难的re部分跳过了QAQ</summary>
-    
-    
-    
-    <category term="渗透" scheme="http://noone40404.github.io/categories/%E6%B8%97%E9%80%8F/"/>
-    
-    
-    <category term="THM" scheme="http://noone40404.github.io/tags/THM/"/>
-    
-    <category term="Advent of Cyber 2024" scheme="http://noone40404.github.io/tags/Advent-of-Cyber-2024/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>THM打靶日寄61-Advent of Cyber &#39;24：支线T2丑陋复现</title>
-    <link href="http://noone40404.github.io/2025/01/24/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8461%EF%BC%9AAdvent%20of%20Cyber%20&#39;24%20Side%20QuestT2/"/>
-    <id>http://noone40404.github.io/2025/01/24/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8461%EF%BC%9AAdvent%20of%20Cyber%20&#39;24%20Side%20QuestT2/</id>
-    <published>2025-01-24T00:26:00.000Z</published>
-    <updated>2025-01-24T09:34:23.968Z</updated>
-    
-    
-    <summary type="html">阴阳碰面能不能合成阴阳龙啊</summary>
+    <summary type="html">用这玩意入门是否有些那个了，有没有大手子带带我</summary>
     
     
     
-    <category term="渗透" scheme="http://noone40404.github.io/categories/%E6%B8%97%E9%80%8F/"/>
+    <category term="嵌入式" scheme="http://noone40404.github.io/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
     
     
-    <category term="THM" scheme="http://noone40404.github.io/tags/THM/"/>
+    <category term="loT" scheme="http://noone40404.github.io/tags/loT/"/>
     
-    <category term="Advent of Cyber 2024" scheme="http://noone40404.github.io/tags/Advent-of-Cyber-2024/"/>
+    <category term="嵌入式" scheme="http://noone40404.github.io/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+    <category term="逆向" scheme="http://noone40404.github.io/tags/%E9%80%86%E5%90%91/"/>
     
   </entry>
   
   <entry>
-    <title>学长的任务罢了11-evilbox</title>
-    <link href="http://noone40404.github.io/2025/01/15/%E5%AD%A6%E9%95%BF%E7%9A%84%E4%BB%BB%E5%8A%A1%E7%BD%A2%E4%BA%8611%EF%BC%9Aevilbox/"/>
-    <id>http://noone40404.github.io/2025/01/15/%E5%AD%A6%E9%95%BF%E7%9A%84%E4%BB%BB%E5%8A%A1%E7%BD%A2%E4%BA%8611%EF%BC%9Aevilbox/</id>
-    <published>2025-01-15T03:10:00.000Z</published>
-    <updated>2025-03-06T01:03:38.419Z</updated>
+    <title>noone的无线电设备-gps欺骗</title>
+    <link href="http://noone40404.github.io/2025/06/14/noone%E7%9A%84%E6%97%A0%E7%BA%BF%E7%94%B5%E8%AE%BE%E5%A4%87%EF%BC%9Agps%E6%AC%BA%E9%AA%97/"/>
+    <id>http://noone40404.github.io/2025/06/14/noone%E7%9A%84%E6%97%A0%E7%BA%BF%E7%94%B5%E8%AE%BE%E5%A4%87%EF%BC%9Agps%E6%AC%BA%E9%AA%97/</id>
+    <published>2025-06-14T10:00:00.000Z</published>
+    <updated>2025-07-01T11:30:10.000Z</updated>
     
     
-    <summary type="html">经典的操作，没什么好说的</summary>
-    
-    
-    
-    <category term="渗透" scheme="http://noone40404.github.io/categories/%E6%B8%97%E9%80%8F/"/>
-    
-    
-    <category term="靶场" scheme="http://noone40404.github.io/tags/%E9%9D%B6%E5%9C%BA/"/>
-    
-    <category term="vuln" scheme="http://noone40404.github.io/tags/vuln/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>学长的任务罢了12-snakeoil</title>
-    <link href="http://noone40404.github.io/2025/01/15/%E5%AD%A6%E9%95%BF%E7%9A%84%E4%BB%BB%E5%8A%A1%E7%BD%A2%E4%BA%8612%EF%BC%9Asnakeoil/"/>
-    <id>http://noone40404.github.io/2025/01/15/%E5%AD%A6%E9%95%BF%E7%9A%84%E4%BB%BB%E5%8A%A1%E7%BD%A2%E4%BA%8612%EF%BC%9Asnakeoil/</id>
-    <published>2025-01-15T03:10:00.000Z</published>
-    <updated>2025-01-15T08:38:02.200Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;扫描打点&lt;/p&gt;
-&lt;p&gt;  &lt;img src=&quot;https://pic1.imgdb.cn/item/67876063d0e0a243d4f47777.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;80&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;</summary>
-      
+    <summary type="html">好玩，暑假也买一个来玩</summary>
     
     
     
-    <category term="渗透" scheme="http://noone40404.github.io/categories/%E6%B8%97%E9%80%8F/"/>
+    <category term="无线电" scheme="http://noone40404.github.io/categories/%E6%97%A0%E7%BA%BF%E7%94%B5/"/>
     
     
-    <category term="靶场" scheme="http://noone40404.github.io/tags/%E9%9D%B6%E5%9C%BA/"/>
+    <category term="loT" scheme="http://noone40404.github.io/tags/loT/"/>
     
-    <category term="vuln" scheme="http://noone40404.github.io/tags/vuln/"/>
+    <category term="无线电" scheme="http://noone40404.github.io/tags/%E6%97%A0%E7%BA%BF%E7%94%B5/"/>
+    
+    <category term="车联网" scheme="http://noone40404.github.io/tags/%E8%BD%A6%E8%81%94%E7%BD%91/"/>
     
   </entry>
   
   <entry>
-    <title>THM打靶日寄60-Advent of Cyber 2024：Day24</title>
-    <link href="http://noone40404.github.io/2024/12/25/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8460%EF%BC%9AAdvent%20of%20Cyber%202024%EF%BC%9ADay24/"/>
-    <id>http://noone40404.github.io/2024/12/25/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8460%EF%BC%9AAdvent%20of%20Cyber%202024%EF%BC%9ADay24/</id>
-    <published>2024-12-25T00:26:00.000Z</published>
-    <updated>2024-12-27T13:23:21.446Z</updated>
+    <title>锁匠的梦境其？-投降喵</title>
+    <link href="http://noone40404.github.io/2025/06/12/%E9%94%81%E5%8C%A0%E7%9A%84%E6%A2%A6%E5%A2%83%E5%85%B6%EF%BC%9F-%E6%8A%95%E9%99%8D%E5%96%B5/"/>
+    <id>http://noone40404.github.io/2025/06/12/%E9%94%81%E5%8C%A0%E7%9A%84%E6%A2%A6%E5%A2%83%E5%85%B6%EF%BC%9F-%E6%8A%95%E9%99%8D%E5%96%B5/</id>
+    <published>2025-06-12T04:00:00.000Z</published>
+    <updated>2025-07-02T11:03:02.000Z</updated>
     
     
-    <summary type="html">啊，MQTT，物联网，我吗</summary>
-    
-    
-    
-    <category term="渗透" scheme="http://noone40404.github.io/categories/%E6%B8%97%E9%80%8F/"/>
-    
-    
-    <category term="THM" scheme="http://noone40404.github.io/tags/THM/"/>
-    
-    <category term="Advent of Cyber 2024" scheme="http://noone40404.github.io/tags/Advent-of-Cyber-2024/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>THM打靶日寄59-Advent of Cyber 2024：Day23</title>
-    <link href="http://noone40404.github.io/2024/12/24/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8459%EF%BC%9AAdvent%20of%20Cyber%202024%EF%BC%9ADay23/"/>
-    <id>http://noone40404.github.io/2024/12/24/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8459%EF%BC%9AAdvent%20of%20Cyber%202024%EF%BC%9ADay23/</id>
-    <published>2024-12-24T00:26:00.000Z</published>
-    <updated>2024-12-27T12:49:27.907Z</updated>
-    
-    
-    <summary type="html">简单的hash爆破，摸了</summary>
+    <summary type="html">漆黑亚麻以否定作答，从来如此。</summary>
     
     
     
-    <category term="渗透" scheme="http://noone40404.github.io/categories/%E6%B8%97%E9%80%8F/"/>
+    <category term="锁匠的梦境" scheme="http://noone40404.github.io/categories/%E9%94%81%E5%8C%A0%E7%9A%84%E6%A2%A6%E5%A2%83/"/>
     
     
-    <category term="THM" scheme="http://noone40404.github.io/tags/THM/"/>
+    <category term="BLE" scheme="http://noone40404.github.io/tags/BLE/"/>
     
-    <category term="Advent of Cyber 2024" scheme="http://noone40404.github.io/tags/Advent-of-Cyber-2024/"/>
+    <category term="loT" scheme="http://noone40404.github.io/tags/loT/"/>
+    
+    <category term="逆向" scheme="http://noone40404.github.io/tags/%E9%80%86%E5%90%91/"/>
     
   </entry>
   
   <entry>
-    <title>THM打靶日寄58-Advent of Cyber 2024：Day22</title>
-    <link href="http://noone40404.github.io/2024/12/23/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8458%EF%BC%9AAdvent%20of%20Cyber%202024%EF%BC%9ADay22/"/>
-    <id>http://noone40404.github.io/2024/12/23/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8458%EF%BC%9AAdvent%20of%20Cyber%202024%EF%BC%9ADay22/</id>
-    <published>2024-12-23T00:26:00.000Z</published>
-    <updated>2024-12-27T12:44:25.655Z</updated>
+    <title>锁匠的白日梦境其四-戴司锁临时密码</title>
+    <link href="http://noone40404.github.io/2025/05/30/%E9%94%81%E5%8C%A0%E7%9A%84%E7%99%BD%E6%97%A5%E6%A2%A6%E5%A2%83%E5%85%B6%E5%9B%9B-%E6%88%B4%E5%8F%B8%E9%94%81%E4%B8%B4%E6%97%B6%E5%AF%86%E7%A0%81/"/>
+    <id>http://noone40404.github.io/2025/05/30/%E9%94%81%E5%8C%A0%E7%9A%84%E7%99%BD%E6%97%A5%E6%A2%A6%E5%A2%83%E5%85%B6%E5%9B%9B-%E6%88%B4%E5%8F%B8%E9%94%81%E4%B8%B4%E6%97%B6%E5%AF%86%E7%A0%81/</id>
+    <published>2025-05-30T04:00:00.000Z</published>
+    <updated>2025-07-02T11:03:18.000Z</updated>
     
     
-    <summary type="html">k8s环境初识与取证</summary>
-    
-    
-    
-    <category term="渗透" scheme="http://noone40404.github.io/categories/%E6%B8%97%E9%80%8F/"/>
-    
-    
-    <category term="THM" scheme="http://noone40404.github.io/tags/THM/"/>
-    
-    <category term="Advent of Cyber 2024" scheme="http://noone40404.github.io/tags/Advent-of-Cyber-2024/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>THM打靶日寄57-Advent of Cyber 2024：Day21</title>
-    <link href="http://noone40404.github.io/2024/12/22/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8457%EF%BC%9AAdvent%20of%20Cyber%202024%EF%BC%9ADay21/"/>
-    <id>http://noone40404.github.io/2024/12/22/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8457%EF%BC%9AAdvent%20of%20Cyber%202024%EF%BC%9ADay21/</id>
-    <published>2024-12-22T00:26:00.000Z</published>
-    <updated>2024-12-23T01:14:48.333Z</updated>
-    
-    
-    <summary type="html">啊，逆向，我吗</summary>
+    <summary type="html">“我如饥似渴地吸收着知识，仿佛影子吸收光线。也许我离提升不远了。”</summary>
     
     
     
-    <category term="渗透" scheme="http://noone40404.github.io/categories/%E6%B8%97%E9%80%8F/"/>
+    <category term="锁匠的梦境" scheme="http://noone40404.github.io/categories/%E9%94%81%E5%8C%A0%E7%9A%84%E6%A2%A6%E5%A2%83/"/>
     
     
-    <category term="THM" scheme="http://noone40404.github.io/tags/THM/"/>
+    <category term="BLE" scheme="http://noone40404.github.io/tags/BLE/"/>
     
-    <category term="Advent of Cyber 2024" scheme="http://noone40404.github.io/tags/Advent-of-Cyber-2024/"/>
+    <category term="loT" scheme="http://noone40404.github.io/tags/loT/"/>
+    
+    <category term="逆向" scheme="http://noone40404.github.io/tags/%E9%80%86%E5%90%91/"/>
     
   </entry>
   
   <entry>
-    <title>THM打靶日寄56-Advent of Cyber 2024：Day20</title>
-    <link href="http://noone40404.github.io/2024/12/21/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8456%EF%BC%9AAdvent%20of%20Cyber%202024%EF%BC%9ADay20/"/>
-    <id>http://noone40404.github.io/2024/12/21/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8456%EF%BC%9AAdvent%20of%20Cyber%202024%EF%BC%9ADay20/</id>
-    <published>2024-12-21T00:26:00.000Z</published>
-    <updated>2024-12-21T12:54:06.979Z</updated>
+    <title>锁匠的白日梦境其三-京东京造临时密码</title>
+    <link href="http://noone40404.github.io/2025/05/29/%E9%94%81%E5%8C%A0%E7%9A%84%E7%99%BD%E6%97%A5%E6%A2%A6%E5%A2%83%E5%85%B6%E4%B8%89-%E4%BA%AC%E4%B8%9C%E4%BA%AC%E9%80%A0%E4%B8%B4%E6%97%B6%E5%AF%86%E7%A0%81/"/>
+    <id>http://noone40404.github.io/2025/05/29/%E9%94%81%E5%8C%A0%E7%9A%84%E7%99%BD%E6%97%A5%E6%A2%A6%E5%A2%83%E5%85%B6%E4%B8%89-%E4%BA%AC%E4%B8%9C%E4%BA%AC%E9%80%A0%E4%B8%B4%E6%97%B6%E5%AF%86%E7%A0%81/</id>
+    <published>2025-05-29T04:00:00.000Z</published>
+    <updated>2025-07-02T11:03:24.000Z</updated>
     
     
-    <summary type="html">针对C2的流量分析</summary>
+    <summary type="html">“我如饥似渴地吸收着知识，仿佛影子吸收光线。也许我离提升不远了。”</summary>
     
     
     
-    <category term="渗透" scheme="http://noone40404.github.io/categories/%E6%B8%97%E9%80%8F/"/>
+    <category term="锁匠的梦境" scheme="http://noone40404.github.io/categories/%E9%94%81%E5%8C%A0%E7%9A%84%E6%A2%A6%E5%A2%83/"/>
     
     
-    <category term="THM" scheme="http://noone40404.github.io/tags/THM/"/>
+    <category term="BLE" scheme="http://noone40404.github.io/tags/BLE/"/>
     
-    <category term="Advent of Cyber 2024" scheme="http://noone40404.github.io/tags/Advent-of-Cyber-2024/"/>
+    <category term="loT" scheme="http://noone40404.github.io/tags/loT/"/>
+    
+    <category term="逆向" scheme="http://noone40404.github.io/tags/%E9%80%86%E5%90%91/"/>
     
   </entry>
   
   <entry>
-    <title>THM打靶日寄55-Advent of Cyber 2024：Day19</title>
-    <link href="http://noone40404.github.io/2024/12/20/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8455%EF%BC%9AAdvent%20of%20Cyber%202024%EF%BC%9ADay19/"/>
-    <id>http://noone40404.github.io/2024/12/20/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8455%EF%BC%9AAdvent%20of%20Cyber%202024%EF%BC%9ADay19/</id>
-    <published>2024-12-20T00:26:00.000Z</published>
-    <updated>2024-12-21T12:23:01.787Z</updated>
+    <title>锁匠的白日梦境其二-英典锁临时密码</title>
+    <link href="http://noone40404.github.io/2025/05/28/%E9%94%81%E5%8C%A0%E7%9A%84%E7%99%BD%E6%97%A5%E6%A2%A6%E5%A2%83%E5%85%B6%E4%BA%8C-%E8%8B%B1%E5%85%B8%E9%94%81%E4%B8%B4%E6%97%B6%E5%AF%86%E7%A0%81/"/>
+    <id>http://noone40404.github.io/2025/05/28/%E9%94%81%E5%8C%A0%E7%9A%84%E7%99%BD%E6%97%A5%E6%A2%A6%E5%A2%83%E5%85%B6%E4%BA%8C-%E8%8B%B1%E5%85%B8%E9%94%81%E4%B8%B4%E6%97%B6%E5%AF%86%E7%A0%81/</id>
+    <published>2025-05-28T04:00:00.000Z</published>
+    <updated>2025-08-10T11:44:12.000Z</updated>
     
     
-    <summary type="html">唔，这个有点难QAQ</summary>
+    <summary type="html">“我如饥似渴地吸收着知识，仿佛影子吸收光线。也许我离提升不远了。”</summary>
     
     
     
-    <category term="渗透" scheme="http://noone40404.github.io/categories/%E6%B8%97%E9%80%8F/"/>
+    <category term="锁匠的梦境" scheme="http://noone40404.github.io/categories/%E9%94%81%E5%8C%A0%E7%9A%84%E6%A2%A6%E5%A2%83/"/>
     
     
-    <category term="THM" scheme="http://noone40404.github.io/tags/THM/"/>
+    <category term="BLE" scheme="http://noone40404.github.io/tags/BLE/"/>
     
-    <category term="Advent of Cyber 2024" scheme="http://noone40404.github.io/tags/Advent-of-Cyber-2024/"/>
+    <category term="loT" scheme="http://noone40404.github.io/tags/loT/"/>
+    
+    <category term="逆向" scheme="http://noone40404.github.io/tags/%E9%80%86%E5%90%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>锁匠的梦境其四-哈通锁破解</title>
+    <link href="http://noone40404.github.io/2025/05/27/%E9%94%81%E5%8C%A0%E7%9A%84%E6%A2%A6%E5%A2%83%E5%85%B6%E5%9B%9B-%E5%93%88%E9%80%9A%E9%94%81%E7%A0%B4%E8%A7%A3/"/>
+    <id>http://noone40404.github.io/2025/05/27/%E9%94%81%E5%8C%A0%E7%9A%84%E6%A2%A6%E5%A2%83%E5%85%B6%E5%9B%9B-%E5%93%88%E9%80%9A%E9%94%81%E7%A0%B4%E8%A7%A3/</id>
+    <published>2025-05-27T13:00:00.000Z</published>
+    <updated>2025-07-02T11:02:32.000Z</updated>
+    
+    
+    <summary type="html">“雅努斯是守门者、双面之神、制造伤口之神、昭示改变之神，是太阳，是月亮。所以我们视他作守夜人、孪生子、蚁母、铸炉、弧月和昕旦。他不可能兼为上述诸神吧？这可能吗？”</summary>
+    
+    
+    
+    <category term="锁匠的梦境" scheme="http://noone40404.github.io/categories/%E9%94%81%E5%8C%A0%E7%9A%84%E6%A2%A6%E5%A2%83/"/>
+    
+    
+    <category term="BLE" scheme="http://noone40404.github.io/tags/BLE/"/>
+    
+    <category term="loT" scheme="http://noone40404.github.io/tags/loT/"/>
+    
+    <category term="逆向" scheme="http://noone40404.github.io/tags/%E9%80%86%E5%90%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>锁匠的白日梦境其一-关关锁/超锁poc</title>
+    <link href="http://noone40404.github.io/2025/05/27/%E9%94%81%E5%8C%A0%E7%9A%84%E7%99%BD%E6%97%A5%E6%A2%A6%E5%A2%83%E5%85%B6%E4%B8%80-%E5%85%B3%E5%85%B3%E9%94%81%E3%80%81%E8%B6%85%E9%94%81poc/"/>
+    <id>http://noone40404.github.io/2025/05/27/%E9%94%81%E5%8C%A0%E7%9A%84%E7%99%BD%E6%97%A5%E6%A2%A6%E5%A2%83%E5%85%B6%E4%B8%80-%E5%85%B3%E5%85%B3%E9%94%81%E3%80%81%E8%B6%85%E9%94%81poc/</id>
+    <published>2025-05-27T04:00:00.000Z</published>
+    <updated>2025-08-10T11:44:20.000Z</updated>
+    
+    
+    <summary type="html">“我如饥似渴地吸收着知识，仿佛影子吸收光线。也许我离提升不远了。”</summary>
+    
+    
+    
+    <category term="锁匠的梦境" scheme="http://noone40404.github.io/categories/%E9%94%81%E5%8C%A0%E7%9A%84%E6%A2%A6%E5%A2%83/"/>
+    
+    
+    <category term="BLE" scheme="http://noone40404.github.io/tags/BLE/"/>
+    
+    <category term="loT" scheme="http://noone40404.github.io/tags/loT/"/>
+    
+    <category term="逆向" scheme="http://noone40404.github.io/tags/%E9%80%86%E5%90%91/"/>
     
   </entry>
   

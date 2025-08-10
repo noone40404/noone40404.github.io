@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+<meta name="google-site-verification" content="LZ0JOjQQZw7PhvjIbZqeOojf3J6807W7DPn6--OTptc" />
+<meta name="baidu-site-verification" content="code-DDmcbQ6zQN" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <meta name="google-site-verification" content="true">
+  <meta name="msvalidate.01" content="true">
+  <meta name="yandex-verification" content="true">
+  <meta name="baidu-site-verification" content="true">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"noone40404.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="一切的都好可怕喵">
+<meta property="og:type" content="article">
+<meta property="og:title" content="noone的车联网-CAN总线模拟数据读取与篡改">
+<meta property="og:url" content="http://noone40404.github.io/2025/07/01/noone%E7%9A%84%E8%BD%A6%E8%81%94%E7%BD%91-CAN%E6%80%BB%E7%BA%BF%E6%A8%A1%E6%8B%9F%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%8F%96%E4%B8%8E%E7%AF%A1%E6%94%B9/index.html">
+<meta property="og:site_name" content="noone___&#39;s blog">
+<meta property="og:description" content="一切的都好可怕喵">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6865026958cb8da5c888f0f5.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/686502c158cb8da5c888f383.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/686674f958cb8da5c88d1956.jpg">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6867a68458cb8da5c89046bb.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6867a6fb58cb8da5c89046f5.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6867a7a458cb8da5c890473b.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6869115458cb8da5c8915846.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/686912a958cb8da5c8915928.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6869151b58cb8da5c8915af0.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6869172f58cb8da5c8915b3f.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/686917d258cb8da5c8915b56.jpg">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6875a98e58cb8da5c8ae192f.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6875a9ac58cb8da5c8ae1a5d.png">
+<meta property="article:published_time" content="2025-07-01T11:23:00.000Z">
+<meta property="article:modified_time" content="2025-08-10T11:45:08.000Z">
+<meta property="article:author" content="noone___">
+<meta property="article:tag" content="loT">
+<meta property="article:tag" content="车联网">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/item/6865026958cb8da5c888f0f5.png">
+
+<link rel="canonical" href="http://noone40404.github.io/2025/07/01/noone%E7%9A%84%E8%BD%A6%E8%81%94%E7%BD%91-CAN%E6%80%BB%E7%BA%BF%E6%A8%A1%E6%8B%9F%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%8F%96%E4%B8%8E%E7%AF%A1%E6%94%B9/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>noone的车联网-CAN总线模拟数据读取与篡改 | noone___'s blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="noone___'s blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">noone___'s blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/noone40404" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2025/07/01/noone%E7%9A%84%E8%BD%A6%E8%81%94%E7%BD%91-CAN%E6%80%BB%E7%BA%BF%E6%A8%A1%E6%8B%9F%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%8F%96%E4%B8%8E%E7%AF%A1%E6%94%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="noone___">
+      <meta itemprop="description" content="自闭中">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="noone___'s blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          noone的车联网-CAN总线模拟数据读取与篡改
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-07-01 19:23:00" itemprop="dateCreated datePublished" datetime="2025-07-01T19:23:00+08:00">2025-07-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-08-10 19:45:08" itemprop="dateModified" datetime="2025-08-10T19:45:08+08:00">2025-08-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BD%A6%E8%81%94%E7%BD%91/" itemprop="url" rel="index"><span itemprop="name">车联网</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+            <div class="post-description">一切的都好可怕喵</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>既然已经通过 <code>hackrf</code> 做到了车辆位置信息的动态修改。而车企仍然会检测车辆里程，对于当前品牌车辆来说，行驶5K km后将被认定为二手车，不再受企业平台防止出口的监督。</p>
+<p>而车辆里程并非通过行驶gps计算，而是由 <code>tbox</code> 接收到 <code>CAN</code> 总线发来的数据（应该是轮胎转速吧）计算而来，同时由 <code>tbox</code> 发送给服务器，具体内容参考关于Tbox分析的博客</p>
+<p>那么如果要伪造里程，最简单的办法就是进行中间人攻击，在CAN总线和Tbox中插入一个中间人设备，其负责读取CAN总线传输的内容，改变特定内容（如这里的转速），再打包并发送给 <code>Tbox</code> 让其发送，从而欺骗服务端来伪造里程</p>
+<p>由于没有DBC文件无法对CAN总线内容进行解码，所以需要抓取信息并进行分析猜测，这块是最麻烦的内容</p>
+<p>而中间人设备使用的是树莓派+CAN模块（MCP2515）</p>
+<ul>
+<li><p>数据读取实验</p>
+<p>  现在电脑上模拟一下读取数据，采用的是 <code>Linux</code> 的 <code>can-utils</code> ，借助 <code>USB-CAN</code> 向外输出，同时CAN模块连接到树莓派的SPI接口，以及 <code>CAN_H</code> 和 <code>CAN_L</code> 上</p>
+<p>  <del>等设备到再写</del></p>
+<ul>
+<li><p>树莓派连接基于 <code>MCP2515</code> 的 <code>CAN</code> 总线模块</p>
+<p>  对于MCP2515 SPI转CAN的控制器通信模块，其基本针脚如下：</p>
+<p>  <img src="https://pic1.imgdb.cn/item/6865026958cb8da5c888f0f5.png" alt=""></p>
+<p>  与树莓派的接线如下：</p>
+<p>  <img src="https://pic1.imgdb.cn/item/686502c158cb8da5c888f383.png" alt=""></p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">RPi Pin    RPi Label     CAN Module</span><br><span class="line">01---------3.3V----------VCC</span><br><span class="line">14---------GND-----------GND</span><br><span class="line">19---------GPIO10--------MOSI (SI)</span><br><span class="line">21---------GPIO9---------MISO (SO)</span><br><span class="line">22---------GPIO25--------INT</span><br><span class="line">23---------GPIO11--------SCK</span><br><span class="line">24---------GPIO8---------CS</span><br></pre></td></tr></table></figure>
+<p>  在树莓派上（我的内核是6.2）：</p>
+<p>  在 <code>boot/firmware/config.txt</code> 中增加：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dtparam=spi=on</span><br><span class="line">dtoverlay=mcp2515-can0,oscillator=8000000,interrupt=25</span><br></pre></td></tr></table></figure>
+<p>  波特率对应的是 <code>MCP2515</code> 上控制器的晶振频率 <code>8MHz</code>，后面的中断引脚对应的是上面接线接的 <code>22---INT</code> ，即GPIO25</p>
+<p>  然后重启，<code>ls /sys/bus/spi/devices/spi0.0/net</code> 查看 <code>mcp2515</code> 是否成功加载，可以看到 <code>can0</code></p>
+<p>  或者用 <code>dmesg | grep mcp</code> 来看是否成功初始化</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo ip link set can0 type can bitrate 500000 loopback on #设置can0网卡波特率250k，回环模式</span><br><span class="line">sudo ip link set can0 up #开启can0网卡</span><br></pre></td></tr></table></figure>
+<p>  环回模式允许器件内部的发送缓冲器和接收缓冲器之间进行报文的自发自收，而无需通过CAN 总线。此模式可用于系统开发和测试。</p>
+<p>  现在再查看 <code>ifconfig</code> 可以看到 <code>can0</code> 的状态为 <code>UP,RUNNING</code></p>
+<ul>
+<li><p>测试</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install can-utils</span><br></pre></td></tr></table></figure>
+<p>  一个终端运行 <code>candump can0</code> 开始监听</p>
+<p>  另一个运行 <code>cansend can0 123#1122334455667788</code> ，<code>can ID</code> 为 <code>0x123</code> ，数据为 <code>1122334455667788</code> 的报文</p>
+<p>  <img src="https://pic1.imgdb.cn/item/686674f958cb8da5c88d1956.jpg" alt=""></p>
+</li>
+</ul>
+</li>
+<li><p>电脑USB转CAN总线发送数据</p>
+<p>  随便买的USB-TO-CAN的工具，CANH和CANL对应连接到 <code>MCP2515</code> 的H和L，GND接到树莓派上的GND来保证与 <code>MCP2515</code> 共地</p>
+<p>  在树莓派上开启监听：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ip link set can0 up type can bitrate 500000</span><br><span class="line">candump can0</span><br></pre></td></tr></table></figure>
+<p>  <img src="https://pic1.imgdb.cn/item/6867a68458cb8da5c89046bb.png" alt=""></p>
+<p>  在 <code>linux</code> 上：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip link set can0 up type can bitrate 500000</span><br></pre></td></tr></table></figure>
+<p>  保证两者波特率相同，此时 <code>ifconfig</code> 能看到 <code>can0</code></p>
+<p>  <img src="https://pic1.imgdb.cn/item/6867a6fb58cb8da5c89046f5.png" alt=""></p>
+<p>  然后跟之前一样</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cansend can0 123#114514</span><br></pre></td></tr></table></figure>
+<p>  就能在树莓派上收到了</p>
+<p>  <img src="https://pic1.imgdb.cn/item/6867a7a458cb8da5c890473b.png" alt=""></p>
+</li>
+<li><p>连接两个MCP2515</p>
+<p>  <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/173648955">知乎上那篇文章</a>讲的问题挺大的，建议看[这篇](<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/b0">https://www.jianshu.com/p/b0</a></p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">RPi Pin    RPi Label     CAN Module</span><br><span class="line">17---------3.3V----------VCC</span><br><span class="line">06---------GND-----------GND</span><br><span class="line">38---------GPIO20--------MOSI (SI)</span><br><span class="line">35---------GPIO19--------MISO (SO)</span><br><span class="line">37---------GPIO26--------INT</span><br><span class="line">40---------GPIO11--------SCK</span><br><span class="line">12---------GPIO18---------CS</span><br></pre></td></tr></table></figure>
+<p>  配置为</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dtparam=spi=on</span><br><span class="line">dtoverlay=spi1-1cs</span><br><span class="line">dtoverlay=spi0-1cs</span><br><span class="line">dtoverlay=mcp2515,spi0-0,oscillator=8000000,interrupt=25</span><br><span class="line">dtoverlay=mcp2515,spi1-0,oscillator=8000000,interrupt=26</span><br></pre></td></tr></table></figure>
+<p>  可以在 <code>/boot/overlay/README</code> 中看到具体信息，简单来说就是 <code>can0</code> 连接到了 <code>spi0</code> 总线上，使用第0个片选信号（CS）， <code>can1</code> 连接到了 <code>spi1</code> 总线上，使用第0个片选信号。</p>
+<p>  而这两个片选信号默认是 <code>GPIO8</code> / <code>GPIO18</code> ，即上面接线接到的，当然也可以手动配置，比如：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dtoverlay=spi1-1cs,cs0_pin=18</span><br></pre></td></tr></table></figure>
+<p>  <img src="https://pic1.imgdb.cn/item/6869115458cb8da5c8915846.png" alt=""></p>
+</li>
+<li><p>电脑发送并读取</p>
+<p>  跟连一个的时候同理：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo ip link set can0 up type can bitrate 500000</span><br><span class="line">sudo ip link set can1 up type can bitrate 500000</span><br></pre></td></tr></table></figure>
+<p>  <img src="https://pic1.imgdb.cn/item/686912a958cb8da5c8915928.png" alt=""></p>
+<p>  在树莓派上运行以下脚本：</p>
+  <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> can</span><br><span class="line"><span class="comment"># 打开 can0 和 can1 接口</span></span><br><span class="line">can0 = can.interface.Bus(channel=<span class="string">&#x27;can0&#x27;</span>, bustype=<span class="string">&#x27;socketcan&#x27;</span>)</span><br><span class="line">can1 = can.interface.Bus(channel=<span class="string">&#x27;can1&#x27;</span>, bustype=<span class="string">&#x27;socketcan&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;开始 CAN 转发: can0 -&gt; can1&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    msg = can0.recv()  <span class="comment"># 接收 can0 消息</span></span><br><span class="line">    <span class="keyword">if</span> msg <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;收到来自 can0 的消息: <span class="subst">&#123;msg&#125;</span>&quot;</span>)</span><br><span class="line">        can1.send(msg)  <span class="comment"># 发送到 can1</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;已转发到 can1: <span class="subst">&#123;msg&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>  唯一的问题就是linux那边是反着的，也是就树莓派的 <code>can0</code> 在那边是 <code>can1</code> 啊嗯</p>
+<p>  <img src="https://pic1.imgdb.cn/item/6869151b58cb8da5c8915af0.png" alt=""></p>
+<p>  至于更改就随便写一个试一下：</p>
+  <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> can</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打开 can0 和 can1 接口</span></span><br><span class="line">can0 = can.interface.Bus(channel=<span class="string">&#x27;can0&#x27;</span>, bustype=<span class="string">&#x27;socketcan&#x27;</span>)</span><br><span class="line">can1 = can.interface.Bus(channel=<span class="string">&#x27;can1&#x27;</span>, bustype=<span class="string">&#x27;socketcan&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;开始 CAN 转发: can0 -&gt; can1&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    msg = can0.recv()</span><br><span class="line">    <span class="keyword">if</span> msg <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;收到 can0 消息: ID=<span class="subst">&#123;<span class="built_in">hex</span>(msg.arbitration_id)&#125;</span>, Data=<span class="subst">&#123;msg.data.<span class="built_in">hex</span>()&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 判断是否为指定条件</span></span><br><span class="line">    <span class="keyword">if</span> msg.arbitration_id == <span class="number">0x119</span> <span class="keyword">and</span> msg.data[:<span class="number">3</span>] == <span class="built_in">bytes</span>([<span class="number">0x11</span>, <span class="number">0x45</span>, <span class="number">0x14</span>]):</span><br><span class="line">        <span class="comment"># 构造新消息</span></span><br><span class="line">        new_data = <span class="built_in">bytes</span>([<span class="number">0x01</span>, <span class="number">0x91</span>, <span class="number">0x98</span>, <span class="number">0x10</span>])</span><br><span class="line">        new_msg = can.Message(</span><br><span class="line">            arbitration_id=msg.arbitration_id,</span><br><span class="line">            data=new_data,</span><br><span class="line">            is_extended_id=<span class="literal">False</span></span><br><span class="line">        )</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;匹配到目标消息，已替换为: Data=<span class="subst">&#123;new_data.<span class="built_in">hex</span>()&#125;</span>&quot;</span>)</span><br><span class="line">        can1.send(new_msg)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="comment"># 原样转发</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;原样转发&quot;</span>)</span><br><span class="line">        can1.send(msg)</span><br></pre></td></tr></table></figure>
+<p>  <img src="https://pic1.imgdb.cn/item/6869172f58cb8da5c8915b3f.png" alt=""></p>
+<p>  附一张实物图</p>
+<p>  <img src="https://pic1.imgdb.cn/item/686917d258cb8da5c8915b56.jpg" alt=""></p>
+<p>  然后再配一个自动配置脚本</p>
+  <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> -e</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;==&gt; 加载 mcp251x 驱动模块...&quot;</span></span><br><span class="line">sudo modprobe mcp251x</span><br><span class="line">sudo modprobe can_dev</span><br><span class="line">sudo modprobe can_raw</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;==&gt; 关闭可能存在的旧接口...&quot;</span></span><br><span class="line">sudo ip link <span class="built_in">set</span> can0 down 2&gt;/dev/null || <span class="literal">true</span></span><br><span class="line">sudo ip link <span class="built_in">set</span> can1 down 2&gt;/dev/null || <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;==&gt; 配置 CAN 接口速率并启用...&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置 can0（挂载在 SPI0）</span></span><br><span class="line"><span class="keyword">if</span> ip link show can0 &amp;&gt;/dev/null; <span class="keyword">then</span></span><br><span class="line">    sudo ip link <span class="built_in">set</span> can0 <span class="built_in">type</span> can bitrate 500000</span><br><span class="line">    sudo ip link <span class="built_in">set</span> can0 up</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;✅ can0 启动成功&quot;</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;❌ can0 不存在&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置 can1（挂载在 SPI1）</span></span><br><span class="line"><span class="keyword">if</span> ip link show can1 &amp;&gt;/dev/null; <span class="keyword">then</span></span><br><span class="line">    sudo ip link <span class="built_in">set</span> can1 <span class="built_in">type</span> can bitrate 500000</span><br><span class="line">    sudo ip link <span class="built_in">set</span> can1 up</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;✅ can1 启动成功&quot;</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;❌ can1 不存在&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;📡 当前 CAN 接口状态：&quot;</span></span><br><span class="line">ip -br link | grep can</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>两端相互传数据的情况下做监听：</p>
+  <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> can</span><br><span class="line"><span class="keyword">import</span> datetime0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打开 can0 和 can1 接口</span></span><br><span class="line">can0 = can.interface.Bus(channel=<span class="string">&#x27;can0&#x27;</span>, bustype=<span class="string">&#x27;socketcan&#x27;</span>)</span><br><span class="line">can1 = can.interface.Bus(channel=<span class="string">&#x27;can1&#x27;</span>, bustype=<span class="string">&#x27;socketcan&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打开日志文件</span></span><br><span class="line">log_file = <span class="built_in">open</span>(<span class="string">&quot;can_relay_log.txt&quot;</span>, <span class="string">&quot;a&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;开始双向 CAN 转发: can0 &lt;-&gt; can1&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="comment"># 检查 can0 是否有消息</span></span><br><span class="line">        msg0 = can0.recv(timeout=<span class="number">0.01</span>)</span><br><span class="line">        <span class="keyword">if</span> msg0 <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                can1.send(msg0)</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">f&quot;[<span class="subst">&#123;datetime.datetime.now()&#125;</span>] can0 → can1: <span class="subst">&#123;msg0&#125;</span>&quot;</span>)</span><br><span class="line">                log_file.write(<span class="string">f&quot;[<span class="subst">&#123;datetime.datetime.now()&#125;</span>] can0 → can1: <span class="subst">&#123;msg0&#125;</span>\n&quot;</span>)</span><br><span class="line">                log_file.flush()</span><br><span class="line">            <span class="keyword">except</span> can.CanError <span class="keyword">as</span> e:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">f&quot;发送到 can1 失败: <span class="subst">&#123;e&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 检查 can1 是否有消息</span></span><br><span class="line">        msg1 = can1.recv(timeout=<span class="number">0.01</span>)</span><br><span class="line">        <span class="keyword">if</span> msg1 <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                can0.send(msg1)</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">f&quot;[<span class="subst">&#123;datetime.datetime.now()&#125;</span>] can1 → can0: <span class="subst">&#123;msg1&#125;</span>&quot;</span>)</span><br><span class="line">                log_file.write(<span class="string">f&quot;[<span class="subst">&#123;datetime.datetime.now()&#125;</span>] can1 → can0: <span class="subst">&#123;msg1&#125;</span>\n&quot;</span>)</span><br><span class="line">                log_file.flush()</span><br><span class="line">            <span class="keyword">except</span> can.CanError <span class="keyword">as</span> e:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">f&quot;发送到 can0 失败: <span class="subst">&#123;e&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">except</span> KeyboardInterrupt:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;退出转发程序&quot;</span>)</span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">    log_file.close()</span><br><span class="line">    can0.shutdown()</span><br><span class="line">    can1.shutdown()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><code>OBD</code> 调试接口数据读取</p>
+<p>  <code>OBD</code> 和 <code>Tbox</code> 的 CAN总线并不是同一个，并且 <code>OBD</code> 是询问应答机制，需要先给其发送要查询的数据，其才会返回相关结果</p>
+<p>  询问gpt得到遵循CAN协议的OBDⅡ指令集，其请求帧如下：</p>
+<ul>
+<li><p>CAN ID: 0x7DF（通用广播 ID，发送到所有 ECU）</p>
+</li>
+<li><p>数据字节:</p>
+<ul>
+<li><p>Byte 0: 长度（如 0x02）</p>
+</li>
+<li><p>Byte 1: 模式（如 0x01）</p>
+</li>
+<li><p>Byte 2: PID（如 0x0C）</p>
+</li>
+<li><p>Byte 3-7: 填充 0x55 或 0x00</p>
+</li>
+</ul>
+<p>例如请求车速：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CAN ID: 0x7DF  </span><br><span class="line">DATA:   02 01 0D 00 00 00 00 00</span><br></pre></td></tr></table></figure>
+<p><img src="https://pic1.imgdb.cn/item/6875a98e58cb8da5c8ae192f.png" alt=""></p>
+<p><img src="https://pic1.imgdb.cn/item/6875a9ac58cb8da5c8ae1a5d.png" alt=""></p>
+<p>第一个是回路接收到的发送命令</p>
+<p>2-4是来自多个 <code>ECU</code> 的响应，都表示车速 <code>0D</code> 的值是0 <code>00</code></p>
+<p>最后两个是异常响应，表示不支持mode01服务？ 不用在意那个</p>
+<p>然后偷了个专用的OBD调试机器来试，找了一圈，比较重要的数据就是车速和累计里程，二者都是整数</p>
+</li>
+</ul>
+</li>
+<li><p><code>CAN</code> 总线数据尝试找资料</p>
+<p>  能确定时速在P-CAN上，累计里程的话看他们调表的时候拆的芯片在仪表盘上，可能在I-CAN上传输</p>
+<p>  只找到了<a target="_blank" rel="noopener" href="https://www.vboxmotorsport.co.uk/index.php/en/can-database-documents">奇瑞星途 (Chery Exeed) 的很小一部分dbc</a></p>
+<p>  下下来是这个b公司加密过的 <code>ref</code> 格式，还好就在两周前<a target="_blank" rel="noopener" href="https://github.com/EastArctica/racelogic-ref-to-dbc">有好人写了转换脚本</a></p>
+<p>  转化一下：</p>
+  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line">VERSION &quot;&quot;</span><br><span class="line">NS_ :</span><br><span class="line">    CM_</span><br><span class="line">    BA_DEF_</span><br><span class="line">    BA_</span><br><span class="line">    VAL_</span><br><span class="line">    CAT_DEF_</span><br><span class="line">    CAT_</span><br><span class="line">    FILTER</span><br><span class="line">    BA_DEF_DEF_</span><br><span class="line">    EV_DATA_</span><br><span class="line">    ENVVAR_DATA_</span><br><span class="line">    SGTYPE_</span><br><span class="line">    SGTYPE_VAL_</span><br><span class="line">    BA_DEF_SGTYPE_</span><br><span class="line">    BA_SGTYPE_</span><br><span class="line">    SIG_TYPE_REF_</span><br><span class="line">    VAL_TABLE_</span><br><span class="line">    SIG_GROUP_</span><br><span class="line">    SIG_VALTYPE_</span><br><span class="line">    SIGTYPE_VALTYPE_</span><br><span class="line">    BO_TX_BU_</span><br><span class="line">    BA_DEF_REL_</span><br><span class="line">    BA_REL_</span><br><span class="line">    BA_DEF_DEF_REL_</span><br><span class="line">    BU_SG_REL_</span><br><span class="line">    BU_EV_REL_</span><br><span class="line">    BU_BO_REL_</span><br><span class="line">    SG_MUL_VAL_</span><br><span class="line"></span><br><span class="line">BS_:</span><br><span class="line"></span><br><span class="line">BU_: Vector__XXX</span><br><span class="line"></span><br><span class="line">BO_ 165 CAN_MSG_165: 6 VECTOR__XXX</span><br><span class="line">SG_ Engine_Speed : 16|16@0+ (0.25,0) [0|16383.75] &quot;rpm&quot; Vector__XXX</span><br><span class="line"></span><br><span class="line">BO_ 167 CAN_MSG_167: 6 VECTOR__XXX</span><br><span class="line">SG_ Accelerator_Pedal_Position : 40|8@0+ (0.396825,0) [0|101.190476190476] &quot;%&quot; Vector__XXX</span><br><span class="line"></span><br><span class="line">BO_ 168 CAN_MSG_168: 8 VECTOR__XXX</span><br><span class="line">SG_ Brake_Position : 40|8@0+ (0.5,0) [0|127.5] &quot;%&quot; Vector__XXX</span><br><span class="line"></span><br><span class="line">BO_ 296 CAN_MSG_296: 8 VECTOR__XXX</span><br><span class="line">SG_ Gear_Requested : 20|4@0+ (1,0) [0|15] &quot;&quot; Vector__XXX</span><br><span class="line">SG_ Gear : 16|4@0+ (1,0) [0|15] &quot;&quot; Vector__XXX</span><br><span class="line"></span><br><span class="line">BO_ 299 CAN_MSG_299: 6 VECTOR__XXX</span><br><span class="line">SG_ Steering_Angle : 24|14@0+ (-0.1,720) [-918.3|720] &quot;°&quot; Vector__XXX</span><br><span class="line"></span><br><span class="line">BO_ 315 CAN_MSG_315: 6 VECTOR__XXX</span><br><span class="line">SG_ Wheel_Speed_FL_kph : 32|16@0+ (0.0088,0) [0|576.708] &quot;km/h&quot; Vector__XXX</span><br><span class="line">SG_ Wheel_Speed_FR_kph : 16|16@0+ (0.0088,0) [0|576.708] &quot;km/h&quot; Vector__XXX</span><br><span class="line">SG_ Wheel_Speed_FL_mph : 32|16@0+ (0.0054648,0) [0|358.135668] &quot;mph&quot; Vector__XXX</span><br><span class="line">SG_ Wheel_Speed_FR_mph : 16|16@0+ (0.0054648,0) [0|358.135668] &quot;mph&quot; Vector__XXX</span><br><span class="line"></span><br><span class="line">BO_ 318 CAN_MSG_318: 6 VECTOR__XXX</span><br><span class="line">SG_ Wheel_Speed_RL_kph : 32|16@0+ (0.0088,0) [0|576.708] &quot;km/h&quot; Vector__XXX</span><br><span class="line">SG_ Wheel_Speed_RR_kph : 16|16@0+ (0.0088,0) [0|576.708] &quot;km/h&quot; Vector__XXX</span><br><span class="line">SG_ Wheel_Speed_RL_mph : 32|16@0+ (0.0054648,0) [0|358.135668] &quot;mph&quot; Vector__XXX</span><br><span class="line">SG_ Wheel_Speed_RR_mph : 16|16@0+ (0.0054648,0) [0|358.135668] &quot;mph&quot; Vector__XXX</span><br><span class="line"></span><br><span class="line">BO_ 338 CAN_MSG_338: 8 VECTOR__XXX</span><br><span class="line">SG_ Side_Lights : 24|1@0+ (1,0) [0|0] &quot;on/off&quot; Vector__XXX</span><br><span class="line">SG_ Headlights : 28|1@0+ (1,0) [0|0] &quot;on/off&quot; Vector__XXX</span><br><span class="line">SG_ Full_Beam : 30|1@0+ (1,0) [0|0] &quot;on/off&quot; Vector__XXX</span><br><span class="line">SG_ Indicator_Left : 18|1@0+ (1,0) [0|0] &quot;on/off&quot; Vector__XXX</span><br><span class="line">SG_ Indicator_Right : 20|1@0+ (1,0) [0|0] &quot;on/off&quot; Vector__XXX</span><br><span class="line"></span><br><span class="line">BO_ 456 CAN_MSG_456: 5 VECTOR__XXX</span><br><span class="line">SG_ Gear_Switch : 26|3@0+ (1,0) [0|7] &quot;&quot; Vector__XXX</span><br></pre></td></tr></table></figure>
+<p>  处理一下：</p>
+</li>
+</ul>
+<pre><code>| CAN ID | 信号名                          | 起始位 | 长度 | 字节序   | 缩放因子 (Factor) | 偏移量 | 单位     |
+| ------ | ---------------------------- | --- | -- | ----- | ------------- | --- | ------ |
+| 0x0A5  | Engine\_Speed                | 16  | 16 | Intel | 0.25          | 0   | rpm    |
+| 0x0A7  | Accelerator\_Pedal\_Position | 40  | 8  | Intel | 0.396825      | 0   | %      |
+| 0x0A8  | Brake\_Position              | 40  | 8  | Intel | 0.5           | 0   | %      |
+| 0x0128 | Gear\_Requested              | 20  | 4  | Intel | 1             | 0   | —      |
+| 0x0128 | Gear                         | 16  | 4  | Intel | 1             | 0   | —      |
+| 0x012B | Steering\_Angle              | 24  | 14 | Intel | -0.1          | 720 | °      |
+| 0x013B | Wheel\_Speed\_FL\_kph        | 32  | 16 | Intel | 0.0088        | 0   | km/h   |
+| 0x013B | Wheel\_Speed\_FR\_kph        | 16  | 16 | Intel | 0.0088        | 0   | km/h   |
+| 0x013B | Wheel\_Speed\_FL\_mph        | 32  | 16 | Intel | 0.0054648     | 0   | mph    |
+| 0x013B | Wheel\_Speed\_FR\_mph        | 16  | 16 | Intel | 0.0054648     | 0   | mph    |
+| 0x013E | Wheel\_Speed\_RL\_kph        | 32  | 16 | Intel | 0.0088        | 0   | km/h   |
+| 0x013E | Wheel\_Speed\_RR\_kph        | 16  | 16 | Intel | 0.0088        | 0   | km/h   |
+| 0x013E | Wheel\_Speed\_RL\_mph        | 32  | 16 | Intel | 0.0054648     | 0   | mph    |
+| 0x013E | Wheel\_Speed\_RR\_mph        | 16  | 16 | Intel | 0.0054648     | 0   | mph    |
+| 0x0152 | Side\_Lights                 | 24  | 1  | Intel | 1             | 0   | on/off |
+| 0x0152 | Headlights                   | 28  | 1  | Intel | 1             | 0   | on/off |
+| 0x0152 | Full\_Beam                   | 30  | 1  | Intel | 1             | 0   | on/off |
+| 0x0152 | Indicator\_Left              | 18  | 1  | Intel | 1             | 0   | on/off |
+| 0x0152 | Indicator\_Right             | 20  | 1  | Intel | 1             | 0   | on/off |
+| 0x01C8 | Gear\_Switch                 | 26  | 3  | Intel | 1             | 0   | —      |
+
+
+以左轮胎速度为例：
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">BO_ 315 CAN_MSG_315: 6 VECTOR__XXX</span><br><span class="line">SG_ Wheel_Speed_FL_kph : 32|16@0+ (0.0088,0) [0|576.708] &quot;km/h&quot; Vector__XXX</span><br><span class="line">SG_ Wheel_Speed_FR_kph : 16|16@0+ (0.0088,0) [0|576.708] &quot;km/h&quot; Vector__XXX</span><br></pre></td></tr></table></figure>
+
+| 字段                   | 含义                             |
+| -------------------- | ------------------------------ |
+| `BO_ 315`            | CAN ID 为 **0x13B** 的帧（十进制 315） |
+| `Wheel_Speed_FL_kph` | 左前轮速度，单位为 km/h                 |
+| `起始位 = 32`           | 在第 4 个字节起始                     |
+| `长度 = 16`            | 占 2 字节                         |
+| `@0+`                | Intel（小端）字节序，正数                |
+| `Factor = 0.0088`    | 缩放因子                           |
+| `Offset = 0`         | 无偏移                            |
+| `长度 = 6`             | 该 CAN 帧的 Payload 长度为 6 字节      |
+
+比如抓到了
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">13B#6B 00 52 00 91 01</span><br></pre></td></tr></table></figure>
+
+则 `Wheel_Speed_FL_kph` 是 `byte[4:6]`，即 $91 01$（小端） = $0x0191$ = $401$
+
+实际速度 = $401 * 0.0088 = 3.528 km/h$
+</code></pre><ul>
+<li><p>待测试区</p>
+<ul>
+<li><p>测比特率</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip -details -statistics link show can0</span><br></pre></td></tr></table></figure>
+<p>  显示这个：<code>RX packets: 0</code> → 没收到任何帧，说明总线上无数据或波特率不对</p>
+</li>
+<li><p>抓汽车点火的时候的情况？是否只在每次点火的时候才上传数据</p>
+<p>  没有</p>
+</li>
+<li><p>挂挡的时候？</p>
+<p>  没有</p>
+</li>
+<li><p>抓Tbox的包，据维修手册可能存在响应应答</p>
+<p>  没有</p>
+</li>
+</ul>
+</li>
+<li><p>悲报</p>
+<p>  不知道为什么一直读不出数据，暂时转到Tbox攻击上了</p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>noone___
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://noone40404.github.io/2025/07/01/noone%E7%9A%84%E8%BD%A6%E8%81%94%E7%BD%91-CAN%E6%80%BB%E7%BA%BF%E6%A8%A1%E6%8B%9F%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%8F%96%E4%B8%8E%E7%AF%A1%E6%94%B9/" title="noone的车联网-CAN总线模拟数据读取与篡改">http://noone40404.github.io/2025/07/01/noone的车联网-CAN总线模拟数据读取与篡改/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/loT/" rel="tag"><i class="fa fa-tag"></i> loT</a>
+              <a href="/tags/%E8%BD%A6%E8%81%94%E7%BD%91/" rel="tag"><i class="fa fa-tag"></i> 车联网</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2025/06/19/noone%E7%9A%84%E8%BD%A6%E8%81%94%E7%BD%91-CAN%E6%80%BB%E7%BA%BF/" rel="prev" title="noone的车联网-CAN总线">
+      <i class="fa fa-chevron-left"></i> noone的车联网-CAN总线
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2025/07/02/%E9%94%81%E5%8C%A0%E7%9A%84%E7%99%BD%E6%97%A5%E6%A2%A6%E5%A2%83%E5%85%B6%E4%BA%94-%E9%80%9A%E9%80%9A%E9%94%81%E4%B8%8D%E5%8F%AF%E9%80%86%E5%BC%80%E9%94%81/" rel="next" title="锁匠的白日梦境其五-通通锁不可逆开锁">
+      锁匠的白日梦境其五-通通锁不可逆开锁 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="noone___"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">noone___</p>
+  <div class="site-description" itemprop="description">自闭中</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">227</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">89</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/noone40404" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;noone40404" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://ctp314.github.io/" title="https:&#x2F;&#x2F;ctp314.github.io&#x2F;" rel="noopener" target="_blank">CTime_Pup_314</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/guanlexiangfan/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;guanlexiangfan&#x2F;" rel="noopener" target="_blank">Evitagen</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.luogu.com.cn/blog/i-am-zhiyangfan/" title="https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;blog&#x2F;i-am-zhiyangfan&#x2F;" rel="noopener" target="_blank">zhiyangfan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/Vitheon/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;Vitheon&#x2F;" rel="noopener" target="_blank">Vareal</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">noone___</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+  <script data-pjax>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'ebdb5b537395179b4514',
+      clientSecret: 'd0843e5853efe963ca9983db6cac3a1f9d736856',
+      repo        : 'noone40404.github.io',
+      owner       : 'noone40404',
+      admin       : ['noone40404'],
+      id          : '10f01d149c8979de623435b75a08eb0e',
+        language: 'zn-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+    </div>
+</body>
+</html>
