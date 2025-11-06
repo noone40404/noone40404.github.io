@@ -205,6 +205,115 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2024/12/19/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8453%EF%BC%9AEnterPrize/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="noone___">
+      <meta itemprop="description" content="自闭中">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="noone___'s blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/12/19/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8453%EF%BC%9AEnterPrize/" class="post-title-link" itemprop="url">THM打靶日寄53-EnterPrize</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-12-19 19:26:00" itemprop="dateCreated datePublished" datetime="2024-12-19T19:26:00+08:00">2024-12-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-12-21 21:58:34" itemprop="dateModified" datetime="2024-12-21T21:58:34+08:00">2024-12-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">渗透</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li><p>扫描打点</p>
+<p>  <img src="https://pic.imgdb.cn/item/6764109cd0e0a243d4e6ad1f.png" alt=""></p>
+<p>  <img src="https://pic.imgdb.cn/item/676410c9d0e0a243d4e6ad39.png" alt=""></p>
+<ul>
+<li><p><code>80</code></p>
+<p>  dirsearch扫出来 <code>composer.json</code></p>
+<p>  <img src="https://pic.imgdb.cn/item/676412bad0e0a243d4e6ad90.png" alt=""></p>
+<p>  拿到一个账号，或者可能是账密？：<code>superhero1/enterprize</code></p>
+<p>  以及 <code>typo3</code> 是一个CMS，其版本号为 <code>9.5</code></p>
+<p>  找不到更多东西了，扫下子域名先：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wfuzz -u enterprize.thm -H &quot;Host: FUZZ.enterprize.thm&quot; -w /usr/share/wordlists/wfuzz/subdomains-top1million-110000.txt --hw 5</span><br></pre></td></tr></table></figure>
+<p>  在十分漫长的扫描后得到 <code>maintest</code></p>
+<p>  <del>。。。thm抽风了，子域名访问不到，搁置一下</del></p>
+<p>  原来是防火墙发力了，滚回来用 <code>attackbox</code></p>
+<p>  <img src="https://pic.imgdb.cn/item/6766bf36d0e0a243d4e7d1ca.png" alt=""></p>
+<p>  扫一扫先， <code>dirsearch</code> 的默认字典扫不全。。。</p>
+<p>  <img src="https://pic.imgdb.cn/item/6766c32dd0e0a243d4e7d488.png" alt=""></p>
+<p>  <img src="https://pic.imgdb.cn/item/6766c94fd0e0a243d4e7d670.png" alt=""></p>
+<ul>
+<li><p><code>/typo3</code> 是一个登录框</p>
+<p>  <img src="https://pic.imgdb.cn/item/6766c5fdd0e0a243d4e7d534.png" alt=""></p>
+<p>  没找到凭证</p>
+</li>
+<li><p><code>/fileadmin</code></p>
+<p>  <img src="https://pic.imgdb.cn/item/6766c61dd0e0a243d4e7d548.png" alt=""></p>
+</li>
+<li><p><code>/typo3conf</code></p>
+<p>  <img src="https://pic.imgdb.cn/item/6766c983d0e0a243d4e7d679.png" alt=""></p>
+<p>看到确实是 <code>typo3</code> ，搜了搜正好找到<a target="_blank" rel="noopener" href="https://github.com/whoot/Typo3Scan">这个扫描器</a></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2024/12/19/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8452%EF%BC%9AAdvent%20of%20Cyber%202024%EF%BC%9ADay18/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -906,87 +1015,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/2024/12/10/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8444%EF%BC%9AAdvent%20of%20Cyber%202024%EF%BC%9ADay10/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="noone___">
-      <meta itemprop="description" content="自闭中">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="noone___'s blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/12/10/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8444%EF%BC%9AAdvent%20of%20Cyber%202024%EF%BC%9ADay10/" class="post-title-link" itemprop="url">THM打靶日寄44-Advent of Cyber 2024：Day10</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-12-10 08:26:00" itemprop="dateCreated datePublished" datetime="2024-12-10T08:26:00+08:00">2024-12-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-12-11 16:28:33" itemprop="dateModified" datetime="2024-12-11T16:28:33+08:00">2024-12-11</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">渗透</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>呃，一个简单的钓鱼，没什么参考价值</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/12/10/THM%E6%89%93%E9%9D%B6%E6%97%A5%E5%AF%8444%EF%BC%9AAdvent%20of%20Cyber%202024%EF%BC%9ADay10/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1058,7 +1086,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">234</span>
+          <span class="site-state-item-count">235</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
