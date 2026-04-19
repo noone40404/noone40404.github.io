@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+<meta name="google-site-verification" content="LZ0JOjQQZw7PhvjIbZqeOojf3J6807W7DPn6--OTptc" />
+<meta name="baidu-site-verification" content="code-DDmcbQ6zQN" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <meta name="google-site-verification" content="true">
+  <meta name="msvalidate.01" content="true">
+  <meta name="yandex-verification" content="true">
+  <meta name="baidu-site-verification" content="true">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"noone40404.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="AGC017">
+<meta property="og:type" content="article">
+<meta property="og:title" content="42801202-AGC017">
+<meta property="og:url" content="http://noone40404.github.io/agc017/index.html">
+<meta property="og:site_name" content="noone___&#39;s blog">
+<meta property="og:description" content="AGC017">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://atcoder.jp/img/agc017/2b6cd7f4500d3621bc18de407f167522.png">
+<meta property="og:image" content="https://atcoder.jp/img/agc017/8d354fb1a389a0aa5b64ba93f6ca7801.png">
+<meta property="article:published_time" content="2021-08-24T14:37:41.000Z">
+<meta property="article:modified_time" content="2026-04-19T02:28:34.498Z">
+<meta property="article:author" content="noone___">
+<meta property="article:tag" content="构造">
+<meta property="article:tag" content="思维">
+<meta property="article:tag" content="dp">
+<meta property="article:tag" content="博弈论">
+<meta property="article:tag" content="图论">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://atcoder.jp/img/agc017/2b6cd7f4500d3621bc18de407f167522.png">
+
+<link rel="canonical" href="http://noone40404.github.io/agc017/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>42801202-AGC017 | noone___'s blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="noone___'s blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">noone___'s blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/noone40404" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/agc017/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="noone___">
+      <meta itemprop="description" content="自闭中">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="noone___'s blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          42801202-AGC017
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-08-24 22:37:41" itemprop="dateCreated datePublished" datetime="2021-08-24T22:37:41+08:00">2021-08-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-04-19 10:28:34" itemprop="dateModified" datetime="2026-04-19T10:28:34+08:00">2026-04-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">题解</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+            <div class="post-description">AGC017</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="D"><a href="#D" class="headerlink" title="D"></a>D</h2><blockquote>
+<p>一个 $N$ 节点的树，两人轮流选择一条树上的边并断开，删除不包含 $1$ 号点的连通块，当一人不能操作时输，求胜者</p>
+</blockquote>
+<p>树上 $\text{nim}$ 游戏，每个节点的 $\text{sg}$ 值是所有儿子 $\text{sg}$ 值 $+1$ 的异或和，判断根节点 $\text{sg}$ 函数值是否为 $1$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e5</span>+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; G[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> fa=<span class="number">0</span>)</span></span>&#123;</span><br><span class="line">    rei res=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> y:G[x]) <span class="keyword">if</span>(y!=fa) res^=<span class="built_in">dfs</span>(y,x)+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>,u,v;i&lt;n;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;u,&amp;v),G[u].<span class="built_in">push_back</span>(v),G[v].<span class="built_in">push_back</span>(u);</span><br><span class="line">    <span class="built_in">puts</span>(<span class="built_in">dfs</span>(<span class="number">1</span>) ? <span class="string">&quot;Alice&quot;</span> : <span class="string">&quot;Bob&quot;</span>);</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="E"><a href="#E" class="headerlink" title="E"></a>E</h2><blockquote>
+<p>有 $n$ 块不规则拼图，每块拼图看成连接在一起的三个宽度为 $1$ 的矩形，如图<img src="https://atcoder.jp/img/agc017/2b6cd7f4500d3621bc18de407f167522.png" alt="https://atcoder.jp/img/agc017/2b6cd7f4500d3621bc18de407f167522.png"><br>具体地，其中中间的矩形的高度为 $H$ ，左侧矩形的高度为 $A_i$ ，距离中间矩形底部 $C_i$ ，右侧矩形的高度为 $B_i$ ，距离中间矩形底部 $D_i$<br>将这些拼图放入一个边长为 $10^{100}$<br> 的正方形中，需要满足如下条件：</p>
+<ul>
+<li><p>所有 $N$ 块拼图都必须用上</p>
+</li>
+<li><p>所有拼图的中间矩形的下底面需要和正方形的下底面对齐</p>
+</li>
+<li><p>对于非中间的部分的下底面，要么和正方形的下底面对齐，要么和另一块拼图的非中间部分的上顶面对齐</p>
+</li>
+<li><p>拼图只能平移，不能旋转或翻转</p>
+</li>
+</ul>
+</blockquote>
+<p>对于一块拼图，如果其一侧的小矩形不接地，那么这个小矩形一定与另一拼图接地的小矩形相接，即，其高度无关紧要，只关心非 “接地” 小矩形的 $C_i,D_i$</p>
+<p>而对于接地的小矩形有 $C_i=0 / D_i=0$ ，此时需要关注高度</p>
+<p>于是，对于每块拼图的一侧，我们可以给它对应到个参数：如果是接地的，称它是 $下A_i$ 或 $下B_i$ ，否则，称它为 $上C_i$或 $上D_i$</p>
+<p>显然有： $上x$ 的一侧与某矩形 $下x$ 相接，且最两端矩形的两侧是 $下x$</p>
+<p>考虑到 $上下x$ 相连没有什么好性质，不妨利用左右矩形：对于左侧小矩形，点 $N_x$ 表示 $上x$ ，点 $P_x$ 表示 $下x$ ；右侧矩形则相反，点 $P_x$ 表示 $上x$ ，点 $N_x$ 表示 $下x$</p>
+<p>两个拼图的连接处就是相同的点：全为 $P_x$ 或全为 $N_x$</p>
+<p>那么，对于拼图 $(u,v)$ 连接 $u\rightarrow v$ ，那么一连串拼图构成的组对应所得的图上的一条有向边，且路径起点为 $P_x$ ，终点为 $N_x$</p>
+<p>那么转化为<strong>判断整张图是否能被拆分成若干个从 $P_x$ 连向 $N_x$ 的有向路径即可</strong></p>
+<p>考虑建立超级点 $S$ ，能向所有形如 $P_x$ 的点不断提供入边，也能使足够多的 $N_x$ 连向它</p>
+<p>那么对于路径 $P_x\rightarrow v_1\rightarrow v_2\rightarrow …\rightarrow N_y$ ，在两侧分别补上 $N_y\rightarrow S$ 和 $S\rightarrow P_x$ ，如此得到一个有向圈</p>
+<p>那么在连接若干条与 $S$ 的边后，图 $G$ 将变为 $\text{Euler}$ 图</p>
+<p>考虑到 $\text{Euler}$ 图的性质: $\forall v\in G , 有 d^+(v)=d^-(v)$</p>
+<p>由此：在删去 $S$ 及其关联的边后， $\forall P_x\in G , 有d^-(P_x)\leq d^+(P_x)$ ，$\forall N_x\in G , 有d^-(N_x)\geq d^+(N_x)$</p>
+<p>首先，如果一张图满足上述条件，那么我们将 $S$ 点与若干个点连边后，可以得到一张 $\text{Euler}$ 图 (且这个方案事实上是唯一的，即我们可以算出 $S$ 该向每个点连多少条边)。</p>
+<p>其次，由 $\text{Euler}$ 图的性质，可得到 $S$ 的若干条 $\text{Euler}$ 回路 (这里用若干的原因是 $G$ 不一定连通)。</p>
+<p>那么，考虑其中的每个圈 (注意与回路的区别)：</p>
+<ul>
+<li><p>如果它经过 $S$ ，那么将 $S$ 点去掉后，就得到一个可行的路径。</p>
+</li>
+<li><p>如果这个圈不经过点 $S$</p>
+<p>那么，如果这个圈可以和一个包含 $S$ 点的圈合并，得到一个大的回路，那么这个回路也满足条件，即，边不重复。于是，希望这些圈尽可能地进行合并</p>
+<p>所以，考虑最终得到的每个图的连通分量 ($\text{Euler}$ 图的强连通性保证这里的强连通分量和弱连通分量是同一个)，如果存在一个不包含 $S$ 的连通分量，则问题是无解的 —— 因为这个圈/回路不包含 $S$ ，从而不可能找到一条对应的路径经过 $S$ 和圈/回路中所有的边。</p>
+<p>而反之，如果所有连通分量都包含 $S$ (从而只有一个连通分量)，那么问题就是有解的了。</p>
+</li>
+</ul>
+<p>于是，我们使用并查集维护一下连通性就可以了。注意到，在满足性质的条件下，一个点和 $S$ 相连当且仅当它的入度和出度不相等。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">410</span>;</span><br><span class="line"><span class="keyword">int</span> n,H,V;</span><br><span class="line"><span class="keyword">int</span> fa[N],in[N],out[N];</span><br><span class="line"><span class="keyword">bool</span> dicyc[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">get_anc</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;<span class="keyword">return</span> fa[x]==x ? x : fa[x]=<span class="built_in">get_anc</span>(fa[x]);&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> Lu,Ld,Ru,Rd,L,R;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;H); V=H&lt;&lt;<span class="number">1</span>;</span><br><span class="line">    <span class="built_in">iota</span>(fa,fa+V,<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=n;++i)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d%d&quot;</span>,&amp;Lu,&amp;Ru,&amp;Ld,&amp;Rd);</span><br><span class="line">        ++out[ L=(Ld ? Ld+H : Lu)<span class="number">-1</span> ];</span><br><span class="line">        ++in[ R=(Rd ? Rd : Ru+H)<span class="number">-1</span> ];</span><br><span class="line">        fa[ <span class="built_in">get_anc</span>(L) ]=<span class="built_in">get_anc</span>(R);</span><br><span class="line">    &#125;</span><br><span class="line">    rei i;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;H &amp;&amp; in[i]&lt;=out[i] &amp;&amp; in[i+H]&gt;=out[i+H];++i);</span><br><span class="line">    <span class="keyword">if</span>(i!=H) <span class="keyword">return</span> <span class="built_in">puts</span>(<span class="string">&quot;NO&quot;</span>),<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;V;++i) dicyc[ <span class="built_in">get_anc</span>(i) ] |= in[i]!=out[i] || !in[i];</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;V &amp;&amp; (fa[i]!=i || dicyc[i]);++i);</span><br><span class="line">    <span class="built_in">puts</span>(i==V ? <span class="string">&quot;YES&quot;</span> : <span class="string">&quot;NO&quot;</span>);</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="F"><a href="#F" class="headerlink" title="F"></a>F</h2><blockquote>
+<p>你有一个由 $\frac{n(n+1)}{2}$ 个点组成的等边三角形。 在 $(i,j)$ 点左下的是 $(i+1,j)$ 点， 右下的是 $(i+1,j+1)$ 点. 现在在上面画 $m$ 条从 $(1,1)$ 开始，$(n,p)$ 结束的连续路径 $(p\in[1,n])$ ， 满足对于任意 $1\leq i\leq j\leq m$, 第 $j$ 条线的任意一个部分不在第 $i$ 条线的左边。<br><img src="https://atcoder.jp/img/agc017/8d354fb1a389a0aa5b64ba93f6ca7801.png" alt="https://atcoder.jp/img/agc017/8d354fb1a389a0aa5b64ba93f6ca7801.png"><br>另外，还有 $k$ 个限制 , 第 $i$ 个限制形如 $A_i,B_i,C_i$ ，表示第 $A_i$ 条路径， 在第 $B_i$ 次决策的时候， 如果 $C_i=0$ ​则必须走左下， 否则必须走右下。</p>
+<p>求出一共有多少种不同的画路径的方案满足以上的要求。</p>
+</blockquote>
+<p>有一个朴素状压 $\text{dp}$ ，用 $O(m\times 4^n)$ 直接枚举状态转移</p>
+<p>而直接枚举状态显然多余考虑了很多不合法状态</p>
+<p>有神仙思路如下：</p>
+<p>设 $0$ 为向左走，$1$ 为向右走，不考虑方向的限制，合法转移后的状态一定满足任何一个前缀 $1$ 的个数都大于之前状态前缀 $1$ 的个数</p>
+<p>那么设 $dp_{i,j,k}$ 表示第 $i$ 条路径的第 $j$ 条转移，转移状态的前 $j$ 位与 $k$ 相同，考虑向右的情况：直接把后面的第一个 $1$ 变为 $0$ ，然后提到前面，如此，中间段取 $1/0$ 都满足要求，不会向左越过原来的，总复杂度 $O(n\times m\times 2^n)$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">21</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod=<span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"><span class="keyword">int</span> n,m,k,all,last=<span class="number">1</span>,cur,ans;</span><br><span class="line"><span class="keyword">int</span> dir[N][N],dp[<span class="number">2</span>][<span class="number">1</span>&lt;&lt;N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">fix</span><span class="params">(<span class="keyword">int</span> &amp;x)</span></span>&#123; x&gt;=mod ? x-=mod : <span class="number">0</span>;&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">lowbit</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123; <span class="keyword">return</span> x&amp;(-x);&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>,&amp;n,&amp;m,&amp;k);--n;</span><br><span class="line">    all=(<span class="number">1</span>&lt;&lt;n)<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>,x,y,foo;i&lt;=k;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>,&amp;x,&amp;y,&amp;foo),dir[x][y<span class="number">-1</span>]=foo+<span class="number">1</span>;</span><br><span class="line">    dp[<span class="number">0</span>][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">1</span>;i&lt;=m;++i) <span class="keyword">for</span>(rei j=<span class="number">0</span>;j&lt;n;++j)&#123;</span><br><span class="line">        <span class="built_in">swap</span>(last,cur);</span><br><span class="line">        rei foo=<span class="number">1</span>&lt;&lt;j,bar=all^((foo&lt;&lt;<span class="number">1</span>)<span class="number">-1</span>);</span><br><span class="line">        <span class="keyword">for</span>(rei s=<span class="number">0</span>;s&lt;=all;++s) dp[cur][s]=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(rei s=<span class="number">0</span>;s&lt;=all;++s)&#123;</span><br><span class="line">            <span class="keyword">if</span>(dp[last][s])&#123;</span><br><span class="line">                <span class="keyword">if</span>(dir[i][j]!=<span class="number">2</span> &amp;&amp; (!(foo&amp;s))) <span class="built_in">fix</span>(dp[cur][s]+=dp[last][s]);<span class="comment">//左</span></span><br><span class="line">                <span class="keyword">if</span>(dir[i][j]!=<span class="number">1</span>)&#123;<span class="comment">//右</span></span><br><span class="line">                    rei x;</span><br><span class="line">                    <span class="keyword">if</span>(foo&amp;s) x=s;<span class="comment">//必须右</span></span><br><span class="line">                    <span class="keyword">else</span>&#123;</span><br><span class="line">                        <span class="keyword">if</span>(!(bar&amp;s)) x=s|foo;</span><br><span class="line">                        <span class="keyword">else</span> x=(s|foo)^<span class="built_in">lowbit</span>(bar&amp;s);</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="built_in">fix</span>(dp[cur][x]+=dp[last][s]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(rei i=<span class="number">0</span>;i&lt;=all;++i) <span class="built_in">fix</span>(ans+=dp[cur][i]);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,ans);</span><br><span class="line">    <span class="built_in">getchar</span>(),<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>noone___
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://noone40404.github.io/agc017/" title="42801202-AGC017">http://noone40404.github.io/agc017/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E6%9E%84%E9%80%A0/" rel="tag"><i class="fa fa-tag"></i> 构造</a>
+              <a href="/tags/%E6%80%9D%E7%BB%B4/" rel="tag"><i class="fa fa-tag"></i> 思维</a>
+              <a href="/tags/dp/" rel="tag"><i class="fa fa-tag"></i> dp</a>
+              <a href="/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" rel="tag"><i class="fa fa-tag"></i> 博弈论</a>
+              <a href="/tags/%E5%9B%BE%E8%AE%BA/" rel="tag"><i class="fa fa-tag"></i> 图论</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/agc016/" rel="prev" title="32801202-AGC016">
+      <i class="fa fa-chevron-left"></i> 32801202-AGC016
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/agc018/" rel="next" title="52801202-AGC018">
+      52801202-AGC018 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#D"><span class="nav-number">1.</span> <span class="nav-text">D</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#E"><span class="nav-number">2.</span> <span class="nav-text">E</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#F"><span class="nav-number">3.</span> <span class="nav-text">F</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="noone___"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">noone___</p>
+  <div class="site-description" itemprop="description">自闭中</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">242</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">92</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/noone40404" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;noone40404" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://ctp314.github.io/" title="https:&#x2F;&#x2F;ctp314.github.io&#x2F;" rel="noopener" target="_blank">CTime_Pup_314</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/guanlexiangfan/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;guanlexiangfan&#x2F;" rel="noopener" target="_blank">Evitagen</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.luogu.com.cn/blog/i-am-zhiyangfan/" title="https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;blog&#x2F;i-am-zhiyangfan&#x2F;" rel="noopener" target="_blank">zhiyangfan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/Vitheon/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;Vitheon&#x2F;" rel="noopener" target="_blank">Vareal</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://bmovo.top/" title="https:&#x2F;&#x2F;bmovo.top" rel="noopener" target="_blank">旦旦仔</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://treasure-house.randark.site/" title="https:&#x2F;&#x2F;treasure-house.randark.site&#x2F;" rel="noopener" target="_blank">巨魔</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://c12en.top/" title="http:&#x2F;&#x2F;c12en.top" rel="noopener" target="_blank">C12en</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://dexterjie.github.io/" title="https:&#x2F;&#x2F;dexterjie.github.io&#x2F;" rel="noopener" target="_blank">dexterJie</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://c1oudfl0w0.github.io/blog/" title="https:&#x2F;&#x2F;c1oudfl0w0.github.io&#x2F;blog&#x2F;" rel="noopener" target="_blank">c1oudfl0w0</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://coperlm.github.io/" title="https:&#x2F;&#x2F;coperlm.github.io&#x2F;" rel="noopener" target="_blank">coper</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://haicaji.github.io/" title="https:&#x2F;&#x2F;haicaji.github.io&#x2F;" rel="noopener" target="_blank">haicaji</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.iceyear.eu.org/" title="https:&#x2F;&#x2F;blog.iceyear.eu.org&#x2F;" rel="noopener" target="_blank">iceyear</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://0d000721999.github.io/" title="https:&#x2F;&#x2F;0d000721999.github.io&#x2F;" rel="noopener" target="_blank">美咕噜</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://fzsz.win/" title="https:&#x2F;&#x2F;fzsz.win&#x2F;" rel="noopener" target="_blank">快乐的一天</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://qmeimei10086.github.io/" title="https:&#x2F;&#x2F;qmeimei10086.github.io" rel="noopener" target="_blank">离殇</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">noone___</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+  <script data-pjax>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'ebdb5b537395179b4514',
+      clientSecret: 'd0843e5853efe963ca9983db6cac3a1f9d736856',
+      repo        : 'noone40404.github.io',
+      owner       : 'noone40404',
+      admin       : ['noone40404'],
+      id          : 'b8f5f983ad80e1eb25853dbc9bee67e5',
+        language: 'zn-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+    </div>
+</body>
+</html>
