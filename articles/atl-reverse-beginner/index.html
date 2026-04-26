@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+<meta name="google-site-verification" content="LZ0JOjQQZw7PhvjIbZqeOojf3J6807W7DPn6--OTptc" />
+<meta name="baidu-site-verification" content="code-DDmcbQ6zQN" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <meta name="google-site-verification" content="true">
+  <meta name="msvalidate.01" content="true">
+  <meta name="yandex-verification" content="true">
+  <meta name="baidu-site-verification" content="true">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"noone40404.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="偷学喵">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ATL框架逆向初学">
+<meta property="og:url" content="http://noone40404.github.io/articles/atl-reverse-beginner/index.html">
+<meta property="og:site_name" content="noone___&#39;s blog">
+<meta property="og:description" content="偷学喵">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6965d7a20e6bc0c5db960408.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6965da2f0e6bc0c5db960928.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6965e34e0e6bc0c5db963913.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6965e9a30e6bc0c5db963e1f.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6965e9c50e6bc0c5db963e23.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6965ee9e0e6bc0c5db966047.png">
+<meta property="article:published_time" content="2026-01-13T10:00:00.000Z">
+<meta property="article:modified_time" content="2026-04-26T05:02:10.899Z">
+<meta property="article:author" content="noone___">
+<meta property="article:tag" content="逆向">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/item/6965d7a20e6bc0c5db960408.png">
+
+<link rel="canonical" href="http://noone40404.github.io/articles/atl-reverse-beginner/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>ATL框架逆向初学 | noone___'s blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="noone___'s blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">noone___'s blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/noone40404" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://noone40404.github.io/articles/atl-reverse-beginner/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="noone___">
+      <meta itemprop="description" content="自闭中">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="noone___'s blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ATL框架逆向初学
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2026-01-13 18:00:00" itemprop="dateCreated datePublished" datetime="2026-01-13T18:00:00+08:00">2026-01-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-04-26 13:02:10" itemprop="dateModified" datetime="2026-04-26T13:02:10+08:00">2026-04-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%80%86%E5%90%91/" itemprop="url" rel="index"><span itemprop="name">逆向</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+            <div class="post-description">偷学喵</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <ul>
+<li><p>小实例与atl基本概念</p>
+  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;pch.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;framework.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;resource.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;ATLProject1_i.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;windows.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;atlbase.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;atlwin.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;tchar.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sal.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> ATL;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 自定义消息（仿你的 0x8007/0x8009/0x37F）</span></span><br><span class="line"><span class="keyword">constexpr</span> UINT WM_APP_8007 = <span class="number">0x8007</span>;</span><br><span class="line"><span class="keyword">constexpr</span> UINT WM_APP_8009 = <span class="number">0x8009</span>;</span><br><span class="line"><span class="keyword">constexpr</span> UINT WM_APP_037F = <span class="number">0x037F</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 按钮 ID</span></span><br><span class="line"><span class="class"><span class="keyword">enum</span> :</span> <span class="keyword">int</span> &#123;</span><br><span class="line">    IDC_BTN_SEND8007 = <span class="number">1001</span>,</span><br><span class="line">    IDC_BTN_ASK8009 = <span class="number">1002</span>,</span><br><span class="line">    IDC_BTN_SEND037F = <span class="number">1003</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 用来模拟你看到的 *(*(this+32)+32)=1（handled flag）</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">DispatchState</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    BYTE pad[<span class="number">32</span>];     <span class="comment">// 0..31</span></span><br><span class="line">    <span class="keyword">int</span>  handledFlag; <span class="comment">// offset 32</span></span><br><span class="line">    <span class="built_in">DispatchState</span>() : <span class="built_in">handledFlag</span>(<span class="number">0</span>) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CMainWindow</span> :</span> <span class="keyword">public</span> CWindowImpl&lt;CMainWindow&gt;</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 避免 DECLARE_WND_CLASSW 在某些工程配置下宏解析异常，使用最稳的 GetWndClassInfo</span></span><br><span class="line">    <span class="function"><span class="keyword">static</span> ATL::CWndClassInfo&amp; <span class="title">GetWndClassInfo</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">static</span> ATL::CWndClassInfo wc =</span><br><span class="line">        &#123;</span><br><span class="line">            &#123; <span class="built_in"><span class="keyword">sizeof</span></span>(WNDCLASSEXW),</span><br><span class="line">            CS_HREDRAW | CS_VREDRAW,</span><br><span class="line">            StartWindowProc,</span><br><span class="line">            <span class="number">0</span>, <span class="number">0</span>,</span><br><span class="line">            <span class="literal">nullptr</span>,</span><br><span class="line">            <span class="literal">nullptr</span>,</span><br><span class="line">            <span class="literal">nullptr</span>,</span><br><span class="line">            (HBRUSH)(COLOR_WINDOW + <span class="number">1</span>),</span><br><span class="line">            <span class="literal">nullptr</span>,</span><br><span class="line">            <span class="string">L&quot;ATLProject1_MainWindow&quot;</span>,</span><br><span class="line">            <span class="literal">nullptr</span> &#125;,</span><br><span class="line">            <span class="literal">nullptr</span>, <span class="literal">nullptr</span>, IDC_ARROW, TRUE, <span class="number">0</span>, _T(<span class="string">&quot;&quot;</span>)</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">return</span> wc;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">BEGIN_MSG_MAP</span>(CMainWindow)</span><br><span class="line">        <span class="built_in">MESSAGE_HANDLER</span>(WM_CREATE, OnAnyMessage)</span><br><span class="line">        <span class="built_in">MESSAGE_HANDLER</span>(WM_DESTROY, OnAnyMessage)</span><br><span class="line">        <span class="built_in">MESSAGE_HANDLER</span>(WM_CLOSE, OnAnyMessage)</span><br><span class="line"></span><br><span class="line">        <span class="built_in">MESSAGE_HANDLER</span>(WM_COMMAND, OnCommand)</span><br><span class="line"></span><br><span class="line">        <span class="built_in">MESSAGE_HANDLER</span>(WM_APP_8007, OnAnyMessage)</span><br><span class="line">        <span class="built_in">MESSAGE_HANDLER</span>(WM_APP_8009, OnAnyMessage)</span><br><span class="line">        <span class="built_in">MESSAGE_HANDLER</span>(WM_APP_037F, OnAnyMessage)</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 其他消息走默认处理</span></span><br><span class="line">    <span class="built_in">END_MSG_MAP</span>()</span><br><span class="line"></span><br><span class="line">    <span class="built_in">CMainWindow</span>()</span><br><span class="line">    &#123;</span><br><span class="line">        m_state = <span class="keyword">new</span> <span class="built_in">DispatchState</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    ~<span class="built_in">CMainWindow</span>()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">delete</span> m_state;</span><br><span class="line">        m_state = <span class="literal">nullptr</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    DispatchState* m_state = <span class="literal">nullptr</span>;</span><br><span class="line"></span><br><span class="line">    HWND m_forwardHwnd = <span class="literal">nullptr</span>; <span class="comment">// 对应你反编译里的 *(this+64)</span></span><br><span class="line">    <span class="keyword">int</span>  m_counter = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="comment">// 仿 sub_7217A0(this, lParam)</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">sub_7217A0_like</span><span class="params">(LPARAM <span class="comment">/*lParam*/</span>)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        m_forwardHwnd = ::<span class="built_in">CreateWindowExW</span>(</span><br><span class="line">            <span class="number">0</span>, <span class="string">L&quot;STATIC&quot;</span>, <span class="string">L&quot;(Forward target: STATIC)&quot;</span>,</span><br><span class="line">            WS_CHILD | WS_VISIBLE,</span><br><span class="line">            <span class="number">20</span>, <span class="number">20</span>, <span class="number">320</span>, <span class="number">24</span>,</span><br><span class="line">            m_hWnd, <span class="literal">nullptr</span>, ::<span class="built_in">GetModuleHandleW</span>(<span class="literal">nullptr</span>), <span class="literal">nullptr</span>);</span><br><span class="line"></span><br><span class="line">        ::<span class="built_in">CreateWindowExW</span>(<span class="number">0</span>, <span class="string">L&quot;BUTTON&quot;</span>, <span class="string">L&quot;Send 0x8007&quot;</span>,</span><br><span class="line">            WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON,</span><br><span class="line">            <span class="number">20</span>, <span class="number">60</span>, <span class="number">140</span>, <span class="number">32</span>,</span><br><span class="line">            m_hWnd, (HMENU)(INT_PTR)IDC_BTN_SEND8007, ::<span class="built_in">GetModuleHandleW</span>(<span class="literal">nullptr</span>), <span class="literal">nullptr</span>);</span><br><span class="line"></span><br><span class="line">        ::<span class="built_in">CreateWindowExW</span>(<span class="number">0</span>, <span class="string">L&quot;BUTTON&quot;</span>, <span class="string">L&quot;Ask 0x8009&quot;</span>,</span><br><span class="line">            WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON,</span><br><span class="line">            <span class="number">170</span>, <span class="number">60</span>, <span class="number">140</span>, <span class="number">32</span>,</span><br><span class="line">            m_hWnd, (HMENU)(INT_PTR)IDC_BTN_ASK8009, ::<span class="built_in">GetModuleHandleW</span>(<span class="literal">nullptr</span>), <span class="literal">nullptr</span>);</span><br><span class="line"></span><br><span class="line">        ::<span class="built_in">CreateWindowExW</span>(<span class="number">0</span>, <span class="string">L&quot;BUTTON&quot;</span>, <span class="string">L&quot;Send 0x037F&quot;</span>,</span><br><span class="line">            WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON,</span><br><span class="line">            <span class="number">320</span>, <span class="number">60</span>, <span class="number">140</span>, <span class="number">32</span>,</span><br><span class="line">            m_hWnd, (HMENU)(INT_PTR)IDC_BTN_SEND037F, ::<span class="built_in">GetModuleHandleW</span>(<span class="literal">nullptr</span>), <span class="literal">nullptr</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 仿 sub_721920(this)</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">sub_721920_like</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        m_forwardHwnd = <span class="literal">nullptr</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 仿 sub_721780()</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">sub_721780_like</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        ::<span class="built_in">MessageBoxW</span>(m_hWnd, <span class="string">L&quot;WM_CLOSE intercepted (sub_721780-like).&quot;</span>, <span class="string">L&quot;ATLProject1&quot;</span>, MB_OK);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 仿 sub_721980(this, lParam, wParam)</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">sub_721980_like</span><span class="params">(LPARAM lp, WPARAM wp)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">wchar_t</span> buf[<span class="number">128</span>]&#123;&#125;;</span><br><span class="line">        ::<span class="built_in">wsprintfW</span>(buf, <span class="string">L&quot;Handled 0x037F: wp=%llu  lp=%llu&quot;</span>,</span><br><span class="line">            (<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span>)wp, (<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span>)lp);</span><br><span class="line">        ::<span class="built_in">MessageBoxW</span>(m_hWnd, buf, <span class="string">L&quot;0x037F&quot;</span>, MB_OK);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">123</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ====== 核心：仿你那个 maybe3 的 switch（但用 ATL handler 包起来）======</span></span><br><span class="line">    <span class="function">BOOL <span class="title">maybe3_like</span><span class="params">(UINT Msg, WPARAM wParam, LPARAM lParam, LRESULT&amp; outResult, <span class="keyword">int</span> a7_like)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (a7_like) <span class="comment">// 对应 if(a7) return 0;</span></span><br><span class="line">            <span class="keyword">return</span> FALSE;</span><br><span class="line"></span><br><span class="line">        <span class="built_in"><span class="keyword">switch</span></span> (Msg)</span><br><span class="line">        &#123;</span><br><span class="line">        <span class="keyword">case</span> WM_CREATE: <span class="comment">// 1</span></span><br><span class="line">            m_state-&gt;handledFlag = <span class="number">1</span>;</span><br><span class="line">            outResult = <span class="built_in">sub_7217A0_like</span>(lParam);</span><br><span class="line">            <span class="keyword">return</span> TRUE;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">case</span> WM_DESTROY: <span class="comment">// 2</span></span><br><span class="line">            m_state-&gt;handledFlag = <span class="number">1</span>;</span><br><span class="line">            <span class="built_in">sub_721920_like</span>();</span><br><span class="line">            outResult = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">return</span> TRUE;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">case</span> WM_CLOSE: <span class="comment">// 0x10</span></span><br><span class="line">            m_state-&gt;handledFlag = <span class="number">1</span>;</span><br><span class="line">            <span class="built_in">sub_721780_like</span>();</span><br><span class="line">            outResult = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">return</span> TRUE;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">case</span> WM_APP_8007: <span class="comment">// 0x8007</span></span><br><span class="line">            m_state-&gt;handledFlag = <span class="number">1</span>;</span><br><span class="line">            outResult = (m_forwardHwnd)</span><br><span class="line">                ? ::<span class="built_in">SendMessageW</span>(m_forwardHwnd, WM_APP_8007, wParam, lParam)</span><br><span class="line">                : <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">return</span> TRUE;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">case</span> WM_APP_8009: <span class="comment">// 0x8009</span></span><br><span class="line">            m_state-&gt;handledFlag = <span class="number">1</span>;</span><br><span class="line">            outResult = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">return</span> TRUE;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">case</span> WM_APP_037F: <span class="comment">// 0x37F</span></span><br><span class="line">            m_state-&gt;handledFlag = <span class="number">1</span>;</span><br><span class="line">            outResult = <span class="built_in">sub_721980_like</span>(lParam, wParam);</span><br><span class="line">            <span class="keyword">return</span> TRUE;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> FALSE;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">LRESULT <span class="title">OnAnyMessage</span><span class="params">(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL&amp; bHandled)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        LRESULT lr = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 这里的 a7_like 我们固定传 0，等价于“允许处理”</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">maybe3_like</span>(uMsg, wParam, lParam, lr, <span class="number">0</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            bHandled = TRUE;</span><br><span class="line">            <span class="comment">// 对应你反编译的：if(flag) return 1;</span></span><br><span class="line">            <span class="keyword">return</span> lr;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        bHandled = FALSE;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">LRESULT <span class="title">OnCommand</span><span class="params">(UINT, WPARAM wParam, LPARAM, BOOL&amp; bHandled)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">HIWORD</span>(wParam) != BN_CLICKED)</span><br><span class="line">        &#123;</span><br><span class="line">            bHandled = FALSE;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in"><span class="keyword">switch</span></span> (<span class="built_in">LOWORD</span>(wParam))</span><br><span class="line">        &#123;</span><br><span class="line">        <span class="keyword">case</span> IDC_BTN_SEND8007:</span><br><span class="line">            ::<span class="built_in">SendMessageW</span>(m_hWnd, WM_APP_8007, <span class="number">0x11</span>, <span class="number">0x22</span>);</span><br><span class="line">            bHandled = TRUE;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">case</span> IDC_BTN_ASK8009:</span><br><span class="line">        &#123;</span><br><span class="line">            LRESULT r = ::<span class="built_in">SendMessageW</span>(m_hWnd, WM_APP_8009, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">            <span class="keyword">wchar_t</span> buf[<span class="number">64</span>]&#123;&#125;;</span><br><span class="line">            ::<span class="built_in">wsprintfW</span>(buf, <span class="string">L&quot;0x8009 returned: %lld&quot;</span>, (<span class="keyword">long</span> <span class="keyword">long</span>)r);</span><br><span class="line">            ::<span class="built_in">MessageBoxW</span>(m_hWnd, buf, <span class="string">L&quot;Ask 0x8009&quot;</span>, MB_OK);</span><br><span class="line">            bHandled = TRUE;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">case</span> IDC_BTN_SEND037F:</span><br><span class="line">            ::<span class="built_in">SendMessageW</span>(m_hWnd, WM_APP_037F, <span class="number">0xAA</span>, <span class="number">0xBB</span>);</span><br><span class="line">            bHandled = TRUE;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        bHandled = FALSE;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ====== ATL EXE Module（你的模板风格）======</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CATLProject1Module</span> :</span> <span class="keyword">public</span> ATL::CAtlExeModuleT&lt;CATLProject1Module&gt;</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">DECLARE_LIBID</span>(LIBID_ATLProject1Lib)</span><br><span class="line">    <span class="built_in">DECLARE_REGISTRY_APPID_RESOURCEID</span>(IDR_ATLPROJECT1, <span class="string">&quot;&#123;2f5aaa8a-ac5d-490a-aabe-66c834990abe&#125;&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">Run</span><span class="params">(<span class="keyword">int</span> nShowCmd)</span> <span class="title">throw</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        CMainWindow wnd;</span><br><span class="line"></span><br><span class="line">        HWND hWnd = wnd.<span class="built_in">Create</span>(<span class="literal">nullptr</span>, CWindow::rcDefault,</span><br><span class="line">            <span class="string">L&quot;ATLProject1 - maybe3-like (no ProcessWindowMessage override)&quot;</span>,</span><br><span class="line">            WS_OVERLAPPEDWINDOW);</span><br><span class="line">        <span class="keyword">if</span> (!hWnd)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        ::<span class="built_in">ShowWindow</span>(hWnd, nShowCmd);</span><br><span class="line">        ::<span class="built_in">UpdateWindow</span>(hWnd);</span><br><span class="line"></span><br><span class="line">        MSG msg&#123;&#125;;</span><br><span class="line">        <span class="keyword">while</span> (::<span class="built_in">GetMessageW</span>(&amp;msg, <span class="literal">nullptr</span>, <span class="number">0</span>, <span class="number">0</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            ::<span class="built_in">TranslateMessage</span>(&amp;msg);   <span class="comment">// ✅ 正确：没有 TranslateMessageW</span></span><br><span class="line">            ::<span class="built_in">DispatchMessageW</span>(&amp;msg);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">int</span>)msg.wParam;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">CATLProject1Module _AtlModule;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ✅ 用 SAL 注解，解决 /analyze 下 “wWinMain 批注不一致”</span></span><br><span class="line"><span class="comment">// （_tWinMain 在 UNICODE 下就是 wWinMain，但这里我们按模板签名加注解）</span></span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span> <span class="keyword">int</span> WINAPI _tWinMain(</span><br><span class="line">    _In_ HINSTANCE hInstance,</span><br><span class="line">    _In_opt_ HINSTANCE hPrevInstance,</span><br><span class="line">    _In_ LPTSTR lpCmdLine,</span><br><span class="line">    _In_ <span class="keyword">int</span> nShowCmd)</span><br><span class="line">&#123;</span><br><span class="line">    (<span class="keyword">void</span>)hInstance; (<span class="keyword">void</span>)hPrevInstance; (<span class="keyword">void</span>)lpCmdLine;</span><br><span class="line">    <span class="keyword">return</span> _AtlModule.<span class="built_in">WinMain</span>(nShowCmd);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>ATL框架</p>
+<p>  C++模板库用于简化COM组件和windows窗口开发</p>
+</li>
+<li><p>窗口类：CWindowImpl</p>
+  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CMainWindow</span> :</span> <span class="keyword">public</span> CWindowImpl&lt;CMainWindow&gt;</span><br></pre></td></tr></table></figure>
+<p>  <code>CWindowImpl&lt;T&gt;</code> 是ATL窗口类的基本模板，派生类 <code>CMainWindow</code> 将自己作为模板参数传入</p>
+<p>  这个主要是负责窗口创建和消息循环之类的底层细节，跟逆向关系不大</p>
+</li>
+<li><p>windows消息ID</p>
+<ul>
+<li><p>消息ID划分</p>
+<p>  系统保留信息（0x0000 - 0x03FF），用户自定义消息（0x0400 - 0x7FFF），应用程序注册消息（0x8000 - 0xBFFF）</p>
+<p>  在代码中就是：</p>
+  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">constexpr</span> UINT WM_APP_8007 = <span class="number">0x8007</span>;</span><br><span class="line"><span class="keyword">constexpr</span> UINT WM_APP_8009 = <span class="number">0x8009</span>;</span><br><span class="line"><span class="keyword">constexpr</span> UINT WM_APP_037F = <span class="number">0x037F</span>;</span><br></pre></td></tr></table></figure>
+<p>  定义了三个应用程序注册信息</p>
+</li>
+</ul>
+</li>
+<li><p>消息映射：BEGIN_MSG_MAP / END_MSG_MAP</p>
+  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">BEGIN_MSG_MAP</span>(CMainWindow)</span><br><span class="line">    <span class="built_in">MESSAGE_HANDLER</span>(WM_CREATE, OnAnyMessage)</span><br><span class="line">    <span class="built_in">MESSAGE_HANDLER</span>(WM_DESTROY, OnAnyMessage)</span><br><span class="line">    <span class="built_in">MESSAGE_HANDLER</span>(WM_CLOSE, OnAnyMessage)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">MESSAGE_HANDLER</span>(WM_COMMAND, OnCommand)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">MESSAGE_HANDLER</span>(WM_APP_8007, OnAnyMessage)</span><br><span class="line">    <span class="built_in">MESSAGE_HANDLER</span>(WM_APP_8009, OnAnyMessage)</span><br><span class="line">    <span class="built_in">MESSAGE_HANDLER</span>(WM_APP_037F, OnAnyMessage)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 其他消息走默认处理</span></span><br><span class="line"><span class="built_in">END_MSG_MAP</span>()</span><br></pre></td></tr></table></figure>
+<p>  这个是ATL最重要的一部分，可以看到其有四个win32标准消息，三个用户自定义的消息</p>
+<p>  <code>MESSAGE_HANDLER(消息ID，处理函数)</code> 函数代表其会把对应的消息路由至成员函数 <code>OnAnyMessage</code> 进行处理</p>
+<p>  ATL内部会生成并维护一份代码 <code>ProcessWindowMessage</code> 用于查找消息映射表</p>
+<p>  大概类似这样:</p>
+  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">BOOL <span class="title">ProcessWindowMessage</span><span class="params">(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, </span></span></span><br><span class="line"><span class="params"><span class="function">                  LRESULT&amp; lResult)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// uMsg = 0x8007</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 遍历消息映射表</span></span><br><span class="line">    <span class="keyword">if</span> (uMsg == WM_CREATE)   &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line">    <span class="keyword">if</span> (uMsg == WM_DESTROY)  &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line">    <span class="keyword">if</span> (uMsg == WM_CLOSE)    &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line">    <span class="keyword">if</span> (uMsg == WM_COMMAND)  &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// ✅ 匹配到这里！</span></span><br><span class="line">    <span class="keyword">if</span> (uMsg == WM_APP_8007)  </span><br><span class="line">    &#123;</span><br><span class="line">        BOOL bHandled = TRUE;</span><br><span class="line">        lResult = <span class="built_in">OnAnyMessage</span>(uMsg, wParam, lParam, bHandled);  <span class="comment">// 调用 OnAnyMessage</span></span><br><span class="line">        <span class="keyword">if</span> (bHandled)</span><br><span class="line">            <span class="keyword">return</span> TRUE;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// ... 其他消息</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  在用户点击自定义消息 <code>WM_APP_8007</code> 对应的按钮时：</p>
+  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> IDC_BTN_SEND8007:</span><br><span class="line">::<span class="built_in">SendMessageW</span>(m_hWnd, WM_APP_8007, <span class="number">0x11</span>, <span class="number">0x22</span>);  <span class="comment">// 发送消息</span></span><br><span class="line"><span class="comment">// 此时程序会 &quot;跳入&quot; 到消息处理流程</span></span><br></pre></td></tr></table></figure>
+<p>  其会进入 <code>ProcessWindowMessage</code> 进行消息映射查找，并根据里面的代码调用 <code>OnAnyMessage</code></p>
+<p>  <code>OnAnyMessage</code> 中：</p>
+  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">    <span class="function">LRESULT <span class="title">OnAnyMessage</span><span class="params">(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL&amp; bHandled)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    LRESULT lr = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 这里的 a7_like 我们固定传 0，等价于“允许处理”</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">maybe3_like</span>(uMsg, wParam, lParam, lr, <span class="number">0</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        bHandled = TRUE;</span><br><span class="line">        <span class="comment">// 对应你反编译的：if(flag) return 1;</span></span><br><span class="line">        <span class="keyword">return</span> lr;</span><br><span class="line">    &#125;</span><br><span class="line">    bHandled = FALSE;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  又会调用 <code>maybe3_like</code> 进行二次分发，在switch语句中走 <code>case WM_APP_8007</code> 的分支进行消息转发</p>
+</li>
+<li><p>逆向分析</p>
+<p>  需要用spy++</p>
+<p>  对于刚刚那个小程序的exe进行逆向分析，spy++的日志中全部过滤只留下WM_COMMAND</p>
+<p>  当按下第一个按钮时：</p>
+<p>  <img src="https://pic1.imgdb.cn/item/6965d7a20e6bc0c5db960408.png" alt=""></p>
+<p>  spy++的消息意思是发送了 <code>WM_COMMAND</code> 的消息，且包含了参数 <code>1001</code></p>
+<p>  <code>WM_COMMAND</code> 是win32框架内的，在 <code>WinUser.h</code> 中已经定义好了消息ID为 <code>0x111</code></p>
+<p>   也就是在ida逆向出的 <code>ProcessWindowMessage</code> 函数中，对应的这一段：</p>
+  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ( uMsg == <span class="number">0x111</span> )</span><br><span class="line">&#123;</span><br><span class="line">    bHandled[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">    *lResult = CMainWindow::<span class="built_in">OnCommand</span>(<span class="keyword">this</span>, <span class="number">0x111</span>u, wParam, lParam, bHandled);</span><br><span class="line">    <span class="keyword">if</span> ( bHandled[<span class="number">0</span>] )</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  这里的 <code>wParam</code> 就是刚刚捕捉到的参数 <code>1001</code></p>
+<p>  那么跳转到 <code>OnCommand</code> 函数实现中：</p>
+<p>  <img src="https://pic1.imgdb.cn/item/6965da2f0e6bc0c5db960928.png" alt=""></p>
+<p>  可以看到这里 <code>wParam==1001</code> 时，其调用了 <code>SendMessageW</code> 来发送0x8007</p>
+<p>  而按钮2、3所对应的参数值就是1002和1003，其经过同样的调用链，进入这里的不同分支中</p>
+</li>
+</ul>
+</li>
+<li><p>实操</p>
+<p>  目标是某v开头的软件</p>
+<p>  点击目标按钮后得到的是 WM_COMMAND wID:8002</p>
+<p>  由于没有符号表，不能直接搜索到 <code>ProcessWindowMessage</code> 函数</p>
+<p>  用alt-i搜索WM_COMMAND对应的消息ID <code>0x111</code></p>
+<p>  <img src="https://pic1.imgdb.cn/item/6965e34e0e6bc0c5db963913.png" alt=""></p>
+<p>  显示有很多种，但是不太会筛，大致挨个点过去一遍，发现这个的上半部分符合 <code>ProcessWindowMessage</code> 的特征，左边是目标程序，右边是刚刚的实例：</p>
+<p>  <img src="https://pic1.imgdb.cn/item/6965e9a30e6bc0c5db963e1f.png" alt=""></p>
+<p>  <img src="https://pic1.imgdb.cn/item/6965e9c50e6bc0c5db963e23.png" alt=""></p>
+<p>  两者的数据类型差不多，而且都是通过第三个参数 <code>n0x132/uMsg</code> 做选择判断</p>
+<p>  所以猜测这个函数上面就是 <code>ProcessWindowMessage</code></p>
+<p>  而下面则是对应的 <code>OnCommand</code></p>
+<p>  <img src="https://pic1.imgdb.cn/item/6965ee9e0e6bc0c5db966047.png" alt=""></p>
+<p>  所以8002对应的函数就是：</p>
+  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> <span class="number">0x8002</span>:</span><br><span class="line">    *(<span class="keyword">this</span>[<span class="number">6</span>] + <span class="number">32</span>) = <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">sub_608590</span>(<span class="keyword">this</span>, <span class="built_in">HIWORD</span>(wParam), <span class="number">32770</span>, lParam);</span><br><span class="line">    *a6 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">goto</span> LABEL_5;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>noone___
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://noone40404.github.io/articles/atl-reverse-beginner/" title="ATL框架逆向初学">http://noone40404.github.io/articles/atl-reverse-beginner/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E9%80%86%E5%90%91/" rel="tag"><i class="fa fa-tag"></i> 逆向</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/articles/noone-coilgun-project/" rel="prev" title="noone的线圈炮maybe">
+      <i class="fa fa-chevron-left"></i> noone的线圈炮maybe
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="noone___"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">noone___</p>
+  <div class="site-description" itemprop="description">自闭中</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">242</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">92</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/noone40404" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;noone40404" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://ctp314.github.io/" title="https:&#x2F;&#x2F;ctp314.github.io&#x2F;" rel="noopener" target="_blank">CTime_Pup_314</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/guanlexiangfan/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;guanlexiangfan&#x2F;" rel="noopener" target="_blank">Evitagen</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.luogu.com.cn/blog/i-am-zhiyangfan/" title="https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;blog&#x2F;i-am-zhiyangfan&#x2F;" rel="noopener" target="_blank">zhiyangfan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/Vitheon/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;Vitheon&#x2F;" rel="noopener" target="_blank">Vareal</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://bmovo.top/" title="https:&#x2F;&#x2F;bmovo.top" rel="noopener" target="_blank">旦旦仔</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://treasure-house.randark.site/" title="https:&#x2F;&#x2F;treasure-house.randark.site&#x2F;" rel="noopener" target="_blank">巨魔</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://c12en.top/" title="http:&#x2F;&#x2F;c12en.top" rel="noopener" target="_blank">C12en</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://dexterjie.github.io/" title="https:&#x2F;&#x2F;dexterjie.github.io&#x2F;" rel="noopener" target="_blank">dexterJie</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://c1oudfl0w0.github.io/blog/" title="https:&#x2F;&#x2F;c1oudfl0w0.github.io&#x2F;blog&#x2F;" rel="noopener" target="_blank">c1oudfl0w0</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://coperlm.github.io/" title="https:&#x2F;&#x2F;coperlm.github.io&#x2F;" rel="noopener" target="_blank">coper</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://haicaji.github.io/" title="https:&#x2F;&#x2F;haicaji.github.io&#x2F;" rel="noopener" target="_blank">haicaji</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.iceyear.eu.org/" title="https:&#x2F;&#x2F;blog.iceyear.eu.org&#x2F;" rel="noopener" target="_blank">iceyear</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://0d000721999.github.io/" title="https:&#x2F;&#x2F;0d000721999.github.io&#x2F;" rel="noopener" target="_blank">美咕噜</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://fzsz.win/" title="https:&#x2F;&#x2F;fzsz.win&#x2F;" rel="noopener" target="_blank">快乐的一天</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://qmeimei10086.github.io/" title="https:&#x2F;&#x2F;qmeimei10086.github.io" rel="noopener" target="_blank">离殇</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">noone___</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+  <script data-pjax>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'ebdb5b537395179b4514',
+      clientSecret: 'd0843e5853efe963ca9983db6cac3a1f9d736856',
+      repo        : 'noone40404.github.io',
+      owner       : 'noone40404',
+      admin       : ['noone40404'],
+      id          : '8904436d2d259ca0120e7f9d4fe6007e',
+        language: 'zn-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+    </div>
+</body>
+</html>
