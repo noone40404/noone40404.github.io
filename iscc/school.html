@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ISCC 2026 学校答题详情</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-0: #0d1117;
+      --bg-1: #0f141b;
+      --bg-2: #161b22;
+      --ink: #e6edf3;
+      --muted: #8b949e;
+      --accent: #58a6ff;
+      --accent-2: #3fb950;
+      --card: rgba(13, 17, 23, 0.72);
+      --stroke: rgba(255, 255, 255, 0.08);
+      --shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "IBM Plex Sans", sans-serif;
+      color: var(--ink);
+      background: var(--bg-0);
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 28px 36px 10px;
+    }
+
+    h1 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 26px;
+      letter-spacing: 0.4px;
+      margin: 0 0 6px;
+    }
+
+    .sub {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 16px 36px 6px;
+      align-items: center;
+    }
+
+    .chip {
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: 14px;
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: var(--shadow);
+    }
+
+    label {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select {
+      background: var(--bg-0);
+      color: var(--ink);
+      border: 1px solid #30363d;
+      border-radius: 10px;
+      padding: 8px 10px;
+      font-size: 13px;
+      font-family: "IBM Plex Sans", sans-serif;
+    }
+
+    input[type="text"] { width: 200px; }
+    input[type="number"] { width: 90px; }
+
+    input[type="text"]:focus,
+    input[type="number"]:focus,
+    select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.25);
+    }
+
+    .chip-btn {
+      background: #21262d;
+      color: var(--ink);
+      border: 1px solid #30363d;
+      border-radius: 10px;
+      padding: 8px 12px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .chip-btn:hover {
+      border-color: rgba(88, 166, 255, 0.6);
+      background: rgba(88, 166, 255, 0.12);
+    }
+
+    .link-btn {
+      color: var(--ink);
+      text-decoration: none;
+      border: 1px solid #30363d;
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: 12px;
+      background: #161b22;
+    }
+
+    .layout {
+      padding: 8px 36px 36px;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .card-title {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 14px;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .stat {
+      padding: 14px;
+      border-radius: 12px;
+      background: rgba(15, 20, 27, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .stat h3 {
+      margin: 0 0 6px;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .stat p {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .full { grid-column: span 12; }
+    .half { grid-column: span 6; }
+
+    .table-wrap {
+      width: 100%;
+      overflow: auto;
+      border-radius: 12px;
+      border: 1px solid #30363d;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    th, td {
+      border-bottom: 1px solid #30363d;
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--muted);
+      background: #161b22;
+      position: sticky;
+      top: 0;
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 8px;
+    }
+
+    .expand-btn {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--stroke);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .empty {
+      color: var(--muted);
+      padding: 16px 0;
+    }
+
+    @media (max-width: 1100px) {
+      .half, .full { grid-column: span 12; }
+      .stat-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 640px) {
+      header, .toolbar, .layout { padding-left: 16px; padding-right: 16px; }
+      .stat-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>学校答题详情</h1>
+    <div class="sub">查看学校在指定题目的答题时间与同校相近用户</div>
+  </header>
+
+  <div class="toolbar">
+    <div class="chip">
+      <label for="schoolSearch">学校</label>
+      <input id="schoolSearch" type="text" list="schoolOptions" placeholder="输入学校" />
+      <button class="chip-btn" id="goSchool">查询</button>
+    </div>
+    <div class="chip">
+      <label for="dataset">题库</label>
+      <select id="dataset">
+        <option value="challenge">练武题</option>
+        <option value="arena">擂台题</option>
+      </select>
+    </div>
+    <div class="chip">
+      <label for="challenge">题目</label>
+      <select id="challenge"></select>
+    </div>
+    <div class="chip">
+      <label for="threshold">相近阈值(分钟)</label>
+      <input id="threshold" type="number" min="1" value="5" />
+    </div>
+    <a class="link-btn" href="analysis_report.html">返回主页</a>
+  </div>
+
+  <div class="layout">
+    <div class="card full">
+      <div class="card-header">
+        <p class="card-title">学校信息</p>
+      </div>
+      <div class="stat-grid" id="schoolSummary"></div>
+    </div>
+
+    <div class="card full">
+      <div class="card-header">
+        <p class="card-title">答题时间表</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>用户</th>
+              <th>答题时间</th>
+              <th>排名</th>
+            </tr>
+          </thead>
+          <tbody id="schoolTable"></tbody>
+        </table>
+      </div>
+      <div class="note">排名为全体提交的时间顺序</div>
+    </div>
+
+    <div class="card half">
+      <div class="card-header">
+        <p class="card-title">同校最相近用户</p>
+        <button class="expand-btn" id="expandSummary">扩大</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>用户</th>
+              <th>相近次数</th>
+              <th>平均差(分钟)</th>
+            </tr>
+          </thead>
+          <tbody id="summaryTable"></tbody>
+        </table>
+      </div>
+      <div class="note">默认显示前 5 人，展开可查看全部</div>
+    </div>
+  </div>
+
+  <datalist id="schoolOptions"></datalist>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const schoolSearchInput = document.getElementById("schoolSearch");
+    const goSchoolButton = document.getElementById("goSchool");
+    const datasetSelect = document.getElementById("dataset");
+    const challengeSelect = document.getElementById("challenge");
+    const thresholdInput = document.getElementById("threshold");
+    const schoolOptions = document.getElementById("schoolOptions");
+    const schoolSummary = document.getElementById("schoolSummary");
+    const schoolTable = document.getElementById("schoolTable");
+    const summaryTable = document.getElementById("summaryTable");
+    const expandSummary = document.getElementById("expandSummary");
+    let summaryExpanded = false;
+
+    const state = {
+      users: [],
+      schools: [],
+      userSchoolMap: {},
+      raw: { arena: {}, challenge: {} },
+      meta: { arena: {}, challenge: {} },
+    };
+
+    function fetchJson(path) {
+      return fetch(path).then((res) => {
+        if (!res.ok) throw new Error(`Load failed: ${path}`);
+        return res.json();
+      });
+    }
+
+    function updateDatalist(datalist, options) {
+      datalist.innerHTML = "";
+      options.forEach((value) => {
+        const option = document.createElement("option");
+        option.value = value;
+        datalist.appendChild(option);
+      });
+    }
+
+    function getSchoolOptions(filterText) {
+      const query = (filterText || "").trim();
+      if (!query) return state.schools;
+      return state.schools.filter((name) => name.startsWith(query));
+    }
+
+    function resolveSchool(input) {
+      const value = (input || "").trim();
+      if (!value) return "";
+      const exact = state.schools.find((s) => s === value);
+      if (exact) return exact;
+      const lower = value.toLowerCase();
+      return state.schools.find((s) => s.toLowerCase().startsWith(lower)) || "";
+    }
+
+    function buildSolveIndex(raw) {
+      const index = {};
+      Object.keys(raw || {}).forEach((category) => {
+        Object.keys(raw[category] || {}).forEach((challengeId) => {
+          const key = `${category}:${challengeId}`;
+          index[key] = (raw[category][challengeId].solves || []).slice();
+        });
+      });
+      return index;
+    }
+
+    function buildChallengeMeta(raw) {
+      const meta = {};
+      Object.keys(raw || {}).forEach((category) => {
+        Object.keys(raw[category] || {}).forEach((challengeId) => {
+          const key = `${category}:${challengeId}`;
+          meta[key] = {
+            category,
+            challengeId,
+            name: raw[category][challengeId].name || challengeId,
+          };
+        });
+      });
+      return meta;
+    }
+
+    function formatTime(value) {
+      if (!value) return "-";
+      if (typeof value === "string") return value;
+      if (value instanceof Date && !Number.isNaN(value.getTime())) {
+        return value.toISOString().replace("T", " ").slice(0, 19);
+      }
+      return String(value);
+    }
+
+    function populateChallenges(dataset) {
+      const meta = state.meta[dataset] || {};
+      challengeSelect.innerHTML = "";
+      Object.keys(meta).forEach((key) => {
+        const option = document.createElement("option");
+        option.value = key;
+        const label = `${meta[key].category} / ${meta[key].name}`;
+        option.textContent = label;
+        challengeSelect.appendChild(option);
+      });
+      challengeSelect.value = challengeSelect.options[0]?.value || "";
+    }
+
+    function buildSchoolSimilarity(school, thresholdMinutes) {
+      if (!school) return [];
+      const thresholdMs = thresholdMinutes * 60 * 1000;
+      const userStats = new Map();
+      ["arena", "challenge"].forEach((dataset) => {
+        const solvesIndex = state.raw[dataset];
+        Object.values(solvesIndex).forEach((solves) => {
+          const entries = (solves || [])
+            .map((solve) => {
+              const user = solve.name;
+              if (state.userSchoolMap[user] !== school) return null;
+              const time = new Date(solve.date.replace(" ", "T"));
+              if (Number.isNaN(time.getTime())) return null;
+              return { user, time };
+            })
+            .filter(Boolean)
+            .sort((a, b) => a.time - b.time);
+
+          for (let i = 0; i < entries.length; i += 1) {
+            const current = entries[i];
+            let nearestDiff = null;
+            let nearestUser = "";
+
+            if (i > 0) {
+              const prevDiff = current.time - entries[i - 1].time;
+              if (prevDiff <= thresholdMs) {
+                nearestDiff = prevDiff;
+                nearestUser = entries[i - 1].user;
+              }
+            }
+            if (i < entries.length - 1) {
+              const nextDiff = entries[i + 1].time - current.time;
+              if (nextDiff <= thresholdMs && (nearestDiff == null || nextDiff < nearestDiff)) {
+                nearestDiff = nextDiff;
+                nearestUser = entries[i + 1].user;
+              }
+            }
+
+            if (nearestUser) {
+              if (!userStats.has(current.user)) {
+                userStats.set(current.user, { name: current.user, count: 0, totalDiff: 0 });
+              }
+              const item = userStats.get(current.user);
+              item.count += 1;
+              item.totalDiff += nearestDiff;
+            }
+          }
+        });
+      });
+
+      return Array.from(userStats.values())
+        .map((item) => ({
+          name: item.name,
+          count: item.count,
+          avgMinutes: (item.totalDiff / item.count / 60000).toFixed(1),
+        }))
+        .sort((a, b) => (b.count - a.count) || (parseFloat(a.avgMinutes) - parseFloat(b.avgMinutes)));
+    }
+
+    function renderSchool() {
+      const school = resolveSchool(schoolSearchInput.value);
+      if (!school) {
+        schoolSummary.innerHTML = "<div class=\"empty\">未选择学校</div>";
+        schoolTable.innerHTML = "";
+        summaryTable.innerHTML = "";
+        return;
+      }
+
+      const dataset = datasetSelect.value;
+      const challengeKey = challengeSelect.value;
+      const thresholdMinutes = parseInt(thresholdInput.value, 10) || 5;
+
+      const solves = (state.raw[dataset][challengeKey] || [])
+        .map((solve) => ({
+          name: solve.name,
+          time: new Date(solve.date.replace(" ", "T")),
+          timeText: solve.date,
+        }))
+        .filter((solve) => !Number.isNaN(solve.time.getTime()))
+        .sort((a, b) => a.time - b.time)
+        .map((solve, index) => ({
+          ...solve,
+          rank: index + 1,
+        }));
+
+      const filtered = solves.filter((solve) => state.userSchoolMap[solve.name] === school);
+
+      const stats = [
+        { label: "学校", value: school },
+        { label: "成员数", value: state.schools.length ? state.users.filter((u) => state.userSchoolMap[u] === school).length : 0 },
+        { label: "题目", value: challengeSelect.options[challengeSelect.selectedIndex]?.textContent || "-" },
+        { label: "阈值(分钟)", value: thresholdMinutes },
+      ];
+      schoolSummary.innerHTML = "";
+      stats.forEach((stat) => {
+        const div = document.createElement("div");
+        div.className = "stat";
+        div.innerHTML = `<h3>${stat.label}</h3><p>${stat.value}</p>`;
+        schoolSummary.appendChild(div);
+      });
+
+      if (filtered.length === 0) {
+        schoolTable.innerHTML = "<tr><td colspan=\"3\" class=\"empty\">该题暂无该校答题记录</td></tr>";
+      } else {
+        schoolTable.innerHTML = filtered.map((row) => `
+          <tr>
+            <td>${row.name}</td>
+            <td>${formatTime(row.timeText)}</td>
+            <td>${row.rank}</td>
+          </tr>
+        `).join("");
+      }
+
+      const summaryRows = buildSchoolSimilarity(school, thresholdMinutes);
+      const displayRows = summaryExpanded ? summaryRows : summaryRows.slice(0, 5);
+      if (displayRows.length === 0) {
+        summaryTable.innerHTML = "<tr><td colspan=\"3\" class=\"empty\">暂无相近用户</td></tr>";
+      } else {
+        summaryTable.innerHTML = displayRows.map((row) => `
+          <tr>
+            <td>${row.name}</td>
+            <td>${row.count}</td>
+            <td>${row.avgMinutes}</td>
+          </tr>
+        `).join("");
+      }
+    }
+
+    Promise.all([
+      fetchJson("docs/data/arena.json").catch(() => ({})),
+      fetchJson("docs/data/challenge.json").catch(() => ({})),
+      fetchJson("iscc2026_users.json").catch(() => ([])),
+    ])
+      .then(([rawArena, rawChallenge, users]) => {
+        state.raw.arena = buildSolveIndex(rawArena);
+        state.raw.challenge = buildSolveIndex(rawChallenge);
+        state.meta.arena = buildChallengeMeta(rawArena);
+        state.meta.challenge = buildChallengeMeta(rawChallenge);
+        state.userSchoolMap = (users || []).reduce((acc, row) => {
+          acc[row.username] = row.school;
+          return acc;
+        }, {});
+        state.users = (users || []).map((row) => row.username).filter(Boolean);
+        state.schools = Array.from(new Set((users || []).map((row) => row.school).filter(Boolean)));
+        updateDatalist(schoolOptions, state.schools);
+
+        const querySchool = params.get("school") || "";
+        const resolved = resolveSchool(querySchool) || state.schools[0] || "";
+        schoolSearchInput.value = resolved;
+        populateChallenges(datasetSelect.value);
+        renderSchool();
+      })
+      .catch((err) => {
+        document.body.innerHTML = `<pre style=\"color:#fff;padding:24px\">${err.message}</pre>`;
+      });
+
+    schoolSearchInput.addEventListener("input", (event) => {
+      updateDatalist(schoolOptions, getSchoolOptions(event.target.value));
+    });
+
+    goSchoolButton.addEventListener("click", () => {
+      const resolved = resolveSchool(schoolSearchInput.value);
+      if (!resolved) {
+        alert("未找到对应学校，请从提示中选择");
+        return;
+      }
+      params.set("school", resolved);
+      history.replaceState({}, "", `${location.pathname}?${params.toString()}`);
+      renderSchool();
+    });
+
+    datasetSelect.addEventListener("change", () => {
+      populateChallenges(datasetSelect.value);
+      renderSchool();
+    });
+
+    challengeSelect.addEventListener("change", renderSchool);
+
+    thresholdInput.addEventListener("input", renderSchool);
+
+    expandSummary.addEventListener("click", () => {
+      summaryExpanded = !summaryExpanded;
+      expandSummary.textContent = summaryExpanded ? "收起" : "扩大";
+      renderSchool();
+    });
+  </script>
+</body>
+</html>
