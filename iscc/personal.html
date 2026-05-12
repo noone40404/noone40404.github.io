@@ -212,6 +212,23 @@
       margin-top: 8px;
     }
 
+    .small-user {
+      color: #ffb703;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .small-badge {
+      border: 1px solid rgba(255, 183, 3, 0.6);
+      color: #ffb703;
+      font-size: 11px;
+      padding: 2px 6px;
+      border-radius: 999px;
+      text-transform: none;
+    }
+
     .expand-btn {
       background: transparent;
       color: var(--ink);
@@ -321,6 +338,7 @@
     const expandSummary = document.getElementById("expandSummary");
     const summaryUserLabel = document.getElementById("summaryUserLabel");
     let summaryExpanded = false;
+    const SMALL_ACCOUNT_MAX_SOLVES = 5;
 
     const state = {
       users: [],
@@ -328,6 +346,7 @@
       userSchoolMap: {},
       raw: { arena: {}, challenge: {} },
       meta: { arena: {}, challenge: {} },
+      userSolveCounts: {},
     };
 
     function fetchJson(path) {
@@ -385,6 +404,17 @@
         });
       });
       return meta;
+    }
+
+    function buildUserSolveCounts(index) {
+      const counts = {};
+      Object.values(index || {}).forEach((solves) => {
+        (solves || []).forEach((solve) => {
+          if (!solve.name) return;
+          counts[solve.name] = (counts[solve.name] || 0) + 1;
+        });
+      });
+      return counts;
     }
 
     function formatTime(value) {
@@ -491,9 +521,14 @@
 
       const thresholdMinutes = parseInt(thresholdInput.value, 10) || 5;
       const { rows, summaryRows, school } = buildUserStats(username, thresholdMinutes);
+      const solveCount = state.userSolveCounts[username] || 0;
+      const isSmall = solveCount <= SMALL_ACCOUNT_MAX_SOLVES;
+      const displayName = isSmall
+        ? `<span class="small-user">${username}<span class="small-badge">小号</span></span>`
+        : username;
 
       const stats = [
-        { label: "用户名", value: username },
+        { label: "用户名", value: displayName },
         { label: "学校", value: school || "-" },
         { label: "答题数", value: rows.length },
         { label: "阈值(分钟)", value: thresholdMinutes },
@@ -539,15 +574,19 @@
     }
 
     Promise.all([
-      fetchJson("docs/data/arena.json").catch(() => ({})),
-      fetchJson("docs/data/challenge.json").catch(() => ({})),
-      fetchJson("iscc2026_users.json").catch(() => ([])),
+      fetchJson("data/arena.json").catch(() => ({})),
+      fetchJson("data/challenge.json").catch(() => ({})),
+      fetchJson("data/iscc2026_users.json").catch(() => ([])),
     ])
       .then(([rawArena, rawChallenge, users]) => {
         state.raw.arena = buildSolveIndex(rawArena);
         state.raw.challenge = buildSolveIndex(rawChallenge);
         state.meta.arena = buildChallengeMeta(rawArena);
         state.meta.challenge = buildChallengeMeta(rawChallenge);
+        state.userSolveCounts = buildUserSolveCounts(state.raw.arena);
+        Object.entries(buildUserSolveCounts(state.raw.challenge)).forEach(([name, count]) => {
+          state.userSolveCounts[name] = (state.userSolveCounts[name] || 0) + count;
+        });
         state.userSchoolMap = (users || []).reduce((acc, row) => {
           acc[row.username] = row.school;
           return acc;

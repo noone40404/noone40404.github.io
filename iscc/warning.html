@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PY 指数预警</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-0: #0d1117;
+      --bg-1: #0f141b;
+      --bg-2: #161b22;
+      --ink: #e6edf3;
+      --muted: #8b949e;
+      --accent: #58a6ff;
+      --card: rgba(13, 17, 23, 0.72);
+      --stroke: rgba(255, 255, 255, 0.08);
+      --shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+      --warn: #ffb703;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "IBM Plex Sans", sans-serif;
+      color: var(--ink);
+      background: var(--bg-0);
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 28px 36px 10px;
+    }
+
+    h1 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 26px;
+      letter-spacing: 0.4px;
+      margin: 0 0 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sub {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 16px 36px 6px;
+      align-items: center;
+    }
+
+    .chip-btn {
+      background: #21262d;
+      color: var(--ink);
+      border: 1px solid #30363d;
+      border-radius: 10px;
+      padding: 8px 12px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .chip-btn:hover {
+      border-color: rgba(88, 166, 255, 0.6);
+      background: rgba(88, 166, 255, 0.12);
+    }
+
+    .link-btn {
+      color: var(--ink);
+      text-decoration: none;
+      border: 1px solid #30363d;
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: 12px;
+      background: #161b22;
+    }
+
+    .layout {
+      padding: 8px 36px 36px;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: visible;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .card-title {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 14px;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .table-wrap {
+      width: 100%;
+      overflow: auto;
+      border-radius: 12px;
+      border: 1px solid #30363d;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    th, td {
+      border-bottom: 1px solid #30363d;
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--muted);
+      background: #161b22;
+      position: sticky;
+      top: 0;
+    }
+
+    .score {
+      color: var(--warn);
+      font-weight: 600;
+    }
+
+    .algo-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 2px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(88, 166, 255, 0.35);
+      color: var(--accent);
+      font-size: 12px;
+      background: rgba(88, 166, 255, 0.08);
+      cursor: pointer;
+      box-shadow: 0 0 0 1px rgba(88, 166, 255, 0.08), 0 6px 14px rgba(0, 0, 0, 0.35);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .algo-link:hover {
+      border-color: rgba(88, 166, 255, 0.6);
+      background: rgba(88, 166, 255, 0.16);
+    }
+
+    .school-link {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px dotted rgba(88, 166, 255, 0.35);
+    }
+
+    .school-link:hover {
+      color: #8cc2ff;
+      border-bottom-color: rgba(140, 194, 255, 0.7);
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 8px;
+    }
+
+    .full { grid-column: span 12; }
+
+    @media (max-width: 640px) {
+      header, .toolbar, .layout { padding-left: 16px; padding-right: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>
+      PY 指数预警
+      <a class="algo-link" href="py_index_method.html" title="查看算法详情">算法</a>
+    </h1>
+    <div class="sub">展示 Final_Score 最高的学校（默认前 20 所）</div>
+  </header>
+
+  <div class="toolbar">
+    <button class="chip-btn" id="expandBtn">展开</button>
+    <a class="link-btn" href="analysis_report.html">返回主页</a>
+  </div>
+
+  <div class="layout">
+    <div class="card full">
+      <div class="card-header">
+        <p class="card-title">Top 学校列表</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>排名</th>
+              <th>学校</th>
+              <th>Final_Score</th>
+              <th>有效人数</th>
+              <th>相近次数</th>
+              <th>平均差(分钟)</th>
+            </tr>
+          </thead>
+          <tbody id="warningTable"></tbody>
+        </table>
+      </div>
+      <div class="note">Final_Score 基于 5 分钟阈值并剔除小号计算</div>
+    </div>
+  </div>
+
+  <script>
+    const warningTable = document.getElementById("warningTable");
+    const expandBtn = document.getElementById("expandBtn");
+    let expanded = false;
+    let allRows = [];
+
+    function fetchJson(path) {
+      return fetch(path).then((res) => {
+        if (!res.ok) throw new Error(`Load failed: ${path}`);
+        return res.json();
+      });
+    }
+
+    function formatScore(value) {
+      if (value === null || value === undefined || Number.isNaN(value)) return "-";
+      return Number(value).toFixed(2);
+    }
+
+    function formatMinutes(value) {
+      if (value === null || value === undefined || Number.isNaN(value)) return "-";
+      return Number(value).toFixed(1);
+    }
+
+
+    function renderTable() {
+      const rows = expanded ? allRows : allRows.slice(0, 20);
+      if (!rows.length) {
+        warningTable.innerHTML = "<tr><td colspan=\"6\" class=\"note\">暂无数据</td></tr>";
+        return;
+      }
+      warningTable.innerHTML = rows.map((row, index) => {
+        const target = `school.html?school=${encodeURIComponent(row.school)}`;
+        return `
+          <tr>
+            <td>${index + 1}</td>
+            <td><a href="${target}" class="school-link">${row.school}</a></td>
+            <td class="score">${formatScore(row.final_score)}</td>
+            <td>${row.n_effective ?? 0}</td>
+            <td>${row.c_total ?? 0}</td>
+            <td>${formatMinutes(row.t_avg_minutes)}</td>
+          </tr>
+        `;
+      }).join("");
+    }
+
+    fetchJson("data/school.json")
+      .then((data) => {
+        const schools = data.schools || [];
+        allRows = schools
+          .filter((row) => row.final_score !== null && row.final_score !== undefined)
+          .sort((a, b) => b.final_score - a.final_score);
+        renderTable();
+      })
+      .catch((err) => {
+        document.body.innerHTML = `<pre style="color:#fff;padding:24px">${err.message}</pre>`;
+      });
+
+    expandBtn.addEventListener("click", () => {
+      expanded = !expanded;
+      expandBtn.textContent = expanded ? "收起" : "展开";
+      renderTable();
+    });
+  </script>
+</body>
+</html>

@@ -134,7 +134,7 @@
       padding: 16px;
       box-shadow: var(--shadow);
       position: relative;
-      overflow: hidden;
+      overflow: visible;
     }
 
     .card-header {
@@ -154,7 +154,7 @@
 
     .stat-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
       gap: 12px;
     }
 
@@ -176,6 +176,7 @@
       margin: 0;
       font-size: 18px;
       font-weight: 600;
+      word-break: break-word;
     }
 
     .full { grid-column: span 12; }
@@ -212,6 +213,43 @@
       color: var(--muted);
       font-size: 12px;
       margin-top: 8px;
+    }
+
+    .algo-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 2px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(88, 166, 255, 0.35);
+      color: var(--accent);
+      font-size: 12px;
+      background: rgba(88, 166, 255, 0.08);
+      margin-left: 8px;
+      cursor: pointer;
+      box-shadow: 0 0 0 1px rgba(88, 166, 255, 0.08), 0 6px 14px rgba(0, 0, 0, 0.35);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .algo-link:hover {
+      border-color: rgba(88, 166, 255, 0.6);
+      background: rgba(88, 166, 255, 0.16);
+    }
+
+    .rank-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(63, 185, 80, 0.35);
+      color: var(--accent-2);
+      font-size: 12px;
+      background: rgba(63, 185, 80, 0.08);
+      margin-left: 8px;
+      white-space: nowrap;
     }
 
     .expand-btn {
@@ -340,6 +378,10 @@
       userSchoolMap: {},
       raw: { arena: {}, challenge: {} },
       meta: { arena: {}, challenge: {} },
+      schoolIndex: new Map(),
+      schoolMeta: null,
+      schoolRankMap: new Map(),
+      schoolRankTotal: 0,
     };
 
     function fetchJson(path) {
@@ -406,6 +448,11 @@
         return value.toISOString().replace("T", " ").slice(0, 19);
       }
       return String(value);
+    }
+
+    function formatScore(value) {
+      if (value === null || value === undefined || Number.isNaN(value)) return "-";
+      return Number(value).toFixed(2);
     }
 
     function populateChallenges(dataset) {
@@ -511,6 +558,13 @@
       const stats = [
         { label: "学校", value: school },
         { label: "成员数", value: state.schools.length ? state.users.filter((u) => state.userSchoolMap[u] === school).length : 0 },
+        { label: "PY指数", value: (() => {
+          const info = state.schoolIndex.get(school);
+          const score = formatScore(info?.final_score);
+          const rank = state.schoolRankMap.get(school);
+          const rankText = rank ? `第 ${rank} / ${state.schoolRankTotal}` : "-";
+          return `${score}<span class=\"rank-pill\">${rankText}</span><a class=\"algo-link\" href=\"py_index_method.html\" title=\"查看算法详情\">算法</a>`;
+        })() },
         { label: "题目", value: challengeSelect.options[challengeSelect.selectedIndex]?.textContent || "-" },
         { label: "阈值(分钟)", value: thresholdMinutes },
       ];
@@ -550,15 +604,27 @@
     }
 
     Promise.all([
-      fetchJson("docs/data/arena.json").catch(() => ({})),
-      fetchJson("docs/data/challenge.json").catch(() => ({})),
-      fetchJson("iscc2026_users.json").catch(() => ([])),
+      fetchJson("data/arena.json").catch(() => ({})),
+      fetchJson("data/challenge.json").catch(() => ({})),
+      fetchJson("data/iscc2026_users.json").catch(() => ([])),
+      fetchJson("data/school.json").catch(() => ({})),
     ])
-      .then(([rawArena, rawChallenge, users]) => {
+      .then(([rawArena, rawChallenge, users, schoolIndex]) => {
         state.raw.arena = buildSolveIndex(rawArena);
         state.raw.challenge = buildSolveIndex(rawChallenge);
         state.meta.arena = buildChallengeMeta(rawArena);
         state.meta.challenge = buildChallengeMeta(rawChallenge);
+        state.schoolMeta = schoolIndex.meta || null;
+        (schoolIndex.schools || []).forEach((row) => {
+          if (row.school) state.schoolIndex.set(row.school, row);
+        });
+        const ranked = (schoolIndex.schools || [])
+          .filter((row) => row.final_score !== null && row.final_score !== undefined)
+          .sort((a, b) => b.final_score - a.final_score);
+        state.schoolRankTotal = ranked.length;
+        ranked.forEach((row, index) => {
+          if (row.school) state.schoolRankMap.set(row.school, index + 1);
+        });
         state.userSchoolMap = (users || []).reduce((acc, row) => {
           acc[row.username] = row.school;
           return acc;
