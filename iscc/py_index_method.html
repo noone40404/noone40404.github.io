@@ -1,0 +1,254 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PY 指数算法说明</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <style>
+    :root {
+      --bg-0: #0d1117;
+      --bg-1: #0f141b;
+      --bg-2: #161b22;
+      --ink: #e6edf3;
+      --muted: #8b949e;
+      --accent: #58a6ff;
+      --card: rgba(13, 17, 23, 0.72);
+      --stroke: rgba(255, 255, 255, 0.08);
+      --shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "IBM Plex Sans", sans-serif;
+      color: var(--ink);
+      background: var(--bg-0);
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 28px 36px 10px;
+    }
+
+    h1 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 28px;
+      letter-spacing: 0.4px;
+      margin: 0 0 6px;
+    }
+
+    .sub {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 16px 36px 6px;
+      align-items: center;
+    }
+
+    .link-btn {
+      color: var(--ink);
+      text-decoration: none;
+      border: 1px solid #30363d;
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: 12px;
+      background: #161b22;
+    }
+
+    .layout {
+      padding: 8px 36px 36px;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .full { grid-column: span 12; }
+
+    .section-title {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 14px;
+      color: var(--muted);
+      margin: 0 0 8px;
+    }
+
+    .block {
+      margin-bottom: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .block strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .latex-block {
+      background: rgba(15, 20, 27, 0.9);
+      border: 1px solid rgba(88, 166, 255, 0.18);
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin: 6px 0 12px;
+    }
+
+    .list {
+      margin: 0 0 6px;
+      padding-left: 18px;
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    .annotation {
+      font-size: 13px;
+      color: var(--muted);
+      border-left: 2px solid var(--accent);
+      padding-left: 12px;
+      margin: 8px 0 16px 18px;
+      line-height: 1.5;
+    }
+
+    .annotation b {
+      color: var(--accent);
+    }
+
+    .note {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.12);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 640px) {
+      header, .toolbar, .layout { padding-left: 16px; padding-right: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>PY 指数算法说明</h1>
+    <div class="sub">这个算法什么都说明不了，只是看个乐呵</div>
+  </header>
+
+  <div class="toolbar">
+    <a class="link-btn" href="analysis_report.html">返回主页</a>
+  </div>
+
+  <div class="layout">
+    <div class="card full">
+      <p class="section-title">变量定义</p>
+      <div class="block"><strong><span class="latex-inline" data-tex="w_j"></span></strong>：第 j 笔提交的权重（由解题顺位决定）</div>
+      <div class="block"><strong><span class="latex-inline" data-tex="T_j"></span></strong>：第 j 笔相近提交的时间差（分钟）</div>
+      <div class="block"><strong><span class="latex-inline" data-tex="N_i"></span></strong>：学校有效总人数（去除小号）</div>
+      <div class="block"><strong><span class="latex-inline" data-tex="Intensity_i"></span></strong>：加权行为总强度</div>
+      <div class="block"><strong><span class="latex-inline" data-tex="K_{benefit}"></span></strong>：受益人次修正系数</div>
+    </div>
+
+    <div class="card full">
+      <p class="section-title">计算流程</p>
+      
+      <ol class="list">
+        <li>对每一笔相近提交计算单次强度：</li>
+      </ol>
+      <div class="latex-block" data-tex="sf_j = \frac{w_j^5}{T_j + \epsilon}"></div>
+      <div class="annotation">
+        <b>[注]</b> 对权重 w_j 开5次方运算，非线性放大最早交的人的收益。这样子在高分奖励区间的py行为对系数贡献度远高于分值衰减严重的末尾区间。除以相邻时间差T_i是在尽力消去非校内py影响并放大校内py的影响。又由于w^5远大于w，在多人相邻提交且排名十分靠前时，生成的权重将会远大于正常py的学校。
+      </div>
+
+      <ol class="list" start="2">
+        <li>加权行为总强度：</li>
+      </ol>
+      <div class="latex-block" data-tex="Intensity_i = \sum sf_j"></div>
+      <div class="annotation">
+        <b>[注]</b> 累加而不求平均，是要抓最早的那几个相近的提交，求平均值会被同校大量在末尾分数衰减时的提交稀释掉。
+      </div>
+
+      <ol class="list" start="3">
+        <li>全场单位强度基准（截断均值）：</li>
+      </ol>
+      <div class="latex-block" data-tex="\tau = \text{TrimmedMean}(Intensity_i / N_i)"></div>
+      <div class="annotation">
+        <b>[注]</b> 即截断掉了前后各10%的数据求均值
+      </div>
+
+      <ol class="list" start="4">
+        <li>基于规模的离群程度：</li>
+      </ol>
+      <div class="latex-block" data-tex="Z_i = \frac{Intensity_i - (\tau \cdot N_i)}{\sqrt{\tau \cdot N_i} + C}"></div>
+      <div class="annotation">
+        <b>[注]</b> 波动幅度和期望值平方根成正比，尽可能消除人数带来的波动影响，+C作为稳健常数保护小样本。这里算出来如果是负数则认为无意义，没想好怎么做修正
+      </div>
+
+      <ol class="list" start="5">
+        <li>组织化惩罚与受益人修正系数：</li>
+      </ol>
+      <div class="latex-block" data-tex="K_{benefit} = \frac{Users_{py}}{N_i} \times \lg(N_i + 1)"></div>
+      <div class="annotation">
+        <b>[注]</b> 组织化程度惩罚。渗透率\frac{Users_{py}}{N_i}反映了py在校内的波及面（虽然大部分都在0.9以上）。乘上总人数的系数是为了衡量受益人多少，取对数时为了修正平衡数据大小
+      </div>
+
+      <ol class="list" start="6">
+        <li>最终指数：</li>
+      </ol>
+      <div class="latex-block" data-tex="Final\_Score = Z_i \times (1 + K_{benefit})"></div>
+      <div class="annotation">
+        <b>[注]</b> 最终分数由行为异常度与组织影响面共同决定。即寻找 <b>收益最高、组织化最严密</b> 的校内 PY。所以排名较高的要不然是1分钟内统一集中提交(T_i极小)，要不然是在某些题目中多人同时霸榜(w_j^5更大)，要不然就是一大群人时间相邻较近且较早的提交(在sf_i处于平均值上游的情况下，有着更大的lg(N_i+1))。
+      </div>
+    </div>
+
+    <div class="card full">
+      <p class="section-title">补充说明</p>
+      <div class="block"><strong>小号：</strong> 定义为总交题量不超过5道题的账号，比如某道出了两天仅有1解的pwn的一血选手 </div>
+      <div class="block"><strong>疑似 PY 总人数 (Users_{py}) ：</strong> 在整场比赛中，至少参与过 5 次及以上相近提交（T<=5分钟）的独立去重用户数。</div>
+      <div class="block"><strong>权重映射逻辑：</strong> 基于动态分数衰减规则，将解题排名转化为收益系数w。py发生在越高分的排名区间，其对应的w^5惩罚因子越剧烈。</div>
+      <div class="block">
+        <strong>映射明细 (练武题)：</strong> 1-50: 1.0 · 51-100: 0.9 · 101-150: 0.9 · 151-300: 0.8 · 301-600: 0.7 · 601-1200: 0.6 · 1201-2000: 0.5 · 2001+: 0.4
+      </div>
+      <div class="block">
+        <strong>映射明细 (擂台题)：</strong> 1-50: 1.0 · 51-100: 0.9 · 101+: 0.8  
+      </div>
+      <div class="block">
+        好像是这样衰减的（）
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function renderLatex() {
+      if (!window.katex) return;
+      document.querySelectorAll(".latex-inline").forEach((el) => {
+        const tex = el.getAttribute("data-tex");
+        if (!tex) return;
+        window.katex.render(tex, el, { throwOnError: false });
+      });
+      document.querySelectorAll(".latex-block").forEach((el) => {
+        const tex = el.getAttribute("data-tex");
+        if (!tex) return;
+        window.katex.render(tex, el, { throwOnError: false, displayMode: true });
+      });
+    }
+
+    window.addEventListener("load", renderLatex);
+  </script>
+</body>
+</html>

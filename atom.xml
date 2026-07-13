@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>noone___&#39;s blog</title>
+  
+  
+  <link href="http://noone40404.github.io/atom.xml" rel="self"/>
+  
+  <link href="http://noone40404.github.io/"/>
+  <updated>2026-04-26T05:02:10.899Z</updated>
+  <id>http://noone40404.github.io/</id>
+  
+  <author>
+    <name>noone___</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ATL框架逆向初学</title>
+    <link href="http://noone40404.github.io/articles/atl-reverse-beginner/"/>
+    <id>http://noone40404.github.io/articles/atl-reverse-beginner/</id>
+    <published>2026-01-13T10:00:00.000Z</published>
+    <updated>2026-04-26T05:02:10.899Z</updated>
+    
+    
+    <summary type="html">偷学喵</summary>
+    
+    
+    
+    <category term="逆向" scheme="http://noone40404.github.io/categories/%E9%80%86%E5%90%91/"/>
+    
+    
+    <category term="逆向" scheme="http://noone40404.github.io/tags/%E9%80%86%E5%90%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>noone的线圈炮maybe</title>
+    <link href="http://noone40404.github.io/articles/noone-coilgun-project/"/>
+    <id>http://noone40404.github.io/articles/noone-coilgun-project/</id>
+    <published>2025-12-30T10:00:00.000Z</published>
+    <updated>2026-04-26T05:02:10.957Z</updated>
+    
+    
+    <summary type="html">回头搞，这里丢一点找资料遇到的参考文献</summary>
+    
+    
+    
+    <category term="兴趣所在" scheme="http://noone40404.github.io/categories/%E5%85%B4%E8%B6%A3%E6%89%80%E5%9C%A8/"/>
+    
+    
+    <category term="loT" scheme="http://noone40404.github.io/tags/loT/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>noone的复杂EMP制作记录</title>
+    <link href="http://noone40404.github.io/articles/noone-emp-advanced-construction/"/>
+    <id>http://noone40404.github.io/articles/noone-emp-advanced-construction/</id>
+    <published>2025-12-19T10:00:00.000Z</published>
+    <updated>2026-04-26T05:02:10.943Z</updated>
+    
+    
+    <summary type="html">整个大的，应该不会被电死</summary>
+    
+    
+    
+    <category term="兴趣所在" scheme="http://noone40404.github.io/categories/%E5%85%B4%E8%B6%A3%E6%89%80%E5%9C%A8/"/>
+    
+    
+    <category term="loT" scheme="http://noone40404.github.io/tags/loT/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>noone的复现EMP制作</title>
+    <link href="http://noone40404.github.io/articles/noone-emp-reproduction/"/>
+    <id>http://noone40404.github.io/articles/noone-emp-reproduction/</id>
+    <published>2025-12-18T10:00:00.000Z</published>
+    <updated>2026-04-26T05:02:10.944Z</updated>
+    
+    
+    <summary type="html">蓄力中</summary>
+    
+    
+    
+    <category term="兴趣所在" scheme="http://noone40404.github.io/categories/%E5%85%B4%E8%B6%A3%E6%89%80%E5%9C%A8/"/>
+    
+    
+    <category term="loT" scheme="http://noone40404.github.io/tags/loT/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>锁匠的梦境其十三-梦见所有门都通向同一个地方</title>
+    <link href="http://noone40404.github.io/articles/locksmiths-dream-13-all-doors-lead-home/"/>
+    <id>http://noone40404.github.io/articles/locksmiths-dream-13-all-doors-lead-home/</id>
+    <published>2025-10-29T01:10:00.000Z</published>
+    <updated>2026-07-07T12:58:41.080Z</updated>
+    
+    
+    <summary type="html">但在之后，海索坚称‘兼是’他，科赛利则偏爱单纯的‘兼非’。</summary>
+    
+    
+    
+    <category term="锁匠的梦境" scheme="http://noone40404.github.io/categories/%E9%94%81%E5%8C%A0%E7%9A%84%E6%A2%A6%E5%A2%83/"/>
+    
+    
+    <category term="逆向" scheme="http://noone40404.github.io/tags/%E9%80%86%E5%90%91/"/>
+    
+    <category term="loT" scheme="http://noone40404.github.io/tags/loT/"/>
+    
+    <category term="RFID" scheme="http://noone40404.github.io/tags/RFID/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>锁匠的梦境其十二-梦见灵感</title>
+    <link href="http://noone40404.github.io/articles/locksmiths-dream-12-inspiration/"/>
+    <id>http://noone40404.github.io/articles/locksmiths-dream-12-inspiration/</id>
+    <published>2025-10-20T01:10:00.000Z</published>
+    <updated>2026-07-07T12:57:32.134Z</updated>
+    
+    
+    <summary type="html">那些人说，雅努斯不只有一张，而是有两张脸孔。对此我要回问：为何只有一张脸？为何只有两张脸？</summary>
+    
+    
+    
+    <category term="锁匠的梦境" scheme="http://noone40404.github.io/categories/%E9%94%81%E5%8C%A0%E7%9A%84%E6%A2%A6%E5%A2%83/"/>
+    
+    
+    <category term="逆向" scheme="http://noone40404.github.io/tags/%E9%80%86%E5%90%91/"/>
+    
+    <category term="loT" scheme="http://noone40404.github.io/tags/loT/"/>
+    
+    <category term="RFID" scheme="http://noone40404.github.io/tags/RFID/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>锁匠的梦境其十一-梦见错误的钥匙与正确的开启</title>
+    <link href="http://noone40404.github.io/articles/locksmiths-dream-11-wrong-key-correct-unlock/"/>
+    <id>http://noone40404.github.io/articles/locksmiths-dream-11-wrong-key-correct-unlock/</id>
+    <published>2025-09-15T13:00:00.000Z</published>
+    <updated>2026-07-07T12:56:39.361Z</updated>
+    
+    
+    <summary type="html">他不可能兼为上述诸神吧？这可能吗？古罗马祭司们了解教堂，了解干涸之地，了解埃拉伽巴路斯。所以他是杂糅而成的吗？</summary>
+    
+    
+    
+    <category term="锁匠的梦境" scheme="http://noone40404.github.io/categories/%E9%94%81%E5%8C%A0%E7%9A%84%E6%A2%A6%E5%A2%83/"/>
+    
+    
+    <category term="逆向" scheme="http://noone40404.github.io/tags/%E9%80%86%E5%90%91/"/>
+    
+    <category term="loT" scheme="http://noone40404.github.io/tags/loT/"/>
+    
+    <category term="RFID" scheme="http://noone40404.github.io/tags/RFID/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>noone的无线电设备-proxmark3 RDV4</title>
+    <link href="http://noone40404.github.io/articles/noone-radio-device-proxmark3-rdv4/"/>
+    <id>http://noone40404.github.io/articles/noone-radio-device-proxmark3-rdv4/</id>
+    <published>2025-09-14T10:00:00.000Z</published>
+    <updated>2026-04-26T05:02:10.952Z</updated>
+    
+    
+    <summary type="html">好玩喵</summary>
+    
+    
+    
+    <category term="无线电" scheme="http://noone40404.github.io/categories/%E6%97%A0%E7%BA%BF%E7%94%B5/"/>
+    
+    
+    <category term="loT" scheme="http://noone40404.github.io/tags/loT/"/>
+    
+    <category term="无线电" scheme="http://noone40404.github.io/tags/%E6%97%A0%E7%BA%BF%E7%94%B5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>锁匠的梦境其十-梦见风替我开门</title>
+    <link href="http://noone40404.github.io/articles/locksmiths-dream-10-wind-opening-door/"/>
+    <id>http://noone40404.github.io/articles/locksmiths-dream-10-wind-opening-door/</id>
+    <published>2025-09-11T13:00:00.000Z</published>
+    <updated>2026-07-07T12:55:39.276Z</updated>
+    
+    
+    <summary type="html">雅努斯是守门者、双面之神、制造伤口之神、昭示改变之神，是太阳，是月亮。</summary>
+    
+    
+    
+    <category term="锁匠的梦境" scheme="http://noone40404.github.io/categories/%E9%94%81%E5%8C%A0%E7%9A%84%E6%A2%A6%E5%A2%83/"/>
+    
+    
+    <category term="逆向" scheme="http://noone40404.github.io/tags/%E9%80%86%E5%90%91/"/>
+    
+    <category term="loT" scheme="http://noone40404.github.io/tags/loT/"/>
+    
+    <category term="RFID" scheme="http://noone40404.github.io/tags/RFID/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>锁匠的梦境其九-梦见一瞬间</title>
+    <link href="http://noone40404.github.io/articles/locksmiths-dream-9-moment/"/>
+    <id>http://noone40404.github.io/articles/locksmiths-dream-9-moment/</id>
+    <published>2025-09-05T13:00:00.000Z</published>
+    <updated>2026-07-07T12:55:07.343Z</updated>
+    
+    
+    <summary type="html">我觉得纯白之门或许就是创口。这即是亡者有时从此门通过的一个原因。</summary>
+    
+    
+    
+    <category term="锁匠的梦境" scheme="http://noone40404.github.io/categories/%E9%94%81%E5%8C%A0%E7%9A%84%E6%A2%A6%E5%A2%83/"/>
+    
+    
+    <category term="逆向" scheme="http://noone40404.github.io/tags/%E9%80%86%E5%90%91/"/>
+    
+    <category term="loT" scheme="http://noone40404.github.io/tags/loT/"/>
+    
+    <category term="RFID" scheme="http://noone40404.github.io/tags/RFID/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>锁匠的梦境其八-梦见被遗忘的秘辛</title>
+    <link href="http://noone40404.github.io/articles/locksmiths-dream-8-forgotten-secret/"/>
+    <id>http://noone40404.github.io/articles/locksmiths-dream-8-forgotten-secret/</id>
+    <published>2025-09-03T13:00:00.000Z</published>
+    <updated>2026-07-07T12:54:38.567Z</updated>
+    
+    
+    <summary type="html">身着沙色长袍的女人告诉我：漫宿的阶梯一直朝上延伸。死亡则朝下。</summary>
+    
+    
+    
+    <category term="锁匠的梦境" scheme="http://noone40404.github.io/categories/%E9%94%81%E5%8C%A0%E7%9A%84%E6%A2%A6%E5%A2%83/"/>
+    
+    
+    <category term="逆向" scheme="http://noone40404.github.io/tags/%E9%80%86%E5%90%91/"/>
+    
+    <category term="loT" scheme="http://noone40404.github.io/tags/loT/"/>
+    
+    <category term="RFID" scheme="http://noone40404.github.io/tags/RFID/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>锁匠的梦境其七-梦见门后的另一扇门</title>
+    <link href="http://noone40404.github.io/articles/locksmiths-dream-7-door-beyond-door/"/>
+    <id>http://noone40404.github.io/articles/locksmiths-dream-7-door-beyond-door/</id>
+    <published>2025-09-03T01:00:00.000Z</published>
+    <updated>2026-07-07T12:52:29.683Z</updated>
+    
+    
+    <summary type="html">众所周知，noone的文字从此卷开始语不成章</summary>
+    
+    
+    
+    <category term="锁匠的梦境" scheme="http://noone40404.github.io/categories/%E9%94%81%E5%8C%A0%E7%9A%84%E6%A2%A6%E5%A2%83/"/>
+    
+    
+    <category term="逆向" scheme="http://noone40404.github.io/tags/%E9%80%86%E5%90%91/"/>
+    
+    <category term="loT" scheme="http://noone40404.github.io/tags/loT/"/>
+    
+    <category term="RFID" scheme="http://noone40404.github.io/tags/RFID/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>锁匠的梦境其六-梦见走廊尽头</title>
+    <link href="http://noone40404.github.io/articles/locksmiths-dream-6-hallway-end/"/>
+    <id>http://noone40404.github.io/articles/locksmiths-dream-6-hallway-end/</id>
+    <published>2025-09-02T13:00:00.000Z</published>
+    <updated>2026-07-07T12:51:38.447Z</updated>
+    
+    
+    <summary type="html">最杰出的工匠最后都梦到了纯白之门。我只是一名学者，而非工匠。</summary>
+    
+    
+    
+    <category term="锁匠的梦境" scheme="http://noone40404.github.io/categories/%E9%94%81%E5%8C%A0%E7%9A%84%E6%A2%A6%E5%A2%83/"/>
+    
+    
+    <category term="逆向" scheme="http://noone40404.github.io/tags/%E9%80%86%E5%90%91/"/>
+    
+    <category term="loT" scheme="http://noone40404.github.io/tags/loT/"/>
+    
+    <category term="RFID" scheme="http://noone40404.github.io/tags/RFID/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>noone的蓝牙中继攻击（中道崩殂版</title>
+    <link href="http://noone40404.github.io/articles/noone-bluetooth-relay-attack-failed/"/>
+    <id>http://noone40404.github.io/articles/noone-bluetooth-relay-attack-failed/</id>
+    <published>2025-07-22T13:00:00.000Z</published>
+    <updated>2026-04-26T05:02:10.958Z</updated>
+    
+    
+    <summary type="html">呃，被搁置了</summary>
+    
+    
+    
+    
+    <category term="BLE" scheme="http://noone40404.github.io/tags/BLE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>noone的爬虫-精通汽修</title>
+    <link href="http://noone40404.github.io/articles/noone-python-crawler-carrepair/"/>
+    <id>http://noone40404.github.io/articles/noone-python-crawler-carrepair/</id>
+    <published>2025-07-21T10:00:00.000Z</published>
+    <updated>2026-04-26T05:02:10.941Z</updated>
+    
+    
+    <summary type="html">好麻烦的路径</summary>
+    
+    
+    
+    <category term="爬虫" scheme="http://noone40404.github.io/categories/%E7%88%AC%E8%99%AB/"/>
+    
+    
+    <category term="爬虫" scheme="http://noone40404.github.io/tags/%E7%88%AC%E8%99%AB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>夜游漫记-卷一-梦在这里醒来</title>
+    <link href="http://noone40404.github.io/articles/travelling-at-night-1-wake-up/"/>
+    <id>http://noone40404.github.io/articles/travelling-at-night-1-wake-up/</id>
+    <published>2025-07-18T13:00:00.000Z</published>
+    <updated>2026-07-07T13:10:50.525Z</updated>
+    
+    
+    <summary type="html">有些门并没有锁。。。</summary>
+    
+    
+    
+    <category term="夜游漫记" scheme="http://noone40404.github.io/categories/%E5%A4%9C%E6%B8%B8%E6%BC%AB%E8%AE%B0/"/>
+    
+    
+    <category term="兴趣所在" scheme="http://noone40404.github.io/tags/%E5%85%B4%E8%B6%A3%E6%89%80%E5%9C%A8/"/>
+    
+    <category term="夜游漫记" scheme="http://noone40404.github.io/tags/%E5%A4%9C%E6%B8%B8%E6%BC%AB%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>锁匠的梦境其N+1-梦见钥匙忘记了自己</title>
+    <link href="http://noone40404.github.io/articles/locksmiths-dream-n-plus-1-forgotten-key/"/>
+    <id>http://noone40404.github.io/articles/locksmiths-dream-n-plus-1-forgotten-key/</id>
+    <published>2025-07-16T14:00:00.000Z</published>
+    <updated>2026-07-07T12:59:00.582Z</updated>
+    
+    
+    <summary type="html">当压力足够，世界的表皮就会撕裂。</summary>
+    
+    
+    
+    <category term="锁匠的梦境" scheme="http://noone40404.github.io/categories/%E9%94%81%E5%8C%A0%E7%9A%84%E6%A2%A6%E5%A2%83/"/>
+    
+    
+    <category term="逆向" scheme="http://noone40404.github.io/tags/%E9%80%86%E5%90%91/"/>
+    
+    <category term="loT" scheme="http://noone40404.github.io/tags/loT/"/>
+    
+    <category term="BLE" scheme="http://noone40404.github.io/tags/BLE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>锁匠的梦境其N-梦见握手</title>
+    <link href="http://noone40404.github.io/articles/locksmiths-dream-n-handshake/"/>
+    <id>http://noone40404.github.io/articles/locksmiths-dream-n-handshake/</id>
+    <published>2025-07-16T13:00:00.000Z</published>
+    <updated>2026-07-07T12:59:23.648Z</updated>
+    
+    
+    <summary type="html">当压力足够，世界的表皮就会撕裂。</summary>
+    
+    
+    
+    <category term="锁匠的梦境" scheme="http://noone40404.github.io/categories/%E9%94%81%E5%8C%A0%E7%9A%84%E6%A2%A6%E5%A2%83/"/>
+    
+    
+    <category term="逆向" scheme="http://noone40404.github.io/tags/%E9%80%86%E5%90%91/"/>
+    
+    <category term="loT" scheme="http://noone40404.github.io/tags/loT/"/>
+    
+    <category term="BLE" scheme="http://noone40404.github.io/tags/BLE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>noone的简易EMP制作</title>
+    <link href="http://noone40404.github.io/articles/noone-emp-simple-construction/"/>
+    <id>http://noone40404.github.io/articles/noone-emp-simple-construction/</id>
+    <published>2025-07-16T10:00:00.000Z</published>
+    <updated>2026-04-26T05:02:10.956Z</updated>
+    
+    
+    <summary type="html">一切的开始</summary>
+    
+    
+    
+    <category term="兴趣所在" scheme="http://noone40404.github.io/categories/%E5%85%B4%E8%B6%A3%E6%89%80%E5%9C%A8/"/>
+    
+    
+    <category term="loT" scheme="http://noone40404.github.io/tags/loT/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>noone的车联网-CAN总线环境模拟与重放攻击</title>
+    <link href="http://noone40404.github.io/articles/noone-iov-can-bus-replay-attack/"/>
+    <id>http://noone40404.github.io/articles/noone-iov-can-bus-replay-attack/</id>
+    <published>2025-07-14T10:00:00.000Z</published>
+    <updated>2026-04-26T05:02:10.963Z</updated>
+    
+    
+    <summary type="html">打完hw回来上班了</summary>
+    
+    
+    
+    <category term="车联网" scheme="http://noone40404.github.io/categories/%E8%BD%A6%E8%81%94%E7%BD%91/"/>
+    
+    
+    <category term="loT" scheme="http://noone40404.github.io/tags/loT/"/>
+    
+    <category term="车联网" scheme="http://noone40404.github.io/tags/%E8%BD%A6%E8%81%94%E7%BD%91/"/>
+    
+  </entry>
+  
+</feed>
