@@ -6,7 +6,7 @@
   <link href="http://noone40404.github.io/atom.xml" rel="self"/>
   
   <link href="http://noone40404.github.io/"/>
-  <updated>2026-04-26T05:02:10.899Z</updated>
+  <updated>2026-07-13T13:41:17.273Z</updated>
   <id>http://noone40404.github.io/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>锁匠的梦境其十四-梦见一切门扉的终结之日，aka离职小作文</title>
+    <link href="http://noone40404.github.io/articles/locksmiths-dream-14-all-lock-has-its-end/"/>
+    <id>http://noone40404.github.io/articles/locksmiths-dream-14-all-lock-has-its-end/</id>
+    <published>2026-05-01T01:10:00.000Z</published>
+    <updated>2026-07-13T13:41:17.273Z</updated>
+    
+    
+    <summary type="html">再也没有锁，再也没有门，门户皆敞开，墙壁亦不再。所有的堡垒对我不再封锁。所有的国度我都出入无碍。我乃钥匙，洞开一切门扉。</summary>
+    
+    
+    
+    <category term="锁匠的梦境" scheme="http://noone40404.github.io/categories/%E9%94%81%E5%8C%A0%E7%9A%84%E6%A2%A6%E5%A2%83/"/>
+    
+    
+    <category term="小作文" scheme="http://noone40404.github.io/tags/%E5%B0%8F%E4%BD%9C%E6%96%87/"/>
+    
+  </entry>
   
   <entry>
     <title>ATL框架逆向初学</title>
@@ -338,7 +357,7 @@
     <link href="http://noone40404.github.io/articles/travelling-at-night-1-wake-up/"/>
     <id>http://noone40404.github.io/articles/travelling-at-night-1-wake-up/</id>
     <published>2025-07-18T13:00:00.000Z</published>
-    <updated>2026-07-07T13:10:50.525Z</updated>
+    <updated>2026-07-13T13:33:11.359Z</updated>
     
     
     <summary type="html">有些门并没有锁。。。</summary>
@@ -416,27 +435,6 @@
     
     
     <category term="loT" scheme="http://noone40404.github.io/tags/loT/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>noone的车联网-CAN总线环境模拟与重放攻击</title>
-    <link href="http://noone40404.github.io/articles/noone-iov-can-bus-replay-attack/"/>
-    <id>http://noone40404.github.io/articles/noone-iov-can-bus-replay-attack/</id>
-    <published>2025-07-14T10:00:00.000Z</published>
-    <updated>2026-04-26T05:02:10.963Z</updated>
-    
-    
-    <summary type="html">打完hw回来上班了</summary>
-    
-    
-    
-    <category term="车联网" scheme="http://noone40404.github.io/categories/%E8%BD%A6%E8%81%94%E7%BD%91/"/>
-    
-    
-    <category term="loT" scheme="http://noone40404.github.io/tags/loT/"/>
-    
-    <category term="车联网" scheme="http://noone40404.github.io/tags/%E8%BD%A6%E8%81%94%E7%BD%91/"/>
     
   </entry>
   
