@@ -1,0 +1,801 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#09070d">
+  <title>锁匠的梦境 · 视觉样稿</title>
+  <style>
+    :root {
+      --void: #09070d;
+      --ink: #100b15;
+      --ink-soft: rgba(16, 11, 21, 0.88);
+      --violet-deep: #3c2850;
+      --violet: #74519a;
+      --revelation: #ab8ec9;
+      --silver: #bbb2c0;
+      --paper: #ded8e1;
+      --muted: #928997;
+      --old-gold: #a58b5c;
+      --line: rgba(171, 142, 201, 0.28);
+      --header-height: 68px;
+      color-scheme: dark;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--paper);
+      font-family: Georgia, "Noto Serif SC", "Songti SC", serif;
+      line-height: 1.9;
+      background: var(--void) url("./mansus-inner-1920x1080-1.png") center / cover fixed no-repeat;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    body::before {
+      background: rgba(7, 3, 13, 0.7);
+    }
+
+    body::after {
+      background:
+        radial-gradient(circle at 55% 36%, rgba(91, 58, 118, 0.12), transparent 42%),
+        linear-gradient(90deg, rgba(3, 2, 5, 0.42), transparent 28%, transparent 72%, rgba(3, 2, 5, 0.48));
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .dream-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      height: var(--header-height);
+      border-bottom: 1px solid rgba(171, 142, 201, 0.22);
+      background: rgba(8, 5, 12, 0.9);
+      backdrop-filter: blur(14px);
+    }
+
+    .dream-header::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -1px;
+      width: min(46vw, 620px);
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--revelation), transparent);
+      transform: translateX(-50%) scaleX(0);
+      transform-origin: center;
+      animation: reveal-line 1.8s 0.3s ease forwards;
+    }
+
+    .header-inner {
+      width: min(1440px, calc(100% - 40px));
+      height: 100%;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(230px, 1fr) auto minmax(230px, 1fr);
+      align-items: center;
+      gap: 24px;
+    }
+
+    .series-mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      width: fit-content;
+      color: var(--paper);
+      letter-spacing: 0;
+    }
+
+    .broken-key {
+      position: relative;
+      width: 28px;
+      height: 28px;
+      flex: 0 0 28px;
+      border: 1px solid var(--revelation);
+      transform: rotate(45deg);
+      box-shadow: inset 0 0 10px rgba(171, 142, 201, 0.24);
+    }
+
+    .broken-key::before {
+      content: "";
+      position: absolute;
+      width: 7px;
+      height: 7px;
+      top: 9px;
+      left: 9px;
+      border: 1px solid var(--old-gold);
+      border-radius: 50% 50% 20% 20%;
+    }
+
+    .broken-key::after {
+      content: "";
+      position: absolute;
+      width: 1px;
+      height: 9px;
+      left: 13px;
+      top: 16px;
+      background: var(--old-gold);
+      box-shadow: 3px 5px 0 -0.2px var(--old-gold);
+    }
+
+    .series-name {
+      display: block;
+      font-size: 15px;
+      line-height: 1.25;
+    }
+
+    .series-subtitle {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .dream-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 34px;
+      color: var(--silver);
+      font-size: 13px;
+    }
+
+    .dream-nav a {
+      position: relative;
+      padding: 8px 0;
+    }
+
+    .dream-nav a::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: 4px;
+      left: 0;
+      height: 1px;
+      background: var(--revelation);
+      transform: scaleX(0);
+      transition: transform 180ms ease;
+    }
+
+    .dream-nav a:hover,
+    .dream-nav a:focus-visible {
+      color: var(--revelation);
+    }
+
+    .dream-nav a:hover::after,
+    .dream-nav a:focus-visible::after {
+      transform: scaleX(1);
+    }
+
+    .chapter-indicator {
+      justify-self: end;
+      color: var(--old-gold);
+      font-size: 12px;
+      letter-spacing: 0.16em;
+    }
+
+    .sidebar-toggle {
+      display: none;
+      justify-self: end;
+      width: 42px;
+      height: 42px;
+      padding: 10px;
+      border: 0;
+      color: var(--revelation);
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .sidebar-toggle span,
+    .sidebar-toggle::before,
+    .sidebar-toggle::after {
+      content: "";
+      display: block;
+      width: 20px;
+      height: 1px;
+      margin: 5px 0;
+      background: currentColor;
+    }
+
+    .dream-layout {
+      width: min(1320px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 74px 0 90px;
+      display: grid;
+      grid-template-columns: 250px minmax(0, 800px);
+      justify-content: center;
+      gap: clamp(48px, 7vw, 108px);
+      align-items: start;
+    }
+
+    .dream-sidebar {
+      position: sticky;
+      top: calc(var(--header-height) + 32px);
+      max-height: calc(100vh - var(--header-height) - 64px);
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--violet-deep) transparent;
+      padding: 6px 18px 28px 0;
+      border-right: 1px solid var(--line);
+    }
+
+    .archive-label {
+      color: var(--old-gold);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .sidebar-title {
+      margin: 8px 0 24px;
+      color: var(--paper);
+      font-size: 19px;
+      font-weight: normal;
+    }
+
+    .chapter-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .chapter-list li {
+      position: relative;
+      margin: 0;
+      border-left: 1px solid rgba(171, 142, 201, 0.17);
+    }
+
+    .chapter-list a {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 8px;
+      padding: 8px 0 8px 14px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+      transition: color 160ms ease, background 160ms ease;
+    }
+
+    .chapter-list .chapter-number {
+      color: var(--old-gold);
+      font-size: 10px;
+    }
+
+    .chapter-list a:hover,
+    .chapter-list a:focus-visible {
+      color: var(--paper);
+      background: linear-gradient(90deg, rgba(116, 81, 154, 0.13), transparent);
+    }
+
+    .chapter-list .current {
+      border-left-color: var(--revelation);
+    }
+
+    .chapter-list .current::before {
+      content: "";
+      position: absolute;
+      left: -3px;
+      top: 18px;
+      width: 5px;
+      height: 5px;
+      background: var(--revelation);
+      transform: rotate(45deg);
+      box-shadow: 0 0 9px rgba(171, 142, 201, 0.7);
+    }
+
+    .chapter-list .current a,
+    .chapter-list .current .chapter-number {
+      color: var(--revelation);
+    }
+
+    .whisper {
+      margin: 28px 0 0;
+      padding: 18px 0 0 16px;
+      border-top: 1px solid var(--line);
+      color: var(--silver);
+      font-size: 11px;
+      font-style: italic;
+      line-height: 1.7;
+    }
+
+    .return-link {
+      display: inline-block;
+      margin: 20px 0 0 16px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .return-link:hover,
+    .return-link:focus-visible {
+      color: var(--revelation);
+    }
+
+    .dream-record {
+      position: relative;
+      padding: clamp(38px, 6vw, 74px) clamp(28px, 7vw, 82px) 58px;
+      border: 1px solid rgba(171, 142, 201, 0.2);
+      background: var(--ink-soft);
+      box-shadow: 0 28px 90px rgba(0, 0, 0, 0.5), inset 0 0 70px rgba(39, 24, 52, 0.16);
+      backdrop-filter: blur(8px);
+      opacity: 0;
+      transform: translateY(14px);
+      animation: record-arrives 900ms 160ms ease forwards;
+    }
+
+    .dream-record::before,
+    .dream-record::after {
+      content: "";
+      position: absolute;
+      width: 38px;
+      height: 38px;
+      border-color: rgba(171, 142, 201, 0.45);
+      pointer-events: none;
+    }
+
+    .dream-record::before {
+      top: 12px;
+      left: 12px;
+      border-top: 1px solid;
+      border-left: 1px solid;
+    }
+
+    .dream-record::after {
+      right: 12px;
+      bottom: 12px;
+      border-right: 1px solid;
+      border-bottom: 1px solid;
+    }
+
+    .record-index {
+      margin: 0 0 14px;
+      color: var(--old-gold);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      color: #e5dfea;
+      font-size: clamp(28px, 4vw, 43px);
+      font-weight: normal;
+      line-height: 1.42;
+      text-wrap: balance;
+    }
+
+    .record-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 22px;
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .key-divider {
+      position: relative;
+      width: 100%;
+      height: 42px;
+      margin: 28px 0 30px;
+    }
+
+    .key-divider::before,
+    .key-divider::after {
+      content: "";
+      position: absolute;
+      top: 21px;
+      width: calc(50% - 22px);
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--line));
+    }
+
+    .key-divider::before {
+      left: 0;
+    }
+
+    .key-divider::after {
+      right: 0;
+      transform: rotate(180deg);
+    }
+
+    .keyhole {
+      position: absolute;
+      left: 50%;
+      top: 14px;
+      width: 13px;
+      height: 13px;
+      border: 1px solid var(--revelation);
+      border-radius: 50% 50% 35% 35%;
+      transform: translateX(-50%) rotate(45deg);
+    }
+
+    .lead {
+      margin: 0 0 34px;
+      color: var(--silver);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .record-body {
+      color: #d4ced7;
+      font-size: 15px;
+    }
+
+    .record-body p {
+      margin: 0 0 1.55em;
+    }
+
+    .record-body a {
+      color: var(--revelation);
+      border-bottom: 1px solid rgba(171, 142, 201, 0.38);
+      transition: color 160ms ease, border-color 160ms ease;
+    }
+
+    .record-body a:hover,
+    .record-body a:focus-visible {
+      color: #d1b9e6;
+      border-color: #d1b9e6;
+    }
+
+    blockquote {
+      margin: 34px 0;
+      padding: 18px 22px;
+      border-left: 2px solid var(--violet);
+      color: #c8bfcd;
+      background: rgba(45, 29, 57, 0.28);
+      font-style: italic;
+    }
+
+    .section-sigil {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 18px;
+      margin: 44px 0 30px;
+      color: var(--old-gold);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+    }
+
+    .section-sigil::before,
+    .section-sigil::after {
+      content: "";
+      height: 1px;
+      background: var(--line);
+    }
+
+    .record-signature {
+      margin-top: 42px;
+      color: var(--muted);
+      text-align: right;
+      font-size: 12px;
+    }
+
+    .door-nav {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .door-link {
+      position: relative;
+      min-height: 112px;
+      padding: 22px 24px;
+      overflow: hidden;
+      border: 1px solid rgba(171, 142, 201, 0.2);
+      background: rgba(8, 5, 12, 0.78);
+      transition: border-color 220ms ease, transform 220ms ease;
+    }
+
+    .door-link::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      opacity: 0;
+      background: var(--revelation);
+      box-shadow: 0 0 22px 5px rgba(171, 142, 201, 0.46);
+      transition: opacity 220ms ease;
+    }
+
+    .door-link.previous::after {
+      left: 0;
+    }
+
+    .door-link.next::after {
+      right: 0;
+    }
+
+    .door-link:hover,
+    .door-link:focus-visible {
+      border-color: rgba(171, 142, 201, 0.58);
+      transform: translateY(-2px);
+    }
+
+    .door-link:hover::after,
+    .door-link:focus-visible::after {
+      opacity: 1;
+    }
+
+    .door-direction {
+      display: block;
+      margin-bottom: 9px;
+      color: var(--old-gold);
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .door-title {
+      color: var(--silver);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .next {
+      text-align: right;
+    }
+
+    .dream-footer {
+      padding: 16px 24px 48px;
+      color: rgba(187, 178, 192, 0.48);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-align: center;
+    }
+
+    @keyframes record-arrives {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes reveal-line {
+      to {
+        transform: translateX(-50%) scaleX(1);
+      }
+    }
+
+    @media (max-width: 900px) {
+      body {
+        background-attachment: scroll;
+      }
+
+      .header-inner {
+        grid-template-columns: 1fr auto;
+      }
+
+      .dream-nav,
+      .chapter-indicator {
+        display: none;
+      }
+
+      .sidebar-toggle {
+        display: block;
+      }
+
+      .dream-layout {
+        width: min(100% - 28px, 800px);
+        padding-top: 30px;
+        display: block;
+      }
+
+      .dream-sidebar {
+        position: fixed;
+        z-index: 60;
+        top: var(--header-height);
+        right: 0;
+        bottom: 0;
+        width: min(82vw, 330px);
+        max-height: none;
+        padding: 30px 26px;
+        border-right: 0;
+        border-left: 1px solid var(--line);
+        background: rgba(9, 7, 13, 0.97);
+        transform: translateX(102%);
+        transition: transform 220ms ease;
+      }
+
+      .dream-sidebar.open {
+        transform: translateX(0);
+      }
+
+      .dream-record {
+        padding: 42px 26px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      :root {
+        --header-height: 62px;
+      }
+
+      .header-inner {
+        width: calc(100% - 24px);
+      }
+
+      .series-subtitle {
+        display: none;
+      }
+
+      h1 {
+        font-size: 27px;
+      }
+
+      .record-meta {
+        display: block;
+      }
+
+      .record-meta span {
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      .door-nav {
+        grid-template-columns: 1fr;
+      }
+
+      .next {
+        text-align: left;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="dream-header">
+    <div class="header-inner">
+      <a class="series-mark" href="#record" aria-label="锁匠的梦境">
+        <span class="broken-key" aria-hidden="true"></span>
+        <span>
+          <span class="series-name">锁匠的梦境</span>
+          <span class="series-subtitle">The Locksmith's Dream</span>
+        </span>
+      </a>
+      <nav class="dream-nav" aria-label="系列导航">
+        <a href="/">返回主站</a>
+        <a href="#chapters">梦境目录</a>
+        <a href="#previous-door">此前之门</a>
+        <a href="#next-door">下一扇门</a>
+      </nav>
+      <span class="chapter-indicator">RECORD XIV</span>
+      <button class="sidebar-toggle" type="button" aria-label="打开梦境目录" aria-expanded="false" aria-controls="dream-sidebar">
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="dream-layout">
+    <aside class="dream-sidebar" id="dream-sidebar">
+      <div class="archive-label">The Oneiric Archive</div>
+      <h2 class="sidebar-title" id="chapters">梦境记录</h2>
+      <ol class="chapter-list">
+        <li><a href="#"><span class="chapter-number">I</span><span>梦见钥匙</span></a></li>
+        <li><a href="#"><span class="chapter-number">II</span><span>梦见门后的低语</span></a></li>
+        <li><a href="#"><span class="chapter-number">III</span><span>梦见映照之物</span></a></li>
+        <li><a href="#"><span class="chapter-number">IV</span><span>梦见无名的来客</span></a></li>
+        <li><a href="#"><span class="chapter-number">V</span><span>梦见沉默的阶梯</span></a></li>
+        <li><a href="#"><span class="chapter-number">VI</span><span>梦见一场未醒之梦</span></a></li>
+        <li><a href="#"><span class="chapter-number">VII</span><span>梦见破碎的门扉</span></a></li>
+        <li><a href="#"><span class="chapter-number">VIII</span><span>梦见不可见之径</span></a></li>
+        <li><a href="#"><span class="chapter-number">IX</span><span>梦见旧日的回声</span></a></li>
+        <li><a href="#"><span class="chapter-number">X</span><span>梦见风替我开门</span></a></li>
+        <li><a href="#"><span class="chapter-number">XI</span><span>梦见错误的钥匙与正确的开启</span></a></li>
+        <li><a href="#"><span class="chapter-number">XII</span><span>梦见灵感</span></a></li>
+        <li><a href="#"><span class="chapter-number">XIII</span><span>梦见所有门都通向同一个地方</span></a></li>
+        <li class="current"><a href="#record" aria-current="page"><span class="chapter-number">XIV</span><span>梦见一切门扉的终结之日</span></a></li>
+      </ol>
+      <p class="whisper">“我乃钥匙，洞开一切门扉。”</p>
+      <a class="return-link" href="/">← 返回普通世界</a>
+    </aside>
+
+    <div>
+      <article class="dream-record" id="record">
+        <header>
+          <p class="record-index">Restricted record · No. XIV</p>
+          <h1>梦见一切门扉的终结之日</h1>
+          <div class="record-meta">
+            <span>记录于 2026-05-01</span>
+            <span>归档：锁匠的梦境</span>
+            <span>阅览许可：启</span>
+          </div>
+          <div class="key-divider" aria-hidden="true"><span class="keyhole"></span></div>
+          <p class="lead">再也没有锁，再也没有门，门户皆敞开，墙壁亦不再。</p>
+        </header>
+
+        <div class="record-body">
+          <p>2025.05.11—2026.02.01</p>
+          <p>首先是感谢所有愿意让我作为见习生参与漏洞研发的人。从那里，我从零开始偷学了不少逆向技巧，也得以接触无线电、车联网与那些曾经只存在于想象中的设备。</p>
+
+          <blockquote>“我们每一个人都有在某一刻世事永久改变了的回忆，虽然当时我们不可能自知。”</blockquote>
+
+          <p>在我睡不着复盘大学至今以来的失误时，加入那家公司毫无疑问是对我影响最大的事件之一。无论从精神状态、技术积累还是眼界来看，它或许都是当时能够做出的最优解。</p>
+          <p>前期是古法匠人手作逆向猜字段，后期是探索供应链与物联网设备，再后来还有一台功率并不惊人、体积却足够惊人的实验装置。成果未必宏伟，过程却足以让我短暂相信，门后的世界确实存在。</p>
+
+          <div class="section-sigil"><span>THE SECOND THRESHOLD</span></div>
+
+          <p>真是没有压力的日子，或者说，逃避现实的日子。或许真的有一条时间线，我从这里一直走到毕业，再走向某个安稳而确定的未来。</p>
+          <p>但，不是这条时间线。</p>
+          <p>我将要穿过的门扉从不对醒时的、或阖上的眼睛显现。我须得把双眼让与知晓门路之人，才能得见门扉。</p>
+          <p>大一时我试图用竞赛与技术逃避那个始终追随在身后的恐惧；大二时又把自己投入新的领域。后来我终于选择不再逃避现实。思绪中有一扇不可再次开启的门，现在连它的合页都在摇摇欲动。</p>
+
+          <blockquote>夜不能寐，侧耳聆听。微风穿梭于枝桠间，窃窃私语。房屋沉溺于自己的梦中。</blockquote>
+
+          <p>但这都是后话了。下一篇或许是事成者的回忆录，抑或是失败者的墓志铭。在那之前，门尚未显现。</p>
+          <p class="record-signature">noone · 2026.07.13</p>
+        </div>
+      </article>
+
+      <nav class="door-nav" aria-label="篇章导航">
+        <a class="door-link previous" id="previous-door" href="#">
+          <span class="door-direction">The door behind · XIII</span>
+          <span class="door-title">梦见所有门都通向同一个地方</span>
+        </a>
+        <a class="door-link next" id="next-door" href="#">
+          <span class="door-direction">The unopened door · XV</span>
+          <span class="door-title">此门尚未存在</span>
+        </a>
+      </nav>
+    </div>
+  </main>
+
+  <footer class="dream-footer">THE MANSUS HAS NO WALLS</footer>
+
+  <script>
+    const toggle = document.querySelector('.sidebar-toggle');
+    const sidebar = document.querySelector('.dream-sidebar');
+
+    toggle.addEventListener('click', () => {
+      const isOpen = sidebar.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(isOpen));
+      toggle.setAttribute('aria-label', isOpen ? '关闭梦境目录' : '打开梦境目录');
+    });
+
+    sidebar.addEventListener('click', event => {
+      if (event.target.closest('a') && window.innerWidth <= 900) {
+        sidebar.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', '打开梦境目录');
+      }
+    });
+  </script>
+</body>
+</html>

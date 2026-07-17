@@ -1,0 +1,841 @@
+:root {
+  --locksmith-void: #09070d;
+  --locksmith-ink: rgba(16, 11, 21, 0.9);
+  --locksmith-violet-deep: #3c2850;
+  --locksmith-violet: #74519a;
+  --locksmith-revelation: #ab8ec9;
+  --locksmith-silver: #bbb2c0;
+  --locksmith-paper: #ded8e1;
+  --locksmith-muted: #928997;
+  --locksmith-old-gold: #a58b5c;
+  --locksmith-line: rgba(171, 142, 201, 0.28);
+  --locksmith-header-height: 68px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body.locksmith-dream-page {
+  min-height: 100vh;
+  margin: 0;
+  color: var(--locksmith-paper);
+  line-height: 1.9;
+  background: var(--locksmith-void) url("/locksmith-dream/mansus-inner-1920x1080-1.png") center / cover fixed no-repeat;
+}
+
+body.locksmith-dream-page::before,
+body.locksmith-dream-page::after {
+  content: "";
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+}
+
+body.locksmith-dream-page::before {
+  background: rgba(7, 3, 13, 0.7);
+}
+
+body.locksmith-dream-page::after {
+  background:
+    radial-gradient(circle at 55% 36%, rgba(91, 58, 118, 0.12), transparent 42%),
+    linear-gradient(90deg, rgba(3, 2, 5, 0.42), transparent 28%, transparent 72%, rgba(3, 2, 5, 0.48));
+}
+
+.locksmith-dream-page a {
+  border-bottom: 0;
+}
+
+.locksmith-shell {
+  min-height: 100vh;
+  font-family: Georgia, "Noto Serif SC", "Songti SC", serif;
+}
+
+.locksmith-shell button,
+.locksmith-shell input,
+.locksmith-shell textarea,
+.locksmith-shell select {
+  font-family: inherit;
+}
+
+.locksmith-record,
+.locksmith-record .post-block,
+.locksmith-record .post-title,
+.locksmith-record .post-meta,
+.locksmith-record .post-body,
+.locksmith-record .post-body code,
+.locksmith-record .post-body pre,
+.locksmith-record .post-footer,
+.locksmith-record .post-copyright,
+.locksmith-record .hbe,
+.locksmith-door-nav,
+.locksmith-comments {
+  font-family: Georgia, "Noto Serif SC", "Songti SC", serif !important;
+}
+
+.locksmith-header {
+  position: sticky;
+  z-index: 1000;
+  top: 0;
+  height: var(--locksmith-header-height);
+  border-bottom: 1px solid rgba(171, 142, 201, 0.22);
+  background: rgba(8, 5, 12, 0.9);
+  backdrop-filter: blur(14px);
+}
+
+.locksmith-header::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  width: min(46vw, 620px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--locksmith-revelation), transparent);
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  animation: locksmith-reveal-line 1.8s 0.3s ease forwards;
+}
+
+.locksmith-header-inner {
+  display: grid;
+  grid-template-columns: minmax(230px, 1fr) auto minmax(230px, 1fr);
+  align-items: center;
+  gap: 24px;
+  width: min(1440px, calc(100% - 40px));
+  height: 100%;
+  margin: 0 auto;
+}
+
+.locksmith-series-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  width: fit-content;
+  color: var(--locksmith-paper);
+}
+
+.locksmith-broken-key {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+  border: 1px solid var(--locksmith-revelation);
+  box-shadow: inset 0 0 10px rgba(171, 142, 201, 0.24);
+  transform: rotate(45deg);
+}
+
+.locksmith-broken-key::before {
+  content: "";
+  position: absolute;
+  top: 9px;
+  left: 9px;
+  width: 7px;
+  height: 7px;
+  border: 1px solid var(--locksmith-old-gold);
+  border-radius: 50% 50% 20% 20%;
+}
+
+.locksmith-broken-key::after {
+  content: "";
+  position: absolute;
+  top: 16px;
+  left: 13px;
+  width: 1px;
+  height: 9px;
+  background: var(--locksmith-old-gold);
+  box-shadow: 3px 5px 0 -0.2px var(--locksmith-old-gold);
+}
+
+.locksmith-series-name,
+.locksmith-series-subtitle {
+  display: block;
+}
+
+.locksmith-series-name {
+  font-size: 15px;
+  line-height: 1.25;
+}
+
+.locksmith-series-subtitle {
+  margin-top: 3px;
+  color: var(--locksmith-muted);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.locksmith-header-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 34px;
+  font-size: 13px;
+}
+
+.locksmith-header-nav a {
+  position: relative;
+  padding: 8px 0;
+  color: var(--locksmith-silver);
+}
+
+.locksmith-header-nav a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 4px;
+  left: 0;
+  height: 1px;
+  background: var(--locksmith-revelation);
+  transform: scaleX(0);
+  transition: transform 180ms ease;
+}
+
+.locksmith-header-nav a:hover,
+.locksmith-header-nav a:focus-visible {
+  color: var(--locksmith-revelation);
+}
+
+.locksmith-header-nav a:hover::after,
+.locksmith-header-nav a:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.locksmith-record-indicator {
+  justify-self: end;
+  color: var(--locksmith-old-gold);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+}
+
+.locksmith-sidebar-toggle {
+  display: none;
+  justify-self: end;
+  width: 42px;
+  height: 42px;
+  padding: 10px;
+  border: 0;
+  color: var(--locksmith-revelation);
+  background: transparent;
+  cursor: pointer;
+}
+
+.locksmith-sidebar-toggle span,
+.locksmith-sidebar-toggle::before,
+.locksmith-sidebar-toggle::after {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 1px;
+  margin: 5px 0;
+  background: currentColor;
+}
+
+.locksmith-layout {
+  display: grid;
+  grid-template-columns: 270px minmax(0, 820px);
+  justify-content: center;
+  align-items: start;
+  gap: clamp(48px, 7vw, 108px);
+  width: min(1360px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 74px 0 90px;
+}
+
+.locksmith-sidebar {
+  position: sticky;
+  top: calc(var(--locksmith-header-height) + 30px);
+  max-height: calc(100vh - var(--locksmith-header-height) - 60px);
+  padding: 6px 18px 28px 0;
+  overflow-y: auto;
+  border-right: 1px solid var(--locksmith-line);
+  scrollbar-color: var(--locksmith-violet-deep) transparent;
+  scrollbar-width: thin;
+}
+
+.locksmith-archive-label,
+.locksmith-record-index {
+  color: var(--locksmith-old-gold);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.locksmith-sidebar-title {
+  margin: 8px 0 20px;
+  color: var(--locksmith-paper);
+  font-family: Georgia, "Noto Serif SC", "Songti SC", serif !important;
+  font-size: 19px;
+  font-weight: normal;
+}
+
+.locksmith-record-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.locksmith-record-group {
+  margin: 18px 0 6px;
+  padding-left: 14px;
+  color: var(--locksmith-old-gold);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+}
+
+.locksmith-record-item {
+  position: relative;
+  margin: 0;
+  border-left: 1px solid rgba(171, 142, 201, 0.17);
+}
+
+.locksmith-record-item a {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 8px;
+  padding: 7px 0 7px 14px;
+  color: var(--locksmith-muted);
+  font-size: 11px;
+  line-height: 1.45;
+  transition: color 160ms ease, background 160ms ease;
+}
+
+.locksmith-record-number {
+  color: var(--locksmith-old-gold);
+  font-size: 9px;
+}
+
+.locksmith-record-item a:hover,
+.locksmith-record-item a:focus-visible {
+  color: var(--locksmith-paper);
+  background: linear-gradient(90deg, rgba(116, 81, 154, 0.13), transparent);
+}
+
+.locksmith-record-item.current {
+  border-left-color: var(--locksmith-revelation);
+}
+
+.locksmith-record-item.current::before {
+  content: "";
+  position: absolute;
+  top: 16px;
+  left: -3px;
+  width: 5px;
+  height: 5px;
+  background: var(--locksmith-revelation);
+  box-shadow: 0 0 9px rgba(171, 142, 201, 0.7);
+  transform: rotate(45deg);
+}
+
+.locksmith-record-item.current a,
+.locksmith-record-item.current .locksmith-record-number {
+  color: var(--locksmith-revelation);
+}
+
+.locksmith-whisper {
+  margin: 28px 0 0;
+  padding: 18px 0 0 16px;
+  border-top: 1px solid var(--locksmith-line);
+  color: var(--locksmith-silver);
+  font-size: 11px;
+  font-style: italic;
+  line-height: 1.7;
+}
+
+.locksmith-return-link {
+  display: inline-block;
+  margin: 20px 0 0 16px;
+  color: var(--locksmith-muted);
+  font-size: 11px;
+}
+
+.locksmith-return-link:hover,
+.locksmith-return-link:focus-visible {
+  color: var(--locksmith-revelation);
+}
+
+.locksmith-main-column {
+  min-width: 0;
+}
+
+.locksmith-record {
+  position: relative;
+  padding: clamp(38px, 6vw, 72px) clamp(28px, 7vw, 78px) 54px;
+  border: 1px solid rgba(171, 142, 201, 0.2);
+  background: var(--locksmith-ink);
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.5), inset 0 0 70px rgba(39, 24, 52, 0.16);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  transform: translateY(14px);
+  animation: locksmith-record-arrives 900ms 160ms ease forwards;
+}
+
+.locksmith-record::before,
+.locksmith-record::after {
+  content: "";
+  position: absolute;
+  width: 38px;
+  height: 38px;
+  border-color: rgba(171, 142, 201, 0.45);
+  pointer-events: none;
+}
+
+.locksmith-record::before {
+  top: 12px;
+  left: 12px;
+  border-top: 1px solid;
+  border-left: 1px solid;
+}
+
+.locksmith-record::after {
+  right: 12px;
+  bottom: 12px;
+  border-right: 1px solid;
+  border-bottom: 1px solid;
+}
+
+.locksmith-record-index {
+  margin: 0 0 15px;
+}
+
+.locksmith-record .post-block {
+  margin: 0;
+}
+
+.locksmith-record .post-header {
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.locksmith-record .post-title {
+  margin: 0;
+  color: #e5dfea;
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: normal;
+  line-height: 1.42;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+.locksmith-record .post-meta {
+  margin: 20px 0 0;
+  color: var(--locksmith-muted);
+  font-size: 11px;
+  text-align: left;
+}
+
+.locksmith-record .post-meta-item {
+  color: inherit;
+}
+
+.locksmith-record .post-meta a,
+.locksmith-record .post-body a,
+.locksmith-record .post-footer a,
+.locksmith-comments a {
+  color: var(--locksmith-revelation);
+  border-bottom: 1px solid rgba(171, 142, 201, 0.38);
+}
+
+.locksmith-record .post-meta a:hover,
+.locksmith-record .post-body a:hover,
+.locksmith-record .post-footer a:hover,
+.locksmith-comments a:hover {
+  color: #d1b9e6;
+  border-color: #d1b9e6;
+}
+
+.locksmith-record .post-description {
+  margin: 0;
+  padding: 0 8px;
+  border: 0;
+  color: var(--locksmith-silver);
+  background: transparent;
+  font-style: italic;
+  font-size: 13px;
+  line-height: 1.8;
+  text-align: center;
+}
+
+.locksmith-description-divider {
+  display: grid;
+  grid-template-columns: 1fr 13px 1fr;
+  align-items: center;
+  gap: 15px;
+  height: 42px;
+  margin: 27px 0 12px;
+}
+
+.locksmith-description-divider::before,
+.locksmith-description-divider::after {
+  content: "";
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--locksmith-line));
+}
+
+.locksmith-description-divider::after {
+  transform: rotate(180deg);
+}
+
+.locksmith-description-divider span {
+  display: block;
+  width: 13px;
+  height: 13px;
+  border: 1px solid var(--locksmith-revelation);
+  border-radius: 50% 50% 35% 35%;
+  transform: rotate(45deg);
+}
+
+.locksmith-record .post-body {
+  color: #d4ced7;
+  font-size: 15px;
+  line-height: 1.95;
+  text-align: left;
+}
+
+.locksmith-record .post-body p {
+  margin: 0 0 1.55em;
+}
+
+.locksmith-record .post-body h1,
+.locksmith-record .post-body h2,
+.locksmith-record .post-body h3,
+.locksmith-record .post-body h4,
+.locksmith-record .post-body h5,
+.locksmith-record .post-body h6 {
+  color: #dcd3e2;
+  border-bottom-color: var(--locksmith-line);
+}
+
+.locksmith-record .post-body blockquote {
+  margin: 34px 0;
+  padding: 18px 22px;
+  border-left: 2px solid var(--locksmith-violet);
+  color: #c8bfcd;
+  background: rgba(45, 29, 57, 0.28);
+}
+
+.locksmith-record .post-body blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+.locksmith-record .locksmith-section-sigil {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 18px;
+  margin: 44px 0 30px;
+  color: var(--locksmith-old-gold);
+  font-family: Georgia, "Noto Serif SC", "Songti SC", serif;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.locksmith-record .locksmith-section-sigil::before,
+.locksmith-record .locksmith-section-sigil::after {
+  content: "";
+  height: 1px;
+  background: var(--locksmith-line);
+}
+
+.locksmith-record .post-body img {
+  border: 1px solid rgba(171, 142, 201, 0.18);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+}
+
+.locksmith-record .post-body table {
+  color: #d4ced7;
+  background: rgba(8, 5, 12, 0.45);
+}
+
+.locksmith-record .post-body table th,
+.locksmith-record .post-body table td {
+  border-color: var(--locksmith-line);
+}
+
+.locksmith-record .highlight,
+.locksmith-record pre {
+  border: 1px solid rgba(171, 142, 201, 0.16);
+  background: rgba(5, 3, 8, 0.76);
+}
+
+.locksmith-record .post-footer {
+  margin-top: 48px;
+  border-top: 1px solid var(--locksmith-line);
+  color: var(--locksmith-muted);
+}
+
+.locksmith-record .post-nav {
+  display: none;
+}
+
+.locksmith-record .post-copyright {
+  border: 1px solid var(--locksmith-line);
+  color: var(--locksmith-silver);
+  background: rgba(45, 29, 57, 0.22);
+}
+
+.locksmith-record .post-tags a {
+  background: transparent;
+}
+
+.locksmith-record #hexo-blog-encrypt {
+  color: var(--locksmith-silver);
+}
+
+.locksmith-record .hbe-content {
+  padding: 28px 0 10px;
+  font-size: 100%;
+}
+
+.locksmith-record .hbe-input {
+  width: min(100%, 560px);
+  margin: 1em 0;
+}
+
+.locksmith-record .hbe-input-label-default::before {
+  background: rgba(58, 39, 73, 0.9);
+}
+
+.locksmith-record .hbe-input-label-default::after {
+  background: var(--locksmith-revelation);
+}
+
+.locksmith-record .hbe-input-label {
+  color: var(--locksmith-silver);
+}
+
+.locksmith-record .hbe-input-field-default {
+  color: var(--locksmith-paper);
+}
+
+.locksmith-record .hbe-button {
+  width: 148px;
+  height: 42px;
+  border: 1px solid rgba(171, 142, 201, 0.46);
+  border-radius: 0;
+  color: var(--locksmith-paper);
+  background: rgba(60, 40, 80, 0.76);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  text-indent: 0;
+  text-shadow: none;
+}
+
+.locksmith-record .hbe-button::after {
+  display: none;
+}
+
+.locksmith-record .hbe-button:hover,
+.locksmith-record .hbe-button:focus-visible {
+  border-color: var(--locksmith-revelation);
+  background: rgba(116, 81, 154, 0.62);
+}
+
+.locksmith-door-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.locksmith-door-link {
+  position: relative;
+  min-height: 112px;
+  padding: 22px 24px;
+  overflow: hidden;
+  border: 1px solid rgba(171, 142, 201, 0.2);
+  color: inherit;
+  background: rgba(8, 5, 12, 0.78);
+  transition: border-color 220ms ease, transform 220ms ease;
+}
+
+.locksmith-door-link::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  opacity: 0;
+  background: var(--locksmith-revelation);
+  box-shadow: 0 0 22px 5px rgba(171, 142, 201, 0.46);
+  transition: opacity 220ms ease;
+}
+
+.locksmith-door-link.previous::after {
+  left: 0;
+}
+
+.locksmith-door-link.next::after {
+  right: 0;
+}
+
+.locksmith-door-link:not(.sealed):hover,
+.locksmith-door-link:not(.sealed):focus-visible {
+  border-color: rgba(171, 142, 201, 0.58);
+  transform: translateY(-2px);
+}
+
+.locksmith-door-link:not(.sealed):hover::after,
+.locksmith-door-link:not(.sealed):focus-visible::after {
+  opacity: 1;
+}
+
+.locksmith-door-link.sealed {
+  opacity: 0.5;
+}
+
+.locksmith-door-direction,
+.locksmith-door-title {
+  display: block;
+}
+
+.locksmith-door-direction {
+  margin-bottom: 9px;
+  color: var(--locksmith-old-gold);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.locksmith-door-title {
+  color: var(--locksmith-silver);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.locksmith-door-link.next {
+  text-align: right;
+}
+
+.locksmith-comments {
+  margin-top: 36px;
+  color: var(--locksmith-paper);
+}
+
+.locksmith-footer {
+  padding: 16px 24px 48px;
+  color: rgba(187, 178, 192, 0.48);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-align: center;
+}
+
+.locksmith-dream-page > .back-to-top,
+.locksmith-dream-page > .bookmark,
+.locksmith-dream-page > .github-corner,
+.locksmith-dream-page > #sidebar-dimmer {
+  display: none;
+}
+
+.locksmith-shell .book-mark-link {
+  display: none !important;
+}
+
+@keyframes locksmith-record-arrives {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes locksmith-reveal-line {
+  to {
+    transform: translateX(-50%) scaleX(1);
+  }
+}
+
+@media (max-width: 900px) {
+  body.locksmith-dream-page {
+    background-attachment: scroll;
+  }
+
+  .locksmith-header-inner {
+    grid-template-columns: 1fr auto;
+  }
+
+  .locksmith-header-nav,
+  .locksmith-record-indicator {
+    display: none;
+  }
+
+  .locksmith-sidebar-toggle {
+    display: block;
+  }
+
+  .locksmith-layout {
+    display: block;
+    width: min(100% - 28px, 820px);
+    padding-top: 30px;
+  }
+
+  .locksmith-sidebar {
+    position: fixed;
+    z-index: 1100;
+    top: var(--locksmith-header-height);
+    right: 0;
+    bottom: 0;
+    width: min(84vw, 350px);
+    max-height: none;
+    padding: 30px 26px;
+    border-right: 0;
+    border-left: 1px solid var(--locksmith-line);
+    background: rgba(9, 7, 13, 0.98);
+    transform: translateX(102%) !important;
+  }
+
+  .locksmith-sidebar.open {
+    transform: translateX(0) !important;
+  }
+
+  .locksmith-record {
+    padding: 42px 26px;
+  }
+}
+
+@media (max-width: 560px) {
+  :root {
+    --locksmith-header-height: 62px;
+  }
+
+  .locksmith-header-inner {
+    width: calc(100% - 24px);
+  }
+
+  .locksmith-series-subtitle {
+    display: none;
+  }
+
+  .locksmith-record .post-title {
+    font-size: 27px;
+  }
+
+  .locksmith-record .post-meta-item {
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .locksmith-record .hbe-input {
+    min-width: 0;
+  }
+
+  .locksmith-door-nav {
+    grid-template-columns: 1fr;
+  }
+
+  .locksmith-door-link.next {
+    text-align: left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .locksmith-dream-page *,
+  .locksmith-dream-page *::before,
+  .locksmith-dream-page *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
