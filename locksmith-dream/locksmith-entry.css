@@ -1,0 +1,28 @@
+.menu-item-梦境 a {
+  color: #80669a;
+}
+
+.menu-item-梦境 a .fa-key {
+  color: #a58b5c;
+  font-size: 0.9em;
+}
+
+.menu-item-梦境 a:hover,
+.menu-item-梦境 a:focus-visible {
+  color: #a58b5c;
+}
+
+.locksmith-dream-category .category-list-link {
+  color: #80669a;
+}
+
+.locksmith-dream-category .fa-key {
+  margin-right: 0.48em;
+  color: #a58b5c;
+  font-size: 0.88em;
+}
+
+.locksmith-dream-category:hover .category-list-link,
+.locksmith-dream-category:focus-within .category-list-link {
+  color: #a58b5c;
+}

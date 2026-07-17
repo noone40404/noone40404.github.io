@@ -470,10 +470,13 @@ body.locksmith-dream-page::after {
   content: "";
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--locksmith-line));
+  animation: locksmith-divider-left 820ms 1.18s ease-out both;
+  will-change: transform, opacity;
 }
 
 .locksmith-description-divider::after {
-  transform: rotate(180deg);
+  background: linear-gradient(90deg, var(--locksmith-line), transparent);
+  animation-name: locksmith-divider-right;
 }
 
 .locksmith-description-divider span {
@@ -483,6 +486,8 @@ body.locksmith-dream-page::after {
   border: 1px solid var(--locksmith-revelation);
   border-radius: 50% 50% 35% 35%;
   transform: rotate(45deg);
+  animation: locksmith-keyhole-awakens 620ms 1s ease-out both;
+  will-change: transform, opacity, box-shadow;
 }
 
 .locksmith-record .post-body {
@@ -518,6 +523,13 @@ body.locksmith-dream-page::after {
   margin-bottom: 0;
 }
 
+.locksmith-record .locksmith-record-signature {
+  margin-top: 42px;
+  color: var(--locksmith-muted);
+  font-size: 12px;
+  text-align: right;
+}
+
 .locksmith-record .locksmith-section-sigil {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
@@ -537,6 +549,25 @@ body.locksmith-dream-page::after {
   content: "";
   height: 1px;
   background: var(--locksmith-line);
+}
+
+.locksmith-entrance-mark {
+  width: 42px;
+  height: 42px;
+  margin: 0 auto 30px;
+  border: 1px solid var(--locksmith-revelation);
+  box-shadow: inset 0 0 18px rgba(171, 142, 201, 0.2);
+  transform: rotate(45deg);
+}
+
+.locksmith-entrance-action {
+  text-align: center;
+}
+
+.locksmith-entrance-action a {
+  color: var(--locksmith-old-gold) !important;
+  font-size: 13px;
+  letter-spacing: 0.08em;
 }
 
 .locksmith-record .post-body img {
@@ -636,14 +667,15 @@ body.locksmith-dream-page::after {
 .locksmith-door-nav {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  align-items: start;
   gap: 18px;
   margin-top: 24px;
 }
 
 .locksmith-door-link {
   position: relative;
-  min-height: 112px;
-  padding: 22px 24px;
+  min-height: 0;
+  padding: 16px 20px;
   overflow: hidden;
   border: 1px solid rgba(171, 142, 201, 0.2);
   color: inherit;
@@ -692,7 +724,7 @@ body.locksmith-dream-page::after {
 }
 
 .locksmith-door-direction {
-  margin-bottom: 9px;
+  margin-bottom: 6px;
   color: var(--locksmith-old-gold);
   font-size: 9px;
   letter-spacing: 0.16em;
@@ -743,6 +775,50 @@ body.locksmith-dream-page::after {
 @keyframes locksmith-reveal-line {
   to {
     transform: translateX(-50%) scaleX(1);
+  }
+}
+
+@keyframes locksmith-keyhole-awakens {
+  0% {
+    opacity: 0.24;
+    box-shadow: 0 0 0 rgba(171, 142, 201, 0);
+    transform: rotate(45deg) scale(0.78);
+  }
+  48% {
+    opacity: 1;
+    box-shadow: 0 0 20px 2px rgba(171, 142, 201, 0.92);
+    transform: rotate(45deg) scale(1.16);
+  }
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 5px rgba(171, 142, 201, 0.28);
+    transform: rotate(45deg) scale(1);
+  }
+}
+
+@keyframes locksmith-divider-left {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+    transform-origin: right center;
+  }
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+    transform-origin: right center;
+  }
+}
+
+@keyframes locksmith-divider-right {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+    transform-origin: left center;
+  }
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+    transform-origin: left center;
   }
 }
 
