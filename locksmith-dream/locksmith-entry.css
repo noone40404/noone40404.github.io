@@ -26,3 +26,247 @@
 .locksmith-dream-category:focus-within .category-list-link {
   color: #a58b5c;
 }
+
+.locksmith-dream-entry {
+  --locksmith-ink: #3f4b4e;
+  --locksmith-muted: #68787a;
+  --locksmith-teal: #527b7c;
+  --locksmith-gold: #9a8054;
+  --locksmith-line: #9aa9a8;
+  position: relative;
+  padding: 5px 20px 13px;
+  border-left: 1px solid var(--locksmith-line);
+  background:
+    linear-gradient(90deg, rgba(60, 103, 103, .055), transparent 40%),
+    repeating-linear-gradient(0deg, transparent 0 27px, rgba(62, 83, 84, .018) 27px 28px);
+}
+
+.locksmith-dream-entry::before,
+.locksmith-dream-entry::after {
+  content: "";
+  position: absolute;
+  left: -3px;
+  width: 5px;
+  height: 5px;
+  border: 1px solid var(--locksmith-teal);
+  background: #f5f5f5;
+  transform: rotate(45deg);
+}
+
+.locksmith-dream-entry::before { top: 0; }
+.locksmith-dream-entry::after { bottom: 0; }
+
+.locksmith-dream-entry .post-title {
+  margin-bottom: 9px;
+  color: #b9c0c1;
+  font-family: "Noto Sans SC", "Source Han Sans SC", "Microsoft YaHei UI", "PingFang SC", sans-serif;
+  font-weight: 500;
+}
+
+.locksmith-dream-entry .locksmith-entry-record {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--locksmith-muted);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.locksmith-dream-entry .locksmith-entry-record .fa-key {
+  margin-right: 7px;
+  color: var(--locksmith-gold);
+  font-size: 9px;
+  transform: rotate(-13deg);
+}
+
+.locksmith-dream-entry .post-title-link {
+  color: #b9c0c1;
+  background: none;
+  text-shadow: none;
+  transition: color .25s ease;
+}
+
+.locksmith-dream-entry .post-title-link::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 1px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  visibility: hidden;
+  background: linear-gradient(90deg, #3c2850, #74519a 52%, #80669a);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .35s ease;
+}
+
+.locksmith-dream-entry .post-title-link::after {
+  content: none;
+  display: none;
+}
+
+.locksmith-dream-entry .post-title-link:hover,
+.locksmith-dream-entry .post-title-link:focus-visible {
+  color: #d0d5d5;
+}
+
+.locksmith-dream-entry .post-title-link:hover::before,
+.locksmith-dream-entry .post-title-link:focus-visible::before {
+  visibility: visible;
+  transform: scaleX(1);
+}
+
+.locksmith-dream-entry .post-meta {
+  color: #99959c;
+}
+
+.locksmith-dream-entry .post-body {
+  position: relative;
+  color: #747078;
+  font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", SimSun, serif;
+}
+
+.locksmith-dream-entry .post-body::before {
+  content: "";
+  display: block;
+  width: min(430px, 78%);
+  height: 9px;
+  margin: 4px auto 12px;
+  background:
+    radial-gradient(circle at center, transparent 0 2px, var(--locksmith-gold) 2px 3px, transparent 3px),
+    linear-gradient(90deg, transparent, var(--locksmith-line) 47%, transparent 47% 53%, var(--locksmith-line) 53%, transparent);
+  opacity: .9;
+}
+
+.locksmith-dream-entry .post-body > p:first-child {
+  position: relative;
+  max-width: 88%;
+  margin: 0 auto 12px;
+  padding: 5px 27px 3px;
+  color: #747078;
+  font-size: .94em;
+  font-style: italic;
+  line-height: 1.9;
+  text-align: center;
+}
+
+.locksmith-dream-entry .post-body > p:first-child::before,
+.locksmith-dream-entry .post-body > p:first-child::after {
+  position: absolute;
+  color: #bbb7bd;
+  font: 25px/1 Georgia, "Times New Roman", serif;
+}
+
+.locksmith-dream-entry .post-body > p:first-child::before {
+  content: "“";
+  top: 0;
+  left: 3px;
+}
+
+.locksmith-dream-entry .post-body > p:first-child::after {
+  content: "”";
+  right: 3px;
+  bottom: -6px;
+}
+
+.locksmith-dream-entry .post-button {
+  margin-top: 11px;
+  text-align: center;
+}
+
+.locksmith-dream-entry .post-button .btn {
+  border: 0;
+  border-bottom: 1px solid #aaa5ad;
+  color: #716c75;
+  background: transparent;
+  font-family: Georgia, "Noto Serif SC", SimSun, serif;
+  font-size: 12px;
+  letter-spacing: 0;
+}
+
+.locksmith-dream-entry .post-button .btn::before {
+  content: "\f084";
+  margin-right: 7px;
+  color: var(--locksmith-gold);
+  font-family: "Font Awesome 5 Free";
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.locksmith-dream-entry .post-button .btn:hover,
+.locksmith-dream-entry .post-button .btn:focus-visible {
+  border-bottom-color: #766f7a;
+  color: #504b54;
+  background: rgba(92, 86, 98, .04);
+}
+
+.locksmith-dream-entry .locksmith-description-divider {
+  display: flex;
+  align-items: center;
+  width: min(430px, 78%);
+  margin: 13px auto 9px;
+  color: var(--locksmith-muted);
+}
+
+.locksmith-dream-entry .locksmith-description-divider::before,
+.locksmith-dream-entry .locksmith-description-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--locksmith-line));
+}
+
+.locksmith-dream-entry .locksmith-description-divider::after {
+  background: linear-gradient(90deg, var(--locksmith-line), transparent);
+}
+
+.locksmith-dream-entry .locksmith-description-divider span {
+  width: 7px;
+  height: 7px;
+  margin: 0 6px;
+  border: 1px solid var(--locksmith-gold);
+  border-radius: 50% 50% 48% 12%;
+  transform: rotate(45deg);
+}
+
+.locksmith-dream-entry .post-description {
+  position: relative;
+  max-width: 88%;
+  margin: 0 auto;
+  padding: 4px 25px 2px;
+  color: #747078;
+  font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", SimSun, serif;
+  font-size: .94em;
+  font-style: italic;
+  line-height: 1.9;
+  text-align: center;
+}
+
+.locksmith-dream-entry .post-description::before,
+.locksmith-dream-entry .post-description::after {
+  position: absolute;
+  color: #bbb7bd;
+  font: 25px/1 Georgia, "Times New Roman", serif;
+}
+
+.locksmith-dream-entry .post-description::before {
+  content: "“";
+  top: 0;
+  left: 3px;
+}
+
+.locksmith-dream-entry .post-description::after {
+  content: "”";
+  right: 3px;
+  bottom: -7px;
+}
+
+@media (max-width: 767px) {
+  .locksmith-dream-entry { padding-inline: 14px 10px; }
+  .locksmith-dream-entry .post-description { max-width: 100%; padding-inline: 20px; }
+  .locksmith-dream-entry .locksmith-description-divider { width: 72%; }
+  .locksmith-dream-entry .post-body > p:first-child { max-width: 100%; padding-inline: 20px; }
+  .locksmith-dream-entry .post-body::before { width: 72%; }
+}
