@@ -4,6 +4,7 @@
   const themes = ['locksmith', 'cho-10', 'christmas', 'spring-festival'];
   const overrideKey = 'home-season-preview';
   const shellStyleId = 'home-season-shell-style';
+  const switchSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA', 'KeyB', 'KeyA'];
   const labels = { auto: '自动', locksmith: '锁匠', 'cho-10': '超天酱', christmas: '圣诞', 'spring-festival': '春节' };
   const skinData = {
     locksmith: { kicker: 'THE ONEIRIC TERMINAL', index: 'ARCHIVE LOCKED', title: '关于门的梦境', copy: '我梦见了敞开的门。红色的门，金色的门，玻璃门，像书籍一样装订起来的门，轨道车厢门还有城堡大门。我身后便是我寻找的某个事物。我醒来时，门阖上的声音仍回荡在耳边。', symbol: '⌑', triggerCopy: '今日是锁匠的梦境系列文章发布纪念日，那里有一扇不该开启的门，现在连它的合页都在摇摇欲动：', triggerLabel: '过往的回忆', footer: 'ONEIRIC ARCHIVE' },
@@ -89,7 +90,8 @@
       switcher = document.createElement('aside');
       switcher.className = 'home-season-switcher';
       switcher.setAttribute('aria-label', '临时切换首页主题');
-      switcher.innerHTML = '<button class="home-season-switcher-toggle" type="button" aria-expanded="false" title="临时切换首页主题"><i class="fa fa-palette" aria-hidden="true"></i><span>主题</span></button><div class="home-season-switcher-menu" role="group" aria-label="选择临时主题"></div>';
+      switcher.setAttribute('aria-hidden', 'true');
+      switcher.innerHTML = '<div class="home-season-switcher-menu" role="group" aria-label="选择临时主题"></div>';
       switcher.querySelector('.home-season-switcher-menu').innerHTML = ['auto', ...themes].map(theme => `<button type="button" data-home-theme="${theme}">${labels[theme]}</button>`).join('');
       document.body.append(switcher);
     }
@@ -201,14 +203,24 @@
     }
   }
 
+  let switchSequenceIndex = 0;
+
+  document.addEventListener('keydown', event => {
+    const target = event.target;
+    if (target instanceof HTMLElement && (target.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName))) return;
+    switchSequenceIndex = event.code === switchSequence[switchSequenceIndex]
+      ? switchSequenceIndex + 1
+      : event.code === switchSequence[0] ? 1 : 0;
+    if (switchSequenceIndex !== switchSequence.length) return;
+    switchSequenceIndex = 0;
+    const switcher = document.querySelector('.home-season-switcher');
+    if (!switcher) return;
+    const expanded = switcher.classList.toggle('is-open');
+    switcher.setAttribute('aria-hidden', String(!expanded));
+    event.preventDefault();
+  });
+
   document.addEventListener('click', event => {
-    const toggle = event.target.closest('.home-season-switcher-toggle');
-    if (toggle) {
-      const switcher = toggle.closest('.home-season-switcher');
-      const expanded = switcher.classList.toggle('is-open');
-      toggle.setAttribute('aria-expanded', String(expanded));
-      return;
-    }
     const button = event.target.closest('[data-home-theme]');
     if (button) setOverride(button.dataset.homeTheme);
   });

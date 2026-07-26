@@ -20,9 +20,9 @@
   cursor: pointer;
 }
 .home-season-switcher-menu {
-  position: absolute;
+  position: fixed;
   right: 0;
-  bottom: 46px;
+  bottom: 18px;
   display: none;
   width: 116px;
   padding: 6px;
