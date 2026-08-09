@@ -1,0 +1,168 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Special+Elite&display=swap");
+
+.travelling-at-night-entry {
+  --night-entry-paper: #b9b8aa;
+  --night-entry-muted: #777b6d;
+  --night-entry-lamp: #c99a32;
+  --night-entry-hot: #e4c665;
+  --night-entry-line: rgba(161, 132, 55, .42);
+  position: relative;
+  padding: 8px 22px 15px;
+  border-left: 1px solid var(--night-entry-lamp);
+  background:
+    radial-gradient(ellipse at 88% 18%, rgba(201, 154, 50, .07), transparent 27%),
+    repeating-linear-gradient(0deg, transparent 0 27px, rgba(127, 133, 111, .025) 27px 28px),
+    linear-gradient(90deg, rgba(86, 94, 67, .06), transparent 48%);
+}
+
+.travelling-at-night-entry::before,
+.travelling-at-night-entry::after {
+  content: "";
+  position: absolute;
+  left: -4px;
+  width: 6px;
+  height: 6px;
+  border: 1px solid var(--night-entry-lamp);
+  border-radius: 50%;
+  background: #f5f5f5;
+  box-shadow: 0 0 9px rgba(201, 154, 50, .55);
+}
+
+.travelling-at-night-entry::before { top: 0; }
+.travelling-at-night-entry::after { bottom: 0; }
+
+.travelling-at-night-entry .post-title {
+  margin-bottom: 9px;
+  color: var(--night-entry-paper);
+  font-family: "Noto Serif SC", "Songti SC", serif;
+  font-weight: 600;
+}
+
+.travelling-at-night-entry .night-entry-record {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 7px;
+  color: var(--night-entry-muted);
+  font-family: "Special Elite", monospace;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.travelling-at-night-entry .night-entry-record i {
+  width: 7px;
+  height: 7px;
+  border: 1px solid var(--night-entry-lamp);
+  border-radius: 50%;
+  background: var(--night-entry-hot);
+  box-shadow: 0 0 8px rgba(228, 198, 101, .55);
+}
+
+.travelling-at-night-entry .post-title-link {
+  color: var(--night-entry-paper);
+  background: none;
+  text-shadow: none;
+  transition: color .25s ease;
+}
+
+.travelling-at-night-entry .post-title-link::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 1px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  visibility: hidden;
+  background: linear-gradient(90deg, var(--night-entry-lamp), var(--night-entry-hot), transparent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .35s ease;
+}
+
+.travelling-at-night-entry .post-title-link::after { content: none; display: none; }
+.travelling-at-night-entry .post-title-link:hover,
+.travelling-at-night-entry .post-title-link:focus-visible { color: #d9d5b9; }
+.travelling-at-night-entry .post-title-link:hover::before,
+.travelling-at-night-entry .post-title-link:focus-visible::before { visibility: visible; transform: scaleX(1); }
+
+.travelling-at-night-entry .post-meta { color: #918e82; }
+
+.travelling-at-night-entry .post-body {
+  color: #817e74;
+  font-family: "Noto Serif SC", "Songti SC", serif;
+}
+
+.travelling-at-night-entry .night-description-divider {
+  display: flex;
+  align-items: center;
+  width: min(430px, 78%);
+  margin: 13px auto 9px;
+}
+
+.travelling-at-night-entry .night-description-divider::before,
+.travelling-at-night-entry .night-description-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--night-entry-line));
+}
+
+.travelling-at-night-entry .night-description-divider::after {
+  background: linear-gradient(90deg, var(--night-entry-line), transparent);
+}
+
+.travelling-at-night-entry .night-description-divider span {
+  width: 7px;
+  height: 7px;
+  margin: 0 7px;
+  border: 1px solid var(--night-entry-lamp);
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(201, 154, 50, .32);
+}
+
+.travelling-at-night-entry .post-description,
+.travelling-at-night-entry .post-body > p:first-child {
+  position: relative;
+  max-width: 88%;
+  margin: 0 auto 12px;
+  padding: 5px 27px 3px;
+  color: #817e74;
+  font-family: "Noto Serif SC", "Songti SC", serif;
+  font-size: .94em;
+  font-style: italic;
+  line-height: 1.9;
+  text-align: center;
+}
+
+.travelling-at-night-entry .post-button { margin-top: 11px; text-align: center; }
+.travelling-at-night-entry .post-button .btn {
+  border: 0;
+  border-bottom: 1px solid var(--night-entry-line);
+  color: var(--night-entry-muted);
+  background: transparent;
+  font-family: "Noto Serif SC", "Songti SC", serif;
+  font-size: 12px;
+}
+.travelling-at-night-entry .post-button .btn::before {
+  content: "\f02d";
+  margin-right: 7px;
+  color: var(--night-entry-lamp);
+  font-family: "Font Awesome 5 Free";
+  font-size: 10px;
+  font-weight: 900;
+}
+.travelling-at-night-entry .post-button .btn:hover,
+.travelling-at-night-entry .post-button .btn:focus-visible {
+  border-bottom-color: var(--night-entry-lamp);
+  color: #68695e;
+  background: rgba(201, 154, 50, .04);
+}
+
+@media (max-width: 767px) {
+  .travelling-at-night-entry { padding-inline: 14px 10px; }
+  .travelling-at-night-entry .post-description,
+  .travelling-at-night-entry .post-body > p:first-child { max-width: 100%; padding-inline: 20px; }
+  .travelling-at-night-entry .night-description-divider { width: 72%; }
+}
