@@ -114,7 +114,7 @@
 
     paragraphs.forEach(function (paragraph, index) {
       paragraph.classList.add('night-passage');
-      paragraph.dataset.nightMark = index < timelineMarks.length ? timelineMarks[index] : passageTime(recordedTime, index) + ' / ' + location;
+      paragraph.dataset.nightMark = index < timelineMarks.length ? timelineMarks[index] : passageTime(recordedTime, index);
     });
 
     ending.classList.remove('night-passage');
@@ -124,7 +124,7 @@
   }
 
   function revealContent() {
-    var targets = document.querySelectorAll('.night-passage, .night-article-body > blockquote, .night-evidence, .night-awakening');
+    var targets = document.querySelectorAll('.night-passage, .night-article-body > blockquote, .night-article-body #hexo-blog-encrypt blockquote, .night-evidence, .night-awakening');
     if (!('IntersectionObserver' in window)) {
       targets.forEach(function (target) { target.classList.add('seen'); });
       return;

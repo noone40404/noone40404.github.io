@@ -369,7 +369,8 @@ body.travelling-at-night-page::before {
 }
 
 .night-passage,
-.night-article-body > blockquote {
+.night-article-body > blockquote,
+.night-article-body #hexo-blog-encrypt blockquote {
   position: relative;
   width: min(var(--night-content), calc(100% - clamp(72px, 10vw, 120px)));
   margin: 72px 0 72px clamp(72px, 10vw, 120px);
@@ -405,7 +406,8 @@ body.travelling-at-night-page::before {
   text-shadow: 0 0 calc(18px * var(--night-light-level)) rgba(242, 201, 76, 0.42);
 }
 
-.night-article-body > blockquote {
+.night-article-body > blockquote,
+.night-article-body #hexo-blog-encrypt blockquote {
   padding: 42px clamp(30px, 5vw, 64px) 38px;
   border: 0;
   background:
@@ -419,7 +421,8 @@ body.travelling-at-night-page::before {
   text-shadow: 0 0 calc(16px * var(--night-light-level)) rgba(242, 201, 76, 0.12);
 }
 
-.night-article-body > blockquote::before {
+.night-article-body > blockquote::before,
+.night-article-body #hexo-blog-encrypt blockquote::before {
   content: "\201C";
   position: absolute;
   top: -17px;
@@ -436,7 +439,8 @@ body.travelling-at-night-page::before {
   transform: translateX(-50%);
 }
 
-.night-article-body > blockquote::after {
+.night-article-body > blockquote::after,
+.night-article-body #hexo-blog-encrypt blockquote::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -585,6 +589,7 @@ body.travelling-at-night-page::before {
 
 .night-passage,
 .night-article-body > blockquote,
+.night-article-body #hexo-blog-encrypt blockquote,
 .night-evidence,
 .night-awakening {
   opacity: 0;
@@ -594,6 +599,7 @@ body.travelling-at-night-page::before {
 
 .night-passage.seen,
 .night-article-body > blockquote.seen,
+.night-article-body #hexo-blog-encrypt blockquote.seen,
 .night-awakening.seen,
 .night-evidence.seen {
   opacity: 1;
@@ -806,19 +812,22 @@ html[data-night-light="veiled"] .night-lamp-switch > span {
   }
 
   .night-passage,
-  .night-article-body > blockquote {
+  .night-article-body > blockquote,
+  .night-article-body #hexo-blog-encrypt blockquote {
     width: calc(100% - 28px);
     margin-left: 28px;
     text-align: left;
   }
 
-  .night-article-body > blockquote {
+  .night-article-body > blockquote,
+  .night-article-body #hexo-blog-encrypt blockquote {
     padding: 38px 18px 34px;
     font-size: 16px;
     text-align: center;
   }
 
-  .night-article-body > blockquote::before {
+  .night-article-body > blockquote::before,
+  .night-article-body #hexo-blog-encrypt blockquote::before {
     top: -14px;
     font-size: 50px;
   }
@@ -902,6 +911,7 @@ html[data-night-light="veiled"] .night-lamp-switch > span {
 
   .night-passage,
   .night-article-body > blockquote,
+  .night-article-body #hexo-blog-encrypt blockquote,
   .night-evidence,
   .night-awakening {
     opacity: 1;
