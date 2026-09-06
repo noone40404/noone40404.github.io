@@ -136,6 +136,39 @@
   text-align: center;
 }
 
+.travelling-at-night-entry .post-description::before,
+.travelling-at-night-entry .post-description::after,
+.travelling-at-night-entry .post-body > p:first-child::before,
+.travelling-at-night-entry .post-body > p:first-child::after {
+  position: absolute;
+  color: #d8d5c5;
+  font: 25px/1 Georgia, "Times New Roman", serif;
+}
+
+.travelling-at-night-entry .post-description::before {
+  content: "“";
+  top: 0;
+  left: 3px;
+}
+
+.travelling-at-night-entry .post-description::after {
+  content: "”";
+  right: 3px;
+  bottom: -7px;
+}
+
+.travelling-at-night-entry .post-body > p:first-child::before {
+  content: "“";
+  top: 0;
+  left: 3px;
+}
+
+.travelling-at-night-entry .post-body > p:first-child::after {
+  content: "”";
+  right: 3px;
+  bottom: -7px;
+}
+
 .travelling-at-night-entry .post-button { margin-top: 11px; text-align: center; }
 .travelling-at-night-entry .post-button .btn {
   border: 0;
