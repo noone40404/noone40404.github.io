@@ -84,7 +84,7 @@ body.home-season-shell-active > .home-season-shell { display: block; }
 }
 .home-season-shell .season-trigger a:hover { color: var(--ink); border-bottom-color: var(--ink); }
 .home-season-shell .season-trigger b { font-weight: 400; }
-.skin-cho-10 .home-season-shell .season-trigger {
+.skin-angel .home-season-shell .season-trigger {
   width: fit-content;
   padding: 8px 10px;
   border: 2px inset #ffe4ef;
@@ -92,7 +92,7 @@ body.home-season-shell-active > .home-season-shell { display: block; }
   background: #f9e8f0;
   font-family: SkinPixel, "SimSun", monospace;
 }
-.skin-cho-10 .home-season-shell .season-trigger a { color: #a13d6a; border-bottom-style: dashed; }
+.skin-angel .home-season-shell .season-trigger a { color: #a13d6a; border-bottom-style: dashed; }
 
 @media (max-width: 860px) {
   .home-season-switcher { right: 10px; bottom: 10px; }

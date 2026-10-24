@@ -1,14 +1,14 @@
 (() => {
   'use strict';
 
-  const themes = ['locksmith', 'cho-10', 'christmas', 'spring-festival'];
+  const themes = ['locksmith', 'angel', 'christmas', 'spring-festival'];
   const overrideKey = 'home-season-preview';
   const shellStyleId = 'home-season-shell-style';
   const switchSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA', 'KeyB', 'KeyA'];
-  const labels = { auto: '自动', locksmith: '锁匠', 'cho-10': '超天酱', christmas: '圣诞', 'spring-festival': '春节' };
+  const labels = { auto: '自动', locksmith: '锁匠', angel: '超天酱', christmas: '圣诞', 'spring-festival': '春节' };
   const skinData = {
     locksmith: { kicker: 'THE ONEIRIC TERMINAL', index: 'ARCHIVE LOCKED', title: '关于门的梦境', copy: '我梦见了敞开的门。红色的门，金色的门，玻璃门，像书籍一样装订起来的门，轨道车厢门还有城堡大门。我身后便是我寻找的某个事物。我醒来时，门阖上的声音仍回荡在耳边。', symbol: '⌑', triggerCopy: '今日是锁匠的梦境系列文章发布纪念日，那里有一扇不该开启的门，现在连它的合页都在摇摇欲动：', triggerLabel: '过往的回忆', footer: 'ONEIRIC ARCHIVE' },
-    'cho-10': { kicker: 'LOST IN THOUGHTS', index: 'SIGNAL // 100%', title: 'You Can (Not) Redo', copy: '伴随着剧烈的疼痛，noone的时间线被压缩成一个奇点。此前的事已无关紧要，后续的一切都将或多或少与此相关', symbol: '♡', triggerCopy: '绝望似狼，吞噬念想', triggerLabel: '正在经历：[创伤]', footer: 'HELP ME PLEASE' },
+    angel: { kicker: 'LOST IN THOUGHTS', index: 'SIGNAL // 100%', title: 'You Can (Not) Redo', copy: '伴随着剧烈的疼痛，noone的时间线被压缩成一个奇点。此前的事已无关紧要，后续的一切都将或多或少与此相关', symbol: '♡', triggerCopy: '绝望似狼，吞噬念想', triggerLabel: '正在经历：[创伤]', footer: 'HELP ME PLEASE' },
     christmas: { kicker: '是圣诞节限定博客皮肤', index: 'DECEMBER 24th', title: '欧耶今天是圣诞节', copy: '把一年中仍值得记住的文章放在常青枝叶与暖光之间，等待一个安静的冬夜被重新打开。', symbol: '✦', footer: '鸡公煲，鸡公煲，经过我的胃' },
     'spring-festival': { kicker: 'noone给您拜年啦', index: '岁次更新 // 万事胜意', title: '新春辞旧岁', copy: '以朱红、宣纸和金色印记迎接新一年的博客。愿技术有所进益，远行皆有回声。', symbol: '福', footer: '新春快乐' }
   };
@@ -43,14 +43,26 @@
     return `${parts.year}-${parts.month}-${parts.day}`;
   };
 
-  const automaticTheme = date => {
-    const day = shanghaiDate(date);
-    if (parseLocksmithDates().includes(day)) return 'locksmith';
+  const themeForDay = (day, locksmithDates = []) => {
+    const monthDay = day.slice(5);
+    if (locksmithDates.some(date => date.slice(5) === monthDay)) return 'locksmith';
     if (springFestivalRanges.some(([start, end]) => day >= start && day <= end)) return 'spring-festival';
-    if (['12-24', '12-25'].includes(day.slice(5))) return 'christmas';
-    if (day.slice(5) >= '11-15' && day.slice(5) <= '11-30') return 'cho-10';
+    if (['12-24', '12-25'].includes(monthDay)) return 'christmas';
+    if (monthDay >= '11-15' && monthDay <= '11-30') return 'angel';
     return null;
   };
+
+  const locksmithPathForDay = (day, pathsByDate = {}) => {
+    const matchingDate = Object.keys(pathsByDate).find(date => date.slice(5) === day.slice(5));
+    return matchingDate ? pathsByDate[matchingDate] : null;
+  };
+
+  if (typeof module === 'object' && module.exports) {
+    module.exports = { locksmithPathForDay, themeForDay };
+    return;
+  }
+
+  const automaticTheme = date => themeForDay(shanghaiDate(date), parseLocksmithDates());
 
   const isHome = () => Boolean(window.CONFIG && CONFIG.page && CONFIG.page.isHome);
   const currentPage = () => Number(location.pathname.match(/\/page\/(\d+)\/?$/)?.[1] || 1);
@@ -114,8 +126,8 @@
     const skin = skinData[theme];
     const today = shanghaiDate(new Date());
     const heroPath = theme === 'locksmith'
-      ? (data.triggers.locksmithByDate[today] || data.triggers.locksmithDefault)
-      : theme === 'cho-10' ? data.triggers.cho : null;
+      ? (locksmithPathForDay(today, data.triggers.locksmithByDate) || data.triggers.locksmithDefault)
+      : theme === 'angel' ? data.triggers.angel : null;
     const heroTrigger = heroPath
       ? `<div class="season-trigger"><span>${escapeHTML(skin.triggerCopy)}</span><a href="${escapeHTML(heroPath)}">${escapeHTML(skin.triggerLabel)} <b aria-hidden="true">→</b></a></div>`
       : '';
@@ -133,17 +145,17 @@
       <div class="skin-atmosphere" aria-hidden="true"><div class="skin-moon"></div><div class="skin-particles"></div></div>
       <div class="theme-props" aria-hidden="true">
         <div class="locksmith-props"><i class="broken-door door-one"></i><i class="broken-door door-two"></i><i class="broken-door door-three"></i><span>THE HIGHER I RISE<br>THE MORE I SEE</span></div>
-        <div class="cho-desktop-icons"><span><img src="/noip-afo/assets/memory/icon-1.png" alt="">noone</span><span><img src="/noip-afo/assets/memory/icon-5.png" alt="">JINE</span><span><img src="/noip-afo/assets/memory/folder-1.png" alt="">BLOG.LOG</span></div>
+        <div class="angel-desktop-icons"><span><img src="/noip-afo/assets/memory/icon-1.png" alt="">noone</span><span><img src="/noip-afo/assets/memory/icon-5.png" alt="">JINE</span><span><img src="/noip-afo/assets/memory/folder-1.png" alt="">BLOG.LOG</span></div>
         <div class="christmas-garland"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
         <div class="spring-couplets"><span>旧岁文章皆入卷</span><b>春</b><span>新年故事再开篇</span></div>
       </div>
       <aside class="skin-switcher" aria-label="主页皮肤切换"><span>SEASON MODE</span><div role="group">${themeButtons}</div></aside>
       <header class="demo-header"><a class="demo-brand" href="/"><small>${escapeHTML(skin.kicker)}</small><strong>${escapeHTML(data.site.title)}</strong><span>${escapeHTML(data.site.subtitle)}</span></a><nav aria-label="主导航"><a href="/">首页</a><a href="/archives/">归档</a><a href="/categories/">分类</a><a href="/tags/">标签</a><a href="/about/">关于</a></nav></header>
       <main class="demo-main">
-        <section class="skin-hero"><div><span class="hero-index">${escapeHTML(skin.index)}</span><h1>${escapeHTML(skin.title)}</h1><p>${escapeHTML(skin.copy)}</p>${heroTrigger}</div><div class="hero-emblem" aria-hidden="true"><span>${escapeHTML(skin.symbol)}</span></div><div class="cho-window-controls" aria-hidden="true"><i>_</i><i>□</i><i>×</i></div><div class="christmas-postmark" aria-hidden="true">NORTH POLE<br>DEC 24</div></section>
+        <section class="skin-hero"><div><span class="hero-index">${escapeHTML(skin.index)}</span><h1>${escapeHTML(skin.title)}</h1><p>${escapeHTML(skin.copy)}</p>${heroTrigger}</div><div class="hero-emblem" aria-hidden="true"><span>${escapeHTML(skin.symbol)}</span></div><div class="angel-window-controls" aria-hidden="true"><i>_</i><i>□</i><i>×</i></div><div class="christmas-postmark" aria-hidden="true">NORTH POLE<br>DEC 24</div></section>
         <section class="demo-dashboard" aria-label="博客概览"><div><b>${data.stats.posts}</b><span>文章</span></div><div><b>${data.stats.categories}</b><span>分类</span></div><div><b>${data.stats.tags}</b><span>标签</span></div><div><b>${data.stats.since}–${data.stats.currentYear}</b><span>记录期间</span></div></section>
         <section class="demo-feed"><header class="section-heading"><div><small>RECENT RECORDS</small><h2>最近文章</h2></div><a href="/archives/">查看全部</a></header><div class="post-list">${posts}</div>${paginationHTML(data.pagination)}</section>
-        <aside class="theme-side-panel" aria-hidden="true"><div class="locksmith-index"><small>层叠秘史</small><b>I</b><b>II</b><b>III</b><b>IV</b><b>V</b><span>余下部分不可尽知</span></div><div class="cho-status-window"><header>STATUS.EXE <i>×</i></header><p>(Un)happy end World</p><dl><dt>SIGNAL</dt><dd>100%</dd><dt>MEMORY</dt><dd>FRAGMENTED</dd><dt>HEART</dt><dd>ONLINE</dd></dl></div><div class="christmas-mailbag"><small>DELIVERY STATUS</small><b>${data.stats.posts}</b><span>封记录等待投递</span></div><div class="spring-seal">${data.stats.currentYear}<br>新春<br>档案</div></aside>
+        <aside class="theme-side-panel" aria-hidden="true"><div class="locksmith-index"><small>层叠秘史</small><b>I</b><b>II</b><b>III</b><b>IV</b><b>V</b><span>余下部分不可尽知</span></div><div class="angel-status-window"><header>STATUS.EXE <i>×</i></header><p>(Un)happy end World</p><dl><dt>SIGNAL</dt><dd>100%</dd><dt>MEMORY</dt><dd>FRAGMENTED</dd><dt>HEART</dt><dd>ONLINE</dd></dl></div><div class="christmas-mailbag"><small>DELIVERY STATUS</small><b>${data.stats.posts}</b><span>封记录等待投递</span></div><div class="spring-seal">${data.stats.currentYear}<br>新春<br>档案</div></aside>
       </main>
       <footer class="demo-footer">© ${data.stats.since}–${data.stats.currentYear} ${escapeHTML(data.site.author)} · ${escapeHTML(skin.footer)}</footer>`;
   };
