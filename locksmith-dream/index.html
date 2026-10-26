@@ -567,7 +567,8 @@ window.addEventListener('pjax:success', () => {
 
     function initializeObsidianSidebar() {
       var sidebar = document.querySelector('.sidebar-inner');
-      if (!sidebar || sidebar.querySelector('.obsidian-sidebar-canvas')) return;
+      var overview = sidebar && sidebar.querySelector('.site-overview-wrap');
+      if (!sidebar || !overview || sidebar.querySelector('.obsidian-sidebar-canvas')) return;
 
       var canvas = document.createElement('canvas');
       canvas.className = 'obsidian-sidebar-canvas';
@@ -584,7 +585,7 @@ window.addEventListener('pjax:success', () => {
         '<line class="fine" x1="22" y1="100" x2="178" y2="100"></line>' +
         '<line class="fine" x1="100" y1="22" x2="100" y2="178"></line>';
 
-      sidebar.prepend(sigil);
+      overview.prepend(sigil);
       sidebar.prepend(canvas);
 
       var context = canvas.getContext('2d');

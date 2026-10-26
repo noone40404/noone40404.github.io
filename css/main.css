@@ -1334,7 +1334,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #beff0b;
+  background: #a3fffe;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2690,7 +2690,7 @@ hr {
   color: #d7d5d8;
   height: 100%;
   isolation: isolate;
-  overflow-x: hidden;
+  overflow: hidden;
   position: relative;
 }
 .sidebar-inner::before {
@@ -2706,6 +2706,10 @@ hr {
   position: relative;
   z-index: 1;
 }
+.site-overview-wrap > :not(.obsidian-sidebar-sigil) {
+  position: relative;
+  z-index: 1;
+}
 .obsidian-sidebar-canvas {
   height: 100%;
   inset: 0;
@@ -2718,15 +2722,15 @@ hr {
 .obsidian-sidebar-sigil {
   animation: obsidian-orbit 36s linear infinite;
   color: var(--obsidian-accent);
-  height: 166px;
+  height: 144px;
   left: 50%;
   opacity: 0.28;
   pointer-events: none;
   position: absolute;
-  top: 35px;
+  top: 12px;
   transform: translateX(-50%);
-  width: 166px;
-  z-index: -1;
+  width: 144px;
+  z-index: 0;
 }
 .obsidian-sidebar-sigil circle,
 .obsidian-sidebar-sigil line,
@@ -2743,7 +2747,16 @@ hr {
   background: rgba(0,0,0,0.3);
   border: 1px solid rgba(217,194,140,0.72);
   box-shadow: 0 0 24px rgba(217,194,140,0.12), 0 0 0 6px rgba(217,194,140,0.14);
+  box-sizing: content-box;
+  height: 64px;
+  margin-left: auto;
+  margin-right: auto;
   padding: 5px;
+  width: 64px;
+}
+.site-author {
+  opacity: 1 !important;
+  transform: none !important;
 }
 .site-author-name {
   color: #f0eff2;
@@ -2788,11 +2801,28 @@ hr {
   display: none !important;
 }
 .site-overview-wrap {
+  box-sizing: border-box;
   display: block !important;
+  height: calc(100% - 36px);
   opacity: 1 !important;
-  padding-top: 46px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 46px 8px 24px;
+  scrollbar-color: rgba(217,194,140,0.42) transparent;
+  scrollbar-gutter: stable both-edges;
+  scrollbar-width: thin;
   transform: none !important;
   visibility: visible !important;
+}
+.site-overview-wrap::-webkit-scrollbar {
+  width: 3px;
+}
+.site-overview-wrap::-webkit-scrollbar-track {
+  background: transparent;
+}
+.site-overview-wrap::-webkit-scrollbar-thumb {
+  background: rgba(217,194,140,0.42);
+  border-radius: 0;
 }
 @media (prefers-reduced-motion: reduce) {
   .obsidian-sidebar-sigil {
